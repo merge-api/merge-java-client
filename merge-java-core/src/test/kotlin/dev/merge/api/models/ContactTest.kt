@@ -1,0 +1,215 @@
+package dev.merge.api.models
+
+import dev.merge.api.core.JsonString
+import dev.merge.api.core.JsonValue
+import java.time.OffsetDateTime
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class ContactTest {
+
+    @Test
+    fun createContact() {
+        val contact =
+            Contact.builder()
+                .id("5858cbc6-6040-430a-475r-aafacbadrg64")
+                .remoteId("35")
+                .name("Cousin Greg")
+                .isSupplier(true)
+                .isCustomer(true)
+                .emailAddress("greg@waystar-royco.com")
+                .taxNumber("12-3456789")
+                .status(Contact.Status7d1Enum.ACTIVE)
+                .currency("USD")
+                .remoteUpdatedAt(OffsetDateTime.parse("2022-12-23T00:00:00Z"))
+                .company("595c8f97-2ac4-45b7-b000-41bdf43240b5")
+                .addresses(
+                    listOf(
+                        Address.builder()
+                            .type(Address.AddressTypeEnum.BILLING)
+                            .street1("50 Bowling Green Dr")
+                            .street2("Golden Gate Park")
+                            .city("San Francisco")
+                            .state("CA")
+                            .countrySubdivision("NY")
+                            .country(Country.AF)
+                            .zipCode("10027")
+                            .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                            .postalCode("94122")
+                            .addressType(Address.AddressTypeEnum.BILLING)
+                            .build()
+                    )
+                )
+                .phoneNumbers(
+                    listOf(
+                        Contact.PhoneNumber.builder()
+                            .value("+3198675309")
+                            .phoneNumberType(Contact.PhoneNumber.PhoneNumberTypeEnum.HOME)
+                            .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                            .phoneNumber("+3198675309")
+                            .build()
+                    )
+                )
+                .remoteWasDeleted(true)
+                .fieldMappings(
+                    JsonValue.from(
+                        mapOf(
+                            "organization_defined_targets" to mapOf("custom_key" to "custom_value"),
+                            "linked_account_defined_targets" to
+                                mapOf("custom_key" to "custom_value")
+                        )
+                    )
+                )
+                .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                .remoteData(
+                    listOf(RemoteData.builder().path("string").data(JsonString.of("abc")).build())
+                )
+                .phoneNumber("5108890293")
+                .details("Executive Assistant to Tom Wambsgans")
+                .account("0958cbc6-6040-430a-848e-aafacbadf4ae")
+                .firstName("Gil")
+                .lastName("Feig")
+                .emailAddresses(
+                    listOf(
+                        Contact.EmailAddress.builder()
+                            .value("merge_is_hiring@merge.dev")
+                            .emailAddressType(Contact.EmailAddress.EmailAddressTypeEnum.PERSONAL)
+                            .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                            .emailAddress("merge_is_hiring@merge.dev")
+                            .build()
+                    )
+                )
+                .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                .remoteCreatedAt(OffsetDateTime.parse("2022-12-23T00:00:00Z"))
+                .remoteFields(
+                    listOf(
+                        Contact.RemoteField.builder()
+                            .remoteFieldClass(
+                                RemoteFieldClass.builder()
+                                    .id("string")
+                                    .displayName("string")
+                                    .remoteKeyName("string")
+                                    .description("string")
+                                    .isCustom(true)
+                                    .isRequired(true)
+                                    .fieldType(RemoteFieldClass.FieldTypeEnum.STRING)
+                                    .fieldFormat(RemoteFieldClass.FieldFormatEnum.STRING)
+                                    .fieldChoices(listOf("string"))
+                                    .itemSchema(
+                                        RemoteFieldClass.ItemSchema.builder()
+                                            .itemType(JsonString.of("abc"))
+                                            .itemFormat(JsonString.of("abc"))
+                                            .itemChoices(listOf("string"))
+                                            .build()
+                                    )
+                                    .build()
+                            )
+                            .value(JsonString.of("abc"))
+                            .build()
+                    )
+                )
+                .email("hello@merge.dev")
+                .phone("+13785579223")
+                .state("NY")
+                .country(Country.AF)
+                .postalCode("string")
+                .build()
+        assertThat(contact).isNotNull
+        assertThat(contact.id()).contains("5858cbc6-6040-430a-475r-aafacbadrg64")
+        assertThat(contact.remoteId()).contains("35")
+        assertThat(contact.name()).contains("Cousin Greg")
+        assertThat(contact.isSupplier()).contains(true)
+        assertThat(contact.isCustomer()).contains(true)
+        assertThat(contact.emailAddress()).contains("greg@waystar-royco.com")
+        assertThat(contact.taxNumber()).contains("12-3456789")
+        assertThat(contact.status()).contains(Contact.Status7d1Enum.ACTIVE)
+        assertThat(contact.currency()).contains("USD")
+        assertThat(contact.remoteUpdatedAt()).contains(OffsetDateTime.parse("2022-12-23T00:00:00Z"))
+        assertThat(contact.company()).contains("595c8f97-2ac4-45b7-b000-41bdf43240b5")
+        assertThat(contact.addresses().get())
+            .containsExactly(
+                Address.builder()
+                    .type(Address.AddressTypeEnum.BILLING)
+                    .street1("50 Bowling Green Dr")
+                    .street2("Golden Gate Park")
+                    .city("San Francisco")
+                    .state("CA")
+                    .countrySubdivision("NY")
+                    .country(Country.AF)
+                    .zipCode("10027")
+                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                    .postalCode("94122")
+                    .addressType(Address.AddressTypeEnum.BILLING)
+                    .build()
+            )
+        assertThat(contact.phoneNumbers().get())
+            .containsExactly(
+                Contact.PhoneNumber.builder()
+                    .value("+3198675309")
+                    .phoneNumberType(Contact.PhoneNumber.PhoneNumberTypeEnum.HOME)
+                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                    .phoneNumber("+3198675309")
+                    .build()
+            )
+        assertThat(contact.remoteWasDeleted()).contains(true)
+        assertThat(contact._fieldMappings())
+            .isEqualTo(
+                JsonValue.from(
+                    mapOf(
+                        "organization_defined_targets" to mapOf("custom_key" to "custom_value"),
+                        "linked_account_defined_targets" to mapOf("custom_key" to "custom_value")
+                    )
+                )
+            )
+        assertThat(contact.modifiedAt()).contains(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+        assertThat(contact.remoteData().get())
+            .containsExactly(RemoteData.builder().path("string").data(JsonString.of("abc")).build())
+        assertThat(contact.phoneNumber()).contains("5108890293")
+        assertThat(contact.details()).contains("Executive Assistant to Tom Wambsgans")
+        assertThat(contact.account()).contains("0958cbc6-6040-430a-848e-aafacbadf4ae")
+        assertThat(contact.firstName()).contains("Gil")
+        assertThat(contact.lastName()).contains("Feig")
+        assertThat(contact.emailAddresses().get())
+            .containsExactly(
+                Contact.EmailAddress.builder()
+                    .value("merge_is_hiring@merge.dev")
+                    .emailAddressType(Contact.EmailAddress.EmailAddressTypeEnum.PERSONAL)
+                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                    .emailAddress("merge_is_hiring@merge.dev")
+                    .build()
+            )
+        assertThat(contact.lastActivityAt()).contains(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+        assertThat(contact.remoteCreatedAt()).contains(OffsetDateTime.parse("2022-12-23T00:00:00Z"))
+        assertThat(contact.remoteFields().get())
+            .containsExactly(
+                Contact.RemoteField.builder()
+                    .remoteFieldClass(
+                        RemoteFieldClass.builder()
+                            .id("string")
+                            .displayName("string")
+                            .remoteKeyName("string")
+                            .description("string")
+                            .isCustom(true)
+                            .isRequired(true)
+                            .fieldType(RemoteFieldClass.FieldTypeEnum.STRING)
+                            .fieldFormat(RemoteFieldClass.FieldFormatEnum.STRING)
+                            .fieldChoices(listOf("string"))
+                            .itemSchema(
+                                RemoteFieldClass.ItemSchema.builder()
+                                    .itemType(JsonString.of("abc"))
+                                    .itemFormat(JsonString.of("abc"))
+                                    .itemChoices(listOf("string"))
+                                    .build()
+                            )
+                            .build()
+                    )
+                    .value(JsonString.of("abc"))
+                    .build()
+            )
+        assertThat(contact.email()).contains("hello@merge.dev")
+        assertThat(contact.phone()).contains("+13785579223")
+        assertThat(contact.state()).contains("NY")
+        assertThat(contact.country()).contains(Country.AF)
+        assertThat(contact.postalCode()).contains("string")
+    }
+}

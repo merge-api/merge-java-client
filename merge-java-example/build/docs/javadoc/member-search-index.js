@@ -1,0 +1,1 @@
+memberSearchIndex = [{"p":"dev.merge.example","c":"Main","l":"Main()","u":"%3Cinit%3E()"},{"p":"dev.merge.example","c":"Main","l":"main(String[])","u":"main(java.lang.String[])"}];updateSearchResults();
