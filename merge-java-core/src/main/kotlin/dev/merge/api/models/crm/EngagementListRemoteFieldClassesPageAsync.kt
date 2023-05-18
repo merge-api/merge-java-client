@@ -27,9 +27,9 @@ private constructor(
 
     fun response(): Response = response
 
-    fun next(): String = response().next()
+    fun next(): Optional<String> = response().next()
 
-    fun previous(): String = response().previous()
+    fun previous(): Optional<String> = response().previous()
 
     fun results(): List<RemoteFieldClass> = response().results()
 
@@ -60,7 +60,7 @@ private constructor(
             return false
         }
 
-        return next().isNotEmpty()
+        return next().filter { it.isNotEmpty() }.isPresent
     }
 
     fun getNextPageParams(): Optional<EngagementListRemoteFieldClassesParams> {
@@ -69,7 +69,10 @@ private constructor(
         }
 
         return Optional.of(
-            EngagementListRemoteFieldClassesParams.builder().from(params).cursor(next()).build()
+            EngagementListRemoteFieldClassesParams.builder()
+                .from(params)
+                .apply { next().ifPresent { this.cursor(it) } }
+                .build()
         )
     }
 
@@ -108,11 +111,11 @@ private constructor(
 
         private var validated: Boolean = false
 
-        fun next(): String = next.getRequired("next")
+        fun next(): Optional<String> = Optional.ofNullable(next.getNullable("next"))
 
-        fun previous(): String = previous.getRequired("previous")
+        fun previous(): Optional<String> = Optional.ofNullable(previous.getNullable("previous"))
 
-        fun results(): List<RemoteFieldClass> = results.getRequired("results")
+        fun results(): List<RemoteFieldClass> = results.getNullable("results") ?: listOf()
 
         @JsonProperty("next") fun _next(): Optional<JsonField<String>> = Optional.ofNullable(next)
 
@@ -126,11 +129,11 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): Response = apply {
             if (!validated) {
                 next()
                 previous()
-                results().forEach { it.validate() }
+                results().map { it.validate() }
                 validated = true
             }
         }

@@ -63,7 +63,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): PhoneNumber = apply {
         if (!validated) {
             number()
             type()

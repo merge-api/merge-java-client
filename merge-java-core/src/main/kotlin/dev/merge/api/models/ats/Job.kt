@@ -189,7 +189,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Job = apply {
         if (!validated) {
             id()
             remoteId()
@@ -671,7 +671,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): Url = apply {
             if (!validated) {
                 value()
                 urlType()

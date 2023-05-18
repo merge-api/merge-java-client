@@ -1,5 +1,6 @@
 package dev.merge.api.models.crm
 
+import dev.merge.api.core.JsonString
 import dev.merge.api.core.JsonValue
 import dev.merge.api.models.*
 import org.assertj.core.api.Assertions.assertThat
@@ -27,6 +28,14 @@ class NoteCreateParamsTest {
                             mapOf(
                                 "unique_linked_account_field" to "unique_linked_account_field_value"
                             )
+                        )
+                    )
+                    .remoteFields(
+                        listOf(
+                            NoteCreateParams.NoteRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
                         )
                     )
                     .build()
@@ -60,6 +69,14 @@ class NoteCreateParamsTest {
                                     "unique_linked_account_field" to
                                         "unique_linked_account_field_value"
                                 )
+                            )
+                        )
+                        .remoteFields(
+                            listOf(
+                                NoteCreateParams.NoteRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
                             )
                         )
                         .build()
@@ -107,6 +124,14 @@ class NoteCreateParamsTest {
                                 )
                             )
                         )
+                        .remoteFields(
+                            listOf(
+                                NoteCreateParams.NoteRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
                         .build()
                 )
                 .isDebugMode(true)
@@ -132,6 +157,14 @@ class NoteCreateParamsTest {
                             mapOf(
                                 "unique_linked_account_field" to "unique_linked_account_field_value"
                             )
+                        )
+                    )
+                    .remoteFields(
+                        listOf(
+                            NoteCreateParams.NoteRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
                         )
                     )
                     .build()

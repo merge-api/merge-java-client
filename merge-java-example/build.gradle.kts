@@ -23,7 +23,5 @@ application {
 }
 
 tasks.withType<Test> {
-
     include("**")
-
 }

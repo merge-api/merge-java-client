@@ -129,7 +129,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): TrackingCategory = apply {
         if (!validated) {
             name()
             status()

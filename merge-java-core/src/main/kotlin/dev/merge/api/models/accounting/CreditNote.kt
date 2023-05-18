@@ -800,7 +800,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): CreditNote = apply {
         if (!validated) {
             id()
             remoteId()
@@ -1944,7 +1944,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): CreditNoteLineItem = apply {
             if (!validated) {
                 item()
                 name()

@@ -2,6 +2,7 @@ package dev.merge.api.services.blocking.accounting
 
 import dev.merge.api.TestServerExtension
 import dev.merge.api.client.okhttp.MergeOkHttpClient
+import dev.merge.api.core.JsonString
 import dev.merge.api.core.JsonValue
 import dev.merge.api.models.*
 import dev.merge.api.models.accounting.*
@@ -114,6 +115,14 @@ class ContactServiceTest {
                                 )
                             )
                             .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                            .remoteFields(
+                                listOf(
+                                    ContactCreateParams.ContactRequest.RemoteFieldRequest.builder()
+                                        .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                        .value(JsonString.of("abc"))
+                                        .build()
+                                )
+                            )
                             .email("hello@merge.dev")
                             .phone("+13785579223")
                             .state("NY")

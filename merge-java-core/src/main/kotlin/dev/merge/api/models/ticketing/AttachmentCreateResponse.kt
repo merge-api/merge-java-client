@@ -71,7 +71,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): AttachmentCreateResponse = apply {
         if (!validated) {
             model().validate()
             warnings().forEach { it.validate() }

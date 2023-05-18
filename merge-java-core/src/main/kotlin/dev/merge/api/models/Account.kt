@@ -880,7 +880,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Account = apply {
         if (!validated) {
             id()
             remoteId()
@@ -4071,7 +4071,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): PhoneNumber = apply {
             if (!validated) {
                 value()
                 phoneNumberType()
@@ -4312,7 +4312,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): RemoteField = apply {
             if (!validated) {
                 remoteFieldClass().validate()
                 validated = true

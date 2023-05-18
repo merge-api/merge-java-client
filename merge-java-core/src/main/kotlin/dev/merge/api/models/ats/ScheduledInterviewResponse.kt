@@ -77,7 +77,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): ScheduledInterviewResponse = apply {
         if (!validated) {
             model().validate()
             warnings().forEach { it.validate() }

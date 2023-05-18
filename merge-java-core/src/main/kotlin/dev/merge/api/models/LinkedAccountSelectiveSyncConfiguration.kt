@@ -38,7 +38,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): LinkedAccountSelectiveSyncConfiguration = apply {
         if (!validated) {
             linkedAccountConditions().map { it.forEach { it.validate() } }
             validated = true
@@ -183,7 +183,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): LinkedAccountCondition = apply {
             if (!validated) {
                 conditionSchemaId()
                 commonModel()

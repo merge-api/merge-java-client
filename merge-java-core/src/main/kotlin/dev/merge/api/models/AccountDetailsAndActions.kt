@@ -140,7 +140,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): AccountDetailsAndActions = apply {
         if (!validated) {
             id()
             category()
@@ -597,7 +597,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): AccountDetailsAndActionsIntegration = apply {
             if (!validated) {
                 name()
                 categories()
@@ -912,7 +912,7 @@ private constructor(
             @ExcludeMissing
             fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-            fun validate() = apply {
+            fun validate(): ModelOperation = apply {
                 if (!validated) {
                     modelName()
                     availableOperations()

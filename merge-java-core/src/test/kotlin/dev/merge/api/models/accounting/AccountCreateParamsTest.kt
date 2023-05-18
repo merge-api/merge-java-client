@@ -1,5 +1,6 @@
 package dev.merge.api.models.accounting
 
+import dev.merge.api.core.JsonString
 import dev.merge.api.core.JsonValue
 import dev.merge.api.models.*
 import java.time.OffsetDateTime
@@ -40,6 +41,14 @@ class AccountCreateParamsTest {
                     .website("https://merge.dev/")
                     .numberOfEmployees(123L)
                     .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                    .remoteFields(
+                        listOf(
+                            AccountCreateParams.AccountRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
+                        )
+                    )
                     .build()
             )
             .isDebugMode(true)
@@ -83,6 +92,14 @@ class AccountCreateParamsTest {
                         .website("https://merge.dev/")
                         .numberOfEmployees(123L)
                         .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                        .remoteFields(
+                            listOf(
+                                AccountCreateParams.AccountRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
                         .build()
                 )
                 .isDebugMode(true)
@@ -140,6 +157,14 @@ class AccountCreateParamsTest {
                         .website("https://merge.dev/")
                         .numberOfEmployees(123L)
                         .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                        .remoteFields(
+                            listOf(
+                                AccountCreateParams.AccountRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
                         .build()
                 )
                 .isDebugMode(true)
@@ -177,6 +202,14 @@ class AccountCreateParamsTest {
                     .website("https://merge.dev/")
                     .numberOfEmployees(123L)
                     .lastActivityAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                    .remoteFields(
+                        listOf(
+                            AccountCreateParams.AccountRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
+                        )
+                    )
                     .build()
             )
     }

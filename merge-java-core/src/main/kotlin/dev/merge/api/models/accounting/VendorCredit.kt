@@ -761,7 +761,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): VendorCredit = apply {
         if (!validated) {
             id()
             remoteId()
@@ -3628,7 +3628,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): VendorCreditLine = apply {
             if (!validated) {
                 remoteId()
                 netAmount()

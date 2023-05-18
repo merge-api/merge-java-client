@@ -42,7 +42,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): DebugLog = apply {
         if (!validated) {
             logId()
             dashboardView()
@@ -176,7 +176,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): DebugModelLogSummary = apply {
             if (!validated) {
                 url()
                 method()

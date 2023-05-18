@@ -223,14 +223,14 @@ constructor(
         }
 
         /**
-         * If provided, will only return issues whose first incident time was after this datetime.
+         * If provided, will only return issues whose last incident time was after this datetime.
          */
         fun lastIncidentTimeAfter(lastIncidentTimeAfter: OffsetDateTime) = apply {
             this.lastIncidentTimeAfter = lastIncidentTimeAfter
         }
 
         /**
-         * If provided, will only return issues whose first incident time was before this datetime.
+         * If provided, will only return issues whose last incident time was before this datetime.
          */
         fun lastIncidentTimeBefore(lastIncidentTimeBefore: OffsetDateTime) = apply {
             this.lastIncidentTimeBefore = lastIncidentTimeBefore
@@ -245,8 +245,7 @@ constructor(
         fun startDate(startDate: String) = apply { this.startDate = startDate }
 
         /**
-         * - `ONGOING` - ONGOING
-         * - `RESOLVED` - RESOLVED
+         * Status of the issue. Options: ('ONGOING', 'RESOLVED')
          *
          * - `ONGOING` - ONGOING
          * - `RESOLVED` - RESOLVED

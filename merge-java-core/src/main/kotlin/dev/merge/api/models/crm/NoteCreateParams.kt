@@ -311,6 +311,7 @@ constructor(
         private val opportunity: String?,
         private val integrationParams: JsonValue?,
         private val linkedAccountParams: JsonValue?,
+        private val remoteFields: List<RemoteFieldRequest>?,
         private val additionalProperties: Map<String, JsonValue>,
     ) {
 
@@ -336,6 +337,8 @@ constructor(
         @JsonProperty("linked_account_params")
         fun linkedAccountParams(): JsonValue? = linkedAccountParams
 
+        @JsonProperty("remote_fields") fun remoteFields(): List<RemoteFieldRequest>? = remoteFields
+
         @JsonAnyGetter
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
@@ -355,6 +358,7 @@ constructor(
                 this.opportunity == other.opportunity &&
                 this.integrationParams == other.integrationParams &&
                 this.linkedAccountParams == other.linkedAccountParams &&
+                this.remoteFields == other.remoteFields &&
                 this.additionalProperties == other.additionalProperties
         }
 
@@ -369,6 +373,7 @@ constructor(
                         opportunity,
                         integrationParams,
                         linkedAccountParams,
+                        remoteFields,
                         additionalProperties,
                     )
             }
@@ -376,7 +381,7 @@ constructor(
         }
 
         override fun toString() =
-            "NoteRequest{owner=$owner, content=$content, contact=$contact, account=$account, opportunity=$opportunity, integrationParams=$integrationParams, linkedAccountParams=$linkedAccountParams, additionalProperties=$additionalProperties}"
+            "NoteRequest{owner=$owner, content=$content, contact=$contact, account=$account, opportunity=$opportunity, integrationParams=$integrationParams, linkedAccountParams=$linkedAccountParams, remoteFields=$remoteFields, additionalProperties=$additionalProperties}"
 
         companion object {
 
@@ -392,6 +397,7 @@ constructor(
             private var opportunity: String? = null
             private var integrationParams: JsonValue? = null
             private var linkedAccountParams: JsonValue? = null
+            private var remoteFields: List<RemoteFieldRequest>? = null
             private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
 
             @JvmSynthetic
@@ -403,6 +409,7 @@ constructor(
                 this.opportunity = noteRequest.opportunity
                 this.integrationParams = noteRequest.integrationParams
                 this.linkedAccountParams = noteRequest.linkedAccountParams
+                this.remoteFields = noteRequest.remoteFields
                 additionalProperties(noteRequest.additionalProperties)
             }
 
@@ -432,6 +439,11 @@ constructor(
                 this.linkedAccountParams = linkedAccountParams
             }
 
+            @JsonProperty("remote_fields")
+            fun remoteFields(remoteFields: List<RemoteFieldRequest>) = apply {
+                this.remoteFields = remoteFields
+            }
+
             fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
                 this.additionalProperties.clear()
                 this.additionalProperties.putAll(additionalProperties)
@@ -455,8 +467,107 @@ constructor(
                     opportunity,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields?.toUnmodifiable(),
                     additionalProperties.toUnmodifiable(),
                 )
+        }
+
+        @JsonDeserialize(builder = RemoteFieldRequest.Builder::class)
+        @NoAutoDetect
+        class RemoteFieldRequest
+        private constructor(
+            private val remoteFieldClass: String?,
+            private val value: JsonValue?,
+            private val additionalProperties: Map<String, JsonValue>,
+        ) {
+
+            private var hashCode: Int = 0
+
+            @JsonProperty("remote_field_class") fun remoteFieldClass(): String? = remoteFieldClass
+
+            @JsonProperty("value") fun value(): JsonValue? = value
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
+
+            fun toBuilder() = Builder().from(this)
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is RemoteFieldRequest &&
+                    this.remoteFieldClass == other.remoteFieldClass &&
+                    this.value == other.value &&
+                    this.additionalProperties == other.additionalProperties
+            }
+
+            override fun hashCode(): Int {
+                if (hashCode == 0) {
+                    hashCode =
+                        Objects.hash(
+                            remoteFieldClass,
+                            value,
+                            additionalProperties,
+                        )
+                }
+                return hashCode
+            }
+
+            override fun toString() =
+                "RemoteFieldRequest{remoteFieldClass=$remoteFieldClass, value=$value, additionalProperties=$additionalProperties}"
+
+            companion object {
+
+                @JvmStatic fun builder() = Builder()
+            }
+
+            class Builder {
+
+                private var remoteFieldClass: String? = null
+                private var value: JsonValue? = null
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                @JvmSynthetic
+                internal fun from(remoteFieldRequest: RemoteFieldRequest) = apply {
+                    this.remoteFieldClass = remoteFieldRequest.remoteFieldClass
+                    this.value = remoteFieldRequest.value
+                    additionalProperties(remoteFieldRequest.additionalProperties)
+                }
+
+                @JsonProperty("remote_field_class")
+                fun remoteFieldClass(remoteFieldClass: String) = apply {
+                    this.remoteFieldClass = remoteFieldClass
+                }
+
+                @JsonProperty("value") fun value(value: JsonValue) = apply { this.value = value }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    this.additionalProperties.putAll(additionalProperties)
+                }
+
+                @JsonAnySetter
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    this.additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun build(): RemoteFieldRequest =
+                    RemoteFieldRequest(
+                        checkNotNull(remoteFieldClass) {
+                            "`remoteFieldClass` is required but was not set"
+                        },
+                        value,
+                        additionalProperties.toUnmodifiable(),
+                    )
+            }
         }
     }
 }

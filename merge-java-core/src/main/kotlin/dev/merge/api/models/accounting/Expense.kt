@@ -776,7 +776,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Expense = apply {
         if (!validated) {
             transactionDate()
             remoteCreatedAt()
@@ -3684,7 +3684,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): ExpenseLine = apply {
             if (!validated) {
                 remoteId()
                 item()

@@ -132,7 +132,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): BankInfo = apply {
         if (!validated) {
             id()
             remoteId()

@@ -820,7 +820,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): PurchaseOrder = apply {
         if (!validated) {
             status()
             issueDate()
@@ -4517,7 +4517,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): PurchaseOrderLineItem = apply {
             if (!validated) {
                 remoteId()
                 description()

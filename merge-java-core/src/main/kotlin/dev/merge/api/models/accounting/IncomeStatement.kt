@@ -785,7 +785,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): IncomeStatement = apply {
         if (!validated) {
             id()
             remoteId()
@@ -3666,7 +3666,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): ReportItem = apply {
             if (!validated) {
                 remoteId()
                 name()
@@ -3829,7 +3829,7 @@ private constructor(
             @ExcludeMissing
             fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-            fun validate() = apply {
+            fun validate(): SubItem = apply {
                 if (!validated) {
                     validated = true
                 }

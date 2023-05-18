@@ -111,7 +111,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): AssociationType = apply {
         if (!validated) {
             targetObjectClasses().map { it.forEach { it.validate() } }
             remoteKeyName()
@@ -339,7 +339,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): AssociationSubType = apply {
             if (!validated) {
                 id()
                 originType()

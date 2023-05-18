@@ -325,6 +325,7 @@ constructor(
         private val account: String?,
         private val emailAddresses: List<EmailAddressRequest>?,
         private val lastActivityAt: OffsetDateTime?,
+        private val remoteFields: List<RemoteFieldRequest>?,
         private val email: String?,
         private val phone: String?,
         private val state: String?,
@@ -387,6 +388,8 @@ constructor(
 
         /** When the contact's last activity occurred. */
         @JsonProperty("last_activity_at") fun lastActivityAt(): OffsetDateTime? = lastActivityAt
+
+        @JsonProperty("remote_fields") fun remoteFields(): List<RemoteFieldRequest>? = remoteFields
 
         /** The contact's email. */
         @JsonProperty("email") fun email(): String? = email
@@ -682,6 +685,7 @@ constructor(
                 this.account == other.account &&
                 this.emailAddresses == other.emailAddresses &&
                 this.lastActivityAt == other.lastActivityAt &&
+                this.remoteFields == other.remoteFields &&
                 this.email == other.email &&
                 this.phone == other.phone &&
                 this.state == other.state &&
@@ -711,6 +715,7 @@ constructor(
                         account,
                         emailAddresses,
                         lastActivityAt,
+                        remoteFields,
                         email,
                         phone,
                         state,
@@ -723,7 +728,7 @@ constructor(
         }
 
         override fun toString() =
-            "ContactRequest{name=$name, isSupplier=$isSupplier, isCustomer=$isCustomer, emailAddress=$emailAddress, taxNumber=$taxNumber, status=$status, currency=$currency, company=$company, addresses=$addresses, phoneNumbers=$phoneNumbers, integrationParams=$integrationParams, linkedAccountParams=$linkedAccountParams, firstName=$firstName, lastName=$lastName, account=$account, emailAddresses=$emailAddresses, lastActivityAt=$lastActivityAt, email=$email, phone=$phone, state=$state, country=$country, postalCode=$postalCode, additionalProperties=$additionalProperties}"
+            "ContactRequest{name=$name, isSupplier=$isSupplier, isCustomer=$isCustomer, emailAddress=$emailAddress, taxNumber=$taxNumber, status=$status, currency=$currency, company=$company, addresses=$addresses, phoneNumbers=$phoneNumbers, integrationParams=$integrationParams, linkedAccountParams=$linkedAccountParams, firstName=$firstName, lastName=$lastName, account=$account, emailAddresses=$emailAddresses, lastActivityAt=$lastActivityAt, remoteFields=$remoteFields, email=$email, phone=$phone, state=$state, country=$country, postalCode=$postalCode, additionalProperties=$additionalProperties}"
 
         companion object {
 
@@ -749,6 +754,7 @@ constructor(
             private var account: String? = null
             private var emailAddresses: List<EmailAddressRequest>? = null
             private var lastActivityAt: OffsetDateTime? = null
+            private var remoteFields: List<RemoteFieldRequest>? = null
             private var email: String? = null
             private var phone: String? = null
             private var state: String? = null
@@ -775,6 +781,7 @@ constructor(
                 this.account = contactRequest.account
                 this.emailAddresses = contactRequest.emailAddresses
                 this.lastActivityAt = contactRequest.lastActivityAt
+                this.remoteFields = contactRequest.remoteFields
                 this.email = contactRequest.email
                 this.phone = contactRequest.phone
                 this.state = contactRequest.state
@@ -856,6 +863,11 @@ constructor(
             @JsonProperty("last_activity_at")
             fun lastActivityAt(lastActivityAt: OffsetDateTime) = apply {
                 this.lastActivityAt = lastActivityAt
+            }
+
+            @JsonProperty("remote_fields")
+            fun remoteFields(remoteFields: List<RemoteFieldRequest>) = apply {
+                this.remoteFields = remoteFields
             }
 
             /** The contact's email. */
@@ -1158,6 +1170,7 @@ constructor(
                     account,
                     emailAddresses?.toUnmodifiable(),
                     lastActivityAt,
+                    remoteFields?.toUnmodifiable(),
                     email,
                     phone,
                     state,
@@ -1687,6 +1700,104 @@ constructor(
                     }
 
                 fun asString(): String = _value().asStringOrThrow()
+            }
+        }
+
+        @JsonDeserialize(builder = RemoteFieldRequest.Builder::class)
+        @NoAutoDetect
+        class RemoteFieldRequest
+        private constructor(
+            private val remoteFieldClass: String?,
+            private val value: JsonValue?,
+            private val additionalProperties: Map<String, JsonValue>,
+        ) {
+
+            private var hashCode: Int = 0
+
+            @JsonProperty("remote_field_class") fun remoteFieldClass(): String? = remoteFieldClass
+
+            @JsonProperty("value") fun value(): JsonValue? = value
+
+            @JsonAnyGetter
+            @ExcludeMissing
+            fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
+
+            fun toBuilder() = Builder().from(this)
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) {
+                    return true
+                }
+
+                return other is RemoteFieldRequest &&
+                    this.remoteFieldClass == other.remoteFieldClass &&
+                    this.value == other.value &&
+                    this.additionalProperties == other.additionalProperties
+            }
+
+            override fun hashCode(): Int {
+                if (hashCode == 0) {
+                    hashCode =
+                        Objects.hash(
+                            remoteFieldClass,
+                            value,
+                            additionalProperties,
+                        )
+                }
+                return hashCode
+            }
+
+            override fun toString() =
+                "RemoteFieldRequest{remoteFieldClass=$remoteFieldClass, value=$value, additionalProperties=$additionalProperties}"
+
+            companion object {
+
+                @JvmStatic fun builder() = Builder()
+            }
+
+            class Builder {
+
+                private var remoteFieldClass: String? = null
+                private var value: JsonValue? = null
+                private var additionalProperties: MutableMap<String, JsonValue> = mutableMapOf()
+
+                @JvmSynthetic
+                internal fun from(remoteFieldRequest: RemoteFieldRequest) = apply {
+                    this.remoteFieldClass = remoteFieldRequest.remoteFieldClass
+                    this.value = remoteFieldRequest.value
+                    additionalProperties(remoteFieldRequest.additionalProperties)
+                }
+
+                @JsonProperty("remote_field_class")
+                fun remoteFieldClass(remoteFieldClass: String) = apply {
+                    this.remoteFieldClass = remoteFieldClass
+                }
+
+                @JsonProperty("value") fun value(value: JsonValue) = apply { this.value = value }
+
+                fun additionalProperties(additionalProperties: Map<String, JsonValue>) = apply {
+                    this.additionalProperties.clear()
+                    this.additionalProperties.putAll(additionalProperties)
+                }
+
+                @JsonAnySetter
+                fun putAdditionalProperty(key: String, value: JsonValue) = apply {
+                    this.additionalProperties.put(key, value)
+                }
+
+                fun putAllAdditionalProperties(additionalProperties: Map<String, JsonValue>) =
+                    apply {
+                        this.additionalProperties.putAll(additionalProperties)
+                    }
+
+                fun build(): RemoteFieldRequest =
+                    RemoteFieldRequest(
+                        checkNotNull(remoteFieldClass) {
+                            "`remoteFieldClass` is required but was not set"
+                        },
+                        value,
+                        additionalProperties.toUnmodifiable(),
+                    )
             }
         }
     }

@@ -33,9 +33,9 @@ configure<PublishingExtension> {
                 }
 
                 scm {
-                    connection.set("scm:git:git://github.com/merge-api/merge-java.git")
-                    developerConnection.set("scm:git:git://github.com/merge-api/merge-java.git")
-                    url.set("https://github.com/merge-api/merge-java")
+                    connection.set("scm:git:git://github.com/merge-api/merge-java-client.git")
+                    developerConnection.set("scm:git:git://github.com/merge-api/merge-java-client.git")
+                    url.set("https://github.com/merge-api/merge-java-client")
                 }
 
                 versionMapping {

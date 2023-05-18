@@ -190,7 +190,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Email = apply {
         if (!validated) {
             name()
             subject()

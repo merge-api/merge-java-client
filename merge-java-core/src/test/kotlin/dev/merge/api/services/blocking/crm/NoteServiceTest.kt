@@ -2,6 +2,7 @@ package dev.merge.api.services.blocking.crm
 
 import dev.merge.api.TestServerExtension
 import dev.merge.api.client.okhttp.MergeOkHttpClient
+import dev.merge.api.core.JsonString
 import dev.merge.api.core.JsonValue
 import dev.merge.api.models.*
 import dev.merge.api.models.crm.*
@@ -46,6 +47,14 @@ class NoteServiceTest {
                                         "unique_linked_account_field" to
                                             "unique_linked_account_field_value"
                                     )
+                                )
+                            )
+                            .remoteFields(
+                                listOf(
+                                    NoteCreateParams.NoteRequest.RemoteFieldRequest.builder()
+                                        .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                        .value(JsonString.of("abc"))
+                                        .build()
                                 )
                             )
                             .build()

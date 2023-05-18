@@ -93,7 +93,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): EngagementType = apply {
         if (!validated) {
             activityType()
             name()
@@ -338,7 +338,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): RemoteField = apply {
             if (!validated) {
                 remoteFieldClass().validate()
                 validated = true

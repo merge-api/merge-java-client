@@ -114,7 +114,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): ConditionSchema = apply {
         if (!validated) {
             id()
             commonModel()
@@ -429,7 +429,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): OperatorSchema = apply {
             if (!validated) {
                 operator()
                 isUnique()

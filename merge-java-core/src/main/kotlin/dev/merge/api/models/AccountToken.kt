@@ -40,7 +40,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): AccountToken = apply {
         if (!validated) {
             accountToken()
             integration().validate()
@@ -226,7 +226,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): AccountIntegration = apply {
             if (!validated) {
                 name()
                 categories()

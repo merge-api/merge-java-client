@@ -56,7 +56,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): MetaResponse = apply {
         if (!validated) {
             status().map { it.validate() }
             hasConditionalParams()
@@ -210,7 +210,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): LinkedAccountStatus = apply {
             if (!validated) {
                 linkedAccountStatus()
                 canMakeRequest()

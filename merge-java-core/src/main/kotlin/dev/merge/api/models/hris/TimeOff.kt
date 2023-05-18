@@ -176,7 +176,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): TimeOff = apply {
         if (!validated) {
             id()
             remoteId()

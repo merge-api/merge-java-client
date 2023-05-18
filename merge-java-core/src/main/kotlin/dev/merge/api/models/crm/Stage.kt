@@ -91,7 +91,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Stage = apply {
         if (!validated) {
             name()
             remoteWasDeleted()
@@ -289,7 +289,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): RemoteField = apply {
             if (!validated) {
                 remoteFieldClass().validate()
                 validated = true

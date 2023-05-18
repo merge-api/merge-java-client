@@ -135,7 +135,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): RemoteUser = apply {
         if (!validated) {
             id()
             remoteId()

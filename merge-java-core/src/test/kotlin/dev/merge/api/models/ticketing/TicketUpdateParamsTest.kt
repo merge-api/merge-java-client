@@ -1,5 +1,6 @@
 package dev.merge.api.models.ticketing
 
+import dev.merge.api.core.JsonString
 import dev.merge.api.core.JsonValue
 import dev.merge.api.models.*
 import java.time.OffsetDateTime
@@ -42,6 +43,14 @@ class TicketUpdateParamsTest {
                             mapOf(
                                 "unique_linked_account_field" to "unique_linked_account_field_value"
                             )
+                        )
+                    )
+                    .remoteFields(
+                        listOf(
+                            TicketUpdateParams.PatchedTicketRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
                         )
                     )
                     .build()
@@ -89,6 +98,14 @@ class TicketUpdateParamsTest {
                                     "unique_linked_account_field" to
                                         "unique_linked_account_field_value"
                                 )
+                            )
+                        )
+                        .remoteFields(
+                            listOf(
+                                TicketUpdateParams.PatchedTicketRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
                             )
                         )
                         .build()
@@ -153,6 +170,14 @@ class TicketUpdateParamsTest {
                                 )
                             )
                         )
+                        .remoteFields(
+                            listOf(
+                                TicketUpdateParams.PatchedTicketRequest.RemoteFieldRequest.builder()
+                                    .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                    .value(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
                         .build()
                 )
                 .isDebugMode(true)
@@ -191,6 +216,14 @@ class TicketUpdateParamsTest {
                             mapOf(
                                 "unique_linked_account_field" to "unique_linked_account_field_value"
                             )
+                        )
+                    )
+                    .remoteFields(
+                        listOf(
+                            TicketUpdateParams.PatchedTicketRequest.RemoteFieldRequest.builder()
+                                .remoteFieldClass("b057d1d2-c204-4da8-a74c-c91d1a260614")
+                                .value(JsonString.of("abc"))
+                                .build()
                         )
                     )
                     .build()

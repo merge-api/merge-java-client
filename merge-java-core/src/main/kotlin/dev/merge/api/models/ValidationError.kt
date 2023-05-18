@@ -49,7 +49,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): ValidationError = apply {
         if (!validated) {
             source().map { it.validate() }
             title()
@@ -181,7 +181,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): ValidationProblemSource = apply {
             if (!validated) {
                 pointer()
                 validated = true

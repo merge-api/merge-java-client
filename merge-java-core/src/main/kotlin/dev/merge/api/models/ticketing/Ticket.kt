@@ -243,7 +243,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Ticket = apply {
         if (!validated) {
             id()
             remoteId()
@@ -861,7 +861,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): RemoteField = apply {
             if (!validated) {
                 remoteFieldClass().validate()
                 validated = true

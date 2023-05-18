@@ -107,7 +107,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Campaign = apply {
         if (!validated) {
             name()
             uniqueOpens()

@@ -27,9 +27,9 @@ private constructor(
 
     fun response(): Response = response
 
-    fun next(): String = response().next()
+    fun next(): Optional<String> = response().next()
 
-    fun previous(): String = response().previous()
+    fun previous(): Optional<String> = response().previous()
 
     fun results(): List<Eeoc> = response().results()
 
@@ -60,7 +60,7 @@ private constructor(
             return false
         }
 
-        return next().isNotEmpty()
+        return next().filter { it.isNotEmpty() }.isPresent
     }
 
     fun getNextPageParams(): Optional<EeocListParams> {
@@ -68,7 +68,12 @@ private constructor(
             return Optional.empty()
         }
 
-        return Optional.of(EeocListParams.builder().from(params).cursor(next()).build())
+        return Optional.of(
+            EeocListParams.builder()
+                .from(params)
+                .apply { next().ifPresent { this.cursor(it) } }
+                .build()
+        )
     }
 
     fun getNextPage(): CompletableFuture<Optional<EeocListPageAsync>> {
@@ -102,11 +107,11 @@ private constructor(
 
         private var validated: Boolean = false
 
-        fun next(): String = next.getRequired("next")
+        fun next(): Optional<String> = Optional.ofNullable(next.getNullable("next"))
 
-        fun previous(): String = previous.getRequired("previous")
+        fun previous(): Optional<String> = Optional.ofNullable(previous.getNullable("previous"))
 
-        fun results(): List<Eeoc> = results.getRequired("results")
+        fun results(): List<Eeoc> = results.getNullable("results") ?: listOf()
 
         @JsonProperty("next") fun _next(): Optional<JsonField<String>> = Optional.ofNullable(next)
 
@@ -120,11 +125,11 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): Response = apply {
             if (!validated) {
                 next()
                 previous()
-                results().forEach { it.validate() }
+                results().map { it.validate() }
                 validated = true
             }
         }

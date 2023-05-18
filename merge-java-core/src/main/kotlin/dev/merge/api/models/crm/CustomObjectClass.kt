@@ -90,7 +90,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): CustomObjectClass = apply {
         if (!validated) {
             name()
             description()
@@ -273,7 +273,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): Labels = apply {
             if (!validated) {
                 validated = true
             }
@@ -433,7 +433,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): RemoteFieldClassForCustomObjectClass = apply {
             if (!validated) {
                 displayName()
                 remoteKeyName()
@@ -852,7 +852,7 @@ private constructor(
             @ExcludeMissing
             fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-            fun validate() = apply {
+            fun validate(): ItemSchema = apply {
                 if (!validated) {
                     itemType()
                     itemFormat()

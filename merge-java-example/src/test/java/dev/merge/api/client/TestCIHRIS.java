@@ -11,10 +11,9 @@ import dev.merge.api.models.hris.Company;
 import dev.merge.api.models.hris.Employee;
 import dev.merge.api.models.hris.EmployeeListPage;
 import dev.merge.api.models.hris.EmployeeListParams;
+import java.util.Arrays;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
-
-import java.util.Arrays;
 
 final class TestCIHRIS {
     private static final JsonMapper JSON_MAPPER = ObjectMappers.jsonMapper()
@@ -30,7 +29,7 @@ final class TestCIHRIS {
                 .accountToken(System.getenv("MERGE_ACCOUNT_TOKEN_HRIS"))
                 .build();
 
-        EmployeeListParams params = EmployeeListParams.builder().build();
+        EmployeeListParams params = EmployeeListParams.builder().pageSize(5).build();
 
         EmployeeListPage list = client.hris().employees().list(params);
 
@@ -58,7 +57,10 @@ final class TestCIHRIS {
                 .accountToken(System.getenv("MERGE_ACCOUNT_TOKEN_HRIS"))
                 .build();
 
-        EmployeeListParams params = EmployeeListParams.builder().expand(Arrays.asList(EmployeeListParams.Expand.COMPANY)).build();
+        EmployeeListParams params = EmployeeListParams.builder()
+                .expand(Arrays.asList(EmployeeListParams.Expand.COMPANY))
+                .pageSize(5)
+                .build();
 
         EmployeeListPage list = client.hris().employees().list(params);
 
@@ -77,7 +79,8 @@ final class TestCIHRIS {
 
             for (Employee employee : list.results()) {
                 if (!employee._company().isNull()) {
-                    Company employeeCo = JSON_MAPPER.readValue(employee._company().asString().get(), Company.class);
+                    Company employeeCo =
+                            JSON_MAPPER.convertValue(employee._company(), Company.class);
 
                     assertThat(employeeCo.id()).isNotNull();
                     assertThat(employeeCo.id().orElse(null)).isNotNull();

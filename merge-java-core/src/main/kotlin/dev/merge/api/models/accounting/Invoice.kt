@@ -838,7 +838,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Invoice = apply {
         if (!validated) {
             type()
             contact()
@@ -4559,7 +4559,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): InvoiceLineItem = apply {
             if (!validated) {
                 remoteId()
                 description()

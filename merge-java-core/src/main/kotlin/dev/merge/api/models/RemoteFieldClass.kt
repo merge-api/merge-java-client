@@ -119,7 +119,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): RemoteFieldClass = apply {
         if (!validated) {
             id()
             displayName()
@@ -528,7 +528,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): ItemSchema = apply {
             if (!validated) {
                 itemChoices()
                 validated = true

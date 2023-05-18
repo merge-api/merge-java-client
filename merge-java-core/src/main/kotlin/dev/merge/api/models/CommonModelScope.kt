@@ -43,7 +43,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): CommonModelScope = apply {
         if (!validated) {
             organizationLevelScopes().map { it.validate() }
             scopeOverrides().forEach { it.validate() }
@@ -165,7 +165,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): CommonModelScopeData = apply {
             if (!validated) {
                 commonModels().forEach { it.validate() }
                 linkedAccountId()
@@ -303,7 +303,7 @@ private constructor(
             @ExcludeMissing
             fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-            fun validate() = apply {
+            fun validate(): CommonModelScopesDisabledModels = apply {
                 if (!validated) {
                     modelName()
                     modelId()

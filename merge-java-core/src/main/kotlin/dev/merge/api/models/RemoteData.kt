@@ -35,7 +35,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): RemoteData = apply {
         if (!validated) {
             path()
             validated = true

@@ -130,7 +130,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Template = apply {
         if (!validated) {
             name()
             type()

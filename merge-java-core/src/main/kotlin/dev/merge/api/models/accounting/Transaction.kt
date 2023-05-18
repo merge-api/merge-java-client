@@ -783,7 +783,7 @@ private constructor(
     @ExcludeMissing
     fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-    fun validate() = apply {
+    fun validate(): Transaction = apply {
         if (!validated) {
             transactionType()
             number()
@@ -4337,7 +4337,7 @@ private constructor(
         @ExcludeMissing
         fun _additionalProperties(): Map<String, JsonValue> = additionalProperties
 
-        fun validate() = apply {
+        fun validate(): TransactionLineItem = apply {
             if (!validated) {
                 remoteId()
                 memo()
