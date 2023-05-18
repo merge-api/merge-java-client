@@ -1,0 +1,10 @@
+                                                 
+                                                    
+                                      
+                                   
+                                
+
+plugins {
+    `maven-publish`
+    `signing`
+}

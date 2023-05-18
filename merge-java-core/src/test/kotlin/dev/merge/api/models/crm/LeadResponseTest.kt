@@ -1,0 +1,306 @@
+package dev.merge.api.models.crm
+
+import dev.merge.api.core.JsonString
+import dev.merge.api.core.JsonValue
+import dev.merge.api.models.*
+import java.time.OffsetDateTime
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+
+class LeadResponseTest {
+
+    @Test
+    fun createLeadResponse() {
+        val leadResponse =
+            LeadResponse.builder()
+                .model(
+                    Lead.builder()
+                        .owner("0358cbc6-2040-430a-848e-aafacbadf3aa")
+                        .leadSource("API Blogger")
+                        .title("Co-Founder")
+                        .company("Merge API")
+                        .firstName("Gil")
+                        .lastName("Feig")
+                        .addresses(
+                            listOf(
+                                Address.builder()
+                                    .type(Address.AddressTypeEnum.BILLING)
+                                    .street1("50 Bowling Green Dr")
+                                    .street2("Golden Gate Park")
+                                    .city("San Francisco")
+                                    .state("CA")
+                                    .countrySubdivision("NY")
+                                    .country(Country.AF)
+                                    .zipCode("10027")
+                                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                    .postalCode("94122")
+                                    .addressType(Address.AddressTypeEnum.BILLING)
+                                    .build()
+                            )
+                        )
+                        .emailAddresses(
+                            listOf(
+                                Lead.EmailAddress.builder()
+                                    .value("merge_is_hiring@merge.dev")
+                                    .emailAddressType(
+                                        Lead.EmailAddress.EmailAddressTypeEnum.PERSONAL
+                                    )
+                                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                    .emailAddress("merge_is_hiring@merge.dev")
+                                    .build()
+                            )
+                        )
+                        .phoneNumbers(
+                            listOf(
+                                Lead.PhoneNumber.builder()
+                                    .value("+3198675309")
+                                    .phoneNumberType(Lead.PhoneNumber.PhoneNumberTypeEnum.HOME)
+                                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                    .phoneNumber("+3198675309")
+                                    .build()
+                            )
+                        )
+                        .remoteUpdatedAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                        .remoteCreatedAt(OffsetDateTime.parse("2021-11-10T00:00:00Z"))
+                        .convertedDate(OffsetDateTime.parse("2022-03-10T00:00:00Z"))
+                        .convertedContact("fba1fbc6-67c0-4cb2-a176-7896acd2ffd5")
+                        .convertedAccount("9c9de072-29cf-48e3-9578-1ca5b145b40e")
+                        .remoteWasDeleted(true)
+                        .id("03455bc6-6040-430a-848e-aafacbfdf4fg")
+                        .remoteId("19202938")
+                        .fieldMappings(
+                            JsonValue.from(
+                                mapOf(
+                                    "organization_defined_targets" to
+                                        mapOf("custom_key" to "custom_value"),
+                                    "linked_account_defined_targets" to
+                                        mapOf("custom_key" to "custom_value")
+                                )
+                            )
+                        )
+                        .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                        .remoteData(
+                            listOf(
+                                RemoteData.builder()
+                                    .path("string")
+                                    .data(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
+                        .remoteFields(
+                            listOf(
+                                Lead.RemoteField.builder()
+                                    .remoteFieldClass(
+                                        RemoteFieldClass.builder()
+                                            .id("string")
+                                            .displayName("string")
+                                            .remoteKeyName("string")
+                                            .description("string")
+                                            .isCustom(true)
+                                            .isRequired(true)
+                                            .fieldType(RemoteFieldClass.FieldTypeEnum.STRING)
+                                            .fieldFormat(RemoteFieldClass.FieldFormatEnum.STRING)
+                                            .fieldChoices(listOf("string"))
+                                            .itemSchema(
+                                                RemoteFieldClass.ItemSchema.builder()
+                                                    .itemType(JsonString.of("abc"))
+                                                    .itemFormat(JsonString.of("abc"))
+                                                    .itemChoices(listOf("string"))
+                                                    .build()
+                                            )
+                                            .build()
+                                    )
+                                    .value(JsonString.of("abc"))
+                                    .build()
+                            )
+                        )
+                        .build()
+                )
+                .warnings(
+                    listOf(
+                        ValidationWarning.builder()
+                            .source(
+                                ValidationWarning.ValidationProblemSource.builder()
+                                    .pointer("string")
+                                    .build()
+                            )
+                            .title("Unrecognized Field")
+                            .detail("An unrecognized field, age, was passed in with request data.")
+                            .problemType("UNRECOGNIZED_FIELD")
+                            .build()
+                    )
+                )
+                .errors(
+                    listOf(
+                        ValidationError.builder()
+                            .source(
+                                ValidationError.ValidationProblemSource.builder()
+                                    .pointer("string")
+                                    .build()
+                            )
+                            .title("Missing Required Field")
+                            .detail("custom_fields is a required field on model.")
+                            .problemType("MISSING_REQUIRED_FIELD")
+                            .build()
+                    )
+                )
+                .logs(
+                    listOf(
+                        DebugLog.builder()
+                            .logId("99433219-8017-4acd-bb3c-ceb23d663832")
+                            .dashboardView(
+                                "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832"
+                            )
+                            .logSummary(
+                                DebugLog.DebugModelLogSummary.builder()
+                                    .url("https://harvest.greenhouse.io/v1/candidates/")
+                                    .method("POST")
+                                    .statusCode(123L)
+                                    .build()
+                            )
+                            .build()
+                    )
+                )
+                .build()
+        assertThat(leadResponse).isNotNull
+        assertThat(leadResponse.model())
+            .isEqualTo(
+                Lead.builder()
+                    .owner("0358cbc6-2040-430a-848e-aafacbadf3aa")
+                    .leadSource("API Blogger")
+                    .title("Co-Founder")
+                    .company("Merge API")
+                    .firstName("Gil")
+                    .lastName("Feig")
+                    .addresses(
+                        listOf(
+                            Address.builder()
+                                .type(Address.AddressTypeEnum.BILLING)
+                                .street1("50 Bowling Green Dr")
+                                .street2("Golden Gate Park")
+                                .city("San Francisco")
+                                .state("CA")
+                                .countrySubdivision("NY")
+                                .country(Country.AF)
+                                .zipCode("10027")
+                                .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                .postalCode("94122")
+                                .addressType(Address.AddressTypeEnum.BILLING)
+                                .build()
+                        )
+                    )
+                    .emailAddresses(
+                        listOf(
+                            Lead.EmailAddress.builder()
+                                .value("merge_is_hiring@merge.dev")
+                                .emailAddressType(Lead.EmailAddress.EmailAddressTypeEnum.PERSONAL)
+                                .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                .emailAddress("merge_is_hiring@merge.dev")
+                                .build()
+                        )
+                    )
+                    .phoneNumbers(
+                        listOf(
+                            Lead.PhoneNumber.builder()
+                                .value("+3198675309")
+                                .phoneNumberType(Lead.PhoneNumber.PhoneNumberTypeEnum.HOME)
+                                .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                                .phoneNumber("+3198675309")
+                                .build()
+                        )
+                    )
+                    .remoteUpdatedAt(OffsetDateTime.parse("2022-02-10T00:00:00Z"))
+                    .remoteCreatedAt(OffsetDateTime.parse("2021-11-10T00:00:00Z"))
+                    .convertedDate(OffsetDateTime.parse("2022-03-10T00:00:00Z"))
+                    .convertedContact("fba1fbc6-67c0-4cb2-a176-7896acd2ffd5")
+                    .convertedAccount("9c9de072-29cf-48e3-9578-1ca5b145b40e")
+                    .remoteWasDeleted(true)
+                    .id("03455bc6-6040-430a-848e-aafacbfdf4fg")
+                    .remoteId("19202938")
+                    .fieldMappings(
+                        JsonValue.from(
+                            mapOf(
+                                "organization_defined_targets" to
+                                    mapOf("custom_key" to "custom_value"),
+                                "linked_account_defined_targets" to
+                                    mapOf("custom_key" to "custom_value")
+                            )
+                        )
+                    )
+                    .modifiedAt(OffsetDateTime.parse("2021-10-16T00:00:00Z"))
+                    .remoteData(
+                        listOf(
+                            RemoteData.builder().path("string").data(JsonString.of("abc")).build()
+                        )
+                    )
+                    .remoteFields(
+                        listOf(
+                            Lead.RemoteField.builder()
+                                .remoteFieldClass(
+                                    RemoteFieldClass.builder()
+                                        .id("string")
+                                        .displayName("string")
+                                        .remoteKeyName("string")
+                                        .description("string")
+                                        .isCustom(true)
+                                        .isRequired(true)
+                                        .fieldType(RemoteFieldClass.FieldTypeEnum.STRING)
+                                        .fieldFormat(RemoteFieldClass.FieldFormatEnum.STRING)
+                                        .fieldChoices(listOf("string"))
+                                        .itemSchema(
+                                            RemoteFieldClass.ItemSchema.builder()
+                                                .itemType(JsonString.of("abc"))
+                                                .itemFormat(JsonString.of("abc"))
+                                                .itemChoices(listOf("string"))
+                                                .build()
+                                        )
+                                        .build()
+                                )
+                                .value(JsonString.of("abc"))
+                                .build()
+                        )
+                    )
+                    .build()
+            )
+        assertThat(leadResponse.warnings())
+            .containsExactly(
+                ValidationWarning.builder()
+                    .source(
+                        ValidationWarning.ValidationProblemSource.builder()
+                            .pointer("string")
+                            .build()
+                    )
+                    .title("Unrecognized Field")
+                    .detail("An unrecognized field, age, was passed in with request data.")
+                    .problemType("UNRECOGNIZED_FIELD")
+                    .build()
+            )
+        assertThat(leadResponse.errors())
+            .containsExactly(
+                ValidationError.builder()
+                    .source(
+                        ValidationError.ValidationProblemSource.builder().pointer("string").build()
+                    )
+                    .title("Missing Required Field")
+                    .detail("custom_fields is a required field on model.")
+                    .problemType("MISSING_REQUIRED_FIELD")
+                    .build()
+            )
+        assertThat(leadResponse.logs().get())
+            .containsExactly(
+                DebugLog.builder()
+                    .logId("99433219-8017-4acd-bb3c-ceb23d663832")
+                    .dashboardView(
+                        "https://app.merge.dev/logs/99433219-8017-4acd-bb3c-ceb23d663832"
+                    )
+                    .logSummary(
+                        DebugLog.DebugModelLogSummary.builder()
+                            .url("https://harvest.greenhouse.io/v1/candidates/")
+                            .method("POST")
+                            .statusCode(123L)
+                            .build()
+                    )
+                    .build()
+            )
+    }
+}
