@@ -30,6 +30,7 @@ jobs:
         with:
           arguments: test
         env:
+          SKIP_MOCK_TESTS: true
           MERGE_API_KEY: ${{ secrets.MERGE_API_KEY }}
           MERGE_ACCOUNT_TOKEN_HRIS: ${{ secrets.MERGE_ACCOUNT_TOKEN_HRIS }}
           MERGE_ACCOUNT_TOKEN_ATS: ${{ secrets.MERGE_ACCOUNT_TOKEN_ATS }}
