@@ -1,6 +1,6 @@
-rootProject.name = "merge-java-root"
+rootProject.name = "merge-java-client-root"
 
-include("merge-java")
+include("merge-java-client")
 include("merge-java-client-okhttp")
-include("merge-java-core")
-include("merge-java-example")
+include("merge-java-client-core")
+include("merge-java-client-example")
