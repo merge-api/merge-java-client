@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="dev.merge.api.client.TestCIATS" tests="2" skipped="0" failures="0" errors="0" timestamp="2023-05-18T15:13:36" hostname="Lees-MBP.local.meter" time="5.213">
-  <properties/>
-  <testcase name="testListCandidates()" classname="dev.merge.api.client.TestCIATS" time="2.704"/>
-  <testcase name="testListCandidatesExpand()" classname="dev.merge.api.client.TestCIATS" time="2.508"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
