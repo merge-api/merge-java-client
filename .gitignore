@@ -1,3 +1,24 @@
+*.class
+.project
 .gradle
-.idea
+?
+.classpath
+.checkstyle
+.settings
+.node
+build
+
+# IntelliJ
+*.iml
+*.ipr
+*.iws
+.idea/
+out/
+
+# Eclipse/IntelliJ APT
+generated_src/
+generated_testSrc/
+generated/
+
+bin
 build

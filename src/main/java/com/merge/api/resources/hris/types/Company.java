@@ -1,0 +1,311 @@
+package com.merge.api.resources.hris.types;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import java.time.OffsetDateTime;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonDeserialize(builder = Company.Builder.class)
+public final class Company {
+    private final Optional<String> id;
+
+    private final Optional<String> remoteId;
+
+    private final Optional<String> legalName;
+
+    private final Optional<String> displayName;
+
+    private final Optional<List<Optional<String>>> eins;
+
+    private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<Map<String, JsonNode>> fieldMappings;
+
+    private final Optional<List<RemoteData>> remoteData;
+
+    private Company(
+            Optional<String> id,
+            Optional<String> remoteId,
+            Optional<String> legalName,
+            Optional<String> displayName,
+            Optional<List<Optional<String>>> eins,
+            Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> modifiedAt,
+            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<List<RemoteData>> remoteData) {
+        this.id = id;
+        this.remoteId = remoteId;
+        this.legalName = legalName;
+        this.displayName = displayName;
+        this.eins = eins;
+        this.remoteWasDeleted = remoteWasDeleted;
+        this.modifiedAt = modifiedAt;
+        this.fieldMappings = fieldMappings;
+        this.remoteData = remoteData;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    /**
+     * @return The company's legal name.
+     */
+    @JsonProperty("legal_name")
+    public Optional<String> getLegalName() {
+        return legalName;
+    }
+
+    /**
+     * @return The company's display name.
+     */
+    @JsonProperty("display_name")
+    public Optional<String> getDisplayName() {
+        return displayName;
+    }
+
+    /**
+     * @return The company's Employer Identification Numbers.
+     */
+    @JsonProperty("eins")
+    public Optional<List<Optional<String>>> getEins() {
+        return eins;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
+    }
+
+    @JsonProperty("field_mappings")
+    public Optional<Map<String, JsonNode>> getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonProperty("remote_data")
+    public Optional<List<RemoteData>> getRemoteData() {
+        return remoteData;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) return true;
+        return other instanceof Company && equalTo((Company) other);
+    }
+
+    private boolean equalTo(Company other) {
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && legalName.equals(other.legalName)
+                && displayName.equals(other.displayName)
+                && eins.equals(other.eins)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && modifiedAt.equals(other.modifiedAt)
+                && fieldMappings.equals(other.fieldMappings)
+                && remoteData.equals(other.remoteData);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(
+                this.id,
+                this.remoteId,
+                this.legalName,
+                this.displayName,
+                this.eins,
+                this.remoteWasDeleted,
+                this.modifiedAt,
+                this.fieldMappings,
+                this.remoteData);
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" + "id: " + id + ", remoteId: " + remoteId + ", legalName: " + legalName + ", displayName: "
+                + displayName + ", eins: " + eins + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: "
+                + modifiedAt + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
+
+        private Optional<String> legalName = Optional.empty();
+
+        private Optional<String> displayName = Optional.empty();
+
+        private Optional<List<Optional<String>>> eins = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+
+        private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Builder() {}
+
+        public Builder from(Company other) {
+            id(other.getId());
+            remoteId(other.getRemoteId());
+            legalName(other.getLegalName());
+            displayName(other.getDisplayName());
+            eins(other.getEins());
+            remoteWasDeleted(other.getRemoteWasDeleted());
+            modifiedAt(other.getModifiedAt());
+            fieldMappings(other.getFieldMappings());
+            remoteData(other.getRemoteData());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "legal_name", nulls = Nulls.SKIP)
+        public Builder legalName(Optional<String> legalName) {
+            this.legalName = legalName;
+            return this;
+        }
+
+        public Builder legalName(String legalName) {
+            this.legalName = Optional.of(legalName);
+            return this;
+        }
+
+        @JsonSetter(value = "display_name", nulls = Nulls.SKIP)
+        public Builder displayName(Optional<String> displayName) {
+            this.displayName = displayName;
+            return this;
+        }
+
+        public Builder displayName(String displayName) {
+            this.displayName = Optional.of(displayName);
+            return this;
+        }
+
+        @JsonSetter(value = "eins", nulls = Nulls.SKIP)
+        public Builder eins(Optional<List<Optional<String>>> eins) {
+            this.eins = eins;
+            return this;
+        }
+
+        public Builder eins(List<Optional<String>> eins) {
+            this.eins = Optional.of(eins);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
+        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+            this.fieldMappings = fieldMappings;
+            return this;
+        }
+
+        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+            this.fieldMappings = Optional.of(fieldMappings);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
+        public Builder remoteData(Optional<List<RemoteData>> remoteData) {
+            this.remoteData = remoteData;
+            return this;
+        }
+
+        public Builder remoteData(List<RemoteData> remoteData) {
+            this.remoteData = Optional.of(remoteData);
+            return this;
+        }
+
+        public Company build() {
+            return new Company(
+                    id,
+                    remoteId,
+                    legalName,
+                    displayName,
+                    eins,
+                    remoteWasDeleted,
+                    modifiedAt,
+                    fieldMappings,
+                    remoteData);
+        }
+    }
+}
