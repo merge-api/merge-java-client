@@ -1,4 +1,4 @@
-_Last updated: April 21, 2022_
+_Last updated: August 3, 2023_
 
 **Merge SDK &amp; Code Snippets License**
 
