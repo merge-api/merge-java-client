@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.accounttoken;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.types.AccountToken;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -16,6 +17,10 @@ public class AccountTokenClient {
     }
 
     public AccountToken retrieve(String publicToken) {
+        return retrieve(publicToken, null);
+    }
+
+    public AccountToken retrieve(String publicToken, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/account-token")
@@ -24,7 +29,7 @@ public class AccountTokenClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

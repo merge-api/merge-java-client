@@ -2,6 +2,7 @@ package com.merge.api.resources.filestorage.groups;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.filestorage.groups.requests.GroupsListRequest;
 import com.merge.api.resources.filestorage.groups.requests.GroupsRetrieveRequest;
 import com.merge.api.resources.filestorage.types.Group;
@@ -20,6 +21,10 @@ public class GroupsClient {
     }
 
     public PaginatedGroupList list(GroupsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedGroupList list(GroupsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -62,7 +67,7 @@ public class GroupsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -77,6 +82,10 @@ public class GroupsClient {
     }
 
     public Group retrieve(String id, GroupsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Group retrieve(String id, GroupsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -90,7 +99,7 @@ public class GroupsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

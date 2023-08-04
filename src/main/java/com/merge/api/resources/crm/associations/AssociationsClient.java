@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.associations;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.associations.requests.CustomObjectClassesCustomObjectsAssociationsListRequest;
 import com.merge.api.resources.crm.associations.requests.CustomObjectClassesCustomObjectsAssociationsUpdateRequest;
 import com.merge.api.resources.crm.types.Association;
@@ -23,6 +24,14 @@ public class AssociationsClient {
             String customObjectClassId,
             String objectId,
             CustomObjectClassesCustomObjectsAssociationsListRequest request) {
+        return customObjectClassesCustomObjectsAssociationsList(customObjectClassId, objectId, request, null);
+    }
+
+    public PaginatedAssociationList customObjectClassesCustomObjectsAssociationsList(
+            String customObjectClassId,
+            String objectId,
+            CustomObjectClassesCustomObjectsAssociationsListRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -76,7 +85,7 @@ public class AssociationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -97,6 +106,18 @@ public class AssociationsClient {
             String targetClassId,
             String targetObjectId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request) {
+        return customObjectClassesCustomObjectsAssociationsUpdate(
+                associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, request, null);
+    }
+
+    public Association customObjectClassesCustomObjectsAssociationsUpdate(
+            String associationTypeId,
+            String sourceClassId,
+            String sourceObjectId,
+            String targetClassId,
+            String targetObjectId,
+            CustomObjectClassesCustomObjectsAssociationsUpdateRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -119,7 +140,7 @@ public class AssociationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PUT", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

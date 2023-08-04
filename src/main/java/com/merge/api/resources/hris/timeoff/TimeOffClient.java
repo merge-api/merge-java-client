@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.timeoff;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.timeoff.requests.TimeOffEndpointRequest;
 import com.merge.api.resources.hris.timeoff.requests.TimeOffListRequest;
 import com.merge.api.resources.hris.timeoff.requests.TimeOffRetrieveRequest;
@@ -26,6 +27,10 @@ public class TimeOffClient {
     }
 
     public PaginatedTimeOffList list(TimeOffListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedTimeOffList list(TimeOffListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -92,7 +97,7 @@ public class TimeOffClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -107,6 +112,10 @@ public class TimeOffClient {
     }
 
     public TimeOffResponse create(TimeOffEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public TimeOffResponse create(TimeOffEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -131,7 +140,7 @@ public class TimeOffClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -146,6 +155,10 @@ public class TimeOffClient {
     }
 
     public TimeOff retrieve(String id, TimeOffRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public TimeOff retrieve(String id, TimeOffRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -170,7 +183,7 @@ public class TimeOffClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -185,6 +198,10 @@ public class TimeOffClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/time-off/meta/post")
@@ -192,7 +209,7 @@ public class TimeOffClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

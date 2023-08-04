@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.opportunities;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.opportunities.requests.OpportunitiesListRequest;
 import com.merge.api.resources.crm.opportunities.requests.OpportunitiesRemoteFieldClassesListRequest;
 import com.merge.api.resources.crm.opportunities.requests.OpportunitiesRetrieveRequest;
@@ -29,6 +30,10 @@ public class OpportunitiesClient {
     }
 
     public PaginatedOpportunityList list(OpportunitiesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedOpportunityList list(OpportunitiesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -99,7 +104,7 @@ public class OpportunitiesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -114,6 +119,10 @@ public class OpportunitiesClient {
     }
 
     public OpportunityResponse create(OpportunityEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public OpportunityResponse create(OpportunityEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -138,7 +147,7 @@ public class OpportunitiesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -153,6 +162,10 @@ public class OpportunitiesClient {
     }
 
     public Opportunity retrieve(String id, OpportunitiesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Opportunity retrieve(String id, OpportunitiesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -182,7 +195,7 @@ public class OpportunitiesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -197,6 +210,11 @@ public class OpportunitiesClient {
     }
 
     public OpportunityResponse partialUpdate(String id, PatchedOpportunityEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    public OpportunityResponse partialUpdate(
+            String id, PatchedOpportunityEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -222,7 +240,7 @@ public class OpportunitiesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -237,6 +255,10 @@ public class OpportunitiesClient {
     }
 
     public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/opportunities/meta/patch")
@@ -245,7 +267,7 @@ public class OpportunitiesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -260,6 +282,10 @@ public class OpportunitiesClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/opportunities/meta/post")
@@ -267,7 +293,7 @@ public class OpportunitiesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -282,6 +308,11 @@ public class OpportunitiesClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(OpportunitiesRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            OpportunitiesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -310,7 +341,7 @@ public class OpportunitiesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

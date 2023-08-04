@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.incomestatements;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.incomestatements.requests.IncomeStatementsListRequest;
 import com.merge.api.resources.accounting.incomestatements.requests.IncomeStatementsRetrieveRequest;
 import com.merge.api.resources.accounting.types.IncomeStatement;
@@ -20,6 +21,10 @@ public class IncomeStatementsClient {
     }
 
     public PaginatedIncomeStatementList list(IncomeStatementsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedIncomeStatementList list(IncomeStatementsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -68,7 +73,7 @@ public class IncomeStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -84,6 +89,10 @@ public class IncomeStatementsClient {
     }
 
     public IncomeStatement retrieve(String id, IncomeStatementsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public IncomeStatement retrieve(String id, IncomeStatementsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -100,7 +109,7 @@ public class IncomeStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

@@ -1,6 +1,7 @@
 package com.merge.api.resources.ticketing.deleteaccount;
 
 import com.merge.api.core.ClientOptions;
+import com.merge.api.core.RequestOptions;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -14,6 +15,10 @@ public class DeleteAccountClient {
     }
 
     public void create() {
+        create(null);
+    }
+
+    public void create(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/delete-account")
@@ -21,7 +26,7 @@ public class DeleteAccountClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .build();
         try {
             Response _response = clientOptions.httpClient().newCall(_request).execute();

@@ -3,6 +3,7 @@ package com.merge.api.resources.hris.selectivesync;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.selectivesync.requests.LinkedAccountSelectiveSyncConfigurationListRequest;
 import com.merge.api.resources.hris.selectivesync.requests.SelectiveSyncMetaListRequest;
 import com.merge.api.resources.hris.types.LinkedAccountSelectiveSyncConfiguration;
@@ -25,6 +26,10 @@ public class SelectiveSyncClient {
     }
 
     public List<LinkedAccountSelectiveSyncConfiguration> configurationsList() {
+        return configurationsList(null);
+    }
+
+    public List<LinkedAccountSelectiveSyncConfiguration> configurationsList(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/selective-sync/configurations")
@@ -32,7 +37,7 @@ public class SelectiveSyncClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -50,6 +55,11 @@ public class SelectiveSyncClient {
 
     public List<LinkedAccountSelectiveSyncConfiguration> configurationsUpdate(
             LinkedAccountSelectiveSyncConfigurationListRequest request) {
+        return configurationsUpdate(request, null);
+    }
+
+    public List<LinkedAccountSelectiveSyncConfiguration> configurationsUpdate(
+            LinkedAccountSelectiveSyncConfigurationListRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/selective-sync/configurations")
@@ -67,7 +77,7 @@ public class SelectiveSyncClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("PUT", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -84,6 +94,10 @@ public class SelectiveSyncClient {
     }
 
     public PaginatedConditionSchemaList metaList(SelectiveSyncMetaListRequest request) {
+        return metaList(request, null);
+    }
+
+    public PaginatedConditionSchemaList metaList(SelectiveSyncMetaListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -101,7 +115,7 @@ public class SelectiveSyncClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

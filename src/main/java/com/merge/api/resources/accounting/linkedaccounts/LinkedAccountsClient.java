@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.linkedaccounts;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.linkedaccounts.requests.LinkedAccountsListRequest;
 import com.merge.api.resources.accounting.types.PaginatedAccountDetailsAndActionsList;
 import okhttp3.Headers;
@@ -18,6 +19,11 @@ public class LinkedAccountsClient {
     }
 
     public PaginatedAccountDetailsAndActionsList list(LinkedAccountsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedAccountDetailsAndActionsList list(
+            LinkedAccountsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -73,7 +79,7 @@ public class LinkedAccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

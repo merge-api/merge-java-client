@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.journalentries;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.journalentries.requests.JournalEntriesListRequest;
 import com.merge.api.resources.accounting.journalentries.requests.JournalEntriesRetrieveRequest;
 import com.merge.api.resources.accounting.journalentries.requests.JournalEntryEndpointRequest;
@@ -26,6 +27,10 @@ public class JournalEntriesClient {
     }
 
     public PaginatedJournalEntryList list(JournalEntriesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedJournalEntryList list(JournalEntriesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -84,7 +89,7 @@ public class JournalEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -99,6 +104,10 @@ public class JournalEntriesClient {
     }
 
     public JournalEntryResponse create(JournalEntryEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public JournalEntryResponse create(JournalEntryEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -123,7 +132,7 @@ public class JournalEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -138,6 +147,10 @@ public class JournalEntriesClient {
     }
 
     public JournalEntry retrieve(String id, JournalEntriesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public JournalEntry retrieve(String id, JournalEntriesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -154,7 +167,7 @@ public class JournalEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -169,6 +182,10 @@ public class JournalEntriesClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/accounting/v1/journal-entries/meta/post")
@@ -176,7 +193,7 @@ public class JournalEntriesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

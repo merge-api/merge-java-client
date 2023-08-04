@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.users;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.types.IgnoreCommonModelRequest;
 import com.merge.api.resources.crm.types.PaginatedRemoteFieldClassList;
 import com.merge.api.resources.crm.types.PaginatedUserList;
@@ -24,6 +25,10 @@ public class UsersClient {
     }
 
     public PaginatedUserList list(UsersListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedUserList list(UsersListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -71,7 +76,7 @@ public class UsersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -86,6 +91,10 @@ public class UsersClient {
     }
 
     public User retrieve(String id, UsersRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public User retrieve(String id, UsersRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -104,7 +113,7 @@ public class UsersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -119,6 +128,10 @@ public class UsersClient {
     }
 
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+        ignoreCreate(modelId, request, null);
+    }
+
+    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/users/ignore")
@@ -134,7 +147,7 @@ public class UsersClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -149,6 +162,11 @@ public class UsersClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(UsersRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            UsersRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -177,7 +195,7 @@ public class UsersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.benefits;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.benefits.requests.BenefitsListRequest;
 import com.merge.api.resources.hris.benefits.requests.BenefitsRetrieveRequest;
 import com.merge.api.resources.hris.types.Benefit;
@@ -20,6 +21,10 @@ public class BenefitsClient {
     }
 
     public PaginatedBenefitList list(BenefitsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedBenefitList list(BenefitsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -68,7 +73,7 @@ public class BenefitsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -83,6 +88,10 @@ public class BenefitsClient {
     }
 
     public Benefit retrieve(String id, BenefitsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Benefit retrieve(String id, BenefitsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -99,7 +108,7 @@ public class BenefitsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.departments;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.departments.requests.DepartmentsListRequest;
 import com.merge.api.resources.ats.departments.requests.DepartmentsRetrieveRequest;
 import com.merge.api.resources.ats.types.Department;
@@ -20,6 +21,10 @@ public class DepartmentsClient {
     }
 
     public PaginatedDepartmentList list(DepartmentsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedDepartmentList list(DepartmentsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -62,7 +67,7 @@ public class DepartmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -77,6 +82,10 @@ public class DepartmentsClient {
     }
 
     public Department retrieve(String id, DepartmentsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Department retrieve(String id, DepartmentsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -90,7 +99,7 @@ public class DepartmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.passthrough;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.passthrough.requests.DataPassthroughRequest;
 import com.merge.api.resources.crm.types.RemoteResponse;
 import java.util.HashMap;
@@ -21,6 +22,10 @@ public class PassthroughClient {
     }
 
     public RemoteResponse create(DataPassthroughRequest request) {
+        return create(request, null);
+    }
+
+    public RemoteResponse create(DataPassthroughRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/passthrough")
@@ -57,7 +62,7 @@ public class PassthroughClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

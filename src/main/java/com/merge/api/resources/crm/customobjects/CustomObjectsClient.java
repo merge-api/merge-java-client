@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.customobjects;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.customobjects.requests.CrmCustomObjectEndpointRequest;
 import com.merge.api.resources.crm.customobjects.requests.CustomObjectClassesCustomObjectsListRequest;
 import com.merge.api.resources.crm.customobjects.requests.CustomObjectClassesCustomObjectsRetrieveRequest;
@@ -28,6 +29,13 @@ public class CustomObjectsClient {
 
     public PaginatedCustomObjectList customObjectClassesCustomObjectsList(
             String customObjectClassId, CustomObjectClassesCustomObjectsListRequest request) {
+        return customObjectClassesCustomObjectsList(customObjectClassId, request, null);
+    }
+
+    public PaginatedCustomObjectList customObjectClassesCustomObjectsList(
+            String customObjectClassId,
+            CustomObjectClassesCustomObjectsListRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -77,7 +85,7 @@ public class CustomObjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -93,6 +101,11 @@ public class CustomObjectsClient {
 
     public CrmCustomObjectResponse customObjectClassesCustomObjectsCreate(
             String customObjectClassId, CrmCustomObjectEndpointRequest request) {
+        return customObjectClassesCustomObjectsCreate(customObjectClassId, request, null);
+    }
+
+    public CrmCustomObjectResponse customObjectClassesCustomObjectsCreate(
+            String customObjectClassId, CrmCustomObjectEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -119,7 +132,7 @@ public class CustomObjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -135,6 +148,14 @@ public class CustomObjectsClient {
 
     public CustomObject customObjectClassesCustomObjectsRetrieve(
             String customObjectClassId, String id, CustomObjectClassesCustomObjectsRetrieveRequest request) {
+        return customObjectClassesCustomObjectsRetrieve(customObjectClassId, id, request, null);
+    }
+
+    public CustomObject customObjectClassesCustomObjectsRetrieve(
+            String customObjectClassId,
+            String id,
+            CustomObjectClassesCustomObjectsRetrieveRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -155,7 +176,7 @@ public class CustomObjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -171,6 +192,14 @@ public class CustomObjectsClient {
 
     public CrmCustomObjectResponse customObjectClassesCustomObjectsPartialUpdate(
             String customObjectClassId, String id, PatchedCrmCustomObjectEndpointRequest request) {
+        return customObjectClassesCustomObjectsPartialUpdate(customObjectClassId, id, request, null);
+    }
+
+    public CrmCustomObjectResponse customObjectClassesCustomObjectsPartialUpdate(
+            String customObjectClassId,
+            String id,
+            PatchedCrmCustomObjectEndpointRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -198,7 +227,7 @@ public class CustomObjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -213,6 +242,11 @@ public class CustomObjectsClient {
     }
 
     public MetaResponse customObjectClassesCustomObjectsMetaPatchRetrieve(String customObjectClassId, String id) {
+        return customObjectClassesCustomObjectsMetaPatchRetrieve(customObjectClassId, id, null);
+    }
+
+    public MetaResponse customObjectClassesCustomObjectsMetaPatchRetrieve(
+            String customObjectClassId, String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/custom-object-classes")
@@ -223,7 +257,7 @@ public class CustomObjectsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -238,6 +272,11 @@ public class CustomObjectsClient {
     }
 
     public MetaResponse customObjectClassesCustomObjectsMetaPostRetrieve(String customObjectClassId) {
+        return customObjectClassesCustomObjectsMetaPostRetrieve(customObjectClassId, null);
+    }
+
+    public MetaResponse customObjectClassesCustomObjectsMetaPostRetrieve(
+            String customObjectClassId, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/custom-object-classes")
@@ -247,7 +286,7 @@ public class CustomObjectsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.engagementtypes;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.engagementtypes.requests.EngagementTypesListRequest;
 import com.merge.api.resources.crm.engagementtypes.requests.EngagementTypesRemoteFieldClassesListRequest;
 import com.merge.api.resources.crm.engagementtypes.requests.EngagementTypesRetrieveRequest;
@@ -22,6 +23,10 @@ public class EngagementTypesClient {
     }
 
     public PaginatedEngagementTypeList list(EngagementTypesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedEngagementTypeList list(EngagementTypesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -69,7 +74,7 @@ public class EngagementTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -85,6 +90,10 @@ public class EngagementTypesClient {
     }
 
     public EngagementType retrieve(String id, EngagementTypesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public EngagementType retrieve(String id, EngagementTypesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -103,7 +112,7 @@ public class EngagementTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -118,6 +127,11 @@ public class EngagementTypesClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(EngagementTypesRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            EngagementTypesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -146,7 +160,7 @@ public class EngagementTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

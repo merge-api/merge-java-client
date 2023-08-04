@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.addresses;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.addresses.requests.AddressesRetrieveRequest;
 import com.merge.api.resources.accounting.types.Address;
 import okhttp3.Headers;
@@ -18,6 +19,10 @@ public class AddressesClient {
     }
 
     public Address retrieve(String id, AddressesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Address retrieve(String id, AddressesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -39,7 +44,7 @@ public class AddressesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

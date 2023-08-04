@@ -2,6 +2,7 @@ package com.merge.api.resources.filestorage.regeneratekey;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.filestorage.regeneratekey.requests.RemoteKeyForRegenerationRequest;
 import com.merge.api.resources.filestorage.types.RemoteKey;
 import java.util.HashMap;
@@ -21,6 +22,10 @@ public class RegenerateKeyClient {
     }
 
     public RemoteKey create(RemoteKeyForRegenerationRequest request) {
+        return create(request, null);
+    }
+
+    public RemoteKey create(RemoteKeyForRegenerationRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/filestorage/v1/regenerate-key")
@@ -38,7 +43,7 @@ public class RegenerateKeyClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

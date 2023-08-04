@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.creditnotes;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.creditnotes.requests.CreditNotesListRequest;
 import com.merge.api.resources.accounting.creditnotes.requests.CreditNotesRetrieveRequest;
 import com.merge.api.resources.accounting.types.CreditNote;
@@ -20,6 +21,10 @@ public class CreditNotesClient {
     }
 
     public PaginatedCreditNoteList list(CreditNotesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCreditNoteList list(CreditNotesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -86,7 +91,7 @@ public class CreditNotesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -101,6 +106,10 @@ public class CreditNotesClient {
     }
 
     public CreditNote retrieve(String id, CreditNotesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public CreditNote retrieve(String id, CreditNotesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -125,7 +134,7 @@ public class CreditNotesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

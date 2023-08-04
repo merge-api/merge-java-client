@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.employeepayrollruns;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.employeepayrollruns.requests.EmployeePayrollRunsListRequest;
 import com.merge.api.resources.hris.employeepayrollruns.requests.EmployeePayrollRunsRetrieveRequest;
 import com.merge.api.resources.hris.types.EmployeePayrollRun;
@@ -20,6 +21,10 @@ public class EmployeePayrollRunsClient {
     }
 
     public PaginatedEmployeePayrollRunList list(EmployeePayrollRunsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedEmployeePayrollRunList list(EmployeePayrollRunsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -88,7 +93,7 @@ public class EmployeePayrollRunsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -104,6 +109,11 @@ public class EmployeePayrollRunsClient {
     }
 
     public EmployeePayrollRun retrieve(String id, EmployeePayrollRunsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public EmployeePayrollRun retrieve(
+            String id, EmployeePayrollRunsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -120,7 +130,7 @@ public class EmployeePayrollRunsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

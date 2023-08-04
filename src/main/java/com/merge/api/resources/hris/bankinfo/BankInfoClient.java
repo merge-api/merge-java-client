@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.bankinfo;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.bankinfo.requests.BankInfoListRequest;
 import com.merge.api.resources.hris.bankinfo.requests.BankInfoRetrieveRequest;
 import com.merge.api.resources.hris.types.BankInfo;
@@ -20,6 +21,10 @@ public class BankInfoClient {
     }
 
     public PaginatedBankInfoList list(BankInfoListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedBankInfoList list(BankInfoListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -86,7 +91,7 @@ public class BankInfoClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -101,6 +106,10 @@ public class BankInfoClient {
     }
 
     public BankInfo retrieve(String id, BankInfoRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public BankInfo retrieve(String id, BankInfoRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -125,7 +134,7 @@ public class BankInfoClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

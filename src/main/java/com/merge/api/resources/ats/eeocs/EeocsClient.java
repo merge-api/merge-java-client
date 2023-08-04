@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.eeocs;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.eeocs.requests.EeocsListRequest;
 import com.merge.api.resources.ats.eeocs.requests.EeocsRetrieveRequest;
 import com.merge.api.resources.ats.types.Eeoc;
@@ -20,6 +21,10 @@ public class EeocsClient {
     }
 
     public PaginatedEeocList list(EeocsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedEeocList list(EeocsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -76,7 +81,7 @@ public class EeocsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -91,6 +96,10 @@ public class EeocsClient {
     }
 
     public Eeoc retrieve(String id, EeocsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Eeoc retrieve(String id, EeocsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -115,7 +124,7 @@ public class EeocsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

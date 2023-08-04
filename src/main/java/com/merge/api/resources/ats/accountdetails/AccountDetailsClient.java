@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.accountdetails;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.types.AccountDetails;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -16,6 +17,10 @@ public class AccountDetailsClient {
     }
 
     public AccountDetails retrieve() {
+        return retrieve(null);
+    }
+
+    public AccountDetails retrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ats/v1/account-details")
@@ -23,7 +28,7 @@ public class AccountDetailsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

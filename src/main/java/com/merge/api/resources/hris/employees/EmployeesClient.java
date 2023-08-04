@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.employees;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.employees.requests.EmployeeEndpointRequest;
 import com.merge.api.resources.hris.employees.requests.EmployeesListRequest;
 import com.merge.api.resources.hris.employees.requests.EmployeesRetrieveRequest;
@@ -27,6 +28,10 @@ public class EmployeesClient {
     }
 
     public PaginatedEmployeeList list(EmployeesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedEmployeeList list(EmployeesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -141,7 +146,7 @@ public class EmployeesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -156,6 +161,10 @@ public class EmployeesClient {
     }
 
     public EmployeeResponse create(EmployeeEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public EmployeeResponse create(EmployeeEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -180,7 +189,7 @@ public class EmployeesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -195,6 +204,10 @@ public class EmployeesClient {
     }
 
     public Employee retrieve(String id, EmployeesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Employee retrieve(String id, EmployeesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -224,7 +237,7 @@ public class EmployeesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -239,6 +252,10 @@ public class EmployeesClient {
     }
 
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+        ignoreCreate(modelId, request, null);
+    }
+
+    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/employees/ignore")
@@ -260,7 +277,7 @@ public class EmployeesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -275,6 +292,10 @@ public class EmployeesClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/employees/meta/post")
@@ -282,7 +303,7 @@ public class EmployeesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

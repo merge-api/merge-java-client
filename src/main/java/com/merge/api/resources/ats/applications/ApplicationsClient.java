@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.applications;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.applications.requests.ApplicationEndpointRequest;
 import com.merge.api.resources.ats.applications.requests.ApplicationsListRequest;
 import com.merge.api.resources.ats.applications.requests.ApplicationsMetaPostRetrieveRequest;
@@ -28,6 +29,10 @@ public class ApplicationsClient {
     }
 
     public PaginatedApplicationList list(ApplicationsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedApplicationList list(ApplicationsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -94,7 +99,7 @@ public class ApplicationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -109,6 +114,10 @@ public class ApplicationsClient {
     }
 
     public ApplicationResponse create(ApplicationEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public ApplicationResponse create(ApplicationEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -134,7 +143,7 @@ public class ApplicationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -149,6 +158,10 @@ public class ApplicationsClient {
     }
 
     public Application retrieve(String id, ApplicationsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Application retrieve(String id, ApplicationsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -165,7 +178,7 @@ public class ApplicationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -180,6 +193,11 @@ public class ApplicationsClient {
     }
 
     public ApplicationResponse changeStageCreate(String id, UpdateApplicationStageRequest request) {
+        return changeStageCreate(id, request, null);
+    }
+
+    public ApplicationResponse changeStageCreate(
+            String id, UpdateApplicationStageRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -211,7 +229,7 @@ public class ApplicationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -226,6 +244,10 @@ public class ApplicationsClient {
     }
 
     public MetaResponse metaPostRetrieve(ApplicationsMetaPostRetrieveRequest request) {
+        return metaPostRetrieve(request, null);
+    }
+
+    public MetaResponse metaPostRetrieve(ApplicationsMetaPostRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -239,7 +261,7 @@ public class ApplicationsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
