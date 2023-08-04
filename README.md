@@ -68,7 +68,7 @@ Candidate candidate = merge.ats().candidates().retrieve(
 
 ## Usage
 
-Below are code snippets of how you can use the Node SDK.
+Below are code snippets of how you can use the Java SDK.
 
 ### Create Link Token
 
