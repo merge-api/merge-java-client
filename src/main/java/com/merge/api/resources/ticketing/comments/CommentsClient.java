@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.comments;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.comments.requests.CommentEndpointRequest;
 import com.merge.api.resources.ticketing.comments.requests.CommentsListRequest;
 import com.merge.api.resources.ticketing.comments.requests.CommentsRetrieveRequest;
@@ -26,6 +27,10 @@ public class CommentsClient {
     }
 
     public PaginatedCommentList list(CommentsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCommentList list(CommentsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -74,7 +79,7 @@ public class CommentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -89,6 +94,10 @@ public class CommentsClient {
     }
 
     public CommentResponse create(CommentEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public CommentResponse create(CommentEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -113,7 +122,7 @@ public class CommentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -128,6 +137,10 @@ public class CommentsClient {
     }
 
     public Comment retrieve(String id, CommentsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Comment retrieve(String id, CommentsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -144,7 +157,7 @@ public class CommentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -159,6 +172,10 @@ public class CommentsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/comments/meta/post")
@@ -166,7 +183,7 @@ public class CommentsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

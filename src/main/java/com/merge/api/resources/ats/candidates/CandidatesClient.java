@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.candidates;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.candidates.requests.CandidateEndpointRequest;
 import com.merge.api.resources.ats.candidates.requests.CandidatesListRequest;
 import com.merge.api.resources.ats.candidates.requests.CandidatesRetrieveRequest;
@@ -28,6 +29,10 @@ public class CandidatesClient {
     }
 
     public PaginatedCandidateList list(CandidatesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCandidateList list(CandidatesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -86,7 +91,7 @@ public class CandidatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -101,6 +106,10 @@ public class CandidatesClient {
     }
 
     public CandidateResponse create(CandidateEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public CandidateResponse create(CandidateEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -126,7 +135,7 @@ public class CandidatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -141,6 +150,10 @@ public class CandidatesClient {
     }
 
     public Candidate retrieve(String id, CandidatesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Candidate retrieve(String id, CandidatesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -157,7 +170,7 @@ public class CandidatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -172,6 +185,11 @@ public class CandidatesClient {
     }
 
     public CandidateResponse partialUpdate(String id, PatchedCandidateEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    public CandidateResponse partialUpdate(
+            String id, PatchedCandidateEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -198,7 +216,7 @@ public class CandidatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -213,6 +231,10 @@ public class CandidatesClient {
     }
 
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+        ignoreCreate(modelId, request, null);
+    }
+
+    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ats/v1/candidates/ignore")
@@ -234,7 +256,7 @@ public class CandidatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -249,6 +271,10 @@ public class CandidatesClient {
     }
 
     public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ats/v1/candidates/meta/patch")
@@ -257,7 +283,7 @@ public class CandidatesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -272,6 +298,10 @@ public class CandidatesClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ats/v1/candidates/meta/post")
@@ -279,7 +309,7 @@ public class CandidatesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

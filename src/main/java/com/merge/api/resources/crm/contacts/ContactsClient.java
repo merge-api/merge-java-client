@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.contacts;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.contacts.requests.ContactsListRequest;
 import com.merge.api.resources.crm.contacts.requests.ContactsRemoteFieldClassesListRequest;
 import com.merge.api.resources.crm.contacts.requests.ContactsRetrieveRequest;
@@ -30,6 +31,10 @@ public class ContactsClient {
     }
 
     public PaginatedContactList list(ContactsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedContactList list(ContactsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -83,7 +88,7 @@ public class ContactsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -98,6 +103,10 @@ public class ContactsClient {
     }
 
     public CrmContactResponse create(CrmContactEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public CrmContactResponse create(CrmContactEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -122,7 +131,7 @@ public class ContactsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -137,6 +146,10 @@ public class ContactsClient {
     }
 
     public Contact retrieve(String id, ContactsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Contact retrieve(String id, ContactsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -158,7 +171,7 @@ public class ContactsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -173,6 +186,11 @@ public class ContactsClient {
     }
 
     public CrmContactResponse partialUpdate(String id, PatchedCrmContactEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    public CrmContactResponse partialUpdate(
+            String id, PatchedCrmContactEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -198,7 +216,7 @@ public class ContactsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -213,6 +231,10 @@ public class ContactsClient {
     }
 
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+        ignoreCreate(modelId, request, null);
+    }
+
+    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/contacts/ignore")
@@ -228,7 +250,7 @@ public class ContactsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -243,6 +265,10 @@ public class ContactsClient {
     }
 
     public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/contacts/meta/patch")
@@ -251,7 +277,7 @@ public class ContactsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -266,6 +292,10 @@ public class ContactsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/contacts/meta/post")
@@ -273,7 +303,7 @@ public class ContactsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -288,6 +318,11 @@ public class ContactsClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(ContactsRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            ContactsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -316,7 +351,7 @@ public class ContactsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

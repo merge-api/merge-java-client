@@ -3,6 +3,7 @@ package com.merge.api.resources.crm.forceresync;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.types.SyncStatus;
 import java.util.List;
 import okhttp3.Headers;
@@ -18,6 +19,10 @@ public class ForceResyncClient {
     }
 
     public List<SyncStatus> syncStatusResyncCreate() {
+        return syncStatusResyncCreate(null);
+    }
+
+    public List<SyncStatus> syncStatusResyncCreate(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/sync-status/resync")
@@ -25,7 +30,7 @@ public class ForceResyncClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.customobjectclasses;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.customobjectclasses.requests.CustomObjectClassesGeneratorUpdateRequest;
 import com.merge.api.resources.crm.customobjectclasses.requests.CustomObjectClassesListRequest;
 import com.merge.api.resources.crm.customobjectclasses.requests.CustomObjectClassesRetrieveRequest;
@@ -21,6 +22,10 @@ public class CustomObjectClassesClient {
     }
 
     public PaginatedCustomObjectClassList list(CustomObjectClassesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCustomObjectClassList list(CustomObjectClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -66,7 +71,7 @@ public class CustomObjectClassesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -82,6 +87,11 @@ public class CustomObjectClassesClient {
     }
 
     public CustomObjectClass retrieve(String id, CustomObjectClassesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public CustomObjectClass retrieve(
+            String id, CustomObjectClassesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -98,7 +108,7 @@ public class CustomObjectClassesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -113,6 +123,11 @@ public class CustomObjectClassesClient {
     }
 
     public CustomObjectClass generatorUpdate(String generatorId, CustomObjectClassesGeneratorUpdateRequest request) {
+        return generatorUpdate(generatorId, request, null);
+    }
+
+    public CustomObjectClass generatorUpdate(
+            String generatorId, CustomObjectClassesGeneratorUpdateRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -129,7 +144,7 @@ public class CustomObjectClassesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PUT", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.ats.interviews;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.interviews.requests.InterviewsListRequest;
 import com.merge.api.resources.ats.interviews.requests.InterviewsRetrieveRequest;
 import com.merge.api.resources.ats.interviews.requests.ScheduledInterviewEndpointRequest;
@@ -26,6 +27,10 @@ public class InterviewsClient {
     }
 
     public PaginatedScheduledInterviewList list(InterviewsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedScheduledInterviewList list(InterviewsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -90,7 +95,7 @@ public class InterviewsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -106,6 +111,10 @@ public class InterviewsClient {
     }
 
     public ScheduledInterviewResponse create(ScheduledInterviewEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public ScheduledInterviewResponse create(ScheduledInterviewEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -131,7 +140,7 @@ public class InterviewsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -146,6 +155,10 @@ public class InterviewsClient {
     }
 
     public ScheduledInterview retrieve(String id, InterviewsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public ScheduledInterview retrieve(String id, InterviewsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -170,7 +183,7 @@ public class InterviewsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -185,6 +198,10 @@ public class InterviewsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ats/v1/interviews/meta/post")
@@ -192,7 +209,7 @@ public class InterviewsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

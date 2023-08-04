@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.generatekey;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.generatekey.requests.GenerateRemoteKeyRequest;
 import com.merge.api.resources.accounting.types.RemoteKey;
 import java.util.HashMap;
@@ -21,6 +22,10 @@ public class GenerateKeyClient {
     }
 
     public RemoteKey create(GenerateRemoteKeyRequest request) {
+        return create(request, null);
+    }
+
+    public RemoteKey create(GenerateRemoteKeyRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/accounting/v1/generate-key")
@@ -38,7 +43,7 @@ public class GenerateKeyClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl)
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

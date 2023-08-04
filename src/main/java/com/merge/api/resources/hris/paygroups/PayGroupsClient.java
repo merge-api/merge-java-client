@@ -2,6 +2,7 @@ package com.merge.api.resources.hris.paygroups;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.paygroups.requests.PayGroupsListRequest;
 import com.merge.api.resources.hris.paygroups.requests.PayGroupsRetrieveRequest;
 import com.merge.api.resources.hris.types.PaginatedPayGroupList;
@@ -20,6 +21,10 @@ public class PayGroupsClient {
     }
 
     public PaginatedPayGroupList list(PayGroupsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedPayGroupList list(PayGroupsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -62,7 +67,7 @@ public class PayGroupsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -77,6 +82,10 @@ public class PayGroupsClient {
     }
 
     public PayGroup retrieve(String id, PayGroupsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public PayGroup retrieve(String id, PayGroupsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -90,7 +99,7 @@ public class PayGroupsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

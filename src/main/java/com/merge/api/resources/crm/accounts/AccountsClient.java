@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.accounts;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.accounts.requests.AccountsListRequest;
 import com.merge.api.resources.crm.accounts.requests.AccountsRemoteFieldClassesListRequest;
 import com.merge.api.resources.crm.accounts.requests.AccountsRetrieveRequest;
@@ -29,6 +30,10 @@ public class AccountsClient {
     }
 
     public PaginatedAccountList list(AccountsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedAccountList list(AccountsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -82,7 +87,7 @@ public class AccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -97,6 +102,10 @@ public class AccountsClient {
     }
 
     public CrmAccountResponse create(CrmAccountEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public CrmAccountResponse create(CrmAccountEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -121,7 +130,7 @@ public class AccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -136,6 +145,10 @@ public class AccountsClient {
     }
 
     public Account retrieve(String id, AccountsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Account retrieve(String id, AccountsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -157,7 +170,7 @@ public class AccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -172,6 +185,11 @@ public class AccountsClient {
     }
 
     public CrmAccountResponse partialUpdate(String id, PatchedCrmAccountEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    public CrmAccountResponse partialUpdate(
+            String id, PatchedCrmAccountEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -197,7 +215,7 @@ public class AccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -212,6 +230,10 @@ public class AccountsClient {
     }
 
     public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/accounts/meta/patch")
@@ -220,7 +242,7 @@ public class AccountsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -235,6 +257,10 @@ public class AccountsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/accounts/meta/post")
@@ -242,7 +268,7 @@ public class AccountsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -257,6 +283,11 @@ public class AccountsClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(AccountsRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            AccountsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -285,7 +316,7 @@ public class AccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

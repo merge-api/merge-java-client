@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.associationtypes;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.associationtypes.requests.CrmAssociationTypeEndpointRequest;
 import com.merge.api.resources.crm.associationtypes.requests.CustomObjectClassesAssociationTypesListRequest;
 import com.merge.api.resources.crm.associationtypes.requests.CustomObjectClassesAssociationTypesRetrieveRequest;
@@ -27,6 +28,13 @@ public class AssociationTypesClient {
 
     public PaginatedAssociationTypeList customObjectClassesAssociationTypesList(
             String customObjectClassId, CustomObjectClassesAssociationTypesListRequest request) {
+        return customObjectClassesAssociationTypesList(customObjectClassId, request, null);
+    }
+
+    public PaginatedAssociationTypeList customObjectClassesAssociationTypesList(
+            String customObjectClassId,
+            CustomObjectClassesAssociationTypesListRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -74,7 +82,7 @@ public class AssociationTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -91,6 +99,11 @@ public class AssociationTypesClient {
 
     public CrmAssociationTypeResponse customObjectClassesAssociationTypesCreate(
             String customObjectClassId, CrmAssociationTypeEndpointRequest request) {
+        return customObjectClassesAssociationTypesCreate(customObjectClassId, request, null);
+    }
+
+    public CrmAssociationTypeResponse customObjectClassesAssociationTypesCreate(
+            String customObjectClassId, CrmAssociationTypeEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -117,7 +130,7 @@ public class AssociationTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -133,6 +146,14 @@ public class AssociationTypesClient {
 
     public AssociationType customObjectClassesAssociationTypesRetrieve(
             String customObjectClassId, String id, CustomObjectClassesAssociationTypesRetrieveRequest request) {
+        return customObjectClassesAssociationTypesRetrieve(customObjectClassId, id, request, null);
+    }
+
+    public AssociationType customObjectClassesAssociationTypesRetrieve(
+            String customObjectClassId,
+            String id,
+            CustomObjectClassesAssociationTypesRetrieveRequest request,
+            RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -151,7 +172,7 @@ public class AssociationTypesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -166,6 +187,11 @@ public class AssociationTypesClient {
     }
 
     public MetaResponse customObjectClassesAssociationTypesMetaPostRetrieve(String customObjectClassId) {
+        return customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, null);
+    }
+
+    public MetaResponse customObjectClassesAssociationTypesMetaPostRetrieve(
+            String customObjectClassId, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/custom-object-classes")
@@ -175,7 +201,7 @@ public class AssociationTypesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.transactions;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.transactions.requests.TransactionsListRequest;
 import com.merge.api.resources.accounting.transactions.requests.TransactionsRetrieveRequest;
 import com.merge.api.resources.accounting.types.PaginatedTransactionList;
@@ -20,6 +21,10 @@ public class TransactionsClient {
     }
 
     public PaginatedTransactionList list(TransactionsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedTransactionList list(TransactionsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -78,7 +83,7 @@ public class TransactionsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -93,6 +98,10 @@ public class TransactionsClient {
     }
 
     public Transaction retrieve(String id, TransactionsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Transaction retrieve(String id, TransactionsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -109,7 +118,7 @@ public class TransactionsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

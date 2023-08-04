@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.payments;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.payments.requests.PaymentEndpointRequest;
 import com.merge.api.resources.accounting.payments.requests.PaymentsListRequest;
 import com.merge.api.resources.accounting.payments.requests.PaymentsRetrieveRequest;
@@ -26,6 +27,10 @@ public class PaymentsClient {
     }
 
     public PaginatedPaymentList list(PaymentsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedPaymentList list(PaymentsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -90,7 +95,7 @@ public class PaymentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -105,6 +110,10 @@ public class PaymentsClient {
     }
 
     public PaymentResponse create(PaymentEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public PaymentResponse create(PaymentEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -129,7 +138,7 @@ public class PaymentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -144,6 +153,10 @@ public class PaymentsClient {
     }
 
     public Payment retrieve(String id, PaymentsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Payment retrieve(String id, PaymentsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -160,7 +173,7 @@ public class PaymentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -175,6 +188,10 @@ public class PaymentsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/accounting/v1/payments/meta/post")
@@ -182,7 +199,7 @@ public class PaymentsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

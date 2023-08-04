@@ -2,6 +2,7 @@ package com.merge.api.resources.filestorage.files;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.filestorage.files.requests.FileStorageFileEndpointRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesListRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesRetrieveRequest;
@@ -27,6 +28,10 @@ public class FilesClient {
     }
 
     public PaginatedFileList list(FilesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedFileList list(FilesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -81,7 +86,7 @@ public class FilesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -96,6 +101,10 @@ public class FilesClient {
     }
 
     public FileStorageFileResponse create(FileStorageFileEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public FileStorageFileResponse create(FileStorageFileEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -120,7 +129,7 @@ public class FilesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -135,6 +144,10 @@ public class FilesClient {
     }
 
     public File retrieve(String id, FilesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public File retrieve(String id, FilesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -151,7 +164,7 @@ public class FilesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -166,6 +179,10 @@ public class FilesClient {
     }
 
     public InputStream downloadRetrieve(String id) {
+        return downloadRetrieve(id, null);
+    }
+
+    public InputStream downloadRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/filestorage/v1/files")
@@ -175,7 +192,7 @@ public class FilesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -190,6 +207,10 @@ public class FilesClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/filestorage/v1/files/meta/post")
@@ -197,7 +218,7 @@ public class FilesClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

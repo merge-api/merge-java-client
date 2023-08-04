@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.cashflowstatements;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.cashflowstatements.requests.CashFlowStatementsListRequest;
 import com.merge.api.resources.accounting.cashflowstatements.requests.CashFlowStatementsRetrieveRequest;
 import com.merge.api.resources.accounting.types.CashFlowStatement;
@@ -20,6 +21,10 @@ public class CashFlowStatementsClient {
     }
 
     public PaginatedCashFlowStatementList list(CashFlowStatementsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCashFlowStatementList list(CashFlowStatementsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -68,7 +73,7 @@ public class CashFlowStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -84,6 +89,11 @@ public class CashFlowStatementsClient {
     }
 
     public CashFlowStatement retrieve(String id, CashFlowStatementsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public CashFlowStatement retrieve(
+            String id, CashFlowStatementsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -100,7 +110,7 @@ public class CashFlowStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

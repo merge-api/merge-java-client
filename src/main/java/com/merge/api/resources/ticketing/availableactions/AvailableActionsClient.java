@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.availableactions;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.types.AvailableActions;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -16,6 +17,10 @@ public class AvailableActionsClient {
     }
 
     public AvailableActions retrieve() {
+        return retrieve(null);
+    }
+
+    public AvailableActions retrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/available-actions")
@@ -23,7 +28,7 @@ public class AvailableActionsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

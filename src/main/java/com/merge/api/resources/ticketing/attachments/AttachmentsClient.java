@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.attachments;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsListRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsRetrieveRequest;
 import com.merge.api.resources.ticketing.attachments.requests.TicketingAttachmentEndpointRequest;
@@ -27,6 +28,10 @@ public class AttachmentsClient {
     }
 
     public PaginatedAttachmentList list(AttachmentsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedAttachmentList list(AttachmentsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -75,7 +80,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -90,6 +95,11 @@ public class AttachmentsClient {
     }
 
     public TicketingAttachmentResponse create(TicketingAttachmentEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public TicketingAttachmentResponse create(
+            TicketingAttachmentEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -114,7 +124,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -130,6 +140,10 @@ public class AttachmentsClient {
     }
 
     public Attachment retrieve(String id, AttachmentsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Attachment retrieve(String id, AttachmentsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -146,7 +160,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -161,6 +175,10 @@ public class AttachmentsClient {
     }
 
     public InputStream downloadRetrieve(String id) {
+        return downloadRetrieve(id, null);
+    }
+
+    public InputStream downloadRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/attachments")
@@ -170,7 +188,7 @@ public class AttachmentsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -185,6 +203,10 @@ public class AttachmentsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/ticketing/v1/attachments/meta/post")
@@ -192,7 +214,7 @@ public class AttachmentsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {

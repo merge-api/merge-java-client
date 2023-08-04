@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.tasks;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.tasks.requests.PatchedTaskEndpointRequest;
 import com.merge.api.resources.crm.tasks.requests.TaskEndpointRequest;
 import com.merge.api.resources.crm.tasks.requests.TasksListRequest;
@@ -29,6 +30,10 @@ public class TasksClient {
     }
 
     public PaginatedTaskList list(TasksListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedTaskList list(TasksListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -79,7 +84,7 @@ public class TasksClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -94,6 +99,10 @@ public class TasksClient {
     }
 
     public TaskResponse create(TaskEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public TaskResponse create(TaskEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -118,7 +127,7 @@ public class TasksClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -133,6 +142,10 @@ public class TasksClient {
     }
 
     public Task retrieve(String id, TasksRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Task retrieve(String id, TasksRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -154,7 +167,7 @@ public class TasksClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -169,6 +182,10 @@ public class TasksClient {
     }
 
     public TaskResponse partialUpdate(String id, PatchedTaskEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    public TaskResponse partialUpdate(String id, PatchedTaskEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -194,7 +211,7 @@ public class TasksClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -209,6 +226,10 @@ public class TasksClient {
     }
 
     public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/tasks/meta/patch")
@@ -217,7 +238,7 @@ public class TasksClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -232,6 +253,10 @@ public class TasksClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/tasks/meta/post")
@@ -239,7 +264,7 @@ public class TasksClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -254,6 +279,11 @@ public class TasksClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(TasksRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            TasksRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -282,7 +312,7 @@ public class TasksClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

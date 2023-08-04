@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.projects;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.projects.requests.ProjectsListRequest;
 import com.merge.api.resources.ticketing.projects.requests.ProjectsRetrieveRequest;
 import com.merge.api.resources.ticketing.projects.requests.ProjectsUsersListRequest;
@@ -22,6 +23,10 @@ public class ProjectsClient {
     }
 
     public PaginatedProjectList list(ProjectsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedProjectList list(ProjectsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -64,7 +69,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -79,6 +84,10 @@ public class ProjectsClient {
     }
 
     public Project retrieve(String id, ProjectsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Project retrieve(String id, ProjectsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -92,7 +101,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -107,6 +116,11 @@ public class ProjectsClient {
     }
 
     public PaginatedUserList usersList(String parentId, ProjectsUsersListRequest request) {
+        return usersList(parentId, request, null);
+    }
+
+    public PaginatedUserList usersList(
+            String parentId, ProjectsUsersListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -135,7 +149,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

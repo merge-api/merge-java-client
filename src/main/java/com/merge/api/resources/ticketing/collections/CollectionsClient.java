@@ -2,6 +2,7 @@ package com.merge.api.resources.ticketing.collections;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsListRequest;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsRetrieveRequest;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsUsersListRequest;
@@ -22,6 +23,10 @@ public class CollectionsClient {
     }
 
     public PaginatedCollectionList list(CollectionsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedCollectionList list(CollectionsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -83,7 +88,7 @@ public class CollectionsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -98,6 +103,10 @@ public class CollectionsClient {
     }
 
     public Collection retrieve(String id, CollectionsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Collection retrieve(String id, CollectionsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -122,7 +131,7 @@ public class CollectionsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -137,6 +146,11 @@ public class CollectionsClient {
     }
 
     public PaginatedUserList usersList(String parentId, CollectionsUsersListRequest request) {
+        return usersList(parentId, request, null);
+    }
+
+    public PaginatedUserList usersList(
+            String parentId, CollectionsUsersListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -165,7 +179,7 @@ public class CollectionsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

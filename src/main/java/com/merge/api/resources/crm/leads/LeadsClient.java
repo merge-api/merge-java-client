@@ -2,6 +2,7 @@ package com.merge.api.resources.crm.leads;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.leads.requests.LeadEndpointRequest;
 import com.merge.api.resources.crm.leads.requests.LeadsListRequest;
 import com.merge.api.resources.crm.leads.requests.LeadsRemoteFieldClassesListRequest;
@@ -28,6 +29,10 @@ public class LeadsClient {
     }
 
     public PaginatedLeadList list(LeadsListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedLeadList list(LeadsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -89,7 +94,7 @@ public class LeadsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -104,6 +109,10 @@ public class LeadsClient {
     }
 
     public LeadResponse create(LeadEndpointRequest request) {
+        return create(request, null);
+    }
+
+    public LeadResponse create(LeadEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -128,7 +137,7 @@ public class LeadsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("POST", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -143,6 +152,10 @@ public class LeadsClient {
     }
 
     public Lead retrieve(String id, LeadsRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public Lead retrieve(String id, LeadsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -164,7 +177,7 @@ public class LeadsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -179,6 +192,10 @@ public class LeadsClient {
     }
 
     public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/crm/v1/leads/meta/post")
@@ -186,7 +203,7 @@ public class LeadsClient {
         Request _request = new Request.Builder()
                 .url(_httpUrl)
                 .method("GET", null)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
@@ -201,6 +218,11 @@ public class LeadsClient {
     }
 
     public PaginatedRemoteFieldClassList remoteFieldClassesList(LeadsRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            LeadsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -229,7 +251,7 @@ public class LeadsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {

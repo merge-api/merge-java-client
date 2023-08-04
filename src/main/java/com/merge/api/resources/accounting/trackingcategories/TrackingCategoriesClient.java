@@ -2,6 +2,7 @@ package com.merge.api.resources.accounting.trackingcategories;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.trackingcategories.requests.TrackingCategoriesListRequest;
 import com.merge.api.resources.accounting.trackingcategories.requests.TrackingCategoriesRetrieveRequest;
 import com.merge.api.resources.accounting.types.PaginatedTrackingCategoryList;
@@ -20,6 +21,10 @@ public class TrackingCategoriesClient {
     }
 
     public PaginatedTrackingCategoryList list(TrackingCategoriesListRequest request) {
+        return list(request, null);
+    }
+
+    public PaginatedTrackingCategoryList list(TrackingCategoriesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -76,7 +81,7 @@ public class TrackingCategoriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
@@ -92,6 +97,11 @@ public class TrackingCategoriesClient {
     }
 
     public TrackingCategory retrieve(String id, TrackingCategoriesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    public TrackingCategory retrieve(
+            String id, TrackingCategoriesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
@@ -116,7 +126,7 @@ public class TrackingCategoriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(_httpUrl.build())
                 .method("GET", _requestBody)
-                .headers(Headers.of(clientOptions.headers()))
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request _request = _requestBuilder.build();
         try {
