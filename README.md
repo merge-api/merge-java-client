@@ -36,7 +36,7 @@ Add the dependency in your `pom.xml`:
 ## Instantiation
 
 ```java
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
@@ -50,19 +50,20 @@ that allow you to override the account token and api key.
 import com.merge.api.MergeApiClient;
 import com.merge.api.resources.ats.types.Candidate;
 import com.merge.api.resources.ats.candidates.requests.CandidatesRetrieveRequest;
+import com.merge.api.core.RequestOptions;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-Candidate candidate = merge.ats().candidates().retrieve(
-    "521b18c2-4d01-4297-b451-19858d07c133", 
+Candidate candidate = mergeClient.ats().candidates().retrieve(
+    "<CANDIDATE_UUID>", 
     CandidatesRetrieveRequest.builder()
             .includeRemoteData(true)
             .build(), 
     RequestOptions.builder()
-        .accountToken("ACCOUNT_TOKEN")
+        .accountToken("OVERRIDE_ACCOUNT_TOKEN")
         .build());
 ```
 
@@ -76,13 +77,16 @@ Below are code snippets of how you can use the Java SDK.
 import com.merge.api.MergeApiClient;
 import com.merge.api.resources.ats.types.CategoriesEnum;
 import com.merge.api.resources.ats.types.LinkToken;
+import com.merge.api.resources.ats.linktoken.requests.EndUserDetailsRequest;
 
-MergeApiClient merge = MergeApiClient.builder()
+import java.util.List;
+
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-LinkToken linkToken = merge.ats().linkToken().create(EndUserDetailsRequest.builder()
+LinkToken linkToken = mergeClient.ats().linkToken().create(EndUserDetailsRequest.builder()
     .endUserEmailAddress("john.smith@gmail.com")
     .endUserOrganizationName("acme")
     .endUserOriginId("1234")
@@ -99,12 +103,12 @@ import com.merge.api.MergeApiClient;
 import com.merge.api.resources.hris.employees.requests.EmployeesRetrieveRequest;
 import com.merge.api.resources.hris.types.Employee;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-Employee employee = merge.hris().employees().retrieve(
+Employee employee = mergeClient.hris().employees().retrieve(
     "0958cbc6-6040-430a-848e-aafacbadf4ae",
     EmployeesRetrieveRequest.builder()
         .includeRemoteData(true)
@@ -118,12 +122,12 @@ import com.merge.api.MergeApiClient;
 import com.merge.api.resources.ats.types.Candidate;
 import com.merge.api.resources.ats.candidates.requests.CandidatesRetrieveRequest;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-Candidate candidate = merge.ats().candidates().retrieve(
+Candidate candidate = mergeClient.ats().candidates().retrieve(
     "521b18c2-4d01-4297-b451-19858d07c133", 
     CandidatesRetrieveRequest.builder()
         .includeRemoteData(true)
@@ -136,14 +140,15 @@ Candidate candidate = merge.ats().candidates().retrieve(
 import com.merge.api.MergeApiClient;
 import com.merge.api.resources.ats.candidates.requests.CandidatesListRequest;
 import com.merge.api.resources.ats.types.PaginatedCandidateList;
+
 import java.time.OffsetDateTime;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
     
-PaginatedCandidateList candidate = merge.ats().candidates().list(
+PaginatedCandidateList candidate = mergeClient.ats().candidates().list(
     CandidatesListRequest.builder()
         .createdAfter(OffsetDateTime.parse("2007-12-03T10:15:30+01:00"))
         .build());
@@ -156,12 +161,12 @@ import com.merge.api.MergeApiClient;
 import com.merge.api.resources.accounting.contacts.requests.ContactsRetrieveRequest;
 import com.merge.api.resources.accounting.types.Contact;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-Contact contact = merge.accounting().contacts().retrieve(
+Contact contact = mergeClient.accounting().contacts().retrieve(
     "c640b80b-fac9-409f-aa19-1f9221aec445", 
     ContactsRetrieveRequest.builder()
         .includeRemoteData(true)
@@ -178,12 +183,12 @@ import com.merge.api.resources.ticketing.types.TicketRequestStatus;
 import com.merge.api.resources.ticketing.types.TicketStatusEnum;
 import java.time.OffsetDateTime;
 
-MergeApiClient merge = MergeApiClient.builder()
+MergeApiClient mergeClient = MergeApiClient.builder()
     .accountToken("ACCOUNT_TOKEN")
     .apiKey("API_KEY")
     .build();
 
-merge.ticketing().tickets().create(TicketEndpointRequest.builder()
+mergeClient.ticketing().tickets().create(TicketEndpointRequest.builder()
     .model(TicketRequest.builder()
         .name("Please add more integrations")
         .creator("3fa85f64-5717-4562-b3fc-2c963f66afa6")
@@ -196,18 +201,28 @@ merge.ticketing().tickets().create(TicketEndpointRequest.builder()
 ### File Download
 
 ```java
-MergeApiClient merge = MergeApiClient.builder()
-    .accountToken("ACCOUNT_TOKEN")
-    .apiKey("API_KEY")
-    .build();
+import com.merge.api.MergeApiClient;
+import com.merge.api.resources.filestorage.types.PaginatedFileList;
+import com.merge.api.resources.filestorage.files.requests.FilesListRequest;
+import com.merge.api.resources.filestorage.types.File;
 
-PaginatedFileList fileResponse = merge.filestorage().files().list(FilesListRequest.builder()
-    .name("<FILE_NAME>")
-    .build());
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+MergeApiClient mergeClient = MergeApiClient.builder()
+        .accountToken("ACCOUNT_TOKEN")
+        .apiKey("API_KEY")
+        .build();
+
+PaginatedFileList fileResponse = mergeClient.filestorage().files().list(FilesListRequest.builder()
+        .name("<FILE_NAME>")
+        .build());
 
 File file = fileResponse.getResults().get().get(0);
 String fileId = file.getId().get();
-InputStream fileContents = merge.filestorage().files().downloadRetrieve(fileId);
+InputStream fileContents = mergeClient.filestorage().files().downloadRetrieve(fileId);
 byte[] buffer = new byte[1024]; // Set the buffer size to your desired value
 try (OutputStream outputStream = new FileOutputStream("/path/to/file")) {
     int bytesRead;
@@ -216,7 +231,7 @@ try (OutputStream outputStream = new FileOutputStream("/path/to/file")) {
     }
 } catch (IOException e) {
     throw new RuntimeException(e);
-}
+}   
 ```
 
 ## Staged Builders
