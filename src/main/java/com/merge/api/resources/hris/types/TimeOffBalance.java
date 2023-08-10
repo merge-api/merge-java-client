@@ -20,7 +20,7 @@ public final class TimeOffBalance {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> employee;
+    private final Optional<TimeOffBalanceEmployee> employee;
 
     private final Optional<Double> balance;
 
@@ -39,7 +39,7 @@ public final class TimeOffBalance {
     private TimeOffBalance(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> employee,
+            Optional<TimeOffBalanceEmployee> employee,
             Optional<Double> balance,
             Optional<Double> used,
             Optional<TimeOffBalancePolicyType> policyType,
@@ -76,7 +76,7 @@ public final class TimeOffBalance {
      * @return The employee the balance belongs to.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<TimeOffBalanceEmployee> getEmployee() {
         return employee;
     }
 
@@ -190,7 +190,7 @@ public final class TimeOffBalance {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> employee = Optional.empty();
+        private Optional<TimeOffBalanceEmployee> employee = Optional.empty();
 
         private Optional<Double> balance = Optional.empty();
 
@@ -245,12 +245,12 @@ public final class TimeOffBalance {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<TimeOffBalanceEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(TimeOffBalanceEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }

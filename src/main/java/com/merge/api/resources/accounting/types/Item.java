@@ -28,11 +28,11 @@ public final class Item {
 
     private final Optional<Double> purchasePrice;
 
-    private final Optional<String> purchaseAccount;
+    private final Optional<ItemPurchaseAccount> purchaseAccount;
 
-    private final Optional<String> salesAccount;
+    private final Optional<ItemSalesAccount> salesAccount;
 
-    private final Optional<String> company;
+    private final Optional<ItemCompany> company;
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
@@ -51,9 +51,9 @@ public final class Item {
             Optional<ItemStatus> status,
             Optional<Double> unitPrice,
             Optional<Double> purchasePrice,
-            Optional<String> purchaseAccount,
-            Optional<String> salesAccount,
-            Optional<String> company,
+            Optional<ItemPurchaseAccount> purchaseAccount,
+            Optional<ItemSalesAccount> salesAccount,
+            Optional<ItemCompany> company,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
@@ -128,7 +128,7 @@ public final class Item {
      * @return References the default account used to record a purchase of the item.
      */
     @JsonProperty("purchase_account")
-    public Optional<String> getPurchaseAccount() {
+    public Optional<ItemPurchaseAccount> getPurchaseAccount() {
         return purchaseAccount;
     }
 
@@ -136,7 +136,7 @@ public final class Item {
      * @return References the default account used to record a sale.
      */
     @JsonProperty("sales_account")
-    public Optional<String> getSalesAccount() {
+    public Optional<ItemSalesAccount> getSalesAccount() {
         return salesAccount;
     }
 
@@ -144,7 +144,7 @@ public final class Item {
      * @return The company the item belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<ItemCompany> getCompany() {
         return company;
     }
 
@@ -251,11 +251,11 @@ public final class Item {
 
         private Optional<Double> purchasePrice = Optional.empty();
 
-        private Optional<String> purchaseAccount = Optional.empty();
+        private Optional<ItemPurchaseAccount> purchaseAccount = Optional.empty();
 
-        private Optional<String> salesAccount = Optional.empty();
+        private Optional<ItemSalesAccount> salesAccount = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<ItemCompany> company = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
@@ -354,34 +354,34 @@ public final class Item {
         }
 
         @JsonSetter(value = "purchase_account", nulls = Nulls.SKIP)
-        public Builder purchaseAccount(Optional<String> purchaseAccount) {
+        public Builder purchaseAccount(Optional<ItemPurchaseAccount> purchaseAccount) {
             this.purchaseAccount = purchaseAccount;
             return this;
         }
 
-        public Builder purchaseAccount(String purchaseAccount) {
+        public Builder purchaseAccount(ItemPurchaseAccount purchaseAccount) {
             this.purchaseAccount = Optional.of(purchaseAccount);
             return this;
         }
 
         @JsonSetter(value = "sales_account", nulls = Nulls.SKIP)
-        public Builder salesAccount(Optional<String> salesAccount) {
+        public Builder salesAccount(Optional<ItemSalesAccount> salesAccount) {
             this.salesAccount = salesAccount;
             return this;
         }
 
-        public Builder salesAccount(String salesAccount) {
+        public Builder salesAccount(ItemSalesAccount salesAccount) {
             this.salesAccount = Optional.of(salesAccount);
             return this;
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<ItemCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(ItemCompany company) {
             this.company = Optional.of(company);
             return this;
         }

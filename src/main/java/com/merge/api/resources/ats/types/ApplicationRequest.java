@@ -15,9 +15,9 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = ApplicationRequest.Builder.class)
 public final class ApplicationRequest {
-    private final Optional<String> candidate;
+    private final Optional<ApplicationRequestCandidate> candidate;
 
-    private final Optional<String> job;
+    private final Optional<ApplicationRequestJob> job;
 
     private final Optional<OffsetDateTime> appliedAt;
 
@@ -25,11 +25,11 @@ public final class ApplicationRequest {
 
     private final Optional<String> source;
 
-    private final Optional<String> creditedTo;
+    private final Optional<ApplicationRequestCreditedTo> creditedTo;
 
-    private final Optional<String> currentStage;
+    private final Optional<ApplicationRequestCurrentStage> currentStage;
 
-    private final Optional<String> rejectReason;
+    private final Optional<ApplicationRequestRejectReason> rejectReason;
 
     private final Optional<String> remoteTemplateId;
 
@@ -38,14 +38,14 @@ public final class ApplicationRequest {
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
     private ApplicationRequest(
-            Optional<String> candidate,
-            Optional<String> job,
+            Optional<ApplicationRequestCandidate> candidate,
+            Optional<ApplicationRequestJob> job,
             Optional<OffsetDateTime> appliedAt,
             Optional<OffsetDateTime> rejectedAt,
             Optional<String> source,
-            Optional<String> creditedTo,
-            Optional<String> currentStage,
-            Optional<String> rejectReason,
+            Optional<ApplicationRequestCreditedTo> creditedTo,
+            Optional<ApplicationRequestCurrentStage> currentStage,
+            Optional<ApplicationRequestRejectReason> rejectReason,
             Optional<String> remoteTemplateId,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -66,7 +66,7 @@ public final class ApplicationRequest {
      * @return The candidate applying.
      */
     @JsonProperty("candidate")
-    public Optional<String> getCandidate() {
+    public Optional<ApplicationRequestCandidate> getCandidate() {
         return candidate;
     }
 
@@ -74,7 +74,7 @@ public final class ApplicationRequest {
      * @return The job being applied for.
      */
     @JsonProperty("job")
-    public Optional<String> getJob() {
+    public Optional<ApplicationRequestJob> getJob() {
         return job;
     }
 
@@ -106,7 +106,7 @@ public final class ApplicationRequest {
      * @return The user credited for this application.
      */
     @JsonProperty("credited_to")
-    public Optional<String> getCreditedTo() {
+    public Optional<ApplicationRequestCreditedTo> getCreditedTo() {
         return creditedTo;
     }
 
@@ -114,7 +114,7 @@ public final class ApplicationRequest {
      * @return The application's current stage.
      */
     @JsonProperty("current_stage")
-    public Optional<String> getCurrentStage() {
+    public Optional<ApplicationRequestCurrentStage> getCurrentStage() {
         return currentStage;
     }
 
@@ -122,7 +122,7 @@ public final class ApplicationRequest {
      * @return The application's reason for rejection.
      */
     @JsonProperty("reject_reason")
-    public Optional<String> getRejectReason() {
+    public Optional<ApplicationRequestRejectReason> getRejectReason() {
         return rejectReason;
     }
 
@@ -195,9 +195,9 @@ public final class ApplicationRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> candidate = Optional.empty();
+        private Optional<ApplicationRequestCandidate> candidate = Optional.empty();
 
-        private Optional<String> job = Optional.empty();
+        private Optional<ApplicationRequestJob> job = Optional.empty();
 
         private Optional<OffsetDateTime> appliedAt = Optional.empty();
 
@@ -205,11 +205,11 @@ public final class ApplicationRequest {
 
         private Optional<String> source = Optional.empty();
 
-        private Optional<String> creditedTo = Optional.empty();
+        private Optional<ApplicationRequestCreditedTo> creditedTo = Optional.empty();
 
-        private Optional<String> currentStage = Optional.empty();
+        private Optional<ApplicationRequestCurrentStage> currentStage = Optional.empty();
 
-        private Optional<String> rejectReason = Optional.empty();
+        private Optional<ApplicationRequestRejectReason> rejectReason = Optional.empty();
 
         private Optional<String> remoteTemplateId = Optional.empty();
 
@@ -235,23 +235,23 @@ public final class ApplicationRequest {
         }
 
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
-        public Builder candidate(Optional<String> candidate) {
+        public Builder candidate(Optional<ApplicationRequestCandidate> candidate) {
             this.candidate = candidate;
             return this;
         }
 
-        public Builder candidate(String candidate) {
+        public Builder candidate(ApplicationRequestCandidate candidate) {
             this.candidate = Optional.of(candidate);
             return this;
         }
 
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
-        public Builder job(Optional<String> job) {
+        public Builder job(Optional<ApplicationRequestJob> job) {
             this.job = job;
             return this;
         }
 
-        public Builder job(String job) {
+        public Builder job(ApplicationRequestJob job) {
             this.job = Optional.of(job);
             return this;
         }
@@ -290,34 +290,34 @@ public final class ApplicationRequest {
         }
 
         @JsonSetter(value = "credited_to", nulls = Nulls.SKIP)
-        public Builder creditedTo(Optional<String> creditedTo) {
+        public Builder creditedTo(Optional<ApplicationRequestCreditedTo> creditedTo) {
             this.creditedTo = creditedTo;
             return this;
         }
 
-        public Builder creditedTo(String creditedTo) {
+        public Builder creditedTo(ApplicationRequestCreditedTo creditedTo) {
             this.creditedTo = Optional.of(creditedTo);
             return this;
         }
 
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
-        public Builder currentStage(Optional<String> currentStage) {
+        public Builder currentStage(Optional<ApplicationRequestCurrentStage> currentStage) {
             this.currentStage = currentStage;
             return this;
         }
 
-        public Builder currentStage(String currentStage) {
+        public Builder currentStage(ApplicationRequestCurrentStage currentStage) {
             this.currentStage = Optional.of(currentStage);
             return this;
         }
 
         @JsonSetter(value = "reject_reason", nulls = Nulls.SKIP)
-        public Builder rejectReason(Optional<String> rejectReason) {
+        public Builder rejectReason(Optional<ApplicationRequestRejectReason> rejectReason) {
             this.rejectReason = rejectReason;
             return this;
         }
 
-        public Builder rejectReason(String rejectReason) {
+        public Builder rejectReason(ApplicationRequestRejectReason rejectReason) {
             this.rejectReason = Optional.of(rejectReason);
             return this;
         }

@@ -22,9 +22,9 @@ public final class Transaction {
 
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<String> account;
+    private final Optional<TransactionAccount> account;
 
-    private final Optional<String> contact;
+    private final Optional<TransactionContact> contact;
 
     private final Optional<String> totalAmount;
 
@@ -34,7 +34,7 @@ public final class Transaction {
 
     private final Optional<String> company;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<List<TransactionLineItem>> lineItems;
 
@@ -54,13 +54,13 @@ public final class Transaction {
             Optional<String> transactionType,
             Optional<String> number,
             Optional<OffsetDateTime> transactionDate,
-            Optional<String> account,
-            Optional<String> contact,
+            Optional<TransactionAccount> account,
+            Optional<TransactionContact> contact,
             Optional<String> totalAmount,
             Optional<TransactionCurrency> currency,
             Optional<String> exchangeRate,
             Optional<String> company,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories,
             Optional<List<TransactionLineItem>> lineItems,
             Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
@@ -115,7 +115,7 @@ public final class Transaction {
      * @return The transaction's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<TransactionAccount> getAccount() {
         return account;
     }
 
@@ -123,7 +123,7 @@ public final class Transaction {
      * @return The contact to whom the transaction relates to.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<TransactionContact> getContact() {
         return contact;
     }
 
@@ -468,7 +468,7 @@ public final class Transaction {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<TransactionTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -586,9 +586,9 @@ public final class Transaction {
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<TransactionAccount> account = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<TransactionContact> contact = Optional.empty();
 
         private Optional<String> totalAmount = Optional.empty();
 
@@ -598,7 +598,7 @@ public final class Transaction {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<List<TransactionLineItem>> lineItems = Optional.empty();
 
@@ -671,23 +671,23 @@ public final class Transaction {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<TransactionAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(TransactionAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<TransactionContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(TransactionContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -737,12 +737,13 @@ public final class Transaction {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<TransactionTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

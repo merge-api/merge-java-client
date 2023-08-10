@@ -18,9 +18,9 @@ import java.util.Optional;
 public final class ExpenseRequest {
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<String> account;
+    private final Optional<ExpenseRequestAccount> account;
 
-    private final Optional<String> contact;
+    private final Optional<ExpenseRequestContact> contact;
 
     private final Optional<Double> totalAmount;
 
@@ -28,13 +28,13 @@ public final class ExpenseRequest {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<ExpenseRequestCompany> company;
 
     private final Optional<String> memo;
 
     private final Optional<List<ExpenseLineRequest>> lines;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -42,15 +42,15 @@ public final class ExpenseRequest {
 
     private ExpenseRequest(
             Optional<OffsetDateTime> transactionDate,
-            Optional<String> account,
-            Optional<String> contact,
+            Optional<ExpenseRequestAccount> account,
+            Optional<ExpenseRequestContact> contact,
             Optional<Double> totalAmount,
             Optional<ExpenseRequestCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<ExpenseRequestCompany> company,
             Optional<String> memo,
             Optional<List<ExpenseLineRequest>> lines,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.transactionDate = transactionDate;
@@ -79,7 +79,7 @@ public final class ExpenseRequest {
      * @return The expense's payment account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<ExpenseRequestAccount> getAccount() {
         return account;
     }
 
@@ -87,7 +87,7 @@ public final class ExpenseRequest {
      * @return The expense's contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<ExpenseRequestContact> getContact() {
         return contact;
     }
 
@@ -427,7 +427,7 @@ public final class ExpenseRequest {
      * @return The company the expense belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<ExpenseRequestCompany> getCompany() {
         return company;
     }
 
@@ -445,7 +445,7 @@ public final class ExpenseRequest {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -514,9 +514,9 @@ public final class ExpenseRequest {
     public static final class Builder {
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<ExpenseRequestAccount> account = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<ExpenseRequestContact> contact = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
@@ -524,13 +524,13 @@ public final class ExpenseRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<ExpenseRequestCompany> company = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
         private Optional<List<ExpenseLineRequest>> lines = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -566,23 +566,23 @@ public final class ExpenseRequest {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<ExpenseRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(ExpenseRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<ExpenseRequestContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(ExpenseRequestContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -621,12 +621,12 @@ public final class ExpenseRequest {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<ExpenseRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(ExpenseRequestCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -654,12 +654,13 @@ public final class ExpenseRequest {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<ExpenseRequestTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

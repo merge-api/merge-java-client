@@ -22,19 +22,19 @@ public final class Payment {
 
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<String> contact;
+    private final Optional<PaymentContact> contact;
 
-    private final Optional<String> account;
+    private final Optional<PaymentAccount> account;
 
     private final Optional<PaymentCurrency> currency;
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<PaymentCompany> company;
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
@@ -50,13 +50,13 @@ public final class Payment {
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> transactionDate,
-            Optional<String> contact,
-            Optional<String> account,
+            Optional<PaymentContact> contact,
+            Optional<PaymentAccount> account,
             Optional<PaymentCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<PaymentCompany> company,
             Optional<Double> totalAmount,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
@@ -104,7 +104,7 @@ public final class Payment {
      * @return The supplier, or customer involved in the payment.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<PaymentContact> getContact() {
         return contact;
     }
 
@@ -112,7 +112,7 @@ public final class Payment {
      * @return The supplier’s or customer’s account in which the payment is made.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<PaymentAccount> getAccount() {
         return account;
     }
 
@@ -444,7 +444,7 @@ public final class Payment {
      * @return The company the payment belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<PaymentCompany> getCompany() {
         return company;
     }
 
@@ -457,7 +457,7 @@ public final class Payment {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<PaymentTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -561,19 +561,19 @@ public final class Payment {
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<PaymentContact> contact = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<PaymentAccount> account = Optional.empty();
 
         private Optional<PaymentCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<PaymentCompany> company = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
@@ -640,23 +640,23 @@ public final class Payment {
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<PaymentContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(PaymentContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<PaymentAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(PaymentAccount account) {
             this.account = Optional.of(account);
             return this;
         }
@@ -684,12 +684,12 @@ public final class Payment {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<PaymentCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(PaymentCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -706,12 +706,12 @@ public final class Payment {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<PaymentTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

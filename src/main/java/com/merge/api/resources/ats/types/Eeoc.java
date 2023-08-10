@@ -20,7 +20,7 @@ public final class Eeoc {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> candidate;
+    private final Optional<EeocCandidate> candidate;
 
     private final Optional<OffsetDateTime> submittedAt;
 
@@ -43,7 +43,7 @@ public final class Eeoc {
     private Eeoc(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> candidate,
+            Optional<EeocCandidate> candidate,
             Optional<OffsetDateTime> submittedAt,
             Optional<EeocRace> race,
             Optional<EeocGender> gender,
@@ -84,7 +84,7 @@ public final class Eeoc {
      * @return The candidate being represented.
      */
     @JsonProperty("candidate")
-    public Optional<String> getCandidate() {
+    public Optional<EeocCandidate> getCandidate() {
         return candidate;
     }
 
@@ -238,7 +238,7 @@ public final class Eeoc {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> candidate = Optional.empty();
+        private Optional<EeocCandidate> candidate = Optional.empty();
 
         private Optional<OffsetDateTime> submittedAt = Optional.empty();
 
@@ -299,12 +299,12 @@ public final class Eeoc {
         }
 
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
-        public Builder candidate(Optional<String> candidate) {
+        public Builder candidate(Optional<EeocCandidate> candidate) {
             this.candidate = candidate;
             return this;
         }
 
-        public Builder candidate(String candidate) {
+        public Builder candidate(EeocCandidate candidate) {
             this.candidate = Optional.of(candidate);
             return this;
         }

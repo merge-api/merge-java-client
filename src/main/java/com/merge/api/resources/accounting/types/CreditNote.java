@@ -38,7 +38,7 @@ public final class CreditNote {
 
     private final Optional<List<CreditNoteLineItem>> lineItems;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<CreditNoteCurrency> currency;
 
@@ -46,7 +46,7 @@ public final class CreditNote {
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
-    private final Optional<List<Optional<String>>> payments;
+    private final Optional<List<Optional<CreditNotePaymentsItem>>> payments;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -68,11 +68,11 @@ public final class CreditNote {
             Optional<Double> totalAmount,
             Optional<Double> remainingCredit,
             Optional<List<CreditNoteLineItem>> lineItems,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories,
             Optional<CreditNoteCurrency> currency,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<List<Optional<String>>> payments,
+            Optional<List<Optional<CreditNotePaymentsItem>>> payments,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -187,7 +187,7 @@ public final class CreditNote {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -527,7 +527,7 @@ public final class CreditNote {
      * @return Array of <code>Payment</code> object IDs
      */
     @JsonProperty("payments")
-    public Optional<List<Optional<String>>> getPayments() {
+    public Optional<List<Optional<CreditNotePaymentsItem>>> getPayments() {
         return payments;
     }
 
@@ -651,7 +651,7 @@ public final class CreditNote {
 
         private Optional<List<CreditNoteLineItem>> lineItems = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<CreditNoteCurrency> currency = Optional.empty();
 
@@ -659,7 +659,7 @@ public final class CreditNote {
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
-        private Optional<List<Optional<String>>> payments = Optional.empty();
+        private Optional<List<Optional<CreditNotePaymentsItem>>> payments = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -817,12 +817,13 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<CreditNoteTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
@@ -861,12 +862,12 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "payments", nulls = Nulls.SKIP)
-        public Builder payments(Optional<List<Optional<String>>> payments) {
+        public Builder payments(Optional<List<Optional<CreditNotePaymentsItem>>> payments) {
             this.payments = payments;
             return this;
         }
 
-        public Builder payments(List<Optional<String>> payments) {
+        public Builder payments(List<Optional<CreditNotePaymentsItem>> payments) {
             this.payments = Optional.of(payments);
             return this;
         }

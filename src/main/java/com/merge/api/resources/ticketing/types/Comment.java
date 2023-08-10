@@ -20,15 +20,15 @@ public final class Comment {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> user;
+    private final Optional<CommentUser> user;
 
-    private final Optional<String> contact;
+    private final Optional<CommentContact> contact;
 
     private final Optional<String> body;
 
     private final Optional<String> htmlBody;
 
-    private final Optional<String> ticket;
+    private final Optional<CommentTicket> ticket;
 
     private final Optional<Boolean> isPrivate;
 
@@ -45,11 +45,11 @@ public final class Comment {
     private Comment(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> user,
-            Optional<String> contact,
+            Optional<CommentUser> user,
+            Optional<CommentContact> contact,
             Optional<String> body,
             Optional<String> htmlBody,
-            Optional<String> ticket,
+            Optional<CommentTicket> ticket,
             Optional<Boolean> isPrivate,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<Boolean> remoteWasDeleted,
@@ -88,7 +88,7 @@ public final class Comment {
      * @return The author of the Comment, if the author is a User.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<CommentUser> getUser() {
         return user;
     }
 
@@ -96,7 +96,7 @@ public final class Comment {
      * @return The author of the Comment, if the author is a Contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<CommentContact> getContact() {
         return contact;
     }
 
@@ -120,7 +120,7 @@ public final class Comment {
      * @return The ticket associated with the comment.
      */
     @JsonProperty("ticket")
-    public Optional<String> getTicket() {
+    public Optional<CommentTicket> getTicket() {
         return ticket;
     }
 
@@ -221,15 +221,15 @@ public final class Comment {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> user = Optional.empty();
+        private Optional<CommentUser> user = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<CommentContact> contact = Optional.empty();
 
         private Optional<String> body = Optional.empty();
 
         private Optional<String> htmlBody = Optional.empty();
 
-        private Optional<String> ticket = Optional.empty();
+        private Optional<CommentTicket> ticket = Optional.empty();
 
         private Optional<Boolean> isPrivate = Optional.empty();
 
@@ -285,23 +285,23 @@ public final class Comment {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<CommentUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(CommentUser user) {
             this.user = Optional.of(user);
             return this;
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<CommentContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(CommentContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -329,12 +329,12 @@ public final class Comment {
         }
 
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
-        public Builder ticket(Optional<String> ticket) {
+        public Builder ticket(Optional<CommentTicket> ticket) {
             this.ticket = ticket;
             return this;
         }
 
-        public Builder ticket(String ticket) {
+        public Builder ticket(CommentTicket ticket) {
             this.ticket = Optional.of(ticket);
             return this;
         }

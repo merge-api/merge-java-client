@@ -20,7 +20,7 @@ public final class Invoice {
 
     private final Optional<InvoiceType> type;
 
-    private final Optional<String> contact;
+    private final Optional<InvoiceContact> contact;
 
     private final Optional<String> number;
 
@@ -32,7 +32,7 @@ public final class Invoice {
 
     private final Optional<String> memo;
 
-    private final Optional<String> company;
+    private final Optional<InvoiceCompany> company;
 
     private final Optional<InvoiceCurrency> currency;
 
@@ -50,9 +50,9 @@ public final class Invoice {
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<Optional<String>>> payments;
+    private final Optional<List<Optional<InvoicePaymentsItem>>> payments;
 
     private final Optional<List<InvoiceLineItem>> lineItems;
 
@@ -69,13 +69,13 @@ public final class Invoice {
     private Invoice(
             Optional<String> id,
             Optional<InvoiceType> type,
-            Optional<String> contact,
+            Optional<InvoiceContact> contact,
             Optional<String> number,
             Optional<OffsetDateTime> issueDate,
             Optional<OffsetDateTime> dueDate,
             Optional<OffsetDateTime> paidOnDate,
             Optional<String> memo,
-            Optional<String> company,
+            Optional<InvoiceCompany> company,
             Optional<InvoiceCurrency> currency,
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
@@ -84,8 +84,8 @@ public final class Invoice {
             Optional<Double> totalAmount,
             Optional<Double> balance,
             Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<List<Optional<String>>> trackingCategories,
-            Optional<List<Optional<String>>> payments,
+            Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories,
+            Optional<List<Optional<InvoicePaymentsItem>>> payments,
             Optional<List<InvoiceLineItem>> lineItems,
             Optional<Boolean> remoteWasDeleted,
             Optional<String> remoteId,
@@ -140,7 +140,7 @@ public final class Invoice {
      * @return The invoice's contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<InvoiceContact> getContact() {
         return contact;
     }
 
@@ -188,7 +188,7 @@ public final class Invoice {
      * @return The company the invoice belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<InvoiceCompany> getCompany() {
         return company;
     }
 
@@ -565,7 +565,7 @@ public final class Invoice {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<InvoiceTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -573,7 +573,7 @@ public final class Invoice {
      * @return Array of <code>Payment</code> object IDs.
      */
     @JsonProperty("payments")
-    public Optional<List<Optional<String>>> getPayments() {
+    public Optional<List<Optional<InvoicePaymentsItem>>> getPayments() {
         return payments;
     }
 
@@ -700,7 +700,7 @@ public final class Invoice {
 
         private Optional<InvoiceType> type = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<InvoiceContact> contact = Optional.empty();
 
         private Optional<String> number = Optional.empty();
 
@@ -712,7 +712,7 @@ public final class Invoice {
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<InvoiceCompany> company = Optional.empty();
 
         private Optional<InvoiceCurrency> currency = Optional.empty();
 
@@ -730,9 +730,9 @@ public final class Invoice {
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<List<Optional<String>>> payments = Optional.empty();
+        private Optional<List<Optional<InvoicePaymentsItem>>> payments = Optional.empty();
 
         private Optional<List<InvoiceLineItem>> lineItems = Optional.empty();
 
@@ -800,12 +800,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<InvoiceContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(InvoiceContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -866,12 +866,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<InvoiceCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(InvoiceCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -965,23 +965,23 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<InvoiceTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 
         @JsonSetter(value = "payments", nulls = Nulls.SKIP)
-        public Builder payments(Optional<List<Optional<String>>> payments) {
+        public Builder payments(Optional<List<Optional<InvoicePaymentsItem>>> payments) {
             this.payments = payments;
             return this;
         }
 
-        public Builder payments(List<Optional<String>> payments) {
+        public Builder payments(List<Optional<InvoicePaymentsItem>> payments) {
             this.payments = Optional.of(payments);
             return this;
         }

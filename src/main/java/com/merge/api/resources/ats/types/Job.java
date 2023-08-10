@@ -36,13 +36,13 @@ public final class Job {
 
     private final Optional<Boolean> confidential;
 
-    private final Optional<List<Optional<String>>> departments;
+    private final Optional<List<Optional<JobDepartmentsItem>>> departments;
 
-    private final Optional<List<Optional<String>>> offices;
+    private final Optional<List<Optional<JobOfficesItem>>> offices;
 
-    private final Optional<List<Optional<String>>> hiringManagers;
+    private final Optional<List<Optional<JobHiringManagersItem>>> hiringManagers;
 
-    private final Optional<List<Optional<String>>> recruiters;
+    private final Optional<List<Optional<JobRecruitersItem>>> recruiters;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -63,10 +63,10 @@ public final class Job {
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> confidential,
-            Optional<List<Optional<String>>> departments,
-            Optional<List<Optional<String>>> offices,
-            Optional<List<Optional<String>>> hiringManagers,
-            Optional<List<Optional<String>>> recruiters,
+            Optional<List<Optional<JobDepartmentsItem>>> departments,
+            Optional<List<Optional<JobOfficesItem>>> offices,
+            Optional<List<Optional<JobHiringManagersItem>>> hiringManagers,
+            Optional<List<Optional<JobRecruitersItem>>> recruiters,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -176,7 +176,7 @@ public final class Job {
      * @return IDs of <code>Department</code> objects for this <code>Job</code>.
      */
     @JsonProperty("departments")
-    public Optional<List<Optional<String>>> getDepartments() {
+    public Optional<List<Optional<JobDepartmentsItem>>> getDepartments() {
         return departments;
     }
 
@@ -184,7 +184,7 @@ public final class Job {
      * @return IDs of <code>Office</code> objects for this <code>Job</code>.
      */
     @JsonProperty("offices")
-    public Optional<List<Optional<String>>> getOffices() {
+    public Optional<List<Optional<JobOfficesItem>>> getOffices() {
         return offices;
     }
 
@@ -192,7 +192,7 @@ public final class Job {
      * @return IDs of <code>RemoteUser</code> objects that serve as hiring managers for this <code>Job</code>.
      */
     @JsonProperty("hiring_managers")
-    public Optional<List<Optional<String>>> getHiringManagers() {
+    public Optional<List<Optional<JobHiringManagersItem>>> getHiringManagers() {
         return hiringManagers;
     }
 
@@ -200,7 +200,7 @@ public final class Job {
      * @return IDs of <code>RemoteUser</code> objects that serve as recruiters for this <code>Job</code>.
      */
     @JsonProperty("recruiters")
-    public Optional<List<Optional<String>>> getRecruiters() {
+    public Optional<List<Optional<JobRecruitersItem>>> getRecruiters() {
         return recruiters;
     }
 
@@ -317,13 +317,13 @@ public final class Job {
 
         private Optional<Boolean> confidential = Optional.empty();
 
-        private Optional<List<Optional<String>>> departments = Optional.empty();
+        private Optional<List<Optional<JobDepartmentsItem>>> departments = Optional.empty();
 
-        private Optional<List<Optional<String>>> offices = Optional.empty();
+        private Optional<List<Optional<JobOfficesItem>>> offices = Optional.empty();
 
-        private Optional<List<Optional<String>>> hiringManagers = Optional.empty();
+        private Optional<List<Optional<JobHiringManagersItem>>> hiringManagers = Optional.empty();
 
-        private Optional<List<Optional<String>>> recruiters = Optional.empty();
+        private Optional<List<Optional<JobRecruitersItem>>> recruiters = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -468,45 +468,45 @@ public final class Job {
         }
 
         @JsonSetter(value = "departments", nulls = Nulls.SKIP)
-        public Builder departments(Optional<List<Optional<String>>> departments) {
+        public Builder departments(Optional<List<Optional<JobDepartmentsItem>>> departments) {
             this.departments = departments;
             return this;
         }
 
-        public Builder departments(List<Optional<String>> departments) {
+        public Builder departments(List<Optional<JobDepartmentsItem>> departments) {
             this.departments = Optional.of(departments);
             return this;
         }
 
         @JsonSetter(value = "offices", nulls = Nulls.SKIP)
-        public Builder offices(Optional<List<Optional<String>>> offices) {
+        public Builder offices(Optional<List<Optional<JobOfficesItem>>> offices) {
             this.offices = offices;
             return this;
         }
 
-        public Builder offices(List<Optional<String>> offices) {
+        public Builder offices(List<Optional<JobOfficesItem>> offices) {
             this.offices = Optional.of(offices);
             return this;
         }
 
         @JsonSetter(value = "hiring_managers", nulls = Nulls.SKIP)
-        public Builder hiringManagers(Optional<List<Optional<String>>> hiringManagers) {
+        public Builder hiringManagers(Optional<List<Optional<JobHiringManagersItem>>> hiringManagers) {
             this.hiringManagers = hiringManagers;
             return this;
         }
 
-        public Builder hiringManagers(List<Optional<String>> hiringManagers) {
+        public Builder hiringManagers(List<Optional<JobHiringManagersItem>> hiringManagers) {
             this.hiringManagers = Optional.of(hiringManagers);
             return this;
         }
 
         @JsonSetter(value = "recruiters", nulls = Nulls.SKIP)
-        public Builder recruiters(Optional<List<Optional<String>>> recruiters) {
+        public Builder recruiters(Optional<List<Optional<JobRecruitersItem>>> recruiters) {
             this.recruiters = recruiters;
             return this;
         }
 
-        public Builder recruiters(List<Optional<String>> recruiters) {
+        public Builder recruiters(List<Optional<JobRecruitersItem>> recruiters) {
             this.recruiters = Optional.of(recruiters);
             return this;
         }

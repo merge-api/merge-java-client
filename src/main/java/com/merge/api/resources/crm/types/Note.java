@@ -16,15 +16,15 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Note.Builder.class)
 public final class Note {
-    private final Optional<String> owner;
+    private final Optional<NoteOwner> owner;
 
     private final Optional<String> content;
 
-    private final Optional<String> contact;
+    private final Optional<NoteContact> contact;
 
-    private final Optional<String> account;
+    private final Optional<NoteAccount> account;
 
-    private final Optional<String> opportunity;
+    private final Optional<NoteOpportunity> opportunity;
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
@@ -45,11 +45,11 @@ public final class Note {
     private final Optional<List<RemoteField>> remoteFields;
 
     private Note(
-            Optional<String> owner,
+            Optional<NoteOwner> owner,
             Optional<String> content,
-            Optional<String> contact,
-            Optional<String> account,
-            Optional<String> opportunity,
+            Optional<NoteContact> contact,
+            Optional<NoteAccount> account,
+            Optional<NoteOpportunity> opportunity,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<Boolean> remoteWasDeleted,
@@ -79,7 +79,7 @@ public final class Note {
      * @return The note's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<NoteOwner> getOwner() {
         return owner;
     }
 
@@ -95,7 +95,7 @@ public final class Note {
      * @return The note's contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<NoteContact> getContact() {
         return contact;
     }
 
@@ -103,7 +103,7 @@ public final class Note {
      * @return The note's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<NoteAccount> getAccount() {
         return account;
     }
 
@@ -111,7 +111,7 @@ public final class Note {
      * @return The note's opportunity.
      */
     @JsonProperty("opportunity")
-    public Optional<String> getOpportunity() {
+    public Optional<NoteOpportunity> getOpportunity() {
         return opportunity;
     }
 
@@ -229,15 +229,15 @@ public final class Note {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> owner = Optional.empty();
+        private Optional<NoteOwner> owner = Optional.empty();
 
         private Optional<String> content = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<NoteContact> contact = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<NoteAccount> account = Optional.empty();
 
-        private Optional<String> opportunity = Optional.empty();
+        private Optional<NoteOpportunity> opportunity = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
@@ -278,12 +278,12 @@ public final class Note {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<NoteOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(NoteOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
@@ -300,34 +300,34 @@ public final class Note {
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<NoteContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(NoteContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<NoteAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(NoteAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
-        public Builder opportunity(Optional<String> opportunity) {
+        public Builder opportunity(Optional<NoteOpportunity> opportunity) {
             this.opportunity = opportunity;
             return this;
         }
 
-        public Builder opportunity(String opportunity) {
+        public Builder opportunity(NoteOpportunity opportunity) {
             this.opportunity = Optional.of(opportunity);
             return this;
         }

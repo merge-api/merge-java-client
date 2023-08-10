@@ -5,6 +5,7 @@ import com.merge.api.core.Suppliers;
 import com.merge.api.resources.ticketing.accountdetails.AccountDetailsClient;
 import com.merge.api.resources.ticketing.accounts.AccountsClient;
 import com.merge.api.resources.ticketing.accounttoken.AccountTokenClient;
+import com.merge.api.resources.ticketing.asyncpassthrough.AsyncPassthroughClient;
 import com.merge.api.resources.ticketing.attachments.AttachmentsClient;
 import com.merge.api.resources.ticketing.availableactions.AvailableActionsClient;
 import com.merge.api.resources.ticketing.collections.CollectionsClient;
@@ -36,6 +37,8 @@ public class TicketingClient {
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
     protected final Supplier<AccountsClient> accountsClient;
+
+    protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
 
     protected final Supplier<AttachmentsClient> attachmentsClient;
 
@@ -84,6 +87,7 @@ public class TicketingClient {
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
         this.accountsClient = Suppliers.memoize(() -> new AccountsClient(clientOptions));
+        this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.attachmentsClient = Suppliers.memoize(() -> new AttachmentsClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.collectionsClient = Suppliers.memoize(() -> new CollectionsClient(clientOptions));
@@ -117,6 +121,10 @@ public class TicketingClient {
 
     public AccountsClient accounts() {
         return this.accountsClient.get();
+    }
+
+    public AsyncPassthroughClient asyncPassthrough() {
+        return this.asyncPassthroughClient.get();
     }
 
     public AttachmentsClient attachments() {

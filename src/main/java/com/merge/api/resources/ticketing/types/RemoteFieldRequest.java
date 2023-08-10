@@ -14,17 +14,18 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = RemoteFieldRequest.Builder.class)
 public final class RemoteFieldRequest {
-    private final String remoteFieldClass;
+    private final RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
     private final Optional<Map<String, JsonNode>> value;
 
-    private RemoteFieldRequest(String remoteFieldClass, Optional<Map<String, JsonNode>> value) {
+    private RemoteFieldRequest(
+            RemoteFieldRequestRemoteFieldClass remoteFieldClass, Optional<Map<String, JsonNode>> value) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
     }
 
     @JsonProperty("remote_field_class")
-    public String getRemoteFieldClass() {
+    public RemoteFieldRequestRemoteFieldClass getRemoteFieldClass() {
         return remoteFieldClass;
     }
 
@@ -58,7 +59,7 @@ public final class RemoteFieldRequest {
     }
 
     public interface RemoteFieldClassStage {
-        _FinalStage remoteFieldClass(String remoteFieldClass);
+        _FinalStage remoteFieldClass(RemoteFieldRequestRemoteFieldClass remoteFieldClass);
 
         Builder from(RemoteFieldRequest other);
     }
@@ -73,7 +74,7 @@ public final class RemoteFieldRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
-        private String remoteFieldClass;
+        private RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
         private Optional<Map<String, JsonNode>> value = Optional.empty();
 
@@ -88,7 +89,7 @@ public final class RemoteFieldRequest {
 
         @Override
         @JsonSetter("remote_field_class")
-        public _FinalStage remoteFieldClass(String remoteFieldClass) {
+        public _FinalStage remoteFieldClass(RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }

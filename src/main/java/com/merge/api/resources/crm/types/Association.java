@@ -19,14 +19,14 @@ public final class Association {
 
     private final Optional<Map<String, JsonNode>> targetObject;
 
-    private final Optional<String> associationType;
+    private final Optional<AssociationAssociationType> associationType;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
     private Association(
             Optional<Map<String, JsonNode>> sourceObject,
             Optional<Map<String, JsonNode>> targetObject,
-            Optional<String> associationType,
+            Optional<AssociationAssociationType> associationType,
             Optional<OffsetDateTime> modifiedAt) {
         this.sourceObject = sourceObject;
         this.targetObject = targetObject;
@@ -45,7 +45,7 @@ public final class Association {
     }
 
     @JsonProperty("association_type")
-    public Optional<String> getAssociationType() {
+    public Optional<AssociationAssociationType> getAssociationType() {
         return associationType;
     }
 
@@ -91,7 +91,7 @@ public final class Association {
 
         private Optional<Map<String, JsonNode>> targetObject = Optional.empty();
 
-        private Optional<String> associationType = Optional.empty();
+        private Optional<AssociationAssociationType> associationType = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -128,12 +128,12 @@ public final class Association {
         }
 
         @JsonSetter(value = "association_type", nulls = Nulls.SKIP)
-        public Builder associationType(Optional<String> associationType) {
+        public Builder associationType(Optional<AssociationAssociationType> associationType) {
             this.associationType = associationType;
             return this;
         }
 
-        public Builder associationType(String associationType) {
+        public Builder associationType(AssociationAssociationType associationType) {
             this.associationType = Optional.of(associationType);
             return this;
         }

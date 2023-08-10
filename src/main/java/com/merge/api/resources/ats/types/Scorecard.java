@@ -20,11 +20,11 @@ public final class Scorecard {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> application;
+    private final Optional<ScorecardApplication> application;
 
-    private final Optional<String> interview;
+    private final Optional<ScorecardInterview> interview;
 
-    private final Optional<String> interviewer;
+    private final Optional<ScorecardInterviewer> interviewer;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -43,9 +43,9 @@ public final class Scorecard {
     private Scorecard(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> application,
-            Optional<String> interview,
-            Optional<String> interviewer,
+            Optional<ScorecardApplication> application,
+            Optional<ScorecardInterview> interview,
+            Optional<ScorecardInterviewer> interviewer,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> submittedAt,
             Optional<ScorecardOverallRecommendation> overallRecommendation,
@@ -84,7 +84,7 @@ public final class Scorecard {
      * @return The application being scored.
      */
     @JsonProperty("application")
-    public Optional<String> getApplication() {
+    public Optional<ScorecardApplication> getApplication() {
         return application;
     }
 
@@ -92,7 +92,7 @@ public final class Scorecard {
      * @return The interview being scored.
      */
     @JsonProperty("interview")
-    public Optional<String> getInterview() {
+    public Optional<ScorecardInterview> getInterview() {
         return interview;
     }
 
@@ -100,7 +100,7 @@ public final class Scorecard {
      * @return The interviewer doing the scoring.
      */
     @JsonProperty("interviewer")
-    public Optional<String> getInterviewer() {
+    public Optional<ScorecardInterviewer> getInterviewer() {
         return interviewer;
     }
 
@@ -218,11 +218,11 @@ public final class Scorecard {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> application = Optional.empty();
+        private Optional<ScorecardApplication> application = Optional.empty();
 
-        private Optional<String> interview = Optional.empty();
+        private Optional<ScorecardInterview> interview = Optional.empty();
 
-        private Optional<String> interviewer = Optional.empty();
+        private Optional<ScorecardInterviewer> interviewer = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -279,34 +279,34 @@ public final class Scorecard {
         }
 
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
-        public Builder application(Optional<String> application) {
+        public Builder application(Optional<ScorecardApplication> application) {
             this.application = application;
             return this;
         }
 
-        public Builder application(String application) {
+        public Builder application(ScorecardApplication application) {
             this.application = Optional.of(application);
             return this;
         }
 
         @JsonSetter(value = "interview", nulls = Nulls.SKIP)
-        public Builder interview(Optional<String> interview) {
+        public Builder interview(Optional<ScorecardInterview> interview) {
             this.interview = interview;
             return this;
         }
 
-        public Builder interview(String interview) {
+        public Builder interview(ScorecardInterview interview) {
             this.interview = Optional.of(interview);
             return this;
         }
 
         @JsonSetter(value = "interviewer", nulls = Nulls.SKIP)
-        public Builder interviewer(Optional<String> interviewer) {
+        public Builder interviewer(Optional<ScorecardInterviewer> interviewer) {
             this.interviewer = interviewer;
             return this;
         }
 
-        public Builder interviewer(String interviewer) {
+        public Builder interviewer(ScorecardInterviewer interviewer) {
             this.interviewer = Optional.of(interviewer);
             return this;
         }

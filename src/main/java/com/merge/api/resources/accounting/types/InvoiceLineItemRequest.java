@@ -29,13 +29,13 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> item;
+    private final Optional<InvoiceLineItemRequestItem> item;
 
-    private final Optional<String> account;
+    private final Optional<InvoiceLineItemRequestAccount> account;
 
-    private final Optional<String> trackingCategory;
+    private final Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<String> company;
 
@@ -51,10 +51,10 @@ public final class InvoiceLineItemRequest {
             Optional<Double> totalAmount,
             Optional<InvoiceLineItemRequestCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> item,
-            Optional<String> account,
-            Optional<String> trackingCategory,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<InvoiceLineItemRequestItem> item,
+            Optional<InvoiceLineItemRequestAccount> account,
+            Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory,
+            Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -439,22 +439,22 @@ public final class InvoiceLineItemRequest {
     }
 
     @JsonProperty("item")
-    public Optional<String> getItem() {
+    public Optional<InvoiceLineItemRequestItem> getItem() {
         return item;
     }
 
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<InvoiceLineItemRequestAccount> getAccount() {
         return account;
     }
 
     @JsonProperty("tracking_category")
-    public Optional<String> getTrackingCategory() {
+    public Optional<InvoiceLineItemRequestTrackingCategory> getTrackingCategory() {
         return trackingCategory;
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -548,13 +548,14 @@ public final class InvoiceLineItemRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> item = Optional.empty();
+        private Optional<InvoiceLineItemRequestItem> item = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<InvoiceLineItemRequestAccount> account = Optional.empty();
 
-        private Optional<String> trackingCategory = Optional.empty();
+        private Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories =
+                Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
@@ -660,45 +661,47 @@ public final class InvoiceLineItemRequest {
         }
 
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
-        public Builder item(Optional<String> item) {
+        public Builder item(Optional<InvoiceLineItemRequestItem> item) {
             this.item = item;
             return this;
         }
 
-        public Builder item(String item) {
+        public Builder item(InvoiceLineItemRequestItem item) {
             this.item = Optional.of(item);
             return this;
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<InvoiceLineItemRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(InvoiceLineItemRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
-        public Builder trackingCategory(Optional<String> trackingCategory) {
+        public Builder trackingCategory(Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
             return this;
         }
 
-        public Builder trackingCategory(String trackingCategory) {
+        public Builder trackingCategory(InvoiceLineItemRequestTrackingCategory trackingCategory) {
             this.trackingCategory = Optional.of(trackingCategory);
             return this;
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(
+                List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

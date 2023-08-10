@@ -16,7 +16,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Account.Builder.class)
 public final class Account {
-    private final Optional<String> owner;
+    private final Optional<AccountOwner> owner;
 
     private final Optional<String> name;
 
@@ -53,7 +53,7 @@ public final class Account {
     private final Optional<List<RemoteField>> remoteFields;
 
     private Account(
-            Optional<String> owner,
+            Optional<AccountOwner> owner,
             Optional<String> name,
             Optional<String> description,
             Optional<String> industry,
@@ -95,7 +95,7 @@ public final class Account {
      * @return The account's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<AccountOwner> getOwner() {
         return owner;
     }
 
@@ -281,7 +281,7 @@ public final class Account {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> owner = Optional.empty();
+        private Optional<AccountOwner> owner = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -342,12 +342,12 @@ public final class Account {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<AccountOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(AccountOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }

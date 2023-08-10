@@ -40,9 +40,9 @@ public final class CandidateRequest {
 
     private final Optional<List<Optional<String>>> tags;
 
-    private final Optional<List<Optional<String>>> applications;
+    private final Optional<List<Optional<CandidateRequestApplicationsItem>>> applications;
 
-    private final Optional<List<Optional<String>>> attachments;
+    private final Optional<List<Optional<CandidateRequestAttachmentsItem>>> attachments;
 
     private final Optional<String> remoteTemplateId;
 
@@ -63,8 +63,8 @@ public final class CandidateRequest {
             Optional<List<EmailAddressRequest>> emailAddresses,
             Optional<List<UrlRequest>> urls,
             Optional<List<Optional<String>>> tags,
-            Optional<List<Optional<String>>> applications,
-            Optional<List<Optional<String>>> attachments,
+            Optional<List<Optional<CandidateRequestApplicationsItem>>> applications,
+            Optional<List<Optional<CandidateRequestAttachmentsItem>>> attachments,
             Optional<String> remoteTemplateId,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -178,7 +178,7 @@ public final class CandidateRequest {
      * @return Array of <code>Application</code> object IDs.
      */
     @JsonProperty("applications")
-    public Optional<List<Optional<String>>> getApplications() {
+    public Optional<List<Optional<CandidateRequestApplicationsItem>>> getApplications() {
         return applications;
     }
 
@@ -186,7 +186,7 @@ public final class CandidateRequest {
      * @return Array of <code>Attachment</code> object IDs.
      */
     @JsonProperty("attachments")
-    public Optional<List<Optional<String>>> getAttachments() {
+    public Optional<List<Optional<CandidateRequestAttachmentsItem>>> getAttachments() {
         return attachments;
     }
 
@@ -296,9 +296,9 @@ public final class CandidateRequest {
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
-        private Optional<List<Optional<String>>> applications = Optional.empty();
+        private Optional<List<Optional<CandidateRequestApplicationsItem>>> applications = Optional.empty();
 
-        private Optional<List<Optional<String>>> attachments = Optional.empty();
+        private Optional<List<Optional<CandidateRequestAttachmentsItem>>> attachments = Optional.empty();
 
         private Optional<String> remoteTemplateId = Optional.empty();
 
@@ -462,23 +462,23 @@ public final class CandidateRequest {
         }
 
         @JsonSetter(value = "applications", nulls = Nulls.SKIP)
-        public Builder applications(Optional<List<Optional<String>>> applications) {
+        public Builder applications(Optional<List<Optional<CandidateRequestApplicationsItem>>> applications) {
             this.applications = applications;
             return this;
         }
 
-        public Builder applications(List<Optional<String>> applications) {
+        public Builder applications(List<Optional<CandidateRequestApplicationsItem>> applications) {
             this.applications = Optional.of(applications);
             return this;
         }
 
         @JsonSetter(value = "attachments", nulls = Nulls.SKIP)
-        public Builder attachments(Optional<List<Optional<String>>> attachments) {
+        public Builder attachments(Optional<List<Optional<CandidateRequestAttachmentsItem>>> attachments) {
             this.attachments = attachments;
             return this;
         }
 
-        public Builder attachments(List<Optional<String>> attachments) {
+        public Builder attachments(List<Optional<CandidateRequestAttachmentsItem>> attachments) {
             this.attachments = Optional.of(attachments);
             return this;
         }

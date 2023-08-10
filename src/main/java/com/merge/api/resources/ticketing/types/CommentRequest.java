@@ -14,15 +14,15 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CommentRequest.Builder.class)
 public final class CommentRequest {
-    private final Optional<String> user;
+    private final Optional<CommentRequestUser> user;
 
-    private final Optional<String> contact;
+    private final Optional<CommentRequestContact> contact;
 
     private final Optional<String> body;
 
     private final Optional<String> htmlBody;
 
-    private final Optional<String> ticket;
+    private final Optional<CommentRequestTicket> ticket;
 
     private final Optional<Boolean> isPrivate;
 
@@ -31,11 +31,11 @@ public final class CommentRequest {
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
     private CommentRequest(
-            Optional<String> user,
-            Optional<String> contact,
+            Optional<CommentRequestUser> user,
+            Optional<CommentRequestContact> contact,
             Optional<String> body,
             Optional<String> htmlBody,
-            Optional<String> ticket,
+            Optional<CommentRequestTicket> ticket,
             Optional<Boolean> isPrivate,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -53,7 +53,7 @@ public final class CommentRequest {
      * @return The author of the Comment, if the author is a User.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<CommentRequestUser> getUser() {
         return user;
     }
 
@@ -61,7 +61,7 @@ public final class CommentRequest {
      * @return The author of the Comment, if the author is a Contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<CommentRequestContact> getContact() {
         return contact;
     }
 
@@ -85,7 +85,7 @@ public final class CommentRequest {
      * @return The ticket associated with the comment.
      */
     @JsonProperty("ticket")
-    public Optional<String> getTicket() {
+    public Optional<CommentRequestTicket> getTicket() {
         return ticket;
     }
 
@@ -150,15 +150,15 @@ public final class CommentRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> user = Optional.empty();
+        private Optional<CommentRequestUser> user = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<CommentRequestContact> contact = Optional.empty();
 
         private Optional<String> body = Optional.empty();
 
         private Optional<String> htmlBody = Optional.empty();
 
-        private Optional<String> ticket = Optional.empty();
+        private Optional<CommentRequestTicket> ticket = Optional.empty();
 
         private Optional<Boolean> isPrivate = Optional.empty();
 
@@ -181,23 +181,23 @@ public final class CommentRequest {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<CommentRequestUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(CommentRequestUser user) {
             this.user = Optional.of(user);
             return this;
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<CommentRequestContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(CommentRequestContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -225,12 +225,12 @@ public final class CommentRequest {
         }
 
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
-        public Builder ticket(Optional<String> ticket) {
+        public Builder ticket(Optional<CommentRequestTicket> ticket) {
             this.ticket = ticket;
             return this;
         }
 
-        public Builder ticket(String ticket) {
+        public Builder ticket(CommentRequestTicket ticket) {
             this.ticket = Optional.of(ticket);
             return this;
         }

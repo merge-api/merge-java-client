@@ -23,7 +23,7 @@ public final class TransactionLineItem {
 
     private final Optional<String> quantity;
 
-    private final Optional<String> item;
+    private final Optional<TransactionLineItemItem> item;
 
     private final Optional<String> account;
 
@@ -48,7 +48,7 @@ public final class TransactionLineItem {
             Optional<String> memo,
             Optional<String> unitPrice,
             Optional<String> quantity,
-            Optional<String> item,
+            Optional<TransactionLineItemItem> item,
             Optional<String> account,
             Optional<String> trackingCategory,
             List<String> trackingCategories,
@@ -107,7 +107,7 @@ public final class TransactionLineItem {
     }
 
     @JsonProperty("item")
-    public Optional<String> getItem() {
+    public Optional<TransactionLineItemItem> getItem() {
         return item;
     }
 
@@ -556,7 +556,7 @@ public final class TransactionLineItem {
 
         private Optional<String> quantity = Optional.empty();
 
-        private Optional<String> item = Optional.empty();
+        private Optional<TransactionLineItemItem> item = Optional.empty();
 
         private Optional<String> account = Optional.empty();
 
@@ -641,12 +641,12 @@ public final class TransactionLineItem {
         }
 
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
-        public Builder item(Optional<String> item) {
+        public Builder item(Optional<TransactionLineItemItem> item) {
             this.item = item;
             return this;
         }
 
-        public Builder item(String item) {
+        public Builder item(TransactionLineItemItem item) {
             this.item = Optional.of(item);
             return this;
         }

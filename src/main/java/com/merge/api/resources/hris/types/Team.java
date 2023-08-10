@@ -22,7 +22,7 @@ public final class Team {
 
     private final Optional<String> name;
 
-    private final Optional<String> parentTeam;
+    private final Optional<TeamParentTeam> parentTeam;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -36,7 +36,7 @@ public final class Team {
             Optional<String> id,
             Optional<String> remoteId,
             Optional<String> name,
-            Optional<String> parentTeam,
+            Optional<TeamParentTeam> parentTeam,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -76,7 +76,7 @@ public final class Team {
      * @return The team's parent team.
      */
     @JsonProperty("parent_team")
-    public Optional<String> getParentTeam() {
+    public Optional<TeamParentTeam> getParentTeam() {
         return parentTeam;
     }
 
@@ -155,7 +155,7 @@ public final class Team {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<String> parentTeam = Optional.empty();
+        private Optional<TeamParentTeam> parentTeam = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -213,12 +213,12 @@ public final class Team {
         }
 
         @JsonSetter(value = "parent_team", nulls = Nulls.SKIP)
-        public Builder parentTeam(Optional<String> parentTeam) {
+        public Builder parentTeam(Optional<TeamParentTeam> parentTeam) {
             this.parentTeam = parentTeam;
             return this;
         }
 
-        public Builder parentTeam(String parentTeam) {
+        public Builder parentTeam(TeamParentTeam parentTeam) {
             this.parentTeam = Optional.of(parentTeam);
             return this;
         }

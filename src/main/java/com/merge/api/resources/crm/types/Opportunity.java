@@ -22,11 +22,11 @@ public final class Opportunity {
 
     private final Optional<Integer> amount;
 
-    private final Optional<String> owner;
+    private final Optional<OpportunityOwner> owner;
 
-    private final Optional<String> account;
+    private final Optional<OpportunityAccount> account;
 
-    private final Optional<String> stage;
+    private final Optional<OpportunityStage> stage;
 
     private final Optional<OpportunityStatus> status;
 
@@ -54,9 +54,9 @@ public final class Opportunity {
             Optional<String> name,
             Optional<String> description,
             Optional<Integer> amount,
-            Optional<String> owner,
-            Optional<String> account,
-            Optional<String> stage,
+            Optional<OpportunityOwner> owner,
+            Optional<OpportunityAccount> account,
+            Optional<OpportunityStage> stage,
             Optional<OpportunityStatus> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
@@ -115,7 +115,7 @@ public final class Opportunity {
      * @return The opportunity's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<OpportunityOwner> getOwner() {
         return owner;
     }
 
@@ -123,7 +123,7 @@ public final class Opportunity {
      * @return The account of the opportunity.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<OpportunityAccount> getAccount() {
         return account;
     }
 
@@ -131,7 +131,7 @@ public final class Opportunity {
      * @return The stage of the opportunity.
      */
     @JsonProperty("stage")
-    public Optional<String> getStage() {
+    public Optional<OpportunityStage> getStage() {
         return stage;
     }
 
@@ -283,11 +283,11 @@ public final class Opportunity {
 
         private Optional<Integer> amount = Optional.empty();
 
-        private Optional<String> owner = Optional.empty();
+        private Optional<OpportunityOwner> owner = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<OpportunityAccount> account = Optional.empty();
 
-        private Optional<String> stage = Optional.empty();
+        private Optional<OpportunityStage> stage = Optional.empty();
 
         private Optional<OpportunityStatus> status = Optional.empty();
 
@@ -368,34 +368,34 @@ public final class Opportunity {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<OpportunityOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(OpportunityOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<OpportunityAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(OpportunityAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "stage", nulls = Nulls.SKIP)
-        public Builder stage(Optional<String> stage) {
+        public Builder stage(Optional<OpportunityStage> stage) {
             this.stage = stage;
             return this;
         }
 
-        public Builder stage(String stage) {
+        public Builder stage(OpportunityStage stage) {
             this.stage = Optional.of(stage);
             return this;
         }

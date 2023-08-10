@@ -48,9 +48,9 @@ public final class Candidate {
 
     private final Optional<List<Optional<String>>> tags;
 
-    private final Optional<List<Optional<String>>> applications;
+    private final Optional<List<Optional<CandidateApplicationsItem>>> applications;
 
-    private final Optional<List<Optional<String>>> attachments;
+    private final Optional<List<Optional<CandidateAttachmentsItem>>> attachments;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -77,8 +77,8 @@ public final class Candidate {
             Optional<List<EmailAddress>> emailAddresses,
             Optional<List<Url>> urls,
             Optional<List<Optional<String>>> tags,
-            Optional<List<Optional<String>>> applications,
-            Optional<List<Optional<String>>> attachments,
+            Optional<List<Optional<CandidateApplicationsItem>>> applications,
+            Optional<List<Optional<CandidateAttachmentsItem>>> attachments,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -227,7 +227,7 @@ public final class Candidate {
      * @return Array of <code>Application</code> object IDs.
      */
     @JsonProperty("applications")
-    public Optional<List<Optional<String>>> getApplications() {
+    public Optional<List<Optional<CandidateApplicationsItem>>> getApplications() {
         return applications;
     }
 
@@ -235,7 +235,7 @@ public final class Candidate {
      * @return Array of <code>Attachment</code> object IDs.
      */
     @JsonProperty("attachments")
-    public Optional<List<Optional<String>>> getAttachments() {
+    public Optional<List<Optional<CandidateAttachmentsItem>>> getAttachments() {
         return attachments;
     }
 
@@ -370,9 +370,9 @@ public final class Candidate {
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
-        private Optional<List<Optional<String>>> applications = Optional.empty();
+        private Optional<List<Optional<CandidateApplicationsItem>>> applications = Optional.empty();
 
-        private Optional<List<Optional<String>>> attachments = Optional.empty();
+        private Optional<List<Optional<CandidateAttachmentsItem>>> attachments = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -587,23 +587,23 @@ public final class Candidate {
         }
 
         @JsonSetter(value = "applications", nulls = Nulls.SKIP)
-        public Builder applications(Optional<List<Optional<String>>> applications) {
+        public Builder applications(Optional<List<Optional<CandidateApplicationsItem>>> applications) {
             this.applications = applications;
             return this;
         }
 
-        public Builder applications(List<Optional<String>> applications) {
+        public Builder applications(List<Optional<CandidateApplicationsItem>> applications) {
             this.applications = Optional.of(applications);
             return this;
         }
 
         @JsonSetter(value = "attachments", nulls = Nulls.SKIP)
-        public Builder attachments(Optional<List<Optional<String>>> attachments) {
+        public Builder attachments(Optional<List<Optional<CandidateAttachmentsItem>>> attachments) {
             this.attachments = attachments;
             return this;
         }
 
-        public Builder attachments(List<Optional<String>> attachments) {
+        public Builder attachments(List<Optional<CandidateAttachmentsItem>> attachments) {
             this.attachments = Optional.of(attachments);
             return this;
         }

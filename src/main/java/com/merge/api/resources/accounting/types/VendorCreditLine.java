@@ -25,7 +25,7 @@ public final class VendorCreditLine {
 
     private final Optional<String> description;
 
-    private final Optional<String> account;
+    private final Optional<VendorCreditLineAccount> account;
 
     private final Optional<String> company;
 
@@ -39,7 +39,7 @@ public final class VendorCreditLine {
             Optional<String> trackingCategory,
             List<String> trackingCategories,
             Optional<String> description,
-            Optional<String> account,
+            Optional<VendorCreditLineAccount> account,
             Optional<String> company,
             Optional<String> exchangeRate,
             Optional<OffsetDateTime> modifiedAt) {
@@ -98,7 +98,7 @@ public final class VendorCreditLine {
      * @return The line's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<VendorCreditLineAccount> getAccount() {
         return account;
     }
 
@@ -182,7 +182,7 @@ public final class VendorCreditLine {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<VendorCreditLineAccount> account = Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
@@ -267,12 +267,12 @@ public final class VendorCreditLine {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<VendorCreditLineAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(VendorCreditLineAccount account) {
             this.account = Optional.of(account);
             return this;
         }

@@ -16,7 +16,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = LeadRequest.Builder.class)
 public final class LeadRequest {
-    private final Optional<String> owner;
+    private final Optional<LeadRequestOwner> owner;
 
     private final Optional<String> leadSource;
 
@@ -36,9 +36,9 @@ public final class LeadRequest {
 
     private final Optional<OffsetDateTime> convertedDate;
 
-    private final Optional<String> convertedContact;
+    private final Optional<LeadRequestConvertedContact> convertedContact;
 
-    private final Optional<String> convertedAccount;
+    private final Optional<LeadRequestConvertedAccount> convertedAccount;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -47,7 +47,7 @@ public final class LeadRequest {
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private LeadRequest(
-            Optional<String> owner,
+            Optional<LeadRequestOwner> owner,
             Optional<String> leadSource,
             Optional<String> title,
             Optional<String> company,
@@ -57,8 +57,8 @@ public final class LeadRequest {
             Optional<List<EmailAddressRequest>> emailAddresses,
             Optional<List<PhoneNumberRequest>> phoneNumbers,
             Optional<OffsetDateTime> convertedDate,
-            Optional<String> convertedContact,
-            Optional<String> convertedAccount,
+            Optional<LeadRequestConvertedContact> convertedContact,
+            Optional<LeadRequestConvertedAccount> convertedAccount,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields) {
@@ -83,7 +83,7 @@ public final class LeadRequest {
      * @return The lead's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<LeadRequestOwner> getOwner() {
         return owner;
     }
 
@@ -154,7 +154,7 @@ public final class LeadRequest {
      * @return The contact of the converted lead.
      */
     @JsonProperty("converted_contact")
-    public Optional<String> getConvertedContact() {
+    public Optional<LeadRequestConvertedContact> getConvertedContact() {
         return convertedContact;
     }
 
@@ -162,7 +162,7 @@ public final class LeadRequest {
      * @return The account of the converted lead.
      */
     @JsonProperty("converted_account")
-    public Optional<String> getConvertedAccount() {
+    public Optional<LeadRequestConvertedAccount> getConvertedAccount() {
         return convertedAccount;
     }
 
@@ -241,7 +241,7 @@ public final class LeadRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> owner = Optional.empty();
+        private Optional<LeadRequestOwner> owner = Optional.empty();
 
         private Optional<String> leadSource = Optional.empty();
 
@@ -261,9 +261,9 @@ public final class LeadRequest {
 
         private Optional<OffsetDateTime> convertedDate = Optional.empty();
 
-        private Optional<String> convertedContact = Optional.empty();
+        private Optional<LeadRequestConvertedContact> convertedContact = Optional.empty();
 
-        private Optional<String> convertedAccount = Optional.empty();
+        private Optional<LeadRequestConvertedAccount> convertedAccount = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -293,12 +293,12 @@ public final class LeadRequest {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<LeadRequestOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(LeadRequestOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
@@ -403,23 +403,23 @@ public final class LeadRequest {
         }
 
         @JsonSetter(value = "converted_contact", nulls = Nulls.SKIP)
-        public Builder convertedContact(Optional<String> convertedContact) {
+        public Builder convertedContact(Optional<LeadRequestConvertedContact> convertedContact) {
             this.convertedContact = convertedContact;
             return this;
         }
 
-        public Builder convertedContact(String convertedContact) {
+        public Builder convertedContact(LeadRequestConvertedContact convertedContact) {
             this.convertedContact = Optional.of(convertedContact);
             return this;
         }
 
         @JsonSetter(value = "converted_account", nulls = Nulls.SKIP)
-        public Builder convertedAccount(Optional<String> convertedAccount) {
+        public Builder convertedAccount(Optional<LeadRequestConvertedAccount> convertedAccount) {
             this.convertedAccount = convertedAccount;
             return this;
         }
 
-        public Builder convertedAccount(String convertedAccount) {
+        public Builder convertedAccount(LeadRequestConvertedAccount convertedAccount) {
             this.convertedAccount = Optional.of(convertedAccount);
             return this;
         }

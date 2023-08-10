@@ -15,9 +15,9 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = TimeOffRequest.Builder.class)
 public final class TimeOffRequest {
-    private final Optional<String> employee;
+    private final Optional<TimeOffRequestEmployee> employee;
 
-    private final Optional<String> approver;
+    private final Optional<TimeOffRequestApprover> approver;
 
     private final Optional<TimeOffRequestStatus> status;
 
@@ -38,8 +38,8 @@ public final class TimeOffRequest {
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
     private TimeOffRequest(
-            Optional<String> employee,
-            Optional<String> approver,
+            Optional<TimeOffRequestEmployee> employee,
+            Optional<TimeOffRequestApprover> approver,
             Optional<TimeOffRequestStatus> status,
             Optional<String> employeeNote,
             Optional<TimeOffRequestUnits> units,
@@ -66,7 +66,7 @@ public final class TimeOffRequest {
      * @return The employee requesting time off.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<TimeOffRequestEmployee> getEmployee() {
         return employee;
     }
 
@@ -74,7 +74,7 @@ public final class TimeOffRequest {
      * @return The Merge ID of the employee with the ability to approve the time off request.
      */
     @JsonProperty("approver")
-    public Optional<String> getApprover() {
+    public Optional<TimeOffRequestApprover> getApprover() {
         return approver;
     }
 
@@ -213,9 +213,9 @@ public final class TimeOffRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> employee = Optional.empty();
+        private Optional<TimeOffRequestEmployee> employee = Optional.empty();
 
-        private Optional<String> approver = Optional.empty();
+        private Optional<TimeOffRequestApprover> approver = Optional.empty();
 
         private Optional<TimeOffRequestStatus> status = Optional.empty();
 
@@ -253,23 +253,23 @@ public final class TimeOffRequest {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<TimeOffRequestEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(TimeOffRequestEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }
 
         @JsonSetter(value = "approver", nulls = Nulls.SKIP)
-        public Builder approver(Optional<String> approver) {
+        public Builder approver(Optional<TimeOffRequestApprover> approver) {
             this.approver = approver;
             return this;
         }
 
-        public Builder approver(String approver) {
+        public Builder approver(TimeOffRequestApprover approver) {
             this.approver = Optional.of(approver);
             return this;
         }

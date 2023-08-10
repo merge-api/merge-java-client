@@ -24,7 +24,7 @@ public final class PurchaseOrderLineItemRequest {
 
     private final Optional<Double> quantity;
 
-    private final Optional<String> item;
+    private final Optional<PurchaseOrderLineItemRequestItem> item;
 
     private final Optional<String> account;
 
@@ -51,7 +51,7 @@ public final class PurchaseOrderLineItemRequest {
             Optional<String> description,
             Optional<Double> unitPrice,
             Optional<Double> quantity,
-            Optional<String> item,
+            Optional<PurchaseOrderLineItemRequestItem> item,
             Optional<String> account,
             Optional<String> trackingCategory,
             List<String> trackingCategories,
@@ -112,7 +112,7 @@ public final class PurchaseOrderLineItemRequest {
     }
 
     @JsonProperty("item")
-    public Optional<String> getItem() {
+    public Optional<PurchaseOrderLineItemRequestItem> getItem() {
         return item;
     }
 
@@ -566,7 +566,7 @@ public final class PurchaseOrderLineItemRequest {
 
         private Optional<Double> quantity = Optional.empty();
 
-        private Optional<String> item = Optional.empty();
+        private Optional<PurchaseOrderLineItemRequestItem> item = Optional.empty();
 
         private Optional<String> account = Optional.empty();
 
@@ -654,12 +654,12 @@ public final class PurchaseOrderLineItemRequest {
         }
 
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
-        public Builder item(Optional<String> item) {
+        public Builder item(Optional<PurchaseOrderLineItemRequestItem> item) {
             this.item = item;
             return this;
         }
 
-        public Builder item(String item) {
+        public Builder item(PurchaseOrderLineItemRequestItem item) {
             this.item = Optional.of(item);
             return this;
         }

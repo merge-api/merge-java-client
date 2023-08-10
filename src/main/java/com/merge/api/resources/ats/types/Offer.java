@@ -20,9 +20,9 @@ public final class Offer {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> application;
+    private final Optional<OfferApplication> application;
 
-    private final Optional<String> creator;
+    private final Optional<OfferCreator> creator;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -45,8 +45,8 @@ public final class Offer {
     private Offer(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> application,
-            Optional<String> creator,
+            Optional<OfferApplication> application,
+            Optional<OfferCreator> creator,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> closedAt,
             Optional<OffsetDateTime> sentAt,
@@ -88,7 +88,7 @@ public final class Offer {
      * @return The application who is receiving the offer.
      */
     @JsonProperty("application")
-    public Optional<String> getApplication() {
+    public Optional<OfferApplication> getApplication() {
         return application;
     }
 
@@ -96,7 +96,7 @@ public final class Offer {
      * @return The user who created the offer.
      */
     @JsonProperty("creator")
-    public Optional<String> getCreator() {
+    public Optional<OfferCreator> getCreator() {
         return creator;
     }
 
@@ -236,9 +236,9 @@ public final class Offer {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> application = Optional.empty();
+        private Optional<OfferApplication> application = Optional.empty();
 
-        private Optional<String> creator = Optional.empty();
+        private Optional<OfferCreator> creator = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -300,23 +300,23 @@ public final class Offer {
         }
 
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
-        public Builder application(Optional<String> application) {
+        public Builder application(Optional<OfferApplication> application) {
             this.application = application;
             return this;
         }
 
-        public Builder application(String application) {
+        public Builder application(OfferApplication application) {
             this.application = Optional.of(application);
             return this;
         }
 
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
-        public Builder creator(Optional<String> creator) {
+        public Builder creator(Optional<OfferCreator> creator) {
             this.creator = creator;
             return this;
         }
 
-        public Builder creator(String creator) {
+        public Builder creator(OfferCreator creator) {
             this.creator = Optional.of(creator);
             return this;
         }

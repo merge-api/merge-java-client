@@ -24,7 +24,7 @@ public final class TrackingCategory {
 
     private final Optional<String> parentCategory;
 
-    private final Optional<String> company;
+    private final Optional<TrackingCategoryCompany> company;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -43,7 +43,7 @@ public final class TrackingCategory {
             Optional<TrackingCategoryStatus> status,
             Optional<TrackingCategoryCategoryType> categoryType,
             Optional<String> parentCategory,
-            Optional<String> company,
+            Optional<TrackingCategoryCompany> company,
             Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
@@ -107,7 +107,7 @@ public final class TrackingCategory {
      * @return The company the tracking category belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<TrackingCategoryCompany> getCompany() {
         return company;
     }
 
@@ -208,7 +208,7 @@ public final class TrackingCategory {
 
         private Optional<String> parentCategory = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<TrackingCategoryCompany> company = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -284,12 +284,12 @@ public final class TrackingCategory {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<TrackingCategoryCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(TrackingCategoryCompany company) {
             this.company = Optional.of(company);
             return this;
         }

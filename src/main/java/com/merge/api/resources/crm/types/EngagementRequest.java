@@ -16,7 +16,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = EngagementRequest.Builder.class)
 public final class EngagementRequest {
-    private final Optional<String> owner;
+    private final Optional<EngagementRequestOwner> owner;
 
     private final Optional<String> content;
 
@@ -24,15 +24,15 @@ public final class EngagementRequest {
 
     private final Optional<EngagementRequestDirection> direction;
 
-    private final Optional<String> engagementType;
+    private final Optional<EngagementRequestEngagementType> engagementType;
 
     private final Optional<OffsetDateTime> startTime;
 
     private final Optional<OffsetDateTime> endTime;
 
-    private final Optional<String> account;
+    private final Optional<EngagementRequestAccount> account;
 
-    private final Optional<List<Optional<String>>> contacts;
+    private final Optional<List<Optional<EngagementRequestContactsItem>>> contacts;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -41,15 +41,15 @@ public final class EngagementRequest {
     private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private EngagementRequest(
-            Optional<String> owner,
+            Optional<EngagementRequestOwner> owner,
             Optional<String> content,
             Optional<String> subject,
             Optional<EngagementRequestDirection> direction,
-            Optional<String> engagementType,
+            Optional<EngagementRequestEngagementType> engagementType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
-            Optional<String> account,
-            Optional<List<Optional<String>>> contacts,
+            Optional<EngagementRequestAccount> account,
+            Optional<List<Optional<EngagementRequestContactsItem>>> contacts,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields) {
@@ -71,7 +71,7 @@ public final class EngagementRequest {
      * @return The engagement's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<EngagementRequestOwner> getOwner() {
         return owner;
     }
 
@@ -107,7 +107,7 @@ public final class EngagementRequest {
      * @return The engagement type of the engagement.
      */
     @JsonProperty("engagement_type")
-    public Optional<String> getEngagementType() {
+    public Optional<EngagementRequestEngagementType> getEngagementType() {
         return engagementType;
     }
 
@@ -131,12 +131,12 @@ public final class EngagementRequest {
      * @return The account of the engagement.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<EngagementRequestAccount> getAccount() {
         return account;
     }
 
     @JsonProperty("contacts")
-    public Optional<List<Optional<String>>> getContacts() {
+    public Optional<List<Optional<EngagementRequestContactsItem>>> getContacts() {
         return contacts;
     }
 
@@ -208,7 +208,7 @@ public final class EngagementRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> owner = Optional.empty();
+        private Optional<EngagementRequestOwner> owner = Optional.empty();
 
         private Optional<String> content = Optional.empty();
 
@@ -216,15 +216,15 @@ public final class EngagementRequest {
 
         private Optional<EngagementRequestDirection> direction = Optional.empty();
 
-        private Optional<String> engagementType = Optional.empty();
+        private Optional<EngagementRequestEngagementType> engagementType = Optional.empty();
 
         private Optional<OffsetDateTime> startTime = Optional.empty();
 
         private Optional<OffsetDateTime> endTime = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<EngagementRequestAccount> account = Optional.empty();
 
-        private Optional<List<Optional<String>>> contacts = Optional.empty();
+        private Optional<List<Optional<EngagementRequestContactsItem>>> contacts = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -251,12 +251,12 @@ public final class EngagementRequest {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<EngagementRequestOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(EngagementRequestOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
@@ -295,12 +295,12 @@ public final class EngagementRequest {
         }
 
         @JsonSetter(value = "engagement_type", nulls = Nulls.SKIP)
-        public Builder engagementType(Optional<String> engagementType) {
+        public Builder engagementType(Optional<EngagementRequestEngagementType> engagementType) {
             this.engagementType = engagementType;
             return this;
         }
 
-        public Builder engagementType(String engagementType) {
+        public Builder engagementType(EngagementRequestEngagementType engagementType) {
             this.engagementType = Optional.of(engagementType);
             return this;
         }
@@ -328,23 +328,23 @@ public final class EngagementRequest {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<EngagementRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(EngagementRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "contacts", nulls = Nulls.SKIP)
-        public Builder contacts(Optional<List<Optional<String>>> contacts) {
+        public Builder contacts(Optional<List<Optional<EngagementRequestContactsItem>>> contacts) {
             this.contacts = contacts;
             return this;
         }
 
-        public Builder contacts(List<Optional<String>> contacts) {
+        public Builder contacts(List<Optional<EngagementRequestContactsItem>> contacts) {
             this.contacts = Optional.of(contacts);
             return this;
         }

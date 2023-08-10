@@ -7,6 +7,7 @@ import com.merge.api.resources.crm.accounts.AccountsClient;
 import com.merge.api.resources.crm.accounttoken.AccountTokenClient;
 import com.merge.api.resources.crm.associations.AssociationsClient;
 import com.merge.api.resources.crm.associationtypes.AssociationTypesClient;
+import com.merge.api.resources.crm.asyncpassthrough.AsyncPassthroughClient;
 import com.merge.api.resources.crm.availableactions.AvailableActionsClient;
 import com.merge.api.resources.crm.contacts.ContactsClient;
 import com.merge.api.resources.crm.customobjectclasses.CustomObjectClassesClient;
@@ -40,6 +41,8 @@ public class CrmClient {
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
     protected final Supplier<AccountsClient> accountsClient;
+
+    protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
 
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
@@ -96,6 +99,7 @@ public class CrmClient {
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
         this.accountsClient = Suppliers.memoize(() -> new AccountsClient(clientOptions));
+        this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
         this.customObjectClassesClient = Suppliers.memoize(() -> new CustomObjectClassesClient(clientOptions));
@@ -133,6 +137,10 @@ public class CrmClient {
 
     public AccountsClient accounts() {
         return this.accountsClient.get();
+    }
+
+    public AsyncPassthroughClient asyncPassthrough() {
+        return this.asyncPassthroughClient.get();
     }
 
     public AvailableActionsClient availableActions() {
