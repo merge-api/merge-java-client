@@ -16,7 +16,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Engagement.Builder.class)
 public final class Engagement {
-    private final Optional<String> owner;
+    private final Optional<EngagementOwner> owner;
 
     private final Optional<String> content;
 
@@ -24,15 +24,15 @@ public final class Engagement {
 
     private final Optional<EngagementDirection> direction;
 
-    private final Optional<String> engagementType;
+    private final Optional<EngagementEngagementType> engagementType;
 
     private final Optional<OffsetDateTime> startTime;
 
     private final Optional<OffsetDateTime> endTime;
 
-    private final Optional<String> account;
+    private final Optional<EngagementAccount> account;
 
-    private final Optional<List<Optional<String>>> contacts;
+    private final Optional<List<Optional<EngagementContactsItem>>> contacts;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -49,15 +49,15 @@ public final class Engagement {
     private final Optional<List<RemoteField>> remoteFields;
 
     private Engagement(
-            Optional<String> owner,
+            Optional<EngagementOwner> owner,
             Optional<String> content,
             Optional<String> subject,
             Optional<EngagementDirection> direction,
-            Optional<String> engagementType,
+            Optional<EngagementEngagementType> engagementType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
-            Optional<String> account,
-            Optional<List<Optional<String>>> contacts,
+            Optional<EngagementAccount> account,
+            Optional<List<Optional<EngagementContactsItem>>> contacts,
             Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
@@ -87,7 +87,7 @@ public final class Engagement {
      * @return The engagement's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<EngagementOwner> getOwner() {
         return owner;
     }
 
@@ -123,7 +123,7 @@ public final class Engagement {
      * @return The engagement type of the engagement.
      */
     @JsonProperty("engagement_type")
-    public Optional<String> getEngagementType() {
+    public Optional<EngagementEngagementType> getEngagementType() {
         return engagementType;
     }
 
@@ -147,12 +147,12 @@ public final class Engagement {
      * @return The account of the engagement.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<EngagementAccount> getAccount() {
         return account;
     }
 
     @JsonProperty("contacts")
-    public Optional<List<Optional<String>>> getContacts() {
+    public Optional<List<Optional<EngagementContactsItem>>> getContacts() {
         return contacts;
     }
 
@@ -262,7 +262,7 @@ public final class Engagement {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> owner = Optional.empty();
+        private Optional<EngagementOwner> owner = Optional.empty();
 
         private Optional<String> content = Optional.empty();
 
@@ -270,15 +270,15 @@ public final class Engagement {
 
         private Optional<EngagementDirection> direction = Optional.empty();
 
-        private Optional<String> engagementType = Optional.empty();
+        private Optional<EngagementEngagementType> engagementType = Optional.empty();
 
         private Optional<OffsetDateTime> startTime = Optional.empty();
 
         private Optional<OffsetDateTime> endTime = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<EngagementAccount> account = Optional.empty();
 
-        private Optional<List<Optional<String>>> contacts = Optional.empty();
+        private Optional<List<Optional<EngagementContactsItem>>> contacts = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -317,12 +317,12 @@ public final class Engagement {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<EngagementOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(EngagementOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
@@ -361,12 +361,12 @@ public final class Engagement {
         }
 
         @JsonSetter(value = "engagement_type", nulls = Nulls.SKIP)
-        public Builder engagementType(Optional<String> engagementType) {
+        public Builder engagementType(Optional<EngagementEngagementType> engagementType) {
             this.engagementType = engagementType;
             return this;
         }
 
-        public Builder engagementType(String engagementType) {
+        public Builder engagementType(EngagementEngagementType engagementType) {
             this.engagementType = Optional.of(engagementType);
             return this;
         }
@@ -394,23 +394,23 @@ public final class Engagement {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<EngagementAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(EngagementAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "contacts", nulls = Nulls.SKIP)
-        public Builder contacts(Optional<List<Optional<String>>> contacts) {
+        public Builder contacts(Optional<List<Optional<EngagementContactsItem>>> contacts) {
             this.contacts = contacts;
             return this;
         }
 
-        public Builder contacts(List<Optional<String>> contacts) {
+        public Builder contacts(List<Optional<EngagementContactsItem>> contacts) {
             this.contacts = Optional.of(contacts);
             return this;
         }

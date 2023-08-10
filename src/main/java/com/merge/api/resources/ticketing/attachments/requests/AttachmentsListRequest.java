@@ -31,6 +31,8 @@ public final class AttachmentsListRequest {
 
     private final Optional<Integer> pageSize;
 
+    private final Optional<OffsetDateTime> remoteCreatedAfter;
+
     private final Optional<String> remoteId;
 
     private final Optional<String> ticketId;
@@ -45,6 +47,7 @@ public final class AttachmentsListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
+            Optional<OffsetDateTime> remoteCreatedAfter,
             Optional<String> remoteId,
             Optional<String> ticketId) {
         this.createdAfter = createdAfter;
@@ -56,6 +59,7 @@ public final class AttachmentsListRequest {
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
+        this.remoteCreatedAfter = remoteCreatedAfter;
         this.remoteId = remoteId;
         this.ticketId = ticketId;
     }
@@ -133,6 +137,14 @@ public final class AttachmentsListRequest {
     }
 
     /**
+     * @return If provided, will only return attachments created in the third party platform after this datetime.
+     */
+    @JsonProperty("remote_created_after")
+    public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    /**
      * @return The API provider's ID for the given object.
      */
     @JsonProperty("remote_id")
@@ -164,6 +176,7 @@ public final class AttachmentsListRequest {
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
+                && remoteCreatedAfter.equals(other.remoteCreatedAfter)
                 && remoteId.equals(other.remoteId)
                 && ticketId.equals(other.ticketId);
     }
@@ -180,6 +193,7 @@ public final class AttachmentsListRequest {
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
+                this.remoteCreatedAfter,
                 this.remoteId,
                 this.ticketId);
     }
@@ -189,8 +203,8 @@ public final class AttachmentsListRequest {
         return "AttachmentsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
                 + ", cursor: " + cursor + ", expand: " + expand + ", includeDeletedData: " + includeDeletedData
                 + ", includeRemoteData: " + includeRemoteData + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", remoteId: " + remoteId
-                + ", ticketId: " + ticketId + "}";
+                + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", remoteCreatedAfter: "
+                + remoteCreatedAfter + ", remoteId: " + remoteId + ", ticketId: " + ticketId + "}";
     }
 
     public static Builder builder() {
@@ -217,6 +231,8 @@ public final class AttachmentsListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
+        private Optional<OffsetDateTime> remoteCreatedAfter = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<String> ticketId = Optional.empty();
@@ -233,6 +249,7 @@ public final class AttachmentsListRequest {
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
+            remoteCreatedAfter(other.getRemoteCreatedAfter());
             remoteId(other.getRemoteId());
             ticketId(other.getTicketId());
             return this;
@@ -337,6 +354,17 @@ public final class AttachmentsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_created_after", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAfter(Optional<OffsetDateTime> remoteCreatedAfter) {
+            this.remoteCreatedAfter = remoteCreatedAfter;
+            return this;
+        }
+
+        public Builder remoteCreatedAfter(OffsetDateTime remoteCreatedAfter) {
+            this.remoteCreatedAfter = Optional.of(remoteCreatedAfter);
+            return this;
+        }
+
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -370,6 +398,7 @@ public final class AttachmentsListRequest {
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,
+                    remoteCreatedAfter,
                     remoteId,
                     ticketId);
         }

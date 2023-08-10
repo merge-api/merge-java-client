@@ -22,15 +22,15 @@ public final class PurchaseOrder {
 
     private final Optional<OffsetDateTime> deliveryDate;
 
-    private final Optional<String> deliveryAddress;
+    private final Optional<PurchaseOrderDeliveryAddress> deliveryAddress;
 
     private final Optional<String> customer;
 
-    private final Optional<String> vendor;
+    private final Optional<PurchaseOrderVendor> vendor;
 
     private final Optional<String> memo;
 
-    private final Optional<String> company;
+    private final Optional<PurchaseOrderCompany> company;
 
     private final Optional<Double> totalAmount;
 
@@ -40,7 +40,7 @@ public final class PurchaseOrder {
 
     private final Optional<List<PurchaseOrderLineItem>> lineItems;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -62,16 +62,16 @@ public final class PurchaseOrder {
             Optional<PurchaseOrderStatus> status,
             Optional<OffsetDateTime> issueDate,
             Optional<OffsetDateTime> deliveryDate,
-            Optional<String> deliveryAddress,
+            Optional<PurchaseOrderDeliveryAddress> deliveryAddress,
             Optional<String> customer,
-            Optional<String> vendor,
+            Optional<PurchaseOrderVendor> vendor,
             Optional<String> memo,
-            Optional<String> company,
+            Optional<PurchaseOrderCompany> company,
             Optional<Double> totalAmount,
             Optional<PurchaseOrderCurrency> currency,
             Optional<String> exchangeRate,
             Optional<List<PurchaseOrderLineItem>> lineItems,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
@@ -138,7 +138,7 @@ public final class PurchaseOrder {
      * @return The purchase order's delivery address.
      */
     @JsonProperty("delivery_address")
-    public Optional<String> getDeliveryAddress() {
+    public Optional<PurchaseOrderDeliveryAddress> getDeliveryAddress() {
         return deliveryAddress;
     }
 
@@ -154,7 +154,7 @@ public final class PurchaseOrder {
      * @return The party fulfilling the purchase order.
      */
     @JsonProperty("vendor")
-    public Optional<String> getVendor() {
+    public Optional<PurchaseOrderVendor> getVendor() {
         return vendor;
     }
 
@@ -170,7 +170,7 @@ public final class PurchaseOrder {
      * @return The company the purchase order belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<PurchaseOrderCompany> getCompany() {
         return company;
     }
 
@@ -512,7 +512,7 @@ public final class PurchaseOrder {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -651,15 +651,15 @@ public final class PurchaseOrder {
 
         private Optional<OffsetDateTime> deliveryDate = Optional.empty();
 
-        private Optional<String> deliveryAddress = Optional.empty();
+        private Optional<PurchaseOrderDeliveryAddress> deliveryAddress = Optional.empty();
 
         private Optional<String> customer = Optional.empty();
 
-        private Optional<String> vendor = Optional.empty();
+        private Optional<PurchaseOrderVendor> vendor = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<PurchaseOrderCompany> company = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
@@ -669,7 +669,7 @@ public final class PurchaseOrder {
 
         private Optional<List<PurchaseOrderLineItem>> lineItems = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -748,12 +748,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "delivery_address", nulls = Nulls.SKIP)
-        public Builder deliveryAddress(Optional<String> deliveryAddress) {
+        public Builder deliveryAddress(Optional<PurchaseOrderDeliveryAddress> deliveryAddress) {
             this.deliveryAddress = deliveryAddress;
             return this;
         }
 
-        public Builder deliveryAddress(String deliveryAddress) {
+        public Builder deliveryAddress(PurchaseOrderDeliveryAddress deliveryAddress) {
             this.deliveryAddress = Optional.of(deliveryAddress);
             return this;
         }
@@ -770,12 +770,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "vendor", nulls = Nulls.SKIP)
-        public Builder vendor(Optional<String> vendor) {
+        public Builder vendor(Optional<PurchaseOrderVendor> vendor) {
             this.vendor = vendor;
             return this;
         }
 
-        public Builder vendor(String vendor) {
+        public Builder vendor(PurchaseOrderVendor vendor) {
             this.vendor = Optional.of(vendor);
             return this;
         }
@@ -792,12 +792,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<PurchaseOrderCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(PurchaseOrderCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -847,12 +847,13 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<PurchaseOrderTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

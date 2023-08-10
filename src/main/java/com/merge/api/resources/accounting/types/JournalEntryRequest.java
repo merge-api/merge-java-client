@@ -18,7 +18,7 @@ import java.util.Optional;
 public final class JournalEntryRequest {
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<List<Optional<String>>> payments;
+    private final Optional<List<Optional<JournalEntryRequestPaymentsItem>>> payments;
 
     private final Optional<String> memo;
 
@@ -26,7 +26,7 @@ public final class JournalEntryRequest {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<JournalEntryRequestCompany> company;
 
     private final Optional<List<JournalLineRequest>> lines;
 
@@ -38,11 +38,11 @@ public final class JournalEntryRequest {
 
     private JournalEntryRequest(
             Optional<OffsetDateTime> transactionDate,
-            Optional<List<Optional<String>>> payments,
+            Optional<List<Optional<JournalEntryRequestPaymentsItem>>> payments,
             Optional<String> memo,
             Optional<JournalEntryRequestCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<JournalEntryRequestCompany> company,
             Optional<List<JournalLineRequest>> lines,
             Optional<JournalEntryRequestPostingStatus> postingStatus,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -71,7 +71,7 @@ public final class JournalEntryRequest {
      * @return Array of <code>Payment</code> object IDs.
      */
     @JsonProperty("payments")
-    public Optional<List<Optional<String>>> getPayments() {
+    public Optional<List<Optional<JournalEntryRequestPaymentsItem>>> getPayments() {
         return payments;
     }
 
@@ -411,7 +411,7 @@ public final class JournalEntryRequest {
      * @return The company the journal entry belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<JournalEntryRequestCompany> getCompany() {
         return company;
     }
 
@@ -492,7 +492,7 @@ public final class JournalEntryRequest {
     public static final class Builder {
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<List<Optional<String>>> payments = Optional.empty();
+        private Optional<List<Optional<JournalEntryRequestPaymentsItem>>> payments = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
@@ -500,7 +500,7 @@ public final class JournalEntryRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<JournalEntryRequestCompany> company = Optional.empty();
 
         private Optional<List<JournalLineRequest>> lines = Optional.empty();
 
@@ -538,12 +538,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "payments", nulls = Nulls.SKIP)
-        public Builder payments(Optional<List<Optional<String>>> payments) {
+        public Builder payments(Optional<List<Optional<JournalEntryRequestPaymentsItem>>> payments) {
             this.payments = payments;
             return this;
         }
 
-        public Builder payments(List<Optional<String>> payments) {
+        public Builder payments(List<Optional<JournalEntryRequestPaymentsItem>> payments) {
             this.payments = Optional.of(payments);
             return this;
         }
@@ -582,12 +582,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<JournalEntryRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(JournalEntryRequestCompany company) {
             this.company = Optional.of(company);
             return this;
         }

@@ -4,13 +4,16 @@ import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Suppliers;
 import com.merge.api.resources.hris.accountdetails.AccountDetailsClient;
 import com.merge.api.resources.hris.accounttoken.AccountTokenClient;
+import com.merge.api.resources.hris.asyncpassthrough.AsyncPassthroughClient;
 import com.merge.api.resources.hris.availableactions.AvailableActionsClient;
 import com.merge.api.resources.hris.bankinfo.BankInfoClient;
 import com.merge.api.resources.hris.benefits.BenefitsClient;
 import com.merge.api.resources.hris.companies.CompaniesClient;
 import com.merge.api.resources.hris.deleteaccount.DeleteAccountClient;
+import com.merge.api.resources.hris.dependents.DependentsClient;
 import com.merge.api.resources.hris.employeepayrollruns.EmployeePayrollRunsClient;
 import com.merge.api.resources.hris.employees.EmployeesClient;
+import com.merge.api.resources.hris.employerbenefits.EmployerBenefitsClient;
 import com.merge.api.resources.hris.employments.EmploymentsClient;
 import com.merge.api.resources.hris.forceresync.ForceResyncClient;
 import com.merge.api.resources.hris.generatekey.GenerateKeyClient;
@@ -38,6 +41,8 @@ public class HrisClient {
 
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
+    protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
+
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
     protected final Supplier<BankInfoClient> bankInfoClient;
@@ -48,9 +53,13 @@ public class HrisClient {
 
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
+    protected final Supplier<DependentsClient> dependentsClient;
+
     protected final Supplier<EmployeePayrollRunsClient> employeePayrollRunsClient;
 
     protected final Supplier<EmployeesClient> employeesClient;
+
+    protected final Supplier<EmployerBenefitsClient> employerBenefitsClient;
 
     protected final Supplier<EmploymentsClient> employmentsClient;
 
@@ -92,13 +101,16 @@ public class HrisClient {
         this.clientOptions = clientOptions;
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
+        this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.bankInfoClient = Suppliers.memoize(() -> new BankInfoClient(clientOptions));
         this.benefitsClient = Suppliers.memoize(() -> new BenefitsClient(clientOptions));
         this.companiesClient = Suppliers.memoize(() -> new CompaniesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
+        this.dependentsClient = Suppliers.memoize(() -> new DependentsClient(clientOptions));
         this.employeePayrollRunsClient = Suppliers.memoize(() -> new EmployeePayrollRunsClient(clientOptions));
         this.employeesClient = Suppliers.memoize(() -> new EmployeesClient(clientOptions));
+        this.employerBenefitsClient = Suppliers.memoize(() -> new EmployerBenefitsClient(clientOptions));
         this.employmentsClient = Suppliers.memoize(() -> new EmploymentsClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.groupsClient = Suppliers.memoize(() -> new GroupsClient(clientOptions));
@@ -127,6 +139,10 @@ public class HrisClient {
         return this.accountTokenClient.get();
     }
 
+    public AsyncPassthroughClient asyncPassthrough() {
+        return this.asyncPassthroughClient.get();
+    }
+
     public AvailableActionsClient availableActions() {
         return this.availableActionsClient.get();
     }
@@ -147,12 +163,20 @@ public class HrisClient {
         return this.deleteAccountClient.get();
     }
 
+    public DependentsClient dependents() {
+        return this.dependentsClient.get();
+    }
+
     public EmployeePayrollRunsClient employeePayrollRuns() {
         return this.employeePayrollRunsClient.get();
     }
 
     public EmployeesClient employees() {
         return this.employeesClient.get();
+    }
+
+    public EmployerBenefitsClient employerBenefits() {
+        return this.employerBenefitsClient.get();
     }
 
     public EmploymentsClient employments() {

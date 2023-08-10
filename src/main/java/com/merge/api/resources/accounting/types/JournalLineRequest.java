@@ -17,13 +17,13 @@ import java.util.Optional;
 public final class JournalLineRequest {
     private final Optional<String> remoteId;
 
-    private final Optional<String> account;
+    private final Optional<JournalLineRequestAccount> account;
 
     private final Optional<Double> netAmount;
 
-    private final Optional<String> trackingCategory;
+    private final Optional<JournalLineRequestTrackingCategory> trackingCategory;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<String> contact;
 
@@ -37,10 +37,10 @@ public final class JournalLineRequest {
 
     private JournalLineRequest(
             Optional<String> remoteId,
-            Optional<String> account,
+            Optional<JournalLineRequestAccount> account,
             Optional<Double> netAmount,
-            Optional<String> trackingCategory,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<JournalLineRequestTrackingCategory> trackingCategory,
+            Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<String> contact,
             Optional<String> description,
             Optional<String> exchangeRate,
@@ -67,7 +67,7 @@ public final class JournalLineRequest {
     }
 
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<JournalLineRequestAccount> getAccount() {
         return account;
     }
 
@@ -80,12 +80,12 @@ public final class JournalLineRequest {
     }
 
     @JsonProperty("tracking_category")
-    public Optional<String> getTrackingCategory() {
+    public Optional<JournalLineRequestTrackingCategory> getTrackingCategory() {
         return trackingCategory;
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -170,13 +170,14 @@ public final class JournalLineRequest {
     public static final class Builder {
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<JournalLineRequestAccount> account = Optional.empty();
 
         private Optional<Double> netAmount = Optional.empty();
 
-        private Optional<String> trackingCategory = Optional.empty();
+        private Optional<JournalLineRequestTrackingCategory> trackingCategory = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories =
+                Optional.empty();
 
         private Optional<String> contact = Optional.empty();
 
@@ -216,12 +217,12 @@ public final class JournalLineRequest {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<JournalLineRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(JournalLineRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
@@ -238,23 +239,24 @@ public final class JournalLineRequest {
         }
 
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
-        public Builder trackingCategory(Optional<String> trackingCategory) {
+        public Builder trackingCategory(Optional<JournalLineRequestTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
             return this;
         }
 
-        public Builder trackingCategory(String trackingCategory) {
+        public Builder trackingCategory(JournalLineRequestTrackingCategory trackingCategory) {
             this.trackingCategory = Optional.of(trackingCategory);
             return this;
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<JournalLineRequestTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

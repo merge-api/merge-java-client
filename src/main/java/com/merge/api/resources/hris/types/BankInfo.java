@@ -20,7 +20,7 @@ public final class BankInfo {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> employee;
+    private final Optional<BankInfoEmployee> employee;
 
     private final Optional<String> accountNumber;
 
@@ -43,7 +43,7 @@ public final class BankInfo {
     private BankInfo(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> employee,
+            Optional<BankInfoEmployee> employee,
             Optional<String> accountNumber,
             Optional<String> routingNumber,
             Optional<String> bankName,
@@ -84,7 +84,7 @@ public final class BankInfo {
      * @return The employee with this bank account.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<BankInfoEmployee> getEmployee() {
         return employee;
     }
 
@@ -215,7 +215,7 @@ public final class BankInfo {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> employee = Optional.empty();
+        private Optional<BankInfoEmployee> employee = Optional.empty();
 
         private Optional<String> accountNumber = Optional.empty();
 
@@ -276,12 +276,12 @@ public final class BankInfo {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<BankInfoEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(BankInfoEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }

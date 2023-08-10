@@ -22,7 +22,7 @@ public final class TaxRate {
 
     private final Optional<Double> effectiveTaxRate;
 
-    private final Optional<String> company;
+    private final Optional<TaxRateCompany> company;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -40,7 +40,7 @@ public final class TaxRate {
             Optional<String> description,
             Optional<Double> totalTaxRate,
             Optional<Double> effectiveTaxRate,
-            Optional<String> company,
+            Optional<TaxRateCompany> company,
             Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
@@ -87,7 +87,7 @@ public final class TaxRate {
      * @return The company the tax rate belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<TaxRateCompany> getCompany() {
         return company;
     }
 
@@ -184,7 +184,7 @@ public final class TaxRate {
 
         private Optional<Double> effectiveTaxRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<TaxRateCompany> company = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -248,12 +248,12 @@ public final class TaxRate {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<TaxRateCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(TaxRateCompany company) {
             this.company = Optional.of(company);
             return this;
         }

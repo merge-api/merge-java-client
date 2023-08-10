@@ -24,7 +24,7 @@ public final class BalanceSheet {
 
     private final Optional<BalanceSheetCurrency> currency;
 
-    private final Optional<String> company;
+    private final Optional<BalanceSheetCompany> company;
 
     private final Optional<OffsetDateTime> date;
 
@@ -51,7 +51,7 @@ public final class BalanceSheet {
             Optional<String> remoteId,
             Optional<String> name,
             Optional<BalanceSheetCurrency> currency,
-            Optional<String> company,
+            Optional<BalanceSheetCompany> company,
             Optional<OffsetDateTime> date,
             Optional<Double> netAssets,
             Optional<List<ReportItem>> assets,
@@ -420,7 +420,7 @@ public final class BalanceSheet {
      * @return <code>Company</code> object for the given <code>BalanceSheet</code> object.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<BalanceSheetCompany> getCompany() {
         return company;
     }
 
@@ -556,7 +556,7 @@ public final class BalanceSheet {
 
         private Optional<BalanceSheetCurrency> currency = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<BalanceSheetCompany> company = Optional.empty();
 
         private Optional<OffsetDateTime> date = Optional.empty();
 
@@ -644,12 +644,12 @@ public final class BalanceSheet {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<BalanceSheetCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(BalanceSheetCompany company) {
             this.company = Optional.of(company);
             return this;
         }

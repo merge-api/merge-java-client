@@ -69,6 +69,11 @@ public class CommentsClient {
         if (request.getPageSize().isPresent()) {
             _httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
+        if (request.getRemoteCreatedAfter().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "remote_created_after",
+                    request.getRemoteCreatedAfter().get().toString());
+        }
         if (request.getRemoteId().isPresent()) {
             _httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
         }

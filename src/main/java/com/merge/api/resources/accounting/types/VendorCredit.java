@@ -24,7 +24,7 @@ public final class VendorCredit {
 
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<String> vendor;
+    private final Optional<VendorCreditVendor> vendor;
 
     private final Optional<Double> totalAmount;
 
@@ -32,11 +32,11 @@ public final class VendorCredit {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<VendorCreditCompany> company;
 
     private final Optional<List<VendorCreditLine>> lines;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -51,13 +51,13 @@ public final class VendorCredit {
             Optional<String> remoteId,
             Optional<String> number,
             Optional<OffsetDateTime> transactionDate,
-            Optional<String> vendor,
+            Optional<VendorCreditVendor> vendor,
             Optional<Double> totalAmount,
             Optional<VendorCreditCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<VendorCreditCompany> company,
             Optional<List<VendorCreditLine>> lines,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -112,7 +112,7 @@ public final class VendorCredit {
      * @return The vendor that owes the gift or refund.
      */
     @JsonProperty("vendor")
-    public Optional<String> getVendor() {
+    public Optional<VendorCreditVendor> getVendor() {
         return vendor;
     }
 
@@ -452,7 +452,7 @@ public final class VendorCredit {
      * @return The company the vendor credit belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<VendorCreditCompany> getCompany() {
         return company;
     }
 
@@ -462,7 +462,7 @@ public final class VendorCredit {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -560,7 +560,7 @@ public final class VendorCredit {
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<String> vendor = Optional.empty();
+        private Optional<VendorCreditVendor> vendor = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
@@ -568,11 +568,11 @@ public final class VendorCredit {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<VendorCreditCompany> company = Optional.empty();
 
         private Optional<List<VendorCreditLine>> lines = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -648,12 +648,12 @@ public final class VendorCredit {
         }
 
         @JsonSetter(value = "vendor", nulls = Nulls.SKIP)
-        public Builder vendor(Optional<String> vendor) {
+        public Builder vendor(Optional<VendorCreditVendor> vendor) {
             this.vendor = vendor;
             return this;
         }
 
-        public Builder vendor(String vendor) {
+        public Builder vendor(VendorCreditVendor vendor) {
             this.vendor = Optional.of(vendor);
             return this;
         }
@@ -692,12 +692,12 @@ public final class VendorCredit {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<VendorCreditCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(VendorCreditCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -714,12 +714,13 @@ public final class VendorCredit {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<VendorCreditTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

@@ -20,7 +20,7 @@ public final class Activity {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> user;
+    private final Optional<ActivityUser> user;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -45,7 +45,7 @@ public final class Activity {
     private Activity(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> user,
+            Optional<ActivityUser> user,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<ActivityActivityType> activityType,
             Optional<String> subject,
@@ -88,7 +88,7 @@ public final class Activity {
      * @return The user that performed the action.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<ActivityUser> getUser() {
         return user;
     }
 
@@ -235,7 +235,7 @@ public final class Activity {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> user = Optional.empty();
+        private Optional<ActivityUser> user = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -299,12 +299,12 @@ public final class Activity {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<ActivityUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(ActivityUser user) {
             this.user = Optional.of(user);
             return this;
         }

@@ -20,7 +20,7 @@ public final class Employment {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> employee;
+    private final Optional<EmploymentEmployee> employee;
 
     private final Optional<String> jobTitle;
 
@@ -32,7 +32,7 @@ public final class Employment {
 
     private final Optional<EmploymentPayCurrency> payCurrency;
 
-    private final Optional<String> payGroup;
+    private final Optional<EmploymentPayGroup> payGroup;
 
     private final Optional<EmploymentFlsaStatus> flsaStatus;
 
@@ -51,13 +51,13 @@ public final class Employment {
     private Employment(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> employee,
+            Optional<EmploymentEmployee> employee,
             Optional<String> jobTitle,
             Optional<Double> payRate,
             Optional<EmploymentPayPeriod> payPeriod,
             Optional<EmploymentPayFrequency> payFrequency,
             Optional<EmploymentPayCurrency> payCurrency,
-            Optional<String> payGroup,
+            Optional<EmploymentPayGroup> payGroup,
             Optional<EmploymentFlsaStatus> flsaStatus,
             Optional<OffsetDateTime> effectiveDate,
             Optional<EmploymentEmploymentType> employmentType,
@@ -100,7 +100,7 @@ public final class Employment {
      * @return The employee holding this position.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<EmploymentEmployee> getEmployee() {
         return employee;
     }
 
@@ -478,7 +478,7 @@ public final class Employment {
      * @return The employment's pay group
      */
     @JsonProperty("pay_group")
-    public Optional<String> getPayGroup() {
+    public Optional<EmploymentPayGroup> getPayGroup() {
         return payGroup;
     }
 
@@ -611,7 +611,7 @@ public final class Employment {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> employee = Optional.empty();
+        private Optional<EmploymentEmployee> employee = Optional.empty();
 
         private Optional<String> jobTitle = Optional.empty();
 
@@ -623,7 +623,7 @@ public final class Employment {
 
         private Optional<EmploymentPayCurrency> payCurrency = Optional.empty();
 
-        private Optional<String> payGroup = Optional.empty();
+        private Optional<EmploymentPayGroup> payGroup = Optional.empty();
 
         private Optional<EmploymentFlsaStatus> flsaStatus = Optional.empty();
 
@@ -684,12 +684,12 @@ public final class Employment {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<EmploymentEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(EmploymentEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }
@@ -750,12 +750,12 @@ public final class Employment {
         }
 
         @JsonSetter(value = "pay_group", nulls = Nulls.SKIP)
-        public Builder payGroup(Optional<String> payGroup) {
+        public Builder payGroup(Optional<EmploymentPayGroup> payGroup) {
             this.payGroup = payGroup;
             return this;
         }
 
-        public Builder payGroup(String payGroup) {
+        public Builder payGroup(EmploymentPayGroup payGroup) {
             this.payGroup = Optional.of(payGroup);
             return this;
         }

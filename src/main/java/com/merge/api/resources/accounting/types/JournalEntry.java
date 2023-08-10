@@ -22,7 +22,7 @@ public final class JournalEntry {
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
-    private final Optional<List<Optional<String>>> payments;
+    private final Optional<List<Optional<JournalEntryPaymentsItem>>> payments;
 
     private final Optional<String> memo;
 
@@ -30,11 +30,11 @@ public final class JournalEntry {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<JournalEntryCompany> company;
 
     private final Optional<List<JournalLine>> lines;
 
-    private final Optional<List<Optional<String>>> trackingCategories;
+    private final Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -54,13 +54,13 @@ public final class JournalEntry {
             Optional<OffsetDateTime> transactionDate,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<List<Optional<String>>> payments,
+            Optional<List<Optional<JournalEntryPaymentsItem>>> payments,
             Optional<String> memo,
             Optional<JournalEntryCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<JournalEntryCompany> company,
             Optional<List<JournalLine>> lines,
-            Optional<List<Optional<String>>> trackingCategories,
+            Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<JournalEntryPostingStatus> postingStatus,
             Optional<String> id,
@@ -115,7 +115,7 @@ public final class JournalEntry {
      * @return Array of <code>Payment</code> object IDs.
      */
     @JsonProperty("payments")
-    public Optional<List<Optional<String>>> getPayments() {
+    public Optional<List<Optional<JournalEntryPaymentsItem>>> getPayments() {
         return payments;
     }
 
@@ -455,7 +455,7 @@ public final class JournalEntry {
      * @return The company the journal entry belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<JournalEntryCompany> getCompany() {
         return company;
     }
 
@@ -465,7 +465,7 @@ public final class JournalEntry {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<String>>> getTrackingCategories() {
+    public Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -587,7 +587,7 @@ public final class JournalEntry {
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
-        private Optional<List<Optional<String>>> payments = Optional.empty();
+        private Optional<List<Optional<JournalEntryPaymentsItem>>> payments = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
@@ -595,11 +595,11 @@ public final class JournalEntry {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<JournalEntryCompany> company = Optional.empty();
 
         private Optional<List<JournalLine>> lines = Optional.empty();
 
-        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
+        private Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -672,12 +672,12 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "payments", nulls = Nulls.SKIP)
-        public Builder payments(Optional<List<Optional<String>>> payments) {
+        public Builder payments(Optional<List<Optional<JournalEntryPaymentsItem>>> payments) {
             this.payments = payments;
             return this;
         }
 
-        public Builder payments(List<Optional<String>> payments) {
+        public Builder payments(List<Optional<JournalEntryPaymentsItem>> payments) {
             this.payments = Optional.of(payments);
             return this;
         }
@@ -716,12 +716,12 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<JournalEntryCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(JournalEntryCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -738,12 +738,13 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+        public Builder trackingCategories(
+                Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<JournalEntryTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }

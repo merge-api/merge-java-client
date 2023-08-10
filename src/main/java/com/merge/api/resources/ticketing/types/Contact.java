@@ -28,7 +28,7 @@ public final class Contact {
 
     private final Optional<String> details;
 
-    private final Optional<String> account;
+    private final Optional<ContactAccount> account;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -45,7 +45,7 @@ public final class Contact {
             Optional<String> emailAddress,
             Optional<String> phoneNumber,
             Optional<String> details,
-            Optional<String> account,
+            Optional<ContactAccount> account,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -112,7 +112,7 @@ public final class Contact {
      * @return The contact's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<ContactAccount> getAccount() {
         return account;
     }
 
@@ -204,7 +204,7 @@ public final class Contact {
 
         private Optional<String> details = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<ContactAccount> account = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -298,12 +298,12 @@ public final class Contact {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<ContactAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(ContactAccount account) {
             this.account = Optional.of(account);
             return this;
         }

@@ -18,7 +18,7 @@ import java.util.Optional;
 public final class InvoiceRequest {
     private final Optional<InvoiceRequestType> type;
 
-    private final Optional<String> contact;
+    private final Optional<InvoiceRequestContact> contact;
 
     private final Optional<String> number;
 
@@ -30,7 +30,7 @@ public final class InvoiceRequest {
 
     private final Optional<String> memo;
 
-    private final Optional<String> company;
+    private final Optional<InvoiceRequestCompany> company;
 
     private final Optional<InvoiceRequestCurrency> currency;
 
@@ -46,7 +46,9 @@ public final class InvoiceRequest {
 
     private final Optional<Double> balance;
 
-    private final Optional<List<Optional<String>>> payments;
+    private final Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments;
+
+    private final Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<List<InvoiceLineItemRequest>> lineItems;
 
@@ -56,13 +58,13 @@ public final class InvoiceRequest {
 
     private InvoiceRequest(
             Optional<InvoiceRequestType> type,
-            Optional<String> contact,
+            Optional<InvoiceRequestContact> contact,
             Optional<String> number,
             Optional<OffsetDateTime> issueDate,
             Optional<OffsetDateTime> dueDate,
             Optional<OffsetDateTime> paidOnDate,
             Optional<String> memo,
-            Optional<String> company,
+            Optional<InvoiceRequestCompany> company,
             Optional<InvoiceRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
@@ -70,7 +72,8 @@ public final class InvoiceRequest {
             Optional<Double> totalTaxAmount,
             Optional<Double> totalAmount,
             Optional<Double> balance,
-            Optional<List<Optional<String>>> payments,
+            Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments,
+            Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<List<InvoiceLineItemRequest>> lineItems,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -90,6 +93,7 @@ public final class InvoiceRequest {
         this.totalAmount = totalAmount;
         this.balance = balance;
         this.payments = payments;
+        this.trackingCategories = trackingCategories;
         this.lineItems = lineItems;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
@@ -111,7 +115,7 @@ public final class InvoiceRequest {
      * @return The invoice's contact.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<InvoiceRequestContact> getContact() {
         return contact;
     }
 
@@ -159,7 +163,7 @@ public final class InvoiceRequest {
      * @return The company the invoice belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<InvoiceRequestCompany> getCompany() {
         return company;
     }
 
@@ -531,8 +535,13 @@ public final class InvoiceRequest {
      * @return Array of <code>Payment</code> object IDs.
      */
     @JsonProperty("payments")
-    public Optional<List<Optional<String>>> getPayments() {
+    public Optional<List<Optional<InvoiceRequestPaymentsItem>>> getPayments() {
         return payments;
+    }
+
+    @JsonProperty("tracking_categories")
+    public Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> getTrackingCategories() {
+        return trackingCategories;
     }
 
     @JsonProperty("line_items")
@@ -573,6 +582,7 @@ public final class InvoiceRequest {
                 && totalAmount.equals(other.totalAmount)
                 && balance.equals(other.balance)
                 && payments.equals(other.payments)
+                && trackingCategories.equals(other.trackingCategories)
                 && lineItems.equals(other.lineItems)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
@@ -597,6 +607,7 @@ public final class InvoiceRequest {
                 this.totalAmount,
                 this.balance,
                 this.payments,
+                this.trackingCategories,
                 this.lineItems,
                 this.integrationParams,
                 this.linkedAccountParams);
@@ -609,8 +620,8 @@ public final class InvoiceRequest {
                 + ", company: " + company + ", currency: " + currency + ", exchangeRate: " + exchangeRate
                 + ", totalDiscount: " + totalDiscount + ", subTotal: " + subTotal + ", totalTaxAmount: "
                 + totalTaxAmount + ", totalAmount: " + totalAmount + ", balance: " + balance + ", payments: " + payments
-                + ", lineItems: " + lineItems + ", integrationParams: " + integrationParams + ", linkedAccountParams: "
-                + linkedAccountParams + "}";
+                + ", trackingCategories: " + trackingCategories + ", lineItems: " + lineItems + ", integrationParams: "
+                + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
     }
 
     public static Builder builder() {
@@ -621,7 +632,7 @@ public final class InvoiceRequest {
     public static final class Builder {
         private Optional<InvoiceRequestType> type = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<InvoiceRequestContact> contact = Optional.empty();
 
         private Optional<String> number = Optional.empty();
 
@@ -633,7 +644,7 @@ public final class InvoiceRequest {
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<InvoiceRequestCompany> company = Optional.empty();
 
         private Optional<InvoiceRequestCurrency> currency = Optional.empty();
 
@@ -649,7 +660,9 @@ public final class InvoiceRequest {
 
         private Optional<Double> balance = Optional.empty();
 
-        private Optional<List<Optional<String>>> payments = Optional.empty();
+        private Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments = Optional.empty();
+
+        private Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<List<InvoiceLineItemRequest>> lineItems = Optional.empty();
 
@@ -676,6 +689,7 @@ public final class InvoiceRequest {
             totalAmount(other.getTotalAmount());
             balance(other.getBalance());
             payments(other.getPayments());
+            trackingCategories(other.getTrackingCategories());
             lineItems(other.getLineItems());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
@@ -694,12 +708,12 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<InvoiceRequestContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(InvoiceRequestContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
@@ -760,12 +774,12 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<InvoiceRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(InvoiceRequestCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -848,13 +862,25 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "payments", nulls = Nulls.SKIP)
-        public Builder payments(Optional<List<Optional<String>>> payments) {
+        public Builder payments(Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments) {
             this.payments = payments;
             return this;
         }
 
-        public Builder payments(List<Optional<String>> payments) {
+        public Builder payments(List<Optional<InvoiceRequestPaymentsItem>> payments) {
             this.payments = Optional.of(payments);
+            return this;
+        }
+
+        @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
+        public Builder trackingCategories(
+                Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
+            return this;
+        }
+
+        public Builder trackingCategories(List<Optional<InvoiceRequestTrackingCategoriesItem>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 
@@ -909,6 +935,7 @@ public final class InvoiceRequest {
                     totalAmount,
                     balance,
                     payments,
+                    trackingCategories,
                     lineItems,
                     integrationParams,
                     linkedAccountParams);

@@ -18,7 +18,7 @@ import java.util.Optional;
 public final class EmployeeRequest {
     private final Optional<String> employeeNumber;
 
-    private final Optional<String> company;
+    private final Optional<EmployeeRequestCompany> company;
 
     private final Optional<String> firstName;
 
@@ -28,7 +28,7 @@ public final class EmployeeRequest {
 
     private final Optional<String> username;
 
-    private final Optional<List<Optional<String>>> groups;
+    private final Optional<List<Optional<EmployeeRequestGroupsItem>>> groups;
 
     private final Optional<String> workEmail;
 
@@ -36,17 +36,17 @@ public final class EmployeeRequest {
 
     private final Optional<String> mobilePhoneNumber;
 
-    private final Optional<List<Optional<String>>> employments;
+    private final Optional<List<Optional<EmployeeRequestEmploymentsItem>>> employments;
 
-    private final Optional<String> homeLocation;
+    private final Optional<EmployeeRequestHomeLocation> homeLocation;
 
-    private final Optional<String> workLocation;
+    private final Optional<EmployeeRequestWorkLocation> workLocation;
 
-    private final Optional<String> manager;
+    private final Optional<EmployeeRequestManager> manager;
 
-    private final Optional<String> team;
+    private final Optional<EmployeeRequestTeam> team;
 
-    private final Optional<String> payGroup;
+    private final Optional<EmployeeRequestPayGroup> payGroup;
 
     private final Optional<String> ssn;
 
@@ -74,21 +74,21 @@ public final class EmployeeRequest {
 
     private EmployeeRequest(
             Optional<String> employeeNumber,
-            Optional<String> company,
+            Optional<EmployeeRequestCompany> company,
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<String> displayFullName,
             Optional<String> username,
-            Optional<List<Optional<String>>> groups,
+            Optional<List<Optional<EmployeeRequestGroupsItem>>> groups,
             Optional<String> workEmail,
             Optional<String> personalEmail,
             Optional<String> mobilePhoneNumber,
-            Optional<List<Optional<String>>> employments,
-            Optional<String> homeLocation,
-            Optional<String> workLocation,
-            Optional<String> manager,
-            Optional<String> team,
-            Optional<String> payGroup,
+            Optional<List<Optional<EmployeeRequestEmploymentsItem>>> employments,
+            Optional<EmployeeRequestHomeLocation> homeLocation,
+            Optional<EmployeeRequestWorkLocation> workLocation,
+            Optional<EmployeeRequestManager> manager,
+            Optional<EmployeeRequestTeam> team,
+            Optional<EmployeeRequestPayGroup> payGroup,
             Optional<String> ssn,
             Optional<EmployeeRequestGender> gender,
             Optional<EmployeeRequestEthnicity> ethnicity,
@@ -143,7 +143,7 @@ public final class EmployeeRequest {
      * @return The ID of the employee's company.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<EmployeeRequestCompany> getCompany() {
         return company;
     }
 
@@ -180,7 +180,7 @@ public final class EmployeeRequest {
     }
 
     @JsonProperty("groups")
-    public Optional<List<Optional<String>>> getGroups() {
+    public Optional<List<Optional<EmployeeRequestGroupsItem>>> getGroups() {
         return groups;
     }
 
@@ -212,7 +212,7 @@ public final class EmployeeRequest {
      * @return Array of <code>Employment</code> IDs for this Employee.
      */
     @JsonProperty("employments")
-    public Optional<List<Optional<String>>> getEmployments() {
+    public Optional<List<Optional<EmployeeRequestEmploymentsItem>>> getEmployments() {
         return employments;
     }
 
@@ -220,7 +220,7 @@ public final class EmployeeRequest {
      * @return The employee's home address.
      */
     @JsonProperty("home_location")
-    public Optional<String> getHomeLocation() {
+    public Optional<EmployeeRequestHomeLocation> getHomeLocation() {
         return homeLocation;
     }
 
@@ -228,7 +228,7 @@ public final class EmployeeRequest {
      * @return The employee's work address.
      */
     @JsonProperty("work_location")
-    public Optional<String> getWorkLocation() {
+    public Optional<EmployeeRequestWorkLocation> getWorkLocation() {
         return workLocation;
     }
 
@@ -236,7 +236,7 @@ public final class EmployeeRequest {
      * @return The employee ID of the employee's manager.
      */
     @JsonProperty("manager")
-    public Optional<String> getManager() {
+    public Optional<EmployeeRequestManager> getManager() {
         return manager;
     }
 
@@ -244,7 +244,7 @@ public final class EmployeeRequest {
      * @return The employee's team.
      */
     @JsonProperty("team")
-    public Optional<String> getTeam() {
+    public Optional<EmployeeRequestTeam> getTeam() {
         return team;
     }
 
@@ -252,7 +252,7 @@ public final class EmployeeRequest {
      * @return The employee's pay group
      */
     @JsonProperty("pay_group")
-    public Optional<String> getPayGroup() {
+    public Optional<EmployeeRequestPayGroup> getPayGroup() {
         return payGroup;
     }
 
@@ -467,7 +467,7 @@ public final class EmployeeRequest {
     public static final class Builder {
         private Optional<String> employeeNumber = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<EmployeeRequestCompany> company = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -477,7 +477,7 @@ public final class EmployeeRequest {
 
         private Optional<String> username = Optional.empty();
 
-        private Optional<List<Optional<String>>> groups = Optional.empty();
+        private Optional<List<Optional<EmployeeRequestGroupsItem>>> groups = Optional.empty();
 
         private Optional<String> workEmail = Optional.empty();
 
@@ -485,17 +485,17 @@ public final class EmployeeRequest {
 
         private Optional<String> mobilePhoneNumber = Optional.empty();
 
-        private Optional<List<Optional<String>>> employments = Optional.empty();
+        private Optional<List<Optional<EmployeeRequestEmploymentsItem>>> employments = Optional.empty();
 
-        private Optional<String> homeLocation = Optional.empty();
+        private Optional<EmployeeRequestHomeLocation> homeLocation = Optional.empty();
 
-        private Optional<String> workLocation = Optional.empty();
+        private Optional<EmployeeRequestWorkLocation> workLocation = Optional.empty();
 
-        private Optional<String> manager = Optional.empty();
+        private Optional<EmployeeRequestManager> manager = Optional.empty();
 
-        private Optional<String> team = Optional.empty();
+        private Optional<EmployeeRequestTeam> team = Optional.empty();
 
-        private Optional<String> payGroup = Optional.empty();
+        private Optional<EmployeeRequestPayGroup> payGroup = Optional.empty();
 
         private Optional<String> ssn = Optional.empty();
 
@@ -567,12 +567,12 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<EmployeeRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(EmployeeRequestCompany company) {
             this.company = Optional.of(company);
             return this;
         }
@@ -622,12 +622,12 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "groups", nulls = Nulls.SKIP)
-        public Builder groups(Optional<List<Optional<String>>> groups) {
+        public Builder groups(Optional<List<Optional<EmployeeRequestGroupsItem>>> groups) {
             this.groups = groups;
             return this;
         }
 
-        public Builder groups(List<Optional<String>> groups) {
+        public Builder groups(List<Optional<EmployeeRequestGroupsItem>> groups) {
             this.groups = Optional.of(groups);
             return this;
         }
@@ -666,67 +666,67 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "employments", nulls = Nulls.SKIP)
-        public Builder employments(Optional<List<Optional<String>>> employments) {
+        public Builder employments(Optional<List<Optional<EmployeeRequestEmploymentsItem>>> employments) {
             this.employments = employments;
             return this;
         }
 
-        public Builder employments(List<Optional<String>> employments) {
+        public Builder employments(List<Optional<EmployeeRequestEmploymentsItem>> employments) {
             this.employments = Optional.of(employments);
             return this;
         }
 
         @JsonSetter(value = "home_location", nulls = Nulls.SKIP)
-        public Builder homeLocation(Optional<String> homeLocation) {
+        public Builder homeLocation(Optional<EmployeeRequestHomeLocation> homeLocation) {
             this.homeLocation = homeLocation;
             return this;
         }
 
-        public Builder homeLocation(String homeLocation) {
+        public Builder homeLocation(EmployeeRequestHomeLocation homeLocation) {
             this.homeLocation = Optional.of(homeLocation);
             return this;
         }
 
         @JsonSetter(value = "work_location", nulls = Nulls.SKIP)
-        public Builder workLocation(Optional<String> workLocation) {
+        public Builder workLocation(Optional<EmployeeRequestWorkLocation> workLocation) {
             this.workLocation = workLocation;
             return this;
         }
 
-        public Builder workLocation(String workLocation) {
+        public Builder workLocation(EmployeeRequestWorkLocation workLocation) {
             this.workLocation = Optional.of(workLocation);
             return this;
         }
 
         @JsonSetter(value = "manager", nulls = Nulls.SKIP)
-        public Builder manager(Optional<String> manager) {
+        public Builder manager(Optional<EmployeeRequestManager> manager) {
             this.manager = manager;
             return this;
         }
 
-        public Builder manager(String manager) {
+        public Builder manager(EmployeeRequestManager manager) {
             this.manager = Optional.of(manager);
             return this;
         }
 
         @JsonSetter(value = "team", nulls = Nulls.SKIP)
-        public Builder team(Optional<String> team) {
+        public Builder team(Optional<EmployeeRequestTeam> team) {
             this.team = team;
             return this;
         }
 
-        public Builder team(String team) {
+        public Builder team(EmployeeRequestTeam team) {
             this.team = Optional.of(team);
             return this;
         }
 
         @JsonSetter(value = "pay_group", nulls = Nulls.SKIP)
-        public Builder payGroup(Optional<String> payGroup) {
+        public Builder payGroup(Optional<EmployeeRequestPayGroup> payGroup) {
             this.payGroup = payGroup;
             return this;
         }
 
-        public Builder payGroup(String payGroup) {
+        public Builder payGroup(EmployeeRequestPayGroup payGroup) {
             this.payGroup = Optional.of(payGroup);
             return this;
         }

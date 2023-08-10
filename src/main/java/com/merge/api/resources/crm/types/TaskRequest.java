@@ -20,11 +20,11 @@ public final class TaskRequest {
 
     private final Optional<String> content;
 
-    private final Optional<String> owner;
+    private final Optional<TaskRequestOwner> owner;
 
-    private final Optional<String> account;
+    private final Optional<TaskRequestAccount> account;
 
-    private final Optional<String> opportunity;
+    private final Optional<TaskRequestOpportunity> opportunity;
 
     private final Optional<OffsetDateTime> completedDate;
 
@@ -41,9 +41,9 @@ public final class TaskRequest {
     private TaskRequest(
             Optional<String> subject,
             Optional<String> content,
-            Optional<String> owner,
-            Optional<String> account,
-            Optional<String> opportunity,
+            Optional<TaskRequestOwner> owner,
+            Optional<TaskRequestAccount> account,
+            Optional<TaskRequestOpportunity> opportunity,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
             Optional<TaskRequestStatus> status,
@@ -83,7 +83,7 @@ public final class TaskRequest {
      * @return The task's owner.
      */
     @JsonProperty("owner")
-    public Optional<String> getOwner() {
+    public Optional<TaskRequestOwner> getOwner() {
         return owner;
     }
 
@@ -91,7 +91,7 @@ public final class TaskRequest {
      * @return The task's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<TaskRequestAccount> getAccount() {
         return account;
     }
 
@@ -99,7 +99,7 @@ public final class TaskRequest {
      * @return The task's opportunity.
      */
     @JsonProperty("opportunity")
-    public Optional<String> getOpportunity() {
+    public Optional<TaskRequestOpportunity> getOpportunity() {
         return opportunity;
     }
 
@@ -200,11 +200,11 @@ public final class TaskRequest {
 
         private Optional<String> content = Optional.empty();
 
-        private Optional<String> owner = Optional.empty();
+        private Optional<TaskRequestOwner> owner = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<TaskRequestAccount> account = Optional.empty();
 
-        private Optional<String> opportunity = Optional.empty();
+        private Optional<TaskRequestOpportunity> opportunity = Optional.empty();
 
         private Optional<OffsetDateTime> completedDate = Optional.empty();
 
@@ -258,34 +258,34 @@ public final class TaskRequest {
         }
 
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
-        public Builder owner(Optional<String> owner) {
+        public Builder owner(Optional<TaskRequestOwner> owner) {
             this.owner = owner;
             return this;
         }
 
-        public Builder owner(String owner) {
+        public Builder owner(TaskRequestOwner owner) {
             this.owner = Optional.of(owner);
             return this;
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<TaskRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(TaskRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
-        public Builder opportunity(Optional<String> opportunity) {
+        public Builder opportunity(Optional<TaskRequestOpportunity> opportunity) {
             this.opportunity = opportunity;
             return this;
         }
 
-        public Builder opportunity(String opportunity) {
+        public Builder opportunity(TaskRequestOpportunity opportunity) {
             this.opportunity = Optional.of(opportunity);
             return this;
         }

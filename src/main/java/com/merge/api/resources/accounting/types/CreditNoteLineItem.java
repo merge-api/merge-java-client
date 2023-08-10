@@ -15,7 +15,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CreditNoteLineItem.Builder.class)
 public final class CreditNoteLineItem {
-    private final Optional<String> item;
+    private final Optional<CreditNoteLineItemItem> item;
 
     private final Optional<String> name;
 
@@ -37,14 +37,14 @@ public final class CreditNoteLineItem {
 
     private final Optional<String> account;
 
-    private final Optional<String> company;
+    private final Optional<CreditNoteLineItemCompany> company;
 
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
     private CreditNoteLineItem(
-            Optional<String> item,
+            Optional<CreditNoteLineItemItem> item,
             Optional<String> name,
             Optional<String> description,
             Optional<String> quantity,
@@ -55,7 +55,7 @@ public final class CreditNoteLineItem {
             Optional<String> trackingCategory,
             List<String> trackingCategories,
             Optional<String> account,
-            Optional<String> company,
+            Optional<CreditNoteLineItemCompany> company,
             Optional<String> remoteId,
             Optional<OffsetDateTime> modifiedAt) {
         this.item = item;
@@ -75,7 +75,7 @@ public final class CreditNoteLineItem {
     }
 
     @JsonProperty("item")
-    public Optional<String> getItem() {
+    public Optional<CreditNoteLineItemItem> getItem() {
         return item;
     }
 
@@ -163,7 +163,7 @@ public final class CreditNoteLineItem {
      * @return The company the credit note belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<CreditNoteLineItemCompany> getCompany() {
         return company;
     }
 
@@ -240,7 +240,7 @@ public final class CreditNoteLineItem {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> item = Optional.empty();
+        private Optional<CreditNoteLineItemItem> item = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -262,7 +262,7 @@ public final class CreditNoteLineItem {
 
         private Optional<String> account = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<CreditNoteLineItemCompany> company = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
@@ -289,12 +289,12 @@ public final class CreditNoteLineItem {
         }
 
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
-        public Builder item(Optional<String> item) {
+        public Builder item(Optional<CreditNoteLineItemItem> item) {
             this.item = item;
             return this;
         }
 
-        public Builder item(String item) {
+        public Builder item(CreditNoteLineItemItem item) {
             this.item = Optional.of(item);
             return this;
         }
@@ -416,12 +416,12 @@ public final class CreditNoteLineItem {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<CreditNoteLineItemCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(CreditNoteLineItemCompany company) {
             this.company = Optional.of(company);
             return this;
         }

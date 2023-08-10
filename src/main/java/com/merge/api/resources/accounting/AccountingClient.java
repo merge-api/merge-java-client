@@ -6,6 +6,7 @@ import com.merge.api.resources.accounting.accountdetails.AccountDetailsClient;
 import com.merge.api.resources.accounting.accounts.AccountsClient;
 import com.merge.api.resources.accounting.accounttoken.AccountTokenClient;
 import com.merge.api.resources.accounting.addresses.AddressesClient;
+import com.merge.api.resources.accounting.asyncpassthrough.AsyncPassthroughClient;
 import com.merge.api.resources.accounting.attachments.AttachmentsClient;
 import com.merge.api.resources.accounting.availableactions.AvailableActionsClient;
 import com.merge.api.resources.accounting.balancesheets.BalanceSheetsClient;
@@ -48,6 +49,8 @@ public class AccountingClient {
     protected final Supplier<AccountsClient> accountsClient;
 
     protected final Supplier<AddressesClient> addressesClient;
+
+    protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
 
     protected final Supplier<AttachmentsClient> attachmentsClient;
 
@@ -115,6 +118,7 @@ public class AccountingClient {
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
         this.accountsClient = Suppliers.memoize(() -> new AccountsClient(clientOptions));
         this.addressesClient = Suppliers.memoize(() -> new AddressesClient(clientOptions));
+        this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.attachmentsClient = Suppliers.memoize(() -> new AttachmentsClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.balanceSheetsClient = Suppliers.memoize(() -> new BalanceSheetsClient(clientOptions));
@@ -161,6 +165,10 @@ public class AccountingClient {
 
     public AddressesClient addresses() {
         return this.addressesClient.get();
+    }
+
+    public AsyncPassthroughClient asyncPassthrough() {
+        return this.asyncPassthroughClient.get();
     }
 
     public AttachmentsClient attachments() {

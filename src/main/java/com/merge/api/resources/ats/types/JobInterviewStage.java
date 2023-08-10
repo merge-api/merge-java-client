@@ -22,7 +22,7 @@ public final class JobInterviewStage {
 
     private final Optional<String> name;
 
-    private final Optional<String> job;
+    private final Optional<JobInterviewStageJob> job;
 
     private final Optional<Integer> stageOrder;
 
@@ -38,7 +38,7 @@ public final class JobInterviewStage {
             Optional<String> id,
             Optional<String> remoteId,
             Optional<String> name,
-            Optional<String> job,
+            Optional<JobInterviewStageJob> job,
             Optional<Integer> stageOrder,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
@@ -80,7 +80,7 @@ public final class JobInterviewStage {
      * @return This field is populated only if the stage is specific to a particular job. If the stage is generic, this field will not be populated.
      */
     @JsonProperty("job")
-    public Optional<String> getJob() {
+    public Optional<JobInterviewStageJob> getJob() {
         return job;
     }
 
@@ -169,7 +169,7 @@ public final class JobInterviewStage {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<String> job = Optional.empty();
+        private Optional<JobInterviewStageJob> job = Optional.empty();
 
         private Optional<Integer> stageOrder = Optional.empty();
 
@@ -230,12 +230,12 @@ public final class JobInterviewStage {
         }
 
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
-        public Builder job(Optional<String> job) {
+        public Builder job(Optional<JobInterviewStageJob> job) {
             this.job = job;
             return this;
         }
 
-        public Builder job(String job) {
+        public Builder job(JobInterviewStageJob job) {
             this.job = Optional.of(job);
             return this;
         }

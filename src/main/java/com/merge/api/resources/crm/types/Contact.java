@@ -20,7 +20,7 @@ public final class Contact {
 
     private final Optional<String> lastName;
 
-    private final Optional<String> account;
+    private final Optional<ContactAccount> account;
 
     private final Optional<List<Address>> addresses;
 
@@ -49,7 +49,7 @@ public final class Contact {
     private Contact(
             Optional<String> firstName,
             Optional<String> lastName,
-            Optional<String> account,
+            Optional<ContactAccount> account,
             Optional<List<Address>> addresses,
             Optional<List<EmailAddress>> emailAddresses,
             Optional<List<PhoneNumber>> phoneNumbers,
@@ -99,7 +99,7 @@ public final class Contact {
      * @return The contact's account.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<ContactAccount> getAccount() {
         return account;
     }
 
@@ -239,7 +239,7 @@ public final class Contact {
 
         private Optional<String> lastName = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<ContactAccount> account = Optional.empty();
 
         private Optional<List<Address>> addresses = Optional.empty();
 
@@ -309,12 +309,12 @@ public final class Contact {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<ContactAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(ContactAccount account) {
             this.account = Optional.of(account);
             return this;
         }

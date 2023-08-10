@@ -24,7 +24,7 @@ public final class IncomeStatement {
 
     private final Optional<IncomeStatementCurrency> currency;
 
-    private final Optional<String> company;
+    private final Optional<IncomeStatementCompany> company;
 
     private final Optional<OffsetDateTime> startPeriod;
 
@@ -57,7 +57,7 @@ public final class IncomeStatement {
             Optional<String> remoteId,
             Optional<String> name,
             Optional<IncomeStatementCurrency> currency,
-            Optional<String> company,
+            Optional<IncomeStatementCompany> company,
             Optional<OffsetDateTime> startPeriod,
             Optional<OffsetDateTime> endPeriod,
             Optional<List<ReportItem>> income,
@@ -432,7 +432,7 @@ public final class IncomeStatement {
      * @return The company the income statement belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<IncomeStatementCompany> getCompany() {
         return company;
     }
 
@@ -597,7 +597,7 @@ public final class IncomeStatement {
 
         private Optional<IncomeStatementCurrency> currency = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<IncomeStatementCompany> company = Optional.empty();
 
         private Optional<OffsetDateTime> startPeriod = Optional.empty();
 
@@ -694,12 +694,12 @@ public final class IncomeStatement {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<IncomeStatementCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(IncomeStatementCompany company) {
             this.company = Optional.of(company);
             return this;
         }

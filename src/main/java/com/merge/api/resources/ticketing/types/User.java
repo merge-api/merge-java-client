@@ -26,7 +26,7 @@ public final class User {
 
     private final Optional<Boolean> isActive;
 
-    private final Optional<List<Optional<String>>> teams;
+    private final Optional<List<Optional<UserTeamsItem>>> teams;
 
     private final Optional<String> avatar;
 
@@ -44,7 +44,7 @@ public final class User {
             Optional<String> name,
             Optional<String> emailAddress,
             Optional<Boolean> isActive,
-            Optional<List<Optional<String>>> teams,
+            Optional<List<Optional<UserTeamsItem>>> teams,
             Optional<String> avatar,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
@@ -101,7 +101,7 @@ public final class User {
     }
 
     @JsonProperty("teams")
-    public Optional<List<Optional<String>>> getTeams() {
+    public Optional<List<Optional<UserTeamsItem>>> getTeams() {
         return teams;
     }
 
@@ -199,7 +199,7 @@ public final class User {
 
         private Optional<Boolean> isActive = Optional.empty();
 
-        private Optional<List<Optional<String>>> teams = Optional.empty();
+        private Optional<List<Optional<UserTeamsItem>>> teams = Optional.empty();
 
         private Optional<String> avatar = Optional.empty();
 
@@ -284,12 +284,12 @@ public final class User {
         }
 
         @JsonSetter(value = "teams", nulls = Nulls.SKIP)
-        public Builder teams(Optional<List<Optional<String>>> teams) {
+        public Builder teams(Optional<List<Optional<UserTeamsItem>>> teams) {
             this.teams = teams;
             return this;
         }
 
-        public Builder teams(List<Optional<String>> teams) {
+        public Builder teams(List<Optional<UserTeamsItem>> teams) {
             this.teams = Optional.of(teams);
             return this;
         }

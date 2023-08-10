@@ -20,9 +20,9 @@ public final class EmployeePayrollRun {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> employee;
+    private final Optional<EmployeePayrollRunEmployee> employee;
 
-    private final Optional<String> payrollRun;
+    private final Optional<EmployeePayrollRunPayrollRun> payrollRun;
 
     private final Optional<Double> grossPay;
 
@@ -51,8 +51,8 @@ public final class EmployeePayrollRun {
     private EmployeePayrollRun(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> employee,
-            Optional<String> payrollRun,
+            Optional<EmployeePayrollRunEmployee> employee,
+            Optional<EmployeePayrollRunPayrollRun> payrollRun,
             Optional<Double> grossPay,
             Optional<Double> netPay,
             Optional<OffsetDateTime> startDate,
@@ -100,7 +100,7 @@ public final class EmployeePayrollRun {
      * @return The employee whose payroll is being run.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<EmployeePayrollRunEmployee> getEmployee() {
         return employee;
     }
 
@@ -108,7 +108,7 @@ public final class EmployeePayrollRun {
      * @return The payroll being run.
      */
     @JsonProperty("payroll_run")
-    public Optional<String> getPayrollRun() {
+    public Optional<EmployeePayrollRunPayrollRun> getPayrollRun() {
         return payrollRun;
     }
 
@@ -259,9 +259,9 @@ public final class EmployeePayrollRun {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> employee = Optional.empty();
+        private Optional<EmployeePayrollRunEmployee> employee = Optional.empty();
 
-        private Optional<String> payrollRun = Optional.empty();
+        private Optional<EmployeePayrollRunPayrollRun> payrollRun = Optional.empty();
 
         private Optional<Double> grossPay = Optional.empty();
 
@@ -332,23 +332,23 @@ public final class EmployeePayrollRun {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<EmployeePayrollRunEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(EmployeePayrollRunEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }
 
         @JsonSetter(value = "payroll_run", nulls = Nulls.SKIP)
-        public Builder payrollRun(Optional<String> payrollRun) {
+        public Builder payrollRun(Optional<EmployeePayrollRunPayrollRun> payrollRun) {
             this.payrollRun = payrollRun;
             return this;
         }
 
-        public Builder payrollRun(String payrollRun) {
+        public Builder payrollRun(EmployeePayrollRunPayrollRun payrollRun) {
             this.payrollRun = Optional.of(payrollRun);
             return this;
         }

@@ -20,9 +20,9 @@ public final class Application {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> candidate;
+    private final Optional<ApplicationCandidate> candidate;
 
-    private final Optional<String> job;
+    private final Optional<ApplicationJob> job;
 
     private final Optional<OffsetDateTime> appliedAt;
 
@@ -30,11 +30,11 @@ public final class Application {
 
     private final Optional<String> source;
 
-    private final Optional<String> creditedTo;
+    private final Optional<ApplicationCreditedTo> creditedTo;
 
-    private final Optional<String> currentStage;
+    private final Optional<ApplicationCurrentStage> currentStage;
 
-    private final Optional<String> rejectReason;
+    private final Optional<ApplicationRejectReason> rejectReason;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -47,14 +47,14 @@ public final class Application {
     private Application(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> candidate,
-            Optional<String> job,
+            Optional<ApplicationCandidate> candidate,
+            Optional<ApplicationJob> job,
             Optional<OffsetDateTime> appliedAt,
             Optional<OffsetDateTime> rejectedAt,
             Optional<String> source,
-            Optional<String> creditedTo,
-            Optional<String> currentStage,
-            Optional<String> rejectReason,
+            Optional<ApplicationCreditedTo> creditedTo,
+            Optional<ApplicationCurrentStage> currentStage,
+            Optional<ApplicationRejectReason> rejectReason,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -92,7 +92,7 @@ public final class Application {
      * @return The candidate applying.
      */
     @JsonProperty("candidate")
-    public Optional<String> getCandidate() {
+    public Optional<ApplicationCandidate> getCandidate() {
         return candidate;
     }
 
@@ -100,7 +100,7 @@ public final class Application {
      * @return The job being applied for.
      */
     @JsonProperty("job")
-    public Optional<String> getJob() {
+    public Optional<ApplicationJob> getJob() {
         return job;
     }
 
@@ -132,7 +132,7 @@ public final class Application {
      * @return The user credited for this application.
      */
     @JsonProperty("credited_to")
-    public Optional<String> getCreditedTo() {
+    public Optional<ApplicationCreditedTo> getCreditedTo() {
         return creditedTo;
     }
 
@@ -140,7 +140,7 @@ public final class Application {
      * @return The application's current stage.
      */
     @JsonProperty("current_stage")
-    public Optional<String> getCurrentStage() {
+    public Optional<ApplicationCurrentStage> getCurrentStage() {
         return currentStage;
     }
 
@@ -148,7 +148,7 @@ public final class Application {
      * @return The application's reason for rejection.
      */
     @JsonProperty("reject_reason")
-    public Optional<String> getRejectReason() {
+    public Optional<ApplicationRejectReason> getRejectReason() {
         return rejectReason;
     }
 
@@ -236,9 +236,9 @@ public final class Application {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> candidate = Optional.empty();
+        private Optional<ApplicationCandidate> candidate = Optional.empty();
 
-        private Optional<String> job = Optional.empty();
+        private Optional<ApplicationJob> job = Optional.empty();
 
         private Optional<OffsetDateTime> appliedAt = Optional.empty();
 
@@ -246,11 +246,11 @@ public final class Application {
 
         private Optional<String> source = Optional.empty();
 
-        private Optional<String> creditedTo = Optional.empty();
+        private Optional<ApplicationCreditedTo> creditedTo = Optional.empty();
 
-        private Optional<String> currentStage = Optional.empty();
+        private Optional<ApplicationCurrentStage> currentStage = Optional.empty();
 
-        private Optional<String> rejectReason = Optional.empty();
+        private Optional<ApplicationRejectReason> rejectReason = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -303,23 +303,23 @@ public final class Application {
         }
 
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
-        public Builder candidate(Optional<String> candidate) {
+        public Builder candidate(Optional<ApplicationCandidate> candidate) {
             this.candidate = candidate;
             return this;
         }
 
-        public Builder candidate(String candidate) {
+        public Builder candidate(ApplicationCandidate candidate) {
             this.candidate = Optional.of(candidate);
             return this;
         }
 
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
-        public Builder job(Optional<String> job) {
+        public Builder job(Optional<ApplicationJob> job) {
             this.job = job;
             return this;
         }
 
-        public Builder job(String job) {
+        public Builder job(ApplicationJob job) {
             this.job = Optional.of(job);
             return this;
         }
@@ -358,34 +358,34 @@ public final class Application {
         }
 
         @JsonSetter(value = "credited_to", nulls = Nulls.SKIP)
-        public Builder creditedTo(Optional<String> creditedTo) {
+        public Builder creditedTo(Optional<ApplicationCreditedTo> creditedTo) {
             this.creditedTo = creditedTo;
             return this;
         }
 
-        public Builder creditedTo(String creditedTo) {
+        public Builder creditedTo(ApplicationCreditedTo creditedTo) {
             this.creditedTo = Optional.of(creditedTo);
             return this;
         }
 
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
-        public Builder currentStage(Optional<String> currentStage) {
+        public Builder currentStage(Optional<ApplicationCurrentStage> currentStage) {
             this.currentStage = currentStage;
             return this;
         }
 
-        public Builder currentStage(String currentStage) {
+        public Builder currentStage(ApplicationCurrentStage currentStage) {
             this.currentStage = Optional.of(currentStage);
             return this;
         }
 
         @JsonSetter(value = "reject_reason", nulls = Nulls.SKIP)
-        public Builder rejectReason(Optional<String> rejectReason) {
+        public Builder rejectReason(Optional<ApplicationRejectReason> rejectReason) {
             this.rejectReason = rejectReason;
             return this;
         }
 
-        public Builder rejectReason(String rejectReason) {
+        public Builder rejectReason(ApplicationRejectReason rejectReason) {
             this.rejectReason = Optional.of(rejectReason);
             return this;
         }

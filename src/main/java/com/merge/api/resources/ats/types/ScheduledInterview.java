@@ -20,13 +20,13 @@ public final class ScheduledInterview {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> application;
+    private final Optional<ScheduledInterviewApplication> application;
 
-    private final Optional<String> jobInterviewStage;
+    private final Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage;
 
-    private final Optional<String> organizer;
+    private final Optional<ScheduledInterviewOrganizer> organizer;
 
-    private final Optional<List<Optional<String>>> interviewers;
+    private final Optional<List<Optional<ScheduledInterviewInterviewersItem>>> interviewers;
 
     private final Optional<String> location;
 
@@ -51,10 +51,10 @@ public final class ScheduledInterview {
     private ScheduledInterview(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> application,
-            Optional<String> jobInterviewStage,
-            Optional<String> organizer,
-            Optional<List<Optional<String>>> interviewers,
+            Optional<ScheduledInterviewApplication> application,
+            Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage,
+            Optional<ScheduledInterviewOrganizer> organizer,
+            Optional<List<Optional<ScheduledInterviewInterviewersItem>>> interviewers,
             Optional<String> location,
             Optional<OffsetDateTime> startAt,
             Optional<OffsetDateTime> endAt,
@@ -100,7 +100,7 @@ public final class ScheduledInterview {
      * @return The application being interviewed.
      */
     @JsonProperty("application")
-    public Optional<String> getApplication() {
+    public Optional<ScheduledInterviewApplication> getApplication() {
         return application;
     }
 
@@ -108,7 +108,7 @@ public final class ScheduledInterview {
      * @return The stage of the interview.
      */
     @JsonProperty("job_interview_stage")
-    public Optional<String> getJobInterviewStage() {
+    public Optional<ScheduledInterviewJobInterviewStage> getJobInterviewStage() {
         return jobInterviewStage;
     }
 
@@ -116,7 +116,7 @@ public final class ScheduledInterview {
      * @return The user organizing the interview.
      */
     @JsonProperty("organizer")
-    public Optional<String> getOrganizer() {
+    public Optional<ScheduledInterviewOrganizer> getOrganizer() {
         return organizer;
     }
 
@@ -124,7 +124,7 @@ public final class ScheduledInterview {
      * @return Array of <code>RemoteUser</code> IDs.
      */
     @JsonProperty("interviewers")
-    public Optional<List<Optional<String>>> getInterviewers() {
+    public Optional<List<Optional<ScheduledInterviewInterviewersItem>>> getInterviewers() {
         return interviewers;
     }
 
@@ -273,13 +273,13 @@ public final class ScheduledInterview {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> application = Optional.empty();
+        private Optional<ScheduledInterviewApplication> application = Optional.empty();
 
-        private Optional<String> jobInterviewStage = Optional.empty();
+        private Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage = Optional.empty();
 
-        private Optional<String> organizer = Optional.empty();
+        private Optional<ScheduledInterviewOrganizer> organizer = Optional.empty();
 
-        private Optional<List<Optional<String>>> interviewers = Optional.empty();
+        private Optional<List<Optional<ScheduledInterviewInterviewersItem>>> interviewers = Optional.empty();
 
         private Optional<String> location = Optional.empty();
 
@@ -346,45 +346,45 @@ public final class ScheduledInterview {
         }
 
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
-        public Builder application(Optional<String> application) {
+        public Builder application(Optional<ScheduledInterviewApplication> application) {
             this.application = application;
             return this;
         }
 
-        public Builder application(String application) {
+        public Builder application(ScheduledInterviewApplication application) {
             this.application = Optional.of(application);
             return this;
         }
 
         @JsonSetter(value = "job_interview_stage", nulls = Nulls.SKIP)
-        public Builder jobInterviewStage(Optional<String> jobInterviewStage) {
+        public Builder jobInterviewStage(Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
             return this;
         }
 
-        public Builder jobInterviewStage(String jobInterviewStage) {
+        public Builder jobInterviewStage(ScheduledInterviewJobInterviewStage jobInterviewStage) {
             this.jobInterviewStage = Optional.of(jobInterviewStage);
             return this;
         }
 
         @JsonSetter(value = "organizer", nulls = Nulls.SKIP)
-        public Builder organizer(Optional<String> organizer) {
+        public Builder organizer(Optional<ScheduledInterviewOrganizer> organizer) {
             this.organizer = organizer;
             return this;
         }
 
-        public Builder organizer(String organizer) {
+        public Builder organizer(ScheduledInterviewOrganizer organizer) {
             this.organizer = Optional.of(organizer);
             return this;
         }
 
         @JsonSetter(value = "interviewers", nulls = Nulls.SKIP)
-        public Builder interviewers(Optional<List<Optional<String>>> interviewers) {
+        public Builder interviewers(Optional<List<Optional<ScheduledInterviewInterviewersItem>>> interviewers) {
             this.interviewers = interviewers;
             return this;
         }
 
-        public Builder interviewers(List<Optional<String>> interviewers) {
+        public Builder interviewers(List<Optional<ScheduledInterviewInterviewersItem>> interviewers) {
             this.interviewers = Optional.of(interviewers);
             return this;
         }

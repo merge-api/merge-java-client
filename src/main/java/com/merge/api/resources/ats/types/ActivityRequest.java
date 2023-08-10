@@ -14,7 +14,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = ActivityRequest.Builder.class)
 public final class ActivityRequest {
-    private final Optional<String> user;
+    private final Optional<ActivityRequestUser> user;
 
     private final Optional<ActivityRequestActivityType> activityType;
 
@@ -31,7 +31,7 @@ public final class ActivityRequest {
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
     private ActivityRequest(
-            Optional<String> user,
+            Optional<ActivityRequestUser> user,
             Optional<ActivityRequestActivityType> activityType,
             Optional<String> subject,
             Optional<String> body,
@@ -53,7 +53,7 @@ public final class ActivityRequest {
      * @return The user that performed the action.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<ActivityRequestUser> getUser() {
         return user;
     }
 
@@ -160,7 +160,7 @@ public final class ActivityRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> user = Optional.empty();
+        private Optional<ActivityRequestUser> user = Optional.empty();
 
         private Optional<ActivityRequestActivityType> activityType = Optional.empty();
 
@@ -191,12 +191,12 @@ public final class ActivityRequest {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<ActivityRequestUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(ActivityRequestUser user) {
             this.user = Optional.of(user);
             return this;
         }

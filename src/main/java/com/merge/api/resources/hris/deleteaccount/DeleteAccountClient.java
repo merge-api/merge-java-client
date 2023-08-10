@@ -14,11 +14,11 @@ public class DeleteAccountClient {
         this.clientOptions = clientOptions;
     }
 
-    public void create() {
-        create(null);
+    public void delete() {
+        delete(null);
     }
 
-    public void create(RequestOptions requestOptions) {
+    public void delete(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("api/hris/v1/delete-account")

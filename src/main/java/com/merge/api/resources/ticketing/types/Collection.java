@@ -26,7 +26,7 @@ public final class Collection {
 
     private final Optional<CollectionCollectionType> collectionType;
 
-    private final Optional<String> parentCollection;
+    private final Optional<CollectionParentCollection> parentCollection;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -44,7 +44,7 @@ public final class Collection {
             Optional<String> name,
             Optional<String> description,
             Optional<CollectionCollectionType> collectionType,
-            Optional<String> parentCollection,
+            Optional<CollectionParentCollection> parentCollection,
             Optional<Boolean> remoteWasDeleted,
             Optional<CollectionAccessLevel> accessLevel,
             Optional<OffsetDateTime> modifiedAt,
@@ -108,7 +108,7 @@ public final class Collection {
      * @return The parent collection for this collection.
      */
     @JsonProperty("parent_collection")
-    public Optional<String> getParentCollection() {
+    public Optional<CollectionParentCollection> getParentCollection() {
         return parentCollection;
     }
 
@@ -211,7 +211,7 @@ public final class Collection {
 
         private Optional<CollectionCollectionType> collectionType = Optional.empty();
 
-        private Optional<String> parentCollection = Optional.empty();
+        private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -296,12 +296,12 @@ public final class Collection {
         }
 
         @JsonSetter(value = "parent_collection", nulls = Nulls.SKIP)
-        public Builder parentCollection(Optional<String> parentCollection) {
+        public Builder parentCollection(Optional<CollectionParentCollection> parentCollection) {
             this.parentCollection = parentCollection;
             return this;
         }
 
-        public Builder parentCollection(String parentCollection) {
+        public Builder parentCollection(CollectionParentCollection parentCollection) {
             this.parentCollection = Optional.of(parentCollection);
             return this;
         }

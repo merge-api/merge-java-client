@@ -18,9 +18,9 @@ import java.util.Optional;
 public final class TicketRequest {
     private final Optional<String> name;
 
-    private final Optional<List<Optional<String>>> assignees;
+    private final Optional<List<Optional<TicketRequestAssigneesItem>>> assignees;
 
-    private final Optional<String> creator;
+    private final Optional<TicketRequestCreator> creator;
 
     private final Optional<OffsetDateTime> dueDate;
 
@@ -28,17 +28,17 @@ public final class TicketRequest {
 
     private final Optional<String> description;
 
-    private final Optional<List<Optional<String>>> collections;
+    private final Optional<List<Optional<TicketRequestCollectionsItem>>> collections;
 
     private final Optional<String> ticketType;
 
-    private final Optional<String> account;
+    private final Optional<TicketRequestAccount> account;
 
-    private final Optional<String> contact;
+    private final Optional<TicketRequestContact> contact;
 
-    private final Optional<String> parentTicket;
+    private final Optional<TicketRequestParentTicket> parentTicket;
 
-    private final Optional<List<Optional<String>>> attachments;
+    private final Optional<List<Optional<TicketRequestAttachmentsItem>>> attachments;
 
     private final Optional<List<Optional<String>>> tags;
 
@@ -56,17 +56,17 @@ public final class TicketRequest {
 
     private TicketRequest(
             Optional<String> name,
-            Optional<List<Optional<String>>> assignees,
-            Optional<String> creator,
+            Optional<List<Optional<TicketRequestAssigneesItem>>> assignees,
+            Optional<TicketRequestCreator> creator,
             Optional<OffsetDateTime> dueDate,
             Optional<TicketRequestStatus> status,
             Optional<String> description,
-            Optional<List<Optional<String>>> collections,
+            Optional<List<Optional<TicketRequestCollectionsItem>>> collections,
             Optional<String> ticketType,
-            Optional<String> account,
-            Optional<String> contact,
-            Optional<String> parentTicket,
-            Optional<List<Optional<String>>> attachments,
+            Optional<TicketRequestAccount> account,
+            Optional<TicketRequestContact> contact,
+            Optional<TicketRequestParentTicket> parentTicket,
+            Optional<List<Optional<TicketRequestAttachmentsItem>>> attachments,
             Optional<List<Optional<String>>> tags,
             Optional<OffsetDateTime> completedAt,
             Optional<String> ticketUrl,
@@ -104,7 +104,7 @@ public final class TicketRequest {
     }
 
     @JsonProperty("assignees")
-    public Optional<List<Optional<String>>> getAssignees() {
+    public Optional<List<Optional<TicketRequestAssigneesItem>>> getAssignees() {
         return assignees;
     }
 
@@ -112,7 +112,7 @@ public final class TicketRequest {
      * @return The user who created this ticket.
      */
     @JsonProperty("creator")
-    public Optional<String> getCreator() {
+    public Optional<TicketRequestCreator> getCreator() {
         return creator;
     }
 
@@ -147,7 +147,7 @@ public final class TicketRequest {
     }
 
     @JsonProperty("collections")
-    public Optional<List<Optional<String>>> getCollections() {
+    public Optional<List<Optional<TicketRequestCollectionsItem>>> getCollections() {
         return collections;
     }
 
@@ -163,7 +163,7 @@ public final class TicketRequest {
      * @return The account associated with the ticket.
      */
     @JsonProperty("account")
-    public Optional<String> getAccount() {
+    public Optional<TicketRequestAccount> getAccount() {
         return account;
     }
 
@@ -171,7 +171,7 @@ public final class TicketRequest {
      * @return The contact associated with the ticket.
      */
     @JsonProperty("contact")
-    public Optional<String> getContact() {
+    public Optional<TicketRequestContact> getContact() {
         return contact;
     }
 
@@ -179,12 +179,12 @@ public final class TicketRequest {
      * @return The ticket's parent ticket.
      */
     @JsonProperty("parent_ticket")
-    public Optional<String> getParentTicket() {
+    public Optional<TicketRequestParentTicket> getParentTicket() {
         return parentTicket;
     }
 
     @JsonProperty("attachments")
-    public Optional<List<Optional<String>>> getAttachments() {
+    public Optional<List<Optional<TicketRequestAttachmentsItem>>> getAttachments() {
         return attachments;
     }
 
@@ -309,9 +309,9 @@ public final class TicketRequest {
     public static final class Builder {
         private Optional<String> name = Optional.empty();
 
-        private Optional<List<Optional<String>>> assignees = Optional.empty();
+        private Optional<List<Optional<TicketRequestAssigneesItem>>> assignees = Optional.empty();
 
-        private Optional<String> creator = Optional.empty();
+        private Optional<TicketRequestCreator> creator = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
@@ -319,17 +319,17 @@ public final class TicketRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<List<Optional<String>>> collections = Optional.empty();
+        private Optional<List<Optional<TicketRequestCollectionsItem>>> collections = Optional.empty();
 
         private Optional<String> ticketType = Optional.empty();
 
-        private Optional<String> account = Optional.empty();
+        private Optional<TicketRequestAccount> account = Optional.empty();
 
-        private Optional<String> contact = Optional.empty();
+        private Optional<TicketRequestContact> contact = Optional.empty();
 
-        private Optional<String> parentTicket = Optional.empty();
+        private Optional<TicketRequestParentTicket> parentTicket = Optional.empty();
 
-        private Optional<List<Optional<String>>> attachments = Optional.empty();
+        private Optional<List<Optional<TicketRequestAttachmentsItem>>> attachments = Optional.empty();
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
@@ -382,23 +382,23 @@ public final class TicketRequest {
         }
 
         @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
-        public Builder assignees(Optional<List<Optional<String>>> assignees) {
+        public Builder assignees(Optional<List<Optional<TicketRequestAssigneesItem>>> assignees) {
             this.assignees = assignees;
             return this;
         }
 
-        public Builder assignees(List<Optional<String>> assignees) {
+        public Builder assignees(List<Optional<TicketRequestAssigneesItem>> assignees) {
             this.assignees = Optional.of(assignees);
             return this;
         }
 
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
-        public Builder creator(Optional<String> creator) {
+        public Builder creator(Optional<TicketRequestCreator> creator) {
             this.creator = creator;
             return this;
         }
 
-        public Builder creator(String creator) {
+        public Builder creator(TicketRequestCreator creator) {
             this.creator = Optional.of(creator);
             return this;
         }
@@ -437,12 +437,12 @@ public final class TicketRequest {
         }
 
         @JsonSetter(value = "collections", nulls = Nulls.SKIP)
-        public Builder collections(Optional<List<Optional<String>>> collections) {
+        public Builder collections(Optional<List<Optional<TicketRequestCollectionsItem>>> collections) {
             this.collections = collections;
             return this;
         }
 
-        public Builder collections(List<Optional<String>> collections) {
+        public Builder collections(List<Optional<TicketRequestCollectionsItem>> collections) {
             this.collections = Optional.of(collections);
             return this;
         }
@@ -459,45 +459,45 @@ public final class TicketRequest {
         }
 
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<String> account) {
+        public Builder account(Optional<TicketRequestAccount> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(String account) {
+        public Builder account(TicketRequestAccount account) {
             this.account = Optional.of(account);
             return this;
         }
 
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<String> contact) {
+        public Builder contact(Optional<TicketRequestContact> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(String contact) {
+        public Builder contact(TicketRequestContact contact) {
             this.contact = Optional.of(contact);
             return this;
         }
 
         @JsonSetter(value = "parent_ticket", nulls = Nulls.SKIP)
-        public Builder parentTicket(Optional<String> parentTicket) {
+        public Builder parentTicket(Optional<TicketRequestParentTicket> parentTicket) {
             this.parentTicket = parentTicket;
             return this;
         }
 
-        public Builder parentTicket(String parentTicket) {
+        public Builder parentTicket(TicketRequestParentTicket parentTicket) {
             this.parentTicket = Optional.of(parentTicket);
             return this;
         }
 
         @JsonSetter(value = "attachments", nulls = Nulls.SKIP)
-        public Builder attachments(Optional<List<Optional<String>>> attachments) {
+        public Builder attachments(Optional<List<Optional<TicketRequestAttachmentsItem>>> attachments) {
             this.attachments = attachments;
             return this;
         }
 
-        public Builder attachments(List<Optional<String>> attachments) {
+        public Builder attachments(List<Optional<TicketRequestAttachmentsItem>> attachments) {
             this.attachments = Optional.of(attachments);
             return this;
         }

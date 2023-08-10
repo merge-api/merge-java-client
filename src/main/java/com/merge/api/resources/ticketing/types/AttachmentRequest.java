@@ -16,7 +16,7 @@ import java.util.Optional;
 public final class AttachmentRequest {
     private final Optional<String> fileName;
 
-    private final Optional<String> ticket;
+    private final Optional<AttachmentRequestTicket> ticket;
 
     private final Optional<String> fileUrl;
 
@@ -30,7 +30,7 @@ public final class AttachmentRequest {
 
     private AttachmentRequest(
             Optional<String> fileName,
-            Optional<String> ticket,
+            Optional<AttachmentRequestTicket> ticket,
             Optional<String> fileUrl,
             Optional<String> contentType,
             Optional<String> uploadedBy,
@@ -57,7 +57,7 @@ public final class AttachmentRequest {
      * @return The ticket associated with the attachment.
      */
     @JsonProperty("ticket")
-    public Optional<String> getTicket() {
+    public Optional<AttachmentRequestTicket> getTicket() {
         return ticket;
     }
 
@@ -138,7 +138,7 @@ public final class AttachmentRequest {
     public static final class Builder {
         private Optional<String> fileName = Optional.empty();
 
-        private Optional<String> ticket = Optional.empty();
+        private Optional<AttachmentRequestTicket> ticket = Optional.empty();
 
         private Optional<String> fileUrl = Optional.empty();
 
@@ -175,12 +175,12 @@ public final class AttachmentRequest {
         }
 
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
-        public Builder ticket(Optional<String> ticket) {
+        public Builder ticket(Optional<AttachmentRequestTicket> ticket) {
             this.ticket = ticket;
             return this;
         }
 
-        public Builder ticket(String ticket) {
+        public Builder ticket(AttachmentRequestTicket ticket) {
             this.ticket = Optional.of(ticket);
             return this;
         }

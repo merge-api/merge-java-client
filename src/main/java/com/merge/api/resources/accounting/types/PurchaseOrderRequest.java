@@ -22,15 +22,15 @@ public final class PurchaseOrderRequest {
 
     private final Optional<OffsetDateTime> deliveryDate;
 
-    private final Optional<String> deliveryAddress;
+    private final Optional<PurchaseOrderRequestDeliveryAddress> deliveryAddress;
 
     private final Optional<String> customer;
 
-    private final Optional<String> vendor;
+    private final Optional<PurchaseOrderRequestVendor> vendor;
 
     private final Optional<String> memo;
 
-    private final Optional<String> company;
+    private final Optional<PurchaseOrderRequestCompany> company;
 
     private final Optional<Double> totalAmount;
 
@@ -48,11 +48,11 @@ public final class PurchaseOrderRequest {
             Optional<PurchaseOrderRequestStatus> status,
             Optional<OffsetDateTime> issueDate,
             Optional<OffsetDateTime> deliveryDate,
-            Optional<String> deliveryAddress,
+            Optional<PurchaseOrderRequestDeliveryAddress> deliveryAddress,
             Optional<String> customer,
-            Optional<String> vendor,
+            Optional<PurchaseOrderRequestVendor> vendor,
             Optional<String> memo,
-            Optional<String> company,
+            Optional<PurchaseOrderRequestCompany> company,
             Optional<Double> totalAmount,
             Optional<PurchaseOrderRequestCurrency> currency,
             Optional<String> exchangeRate,
@@ -110,7 +110,7 @@ public final class PurchaseOrderRequest {
      * @return The purchase order's delivery address.
      */
     @JsonProperty("delivery_address")
-    public Optional<String> getDeliveryAddress() {
+    public Optional<PurchaseOrderRequestDeliveryAddress> getDeliveryAddress() {
         return deliveryAddress;
     }
 
@@ -126,7 +126,7 @@ public final class PurchaseOrderRequest {
      * @return The party fulfilling the purchase order.
      */
     @JsonProperty("vendor")
-    public Optional<String> getVendor() {
+    public Optional<PurchaseOrderRequestVendor> getVendor() {
         return vendor;
     }
 
@@ -142,7 +142,7 @@ public final class PurchaseOrderRequest {
      * @return The company the purchase order belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<PurchaseOrderRequestCompany> getCompany() {
         return company;
     }
 
@@ -556,15 +556,15 @@ public final class PurchaseOrderRequest {
 
         private Optional<OffsetDateTime> deliveryDate = Optional.empty();
 
-        private Optional<String> deliveryAddress = Optional.empty();
+        private Optional<PurchaseOrderRequestDeliveryAddress> deliveryAddress = Optional.empty();
 
         private Optional<String> customer = Optional.empty();
 
-        private Optional<String> vendor = Optional.empty();
+        private Optional<PurchaseOrderRequestVendor> vendor = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<PurchaseOrderRequestCompany> company = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
@@ -632,12 +632,12 @@ public final class PurchaseOrderRequest {
         }
 
         @JsonSetter(value = "delivery_address", nulls = Nulls.SKIP)
-        public Builder deliveryAddress(Optional<String> deliveryAddress) {
+        public Builder deliveryAddress(Optional<PurchaseOrderRequestDeliveryAddress> deliveryAddress) {
             this.deliveryAddress = deliveryAddress;
             return this;
         }
 
-        public Builder deliveryAddress(String deliveryAddress) {
+        public Builder deliveryAddress(PurchaseOrderRequestDeliveryAddress deliveryAddress) {
             this.deliveryAddress = Optional.of(deliveryAddress);
             return this;
         }
@@ -654,12 +654,12 @@ public final class PurchaseOrderRequest {
         }
 
         @JsonSetter(value = "vendor", nulls = Nulls.SKIP)
-        public Builder vendor(Optional<String> vendor) {
+        public Builder vendor(Optional<PurchaseOrderRequestVendor> vendor) {
             this.vendor = vendor;
             return this;
         }
 
-        public Builder vendor(String vendor) {
+        public Builder vendor(PurchaseOrderRequestVendor vendor) {
             this.vendor = Optional.of(vendor);
             return this;
         }
@@ -676,12 +676,12 @@ public final class PurchaseOrderRequest {
         }
 
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<PurchaseOrderRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(PurchaseOrderRequestCompany company) {
             this.company = Optional.of(company);
             return this;
         }

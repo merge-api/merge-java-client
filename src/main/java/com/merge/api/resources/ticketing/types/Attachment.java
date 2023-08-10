@@ -22,7 +22,7 @@ public final class Attachment {
 
     private final Optional<String> fileName;
 
-    private final Optional<String> ticket;
+    private final Optional<AttachmentTicket> ticket;
 
     private final Optional<String> fileUrl;
 
@@ -44,7 +44,7 @@ public final class Attachment {
             Optional<String> id,
             Optional<String> remoteId,
             Optional<String> fileName,
-            Optional<String> ticket,
+            Optional<AttachmentTicket> ticket,
             Optional<String> fileUrl,
             Optional<String> contentType,
             Optional<String> uploadedBy,
@@ -92,7 +92,7 @@ public final class Attachment {
      * @return The ticket associated with the attachment.
      */
     @JsonProperty("ticket")
-    public Optional<String> getTicket() {
+    public Optional<AttachmentTicket> getTicket() {
         return ticket;
     }
 
@@ -209,7 +209,7 @@ public final class Attachment {
 
         private Optional<String> fileName = Optional.empty();
 
-        private Optional<String> ticket = Optional.empty();
+        private Optional<AttachmentTicket> ticket = Optional.empty();
 
         private Optional<String> fileUrl = Optional.empty();
 
@@ -279,12 +279,12 @@ public final class Attachment {
         }
 
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
-        public Builder ticket(Optional<String> ticket) {
+        public Builder ticket(Optional<AttachmentTicket> ticket) {
             this.ticket = ticket;
             return this;
         }
 
-        public Builder ticket(String ticket) {
+        public Builder ticket(AttachmentTicket ticket) {
             this.ticket = Optional.of(ticket);
             return this;
         }
