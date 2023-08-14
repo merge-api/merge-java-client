@@ -25,11 +25,11 @@ public final class RemoteFieldClass {
 
     private final Optional<Boolean> isRequired;
 
-    private final Optional<FieldTypeEnum> fieldType;
+    private final Optional<RemoteFieldClassFieldType> fieldType;
 
-    private final Optional<FieldFormatEnum> fieldFormat;
+    private final Optional<RemoteFieldClassFieldFormat> fieldFormat;
 
-    private final Optional<List<String>> fieldChoices;
+    private final Optional<List<RemoteFieldClassFieldChoicesItem>> fieldChoices;
 
     private final Optional<ItemSchema> itemSchema;
 
@@ -40,9 +40,9 @@ public final class RemoteFieldClass {
             Optional<String> description,
             Optional<Boolean> isCustom,
             Optional<Boolean> isRequired,
-            Optional<FieldTypeEnum> fieldType,
-            Optional<FieldFormatEnum> fieldFormat,
-            Optional<List<String>> fieldChoices,
+            Optional<RemoteFieldClassFieldType> fieldType,
+            Optional<RemoteFieldClassFieldFormat> fieldFormat,
+            Optional<List<RemoteFieldClassFieldChoicesItem>> fieldChoices,
             Optional<ItemSchema> itemSchema) {
         this.id = id;
         this.displayName = displayName;
@@ -87,17 +87,17 @@ public final class RemoteFieldClass {
     }
 
     @JsonProperty("field_type")
-    public Optional<FieldTypeEnum> getFieldType() {
+    public Optional<RemoteFieldClassFieldType> getFieldType() {
         return fieldType;
     }
 
     @JsonProperty("field_format")
-    public Optional<FieldFormatEnum> getFieldFormat() {
+    public Optional<RemoteFieldClassFieldFormat> getFieldFormat() {
         return fieldFormat;
     }
 
     @JsonProperty("field_choices")
-    public Optional<List<String>> getFieldChoices() {
+    public Optional<List<RemoteFieldClassFieldChoicesItem>> getFieldChoices() {
         return fieldChoices;
     }
 
@@ -166,11 +166,11 @@ public final class RemoteFieldClass {
 
         private Optional<Boolean> isRequired = Optional.empty();
 
-        private Optional<FieldTypeEnum> fieldType = Optional.empty();
+        private Optional<RemoteFieldClassFieldType> fieldType = Optional.empty();
 
-        private Optional<FieldFormatEnum> fieldFormat = Optional.empty();
+        private Optional<RemoteFieldClassFieldFormat> fieldFormat = Optional.empty();
 
-        private Optional<List<String>> fieldChoices = Optional.empty();
+        private Optional<List<RemoteFieldClassFieldChoicesItem>> fieldChoices = Optional.empty();
 
         private Optional<ItemSchema> itemSchema = Optional.empty();
 
@@ -257,34 +257,34 @@ public final class RemoteFieldClass {
         }
 
         @JsonSetter(value = "field_type", nulls = Nulls.SKIP)
-        public Builder fieldType(Optional<FieldTypeEnum> fieldType) {
+        public Builder fieldType(Optional<RemoteFieldClassFieldType> fieldType) {
             this.fieldType = fieldType;
             return this;
         }
 
-        public Builder fieldType(FieldTypeEnum fieldType) {
+        public Builder fieldType(RemoteFieldClassFieldType fieldType) {
             this.fieldType = Optional.of(fieldType);
             return this;
         }
 
         @JsonSetter(value = "field_format", nulls = Nulls.SKIP)
-        public Builder fieldFormat(Optional<FieldFormatEnum> fieldFormat) {
+        public Builder fieldFormat(Optional<RemoteFieldClassFieldFormat> fieldFormat) {
             this.fieldFormat = fieldFormat;
             return this;
         }
 
-        public Builder fieldFormat(FieldFormatEnum fieldFormat) {
+        public Builder fieldFormat(RemoteFieldClassFieldFormat fieldFormat) {
             this.fieldFormat = Optional.of(fieldFormat);
             return this;
         }
 
         @JsonSetter(value = "field_choices", nulls = Nulls.SKIP)
-        public Builder fieldChoices(Optional<List<String>> fieldChoices) {
+        public Builder fieldChoices(Optional<List<RemoteFieldClassFieldChoicesItem>> fieldChoices) {
             this.fieldChoices = fieldChoices;
             return this;
         }
 
-        public Builder fieldChoices(List<String> fieldChoices) {
+        public Builder fieldChoices(List<RemoteFieldClassFieldChoicesItem> fieldChoices) {
             this.fieldChoices = Optional.of(fieldChoices);
             return this;
         }
