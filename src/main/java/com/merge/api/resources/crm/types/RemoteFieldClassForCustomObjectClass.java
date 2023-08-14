@@ -26,7 +26,7 @@ public final class RemoteFieldClassForCustomObjectClass {
 
     private final Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat;
 
-    private final Optional<List<Optional<String>>> fieldChoices;
+    private final Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices;
 
     private final Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema;
 
@@ -39,7 +39,7 @@ public final class RemoteFieldClassForCustomObjectClass {
             Optional<Boolean> isRequired,
             Optional<RemoteFieldClassForCustomObjectClassFieldType> fieldType,
             Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat,
-            Optional<List<Optional<String>>> fieldChoices,
+            Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices,
             Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema,
             Optional<OffsetDateTime> modifiedAt) {
         this.displayName = displayName;
@@ -84,7 +84,7 @@ public final class RemoteFieldClassForCustomObjectClass {
     }
 
     @JsonProperty("field_choices")
-    public Optional<List<Optional<String>>> getFieldChoices() {
+    public Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> getFieldChoices() {
         return fieldChoices;
     }
 
@@ -160,7 +160,7 @@ public final class RemoteFieldClassForCustomObjectClass {
 
         private Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat = Optional.empty();
 
-        private Optional<List<Optional<String>>> fieldChoices = Optional.empty();
+        private Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices = Optional.empty();
 
         private Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema = Optional.empty();
 
@@ -248,12 +248,12 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         @JsonSetter(value = "field_choices", nulls = Nulls.SKIP)
-        public Builder fieldChoices(Optional<List<Optional<String>>> fieldChoices) {
+        public Builder fieldChoices(Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices) {
             this.fieldChoices = fieldChoices;
             return this;
         }
 
-        public Builder fieldChoices(List<Optional<String>> fieldChoices) {
+        public Builder fieldChoices(List<RemoteFieldClassForCustomObjectClassFieldChoicesItem> fieldChoices) {
             this.fieldChoices = Optional.of(fieldChoices);
             return this;
         }
