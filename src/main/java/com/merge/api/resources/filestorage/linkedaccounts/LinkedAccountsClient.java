@@ -1,10 +1,12 @@
 package com.merge.api.resources.filestorage.linkedaccounts;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.filestorage.linkedaccounts.requests.LinkedAccountsListRequest;
 import com.merge.api.resources.filestorage.types.PaginatedAccountDetailsAndActionsList;
+import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -88,8 +90,10 @@ public class LinkedAccountsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(
                         _response.body().string(), PaginatedAccountDetailsAndActionsList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
