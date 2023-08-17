@@ -20,8 +20,24 @@ jobs:
       - name: Compile
         run: ./gradlew compileJava
 
-  publish:
+  test:
     needs: [ compile ]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Set up Java
+        id: setup-jre
+        uses: actions/setup-java@v1
+        with:
+          java-version: "11"
+          architecture: x64
+
+      - name: Test
+        run: ./gradlew test
+  publish:
+    needs: [ compile, test ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
     runs-on: ubuntu-latest
 

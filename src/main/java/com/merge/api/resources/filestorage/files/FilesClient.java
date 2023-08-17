@@ -1,5 +1,6 @@
 package com.merge.api.resources.filestorage.files;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -10,6 +11,7 @@ import com.merge.api.resources.filestorage.types.File;
 import com.merge.api.resources.filestorage.types.FileStorageFileResponse;
 import com.merge.api.resources.filestorage.types.MetaResponse;
 import com.merge.api.resources.filestorage.types.PaginatedFileList;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -94,8 +96,10 @@ public class FilesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedFileList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -137,8 +141,10 @@ public class FilesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), FileStorageFileResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -172,8 +178,10 @@ public class FilesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), File.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -200,8 +208,10 @@ public class FilesClient {
             if (_response.isSuccessful()) {
                 return _response.body().byteStream();
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -226,8 +236,10 @@ public class FilesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), MetaResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

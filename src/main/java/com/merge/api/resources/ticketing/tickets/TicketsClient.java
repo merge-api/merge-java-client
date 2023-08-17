@@ -1,5 +1,6 @@
 package com.merge.api.resources.ticketing.tickets;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -15,6 +16,7 @@ import com.merge.api.resources.ticketing.types.PaginatedTicketList;
 import com.merge.api.resources.ticketing.types.PaginatedUserList;
 import com.merge.api.resources.ticketing.types.Ticket;
 import com.merge.api.resources.ticketing.types.TicketResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import okhttp3.Headers;
@@ -169,8 +171,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedTicketList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -212,8 +216,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), TicketResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -260,8 +266,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Ticket.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -305,8 +313,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), TicketResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -353,8 +363,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedUserList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -380,8 +392,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), MetaResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -406,8 +420,10 @@ public class TicketsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), MetaResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -450,8 +466,10 @@ public class TicketsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(
                         _response.body().string(), PaginatedRemoteFieldClassList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

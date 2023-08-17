@@ -1,5 +1,6 @@
 package com.merge.api.resources.crm.customobjectclasses;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -8,6 +9,7 @@ import com.merge.api.resources.crm.customobjectclasses.requests.CustomObjectClas
 import com.merge.api.resources.crm.customobjectclasses.requests.CustomObjectClassesRetrieveRequest;
 import com.merge.api.resources.crm.types.CustomObjectClass;
 import com.merge.api.resources.crm.types.PaginatedCustomObjectClassList;
+import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -80,8 +82,10 @@ public class CustomObjectClassesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(
                         _response.body().string(), PaginatedCustomObjectClassList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -116,8 +120,10 @@ public class CustomObjectClassesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), CustomObjectClass.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -152,8 +158,10 @@ public class CustomObjectClassesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), CustomObjectClass.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

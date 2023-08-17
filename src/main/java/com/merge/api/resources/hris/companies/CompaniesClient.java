@@ -1,5 +1,6 @@
 package com.merge.api.resources.hris.companies;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -7,6 +8,7 @@ import com.merge.api.resources.hris.companies.requests.CompaniesListRequest;
 import com.merge.api.resources.hris.companies.requests.CompaniesRetrieveRequest;
 import com.merge.api.resources.hris.types.Company;
 import com.merge.api.resources.hris.types.PaginatedCompanyList;
+import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -75,8 +77,10 @@ public class CompaniesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedCompanyList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -107,8 +111,10 @@ public class CompaniesClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Company.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

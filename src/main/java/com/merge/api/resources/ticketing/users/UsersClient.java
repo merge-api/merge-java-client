@@ -1,5 +1,6 @@
 package com.merge.api.resources.ticketing.users;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -7,6 +8,7 @@ import com.merge.api.resources.ticketing.types.PaginatedUserList;
 import com.merge.api.resources.ticketing.types.User;
 import com.merge.api.resources.ticketing.users.requests.UsersListRequest;
 import com.merge.api.resources.ticketing.users.requests.UsersRetrieveRequest;
+import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -82,8 +84,10 @@ public class UsersClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedUserList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -117,8 +121,10 @@ public class UsersClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), User.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

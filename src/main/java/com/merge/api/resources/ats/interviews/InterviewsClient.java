@@ -1,5 +1,6 @@
 package com.merge.api.resources.ats.interviews;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -10,6 +11,7 @@ import com.merge.api.resources.ats.types.MetaResponse;
 import com.merge.api.resources.ats.types.PaginatedScheduledInterviewList;
 import com.merge.api.resources.ats.types.ScheduledInterview;
 import com.merge.api.resources.ats.types.ScheduledInterviewResponse;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import okhttp3.Headers;
@@ -104,8 +106,10 @@ public class InterviewsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(
                         _response.body().string(), PaginatedScheduledInterviewList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -148,8 +152,10 @@ public class InterviewsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), ScheduledInterviewResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -191,8 +197,10 @@ public class InterviewsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), ScheduledInterview.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -217,8 +225,10 @@ public class InterviewsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), MetaResponse.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

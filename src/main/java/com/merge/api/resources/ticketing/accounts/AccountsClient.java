@@ -1,5 +1,6 @@
 package com.merge.api.resources.ticketing.accounts;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -7,6 +8,7 @@ import com.merge.api.resources.ticketing.accounts.requests.AccountsListRequest;
 import com.merge.api.resources.ticketing.accounts.requests.AccountsRetrieveRequest;
 import com.merge.api.resources.ticketing.types.Account;
 import com.merge.api.resources.ticketing.types.PaginatedAccountList;
+import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Request;
@@ -75,8 +77,10 @@ public class AccountsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), PaginatedAccountList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -107,8 +111,10 @@ public class AccountsClient {
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Account.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

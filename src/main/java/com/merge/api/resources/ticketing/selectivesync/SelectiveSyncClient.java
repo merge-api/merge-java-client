@@ -1,6 +1,7 @@
 package com.merge.api.resources.ticketing.selectivesync;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
@@ -8,6 +9,7 @@ import com.merge.api.resources.ticketing.selectivesync.requests.LinkedAccountSel
 import com.merge.api.resources.ticketing.selectivesync.requests.SelectiveSyncMetaListRequest;
 import com.merge.api.resources.ticketing.types.LinkedAccountSelectiveSyncConfiguration;
 import com.merge.api.resources.ticketing.types.PaginatedConditionSchemaList;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +49,10 @@ public class SelectiveSyncClient {
                         _response.body().string(),
                         new TypeReference<List<LinkedAccountSelectiveSyncConfiguration>>() {});
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -87,8 +91,10 @@ public class SelectiveSyncClient {
                         _response.body().string(),
                         new TypeReference<List<LinkedAccountSelectiveSyncConfiguration>>() {});
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -124,8 +130,10 @@ public class SelectiveSyncClient {
                 return ObjectMappers.JSON_MAPPER.readValue(
                         _response.body().string(), PaginatedConditionSchemaList.class);
             }
-            throw new RuntimeException();
-        } catch (Exception e) {
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
