@@ -7,29 +7,28 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = RemoteField.Builder.class)
 public final class RemoteField {
-    private final RemoteFieldClass remoteFieldClass;
+    private final RemoteFieldRemoteFieldClass remoteFieldClass;
 
-    private final Optional<Map<String, JsonNode>> value;
+    private final Optional<JsonNode> value;
 
-    private RemoteField(RemoteFieldClass remoteFieldClass, Optional<Map<String, JsonNode>> value) {
+    private RemoteField(RemoteFieldRemoteFieldClass remoteFieldClass, Optional<JsonNode> value) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
     }
 
     @JsonProperty("remote_field_class")
-    public RemoteFieldClass getRemoteFieldClass() {
+    public RemoteFieldRemoteFieldClass getRemoteFieldClass() {
         return remoteFieldClass;
     }
 
     @JsonProperty("value")
-    public Optional<Map<String, JsonNode>> getValue() {
+    public Optional<JsonNode> getValue() {
         return value;
     }
 
@@ -58,7 +57,7 @@ public final class RemoteField {
     }
 
     public interface RemoteFieldClassStage {
-        _FinalStage remoteFieldClass(RemoteFieldClass remoteFieldClass);
+        _FinalStage remoteFieldClass(RemoteFieldRemoteFieldClass remoteFieldClass);
 
         Builder from(RemoteField other);
     }
@@ -66,16 +65,16 @@ public final class RemoteField {
     public interface _FinalStage {
         RemoteField build();
 
-        _FinalStage value(Optional<Map<String, JsonNode>> value);
+        _FinalStage value(Optional<JsonNode> value);
 
-        _FinalStage value(Map<String, JsonNode> value);
+        _FinalStage value(JsonNode value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
-        private RemoteFieldClass remoteFieldClass;
+        private RemoteFieldRemoteFieldClass remoteFieldClass;
 
-        private Optional<Map<String, JsonNode>> value = Optional.empty();
+        private Optional<JsonNode> value = Optional.empty();
 
         private Builder() {}
 
@@ -88,20 +87,20 @@ public final class RemoteField {
 
         @Override
         @JsonSetter("remote_field_class")
-        public _FinalStage remoteFieldClass(RemoteFieldClass remoteFieldClass) {
+        public _FinalStage remoteFieldClass(RemoteFieldRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }
 
         @Override
-        public _FinalStage value(Map<String, JsonNode> value) {
+        public _FinalStage value(JsonNode value) {
             this.value = Optional.of(value);
             return this;
         }
 
         @Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Optional<Map<String, JsonNode>> value) {
+        public _FinalStage value(Optional<JsonNode> value) {
             this.value = value;
             return this;
         }
