@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.filestorage.types.FoldersListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -215,11 +216,7 @@ public final class FoldersListRequest {
 
     @Override
     public String toString() {
-        return "FoldersListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", driveId: " + driveId + ", expand: " + expand + ", includeDeletedData: "
-                + includeDeletedData + ", includeRemoteData: " + includeRemoteData + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", name: " + name + ", pageSize: " + pageSize
-                + ", parentFolderId: " + parentFolderId + ", remoteId: " + remoteId + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

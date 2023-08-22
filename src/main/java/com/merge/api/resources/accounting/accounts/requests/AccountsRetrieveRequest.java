@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.AccountsRetrieveRequestRemoteFields;
 import com.merge.api.resources.accounting.types.AccountsRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
@@ -85,8 +86,7 @@ public final class AccountsRetrieveRequest {
 
     @Override
     public String toString() {
-        return "AccountsRetrieveRequest{" + "expand: " + expand + ", includeRemoteData: " + includeRemoteData
-                + ", remoteFields: " + remoteFields + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

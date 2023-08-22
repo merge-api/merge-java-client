@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.PurchaseOrdersListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -243,12 +244,7 @@ public final class PurchaseOrdersListRequest {
 
     @Override
     public String toString() {
-        return "PurchaseOrdersListRequest{" + "companyId: " + companyId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", issueDateAfter: " + issueDateAfter + ", issueDateBefore: " + issueDateBefore + ", modifiedAfter: "
-                + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", remoteFields: "
-                + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

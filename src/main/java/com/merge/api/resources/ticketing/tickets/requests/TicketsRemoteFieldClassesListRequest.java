@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -84,8 +85,7 @@ public final class TicketsRemoteFieldClassesListRequest {
 
     @Override
     public String toString() {
-        return "TicketsRemoteFieldClassesListRequest{" + "cursor: " + cursor + ", includeDeletedData: "
-                + includeDeletedData + ", includeRemoteData: " + includeRemoteData + ", pageSize: " + pageSize + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -408,9 +409,7 @@ public final class AddressRequest {
 
     @Override
     public String toString() {
-        return "AddressRequest{" + "street1: " + street1 + ", street2: " + street2 + ", city: " + city + ", state: "
-                + state + ", postalCode: " + postalCode + ", country: " + country + ", addressType: " + addressType
-                + ", integrationParams: " + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

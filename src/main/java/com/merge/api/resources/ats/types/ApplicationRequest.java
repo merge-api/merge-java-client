@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
@@ -182,11 +183,7 @@ public final class ApplicationRequest {
 
     @Override
     public String toString() {
-        return "ApplicationRequest{" + "candidate: " + candidate + ", job: " + job + ", appliedAt: " + appliedAt
-                + ", rejectedAt: " + rejectedAt + ", source: " + source + ", creditedTo: " + creditedTo
-                + ", currentStage: " + currentStage + ", rejectReason: " + rejectReason + ", remoteTemplateId: "
-                + remoteTemplateId + ", integrationParams: " + integrationParams + ", linkedAccountParams: "
-                + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

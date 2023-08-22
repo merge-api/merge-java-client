@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.JournalEntriesListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -215,12 +216,7 @@ public final class JournalEntriesListRequest {
 
     @Override
     public String toString() {
-        return "JournalEntriesListRequest{" + "companyId: " + companyId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: "
-                + pageSize + ", remoteId: " + remoteId + ", transactionDateAfter: " + transactionDateAfter
-                + ", transactionDateBefore: " + transactionDateBefore + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

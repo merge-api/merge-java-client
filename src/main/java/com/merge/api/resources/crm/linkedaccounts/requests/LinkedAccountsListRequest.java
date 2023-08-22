@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.crm.types.LinkedAccountsListRequestCategory;
 import java.util.Objects;
 import java.util.Optional;
@@ -220,12 +221,7 @@ public final class LinkedAccountsListRequest {
 
     @Override
     public String toString() {
-        return "LinkedAccountsListRequest{" + "category: " + category + ", cursor: " + cursor
-                + ", endUserEmailAddress: " + endUserEmailAddress + ", endUserOrganizationName: "
-                + endUserOrganizationName + ", endUserOriginId: " + endUserOriginId + ", endUserOriginIds: "
-                + endUserOriginIds + ", id: " + id + ", ids: " + ids + ", includeDuplicates: " + includeDuplicates
-                + ", integrationName: " + integrationName + ", isTestAccount: " + isTestAccount + ", pageSize: "
-                + pageSize + ", status: " + status + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -152,9 +153,7 @@ public final class Company {
 
     @Override
     public String toString() {
-        return "Company{" + "id: " + id + ", remoteId: " + remoteId + ", legalName: " + legalName + ", displayName: "
-                + displayName + ", eins: " + eins + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: "
-                + modifiedAt + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

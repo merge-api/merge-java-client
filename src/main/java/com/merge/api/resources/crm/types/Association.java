@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Map;
 import java.util.Objects;
@@ -77,8 +78,7 @@ public final class Association {
 
     @Override
     public String toString() {
-        return "Association{" + "sourceObject: " + sourceObject + ", targetObject: " + targetObject
-                + ", associationType: " + associationType + ", modifiedAt: " + modifiedAt + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

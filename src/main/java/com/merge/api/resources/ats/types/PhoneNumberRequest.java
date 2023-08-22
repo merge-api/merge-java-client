@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -86,8 +87,7 @@ public final class PhoneNumberRequest {
 
     @Override
     public String toString() {
-        return "PhoneNumberRequest{" + "value: " + value + ", phoneNumberType: " + phoneNumberType
-                + ", integrationParams: " + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

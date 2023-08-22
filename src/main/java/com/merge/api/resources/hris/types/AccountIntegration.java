@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -143,9 +144,7 @@ public final class AccountIntegration {
 
     @Override
     public String toString() {
-        return "AccountIntegration{" + "name: " + name + ", categories: " + categories + ", image: " + image
-                + ", squareImage: " + squareImage + ", color: " + color + ", slug: " + slug + ", isInBeta: " + isInBeta
-                + ", apiEndpointsToDocumentationUrls: " + apiEndpointsToDocumentationUrls + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static NameStage builder() {

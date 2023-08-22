@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -252,11 +253,7 @@ public final class TimeOff {
 
     @Override
     public String toString() {
-        return "TimeOff{" + "id: " + id + ", remoteId: " + remoteId + ", employee: " + employee + ", approver: "
-                + approver + ", status: " + status + ", employeeNote: " + employeeNote + ", units: " + units
-                + ", amount: " + amount + ", requestType: " + requestType + ", startTime: " + startTime + ", endTime: "
-                + endTime + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: " + modifiedAt
-                + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

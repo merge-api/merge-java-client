@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -117,9 +118,7 @@ public final class AttachmentRequest {
 
     @Override
     public String toString() {
-        return "AttachmentRequest{" + "fileName: " + fileName + ", fileUrl: " + fileUrl + ", candidate: " + candidate
-                + ", attachmentType: " + attachmentType + ", integrationParams: " + integrationParams
-                + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

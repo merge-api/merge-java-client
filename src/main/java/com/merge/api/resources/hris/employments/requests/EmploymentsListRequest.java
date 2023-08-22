@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.EmploymentsListRequestExpand;
 import com.merge.api.resources.hris.types.EmploymentsListRequestOrderBy;
 import com.merge.api.resources.hris.types.EmploymentsListRequestRemoteFields;
@@ -232,12 +233,7 @@ public final class EmploymentsListRequest {
 
     @Override
     public String toString() {
-        return "EmploymentsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", employeeId: " + employeeId + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", orderBy: " + orderBy
-                + ", pageSize: " + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId
-                + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -201,11 +202,7 @@ public final class Scorecard {
 
     @Override
     public String toString() {
-        return "Scorecard{" + "id: " + id + ", remoteId: " + remoteId + ", application: " + application
-                + ", interview: " + interview + ", interviewer: " + interviewer + ", remoteCreatedAt: "
-                + remoteCreatedAt + ", submittedAt: " + submittedAt + ", overallRecommendation: "
-                + overallRecommendation + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: " + modifiedAt
-                + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

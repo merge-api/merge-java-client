@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -54,8 +55,7 @@ public final class CashFlowStatementsRetrieveRequest {
 
     @Override
     public String toString() {
-        return "CashFlowStatementsRetrieveRequest{" + "expand: " + expand + ", includeRemoteData: " + includeRemoteData
-                + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

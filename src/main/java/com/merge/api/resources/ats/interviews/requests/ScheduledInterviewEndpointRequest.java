@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ats.types.ScheduledInterviewRequest;
 import java.util.Objects;
 import java.util.Optional;
@@ -78,8 +79,7 @@ public final class ScheduledInterviewEndpointRequest {
 
     @Override
     public String toString() {
-        return "ScheduledInterviewEndpointRequest{" + "isDebugMode: " + isDebugMode + ", runAsync: " + runAsync
-                + ", model: " + model + ", remoteUserId: " + remoteUserId + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static ModelStage builder() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.TimeOffListRequestExpand;
 import com.merge.api.resources.hris.types.TimeOffListRequestRemoteFields;
 import com.merge.api.resources.hris.types.TimeOffListRequestRequestType;
@@ -276,13 +277,7 @@ public final class TimeOffListRequest {
 
     @Override
     public String toString() {
-        return "TimeOffListRequest{" + "approverId: " + approverId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", employeeId: " + employeeId
-                + ", expand: " + expand + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: "
-                + includeRemoteData + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore
-                + ", pageSize: " + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId
-                + ", requestType: " + requestType + ", showEnumOrigins: " + showEnumOrigins + ", status: " + status
-                + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

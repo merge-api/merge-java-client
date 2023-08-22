@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.EmployeePayrollRunsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -257,13 +258,7 @@ public final class EmployeePayrollRunsListRequest {
 
     @Override
     public String toString() {
-        return "EmployeePayrollRunsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", employeeId: " + employeeId + ", endedAfter: " + endedAfter
-                + ", endedBefore: " + endedBefore + ", expand: " + expand + ", includeDeletedData: "
-                + includeDeletedData + ", includeRemoteData: " + includeRemoteData + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", payrollRunId: " + payrollRunId
-                + ", remoteId: " + remoteId + ", startedAfter: " + startedAfter + ", startedBefore: " + startedBefore
-                + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

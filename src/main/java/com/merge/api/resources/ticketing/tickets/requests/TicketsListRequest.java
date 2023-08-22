@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ticketing.types.TicketsListRequestExpand;
 import com.merge.api.resources.ticketing.types.TicketsListRequestPriority;
 import com.merge.api.resources.ticketing.types.TicketsListRequestRemoteFields;
@@ -483,18 +484,7 @@ public final class TicketsListRequest {
 
     @Override
     public String toString() {
-        return "TicketsListRequest{" + "accountId: " + accountId + ", assigneeIds: " + assigneeIds + ", collectionIds: "
-                + collectionIds + ", completedAfter: " + completedAfter + ", completedBefore: " + completedBefore
-                + ", contactId: " + contactId + ", createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", dueAfter: " + dueAfter + ", dueBefore: " + dueBefore + ", expand: "
-                + expand + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", includeRemoteFields: " + includeRemoteFields + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", parentTicketId: "
-                + parentTicketId + ", priority: " + priority + ", projectId: " + projectId + ", remoteCreatedAfter: "
-                + remoteCreatedAfter + ", remoteCreatedBefore: " + remoteCreatedBefore + ", remoteFields: "
-                + remoteFields + ", remoteId: " + remoteId + ", remoteUpdatedAfter: " + remoteUpdatedAfter
-                + ", remoteUpdatedBefore: " + remoteUpdatedBefore + ", showEnumOrigins: " + showEnumOrigins
-                + ", status: " + status + ", tags: " + tags + ", ticketType: " + ticketType + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

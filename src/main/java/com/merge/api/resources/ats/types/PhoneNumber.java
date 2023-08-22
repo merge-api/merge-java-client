@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -78,8 +79,7 @@ public final class PhoneNumber {
 
     @Override
     public String toString() {
-        return "PhoneNumber{" + "value: " + value + ", phoneNumberType: " + phoneNumberType + ", modifiedAt: "
-                + modifiedAt + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

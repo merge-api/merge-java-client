@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.IgnoreCommonModelRequestReason;
 import java.util.Objects;
 import java.util.Optional;
@@ -52,7 +53,7 @@ public final class IgnoreCommonModelRequest {
 
     @Override
     public String toString() {
-        return "IgnoreCommonModelRequest{" + "reason: " + reason + ", message: " + message + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static ReasonStage builder() {

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -46,7 +47,7 @@ public final class RemoteKey {
 
     @Override
     public String toString() {
-        return "RemoteKey{" + "name: " + name + ", key: " + key + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static NameStage builder() {

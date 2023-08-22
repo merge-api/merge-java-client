@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ats.types.JobsListRequestExpand;
 import com.merge.api.resources.ats.types.JobsListRequestStatus;
 import java.time.OffsetDateTime;
@@ -251,12 +252,7 @@ public final class JobsListRequest {
 
     @Override
     public String toString() {
-        return "JobsListRequest{" + "code: " + code + ", createdAfter: " + createdAfter + ", createdBefore: "
-                + createdBefore + ", cursor: " + cursor + ", expand: " + expand + ", includeDeletedData: "
-                + includeDeletedData + ", includeRemoteData: " + includeRemoteData + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", offices: " + offices + ", pageSize: " + pageSize
-                + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: "
-                + showEnumOrigins + ", status: " + status + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

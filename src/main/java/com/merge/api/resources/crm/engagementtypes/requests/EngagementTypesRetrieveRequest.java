@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -55,8 +56,7 @@ public final class EngagementTypesRetrieveRequest {
 
     @Override
     public String toString() {
-        return "EngagementTypesRetrieveRequest{" + "includeRemoteData: " + includeRemoteData + ", includeRemoteFields: "
-                + includeRemoteFields + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

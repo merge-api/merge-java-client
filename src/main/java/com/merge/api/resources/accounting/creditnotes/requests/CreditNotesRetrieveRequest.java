@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestExpand;
 import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestRemoteFields;
 import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestShowEnumOrigins;
@@ -86,8 +87,7 @@ public final class CreditNotesRetrieveRequest {
 
     @Override
     public String toString() {
-        return "CreditNotesRetrieveRequest{" + "expand: " + expand + ", includeRemoteData: " + includeRemoteData
-                + ", remoteFields: " + remoteFields + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

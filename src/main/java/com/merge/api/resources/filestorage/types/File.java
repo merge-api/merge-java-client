@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -265,12 +266,7 @@ public final class File {
 
     @Override
     public String toString() {
-        return "File{" + "id: " + id + ", remoteId: " + remoteId + ", name: " + name + ", fileUrl: " + fileUrl
-                + ", fileThumbnailUrl: " + fileThumbnailUrl + ", size: " + size + ", mimeType: " + mimeType
-                + ", description: " + description + ", folder: " + folder + ", permissions: " + permissions
-                + ", drive: " + drive + ", remoteCreatedAt: " + remoteCreatedAt + ", remoteUpdatedAt: "
-                + remoteUpdatedAt + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: " + modifiedAt
-                + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -58,8 +59,7 @@ public final class LinkToken {
 
     @Override
     public String toString() {
-        return "LinkToken{" + "linkToken: " + linkToken + ", integrationName: " + integrationName + ", magicLinkUrl: "
-                + magicLinkUrl + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static LinkTokenStage builder() {

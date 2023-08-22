@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.AccountsListRequestRemoteFields;
 import com.merge.api.resources.accounting.types.AccountsListRequestShowEnumOrigins;
 import java.time.OffsetDateTime;
@@ -216,12 +217,7 @@ public final class AccountsListRequest {
 
     @Override
     public String toString() {
-        return "AccountsListRequest{" + "companyId: " + companyId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: "
-                + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: "
-                + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

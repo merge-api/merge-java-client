@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -567,12 +568,7 @@ public final class JournalEntry {
 
     @Override
     public String toString() {
-        return "JournalEntry{" + "transactionDate: " + transactionDate + ", remoteCreatedAt: " + remoteCreatedAt
-                + ", remoteUpdatedAt: " + remoteUpdatedAt + ", payments: " + payments + ", memo: " + memo
-                + ", currency: " + currency + ", exchangeRate: " + exchangeRate + ", company: " + company + ", lines: "
-                + lines + ", trackingCategories: " + trackingCategories + ", remoteWasDeleted: " + remoteWasDeleted
-                + ", postingStatus: " + postingStatus + ", id: " + id + ", remoteId: " + remoteId + ", modifiedAt: "
-                + modifiedAt + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

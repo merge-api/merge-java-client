@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ticketing.types.CommentsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -201,11 +202,7 @@ public final class CommentsListRequest {
 
     @Override
     public String toString() {
-        return "CommentsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", expand: " + expand + ", includeDeletedData: " + includeDeletedData
-                + ", includeRemoteData: " + includeRemoteData + ", modifiedAfter: " + modifiedAfter
-                + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", remoteCreatedAfter: "
-                + remoteCreatedAfter + ", remoteId: " + remoteId + ", ticketId: " + ticketId + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

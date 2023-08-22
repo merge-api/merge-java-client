@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -140,9 +141,7 @@ public final class ConditionSchema {
 
     @Override
     public String toString() {
-        return "ConditionSchema{" + "id: " + id + ", commonModel: " + commonModel + ", nativeName: " + nativeName
-                + ", fieldName: " + fieldName + ", isUnique: " + isUnique + ", conditionType: " + conditionType
-                + ", operators: " + operators + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static IdStage builder() {

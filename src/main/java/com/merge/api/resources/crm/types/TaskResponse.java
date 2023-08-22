@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -73,8 +74,7 @@ public final class TaskResponse {
 
     @Override
     public String toString() {
-        return "TaskResponse{" + "model: " + model + ", warnings: " + warnings + ", errors: " + errors + ", logs: "
-                + logs + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static ModelStage builder() {

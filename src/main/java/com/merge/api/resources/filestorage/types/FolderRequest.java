@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -155,10 +156,7 @@ public final class FolderRequest {
 
     @Override
     public String toString() {
-        return "FolderRequest{" + "name: " + name + ", folderUrl: " + folderUrl + ", size: " + size + ", description: "
-                + description + ", parentFolder: " + parentFolder + ", drive: " + drive + ", permissions: "
-                + permissions + ", integrationParams: " + integrationParams + ", linkedAccountParams: "
-                + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {
