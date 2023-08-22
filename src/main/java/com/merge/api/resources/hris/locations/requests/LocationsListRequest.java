@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -186,11 +187,7 @@ public final class LocationsListRequest {
 
     @Override
     public String toString() {
-        return "LocationsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: "
-                + includeRemoteData + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore
-                + ", pageSize: " + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId
-                + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

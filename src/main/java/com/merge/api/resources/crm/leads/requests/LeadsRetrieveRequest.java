@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.crm.types.LeadsRetrieveRequestExpand;
 import java.util.Objects;
 import java.util.Optional;
@@ -71,8 +72,7 @@ public final class LeadsRetrieveRequest {
 
     @Override
     public String toString() {
-        return "LeadsRetrieveRequest{" + "expand: " + expand + ", includeRemoteData: " + includeRemoteData
-                + ", includeRemoteFields: " + includeRemoteFields + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

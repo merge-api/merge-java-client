@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.EmployeesListRequestEmploymentStatus;
 import com.merge.api.resources.hris.types.EmployeesListRequestExpand;
 import com.merge.api.resources.hris.types.EmployeesListRequestRemoteFields;
@@ -447,17 +448,7 @@ public final class EmployeesListRequest {
 
     @Override
     public String toString() {
-        return "EmployeesListRequest{" + "companyId: " + companyId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", displayFullName: " + displayFullName
-                + ", employmentStatus: " + employmentStatus + ", expand: " + expand + ", firstName: " + firstName
-                + ", groups: " + groups + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: "
-                + includeRemoteData + ", includeSensitiveFields: " + includeSensitiveFields + ", lastName: " + lastName
-                + ", managerId: " + managerId + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: "
-                + modifiedBefore + ", pageSize: " + pageSize + ", payGroupId: " + payGroupId + ", personalEmail: "
-                + personalEmail + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: "
-                + showEnumOrigins + ", startedAfter: " + startedAfter + ", startedBefore: " + startedBefore
-                + ", teamId: " + teamId + ", terminatedAfter: " + terminatedAfter + ", terminatedBefore: "
-                + terminatedBefore + ", workEmail: " + workEmail + ", workLocationId: " + workLocationId + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

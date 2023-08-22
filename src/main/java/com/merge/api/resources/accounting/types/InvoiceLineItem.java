@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -535,12 +536,7 @@ public final class InvoiceLineItem {
 
     @Override
     public String toString() {
-        return "InvoiceLineItem{" + "remoteId: " + remoteId + ", description: " + description + ", unitPrice: "
-                + unitPrice + ", quantity: " + quantity + ", totalAmount: " + totalAmount + ", currency: " + currency
-                + ", exchangeRate: " + exchangeRate + ", item: " + item + ", account: " + account
-                + ", trackingCategory: " + trackingCategory + ", trackingCategories: " + trackingCategories
-                + ", company: " + company + ", id: " + id + ", modifiedAt: " + modifiedAt + ", fieldMappings: "
-                + fieldMappings + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

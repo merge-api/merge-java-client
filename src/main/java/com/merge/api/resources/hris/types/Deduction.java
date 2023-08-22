@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -163,10 +164,7 @@ public final class Deduction {
 
     @Override
     public String toString() {
-        return "Deduction{" + "id: " + id + ", remoteId: " + remoteId + ", employeePayrollRun: " + employeePayrollRun
-                + ", name: " + name + ", employeeDeduction: " + employeeDeduction + ", companyDeduction: "
-                + companyDeduction + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: " + modifiedAt
-                + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

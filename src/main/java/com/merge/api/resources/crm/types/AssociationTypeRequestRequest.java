@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -105,9 +106,7 @@ public final class AssociationTypeRequestRequest {
 
     @Override
     public String toString() {
-        return "AssociationTypeRequestRequest{" + "sourceObjectClass: " + sourceObjectClass + ", targetObjectClasses: "
-                + targetObjectClasses + ", remoteKeyName: " + remoteKeyName + ", displayName: " + displayName
-                + ", cardinality: " + cardinality + ", isRequired: " + isRequired + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static SourceObjectClassStage builder() {

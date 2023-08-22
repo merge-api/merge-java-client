@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.PayrollRunsRetrieveRequestRemoteFields;
 import com.merge.api.resources.hris.types.PayrollRunsRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
@@ -72,8 +73,7 @@ public final class PayrollRunsRetrieveRequest {
 
     @Override
     public String toString() {
-        return "PayrollRunsRetrieveRequest{" + "includeRemoteData: " + includeRemoteData + ", remoteFields: "
-                + remoteFields + ", showEnumOrigins: " + showEnumOrigins + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

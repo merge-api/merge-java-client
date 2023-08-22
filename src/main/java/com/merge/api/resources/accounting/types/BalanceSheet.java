@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -535,11 +536,7 @@ public final class BalanceSheet {
 
     @Override
     public String toString() {
-        return "BalanceSheet{" + "id: " + id + ", remoteId: " + remoteId + ", name: " + name + ", currency: " + currency
-                + ", company: " + company + ", date: " + date + ", netAssets: " + netAssets + ", assets: " + assets
-                + ", liabilities: " + liabilities + ", equity: " + equity + ", remoteGeneratedAt: " + remoteGeneratedAt
-                + ", remoteWasDeleted: " + remoteWasDeleted + ", modifiedAt: " + modifiedAt + ", fieldMappings: "
-                + fieldMappings + ", remoteData: " + remoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

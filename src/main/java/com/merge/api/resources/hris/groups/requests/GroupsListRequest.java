@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -200,11 +201,7 @@ public final class GroupsListRequest {
 
     @Override
     public String toString() {
-        return "GroupsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: "
-                + includeRemoteData + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore
-                + ", pageSize: " + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId
-                + ", showEnumOrigins: " + showEnumOrigins + ", types: " + types + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.IssuesListRequestStatus;
 import java.time.OffsetDateTime;
 import java.util.Objects;
@@ -210,12 +211,7 @@ public final class IssuesListRequest {
 
     @Override
     public String toString() {
-        return "IssuesListRequest{" + "accountToken: " + accountToken + ", cursor: " + cursor + ", endDate: " + endDate
-                + ", endUserOrganizationName: " + endUserOrganizationName + ", firstIncidentTimeAfter: "
-                + firstIncidentTimeAfter + ", firstIncidentTimeBefore: " + firstIncidentTimeBefore + ", includeMuted: "
-                + includeMuted + ", integrationName: " + integrationName + ", lastIncidentTimeAfter: "
-                + lastIncidentTimeAfter + ", lastIncidentTimeBefore: " + lastIncidentTimeBefore + ", pageSize: "
-                + pageSize + ", startDate: " + startDate + ", status: " + status + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

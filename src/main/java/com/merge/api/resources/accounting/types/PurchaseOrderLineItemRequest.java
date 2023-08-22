@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -544,12 +545,7 @@ public final class PurchaseOrderLineItemRequest {
 
     @Override
     public String toString() {
-        return "PurchaseOrderLineItemRequest{" + "remoteId: " + remoteId + ", description: " + description
-                + ", unitPrice: " + unitPrice + ", quantity: " + quantity + ", item: " + item + ", account: " + account
-                + ", trackingCategory: " + trackingCategory + ", trackingCategories: " + trackingCategories
-                + ", taxAmount: " + taxAmount + ", totalLineAmount: " + totalLineAmount + ", currency: " + currency
-                + ", exchangeRate: " + exchangeRate + ", company: " + company + ", integrationParams: "
-                + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

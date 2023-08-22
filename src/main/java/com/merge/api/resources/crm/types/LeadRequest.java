@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -227,12 +228,7 @@ public final class LeadRequest {
 
     @Override
     public String toString() {
-        return "LeadRequest{" + "owner: " + owner + ", leadSource: " + leadSource + ", title: " + title + ", company: "
-                + company + ", firstName: " + firstName + ", lastName: " + lastName + ", addresses: " + addresses
-                + ", emailAddresses: " + emailAddresses + ", phoneNumbers: " + phoneNumbers + ", convertedDate: "
-                + convertedDate + ", convertedContact: " + convertedContact + ", convertedAccount: " + convertedAccount
-                + ", integrationParams: " + integrationParams + ", linkedAccountParams: " + linkedAccountParams
-                + ", remoteFields: " + remoteFields + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

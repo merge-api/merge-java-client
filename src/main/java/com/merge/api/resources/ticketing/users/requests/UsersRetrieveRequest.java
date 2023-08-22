@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ticketing.types.UsersRetrieveRequestExpand;
 import java.util.Objects;
 import java.util.Optional;
@@ -55,7 +56,7 @@ public final class UsersRetrieveRequest {
 
     @Override
     public String toString() {
-        return "UsersRetrieveRequest{" + "expand: " + expand + ", includeRemoteData: " + includeRemoteData + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.ticketing.types.CategoriesEnum;
 import com.merge.api.resources.ticketing.types.CommonModelScopesBodyRequest;
 import java.util.ArrayList;
@@ -147,10 +148,7 @@ public final class EndUserDetailsRequest {
 
     @Override
     public String toString() {
-        return "EndUserDetailsRequest{" + "endUserEmailAddress: " + endUserEmailAddress + ", endUserOrganizationName: "
-                + endUserOrganizationName + ", endUserOriginId: " + endUserOriginId + ", categories: " + categories
-                + ", integration: " + integration + ", linkExpiryMins: " + linkExpiryMins
-                + ", shouldCreateMagicLinkUrl: " + shouldCreateMagicLinkUrl + ", commonModels: " + commonModels + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static EndUserEmailAddressStage builder() {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -137,9 +138,7 @@ public final class NoteRequest {
 
     @Override
     public String toString() {
-        return "NoteRequest{" + "owner: " + owner + ", content: " + content + ", contact: " + contact + ", account: "
-                + account + ", opportunity: " + opportunity + ", integrationParams: " + integrationParams
-                + ", linkedAccountParams: " + linkedAccountParams + ", remoteFields: " + remoteFields + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

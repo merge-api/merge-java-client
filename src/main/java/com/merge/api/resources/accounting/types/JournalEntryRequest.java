@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -478,10 +479,7 @@ public final class JournalEntryRequest {
 
     @Override
     public String toString() {
-        return "JournalEntryRequest{" + "transactionDate: " + transactionDate + ", payments: " + payments + ", memo: "
-                + memo + ", currency: " + currency + ", exchangeRate: " + exchangeRate + ", company: " + company
-                + ", lines: " + lines + ", postingStatus: " + postingStatus + ", integrationParams: "
-                + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

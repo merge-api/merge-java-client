@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.InvoicesListRequestExpand;
 import com.merge.api.resources.accounting.types.InvoicesListRequestType;
 import java.time.OffsetDateTime;
@@ -276,13 +277,7 @@ public final class InvoicesListRequest {
 
     @Override
     public String toString() {
-        return "InvoicesListRequest{" + "companyId: " + companyId + ", contactId: " + contactId + ", createdAfter: "
-                + createdAfter + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", issueDateAfter: " + issueDateAfter + ", issueDateBefore: " + issueDateBefore + ", modifiedAfter: "
-                + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: " + pageSize + ", remoteFields: "
-                + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: " + showEnumOrigins + ", type: " + type
-                + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

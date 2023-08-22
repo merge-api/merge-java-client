@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -144,11 +145,7 @@ public final class AccountDetailsAndActions {
 
     @Override
     public String toString() {
-        return "AccountDetailsAndActions{" + "id: " + id + ", category: " + category + ", status: " + status
-                + ", statusDetail: " + statusDetail + ", endUserOriginId: " + endUserOriginId
-                + ", endUserOrganizationName: " + endUserOrganizationName + ", endUserEmailAddress: "
-                + endUserEmailAddress + ", webhookListenerUrl: " + webhookListenerUrl + ", isDuplicate: " + isDuplicate
-                + ", integration: " + integration + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static IdStage builder() {

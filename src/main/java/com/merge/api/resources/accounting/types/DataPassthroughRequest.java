@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -140,9 +141,7 @@ public final class DataPassthroughRequest {
 
     @Override
     public String toString() {
-        return "DataPassthroughRequest{" + "method: " + method + ", path: " + path + ", baseUrlOverride: "
-                + baseUrlOverride + ", data: " + data + ", multipartFormData: " + multipartFormData + ", headers: "
-                + headers + ", requestFormat: " + requestFormat + ", normalizeResponse: " + normalizeResponse + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static MethodStage builder() {

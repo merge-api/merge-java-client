@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -370,15 +371,7 @@ public final class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" + "id: " + id + ", remoteId: " + remoteId + ", name: " + name + ", assignees: " + assignees
-                + ", creator: " + creator + ", dueDate: " + dueDate + ", status: " + status + ", description: "
-                + description + ", collections: " + collections + ", ticketType: " + ticketType + ", account: "
-                + account + ", contact: " + contact + ", parentTicket: " + parentTicket + ", attachments: "
-                + attachments + ", tags: " + tags + ", remoteCreatedAt: " + remoteCreatedAt + ", remoteUpdatedAt: "
-                + remoteUpdatedAt + ", completedAt: " + completedAt + ", remoteWasDeleted: " + remoteWasDeleted
-                + ", ticketUrl: " + ticketUrl + ", priority: " + priority + ", modifiedAt: " + modifiedAt
-                + ", fieldMappings: " + fieldMappings + ", remoteData: " + remoteData + ", remoteFields: "
-                + remoteFields + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

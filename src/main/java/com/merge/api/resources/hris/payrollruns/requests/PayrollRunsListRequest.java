@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.PayrollRunsListRequestRemoteFields;
 import com.merge.api.resources.hris.types.PayrollRunsListRequestRunType;
 import com.merge.api.resources.hris.types.PayrollRunsListRequestShowEnumOrigins;
@@ -266,13 +267,7 @@ public final class PayrollRunsListRequest {
 
     @Override
     public String toString() {
-        return "PayrollRunsListRequest{" + "createdAfter: " + createdAfter + ", createdBefore: " + createdBefore
-                + ", cursor: " + cursor + ", endedAfter: " + endedAfter + ", endedBefore: " + endedBefore
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: "
-                + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId + ", runType: " + runType
-                + ", showEnumOrigins: " + showEnumOrigins + ", startedAfter: " + startedAfter + ", startedBefore: "
-                + startedBefore + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

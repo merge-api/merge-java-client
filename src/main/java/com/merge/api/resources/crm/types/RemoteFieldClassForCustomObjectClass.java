@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -136,10 +137,7 @@ public final class RemoteFieldClassForCustomObjectClass {
 
     @Override
     public String toString() {
-        return "RemoteFieldClassForCustomObjectClass{" + "displayName: " + displayName + ", remoteKeyName: "
-                + remoteKeyName + ", description: " + description + ", isRequired: " + isRequired + ", fieldType: "
-                + fieldType + ", fieldFormat: " + fieldFormat + ", fieldChoices: " + fieldChoices + ", itemSchema: "
-                + itemSchema + ", modifiedAt: " + modifiedAt + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

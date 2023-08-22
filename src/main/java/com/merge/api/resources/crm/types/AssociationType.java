@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
@@ -140,10 +141,7 @@ public final class AssociationType {
 
     @Override
     public String toString() {
-        return "AssociationType{" + "sourceObjectClass: " + sourceObjectClass + ", targetObjectClasses: "
-                + targetObjectClasses + ", remoteKeyName: " + remoteKeyName + ", displayName: " + displayName
-                + ", cardinality: " + cardinality + ", isRequired: " + isRequired + ", id: " + id + ", remoteId: "
-                + remoteId + ", modifiedAt: " + modifiedAt + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

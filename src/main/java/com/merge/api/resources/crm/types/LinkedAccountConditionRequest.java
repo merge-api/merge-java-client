@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -63,8 +64,7 @@ public final class LinkedAccountConditionRequest {
 
     @Override
     public String toString() {
-        return "LinkedAccountConditionRequest{" + "conditionSchemaId: " + conditionSchemaId + ", operator: " + operator
-                + ", value: " + value + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static ConditionSchemaIdStage builder() {

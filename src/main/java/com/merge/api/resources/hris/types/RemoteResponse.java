@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -110,9 +111,7 @@ public final class RemoteResponse {
 
     @Override
     public String toString() {
-        return "RemoteResponse{" + "method: " + method + ", path: " + path + ", status: " + status + ", response: "
-                + response + ", responseHeaders: " + responseHeaders + ", responseType: " + responseType + ", headers: "
-                + headers + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static MethodStage builder() {

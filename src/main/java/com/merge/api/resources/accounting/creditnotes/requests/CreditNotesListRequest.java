@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.CreditNotesListRequestExpand;
 import com.merge.api.resources.accounting.types.CreditNotesListRequestRemoteFields;
 import com.merge.api.resources.accounting.types.CreditNotesListRequestShowEnumOrigins;
@@ -245,13 +246,7 @@ public final class CreditNotesListRequest {
 
     @Override
     public String toString() {
-        return "CreditNotesListRequest{" + "companyId: " + companyId + ", createdAfter: " + createdAfter
-                + ", createdBefore: " + createdBefore + ", cursor: " + cursor + ", expand: " + expand
-                + ", includeDeletedData: " + includeDeletedData + ", includeRemoteData: " + includeRemoteData
-                + ", modifiedAfter: " + modifiedAfter + ", modifiedBefore: " + modifiedBefore + ", pageSize: "
-                + pageSize + ", remoteFields: " + remoteFields + ", remoteId: " + remoteId + ", showEnumOrigins: "
-                + showEnumOrigins + ", transactionDateAfter: " + transactionDateAfter + ", transactionDateBefore: "
-                + transactionDateBefore + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

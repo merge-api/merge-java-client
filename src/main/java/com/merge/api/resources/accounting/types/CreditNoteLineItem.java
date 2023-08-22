@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -227,11 +228,7 @@ public final class CreditNoteLineItem {
 
     @Override
     public String toString() {
-        return "CreditNoteLineItem{" + "item: " + item + ", name: " + name + ", description: " + description
-                + ", quantity: " + quantity + ", memo: " + memo + ", unitPrice: " + unitPrice + ", taxRate: " + taxRate
-                + ", totalLineAmount: " + totalLineAmount + ", trackingCategory: " + trackingCategory
-                + ", trackingCategories: " + trackingCategories + ", account: " + account + ", company: " + company
-                + ", remoteId: " + remoteId + ", modifiedAt: " + modifiedAt + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {

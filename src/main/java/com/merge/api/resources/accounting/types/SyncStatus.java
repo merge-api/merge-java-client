@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -109,9 +110,7 @@ public final class SyncStatus {
 
     @Override
     public String toString() {
-        return "SyncStatus{" + "modelName: " + modelName + ", modelId: " + modelId + ", lastSyncStart: " + lastSyncStart
-                + ", nextSyncStart: " + nextSyncStart + ", status: " + status + ", isInitialSync: " + isInitialSync
-                + ", selectiveSyncConfigurationsUsage: " + selectiveSyncConfigurationsUsage + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static ModelNameStage builder() {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -183,10 +184,7 @@ public final class FileRequest {
 
     @Override
     public String toString() {
-        return "FileRequest{" + "name: " + name + ", fileUrl: " + fileUrl + ", fileThumbnailUrl: " + fileThumbnailUrl
-                + ", size: " + size + ", mimeType: " + mimeType + ", description: " + description + ", folder: "
-                + folder + ", permissions: " + permissions + ", drive: " + drive + ", integrationParams: "
-                + integrationParams + ", linkedAccountParams: " + linkedAccountParams + "}";
+        return ObjectMappers.stringify(this);
     }
 
     public static Builder builder() {
