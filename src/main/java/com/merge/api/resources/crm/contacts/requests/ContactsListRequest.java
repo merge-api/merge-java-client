@@ -22,6 +22,8 @@ public final class ContactsListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> emailAddresses;
+
     private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
@@ -36,6 +38,8 @@ public final class ContactsListRequest {
 
     private final Optional<Integer> pageSize;
 
+    private final Optional<String> phoneNumbers;
+
     private final Optional<String> remoteId;
 
     private ContactsListRequest(
@@ -43,6 +47,7 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> emailAddresses,
             Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
@@ -50,11 +55,13 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
+            Optional<String> phoneNumbers,
             Optional<String> remoteId) {
         this.accountId = accountId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.emailAddresses = emailAddresses;
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
@@ -62,6 +69,7 @@ public final class ContactsListRequest {
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
+        this.phoneNumbers = phoneNumbers;
         this.remoteId = remoteId;
     }
 
@@ -95,6 +103,14 @@ public final class ContactsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return contacts matching the email addresses; multiple email_addresses can be separated by commas.
+     */
+    @JsonProperty("email_addresses")
+    public Optional<String> getEmailAddresses() {
+        return emailAddresses;
     }
 
     /**
@@ -154,6 +170,14 @@ public final class ContactsListRequest {
     }
 
     /**
+     * @return If provided, will only return contacts matching the phone numbers; multiple phone numbers can be separated by commas.
+     */
+    @JsonProperty("phone_numbers")
+    public Optional<String> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    /**
      * @return The API provider's ID for the given object.
      */
     @JsonProperty("remote_id")
@@ -172,6 +196,7 @@ public final class ContactsListRequest {
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && emailAddresses.equals(other.emailAddresses)
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
@@ -179,6 +204,7 @@ public final class ContactsListRequest {
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
+                && phoneNumbers.equals(other.phoneNumbers)
                 && remoteId.equals(other.remoteId);
     }
 
@@ -189,6 +215,7 @@ public final class ContactsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.emailAddresses,
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
@@ -196,6 +223,7 @@ public final class ContactsListRequest {
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
+                this.phoneNumbers,
                 this.remoteId);
     }
 
@@ -218,6 +246,8 @@ public final class ContactsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> emailAddresses = Optional.empty();
+
         private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
@@ -232,6 +262,8 @@ public final class ContactsListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
+        private Optional<String> phoneNumbers = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Builder() {}
@@ -241,6 +273,7 @@ public final class ContactsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            emailAddresses(other.getEmailAddresses());
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
@@ -248,6 +281,7 @@ public final class ContactsListRequest {
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
+            phoneNumbers(other.getPhoneNumbers());
             remoteId(other.getRemoteId());
             return this;
         }
@@ -293,6 +327,17 @@ public final class ContactsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.of(cursor);
+            return this;
+        }
+
+        @JsonSetter(value = "email_addresses", nulls = Nulls.SKIP)
+        public Builder emailAddresses(Optional<String> emailAddresses) {
+            this.emailAddresses = emailAddresses;
+            return this;
+        }
+
+        public Builder emailAddresses(String emailAddresses) {
+            this.emailAddresses = Optional.of(emailAddresses);
             return this;
         }
 
@@ -373,6 +418,17 @@ public final class ContactsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
+        public Builder phoneNumbers(Optional<String> phoneNumbers) {
+            this.phoneNumbers = phoneNumbers;
+            return this;
+        }
+
+        public Builder phoneNumbers(String phoneNumbers) {
+            this.phoneNumbers = Optional.of(phoneNumbers);
+            return this;
+        }
+
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -390,6 +446,7 @@ public final class ContactsListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    emailAddresses,
                     expand,
                     includeDeletedData,
                     includeRemoteData,
@@ -397,6 +454,7 @@ public final class ContactsListRequest {
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,
+                    phoneNumbers,
                     remoteId);
         }
     }

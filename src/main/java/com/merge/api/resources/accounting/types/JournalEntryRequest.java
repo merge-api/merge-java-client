@@ -29,7 +29,11 @@ public final class JournalEntryRequest {
 
     private final Optional<JournalEntryRequestCompany> company;
 
+    private final Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories;
+
     private final Optional<List<JournalLineRequest>> lines;
+
+    private final Optional<String> journalNumber;
 
     private final Optional<JournalEntryRequestPostingStatus> postingStatus;
 
@@ -44,7 +48,9 @@ public final class JournalEntryRequest {
             Optional<JournalEntryRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<JournalEntryRequestCompany> company,
+            Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<List<JournalLineRequest>> lines,
+            Optional<String> journalNumber,
             Optional<JournalEntryRequestPostingStatus> postingStatus,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -54,7 +60,9 @@ public final class JournalEntryRequest {
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
+        this.trackingCategories = trackingCategories;
         this.lines = lines;
+        this.journalNumber = journalNumber;
         this.postingStatus = postingStatus;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
@@ -416,9 +424,22 @@ public final class JournalEntryRequest {
         return company;
     }
 
+    @JsonProperty("tracking_categories")
+    public Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> getTrackingCategories() {
+        return trackingCategories;
+    }
+
     @JsonProperty("lines")
     public Optional<List<JournalLineRequest>> getLines() {
         return lines;
+    }
+
+    /**
+     * @return Reference number for identifying journal entries.
+     */
+    @JsonProperty("journal_number")
+    public Optional<String> getJournalNumber() {
+        return journalNumber;
     }
 
     /**
@@ -456,7 +477,9 @@ public final class JournalEntryRequest {
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
+                && trackingCategories.equals(other.trackingCategories)
                 && lines.equals(other.lines)
+                && journalNumber.equals(other.journalNumber)
                 && postingStatus.equals(other.postingStatus)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
@@ -471,7 +494,9 @@ public final class JournalEntryRequest {
                 this.currency,
                 this.exchangeRate,
                 this.company,
+                this.trackingCategories,
                 this.lines,
+                this.journalNumber,
                 this.postingStatus,
                 this.integrationParams,
                 this.linkedAccountParams);
@@ -500,7 +525,12 @@ public final class JournalEntryRequest {
 
         private Optional<JournalEntryRequestCompany> company = Optional.empty();
 
+        private Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories =
+                Optional.empty();
+
         private Optional<List<JournalLineRequest>> lines = Optional.empty();
+
+        private Optional<String> journalNumber = Optional.empty();
 
         private Optional<JournalEntryRequestPostingStatus> postingStatus = Optional.empty();
 
@@ -517,7 +547,9 @@ public final class JournalEntryRequest {
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
+            trackingCategories(other.getTrackingCategories());
             lines(other.getLines());
+            journalNumber(other.getJournalNumber());
             postingStatus(other.getPostingStatus());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
@@ -590,6 +622,19 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
+        public Builder trackingCategories(
+                Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
+            return this;
+        }
+
+        public Builder trackingCategories(
+                List<Optional<JournalEntryRequestTrackingCategoriesItem>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
+            return this;
+        }
+
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
         public Builder lines(Optional<List<JournalLineRequest>> lines) {
             this.lines = lines;
@@ -598,6 +643,17 @@ public final class JournalEntryRequest {
 
         public Builder lines(List<JournalLineRequest> lines) {
             this.lines = Optional.of(lines);
+            return this;
+        }
+
+        @JsonSetter(value = "journal_number", nulls = Nulls.SKIP)
+        public Builder journalNumber(Optional<String> journalNumber) {
+            this.journalNumber = journalNumber;
+            return this;
+        }
+
+        public Builder journalNumber(String journalNumber) {
+            this.journalNumber = Optional.of(journalNumber);
             return this;
         }
 
@@ -642,7 +698,9 @@ public final class JournalEntryRequest {
                     currency,
                     exchangeRate,
                     company,
+                    trackingCategories,
                     lines,
+                    journalNumber,
                     postingStatus,
                     integrationParams,
                     linkedAccountParams);

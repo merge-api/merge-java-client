@@ -43,6 +43,8 @@ public final class Invoice {
 
     private final Optional<Double> subTotal;
 
+    private final Optional<InvoiceStatusEnum> status;
+
     private final Optional<Double> totalTaxAmount;
 
     private final Optional<Double> totalAmount;
@@ -81,6 +83,7 @@ public final class Invoice {
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
+            Optional<InvoiceStatusEnum> status,
             Optional<Double> totalTaxAmount,
             Optional<Double> totalAmount,
             Optional<Double> balance,
@@ -106,6 +109,7 @@ public final class Invoice {
         this.exchangeRate = exchangeRate;
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
+        this.status = status;
         this.totalTaxAmount = totalTaxAmount;
         this.totalAmount = totalAmount;
         this.balance = balance;
@@ -534,6 +538,22 @@ public final class Invoice {
     }
 
     /**
+     * @return The status of the invoice.
+     * <ul>
+     * <li><code>PAID</code> - PAID</li>
+     * <li><code>DRAFT</code> - DRAFT</li>
+     * <li><code>SUBMITTED</code> - SUBMITTED</li>
+     * <li><code>PARTIALLY_PAID</code> - PARTIALLY_PAID</li>
+     * <li><code>OPEN</code> - OPEN</li>
+     * <li><code>VOID</code> - VOID</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<InvoiceStatusEnum> getStatus() {
+        return status;
+    }
+
+    /**
      * @return The total amount being paid in taxes.
      */
     @JsonProperty("total_tax_amount")
@@ -634,6 +654,7 @@ public final class Invoice {
                 && exchangeRate.equals(other.exchangeRate)
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
+                && status.equals(other.status)
                 && totalTaxAmount.equals(other.totalTaxAmount)
                 && totalAmount.equals(other.totalAmount)
                 && balance.equals(other.balance)
@@ -664,6 +685,7 @@ public final class Invoice {
                 this.exchangeRate,
                 this.totalDiscount,
                 this.subTotal,
+                this.status,
                 this.totalTaxAmount,
                 this.totalAmount,
                 this.balance,
@@ -715,6 +737,8 @@ public final class Invoice {
 
         private Optional<Double> subTotal = Optional.empty();
 
+        private Optional<InvoiceStatusEnum> status = Optional.empty();
+
         private Optional<Double> totalTaxAmount = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
@@ -755,6 +779,7 @@ public final class Invoice {
             exchangeRate(other.getExchangeRate());
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
+            status(other.getStatus());
             totalTaxAmount(other.getTotalTaxAmount());
             totalAmount(other.getTotalAmount());
             balance(other.getBalance());
@@ -913,6 +938,17 @@ public final class Invoice {
             return this;
         }
 
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<InvoiceStatusEnum> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(InvoiceStatusEnum status) {
+            this.status = Optional.of(status);
+            return this;
+        }
+
         @JsonSetter(value = "total_tax_amount", nulls = Nulls.SKIP)
         public Builder totalTaxAmount(Optional<Double> totalTaxAmount) {
             this.totalTaxAmount = totalTaxAmount;
@@ -1060,6 +1096,7 @@ public final class Invoice {
                     exchangeRate,
                     totalDiscount,
                     subTotal,
+                    status,
                     totalTaxAmount,
                     totalAmount,
                     balance,

@@ -60,6 +60,10 @@ public class EmployeesClient {
             _httpUrl.addQueryParameter(
                     "employment_status", request.getEmploymentStatus().get().toString());
         }
+        if (request.getEmploymentType().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "employment_type", request.getEmploymentType().get());
+        }
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
         }
@@ -68,6 +72,10 @@ public class EmployeesClient {
         }
         if (request.getGroups().isPresent()) {
             _httpUrl.addQueryParameter("groups", request.getGroups().get());
+        }
+        if (request.getHomeLocationId().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "home_location_id", request.getHomeLocationId().get());
         }
         if (request.getIncludeDeletedData().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -82,6 +90,9 @@ public class EmployeesClient {
             _httpUrl.addQueryParameter(
                     "include_sensitive_fields",
                     request.getIncludeSensitiveFields().get().toString());
+        }
+        if (request.getJobTitle().isPresent()) {
+            _httpUrl.addQueryParameter("job_title", request.getJobTitle().get());
         }
         if (request.getLastName().isPresent()) {
             _httpUrl.addQueryParameter("last_name", request.getLastName().get());

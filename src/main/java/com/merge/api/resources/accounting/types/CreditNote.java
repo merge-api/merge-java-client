@@ -51,6 +51,8 @@ public final class CreditNote {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<List<CreditNoteApplyLine>> appliedToLines;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -75,6 +77,7 @@ public final class CreditNote {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<CreditNotePaymentsItem>>> payments,
             Optional<Boolean> remoteWasDeleted,
+            Optional<List<CreditNoteApplyLine>> appliedToLines,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -95,6 +98,7 @@ public final class CreditNote {
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.payments = payments;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.appliedToLines = appliedToLines;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -540,6 +544,11 @@ public final class CreditNote {
         return remoteWasDeleted;
     }
 
+    @JsonProperty("applied_to_lines")
+    public Optional<List<CreditNoteApplyLine>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -582,6 +591,7 @@ public final class CreditNote {
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && payments.equals(other.payments)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && appliedToLines.equals(other.appliedToLines)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -607,6 +617,7 @@ public final class CreditNote {
                 this.remoteUpdatedAt,
                 this.payments,
                 this.remoteWasDeleted,
+                this.appliedToLines,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -657,6 +668,8 @@ public final class CreditNote {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<List<CreditNoteApplyLine>> appliedToLines = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -683,6 +696,7 @@ public final class CreditNote {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             payments(other.getPayments());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            appliedToLines(other.getAppliedToLines());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -877,6 +891,17 @@ public final class CreditNote {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<CreditNoteApplyLine>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<CreditNoteApplyLine> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -929,6 +954,7 @@ public final class CreditNote {
                     remoteUpdatedAt,
                     payments,
                     remoteWasDeleted,
+                    appliedToLines,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

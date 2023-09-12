@@ -41,6 +41,8 @@ public final class Payment {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<List<PaymentLineItem>> appliedToLines;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -60,6 +62,7 @@ public final class Payment {
             Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
+            Optional<List<PaymentLineItem>> appliedToLines,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -75,6 +78,7 @@ public final class Payment {
         this.trackingCategories = trackingCategories;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.appliedToLines = appliedToLines;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -478,6 +482,11 @@ public final class Payment {
         return remoteWasDeleted;
     }
 
+    @JsonProperty("applied_to_lines")
+    public Optional<List<PaymentLineItem>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -515,6 +524,7 @@ public final class Payment {
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && appliedToLines.equals(other.appliedToLines)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -535,6 +545,7 @@ public final class Payment {
                 this.trackingCategories,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
+                this.appliedToLines,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -575,6 +586,8 @@ public final class Payment {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<List<PaymentLineItem>> appliedToLines = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -596,6 +609,7 @@ public final class Payment {
             trackingCategories(other.getTrackingCategories());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            appliedToLines(other.getAppliedToLines());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -734,6 +748,17 @@ public final class Payment {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<PaymentLineItem>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<PaymentLineItem> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -781,6 +806,7 @@ public final class Payment {
                     trackingCategories,
                     remoteUpdatedAt,
                     remoteWasDeleted,
+                    appliedToLines,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

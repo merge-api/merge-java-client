@@ -30,17 +30,23 @@ public final class EmployeesListRequest {
 
     private final Optional<EmployeesListRequestEmploymentStatus> employmentStatus;
 
+    private final Optional<String> employmentType;
+
     private final Optional<EmployeesListRequestExpand> expand;
 
     private final Optional<String> firstName;
 
     private final Optional<String> groups;
 
+    private final Optional<String> homeLocationId;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeSensitiveFields;
+
+    private final Optional<String> jobTitle;
 
     private final Optional<String> lastName;
 
@@ -83,12 +89,15 @@ public final class EmployeesListRequest {
             Optional<String> cursor,
             Optional<String> displayFullName,
             Optional<EmployeesListRequestEmploymentStatus> employmentStatus,
+            Optional<String> employmentType,
             Optional<EmployeesListRequestExpand> expand,
             Optional<String> firstName,
             Optional<String> groups,
+            Optional<String> homeLocationId,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<String> jobTitle,
             Optional<String> lastName,
             Optional<String> managerId,
             Optional<OffsetDateTime> modifiedAfter,
@@ -112,12 +121,15 @@ public final class EmployeesListRequest {
         this.cursor = cursor;
         this.displayFullName = displayFullName;
         this.employmentStatus = employmentStatus;
+        this.employmentType = employmentType;
         this.expand = expand;
         this.firstName = firstName;
         this.groups = groups;
+        this.homeLocationId = homeLocationId;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.jobTitle = jobTitle;
         this.lastName = lastName;
         this.managerId = managerId;
         this.modifiedAfter = modifiedAfter;
@@ -191,6 +203,14 @@ public final class EmployeesListRequest {
     }
 
     /**
+     * @return If provided, will only return employees that have an employment of the specified employment_type.
+     */
+    @JsonProperty("employment_type")
+    public Optional<String> getEmploymentType() {
+        return employmentType;
+    }
+
+    /**
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
@@ -215,6 +235,14 @@ public final class EmployeesListRequest {
     }
 
     /**
+     * @return If provided, will only return employees for this home location.
+     */
+    @JsonProperty("home_location_id")
+    public Optional<String> getHomeLocationId() {
+        return homeLocationId;
+    }
+
+    /**
      * @return Whether to include data that was marked as deleted by third party webhooks.
      */
     @JsonProperty("include_deleted_data")
@@ -236,6 +264,14 @@ public final class EmployeesListRequest {
     @JsonProperty("include_sensitive_fields")
     public Optional<Boolean> getIncludeSensitiveFields() {
         return includeSensitiveFields;
+    }
+
+    /**
+     * @return If provided, will only return employees that have an employment of the specified job_title.
+     */
+    @JsonProperty("job_title")
+    public Optional<String> getJobTitle() {
+        return jobTitle;
     }
 
     /**
@@ -387,12 +423,15 @@ public final class EmployeesListRequest {
                 && cursor.equals(other.cursor)
                 && displayFullName.equals(other.displayFullName)
                 && employmentStatus.equals(other.employmentStatus)
+                && employmentType.equals(other.employmentType)
                 && expand.equals(other.expand)
                 && firstName.equals(other.firstName)
                 && groups.equals(other.groups)
+                && homeLocationId.equals(other.homeLocationId)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && jobTitle.equals(other.jobTitle)
                 && lastName.equals(other.lastName)
                 && managerId.equals(other.managerId)
                 && modifiedAfter.equals(other.modifiedAfter)
@@ -421,12 +460,15 @@ public final class EmployeesListRequest {
                 this.cursor,
                 this.displayFullName,
                 this.employmentStatus,
+                this.employmentType,
                 this.expand,
                 this.firstName,
                 this.groups,
+                this.homeLocationId,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
+                this.jobTitle,
                 this.lastName,
                 this.managerId,
                 this.modifiedAfter,
@@ -469,17 +511,23 @@ public final class EmployeesListRequest {
 
         private Optional<EmployeesListRequestEmploymentStatus> employmentStatus = Optional.empty();
 
+        private Optional<String> employmentType = Optional.empty();
+
         private Optional<EmployeesListRequestExpand> expand = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
         private Optional<String> groups = Optional.empty();
 
+        private Optional<String> homeLocationId = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
+
+        private Optional<String> jobTitle = Optional.empty();
 
         private Optional<String> lastName = Optional.empty();
 
@@ -524,12 +572,15 @@ public final class EmployeesListRequest {
             cursor(other.getCursor());
             displayFullName(other.getDisplayFullName());
             employmentStatus(other.getEmploymentStatus());
+            employmentType(other.getEmploymentType());
             expand(other.getExpand());
             firstName(other.getFirstName());
             groups(other.getGroups());
+            homeLocationId(other.getHomeLocationId());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            jobTitle(other.getJobTitle());
             lastName(other.getLastName());
             managerId(other.getManagerId());
             modifiedAfter(other.getModifiedAfter());
@@ -616,6 +667,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "employment_type", nulls = Nulls.SKIP)
+        public Builder employmentType(Optional<String> employmentType) {
+            this.employmentType = employmentType;
+            return this;
+        }
+
+        public Builder employmentType(String employmentType) {
+            this.employmentType = Optional.of(employmentType);
+            return this;
+        }
+
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<EmployeesListRequestExpand> expand) {
             this.expand = expand;
@@ -649,6 +711,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "home_location_id", nulls = Nulls.SKIP)
+        public Builder homeLocationId(Optional<String> homeLocationId) {
+            this.homeLocationId = homeLocationId;
+            return this;
+        }
+
+        public Builder homeLocationId(String homeLocationId) {
+            this.homeLocationId = Optional.of(homeLocationId);
+            return this;
+        }
+
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -679,6 +752,17 @@ public final class EmployeesListRequest {
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
             this.includeSensitiveFields = Optional.of(includeSensitiveFields);
+            return this;
+        }
+
+        @JsonSetter(value = "job_title", nulls = Nulls.SKIP)
+        public Builder jobTitle(Optional<String> jobTitle) {
+            this.jobTitle = jobTitle;
+            return this;
+        }
+
+        public Builder jobTitle(String jobTitle) {
+            this.jobTitle = Optional.of(jobTitle);
             return this;
         }
 
@@ -877,12 +961,15 @@ public final class EmployeesListRequest {
                     cursor,
                     displayFullName,
                     employmentStatus,
+                    employmentType,
                     expand,
                     firstName,
                     groups,
+                    homeLocationId,
                     includeDeletedData,
                     includeRemoteData,
                     includeSensitiveFields,
+                    jobTitle,
                     lastName,
                     managerId,
                     modifiedAfter,

@@ -52,7 +52,7 @@ public class UsersClient {
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
         if (request.getIsMe().isPresent()) {
-            _httpUrl.addQueryParameter("is_me", request.getIsMe().get().toString());
+            _httpUrl.addQueryParameter("is_me", request.getIsMe().get());
         }
         if (request.getModifiedAfter().isPresent()) {
             _httpUrl.addQueryParameter(

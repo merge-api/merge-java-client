@@ -39,6 +39,8 @@ public final class PurchaseOrderRequest {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories;
+
     private final Optional<List<PurchaseOrderLineItemRequest>> lineItems;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
@@ -57,6 +59,7 @@ public final class PurchaseOrderRequest {
             Optional<Double> totalAmount,
             Optional<PurchaseOrderRequestCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<List<PurchaseOrderLineItemRequest>> lineItems,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -71,6 +74,7 @@ public final class PurchaseOrderRequest {
         this.totalAmount = totalAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.trackingCategories = trackingCategories;
         this.lineItems = lineItems;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
@@ -479,6 +483,11 @@ public final class PurchaseOrderRequest {
         return exchangeRate;
     }
 
+    @JsonProperty("tracking_categories")
+    public Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> getTrackingCategories() {
+        return trackingCategories;
+    }
+
     @JsonProperty("line_items")
     public Optional<List<PurchaseOrderLineItemRequest>> getLineItems() {
         return lineItems;
@@ -512,6 +521,7 @@ public final class PurchaseOrderRequest {
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && trackingCategories.equals(other.trackingCategories)
                 && lineItems.equals(other.lineItems)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
@@ -531,6 +541,7 @@ public final class PurchaseOrderRequest {
                 this.totalAmount,
                 this.currency,
                 this.exchangeRate,
+                this.trackingCategories,
                 this.lineItems,
                 this.integrationParams,
                 this.linkedAccountParams);
@@ -569,6 +580,9 @@ public final class PurchaseOrderRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories =
+                Optional.empty();
+
         private Optional<List<PurchaseOrderLineItemRequest>> lineItems = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
@@ -589,6 +603,7 @@ public final class PurchaseOrderRequest {
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            trackingCategories(other.getTrackingCategories());
             lineItems(other.getLineItems());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
@@ -716,6 +731,19 @@ public final class PurchaseOrderRequest {
             return this;
         }
 
+        @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
+        public Builder trackingCategories(
+                Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
+            return this;
+        }
+
+        public Builder trackingCategories(
+                List<Optional<PurchaseOrderRequestTrackingCategoriesItem>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
         public Builder lineItems(Optional<List<PurchaseOrderLineItemRequest>> lineItems) {
             this.lineItems = lineItems;
@@ -762,6 +790,7 @@ public final class PurchaseOrderRequest {
                     totalAmount,
                     currency,
                     exchangeRate,
+                    trackingCategories,
                     lineItems,
                     integrationParams,
                     linkedAccountParams);

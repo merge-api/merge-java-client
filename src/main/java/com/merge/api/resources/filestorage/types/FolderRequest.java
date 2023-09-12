@@ -8,8 +8,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,7 +27,7 @@ public final class FolderRequest {
 
     private final Optional<String> drive;
 
-    private final List<String> permissions;
+    private final Optional<FolderRequestPermissions> permissions;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -42,7 +40,7 @@ public final class FolderRequest {
             Optional<String> description,
             Optional<String> parentFolder,
             Optional<String> drive,
-            List<String> permissions,
+            Optional<FolderRequestPermissions> permissions,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.name = name;
@@ -108,7 +106,7 @@ public final class FolderRequest {
      * @return The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /folders</code>.
      */
     @JsonProperty("permissions")
-    public List<String> getPermissions() {
+    public Optional<FolderRequestPermissions> getPermissions() {
         return permissions;
     }
 
@@ -177,7 +175,7 @@ public final class FolderRequest {
 
         private Optional<String> drive = Optional.empty();
 
-        private List<String> permissions = new ArrayList<>();
+        private Optional<FolderRequestPermissions> permissions = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -265,19 +263,13 @@ public final class FolderRequest {
         }
 
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
-        public Builder permissions(List<String> permissions) {
-            this.permissions.clear();
-            this.permissions.addAll(permissions);
+        public Builder permissions(Optional<FolderRequestPermissions> permissions) {
+            this.permissions = permissions;
             return this;
         }
 
-        public Builder addPermissions(String permissions) {
-            this.permissions.add(permissions);
-            return this;
-        }
-
-        public Builder addAllPermissions(List<String> permissions) {
-            this.permissions.addAll(permissions);
+        public Builder permissions(FolderRequestPermissions permissions) {
+            this.permissions = Optional.of(permissions);
             return this;
         }
 

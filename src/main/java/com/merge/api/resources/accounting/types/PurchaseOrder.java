@@ -21,6 +21,8 @@ public final class PurchaseOrder {
 
     private final Optional<OffsetDateTime> issueDate;
 
+    private final Optional<String> purchaseOrderNumber;
+
     private final Optional<OffsetDateTime> deliveryDate;
 
     private final Optional<PurchaseOrderDeliveryAddress> deliveryAddress;
@@ -62,6 +64,7 @@ public final class PurchaseOrder {
     private PurchaseOrder(
             Optional<PurchaseOrderStatus> status,
             Optional<OffsetDateTime> issueDate,
+            Optional<String> purchaseOrderNumber,
             Optional<OffsetDateTime> deliveryDate,
             Optional<PurchaseOrderDeliveryAddress> deliveryAddress,
             Optional<String> customer,
@@ -83,6 +86,7 @@ public final class PurchaseOrder {
             Optional<List<RemoteData>> remoteData) {
         this.status = status;
         this.issueDate = issueDate;
+        this.purchaseOrderNumber = purchaseOrderNumber;
         this.deliveryDate = deliveryDate;
         this.deliveryAddress = deliveryAddress;
         this.customer = customer;
@@ -125,6 +129,14 @@ public final class PurchaseOrder {
     @JsonProperty("issue_date")
     public Optional<OffsetDateTime> getIssueDate() {
         return issueDate;
+    }
+
+    /**
+     * @return The human-readable number of the purchase order.
+     */
+    @JsonProperty("purchase_order_number")
+    public Optional<String> getPurchaseOrderNumber() {
+        return purchaseOrderNumber;
     }
 
     /**
@@ -581,6 +593,7 @@ public final class PurchaseOrder {
     private boolean equalTo(PurchaseOrder other) {
         return status.equals(other.status)
                 && issueDate.equals(other.issueDate)
+                && purchaseOrderNumber.equals(other.purchaseOrderNumber)
                 && deliveryDate.equals(other.deliveryDate)
                 && deliveryAddress.equals(other.deliveryAddress)
                 && customer.equals(other.customer)
@@ -607,6 +620,7 @@ public final class PurchaseOrder {
         return Objects.hash(
                 this.status,
                 this.issueDate,
+                this.purchaseOrderNumber,
                 this.deliveryDate,
                 this.deliveryAddress,
                 this.customer,
@@ -642,6 +656,8 @@ public final class PurchaseOrder {
         private Optional<PurchaseOrderStatus> status = Optional.empty();
 
         private Optional<OffsetDateTime> issueDate = Optional.empty();
+
+        private Optional<String> purchaseOrderNumber = Optional.empty();
 
         private Optional<OffsetDateTime> deliveryDate = Optional.empty();
 
@@ -686,6 +702,7 @@ public final class PurchaseOrder {
         public Builder from(PurchaseOrder other) {
             status(other.getStatus());
             issueDate(other.getIssueDate());
+            purchaseOrderNumber(other.getPurchaseOrderNumber());
             deliveryDate(other.getDeliveryDate());
             deliveryAddress(other.getDeliveryAddress());
             customer(other.getCustomer());
@@ -727,6 +744,17 @@ public final class PurchaseOrder {
 
         public Builder issueDate(OffsetDateTime issueDate) {
             this.issueDate = Optional.of(issueDate);
+            return this;
+        }
+
+        @JsonSetter(value = "purchase_order_number", nulls = Nulls.SKIP)
+        public Builder purchaseOrderNumber(Optional<String> purchaseOrderNumber) {
+            this.purchaseOrderNumber = purchaseOrderNumber;
+            return this;
+        }
+
+        public Builder purchaseOrderNumber(String purchaseOrderNumber) {
+            this.purchaseOrderNumber = Optional.of(purchaseOrderNumber);
             return this;
         }
 
@@ -944,6 +972,7 @@ public final class PurchaseOrder {
             return new PurchaseOrder(
                     status,
                     issueDate,
+                    purchaseOrderNumber,
                     deliveryDate,
                     deliveryAddress,
                     customer,

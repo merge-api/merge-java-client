@@ -29,6 +29,8 @@ public final class Employee {
 
     private final Optional<String> lastName;
 
+    private final Optional<String> preferredName;
+
     private final Optional<String> displayFullName;
 
     private final Optional<String> username;
@@ -92,6 +94,7 @@ public final class Employee {
             Optional<EmployeeCompany> company,
             Optional<String> firstName,
             Optional<String> lastName,
+            Optional<String> preferredName,
             Optional<String> displayFullName,
             Optional<String> username,
             Optional<List<Optional<EmployeeGroupsItem>>> groups,
@@ -126,6 +129,7 @@ public final class Employee {
         this.company = company;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.preferredName = preferredName;
         this.displayFullName = displayFullName;
         this.username = username;
         this.groups = groups;
@@ -199,6 +203,14 @@ public final class Employee {
     @JsonProperty("last_name")
     public Optional<String> getLastName() {
         return lastName;
+    }
+
+    /**
+     * @return The employee's preferred first name.
+     */
+    @JsonProperty("preferred_name")
+    public Optional<String> getPreferredName() {
+        return preferredName;
     }
 
     /**
@@ -455,6 +467,7 @@ public final class Employee {
                 && company.equals(other.company)
                 && firstName.equals(other.firstName)
                 && lastName.equals(other.lastName)
+                && preferredName.equals(other.preferredName)
                 && displayFullName.equals(other.displayFullName)
                 && username.equals(other.username)
                 && groups.equals(other.groups)
@@ -494,6 +507,7 @@ public final class Employee {
                 this.company,
                 this.firstName,
                 this.lastName,
+                this.preferredName,
                 this.displayFullName,
                 this.username,
                 this.groups,
@@ -546,6 +560,8 @@ public final class Employee {
         private Optional<String> firstName = Optional.empty();
 
         private Optional<String> lastName = Optional.empty();
+
+        private Optional<String> preferredName = Optional.empty();
 
         private Optional<String> displayFullName = Optional.empty();
 
@@ -612,6 +628,7 @@ public final class Employee {
             company(other.getCompany());
             firstName(other.getFirstName());
             lastName(other.getLastName());
+            preferredName(other.getPreferredName());
             displayFullName(other.getDisplayFullName());
             username(other.getUsername());
             groups(other.getGroups());
@@ -706,6 +723,17 @@ public final class Employee {
 
         public Builder lastName(String lastName) {
             this.lastName = Optional.of(lastName);
+            return this;
+        }
+
+        @JsonSetter(value = "preferred_name", nulls = Nulls.SKIP)
+        public Builder preferredName(Optional<String> preferredName) {
+            this.preferredName = preferredName;
+            return this;
+        }
+
+        public Builder preferredName(String preferredName) {
+            this.preferredName = Optional.of(preferredName);
             return this;
         }
 
@@ -1025,6 +1053,7 @@ public final class Employee {
                     company,
                     firstName,
                     lastName,
+                    preferredName,
                     displayFullName,
                     username,
                     groups,

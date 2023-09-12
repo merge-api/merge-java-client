@@ -9,7 +9,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -36,7 +35,7 @@ public final class File {
 
     private final Optional<String> folder;
 
-    private final List<String> permissions;
+    private final Optional<FilePermissions> permissions;
 
     private final Optional<String> drive;
 
@@ -62,7 +61,7 @@ public final class File {
             Optional<String> mimeType,
             Optional<String> description,
             Optional<String> folder,
-            List<String> permissions,
+            Optional<FilePermissions> permissions,
             Optional<String> drive,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -162,7 +161,7 @@ public final class File {
      * @return The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /files</code>.
      */
     @JsonProperty("permissions")
-    public List<String> getPermissions() {
+    public Optional<FilePermissions> getPermissions() {
         return permissions;
     }
 
@@ -293,7 +292,7 @@ public final class File {
 
         private Optional<String> folder = Optional.empty();
 
-        private List<String> permissions = new ArrayList<>();
+        private Optional<FilePermissions> permissions = Optional.empty();
 
         private Optional<String> drive = Optional.empty();
 
@@ -432,19 +431,13 @@ public final class File {
         }
 
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
-        public Builder permissions(List<String> permissions) {
-            this.permissions.clear();
-            this.permissions.addAll(permissions);
+        public Builder permissions(Optional<FilePermissions> permissions) {
+            this.permissions = permissions;
             return this;
         }
 
-        public Builder addPermissions(String permissions) {
-            this.permissions.add(permissions);
-            return this;
-        }
-
-        public Builder addAllPermissions(List<String> permissions) {
-            this.permissions.addAll(permissions);
+        public Builder permissions(FilePermissions permissions) {
+            this.permissions = Optional.of(permissions);
             return this;
         }
 
