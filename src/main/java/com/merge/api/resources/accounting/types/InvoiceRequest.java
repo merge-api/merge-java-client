@@ -31,6 +31,8 @@ public final class InvoiceRequest {
 
     private final Optional<String> memo;
 
+    private final Optional<InvoiceRequestStatus> status;
+
     private final Optional<InvoiceRequestCompany> company;
 
     private final Optional<InvoiceRequestCurrency> currency;
@@ -65,6 +67,7 @@ public final class InvoiceRequest {
             Optional<OffsetDateTime> dueDate,
             Optional<OffsetDateTime> paidOnDate,
             Optional<String> memo,
+            Optional<InvoiceRequestStatus> status,
             Optional<InvoiceRequestCompany> company,
             Optional<InvoiceRequestCurrency> currency,
             Optional<String> exchangeRate,
@@ -85,6 +88,7 @@ public final class InvoiceRequest {
         this.dueDate = dueDate;
         this.paidOnDate = paidOnDate;
         this.memo = memo;
+        this.status = status;
         this.company = company;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
@@ -158,6 +162,22 @@ public final class InvoiceRequest {
     @JsonProperty("memo")
     public Optional<String> getMemo() {
         return memo;
+    }
+
+    /**
+     * @return The status of the invoice.
+     * <ul>
+     * <li><code>PAID</code> - PAID</li>
+     * <li><code>DRAFT</code> - DRAFT</li>
+     * <li><code>SUBMITTED</code> - SUBMITTED</li>
+     * <li><code>PARTIALLY_PAID</code> - PARTIALLY_PAID</li>
+     * <li><code>OPEN</code> - OPEN</li>
+     * <li><code>VOID</code> - VOID</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<InvoiceRequestStatus> getStatus() {
+        return status;
     }
 
     /**
@@ -574,6 +594,7 @@ public final class InvoiceRequest {
                 && dueDate.equals(other.dueDate)
                 && paidOnDate.equals(other.paidOnDate)
                 && memo.equals(other.memo)
+                && status.equals(other.status)
                 && company.equals(other.company)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
@@ -599,6 +620,7 @@ public final class InvoiceRequest {
                 this.dueDate,
                 this.paidOnDate,
                 this.memo,
+                this.status,
                 this.company,
                 this.currency,
                 this.exchangeRate,
@@ -639,6 +661,8 @@ public final class InvoiceRequest {
 
         private Optional<String> memo = Optional.empty();
 
+        private Optional<InvoiceRequestStatus> status = Optional.empty();
+
         private Optional<InvoiceRequestCompany> company = Optional.empty();
 
         private Optional<InvoiceRequestCurrency> currency = Optional.empty();
@@ -675,6 +699,7 @@ public final class InvoiceRequest {
             dueDate(other.getDueDate());
             paidOnDate(other.getPaidOnDate());
             memo(other.getMemo());
+            status(other.getStatus());
             company(other.getCompany());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
@@ -765,6 +790,17 @@ public final class InvoiceRequest {
 
         public Builder memo(String memo) {
             this.memo = Optional.of(memo);
+            return this;
+        }
+
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<InvoiceRequestStatus> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(InvoiceRequestStatus status) {
+            this.status = Optional.of(status);
             return this;
         }
 
@@ -921,6 +957,7 @@ public final class InvoiceRequest {
                     dueDate,
                     paidOnDate,
                     memo,
+                    status,
                     company,
                     currency,
                     exchangeRate,

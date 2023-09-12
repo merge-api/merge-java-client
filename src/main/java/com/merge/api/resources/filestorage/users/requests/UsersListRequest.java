@@ -24,7 +24,7 @@ public final class UsersListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
-    private final Optional<Boolean> isMe;
+    private final Optional<String> isMe;
 
     private final Optional<OffsetDateTime> modifiedAfter;
 
@@ -40,7 +40,7 @@ public final class UsersListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
-            Optional<Boolean> isMe,
+            Optional<String> isMe,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -101,7 +101,7 @@ public final class UsersListRequest {
      * @return If provided, will only return the user object for requestor.
      */
     @JsonProperty("is_me")
-    public Optional<Boolean> getIsMe() {
+    public Optional<String> getIsMe() {
         return isMe;
     }
 
@@ -192,7 +192,7 @@ public final class UsersListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
-        private Optional<Boolean> isMe = Optional.empty();
+        private Optional<String> isMe = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
@@ -274,12 +274,12 @@ public final class UsersListRequest {
         }
 
         @JsonSetter(value = "is_me", nulls = Nulls.SKIP)
-        public Builder isMe(Optional<Boolean> isMe) {
+        public Builder isMe(Optional<String> isMe) {
             this.isMe = isMe;
             return this;
         }
 
-        public Builder isMe(Boolean isMe) {
+        public Builder isMe(String isMe) {
             this.isMe = Optional.of(isMe);
             return this;
         }

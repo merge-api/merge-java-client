@@ -35,6 +35,8 @@ public final class JournalEntry {
 
     private final Optional<List<JournalLine>> lines;
 
+    private final Optional<String> journalNumber;
+
     private final Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -61,6 +63,7 @@ public final class JournalEntry {
             Optional<String> exchangeRate,
             Optional<JournalEntryCompany> company,
             Optional<List<JournalLine>> lines,
+            Optional<String> journalNumber,
             Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<JournalEntryPostingStatus> postingStatus,
@@ -78,6 +81,7 @@ public final class JournalEntry {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.lines = lines;
+        this.journalNumber = journalNumber;
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
         this.postingStatus = postingStatus;
@@ -465,6 +469,14 @@ public final class JournalEntry {
         return lines;
     }
 
+    /**
+     * @return Reference number for identifying journal entries.
+     */
+    @JsonProperty("journal_number")
+    public Optional<String> getJournalNumber() {
+        return journalNumber;
+    }
+
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -534,6 +546,7 @@ public final class JournalEntry {
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && lines.equals(other.lines)
+                && journalNumber.equals(other.journalNumber)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && postingStatus.equals(other.postingStatus)
@@ -556,6 +569,7 @@ public final class JournalEntry {
                 this.exchangeRate,
                 this.company,
                 this.lines,
+                this.journalNumber,
                 this.trackingCategories,
                 this.remoteWasDeleted,
                 this.postingStatus,
@@ -595,6 +609,8 @@ public final class JournalEntry {
 
         private Optional<List<JournalLine>> lines = Optional.empty();
 
+        private Optional<String> journalNumber = Optional.empty();
+
         private Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -623,6 +639,7 @@ public final class JournalEntry {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             lines(other.getLines());
+            journalNumber(other.getJournalNumber());
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
             postingStatus(other.getPostingStatus());
@@ -733,6 +750,17 @@ public final class JournalEntry {
             return this;
         }
 
+        @JsonSetter(value = "journal_number", nulls = Nulls.SKIP)
+        public Builder journalNumber(Optional<String> journalNumber) {
+            this.journalNumber = journalNumber;
+            return this;
+        }
+
+        public Builder journalNumber(String journalNumber) {
+            this.journalNumber = Optional.of(journalNumber);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(
                 Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories) {
@@ -833,6 +861,7 @@ public final class JournalEntry {
                     exchangeRate,
                     company,
                     lines,
+                    journalNumber,
                     trackingCategories,
                     remoteWasDeleted,
                     postingStatus,

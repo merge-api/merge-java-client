@@ -27,6 +27,10 @@ public final class Expense {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<Double> subTotal;
+
+    private final Optional<Double> totalTaxAmount;
+
     private final Optional<ExpenseCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -57,6 +61,8 @@ public final class Expense {
             Optional<ExpenseAccount> account,
             Optional<ExpenseContact> contact,
             Optional<Double> totalAmount,
+            Optional<Double> subTotal,
+            Optional<Double> totalTaxAmount,
             Optional<ExpenseCurrency> currency,
             Optional<String> exchangeRate,
             Optional<ExpenseCompany> company,
@@ -74,6 +80,8 @@ public final class Expense {
         this.account = account;
         this.contact = contact;
         this.totalAmount = totalAmount;
+        this.subTotal = subTotal;
+        this.totalTaxAmount = totalTaxAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
@@ -126,6 +134,22 @@ public final class Expense {
     @JsonProperty("total_amount")
     public Optional<Double> getTotalAmount() {
         return totalAmount;
+    }
+
+    /**
+     * @return The expense's total amount before tax.
+     */
+    @JsonProperty("sub_total")
+    public Optional<Double> getSubTotal() {
+        return subTotal;
+    }
+
+    /**
+     * @return The expense's total tax amount.
+     */
+    @JsonProperty("total_tax_amount")
+    public Optional<Double> getTotalTaxAmount() {
+        return totalTaxAmount;
     }
 
     /**
@@ -529,6 +553,8 @@ public final class Expense {
                 && account.equals(other.account)
                 && contact.equals(other.contact)
                 && totalAmount.equals(other.totalAmount)
+                && subTotal.equals(other.subTotal)
+                && totalTaxAmount.equals(other.totalTaxAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
@@ -551,6 +577,8 @@ public final class Expense {
                 this.account,
                 this.contact,
                 this.totalAmount,
+                this.subTotal,
+                this.totalTaxAmount,
                 this.currency,
                 this.exchangeRate,
                 this.company,
@@ -586,6 +614,10 @@ public final class Expense {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<Double> subTotal = Optional.empty();
+
+        private Optional<Double> totalTaxAmount = Optional.empty();
+
         private Optional<ExpenseCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -618,6 +650,8 @@ public final class Expense {
             account(other.getAccount());
             contact(other.getContact());
             totalAmount(other.getTotalAmount());
+            subTotal(other.getSubTotal());
+            totalTaxAmount(other.getTotalTaxAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
@@ -685,6 +719,28 @@ public final class Expense {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.of(totalAmount);
+            return this;
+        }
+
+        @JsonSetter(value = "sub_total", nulls = Nulls.SKIP)
+        public Builder subTotal(Optional<Double> subTotal) {
+            this.subTotal = subTotal;
+            return this;
+        }
+
+        public Builder subTotal(Double subTotal) {
+            this.subTotal = Optional.of(subTotal);
+            return this;
+        }
+
+        @JsonSetter(value = "total_tax_amount", nulls = Nulls.SKIP)
+        public Builder totalTaxAmount(Optional<Double> totalTaxAmount) {
+            this.totalTaxAmount = totalTaxAmount;
+            return this;
+        }
+
+        public Builder totalTaxAmount(Double totalTaxAmount) {
+            this.totalTaxAmount = Optional.of(totalTaxAmount);
             return this;
         }
 
@@ -827,6 +883,8 @@ public final class Expense {
                     account,
                     contact,
                     totalAmount,
+                    subTotal,
+                    totalTaxAmount,
                     currency,
                     exchangeRate,
                     company,

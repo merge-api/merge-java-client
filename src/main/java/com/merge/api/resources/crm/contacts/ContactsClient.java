@@ -55,6 +55,10 @@ public class ContactsClient {
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
+        if (request.getEmailAddresses().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "email_addresses", request.getEmailAddresses().get());
+        }
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
         }
@@ -82,6 +86,10 @@ public class ContactsClient {
         }
         if (request.getPageSize().isPresent()) {
             _httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        if (request.getPhoneNumbers().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "phone_numbers", request.getPhoneNumbers().get());
         }
         if (request.getRemoteId().isPresent()) {
             _httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());

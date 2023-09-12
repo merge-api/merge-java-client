@@ -63,6 +63,12 @@ public class ContactsClient {
             _httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIsCustomer().isPresent()) {
+            _httpUrl.addQueryParameter("is_customer", request.getIsCustomer().get());
+        }
+        if (request.getIsSupplier().isPresent()) {
+            _httpUrl.addQueryParameter("is_supplier", request.getIsSupplier().get());
+        }
         if (request.getModifiedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

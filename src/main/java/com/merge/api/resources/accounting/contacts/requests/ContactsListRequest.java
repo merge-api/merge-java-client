@@ -29,6 +29,10 @@ public final class ContactsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<String> isCustomer;
+
+    private final Optional<String> isSupplier;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -49,6 +53,8 @@ public final class ContactsListRequest {
             Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<String> isCustomer,
+            Optional<String> isSupplier,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -62,6 +68,8 @@ public final class ContactsListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.isCustomer = isCustomer;
+        this.isSupplier = isSupplier;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
@@ -127,6 +135,22 @@ public final class ContactsListRequest {
     }
 
     /**
+     * @return If provided, will only return Contacts that are denoted as customers.
+     */
+    @JsonProperty("is_customer")
+    public Optional<String> getIsCustomer() {
+        return isCustomer;
+    }
+
+    /**
+     * @return If provided, will only return Contacts that are denoted as suppliers.
+     */
+    @JsonProperty("is_supplier")
+    public Optional<String> getIsSupplier() {
+        return isSupplier;
+    }
+
+    /**
      * @return If provided, only objects synced by Merge after this date time will be returned.
      */
     @JsonProperty("modified_after")
@@ -188,6 +212,8 @@ public final class ContactsListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && isCustomer.equals(other.isCustomer)
+                && isSupplier.equals(other.isSupplier)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
@@ -206,6 +232,8 @@ public final class ContactsListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.isCustomer,
+                this.isSupplier,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
@@ -239,6 +267,10 @@ public final class ContactsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<String> isCustomer = Optional.empty();
+
+        private Optional<String> isSupplier = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -261,6 +293,8 @@ public final class ContactsListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            isCustomer(other.getIsCustomer());
+            isSupplier(other.getIsSupplier());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
@@ -347,6 +381,28 @@ public final class ContactsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "is_customer", nulls = Nulls.SKIP)
+        public Builder isCustomer(Optional<String> isCustomer) {
+            this.isCustomer = isCustomer;
+            return this;
+        }
+
+        public Builder isCustomer(String isCustomer) {
+            this.isCustomer = Optional.of(isCustomer);
+            return this;
+        }
+
+        @JsonSetter(value = "is_supplier", nulls = Nulls.SKIP)
+        public Builder isSupplier(Optional<String> isSupplier) {
+            this.isSupplier = isSupplier;
+            return this;
+        }
+
+        public Builder isSupplier(String isSupplier) {
+            this.isSupplier = Optional.of(isSupplier);
+            return this;
+        }
+
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -422,6 +478,8 @@ public final class ContactsListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    isCustomer,
+                    isSupplier,
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,

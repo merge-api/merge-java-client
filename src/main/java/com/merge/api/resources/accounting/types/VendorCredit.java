@@ -41,6 +41,8 @@ public final class VendorCredit {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<List<VendorCreditApplyLine>> appliedToLines;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -60,6 +62,7 @@ public final class VendorCredit {
             Optional<List<VendorCreditLine>> lines,
             Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
+            Optional<List<VendorCreditApplyLine>> appliedToLines,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -75,6 +78,7 @@ public final class VendorCredit {
         this.lines = lines;
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.appliedToLines = appliedToLines;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -475,6 +479,11 @@ public final class VendorCredit {
         return remoteWasDeleted;
     }
 
+    @JsonProperty("applied_to_lines")
+    public Optional<List<VendorCreditApplyLine>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -512,6 +521,7 @@ public final class VendorCredit {
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && appliedToLines.equals(other.appliedToLines)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -532,6 +542,7 @@ public final class VendorCredit {
                 this.lines,
                 this.trackingCategories,
                 this.remoteWasDeleted,
+                this.appliedToLines,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -572,6 +583,8 @@ public final class VendorCredit {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<List<VendorCreditApplyLine>> appliedToLines = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -593,6 +606,7 @@ public final class VendorCredit {
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            appliedToLines(other.getAppliedToLines());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -732,6 +746,17 @@ public final class VendorCredit {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<VendorCreditApplyLine>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<VendorCreditApplyLine> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -779,6 +804,7 @@ public final class VendorCredit {
                     lines,
                     trackingCategories,
                     remoteWasDeleted,
+                    appliedToLines,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

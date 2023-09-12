@@ -40,7 +40,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '0.1.5'
+            version = '0.1.6'
             from components.java
         }
     }
