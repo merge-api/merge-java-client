@@ -33,7 +33,7 @@ public final class LinkedAccountConditionRequest {
     }
 
     /**
-     * @return The operator for a specific condition. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
+     * @return The operator for a specific condition.
      */
     @JsonProperty("operator")
     public String getOperator() {
@@ -119,7 +119,7 @@ public final class LinkedAccountConditionRequest {
         }
 
         /**
-         * <p>The operator for a specific condition. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
+         * <p>The operator for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override

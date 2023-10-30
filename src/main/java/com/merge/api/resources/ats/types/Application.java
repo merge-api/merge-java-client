@@ -39,6 +39,8 @@ public final class Application {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -57,6 +59,7 @@ public final class Application {
             Optional<ApplicationCurrentStage> currentStage,
             Optional<ApplicationRejectReason> rejectReason,
             Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -71,6 +74,7 @@ public final class Application {
         this.currentStage = currentStage;
         this.rejectReason = rejectReason;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -158,6 +162,11 @@ public final class Application {
         return remoteWasDeleted;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -194,6 +203,7 @@ public final class Application {
                 && currentStage.equals(other.currentStage)
                 && rejectReason.equals(other.rejectReason)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -213,6 +223,7 @@ public final class Application {
                 this.currentStage,
                 this.rejectReason,
                 this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -251,6 +262,8 @@ public final class Application {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -271,6 +284,7 @@ public final class Application {
             currentStage(other.getCurrentStage());
             rejectReason(other.getRejectReason());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -398,6 +412,17 @@ public final class Application {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -444,6 +469,7 @@ public final class Application {
                     currentStage,
                     rejectReason,
                     remoteWasDeleted,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

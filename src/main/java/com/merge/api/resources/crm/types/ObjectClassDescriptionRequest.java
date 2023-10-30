@@ -20,9 +20,6 @@ public final class ObjectClassDescriptionRequest {
         this.originType = originType;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("id")
     public String getId() {
         return id;
@@ -86,10 +83,6 @@ public final class ObjectClassDescriptionRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("id")
         public OriginTypeStage id(String id) {

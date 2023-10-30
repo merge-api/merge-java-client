@@ -42,6 +42,8 @@ public final class CreditNoteLineItem {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private CreditNoteLineItem(
@@ -58,6 +60,7 @@ public final class CreditNoteLineItem {
             Optional<String> account,
             Optional<CreditNoteLineItemCompany> company,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.item = item;
         this.name = name;
@@ -72,6 +75,7 @@ public final class CreditNoteLineItem {
         this.account = account;
         this.company = company;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -176,6 +180,11 @@ public final class CreditNoteLineItem {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -204,6 +213,7 @@ public final class CreditNoteLineItem {
                 && account.equals(other.account)
                 && company.equals(other.company)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -223,6 +233,7 @@ public final class CreditNoteLineItem {
                 this.account,
                 this.company,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -263,6 +274,8 @@ public final class CreditNoteLineItem {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -281,6 +294,7 @@ public final class CreditNoteLineItem {
             account(other.getAccount());
             company(other.getCompany());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -434,6 +448,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -460,6 +485,7 @@ public final class CreditNoteLineItem {
                     account,
                     company,
                     remoteId,
+                    createdAt,
                     modifiedAt);
         }
     }

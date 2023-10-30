@@ -18,11 +18,18 @@ public final class Url {
 
     private final Optional<UrlUrlType> urlType;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private Url(Optional<String> value, Optional<UrlUrlType> urlType, Optional<OffsetDateTime> modifiedAt) {
+    private Url(
+            Optional<String> value,
+            Optional<UrlUrlType> urlType,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt) {
         this.value = value;
         this.urlType = urlType;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -51,6 +58,11 @@ public final class Url {
         return urlType;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -66,12 +78,15 @@ public final class Url {
     }
 
     private boolean equalTo(Url other) {
-        return value.equals(other.value) && urlType.equals(other.urlType) && modifiedAt.equals(other.modifiedAt);
+        return value.equals(other.value)
+                && urlType.equals(other.urlType)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.value, this.urlType, this.modifiedAt);
+        return Objects.hash(this.value, this.urlType, this.createdAt, this.modifiedAt);
     }
 
     @Override
@@ -89,6 +104,8 @@ public final class Url {
 
         private Optional<UrlUrlType> urlType = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -96,6 +113,7 @@ public final class Url {
         public Builder from(Url other) {
             value(other.getValue());
             urlType(other.getUrlType());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -122,6 +140,17 @@ public final class Url {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -134,7 +163,7 @@ public final class Url {
         }
 
         public Url build() {
-            return new Url(value, urlType, modifiedAt);
+            return new Url(value, urlType, createdAt, modifiedAt);
         }
     }
 }

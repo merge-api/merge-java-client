@@ -18,11 +18,18 @@ public final class AssociationSubType {
 
     private final Optional<String> originType;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private AssociationSubType(Optional<String> id, Optional<String> originType, Optional<OffsetDateTime> modifiedAt) {
+    private AssociationSubType(
+            Optional<String> id,
+            Optional<String> originType,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt) {
         this.id = id;
         this.originType = originType;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -34,6 +41,11 @@ public final class AssociationSubType {
     @JsonProperty("origin_type")
     public Optional<String> getOriginType() {
         return originType;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -51,12 +63,15 @@ public final class AssociationSubType {
     }
 
     private boolean equalTo(AssociationSubType other) {
-        return id.equals(other.id) && originType.equals(other.originType) && modifiedAt.equals(other.modifiedAt);
+        return id.equals(other.id)
+                && originType.equals(other.originType)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.originType, this.modifiedAt);
+        return Objects.hash(this.id, this.originType, this.createdAt, this.modifiedAt);
     }
 
     @Override
@@ -74,6 +89,8 @@ public final class AssociationSubType {
 
         private Optional<String> originType = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -81,6 +98,7 @@ public final class AssociationSubType {
         public Builder from(AssociationSubType other) {
             id(other.getId());
             originType(other.getOriginType());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -107,6 +125,17 @@ public final class AssociationSubType {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -119,7 +148,7 @@ public final class AssociationSubType {
         }
 
         public AssociationSubType build() {
-            return new AssociationSubType(id, originType, modifiedAt);
+            return new AssociationSubType(id, originType, createdAt, modifiedAt);
         }
     }
 }

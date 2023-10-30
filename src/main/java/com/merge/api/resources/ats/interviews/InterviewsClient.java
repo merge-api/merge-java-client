@@ -64,6 +64,9 @@ public class InterviewsClient {
             _httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getJobId().isPresent()) {
+            _httpUrl.addQueryParameter("job_id", request.getJobId().get());
+        }
         if (request.getJobInterviewStageId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "job_interview_stage_id", request.getJobInterviewStageId().get());

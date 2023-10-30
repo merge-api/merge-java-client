@@ -19,23 +19,26 @@ public final class Permission {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> user;
+    private final Optional<PermissionUser> user;
 
-    private final Optional<String> group;
+    private final Optional<PermissionGroup> group;
 
-    private final Optional<TypeEnum> type;
+    private final Optional<PermissionType> type;
 
-    private final Optional<List<Optional<RolesEnum>>> roles;
+    private final Optional<List<Optional<PermissionRolesItem>>> roles;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
     private Permission(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> user,
-            Optional<String> group,
-            Optional<TypeEnum> type,
-            Optional<List<Optional<RolesEnum>>> roles,
+            Optional<PermissionUser> user,
+            Optional<PermissionGroup> group,
+            Optional<PermissionType> type,
+            Optional<List<Optional<PermissionRolesItem>>> roles,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.id = id;
         this.remoteId = remoteId;
@@ -43,6 +46,7 @@ public final class Permission {
         this.group = group;
         this.type = type;
         this.roles = roles;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -63,7 +67,7 @@ public final class Permission {
      * @return The user that is granted this permission.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<PermissionUser> getUser() {
         return user;
     }
 
@@ -71,7 +75,7 @@ public final class Permission {
      * @return The group that is granted this permission.
      */
     @JsonProperty("group")
-    public Optional<String> getGroup() {
+    public Optional<PermissionGroup> getGroup() {
         return group;
     }
 
@@ -85,7 +89,7 @@ public final class Permission {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<TypeEnum> getType() {
+    public Optional<PermissionType> getType() {
         return type;
     }
 
@@ -93,8 +97,13 @@ public final class Permission {
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
     @JsonProperty("roles")
-    public Optional<List<Optional<RolesEnum>>> getRoles() {
+    public Optional<List<Optional<PermissionRolesItem>>> getRoles() {
         return roles;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -118,12 +127,14 @@ public final class Permission {
                 && group.equals(other.group)
                 && type.equals(other.type)
                 && roles.equals(other.roles)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.id, this.remoteId, this.user, this.group, this.type, this.roles, this.modifiedAt);
+        return Objects.hash(
+                this.id, this.remoteId, this.user, this.group, this.type, this.roles, this.createdAt, this.modifiedAt);
     }
 
     @Override
@@ -141,13 +152,15 @@ public final class Permission {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> user = Optional.empty();
+        private Optional<PermissionUser> user = Optional.empty();
 
-        private Optional<String> group = Optional.empty();
+        private Optional<PermissionGroup> group = Optional.empty();
 
-        private Optional<TypeEnum> type = Optional.empty();
+        private Optional<PermissionType> type = Optional.empty();
 
-        private Optional<List<Optional<RolesEnum>>> roles = Optional.empty();
+        private Optional<List<Optional<PermissionRolesItem>>> roles = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -160,6 +173,7 @@ public final class Permission {
             group(other.getGroup());
             type(other.getType());
             roles(other.getRoles());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -187,46 +201,57 @@ public final class Permission {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<PermissionUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(PermissionUser user) {
             this.user = Optional.of(user);
             return this;
         }
 
         @JsonSetter(value = "group", nulls = Nulls.SKIP)
-        public Builder group(Optional<String> group) {
+        public Builder group(Optional<PermissionGroup> group) {
             this.group = group;
             return this;
         }
 
-        public Builder group(String group) {
+        public Builder group(PermissionGroup group) {
             this.group = Optional.of(group);
             return this;
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<TypeEnum> type) {
+        public Builder type(Optional<PermissionType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(TypeEnum type) {
+        public Builder type(PermissionType type) {
             this.type = Optional.of(type);
             return this;
         }
 
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
-        public Builder roles(Optional<List<Optional<RolesEnum>>> roles) {
+        public Builder roles(Optional<List<Optional<PermissionRolesItem>>> roles) {
             this.roles = roles;
             return this;
         }
 
-        public Builder roles(List<Optional<RolesEnum>> roles) {
+        public Builder roles(List<Optional<PermissionRolesItem>> roles) {
             this.roles = Optional.of(roles);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -242,7 +267,7 @@ public final class Permission {
         }
 
         public Permission build() {
-            return new Permission(id, remoteId, user, group, type, roles, modifiedAt);
+            return new Permission(id, remoteId, user, group, type, roles, createdAt, modifiedAt);
         }
     }
 }

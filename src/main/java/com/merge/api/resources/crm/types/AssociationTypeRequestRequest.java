@@ -52,17 +52,11 @@ public final class AssociationTypeRequestRequest {
         return targetObjectClasses;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("remote_key_name")
     public String getRemoteKeyName() {
         return remoteKeyName;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("display_name")
     public Optional<String> getDisplayName() {
         return displayName;
@@ -179,10 +173,6 @@ public final class AssociationTypeRequestRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("remote_key_name")
         public _FinalStage remoteKeyName(String remoteKeyName) {
@@ -216,10 +206,6 @@ public final class AssociationTypeRequestRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         public _FinalStage displayName(String displayName) {
             this.displayName = Optional.of(displayName);

@@ -53,7 +53,7 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;
+     * @return Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
      */
     @JsonProperty("end_user_email_address")
     public String getEndUserEmailAddress() {
@@ -61,7 +61,7 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return Your end user's organization. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;
+     * @return Your end user's organization.
      */
     @JsonProperty("end_user_organization_name")
     public String getEndUserOrganizationName() {
@@ -69,7 +69,7 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;
+     * @return This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.
      */
     @JsonProperty("end_user_origin_id")
     public String getEndUserOriginId() {
@@ -85,7 +85,7 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.
+     * @return The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.
      */
     @JsonProperty("integration")
     public Optional<String> getIntegration() {
@@ -230,7 +230,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;</p>
+         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override
@@ -241,7 +241,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>Your end user's organization. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;</p>
+         * <p>Your end user's organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override
@@ -252,7 +252,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 100 characters</code>&lt;/span&gt;</p>
+         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override
@@ -314,7 +314,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://www.merge.dev/docs/basics/integration-metadata/.</p>
+         * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override

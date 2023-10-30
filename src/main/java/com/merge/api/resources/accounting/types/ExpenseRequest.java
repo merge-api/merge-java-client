@@ -41,6 +41,8 @@ public final class ExpenseRequest {
 
     private final Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories;
 
+    private final Optional<ExpenseRequestAccountingPeriod> accountingPeriod;
+
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
@@ -58,6 +60,7 @@ public final class ExpenseRequest {
             Optional<String> memo,
             Optional<List<ExpenseLineRequest>> lines,
             Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories,
+            Optional<ExpenseRequestAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.transactionDate = transactionDate;
@@ -72,6 +75,7 @@ public final class ExpenseRequest {
         this.memo = memo;
         this.lines = lines;
         this.trackingCategories = trackingCategories;
+        this.accountingPeriod = accountingPeriod;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
     }
@@ -474,6 +478,14 @@ public final class ExpenseRequest {
         return trackingCategories;
     }
 
+    /**
+     * @return The accounting period that the Expense was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<ExpenseRequestAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("integration_params")
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
         return integrationParams;
@@ -503,6 +515,7 @@ public final class ExpenseRequest {
                 && memo.equals(other.memo)
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
@@ -522,6 +535,7 @@ public final class ExpenseRequest {
                 this.memo,
                 this.lines,
                 this.trackingCategories,
+                this.accountingPeriod,
                 this.integrationParams,
                 this.linkedAccountParams);
     }
@@ -561,6 +575,8 @@ public final class ExpenseRequest {
 
         private Optional<List<Optional<ExpenseRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
+        private Optional<ExpenseRequestAccountingPeriod> accountingPeriod = Optional.empty();
+
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
@@ -580,6 +596,7 @@ public final class ExpenseRequest {
             memo(other.getMemo());
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
+            accountingPeriod(other.getAccountingPeriod());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             return this;
@@ -718,6 +735,17 @@ public final class ExpenseRequest {
             return this;
         }
 
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<ExpenseRequestAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(ExpenseRequestAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -754,6 +782,7 @@ public final class ExpenseRequest {
                     memo,
                     lines,
                     trackingCategories,
+                    accountingPeriod,
                     integrationParams,
                     linkedAccountParams);
         }

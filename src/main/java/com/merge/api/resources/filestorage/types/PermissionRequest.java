@@ -18,13 +18,13 @@ import java.util.Optional;
 public final class PermissionRequest {
     private final Optional<String> remoteId;
 
-    private final Optional<String> user;
+    private final Optional<PermissionRequestUser> user;
 
-    private final Optional<String> group;
+    private final Optional<PermissionRequestGroup> group;
 
-    private final Optional<TypeEnum> type;
+    private final Optional<PermissionRequestType> type;
 
-    private final Optional<List<Optional<RolesEnum>>> roles;
+    private final Optional<List<Optional<PermissionRequestRolesItem>>> roles;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -32,10 +32,10 @@ public final class PermissionRequest {
 
     private PermissionRequest(
             Optional<String> remoteId,
-            Optional<String> user,
-            Optional<String> group,
-            Optional<TypeEnum> type,
-            Optional<List<Optional<RolesEnum>>> roles,
+            Optional<PermissionRequestUser> user,
+            Optional<PermissionRequestGroup> group,
+            Optional<PermissionRequestType> type,
+            Optional<List<Optional<PermissionRequestRolesItem>>> roles,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.remoteId = remoteId;
@@ -59,7 +59,7 @@ public final class PermissionRequest {
      * @return The user that is granted this permission.
      */
     @JsonProperty("user")
-    public Optional<String> getUser() {
+    public Optional<PermissionRequestUser> getUser() {
         return user;
     }
 
@@ -67,7 +67,7 @@ public final class PermissionRequest {
      * @return The group that is granted this permission.
      */
     @JsonProperty("group")
-    public Optional<String> getGroup() {
+    public Optional<PermissionRequestGroup> getGroup() {
         return group;
     }
 
@@ -81,7 +81,7 @@ public final class PermissionRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<TypeEnum> getType() {
+    public Optional<PermissionRequestType> getType() {
         return type;
     }
 
@@ -89,7 +89,7 @@ public final class PermissionRequest {
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
     @JsonProperty("roles")
-    public Optional<List<Optional<RolesEnum>>> getRoles() {
+    public Optional<List<Optional<PermissionRequestRolesItem>>> getRoles() {
         return roles;
     }
 
@@ -144,13 +144,13 @@ public final class PermissionRequest {
     public static final class Builder {
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> user = Optional.empty();
+        private Optional<PermissionRequestUser> user = Optional.empty();
 
-        private Optional<String> group = Optional.empty();
+        private Optional<PermissionRequestGroup> group = Optional.empty();
 
-        private Optional<TypeEnum> type = Optional.empty();
+        private Optional<PermissionRequestType> type = Optional.empty();
 
-        private Optional<List<Optional<RolesEnum>>> roles = Optional.empty();
+        private Optional<List<Optional<PermissionRequestRolesItem>>> roles = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -181,45 +181,45 @@ public final class PermissionRequest {
         }
 
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
-        public Builder user(Optional<String> user) {
+        public Builder user(Optional<PermissionRequestUser> user) {
             this.user = user;
             return this;
         }
 
-        public Builder user(String user) {
+        public Builder user(PermissionRequestUser user) {
             this.user = Optional.of(user);
             return this;
         }
 
         @JsonSetter(value = "group", nulls = Nulls.SKIP)
-        public Builder group(Optional<String> group) {
+        public Builder group(Optional<PermissionRequestGroup> group) {
             this.group = group;
             return this;
         }
 
-        public Builder group(String group) {
+        public Builder group(PermissionRequestGroup group) {
             this.group = Optional.of(group);
             return this;
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<TypeEnum> type) {
+        public Builder type(Optional<PermissionRequestType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(TypeEnum type) {
+        public Builder type(PermissionRequestType type) {
             this.type = Optional.of(type);
             return this;
         }
 
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
-        public Builder roles(Optional<List<Optional<RolesEnum>>> roles) {
+        public Builder roles(Optional<List<Optional<PermissionRequestRolesItem>>> roles) {
             this.roles = roles;
             return this;
         }
 
-        public Builder roles(List<Optional<RolesEnum>> roles) {
+        public Builder roles(List<Optional<PermissionRequestRolesItem>> roles) {
             this.roles = Optional.of(roles);
             return this;
         }

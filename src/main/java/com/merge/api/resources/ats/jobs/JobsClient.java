@@ -6,8 +6,10 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.jobs.requests.JobsListRequest;
 import com.merge.api.resources.ats.jobs.requests.JobsRetrieveRequest;
+import com.merge.api.resources.ats.jobs.requests.JobsScreeningQuestionsListRequest;
 import com.merge.api.resources.ats.types.Job;
 import com.merge.api.resources.ats.types.PaginatedJobList;
+import com.merge.api.resources.ats.types.PaginatedScreeningQuestionList;
 import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -141,6 +143,58 @@ public class JobsClient {
             Response _response = clientOptions.httpClient().newCall(_request).execute();
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Job.class);
+            }
+            throw new ApiError(
+                    _response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public PaginatedScreeningQuestionList screeningQuestionsList(
+            String jobId, JobsScreeningQuestionsListRequest request) {
+        return screeningQuestionsList(jobId, request, null);
+    }
+
+    public PaginatedScreeningQuestionList screeningQuestionsList(
+            String jobId, JobsScreeningQuestionsListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder _httpUrl = HttpUrl.parse(
+                        this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("api/ats/v1/jobs")
+                .addPathSegment(jobId)
+                .addPathSegments("screening-questions");
+        if (request.getCursor().isPresent()) {
+            _httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getExpand().isPresent()) {
+            _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            _httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        RequestBody _requestBody = null;
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(_httpUrl.build())
+                .method("GET", _requestBody)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request _request = _requestBuilder.build();
+        try {
+            Response _response = clientOptions.httpClient().newCall(_request).execute();
+            if (_response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(
+                        _response.body().string(), PaginatedScreeningQuestionList.class);
             }
             throw new ApiError(
                     _response.code(),

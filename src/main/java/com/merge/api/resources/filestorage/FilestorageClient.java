@@ -5,6 +5,7 @@ import com.merge.api.core.Suppliers;
 import com.merge.api.resources.filestorage.accountdetails.AccountDetailsClient;
 import com.merge.api.resources.filestorage.accounttoken.AccountTokenClient;
 import com.merge.api.resources.filestorage.asyncpassthrough.AsyncPassthroughClient;
+import com.merge.api.resources.filestorage.audittrail.AuditTrailClient;
 import com.merge.api.resources.filestorage.availableactions.AvailableActionsClient;
 import com.merge.api.resources.filestorage.deleteaccount.DeleteAccountClient;
 import com.merge.api.resources.filestorage.drives.DrivesClient;
@@ -32,6 +33,8 @@ public class FilestorageClient {
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
     protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
+
+    protected final Supplier<AuditTrailClient> auditTrailClient;
 
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
@@ -72,6 +75,7 @@ public class FilestorageClient {
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
         this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
+        this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.drivesClient = Suppliers.memoize(() -> new DrivesClient(clientOptions));
@@ -101,6 +105,10 @@ public class FilestorageClient {
 
     public AsyncPassthroughClient asyncPassthrough() {
         return this.asyncPassthroughClient.get();
+    }
+
+    public AuditTrailClient auditTrail() {
+        return this.auditTrailClient.get();
     }
 
     public AvailableActionsClient availableActions() {

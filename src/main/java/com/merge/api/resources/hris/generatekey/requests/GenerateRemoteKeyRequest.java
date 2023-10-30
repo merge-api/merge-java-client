@@ -17,9 +17,6 @@ public final class GenerateRemoteKeyRequest {
         this.name = name;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -71,10 +68,6 @@ public final class GenerateRemoteKeyRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("name")
         public _FinalStage name(String name) {

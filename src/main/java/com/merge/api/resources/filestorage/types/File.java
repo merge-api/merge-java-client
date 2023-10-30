@@ -33,17 +33,19 @@ public final class File {
 
     private final Optional<String> description;
 
-    private final Optional<String> folder;
+    private final Optional<FileFolder> folder;
 
     private final Optional<FilePermissions> permissions;
 
-    private final Optional<String> drive;
+    private final Optional<FileDrive> drive;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
     private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -60,12 +62,13 @@ public final class File {
             Optional<Integer> size,
             Optional<String> mimeType,
             Optional<String> description,
-            Optional<String> folder,
+            Optional<FileFolder> folder,
             Optional<FilePermissions> permissions,
-            Optional<String> drive,
+            Optional<FileDrive> drive,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<Optional<Map<String, JsonNode>>>> remoteData) {
@@ -83,6 +86,7 @@ public final class File {
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -153,7 +157,7 @@ public final class File {
      * @return The folder that the file belongs to.
      */
     @JsonProperty("folder")
-    public Optional<String> getFolder() {
+    public Optional<FileFolder> getFolder() {
         return folder;
     }
 
@@ -169,7 +173,7 @@ public final class File {
      * @return The drive that the file belongs to.
      */
     @JsonProperty("drive")
-    public Optional<String> getDrive() {
+    public Optional<FileDrive> getDrive() {
         return drive;
     }
 
@@ -190,11 +194,16 @@ public final class File {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -236,6 +245,7 @@ public final class File {
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -258,6 +268,7 @@ public final class File {
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -290,17 +301,19 @@ public final class File {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> folder = Optional.empty();
+        private Optional<FileFolder> folder = Optional.empty();
 
         private Optional<FilePermissions> permissions = Optional.empty();
 
-        private Optional<String> drive = Optional.empty();
+        private Optional<FileDrive> drive = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -325,6 +338,7 @@ public final class File {
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -420,12 +434,12 @@ public final class File {
         }
 
         @JsonSetter(value = "folder", nulls = Nulls.SKIP)
-        public Builder folder(Optional<String> folder) {
+        public Builder folder(Optional<FileFolder> folder) {
             this.folder = folder;
             return this;
         }
 
-        public Builder folder(String folder) {
+        public Builder folder(FileFolder folder) {
             this.folder = Optional.of(folder);
             return this;
         }
@@ -442,12 +456,12 @@ public final class File {
         }
 
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
-        public Builder drive(Optional<String> drive) {
+        public Builder drive(Optional<FileDrive> drive) {
             this.drive = drive;
             return this;
         }
 
-        public Builder drive(String drive) {
+        public Builder drive(FileDrive drive) {
             this.drive = Optional.of(drive);
             return this;
         }
@@ -482,6 +496,17 @@ public final class File {
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
             this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -534,6 +559,7 @@ public final class File {
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     remoteWasDeleted,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

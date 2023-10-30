@@ -28,6 +28,8 @@ public final class Address {
 
     private final Optional<AddressAddressType> addressType;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private Address(
@@ -38,6 +40,7 @@ public final class Address {
             Optional<String> postalCode,
             Optional<AddressCountry> country,
             Optional<AddressAddressType> addressType,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.street1 = street1;
         this.street2 = street2;
@@ -46,6 +49,7 @@ public final class Address {
         this.postalCode = postalCode;
         this.country = country;
         this.addressType = addressType;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -360,6 +364,11 @@ public final class Address {
         return addressType;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -382,6 +391,7 @@ public final class Address {
                 && postalCode.equals(other.postalCode)
                 && country.equals(other.country)
                 && addressType.equals(other.addressType)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -395,6 +405,7 @@ public final class Address {
                 this.postalCode,
                 this.country,
                 this.addressType,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -423,6 +434,8 @@ public final class Address {
 
         private Optional<AddressAddressType> addressType = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -435,6 +448,7 @@ public final class Address {
             postalCode(other.getPostalCode());
             country(other.getCountry());
             addressType(other.getAddressType());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -516,6 +530,17 @@ public final class Address {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -528,7 +553,7 @@ public final class Address {
         }
 
         public Address build() {
-            return new Address(street1, street2, city, state, postalCode, country, addressType, modifiedAt);
+            return new Address(street1, street2, city, state, postalCode, country, addressType, createdAt, modifiedAt);
         }
     }
 }

@@ -127,9 +127,6 @@ public final class ApplicationRequest {
         return rejectReason;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("remote_template_id")
     public Optional<String> getRemoteTemplateId() {
         return remoteTemplateId;

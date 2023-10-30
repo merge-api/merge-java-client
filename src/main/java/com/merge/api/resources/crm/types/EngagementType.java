@@ -23,6 +23,8 @@ public final class EngagementType {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<List<RemoteField>> remoteFields;
@@ -32,12 +34,14 @@ public final class EngagementType {
             Optional<String> name,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<List<RemoteField>> remoteFields) {
         this.activityType = activityType;
         this.name = name;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.remoteFields = remoteFields;
     }
@@ -76,6 +80,11 @@ public final class EngagementType {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -100,13 +109,21 @@ public final class EngagementType {
                 && name.equals(other.name)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && remoteFields.equals(other.remoteFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.activityType, this.name, this.id, this.remoteId, this.modifiedAt, this.remoteFields);
+        return Objects.hash(
+                this.activityType,
+                this.name,
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
+                this.remoteFields);
     }
 
     @Override
@@ -128,6 +145,8 @@ public final class EngagementType {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
@@ -139,6 +158,7 @@ public final class EngagementType {
             name(other.getName());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             remoteFields(other.getRemoteFields());
             return this;
@@ -188,6 +208,17 @@ public final class EngagementType {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -211,7 +242,7 @@ public final class EngagementType {
         }
 
         public EngagementType build() {
-            return new EngagementType(activityType, name, id, remoteId, modifiedAt, remoteFields);
+            return new EngagementType(activityType, name, id, remoteId, createdAt, modifiedAt, remoteFields);
         }
     }
 }

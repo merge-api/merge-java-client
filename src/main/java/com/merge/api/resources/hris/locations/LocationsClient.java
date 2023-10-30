@@ -51,6 +51,10 @@ public class LocationsClient {
             _httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getLocationType().isPresent()) {
+            _httpUrl.addQueryParameter(
+                    "location_type", request.getLocationType().get().toString());
+        }
         if (request.getModifiedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

@@ -37,7 +37,7 @@ public final class MultipartFormFieldRequest {
     }
 
     /**
-     * @return The name of the form field &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
+     * @return The name of the form field
      */
     @JsonProperty("name")
     public String getName() {
@@ -45,7 +45,7 @@ public final class MultipartFormFieldRequest {
     }
 
     /**
-     * @return The data for the form field. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
+     * @return The data for the form field.
      */
     @JsonProperty("data")
     public String getData() {
@@ -160,7 +160,7 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * <p>The name of the form field &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
+         * <p>The name of the form field</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override
@@ -171,7 +171,7 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * <p>The data for the form field. &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
+         * <p>The data for the form field.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override

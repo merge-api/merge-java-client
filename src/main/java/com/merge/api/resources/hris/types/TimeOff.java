@@ -41,6 +41,8 @@ public final class TimeOff {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -60,6 +62,7 @@ public final class TimeOff {
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -75,6 +78,7 @@ public final class TimeOff {
         this.startTime = startTime;
         this.endTime = endTime;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -189,6 +193,11 @@ public final class TimeOff {
         return remoteWasDeleted;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -226,6 +235,7 @@ public final class TimeOff {
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -246,6 +256,7 @@ public final class TimeOff {
                 this.startTime,
                 this.endTime,
                 this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -286,6 +297,8 @@ public final class TimeOff {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -307,6 +320,7 @@ public final class TimeOff {
             startTime(other.getStartTime());
             endTime(other.getEndTime());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -445,6 +459,17 @@ public final class TimeOff {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -492,6 +517,7 @@ public final class TimeOff {
                     startTime,
                     endTime,
                     remoteWasDeleted,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

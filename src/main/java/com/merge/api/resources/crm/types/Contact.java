@@ -39,6 +39,8 @@ public final class Contact {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -59,6 +61,7 @@ public final class Contact {
             Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -74,6 +77,7 @@ public final class Contact {
         this.remoteWasDeleted = remoteWasDeleted;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -153,6 +157,11 @@ public final class Contact {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -194,6 +203,7 @@ public final class Contact {
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
@@ -214,6 +224,7 @@ public final class Contact {
                 this.remoteWasDeleted,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData,
@@ -253,6 +264,8 @@ public final class Contact {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -275,6 +288,7 @@ public final class Contact {
             remoteWasDeleted(other.getRemoteWasDeleted());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -403,6 +417,17 @@ public final class Contact {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -460,6 +485,7 @@ public final class Contact {
                     remoteWasDeleted,
                     id,
                     remoteId,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData,

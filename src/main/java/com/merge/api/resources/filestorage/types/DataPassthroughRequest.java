@@ -56,25 +56,16 @@ public final class DataPassthroughRequest {
         return method;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("path")
     public String getPath() {
         return path;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("base_url_override")
     public Optional<String> getBaseUrlOverride() {
         return baseUrlOverride;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("data")
     public Optional<String> getData() {
         return data;
@@ -226,10 +217,6 @@ public final class DataPassthroughRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("path")
         public _FinalStage path(String path) {
@@ -301,10 +288,6 @@ public final class DataPassthroughRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         public _FinalStage data(String data) {
             this.data = Optional.of(data);
@@ -318,10 +301,6 @@ public final class DataPassthroughRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         public _FinalStage baseUrlOverride(String baseUrlOverride) {
             this.baseUrlOverride = Optional.of(baseUrlOverride);

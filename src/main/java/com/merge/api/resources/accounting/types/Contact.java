@@ -39,11 +39,13 @@ public final class Contact {
 
     private final Optional<String> company;
 
-    private final Optional<List<Optional<String>>> addresses;
+    private final Optional<List<Optional<ContactAddressesItem>>> addresses;
 
     private final Optional<List<AccountingPhoneNumber>> phoneNumbers;
 
     private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -63,9 +65,10 @@ public final class Contact {
             Optional<String> currency,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<String> company,
-            Optional<List<Optional<String>>> addresses,
+            Optional<List<Optional<ContactAddressesItem>>> addresses,
             Optional<List<AccountingPhoneNumber>> phoneNumbers,
             Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -83,6 +86,7 @@ public final class Contact {
         this.addresses = addresses;
         this.phoneNumbers = phoneNumbers;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -181,7 +185,7 @@ public final class Contact {
      * @return <code>Address</code> object IDs for the given <code>Contacts</code> object.
      */
     @JsonProperty("addresses")
-    public Optional<List<Optional<String>>> getAddresses() {
+    public Optional<List<Optional<ContactAddressesItem>>> getAddresses() {
         return addresses;
     }
 
@@ -194,11 +198,16 @@ public final class Contact {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -240,6 +249,7 @@ public final class Contact {
                 && addresses.equals(other.addresses)
                 && phoneNumbers.equals(other.phoneNumbers)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -262,6 +272,7 @@ public final class Contact {
                 this.addresses,
                 this.phoneNumbers,
                 this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -300,11 +311,13 @@ public final class Contact {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<List<Optional<String>>> addresses = Optional.empty();
+        private Optional<List<Optional<ContactAddressesItem>>> addresses = Optional.empty();
 
         private Optional<List<AccountingPhoneNumber>> phoneNumbers = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -329,6 +342,7 @@ public final class Contact {
             addresses(other.getAddresses());
             phoneNumbers(other.getPhoneNumbers());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -457,12 +471,12 @@ public final class Contact {
         }
 
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
-        public Builder addresses(Optional<List<Optional<String>>> addresses) {
+        public Builder addresses(Optional<List<Optional<ContactAddressesItem>>> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-        public Builder addresses(List<Optional<String>> addresses) {
+        public Builder addresses(List<Optional<ContactAddressesItem>> addresses) {
             this.addresses = Optional.of(addresses);
             return this;
         }
@@ -486,6 +500,17 @@ public final class Contact {
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
             this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -538,6 +563,7 @@ public final class Contact {
                     addresses,
                     phoneNumbers,
                     remoteWasDeleted,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

@@ -27,9 +27,6 @@ public final class CommonModelScopesBodyRequest {
         this.disabledFields = disabledFields;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("model_id")
     public String getModelId() {
         return modelId;
@@ -111,10 +108,6 @@ public final class CommonModelScopesBodyRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("model_id")
         public _FinalStage modelId(String modelId) {

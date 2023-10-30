@@ -33,6 +33,8 @@ public final class Collection {
 
     private final Optional<CollectionAccessLevel> accessLevel;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -48,6 +50,7 @@ public final class Collection {
             Optional<CollectionParentCollection> parentCollection,
             Optional<Boolean> remoteWasDeleted,
             Optional<CollectionAccessLevel> accessLevel,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -59,6 +62,7 @@ public final class Collection {
         this.parentCollection = parentCollection;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accessLevel = accessLevel;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -114,7 +118,7 @@ public final class Collection {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -132,6 +136,11 @@ public final class Collection {
     @JsonProperty("access_level")
     public Optional<CollectionAccessLevel> getAccessLevel() {
         return accessLevel;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -167,6 +176,7 @@ public final class Collection {
                 && parentCollection.equals(other.parentCollection)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accessLevel.equals(other.accessLevel)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -183,6 +193,7 @@ public final class Collection {
                 this.parentCollection,
                 this.remoteWasDeleted,
                 this.accessLevel,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -215,6 +226,8 @@ public final class Collection {
 
         private Optional<CollectionAccessLevel> accessLevel = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -232,6 +245,7 @@ public final class Collection {
             parentCollection(other.getParentCollection());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accessLevel(other.getAccessLevel());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -326,6 +340,17 @@ public final class Collection {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -369,6 +394,7 @@ public final class Collection {
                     parentCollection,
                     remoteWasDeleted,
                     accessLevel,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

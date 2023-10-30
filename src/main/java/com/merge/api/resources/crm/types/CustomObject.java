@@ -25,6 +25,8 @@ public final class CustomObject {
 
     private final Optional<String> id;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<List<RemoteField>> remoteFields;
@@ -34,12 +36,14 @@ public final class CustomObject {
             Optional<Map<String, JsonNode>> fields,
             Optional<String> remoteId,
             Optional<String> id,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<List<RemoteField>> remoteFields) {
         this.objectClass = objectClass;
         this.fields = fields;
         this.remoteId = remoteId;
         this.id = id;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.remoteFields = remoteFields;
     }
@@ -67,6 +71,11 @@ public final class CustomObject {
         return id;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -91,13 +100,21 @@ public final class CustomObject {
                 && fields.equals(other.fields)
                 && remoteId.equals(other.remoteId)
                 && id.equals(other.id)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && remoteFields.equals(other.remoteFields);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.objectClass, this.fields, this.remoteId, this.id, this.modifiedAt, this.remoteFields);
+        return Objects.hash(
+                this.objectClass,
+                this.fields,
+                this.remoteId,
+                this.id,
+                this.createdAt,
+                this.modifiedAt,
+                this.remoteFields);
     }
 
     @Override
@@ -119,6 +136,8 @@ public final class CustomObject {
 
         private Optional<String> id = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
@@ -130,6 +149,7 @@ public final class CustomObject {
             fields(other.getFields());
             remoteId(other.getRemoteId());
             id(other.getId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             remoteFields(other.getRemoteFields());
             return this;
@@ -179,6 +199,17 @@ public final class CustomObject {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -202,7 +233,7 @@ public final class CustomObject {
         }
 
         public CustomObject build() {
-            return new CustomObject(objectClass, fields, remoteId, id, modifiedAt, remoteFields);
+            return new CustomObject(objectClass, fields, remoteId, id, createdAt, modifiedAt, remoteFields);
         }
     }
 }
