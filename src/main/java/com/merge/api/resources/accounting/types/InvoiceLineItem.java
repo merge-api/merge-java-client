@@ -41,7 +41,11 @@ public final class InvoiceLineItem {
 
     private final Optional<String> company;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Optional<String> id;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -60,7 +64,9 @@ public final class InvoiceLineItem {
             Optional<InvoiceLineItemTrackingCategory> trackingCategory,
             Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
+            Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings) {
         this.remoteId = remoteId;
@@ -75,7 +81,9 @@ public final class InvoiceLineItem {
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.company = company;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.id = id;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
     }
@@ -472,9 +480,22 @@ public final class InvoiceLineItem {
         return company;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -509,7 +530,9 @@ public final class InvoiceLineItem {
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && id.equals(other.id)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings);
     }
@@ -529,7 +552,9 @@ public final class InvoiceLineItem {
                 this.trackingCategory,
                 this.trackingCategories,
                 this.company,
+                this.remoteWasDeleted,
                 this.id,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings);
     }
@@ -569,7 +594,11 @@ public final class InvoiceLineItem {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         private Optional<String> id = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -590,7 +619,9 @@ public final class InvoiceLineItem {
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             id(other.getId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             return this;
@@ -729,6 +760,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
             this.id = id;
@@ -737,6 +779,17 @@ public final class InvoiceLineItem {
 
         public Builder id(String id) {
             this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -776,7 +829,9 @@ public final class InvoiceLineItem {
                     trackingCategory,
                     trackingCategories,
                     company,
+                    remoteWasDeleted,
                     id,
+                    createdAt,
                     modifiedAt,
                     fieldMappings);
         }

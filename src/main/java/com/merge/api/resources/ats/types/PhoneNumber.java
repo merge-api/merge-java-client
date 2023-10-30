@@ -18,14 +18,18 @@ public final class PhoneNumber {
 
     private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private PhoneNumber(
             Optional<String> value,
             Optional<PhoneNumberPhoneNumberType> phoneNumberType,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.value = value;
         this.phoneNumberType = phoneNumberType;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -52,6 +56,11 @@ public final class PhoneNumber {
         return phoneNumberType;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -69,12 +78,13 @@ public final class PhoneNumber {
     private boolean equalTo(PhoneNumber other) {
         return value.equals(other.value)
                 && phoneNumberType.equals(other.phoneNumberType)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.value, this.phoneNumberType, this.modifiedAt);
+        return Objects.hash(this.value, this.phoneNumberType, this.createdAt, this.modifiedAt);
     }
 
     @Override
@@ -92,6 +102,8 @@ public final class PhoneNumber {
 
         private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -99,6 +111,7 @@ public final class PhoneNumber {
         public Builder from(PhoneNumber other) {
             value(other.getValue());
             phoneNumberType(other.getPhoneNumberType());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -125,6 +138,17 @@ public final class PhoneNumber {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -137,7 +161,7 @@ public final class PhoneNumber {
         }
 
         public PhoneNumber build() {
-            return new PhoneNumber(value, phoneNumberType, modifiedAt);
+            return new PhoneNumber(value, phoneNumberType, createdAt, modifiedAt);
         }
     }
 }

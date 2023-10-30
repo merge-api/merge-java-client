@@ -25,9 +25,6 @@ public final class WebhookReceiverRequest {
         this.key = key;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("event")
     public String getEvent() {
         return event;
@@ -38,9 +35,6 @@ public final class WebhookReceiverRequest {
         return isActive;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("key")
     public Optional<String> getKey() {
         return key;
@@ -106,10 +100,6 @@ public final class WebhookReceiverRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         @JsonSetter("event")
         public IsActiveStage event(String event) {
@@ -124,10 +114,6 @@ public final class WebhookReceiverRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         public _FinalStage key(String key) {
             this.key = Optional.of(key);

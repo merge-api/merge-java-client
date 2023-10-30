@@ -43,9 +43,13 @@ public final class JournalEntry {
 
     private final Optional<JournalEntryPostingStatus> postingStatus;
 
+    private final Optional<JournalEntryAccountingPeriod> accountingPeriod;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -67,8 +71,10 @@ public final class JournalEntry {
             Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<JournalEntryPostingStatus> postingStatus,
+            Optional<JournalEntryAccountingPeriod> accountingPeriod,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -85,8 +91,10 @@ public final class JournalEntry {
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
         this.postingStatus = postingStatus;
+        this.accountingPeriod = accountingPeriod;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -499,6 +507,14 @@ public final class JournalEntry {
         return postingStatus;
     }
 
+    /**
+     * @return The accounting period that the JournalEntry was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<JournalEntryAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
@@ -510,6 +526,11 @@ public final class JournalEntry {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -550,8 +571,10 @@ public final class JournalEntry {
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && postingStatus.equals(other.postingStatus)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -573,8 +596,10 @@ public final class JournalEntry {
                 this.trackingCategories,
                 this.remoteWasDeleted,
                 this.postingStatus,
+                this.accountingPeriod,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -617,9 +642,13 @@ public final class JournalEntry {
 
         private Optional<JournalEntryPostingStatus> postingStatus = Optional.empty();
 
+        private Optional<JournalEntryAccountingPeriod> accountingPeriod = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -643,8 +672,10 @@ public final class JournalEntry {
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
             postingStatus(other.getPostingStatus());
+            accountingPeriod(other.getAccountingPeriod());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -795,6 +826,17 @@ public final class JournalEntry {
             return this;
         }
 
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<JournalEntryAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(JournalEntryAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
             this.id = id;
@@ -814,6 +856,17 @@ public final class JournalEntry {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -865,8 +918,10 @@ public final class JournalEntry {
                     trackingCategories,
                     remoteWasDeleted,
                     postingStatus,
+                    accountingPeriod,
                     id,
                     remoteId,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

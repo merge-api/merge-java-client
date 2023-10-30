@@ -33,6 +33,8 @@ public final class PayrollRun {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -48,6 +50,7 @@ public final class PayrollRun {
             Optional<OffsetDateTime> endDate,
             Optional<OffsetDateTime> checkDate,
             Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -59,6 +62,7 @@ public final class PayrollRun {
         this.endDate = endDate;
         this.checkDate = checkDate;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -132,11 +136,16 @@ public final class PayrollRun {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -172,6 +181,7 @@ public final class PayrollRun {
                 && endDate.equals(other.endDate)
                 && checkDate.equals(other.checkDate)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -188,6 +198,7 @@ public final class PayrollRun {
                 this.endDate,
                 this.checkDate,
                 this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -220,6 +231,8 @@ public final class PayrollRun {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -237,6 +250,7 @@ public final class PayrollRun {
             endDate(other.getEndDate());
             checkDate(other.getCheckDate());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -331,6 +345,17 @@ public final class PayrollRun {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -374,6 +399,7 @@ public final class PayrollRun {
                     endDate,
                     checkDate,
                     remoteWasDeleted,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

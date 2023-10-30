@@ -5,10 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,10 +15,9 @@ import java.util.Optional;
 public final class RemoteFieldRequest {
     private final RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
-    private final Optional<Map<String, JsonNode>> value;
+    private final Optional<String> value;
 
-    private RemoteFieldRequest(
-            RemoteFieldRequestRemoteFieldClass remoteFieldClass, Optional<Map<String, JsonNode>> value) {
+    private RemoteFieldRequest(RemoteFieldRequestRemoteFieldClass remoteFieldClass, Optional<String> value) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
     }
@@ -31,7 +28,7 @@ public final class RemoteFieldRequest {
     }
 
     @JsonProperty("value")
-    public Optional<Map<String, JsonNode>> getValue() {
+    public Optional<String> getValue() {
         return value;
     }
 
@@ -68,16 +65,16 @@ public final class RemoteFieldRequest {
     public interface _FinalStage {
         RemoteFieldRequest build();
 
-        _FinalStage value(Optional<Map<String, JsonNode>> value);
+        _FinalStage value(Optional<String> value);
 
-        _FinalStage value(Map<String, JsonNode> value);
+        _FinalStage value(String value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
         private RemoteFieldRequestRemoteFieldClass remoteFieldClass;
 
-        private Optional<Map<String, JsonNode>> value = Optional.empty();
+        private Optional<String> value = Optional.empty();
 
         private Builder() {}
 
@@ -96,14 +93,14 @@ public final class RemoteFieldRequest {
         }
 
         @Override
-        public _FinalStage value(Map<String, JsonNode> value) {
+        public _FinalStage value(String value) {
             this.value = Optional.of(value);
             return this;
         }
 
         @Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Optional<Map<String, JsonNode>> value) {
+        public _FinalStage value(Optional<String> value) {
             this.value = value;
             return this;
         }

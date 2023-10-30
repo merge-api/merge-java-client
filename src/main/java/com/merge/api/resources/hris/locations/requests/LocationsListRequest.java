@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.resources.hris.types.LocationsListRequestLocationType;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +24,8 @@ public final class LocationsListRequest {
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<LocationsListRequestLocationType> locationType;
 
     private final Optional<OffsetDateTime> modifiedAfter;
 
@@ -42,6 +45,7 @@ public final class LocationsListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<LocationsListRequestLocationType> locationType,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -53,6 +57,7 @@ public final class LocationsListRequest {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.locationType = locationType;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
@@ -99,6 +104,18 @@ public final class LocationsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return If provided, will only return locations with this location_type
+     * <ul>
+     * <li><code>HOME</code> - HOME</li>
+     * <li><code>WORK</code> - WORK</li>
+     * </ul>
+     */
+    @JsonProperty("location_type")
+    public Optional<LocationsListRequestLocationType> getLocationType() {
+        return locationType;
     }
 
     /**
@@ -161,6 +178,7 @@ public final class LocationsListRequest {
                 && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && locationType.equals(other.locationType)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
@@ -177,6 +195,7 @@ public final class LocationsListRequest {
                 this.cursor,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.locationType,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
@@ -206,6 +225,8 @@ public final class LocationsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<LocationsListRequestLocationType> locationType = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -226,6 +247,7 @@ public final class LocationsListRequest {
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            locationType(other.getLocationType());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
@@ -287,6 +309,17 @@ public final class LocationsListRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.of(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "location_type", nulls = Nulls.SKIP)
+        public Builder locationType(Optional<LocationsListRequestLocationType> locationType) {
+            this.locationType = locationType;
+            return this;
+        }
+
+        public Builder locationType(LocationsListRequestLocationType locationType) {
+            this.locationType = Optional.of(locationType);
             return this;
         }
 
@@ -363,6 +396,7 @@ public final class LocationsListRequest {
                     cursor,
                     includeDeletedData,
                     includeRemoteData,
+                    locationType,
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,

@@ -33,7 +33,7 @@ public final class PaymentRequest {
 
     private final Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<PaymentLineItemRequest>> appliedToLines;
+    private final Optional<PaymentRequestAccountingPeriod> accountingPeriod;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -48,7 +48,7 @@ public final class PaymentRequest {
             Optional<PaymentRequestCompany> company,
             Optional<Double> totalAmount,
             Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<PaymentLineItemRequest>> appliedToLines,
+            Optional<PaymentRequestAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.transactionDate = transactionDate;
@@ -59,7 +59,7 @@ public final class PaymentRequest {
         this.company = company;
         this.totalAmount = totalAmount;
         this.trackingCategories = trackingCategories;
-        this.appliedToLines = appliedToLines;
+        this.accountingPeriod = accountingPeriod;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
     }
@@ -433,9 +433,12 @@ public final class PaymentRequest {
         return trackingCategories;
     }
 
-    @JsonProperty("applied_to_lines")
-    public Optional<List<PaymentLineItemRequest>> getAppliedToLines() {
-        return appliedToLines;
+    /**
+     * @return The accounting period that the Payment was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<PaymentRequestAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
     }
 
     @JsonProperty("integration_params")
@@ -463,7 +466,7 @@ public final class PaymentRequest {
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
                 && trackingCategories.equals(other.trackingCategories)
-                && appliedToLines.equals(other.appliedToLines)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
@@ -479,7 +482,7 @@ public final class PaymentRequest {
                 this.company,
                 this.totalAmount,
                 this.trackingCategories,
-                this.appliedToLines,
+                this.accountingPeriod,
                 this.integrationParams,
                 this.linkedAccountParams);
     }
@@ -511,7 +514,7 @@ public final class PaymentRequest {
 
         private Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<List<PaymentLineItemRequest>> appliedToLines = Optional.empty();
+        private Optional<PaymentRequestAccountingPeriod> accountingPeriod = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -528,7 +531,7 @@ public final class PaymentRequest {
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
             trackingCategories(other.getTrackingCategories());
-            appliedToLines(other.getAppliedToLines());
+            accountingPeriod(other.getAccountingPeriod());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             return this;
@@ -623,14 +626,14 @@ public final class PaymentRequest {
             return this;
         }
 
-        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
-        public Builder appliedToLines(Optional<List<PaymentLineItemRequest>> appliedToLines) {
-            this.appliedToLines = appliedToLines;
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<PaymentRequestAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
             return this;
         }
 
-        public Builder appliedToLines(List<PaymentLineItemRequest> appliedToLines) {
-            this.appliedToLines = Optional.of(appliedToLines);
+        public Builder accountingPeriod(PaymentRequestAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
             return this;
         }
 
@@ -666,7 +669,7 @@ public final class PaymentRequest {
                     company,
                     totalAmount,
                     trackingCategories,
-                    appliedToLines,
+                    accountingPeriod,
                     integrationParams,
                     linkedAccountParams);
         }

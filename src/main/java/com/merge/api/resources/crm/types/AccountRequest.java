@@ -29,10 +29,6 @@ public final class AccountRequest {
 
     private final Optional<Integer> numberOfEmployees;
 
-    private final Optional<List<Address>> addresses;
-
-    private final Optional<List<PhoneNumber>> phoneNumbers;
-
     private final Optional<OffsetDateTime> lastActivityAt;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
@@ -48,8 +44,6 @@ public final class AccountRequest {
             Optional<String> industry,
             Optional<String> website,
             Optional<Integer> numberOfEmployees,
-            Optional<List<Address>> addresses,
-            Optional<List<PhoneNumber>> phoneNumbers,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -60,8 +54,6 @@ public final class AccountRequest {
         this.industry = industry;
         this.website = website;
         this.numberOfEmployees = numberOfEmployees;
-        this.addresses = addresses;
-        this.phoneNumbers = phoneNumbers;
         this.lastActivityAt = lastActivityAt;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
@@ -116,16 +108,6 @@ public final class AccountRequest {
         return numberOfEmployees;
     }
 
-    @JsonProperty("addresses")
-    public Optional<List<Address>> getAddresses() {
-        return addresses;
-    }
-
-    @JsonProperty("phone_numbers")
-    public Optional<List<PhoneNumber>> getPhoneNumbers() {
-        return phoneNumbers;
-    }
-
     /**
      * @return The last date (either most recent or furthest in the future) of when an activity occurs in an account.
      */
@@ -162,8 +144,6 @@ public final class AccountRequest {
                 && industry.equals(other.industry)
                 && website.equals(other.website)
                 && numberOfEmployees.equals(other.numberOfEmployees)
-                && addresses.equals(other.addresses)
-                && phoneNumbers.equals(other.phoneNumbers)
                 && lastActivityAt.equals(other.lastActivityAt)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams)
@@ -179,8 +159,6 @@ public final class AccountRequest {
                 this.industry,
                 this.website,
                 this.numberOfEmployees,
-                this.addresses,
-                this.phoneNumbers,
                 this.lastActivityAt,
                 this.integrationParams,
                 this.linkedAccountParams,
@@ -210,10 +188,6 @@ public final class AccountRequest {
 
         private Optional<Integer> numberOfEmployees = Optional.empty();
 
-        private Optional<List<Address>> addresses = Optional.empty();
-
-        private Optional<List<PhoneNumber>> phoneNumbers = Optional.empty();
-
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
@@ -231,8 +205,6 @@ public final class AccountRequest {
             industry(other.getIndustry());
             website(other.getWebsite());
             numberOfEmployees(other.getNumberOfEmployees());
-            addresses(other.getAddresses());
-            phoneNumbers(other.getPhoneNumbers());
             lastActivityAt(other.getLastActivityAt());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
@@ -306,28 +278,6 @@ public final class AccountRequest {
             return this;
         }
 
-        @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
-        public Builder addresses(Optional<List<Address>> addresses) {
-            this.addresses = addresses;
-            return this;
-        }
-
-        public Builder addresses(List<Address> addresses) {
-            this.addresses = Optional.of(addresses);
-            return this;
-        }
-
-        @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
-        public Builder phoneNumbers(Optional<List<PhoneNumber>> phoneNumbers) {
-            this.phoneNumbers = phoneNumbers;
-            return this;
-        }
-
-        public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
-            return this;
-        }
-
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;
@@ -380,8 +330,6 @@ public final class AccountRequest {
                     industry,
                     website,
                     numberOfEmployees,
-                    addresses,
-                    phoneNumbers,
                     lastActivityAt,
                     integrationParams,
                     linkedAccountParams,

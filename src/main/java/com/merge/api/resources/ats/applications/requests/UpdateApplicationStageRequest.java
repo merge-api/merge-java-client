@@ -56,9 +56,6 @@ public final class UpdateApplicationStageRequest {
         return jobInterviewStage;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt;
-     */
     @JsonProperty("remote_user_id")
     public Optional<String> getRemoteUserId() {
         return remoteUserId;

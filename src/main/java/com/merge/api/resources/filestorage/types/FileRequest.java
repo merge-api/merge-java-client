@@ -27,11 +27,11 @@ public final class FileRequest {
 
     private final Optional<String> description;
 
-    private final Optional<String> folder;
+    private final Optional<FileRequestFolder> folder;
 
     private final Optional<FileRequestPermissions> permissions;
 
-    private final Optional<String> drive;
+    private final Optional<FileRequestDrive> drive;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -44,9 +44,9 @@ public final class FileRequest {
             Optional<Integer> size,
             Optional<String> mimeType,
             Optional<String> description,
-            Optional<String> folder,
+            Optional<FileRequestFolder> folder,
             Optional<FileRequestPermissions> permissions,
-            Optional<String> drive,
+            Optional<FileRequestDrive> drive,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.name = name;
@@ -114,7 +114,7 @@ public final class FileRequest {
      * @return The folder that the file belongs to.
      */
     @JsonProperty("folder")
-    public Optional<String> getFolder() {
+    public Optional<FileRequestFolder> getFolder() {
         return folder;
     }
 
@@ -130,7 +130,7 @@ public final class FileRequest {
      * @return The drive that the file belongs to.
      */
     @JsonProperty("drive")
-    public Optional<String> getDrive() {
+    public Optional<FileRequestDrive> getDrive() {
         return drive;
     }
 
@@ -203,11 +203,11 @@ public final class FileRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> folder = Optional.empty();
+        private Optional<FileRequestFolder> folder = Optional.empty();
 
         private Optional<FileRequestPermissions> permissions = Optional.empty();
 
-        private Optional<String> drive = Optional.empty();
+        private Optional<FileRequestDrive> drive = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -297,12 +297,12 @@ public final class FileRequest {
         }
 
         @JsonSetter(value = "folder", nulls = Nulls.SKIP)
-        public Builder folder(Optional<String> folder) {
+        public Builder folder(Optional<FileRequestFolder> folder) {
             this.folder = folder;
             return this;
         }
 
-        public Builder folder(String folder) {
+        public Builder folder(FileRequestFolder folder) {
             this.folder = Optional.of(folder);
             return this;
         }
@@ -319,12 +319,12 @@ public final class FileRequest {
         }
 
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
-        public Builder drive(Optional<String> drive) {
+        public Builder drive(Optional<FileRequestDrive> drive) {
             this.drive = drive;
             return this;
         }
 
-        public Builder drive(String drive) {
+        public Builder drive(FileRequestDrive drive) {
             this.drive = Optional.of(drive);
             return this;
         }

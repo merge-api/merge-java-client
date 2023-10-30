@@ -61,7 +61,13 @@ public final class Invoice {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<InvoiceAccountingPeriod> accountingPeriod;
+
+    private final Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders;
+
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -92,7 +98,10 @@ public final class Invoice {
             Optional<List<Optional<InvoicePaymentsItem>>> payments,
             Optional<List<InvoiceLineItem>> lineItems,
             Optional<Boolean> remoteWasDeleted,
+            Optional<InvoiceAccountingPeriod> accountingPeriod,
+            Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -118,7 +127,10 @@ public final class Invoice {
         this.payments = payments;
         this.lineItems = lineItems;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.accountingPeriod = accountingPeriod;
+        this.purchaseOrders = purchaseOrders;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -609,11 +621,29 @@ public final class Invoice {
     }
 
     /**
+     * @return The accounting period that the Invoice was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<InvoiceAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
+    @JsonProperty("purchase_orders")
+    public Optional<List<Optional<InvoicePurchaseOrdersItem>>> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
+    /**
      * @return The third-party API ID of the matching object.
      */
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -663,7 +693,10 @@ public final class Invoice {
                 && payments.equals(other.payments)
                 && lineItems.equals(other.lineItems)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && accountingPeriod.equals(other.accountingPeriod)
+                && purchaseOrders.equals(other.purchaseOrders)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -694,7 +727,10 @@ public final class Invoice {
                 this.payments,
                 this.lineItems,
                 this.remoteWasDeleted,
+                this.accountingPeriod,
+                this.purchaseOrders,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -755,7 +791,13 @@ public final class Invoice {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<InvoiceAccountingPeriod> accountingPeriod = Optional.empty();
+
+        private Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -788,7 +830,10 @@ public final class Invoice {
             payments(other.getPayments());
             lineItems(other.getLineItems());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            accountingPeriod(other.getAccountingPeriod());
+            purchaseOrders(other.getPurchaseOrders());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -1037,6 +1082,28 @@ public final class Invoice {
             return this;
         }
 
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<InvoiceAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(InvoiceAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
+        @JsonSetter(value = "purchase_orders", nulls = Nulls.SKIP)
+        public Builder purchaseOrders(Optional<List<Optional<InvoicePurchaseOrdersItem>>> purchaseOrders) {
+            this.purchaseOrders = purchaseOrders;
+            return this;
+        }
+
+        public Builder purchaseOrders(List<Optional<InvoicePurchaseOrdersItem>> purchaseOrders) {
+            this.purchaseOrders = Optional.of(purchaseOrders);
+            return this;
+        }
+
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -1045,6 +1112,17 @@ public final class Invoice {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -1105,7 +1183,10 @@ public final class Invoice {
                     payments,
                     lineItems,
                     remoteWasDeleted,
+                    accountingPeriod,
+                    purchaseOrders,
                     remoteId,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

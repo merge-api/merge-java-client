@@ -23,9 +23,9 @@ public final class FolderRequest {
 
     private final Optional<String> description;
 
-    private final Optional<String> parentFolder;
+    private final Optional<FolderRequestParentFolder> parentFolder;
 
-    private final Optional<String> drive;
+    private final Optional<FolderRequestDrive> drive;
 
     private final Optional<FolderRequestPermissions> permissions;
 
@@ -38,8 +38,8 @@ public final class FolderRequest {
             Optional<String> folderUrl,
             Optional<Integer> size,
             Optional<String> description,
-            Optional<String> parentFolder,
-            Optional<String> drive,
+            Optional<FolderRequestParentFolder> parentFolder,
+            Optional<FolderRequestDrive> drive,
             Optional<FolderRequestPermissions> permissions,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -90,7 +90,7 @@ public final class FolderRequest {
      * @return The folder that the folder belongs to.
      */
     @JsonProperty("parent_folder")
-    public Optional<String> getParentFolder() {
+    public Optional<FolderRequestParentFolder> getParentFolder() {
         return parentFolder;
     }
 
@@ -98,7 +98,7 @@ public final class FolderRequest {
      * @return The drive that the folder belongs to.
      */
     @JsonProperty("drive")
-    public Optional<String> getDrive() {
+    public Optional<FolderRequestDrive> getDrive() {
         return drive;
     }
 
@@ -171,9 +171,9 @@ public final class FolderRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<String> parentFolder = Optional.empty();
+        private Optional<FolderRequestParentFolder> parentFolder = Optional.empty();
 
-        private Optional<String> drive = Optional.empty();
+        private Optional<FolderRequestDrive> drive = Optional.empty();
 
         private Optional<FolderRequestPermissions> permissions = Optional.empty();
 
@@ -241,23 +241,23 @@ public final class FolderRequest {
         }
 
         @JsonSetter(value = "parent_folder", nulls = Nulls.SKIP)
-        public Builder parentFolder(Optional<String> parentFolder) {
+        public Builder parentFolder(Optional<FolderRequestParentFolder> parentFolder) {
             this.parentFolder = parentFolder;
             return this;
         }
 
-        public Builder parentFolder(String parentFolder) {
+        public Builder parentFolder(FolderRequestParentFolder parentFolder) {
             this.parentFolder = Optional.of(parentFolder);
             return this;
         }
 
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
-        public Builder drive(Optional<String> drive) {
+        public Builder drive(Optional<FolderRequestDrive> drive) {
             this.drive = drive;
             return this;
         }
 
-        public Builder drive(String drive) {
+        public Builder drive(FolderRequestDrive drive) {
             this.drive = Optional.of(drive);
             return this;
         }

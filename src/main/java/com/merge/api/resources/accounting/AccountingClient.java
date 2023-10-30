@@ -3,11 +3,13 @@ package com.merge.api.resources.accounting;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Suppliers;
 import com.merge.api.resources.accounting.accountdetails.AccountDetailsClient;
+import com.merge.api.resources.accounting.accountingperiods.AccountingPeriodsClient;
 import com.merge.api.resources.accounting.accounts.AccountsClient;
 import com.merge.api.resources.accounting.accounttoken.AccountTokenClient;
 import com.merge.api.resources.accounting.addresses.AddressesClient;
 import com.merge.api.resources.accounting.asyncpassthrough.AsyncPassthroughClient;
 import com.merge.api.resources.accounting.attachments.AttachmentsClient;
+import com.merge.api.resources.accounting.audittrail.AuditTrailClient;
 import com.merge.api.resources.accounting.availableactions.AvailableActionsClient;
 import com.merge.api.resources.accounting.balancesheets.BalanceSheetsClient;
 import com.merge.api.resources.accounting.cashflowstatements.CashFlowStatementsClient;
@@ -46,6 +48,8 @@ public class AccountingClient {
 
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
+    protected final Supplier<AccountingPeriodsClient> accountingPeriodsClient;
+
     protected final Supplier<AccountsClient> accountsClient;
 
     protected final Supplier<AddressesClient> addressesClient;
@@ -53,6 +57,8 @@ public class AccountingClient {
     protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
 
     protected final Supplier<AttachmentsClient> attachmentsClient;
+
+    protected final Supplier<AuditTrailClient> auditTrailClient;
 
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
@@ -116,10 +122,12 @@ public class AccountingClient {
         this.clientOptions = clientOptions;
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
+        this.accountingPeriodsClient = Suppliers.memoize(() -> new AccountingPeriodsClient(clientOptions));
         this.accountsClient = Suppliers.memoize(() -> new AccountsClient(clientOptions));
         this.addressesClient = Suppliers.memoize(() -> new AddressesClient(clientOptions));
         this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.attachmentsClient = Suppliers.memoize(() -> new AttachmentsClient(clientOptions));
+        this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.balanceSheetsClient = Suppliers.memoize(() -> new BalanceSheetsClient(clientOptions));
         this.cashFlowStatementsClient = Suppliers.memoize(() -> new CashFlowStatementsClient(clientOptions));
@@ -159,6 +167,10 @@ public class AccountingClient {
         return this.accountTokenClient.get();
     }
 
+    public AccountingPeriodsClient accountingPeriods() {
+        return this.accountingPeriodsClient.get();
+    }
+
     public AccountsClient accounts() {
         return this.accountsClient.get();
     }
@@ -173,6 +185,10 @@ public class AccountingClient {
 
     public AttachmentsClient attachments() {
         return this.attachmentsClient.get();
+    }
+
+    public AuditTrailClient auditTrail() {
+        return this.auditTrailClient.get();
     }
 
     public AvailableActionsClient availableActions() {

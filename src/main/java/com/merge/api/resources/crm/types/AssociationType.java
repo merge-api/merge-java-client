@@ -33,6 +33,8 @@ public final class AssociationType {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private AssociationType(
@@ -44,6 +46,7 @@ public final class AssociationType {
             Optional<Boolean> isRequired,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.sourceObjectClass = sourceObjectClass;
         this.targetObjectClasses = targetObjectClasses;
@@ -53,6 +56,7 @@ public final class AssociationType {
         this.isRequired = isRequired;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -99,6 +103,11 @@ public final class AssociationType {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -122,6 +131,7 @@ public final class AssociationType {
                 && isRequired.equals(other.isRequired)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -136,6 +146,7 @@ public final class AssociationType {
                 this.isRequired,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -166,6 +177,8 @@ public final class AssociationType {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -179,6 +192,7 @@ public final class AssociationType {
             isRequired(other.getIsRequired());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -271,6 +285,17 @@ public final class AssociationType {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -292,6 +317,7 @@ public final class AssociationType {
                     isRequired,
                     id,
                     remoteId,
+                    createdAt,
                     modifiedAt);
         }
     }

@@ -7,7 +7,6 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.customobjects.requests.CrmCustomObjectEndpointRequest;
 import com.merge.api.resources.crm.customobjects.requests.CustomObjectClassesCustomObjectsListRequest;
 import com.merge.api.resources.crm.customobjects.requests.CustomObjectClassesCustomObjectsRetrieveRequest;
-import com.merge.api.resources.crm.customobjects.requests.PatchedCrmCustomObjectEndpointRequest;
 import com.merge.api.resources.crm.types.CrmCustomObjectResponse;
 import com.merge.api.resources.crm.types.CustomObject;
 import com.merge.api.resources.crm.types.MetaResponse;
@@ -189,59 +188,6 @@ public class CustomObjectsClient {
             Response _response = clientOptions.httpClient().newCall(_request).execute();
             if (_response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), CustomObject.class);
-            }
-            throw new ApiError(
-                    _response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), Object.class));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public CrmCustomObjectResponse customObjectClassesCustomObjectsPartialUpdate(
-            String customObjectClassId, String id, PatchedCrmCustomObjectEndpointRequest request) {
-        return customObjectClassesCustomObjectsPartialUpdate(customObjectClassId, id, request, null);
-    }
-
-    public CrmCustomObjectResponse customObjectClassesCustomObjectsPartialUpdate(
-            String customObjectClassId,
-            String id,
-            PatchedCrmCustomObjectEndpointRequest request,
-            RequestOptions requestOptions) {
-        HttpUrl.Builder _httpUrl = HttpUrl.parse(
-                        this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
-                .addPathSegment(customObjectClassId)
-                .addPathSegments("custom-objects")
-                .addPathSegment(id);
-        if (request.getIsDebugMode().isPresent()) {
-            _httpUrl.addQueryParameter(
-                    "is_debug_mode", request.getIsDebugMode().get().toString());
-        }
-        if (request.getRunAsync().isPresent()) {
-            _httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
-        }
-        Map<String, Object> _requestBodyProperties = new HashMap<>();
-        _requestBodyProperties.put("model", request.getModel());
-        RequestBody _requestBody;
-        try {
-            _requestBody = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(_requestBodyProperties),
-                    MediaType.parse("application/json"));
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(_httpUrl.build())
-                .method("PATCH", _requestBody)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
-        Request _request = _requestBuilder.build();
-        try {
-            Response _response = clientOptions.httpClient().newCall(_request).execute();
-            if (_response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(_response.body().string(), CrmCustomObjectResponse.class);
             }
             throw new ApiError(
                     _response.code(),

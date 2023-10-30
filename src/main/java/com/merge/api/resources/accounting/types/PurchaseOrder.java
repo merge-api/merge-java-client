@@ -51,9 +51,13 @@ public final class PurchaseOrder {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<PurchaseOrderAccountingPeriod> accountingPeriod;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -79,8 +83,10 @@ public final class PurchaseOrder {
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
+            Optional<PurchaseOrderAccountingPeriod> accountingPeriod,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -101,8 +107,10 @@ public final class PurchaseOrder {
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.accountingPeriod = accountingPeriod;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -546,11 +554,19 @@ public final class PurchaseOrder {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    /**
+     * @return The accounting period that the PurchaseOrder was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<PurchaseOrderAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
     }
 
     @JsonProperty("id")
@@ -564,6 +580,11 @@ public final class PurchaseOrder {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -608,8 +629,10 @@ public final class PurchaseOrder {
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -635,8 +658,10 @@ public final class PurchaseOrder {
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
+                this.accountingPeriod,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -687,9 +712,13 @@ public final class PurchaseOrder {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<PurchaseOrderAccountingPeriod> accountingPeriod = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -717,8 +746,10 @@ public final class PurchaseOrder {
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            accountingPeriod(other.getAccountingPeriod());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -913,6 +944,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<PurchaseOrderAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(PurchaseOrderAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
             this.id = id;
@@ -932,6 +974,17 @@ public final class PurchaseOrder {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -987,8 +1040,10 @@ public final class PurchaseOrder {
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     remoteWasDeleted,
+                    accountingPeriod,
                     id,
                     remoteId,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

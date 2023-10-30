@@ -5,6 +5,7 @@ import com.merge.api.core.Suppliers;
 import com.merge.api.resources.hris.accountdetails.AccountDetailsClient;
 import com.merge.api.resources.hris.accounttoken.AccountTokenClient;
 import com.merge.api.resources.hris.asyncpassthrough.AsyncPassthroughClient;
+import com.merge.api.resources.hris.audittrail.AuditTrailClient;
 import com.merge.api.resources.hris.availableactions.AvailableActionsClient;
 import com.merge.api.resources.hris.bankinfo.BankInfoClient;
 import com.merge.api.resources.hris.benefits.BenefitsClient;
@@ -31,6 +32,7 @@ import com.merge.api.resources.hris.syncstatus.SyncStatusClient;
 import com.merge.api.resources.hris.teams.TeamsClient;
 import com.merge.api.resources.hris.timeoff.TimeOffClient;
 import com.merge.api.resources.hris.timeoffbalances.TimeOffBalancesClient;
+import com.merge.api.resources.hris.timesheetentries.TimesheetEntriesClient;
 import com.merge.api.resources.hris.webhookreceivers.WebhookReceiversClient;
 import java.util.function.Supplier;
 
@@ -42,6 +44,8 @@ public class HrisClient {
     protected final Supplier<AccountTokenClient> accountTokenClient;
 
     protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
+
+    protected final Supplier<AuditTrailClient> auditTrailClient;
 
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
@@ -95,6 +99,8 @@ public class HrisClient {
 
     protected final Supplier<TimeOffBalancesClient> timeOffBalancesClient;
 
+    protected final Supplier<TimesheetEntriesClient> timesheetEntriesClient;
+
     protected final Supplier<WebhookReceiversClient> webhookReceiversClient;
 
     public HrisClient(ClientOptions clientOptions) {
@@ -102,6 +108,7 @@ public class HrisClient {
         this.accountDetailsClient = Suppliers.memoize(() -> new AccountDetailsClient(clientOptions));
         this.accountTokenClient = Suppliers.memoize(() -> new AccountTokenClient(clientOptions));
         this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
+        this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.bankInfoClient = Suppliers.memoize(() -> new BankInfoClient(clientOptions));
         this.benefitsClient = Suppliers.memoize(() -> new BenefitsClient(clientOptions));
@@ -128,6 +135,7 @@ public class HrisClient {
         this.teamsClient = Suppliers.memoize(() -> new TeamsClient(clientOptions));
         this.timeOffClient = Suppliers.memoize(() -> new TimeOffClient(clientOptions));
         this.timeOffBalancesClient = Suppliers.memoize(() -> new TimeOffBalancesClient(clientOptions));
+        this.timesheetEntriesClient = Suppliers.memoize(() -> new TimesheetEntriesClient(clientOptions));
         this.webhookReceiversClient = Suppliers.memoize(() -> new WebhookReceiversClient(clientOptions));
     }
 
@@ -141,6 +149,10 @@ public class HrisClient {
 
     public AsyncPassthroughClient asyncPassthrough() {
         return this.asyncPassthroughClient.get();
+    }
+
+    public AuditTrailClient auditTrail() {
+        return this.auditTrailClient.get();
     }
 
     public AvailableActionsClient availableActions() {
@@ -245,6 +257,10 @@ public class HrisClient {
 
     public TimeOffBalancesClient timeOffBalances() {
         return this.timeOffBalancesClient.get();
+    }
+
+    public TimesheetEntriesClient timesheetEntries() {
+        return this.timesheetEntriesClient.get();
     }
 
     public WebhookReceiversClient webhookReceivers() {

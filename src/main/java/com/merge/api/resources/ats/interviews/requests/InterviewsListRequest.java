@@ -29,6 +29,8 @@ public final class InterviewsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<String> jobId;
+
     private final Optional<String> jobInterviewStageId;
 
     private final Optional<OffsetDateTime> modifiedAfter;
@@ -53,6 +55,7 @@ public final class InterviewsListRequest {
             Optional<InterviewsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<String> jobId,
             Optional<String> jobInterviewStageId,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
@@ -68,6 +71,7 @@ public final class InterviewsListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.jobId = jobId;
         this.jobInterviewStageId = jobInterviewStageId;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
@@ -132,6 +136,14 @@ public final class InterviewsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return If provided, wll only return interviews organized for this job.
+     */
+    @JsonProperty("job_id")
+    public Optional<String> getJobId() {
+        return jobId;
     }
 
     /**
@@ -212,6 +224,7 @@ public final class InterviewsListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && jobId.equals(other.jobId)
                 && jobInterviewStageId.equals(other.jobInterviewStageId)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
@@ -232,6 +245,7 @@ public final class InterviewsListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.jobId,
                 this.jobInterviewStageId,
                 this.modifiedAfter,
                 this.modifiedBefore,
@@ -267,6 +281,8 @@ public final class InterviewsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<String> jobId = Optional.empty();
+
         private Optional<String> jobInterviewStageId = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
@@ -293,6 +309,7 @@ public final class InterviewsListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            jobId(other.getJobId());
             jobInterviewStageId(other.getJobInterviewStageId());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
@@ -378,6 +395,17 @@ public final class InterviewsListRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.of(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "job_id", nulls = Nulls.SKIP)
+        public Builder jobId(Optional<String> jobId) {
+            this.jobId = jobId;
+            return this;
+        }
+
+        public Builder jobId(String jobId) {
+            this.jobId = Optional.of(jobId);
             return this;
         }
 
@@ -478,6 +506,7 @@ public final class InterviewsListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    jobId,
                     jobInterviewStageId,
                     modifiedAfter,
                     modifiedBefore,

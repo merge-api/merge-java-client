@@ -42,6 +42,10 @@ public final class PurchaseOrderLineItem {
 
     private final Optional<String> company;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private PurchaseOrderLineItem(
@@ -58,6 +62,8 @@ public final class PurchaseOrderLineItem {
             Optional<PurchaseOrderLineItemCurrency> currency,
             Optional<String> exchangeRate,
             Optional<String> company,
+            Optional<Boolean> remoteWasDeleted,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.remoteId = remoteId;
         this.description = description;
@@ -72,6 +78,8 @@ public final class PurchaseOrderLineItem {
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
+        this.remoteWasDeleted = remoteWasDeleted;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -485,6 +493,19 @@ public final class PurchaseOrderLineItem {
     }
 
     /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
      * @return This is the datetime that this object was last updated by Merge
      */
     @JsonProperty("modified_at")
@@ -512,6 +533,8 @@ public final class PurchaseOrderLineItem {
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -531,6 +554,8 @@ public final class PurchaseOrderLineItem {
                 this.currency,
                 this.exchangeRate,
                 this.company,
+                this.remoteWasDeleted,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -571,6 +596,10 @@ public final class PurchaseOrderLineItem {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -589,6 +618,8 @@ public final class PurchaseOrderLineItem {
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
+            remoteWasDeleted(other.getRemoteWasDeleted());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -742,6 +773,28 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -768,6 +821,8 @@ public final class PurchaseOrderLineItem {
                     currency,
                     exchangeRate,
                     company,
+                    remoteWasDeleted,
+                    createdAt,
                     modifiedAt);
         }
     }

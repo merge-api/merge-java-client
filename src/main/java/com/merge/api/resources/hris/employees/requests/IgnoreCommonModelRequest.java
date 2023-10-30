@@ -28,9 +28,6 @@ public final class IgnoreCommonModelRequest {
         return reason;
     }
 
-    /**
-     * @return &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 256 characters</code>&lt;/span&gt;
-     */
     @JsonProperty("message")
     public Optional<String> getMessage() {
         return message;
@@ -96,10 +93,6 @@ public final class IgnoreCommonModelRequest {
             return this;
         }
 
-        /**
-         * <p>&lt;span style=&quot;white-space: nowrap&quot;&gt;<code>non-empty</code>&lt;/span&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 256 characters</code>&lt;/span&gt;</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @Override
         public _FinalStage message(String message) {
             this.message = Optional.of(message);

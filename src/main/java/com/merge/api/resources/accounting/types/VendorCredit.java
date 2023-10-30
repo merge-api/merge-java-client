@@ -41,7 +41,9 @@ public final class VendorCredit {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<List<VendorCreditApplyLine>> appliedToLines;
+    private final Optional<VendorCreditAccountingPeriod> accountingPeriod;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -62,7 +64,8 @@ public final class VendorCredit {
             Optional<List<VendorCreditLine>> lines,
             Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
-            Optional<List<VendorCreditApplyLine>> appliedToLines,
+            Optional<VendorCreditAccountingPeriod> accountingPeriod,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -78,7 +81,8 @@ public final class VendorCredit {
         this.lines = lines;
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.appliedToLines = appliedToLines;
+        this.accountingPeriod = accountingPeriod;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -472,16 +476,24 @@ public final class VendorCredit {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("applied_to_lines")
-    public Optional<List<VendorCreditApplyLine>> getAppliedToLines() {
-        return appliedToLines;
+    /**
+     * @return The accounting period that the VendorCredit was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<VendorCreditAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -521,7 +533,8 @@ public final class VendorCredit {
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && appliedToLines.equals(other.appliedToLines)
+                && accountingPeriod.equals(other.accountingPeriod)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -542,7 +555,8 @@ public final class VendorCredit {
                 this.lines,
                 this.trackingCategories,
                 this.remoteWasDeleted,
-                this.appliedToLines,
+                this.accountingPeriod,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -583,7 +597,9 @@ public final class VendorCredit {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<List<VendorCreditApplyLine>> appliedToLines = Optional.empty();
+        private Optional<VendorCreditAccountingPeriod> accountingPeriod = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -606,7 +622,8 @@ public final class VendorCredit {
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            appliedToLines(other.getAppliedToLines());
+            accountingPeriod(other.getAccountingPeriod());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -746,14 +763,25 @@ public final class VendorCredit {
             return this;
         }
 
-        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
-        public Builder appliedToLines(Optional<List<VendorCreditApplyLine>> appliedToLines) {
-            this.appliedToLines = appliedToLines;
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<VendorCreditAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
             return this;
         }
 
-        public Builder appliedToLines(List<VendorCreditApplyLine> appliedToLines) {
-            this.appliedToLines = Optional.of(appliedToLines);
+        public Builder accountingPeriod(VendorCreditAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -804,7 +832,8 @@ public final class VendorCredit {
                     lines,
                     trackingCategories,
                     remoteWasDeleted,
-                    appliedToLines,
+                    accountingPeriod,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

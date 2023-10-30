@@ -31,6 +31,8 @@ public final class Address {
 
     private final Optional<String> zipCode;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private Address(
@@ -42,6 +44,7 @@ public final class Address {
             Optional<String> countrySubdivision,
             Optional<AddressCountry> country,
             Optional<String> zipCode,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.type = type;
         this.street1 = street1;
@@ -51,6 +54,7 @@ public final class Address {
         this.countrySubdivision = countrySubdivision;
         this.country = country;
         this.zipCode = zipCode;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -370,6 +374,11 @@ public final class Address {
         return zipCode;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -393,6 +402,7 @@ public final class Address {
                 && countrySubdivision.equals(other.countrySubdivision)
                 && country.equals(other.country)
                 && zipCode.equals(other.zipCode)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -407,6 +417,7 @@ public final class Address {
                 this.countrySubdivision,
                 this.country,
                 this.zipCode,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -437,6 +448,8 @@ public final class Address {
 
         private Optional<String> zipCode = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -450,6 +463,7 @@ public final class Address {
             countrySubdivision(other.getCountrySubdivision());
             country(other.getCountry());
             zipCode(other.getZipCode());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -542,6 +556,17 @@ public final class Address {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -554,7 +579,8 @@ public final class Address {
         }
 
         public Address build() {
-            return new Address(type, street1, street2, city, state, countrySubdivision, country, zipCode, modifiedAt);
+            return new Address(
+                    type, street1, street2, city, state, countrySubdivision, country, zipCode, createdAt, modifiedAt);
         }
     }
 }

@@ -31,6 +31,8 @@ public final class CustomObjectClass {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private CustomObjectClass(
@@ -41,6 +43,7 @@ public final class CustomObjectClass {
             Optional<List<Map<String, JsonNode>>> associationTypes,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.name = name;
         this.description = description;
@@ -49,6 +52,7 @@ public final class CustomObjectClass {
         this.associationTypes = associationTypes;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -90,6 +94,11 @@ public final class CustomObjectClass {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
         return modifiedAt;
@@ -109,6 +118,7 @@ public final class CustomObjectClass {
                 && associationTypes.equals(other.associationTypes)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -122,6 +132,7 @@ public final class CustomObjectClass {
                 this.associationTypes,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -150,6 +161,8 @@ public final class CustomObjectClass {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -162,6 +175,7 @@ public final class CustomObjectClass {
             associationTypes(other.getAssociationTypes());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -243,6 +257,17 @@ public final class CustomObjectClass {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -255,7 +280,8 @@ public final class CustomObjectClass {
         }
 
         public CustomObjectClass build() {
-            return new CustomObjectClass(name, description, labels, fields, associationTypes, id, remoteId, modifiedAt);
+            return new CustomObjectClass(
+                    name, description, labels, fields, associationTypes, id, remoteId, createdAt, modifiedAt);
         }
     }
 }

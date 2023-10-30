@@ -18,14 +18,18 @@ public final class EmailAddress {
 
     private final Optional<EmailAddressEmailAddressType> emailAddressType;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private EmailAddress(
             Optional<String> value,
             Optional<EmailAddressEmailAddressType> emailAddressType,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.value = value;
         this.emailAddressType = emailAddressType;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -50,6 +54,11 @@ public final class EmailAddress {
         return emailAddressType;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -67,12 +76,13 @@ public final class EmailAddress {
     private boolean equalTo(EmailAddress other) {
         return value.equals(other.value)
                 && emailAddressType.equals(other.emailAddressType)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.value, this.emailAddressType, this.modifiedAt);
+        return Objects.hash(this.value, this.emailAddressType, this.createdAt, this.modifiedAt);
     }
 
     @Override
@@ -90,6 +100,8 @@ public final class EmailAddress {
 
         private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -97,6 +109,7 @@ public final class EmailAddress {
         public Builder from(EmailAddress other) {
             value(other.getValue());
             emailAddressType(other.getEmailAddressType());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -123,6 +136,17 @@ public final class EmailAddress {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -135,7 +159,7 @@ public final class EmailAddress {
         }
 
         public EmailAddress build() {
-            return new EmailAddress(value, emailAddressType, modifiedAt);
+            return new EmailAddress(value, emailAddressType, createdAt, modifiedAt);
         }
     }
 }

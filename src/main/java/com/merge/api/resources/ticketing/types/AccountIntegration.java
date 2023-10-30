@@ -32,6 +32,8 @@ public final class AccountIntegration {
 
     private final Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls;
 
+    private final Optional<String> webhookSetupGuideUrl;
+
     private AccountIntegration(
             String name,
             Optional<List<CategoriesEnum>> categories,
@@ -40,7 +42,8 @@ public final class AccountIntegration {
             Optional<String> color,
             Optional<String> slug,
             Optional<Boolean> isInBeta,
-            Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls) {
+            Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls,
+            Optional<String> webhookSetupGuideUrl) {
         this.name = name;
         this.categories = categories;
         this.image = image;
@@ -49,6 +52,7 @@ public final class AccountIntegration {
         this.slug = slug;
         this.isInBeta = isInBeta;
         this.apiEndpointsToDocumentationUrls = apiEndpointsToDocumentationUrls;
+        this.webhookSetupGuideUrl = webhookSetupGuideUrl;
     }
 
     /**
@@ -84,7 +88,7 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 18 characters</code>&lt;/span&gt;
+     * @return The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;
      */
     @JsonProperty("color")
     public Optional<String> getColor() {
@@ -112,6 +116,14 @@ public final class AccountIntegration {
         return apiEndpointsToDocumentationUrls;
     }
 
+    /**
+     * @return Setup guide URL for third party webhook creation. Exposed in Merge Docs.
+     */
+    @JsonProperty("webhook_setup_guide_url")
+    public Optional<String> getWebhookSetupGuideUrl() {
+        return webhookSetupGuideUrl;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -126,7 +138,8 @@ public final class AccountIntegration {
                 && color.equals(other.color)
                 && slug.equals(other.slug)
                 && isInBeta.equals(other.isInBeta)
-                && apiEndpointsToDocumentationUrls.equals(other.apiEndpointsToDocumentationUrls);
+                && apiEndpointsToDocumentationUrls.equals(other.apiEndpointsToDocumentationUrls)
+                && webhookSetupGuideUrl.equals(other.webhookSetupGuideUrl);
     }
 
     @Override
@@ -139,7 +152,8 @@ public final class AccountIntegration {
                 this.color,
                 this.slug,
                 this.isInBeta,
-                this.apiEndpointsToDocumentationUrls);
+                this.apiEndpointsToDocumentationUrls,
+                this.webhookSetupGuideUrl);
     }
 
     @Override
@@ -187,11 +201,17 @@ public final class AccountIntegration {
         _FinalStage apiEndpointsToDocumentationUrls(Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls);
 
         _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls);
+
+        _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl);
+
+        _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements NameStage, _FinalStage {
         private String name;
+
+        private Optional<String> webhookSetupGuideUrl = Optional.empty();
 
         private Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls = Optional.empty();
 
@@ -219,6 +239,7 @@ public final class AccountIntegration {
             slug(other.getSlug());
             isInBeta(other.getIsInBeta());
             apiEndpointsToDocumentationUrls(other.getApiEndpointsToDocumentationUrls());
+            webhookSetupGuideUrl(other.getWebhookSetupGuideUrl());
             return this;
         }
 
@@ -230,6 +251,23 @@ public final class AccountIntegration {
         @JsonSetter("name")
         public _FinalStage name(String name) {
             this.name = name;
+            return this;
+        }
+
+        /**
+         * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @Override
+        public _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl) {
+            this.webhookSetupGuideUrl = Optional.of(webhookSetupGuideUrl);
+            return this;
+        }
+
+        @Override
+        @JsonSetter(value = "webhook_setup_guide_url", nulls = Nulls.SKIP)
+        public _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl) {
+            this.webhookSetupGuideUrl = webhookSetupGuideUrl;
             return this;
         }
 
@@ -282,7 +320,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt; &lt;span style=&quot;white-space: nowrap&quot;&gt;<code>&lt;= 18 characters</code>&lt;/span&gt;</p>
+         * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @Override
@@ -352,7 +390,15 @@ public final class AccountIntegration {
         @Override
         public AccountIntegration build() {
             return new AccountIntegration(
-                    name, categories, image, squareImage, color, slug, isInBeta, apiEndpointsToDocumentationUrls);
+                    name,
+                    categories,
+                    image,
+                    squareImage,
+                    color,
+                    slug,
+                    isInBeta,
+                    apiEndpointsToDocumentationUrls,
+                    webhookSetupGuideUrl);
         }
     }
 }

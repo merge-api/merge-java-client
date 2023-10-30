@@ -45,9 +45,13 @@ public final class Expense {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<ExpenseAccountingPeriod> accountingPeriod;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
@@ -70,8 +74,10 @@ public final class Expense {
             Optional<List<ExpenseLine>> lines,
             Optional<List<Optional<ExpenseTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
+            Optional<ExpenseAccountingPeriod> accountingPeriod,
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData) {
@@ -89,8 +95,10 @@ public final class Expense {
         this.lines = lines;
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.accountingPeriod = accountingPeriod;
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -503,11 +511,19 @@ public final class Expense {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    /**
+     * @return The accounting period that the Expense was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<ExpenseAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
     }
 
     @JsonProperty("id")
@@ -521,6 +537,11 @@ public final class Expense {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
     }
 
     /**
@@ -562,8 +583,10 @@ public final class Expense {
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -586,8 +609,10 @@ public final class Expense {
                 this.lines,
                 this.trackingCategories,
                 this.remoteWasDeleted,
+                this.accountingPeriod,
                 this.id,
                 this.remoteId,
+                this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
@@ -632,9 +657,13 @@ public final class Expense {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<ExpenseAccountingPeriod> accountingPeriod = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
@@ -659,8 +688,10 @@ public final class Expense {
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            accountingPeriod(other.getAccountingPeriod());
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -821,6 +852,17 @@ public final class Expense {
             return this;
         }
 
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<ExpenseAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(ExpenseAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public Builder id(Optional<String> id) {
             this.id = id;
@@ -840,6 +882,17 @@ public final class Expense {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
             return this;
         }
 
@@ -892,8 +945,10 @@ public final class Expense {
                     lines,
                     trackingCategories,
                     remoteWasDeleted,
+                    accountingPeriod,
                     id,
                     remoteId,
+                    createdAt,
                     modifiedAt,
                     fieldMappings,
                     remoteData);

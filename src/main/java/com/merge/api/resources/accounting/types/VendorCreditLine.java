@@ -32,6 +32,8 @@ public final class VendorCreditLine {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<OffsetDateTime> createdAt;
+
     private final Optional<OffsetDateTime> modifiedAt;
 
     private VendorCreditLine(
@@ -43,6 +45,7 @@ public final class VendorCreditLine {
             Optional<VendorCreditLineAccount> account,
             Optional<String> company,
             Optional<String> exchangeRate,
+            Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.remoteId = remoteId;
         this.netAmount = netAmount;
@@ -52,6 +55,7 @@ public final class VendorCreditLine {
         this.account = account;
         this.company = company;
         this.exchangeRate = exchangeRate;
+        this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
 
@@ -119,6 +123,11 @@ public final class VendorCreditLine {
         return exchangeRate;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
     /**
      * @return This is the datetime that this object was last updated by Merge
      */
@@ -142,6 +151,7 @@ public final class VendorCreditLine {
                 && account.equals(other.account)
                 && company.equals(other.company)
                 && exchangeRate.equals(other.exchangeRate)
+                && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
 
@@ -156,6 +166,7 @@ public final class VendorCreditLine {
                 this.account,
                 this.company,
                 this.exchangeRate,
+                this.createdAt,
                 this.modifiedAt);
     }
 
@@ -186,6 +197,8 @@ public final class VendorCreditLine {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Builder() {}
@@ -199,6 +212,7 @@ public final class VendorCreditLine {
             account(other.getAccount());
             company(other.getCompany());
             exchangeRate(other.getExchangeRate());
+            createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
         }
@@ -297,6 +311,17 @@ public final class VendorCreditLine {
             return this;
         }
 
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -318,6 +343,7 @@ public final class VendorCreditLine {
                     account,
                     company,
                     exchangeRate,
+                    createdAt,
                     modifiedAt);
         }
     }

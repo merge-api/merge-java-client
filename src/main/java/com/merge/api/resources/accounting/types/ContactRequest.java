@@ -32,7 +32,7 @@ public final class ContactRequest {
 
     private final Optional<String> company;
 
-    private final Optional<List<Optional<String>>> addresses;
+    private final Optional<List<Optional<ContactRequestAddressesItem>>> addresses;
 
     private final Optional<List<AccountingPhoneNumberRequest>> phoneNumbers;
 
@@ -49,7 +49,7 @@ public final class ContactRequest {
             Optional<ContactRequestStatus> status,
             Optional<String> currency,
             Optional<String> company,
-            Optional<List<Optional<String>>> addresses,
+            Optional<List<Optional<ContactRequestAddressesItem>>> addresses,
             Optional<List<AccountingPhoneNumberRequest>> phoneNumbers,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
@@ -139,7 +139,7 @@ public final class ContactRequest {
      * @return <code>Address</code> object IDs for the given <code>Contacts</code> object.
      */
     @JsonProperty("addresses")
-    public Optional<List<Optional<String>>> getAddresses() {
+    public Optional<List<Optional<ContactRequestAddressesItem>>> getAddresses() {
         return addresses;
     }
 
@@ -226,7 +226,7 @@ public final class ContactRequest {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<List<Optional<String>>> addresses = Optional.empty();
+        private Optional<List<Optional<ContactRequestAddressesItem>>> addresses = Optional.empty();
 
         private Optional<List<AccountingPhoneNumberRequest>> phoneNumbers = Optional.empty();
 
@@ -341,12 +341,12 @@ public final class ContactRequest {
         }
 
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
-        public Builder addresses(Optional<List<Optional<String>>> addresses) {
+        public Builder addresses(Optional<List<Optional<ContactRequestAddressesItem>>> addresses) {
             this.addresses = addresses;
             return this;
         }
 
-        public Builder addresses(List<Optional<String>> addresses) {
+        public Builder addresses(List<Optional<ContactRequestAddressesItem>> addresses) {
             this.addresses = Optional.of(addresses);
             return this;
         }
