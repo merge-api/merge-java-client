@@ -32,6 +32,8 @@ public final class VendorCreditLine {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
@@ -45,6 +47,7 @@ public final class VendorCreditLine {
             Optional<VendorCreditLineAccount> account,
             Optional<String> company,
             Optional<String> exchangeRate,
+            Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.remoteId = remoteId;
@@ -55,6 +58,7 @@ public final class VendorCreditLine {
         this.account = account;
         this.company = company;
         this.exchangeRate = exchangeRate;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
@@ -123,6 +127,14 @@ public final class VendorCreditLine {
         return exchangeRate;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
@@ -151,6 +163,7 @@ public final class VendorCreditLine {
                 && account.equals(other.account)
                 && company.equals(other.company)
                 && exchangeRate.equals(other.exchangeRate)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
@@ -166,6 +179,7 @@ public final class VendorCreditLine {
                 this.account,
                 this.company,
                 this.exchangeRate,
+                this.remoteWasDeleted,
                 this.createdAt,
                 this.modifiedAt);
     }
@@ -197,6 +211,8 @@ public final class VendorCreditLine {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
@@ -212,6 +228,7 @@ public final class VendorCreditLine {
             account(other.getAccount());
             company(other.getCompany());
             exchangeRate(other.getExchangeRate());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
@@ -311,6 +328,17 @@ public final class VendorCreditLine {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -343,6 +371,7 @@ public final class VendorCreditLine {
                     account,
                     company,
                     exchangeRate,
+                    remoteWasDeleted,
                     createdAt,
                     modifiedAt);
         }

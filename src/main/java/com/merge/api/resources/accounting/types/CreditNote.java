@@ -49,6 +49,8 @@ public final class CreditNote {
 
     private final Optional<List<Optional<CreditNotePaymentsItem>>> payments;
 
+    private final Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<CreditNoteAccountingPeriod> accountingPeriod;
@@ -78,6 +80,7 @@ public final class CreditNote {
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<CreditNotePaymentsItem>>> payments,
+            Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments,
             Optional<Boolean> remoteWasDeleted,
             Optional<CreditNoteAccountingPeriod> accountingPeriod,
             Optional<OffsetDateTime> createdAt,
@@ -100,6 +103,7 @@ public final class CreditNote {
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.payments = payments;
+        this.appliedPayments = appliedPayments;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
         this.createdAt = createdAt;
@@ -541,6 +545,14 @@ public final class CreditNote {
     }
 
     /**
+     * @return Array of <code>PaymentLineItems</code> object IDs.
+     */
+    @JsonProperty("applied_payments")
+    public Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> getAppliedPayments() {
+        return appliedPayments;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
@@ -602,6 +614,7 @@ public final class CreditNote {
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && payments.equals(other.payments)
+                && appliedPayments.equals(other.appliedPayments)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && createdAt.equals(other.createdAt)
@@ -629,6 +642,7 @@ public final class CreditNote {
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.payments,
+                this.appliedPayments,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.createdAt,
@@ -680,6 +694,8 @@ public final class CreditNote {
 
         private Optional<List<Optional<CreditNotePaymentsItem>>> payments = Optional.empty();
 
+        private Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<CreditNoteAccountingPeriod> accountingPeriod = Optional.empty();
@@ -711,6 +727,7 @@ public final class CreditNote {
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             payments(other.getPayments());
+            appliedPayments(other.getAppliedPayments());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
             createdAt(other.getCreatedAt());
@@ -897,6 +914,17 @@ public final class CreditNote {
             return this;
         }
 
+        @JsonSetter(value = "applied_payments", nulls = Nulls.SKIP)
+        public Builder appliedPayments(Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments) {
+            this.appliedPayments = appliedPayments;
+            return this;
+        }
+
+        public Builder appliedPayments(List<Optional<CreditNoteAppliedPaymentsItem>> appliedPayments) {
+            this.appliedPayments = Optional.of(appliedPayments);
+            return this;
+        }
+
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -981,6 +1009,7 @@ public final class CreditNote {
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     payments,
+                    appliedPayments,
                     remoteWasDeleted,
                     accountingPeriod,
                     createdAt,

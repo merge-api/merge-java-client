@@ -42,6 +42,8 @@ public final class CreditNoteLineItem {
 
     private final Optional<String> remoteId;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
@@ -60,6 +62,7 @@ public final class CreditNoteLineItem {
             Optional<String> account,
             Optional<CreditNoteLineItemCompany> company,
             Optional<String> remoteId,
+            Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt) {
         this.item = item;
@@ -75,6 +78,7 @@ public final class CreditNoteLineItem {
         this.account = account;
         this.company = company;
         this.remoteId = remoteId;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
     }
@@ -180,6 +184,14 @@ public final class CreditNoteLineItem {
         return remoteId;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
@@ -213,6 +225,7 @@ public final class CreditNoteLineItem {
                 && account.equals(other.account)
                 && company.equals(other.company)
                 && remoteId.equals(other.remoteId)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt);
     }
@@ -233,6 +246,7 @@ public final class CreditNoteLineItem {
                 this.account,
                 this.company,
                 this.remoteId,
+                this.remoteWasDeleted,
                 this.createdAt,
                 this.modifiedAt);
     }
@@ -274,6 +288,8 @@ public final class CreditNoteLineItem {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
@@ -294,6 +310,7 @@ public final class CreditNoteLineItem {
             account(other.getAccount());
             company(other.getCompany());
             remoteId(other.getRemoteId());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             return this;
@@ -448,6 +465,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -485,6 +513,7 @@ public final class CreditNoteLineItem {
                     account,
                     company,
                     remoteId,
+                    remoteWasDeleted,
                     createdAt,
                     modifiedAt);
         }

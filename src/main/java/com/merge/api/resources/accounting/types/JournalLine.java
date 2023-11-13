@@ -27,6 +27,8 @@ public final class JournalLine {
 
     private final Optional<JournalLineCurrency> currency;
 
+    private final Optional<String> company;
+
     private final Optional<String> contact;
 
     private final Optional<String> description;
@@ -46,6 +48,7 @@ public final class JournalLine {
             Optional<JournalLineTrackingCategory> trackingCategory,
             Optional<List<Optional<JournalLineTrackingCategoriesItem>>> trackingCategories,
             Optional<JournalLineCurrency> currency,
+            Optional<String> company,
             Optional<String> contact,
             Optional<String> description,
             Optional<String> exchangeRate,
@@ -58,6 +61,7 @@ public final class JournalLine {
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.currency = currency;
+        this.company = company;
         this.contact = contact;
         this.description = description;
         this.exchangeRate = exchangeRate;
@@ -413,6 +417,14 @@ public final class JournalLine {
         return currency;
     }
 
+    /**
+     * @return The company the journal entry belongs to.
+     */
+    @JsonProperty("company")
+    public Optional<String> getCompany() {
+        return company;
+    }
+
     @JsonProperty("contact")
     public Optional<String> getContact() {
         return contact;
@@ -468,6 +480,7 @@ public final class JournalLine {
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && currency.equals(other.currency)
+                && company.equals(other.company)
                 && contact.equals(other.contact)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
@@ -485,6 +498,7 @@ public final class JournalLine {
                 this.trackingCategory,
                 this.trackingCategories,
                 this.currency,
+                this.company,
                 this.contact,
                 this.description,
                 this.exchangeRate,
@@ -516,6 +530,8 @@ public final class JournalLine {
 
         private Optional<JournalLineCurrency> currency = Optional.empty();
 
+        private Optional<String> company = Optional.empty();
+
         private Optional<String> contact = Optional.empty();
 
         private Optional<String> description = Optional.empty();
@@ -537,6 +553,7 @@ public final class JournalLine {
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             currency(other.getCurrency());
+            company(other.getCompany());
             contact(other.getContact());
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
@@ -610,6 +627,17 @@ public final class JournalLine {
 
         public Builder currency(JournalLineCurrency currency) {
             this.currency = Optional.of(currency);
+            return this;
+        }
+
+        @JsonSetter(value = "company", nulls = Nulls.SKIP)
+        public Builder company(Optional<String> company) {
+            this.company = company;
+            return this;
+        }
+
+        public Builder company(String company) {
+            this.company = Optional.of(company);
             return this;
         }
 
@@ -687,6 +715,7 @@ public final class JournalLine {
                     trackingCategory,
                     trackingCategories,
                     currency,
+                    company,
                     contact,
                     description,
                     exchangeRate,
