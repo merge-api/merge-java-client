@@ -5,6 +5,79 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum CreditNotesRetrieveRequestExpand {
     ACCOUNTING_PERIOD("accounting_period"),
 
+    APPLIED_PAYMENTS("applied_payments"),
+
+    APPLIED_PAYMENTS_ACCOUNTING_PERIOD("applied_payments,accounting_period"),
+
+    APPLIED_PAYMENTS_COMPANY("applied_payments,company"),
+
+    APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("applied_payments,company,accounting_period"),
+
+    APPLIED_PAYMENTS_CONTACT("applied_payments,contact"),
+
+    APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD("applied_payments,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_CONTACT_COMPANY("applied_payments,contact,company"),
+
+    APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD("applied_payments,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS("applied_payments,line_items"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD("applied_payments,line_items,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY("applied_payments,line_items,company"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD("applied_payments,line_items,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT("applied_payments,line_items,contact"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD("applied_payments,line_items,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY("applied_payments,line_items,contact,company"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "applied_payments,line_items,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES("applied_payments,line_items,tracking_categories"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
+            "applied_payments,line_items,tracking_categories,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY("applied_payments,line_items,tracking_categories,company"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
+            "applied_payments,line_items,tracking_categories,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT("applied_payments,line_items,tracking_categories,contact"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
+            "applied_payments,line_items,tracking_categories,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY(
+            "applied_payments,line_items,tracking_categories,contact,company"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "applied_payments,line_items,tracking_categories,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES("applied_payments,tracking_categories"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("applied_payments,tracking_categories,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("applied_payments,tracking_categories,company"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
+            "applied_payments,tracking_categories,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT("applied_payments,tracking_categories,contact"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
+            "applied_payments,tracking_categories,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY("applied_payments,tracking_categories,contact,company"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "applied_payments,tracking_categories,contact,company,accounting_period"),
+
     COMPANY("company"),
 
     COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
@@ -55,6 +128,87 @@ public enum CreditNotesRetrieveRequestExpand {
     PAYMENTS("payments"),
 
     PAYMENTS_ACCOUNTING_PERIOD("payments,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS("payments,applied_payments"),
+
+    PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD("payments,applied_payments,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY("payments,applied_payments,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("payments,applied_payments,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT("payments,applied_payments,contact"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD("payments,applied_payments,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY("payments,applied_payments,contact,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS("payments,applied_payments,line_items"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD("payments,applied_payments,line_items,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY("payments,applied_payments,line_items,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT("payments,applied_payments,line_items,contact"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY("payments,applied_payments,line_items,contact,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES(
+            "payments,applied_payments,line_items,tracking_categories"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,tracking_categories,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY(
+            "payments,applied_payments,line_items,tracking_categories,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,tracking_categories,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT(
+            "payments,applied_payments,line_items,tracking_categories,contact"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,tracking_categories,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY(
+            "payments,applied_payments,line_items,tracking_categories,contact,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES("payments,applied_payments,tracking_categories"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
+            "payments,applied_payments,tracking_categories,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("payments,applied_payments,tracking_categories,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,tracking_categories,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT("payments,applied_payments,tracking_categories,contact"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
+            "payments,applied_payments,tracking_categories,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY(
+            "payments,applied_payments,tracking_categories,contact,company"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
+            "payments,applied_payments,tracking_categories,contact,company,accounting_period"),
 
     PAYMENTS_COMPANY("payments,company"),
 

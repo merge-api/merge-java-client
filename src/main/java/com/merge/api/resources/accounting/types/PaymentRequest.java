@@ -35,6 +35,8 @@ public final class PaymentRequest {
 
     private final Optional<PaymentRequestAccountingPeriod> accountingPeriod;
 
+    private final Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines;
+
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
@@ -49,6 +51,7 @@ public final class PaymentRequest {
             Optional<Double> totalAmount,
             Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PaymentRequestAccountingPeriod> accountingPeriod,
+            Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.transactionDate = transactionDate;
@@ -60,6 +63,7 @@ public final class PaymentRequest {
         this.totalAmount = totalAmount;
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
+        this.appliedToLines = appliedToLines;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
     }
@@ -441,6 +445,11 @@ public final class PaymentRequest {
         return accountingPeriod;
     }
 
+    @JsonProperty("applied_to_lines")
+    public Optional<List<PaymentRequestAppliedToLinesItem>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
     @JsonProperty("integration_params")
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
         return integrationParams;
@@ -467,6 +476,7 @@ public final class PaymentRequest {
                 && totalAmount.equals(other.totalAmount)
                 && trackingCategories.equals(other.trackingCategories)
                 && accountingPeriod.equals(other.accountingPeriod)
+                && appliedToLines.equals(other.appliedToLines)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
@@ -483,6 +493,7 @@ public final class PaymentRequest {
                 this.totalAmount,
                 this.trackingCategories,
                 this.accountingPeriod,
+                this.appliedToLines,
                 this.integrationParams,
                 this.linkedAccountParams);
     }
@@ -516,6 +527,8 @@ public final class PaymentRequest {
 
         private Optional<PaymentRequestAccountingPeriod> accountingPeriod = Optional.empty();
 
+        private Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines = Optional.empty();
+
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
@@ -532,6 +545,7 @@ public final class PaymentRequest {
             totalAmount(other.getTotalAmount());
             trackingCategories(other.getTrackingCategories());
             accountingPeriod(other.getAccountingPeriod());
+            appliedToLines(other.getAppliedToLines());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             return this;
@@ -637,6 +651,17 @@ public final class PaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<PaymentRequestAppliedToLinesItem> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -670,6 +695,7 @@ public final class PaymentRequest {
                     totalAmount,
                     trackingCategories,
                     accountingPeriod,
+                    appliedToLines,
                     integrationParams,
                     linkedAccountParams);
         }

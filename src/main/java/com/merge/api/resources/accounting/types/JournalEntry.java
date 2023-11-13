@@ -25,6 +25,8 @@ public final class JournalEntry {
 
     private final Optional<List<Optional<JournalEntryPaymentsItem>>> payments;
 
+    private final Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments;
+
     private final Optional<String> memo;
 
     private final Optional<JournalEntryCurrency> currency;
@@ -62,6 +64,7 @@ public final class JournalEntry {
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<JournalEntryPaymentsItem>>> payments,
+            Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments,
             Optional<String> memo,
             Optional<JournalEntryCurrency> currency,
             Optional<String> exchangeRate,
@@ -82,6 +85,7 @@ public final class JournalEntry {
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.payments = payments;
+        this.appliedPayments = appliedPayments;
         this.memo = memo;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
@@ -130,6 +134,14 @@ public final class JournalEntry {
     @JsonProperty("payments")
     public Optional<List<Optional<JournalEntryPaymentsItem>>> getPayments() {
         return payments;
+    }
+
+    /**
+     * @return Array of <code>PaymentLineItems</code> object IDs.
+     */
+    @JsonProperty("applied_payments")
+    public Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> getAppliedPayments() {
+        return appliedPayments;
     }
 
     /**
@@ -562,6 +574,7 @@ public final class JournalEntry {
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && payments.equals(other.payments)
+                && appliedPayments.equals(other.appliedPayments)
                 && memo.equals(other.memo)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
@@ -587,6 +600,7 @@ public final class JournalEntry {
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.payments,
+                this.appliedPayments,
                 this.memo,
                 this.currency,
                 this.exchangeRate,
@@ -623,6 +637,8 @@ public final class JournalEntry {
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
         private Optional<List<Optional<JournalEntryPaymentsItem>>> payments = Optional.empty();
+
+        private Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
@@ -663,6 +679,7 @@ public final class JournalEntry {
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             payments(other.getPayments());
+            appliedPayments(other.getAppliedPayments());
             memo(other.getMemo());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
@@ -723,6 +740,17 @@ public final class JournalEntry {
 
         public Builder payments(List<Optional<JournalEntryPaymentsItem>> payments) {
             this.payments = Optional.of(payments);
+            return this;
+        }
+
+        @JsonSetter(value = "applied_payments", nulls = Nulls.SKIP)
+        public Builder appliedPayments(Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments) {
+            this.appliedPayments = appliedPayments;
+            return this;
+        }
+
+        public Builder appliedPayments(List<Optional<JournalEntryAppliedPaymentsItem>> appliedPayments) {
+            this.appliedPayments = Optional.of(appliedPayments);
             return this;
         }
 
@@ -909,6 +937,7 @@ public final class JournalEntry {
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     payments,
+                    appliedPayments,
                     memo,
                     currency,
                     exchangeRate,

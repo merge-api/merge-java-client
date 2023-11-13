@@ -57,6 +57,8 @@ public final class Invoice {
 
     private final Optional<List<Optional<InvoicePaymentsItem>>> payments;
 
+    private final Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments;
+
     private final Optional<List<InvoiceLineItem>> lineItems;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -96,6 +98,7 @@ public final class Invoice {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<InvoiceTrackingCategoriesItem>>> trackingCategories,
             Optional<List<Optional<InvoicePaymentsItem>>> payments,
+            Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments,
             Optional<List<InvoiceLineItem>> lineItems,
             Optional<Boolean> remoteWasDeleted,
             Optional<InvoiceAccountingPeriod> accountingPeriod,
@@ -125,6 +128,7 @@ public final class Invoice {
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.trackingCategories = trackingCategories;
         this.payments = payments;
+        this.appliedPayments = appliedPayments;
         this.lineItems = lineItems;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
@@ -610,6 +614,14 @@ public final class Invoice {
         return payments;
     }
 
+    /**
+     * @return Array of <code>PaymentLineItems</code> object IDs.
+     */
+    @JsonProperty("applied_payments")
+    public Optional<List<Optional<InvoiceAppliedPaymentsItem>>> getAppliedPayments() {
+        return appliedPayments;
+    }
+
     @JsonProperty("line_items")
     public Optional<List<InvoiceLineItem>> getLineItems() {
         return lineItems;
@@ -691,6 +703,7 @@ public final class Invoice {
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && trackingCategories.equals(other.trackingCategories)
                 && payments.equals(other.payments)
+                && appliedPayments.equals(other.appliedPayments)
                 && lineItems.equals(other.lineItems)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
@@ -725,6 +738,7 @@ public final class Invoice {
                 this.remoteUpdatedAt,
                 this.trackingCategories,
                 this.payments,
+                this.appliedPayments,
                 this.lineItems,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
@@ -787,6 +801,8 @@ public final class Invoice {
 
         private Optional<List<Optional<InvoicePaymentsItem>>> payments = Optional.empty();
 
+        private Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments = Optional.empty();
+
         private Optional<List<InvoiceLineItem>> lineItems = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -828,6 +844,7 @@ public final class Invoice {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             trackingCategories(other.getTrackingCategories());
             payments(other.getPayments());
+            appliedPayments(other.getAppliedPayments());
             lineItems(other.getLineItems());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
@@ -1060,6 +1077,17 @@ public final class Invoice {
             return this;
         }
 
+        @JsonSetter(value = "applied_payments", nulls = Nulls.SKIP)
+        public Builder appliedPayments(Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments) {
+            this.appliedPayments = appliedPayments;
+            return this;
+        }
+
+        public Builder appliedPayments(List<Optional<InvoiceAppliedPaymentsItem>> appliedPayments) {
+            this.appliedPayments = Optional.of(appliedPayments);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
         public Builder lineItems(Optional<List<InvoiceLineItem>> lineItems) {
             this.lineItems = lineItems;
@@ -1181,6 +1209,7 @@ public final class Invoice {
                     remoteUpdatedAt,
                     trackingCategories,
                     payments,
+                    appliedPayments,
                     lineItems,
                     remoteWasDeleted,
                     accountingPeriod,

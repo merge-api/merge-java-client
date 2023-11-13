@@ -43,6 +43,8 @@ public final class Payment {
 
     private final Optional<PaymentAccountingPeriod> accountingPeriod;
 
+    private final Optional<List<PaymentAppliedToLinesItem>> appliedToLines;
+
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
@@ -65,6 +67,7 @@ public final class Payment {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<PaymentAccountingPeriod> accountingPeriod,
+            Optional<List<PaymentAppliedToLinesItem>> appliedToLines,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -82,6 +85,7 @@ public final class Payment {
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
+        this.appliedToLines = appliedToLines;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
@@ -494,6 +498,11 @@ public final class Payment {
         return accountingPeriod;
     }
 
+    @JsonProperty("applied_to_lines")
+    public Optional<List<PaymentAppliedToLinesItem>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
@@ -537,6 +546,7 @@ public final class Payment {
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
+                && appliedToLines.equals(other.appliedToLines)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
@@ -559,6 +569,7 @@ public final class Payment {
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
+                this.appliedToLines,
                 this.createdAt,
                 this.modifiedAt,
                 this.fieldMappings,
@@ -602,6 +613,8 @@ public final class Payment {
 
         private Optional<PaymentAccountingPeriod> accountingPeriod = Optional.empty();
 
+        private Optional<List<PaymentAppliedToLinesItem>> appliedToLines = Optional.empty();
+
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
@@ -626,6 +639,7 @@ public final class Payment {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
+            appliedToLines(other.getAppliedToLines());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
@@ -776,6 +790,17 @@ public final class Payment {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<PaymentAppliedToLinesItem>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<PaymentAppliedToLinesItem> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -835,6 +860,7 @@ public final class Payment {
                     remoteUpdatedAt,
                     remoteWasDeleted,
                     accountingPeriod,
+                    appliedToLines,
                     createdAt,
                     modifiedAt,
                     fieldMappings,
