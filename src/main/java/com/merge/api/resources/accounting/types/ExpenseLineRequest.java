@@ -28,7 +28,7 @@ public final class ExpenseLineRequest {
 
     private final Optional<String> company;
 
-    private final Optional<CurrencyEnum> currency;
+    private final Optional<ExpenseLineRequestCurrency> currency;
 
     private final Optional<ExpenseLineRequestAccount> account;
 
@@ -49,7 +49,7 @@ public final class ExpenseLineRequest {
             Optional<ExpenseLineRequestTrackingCategory> trackingCategory,
             Optional<List<Optional<ExpenseLineRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
-            Optional<CurrencyEnum> currency,
+            Optional<ExpenseLineRequestCurrency> currency,
             Optional<ExpenseLineRequestAccount> account,
             Optional<ExpenseLineRequestContact> contact,
             Optional<String> description,
@@ -425,7 +425,7 @@ public final class ExpenseLineRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<CurrencyEnum> getCurrency() {
+    public Optional<ExpenseLineRequestCurrency> getCurrency() {
         return currency;
     }
 
@@ -535,7 +535,7 @@ public final class ExpenseLineRequest {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<CurrencyEnum> currency = Optional.empty();
+        private Optional<ExpenseLineRequestCurrency> currency = Optional.empty();
 
         private Optional<ExpenseLineRequestAccount> account = Optional.empty();
 
@@ -636,12 +636,12 @@ public final class ExpenseLineRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<CurrencyEnum> currency) {
+        public Builder currency(Optional<ExpenseLineRequestCurrency> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(CurrencyEnum currency) {
+        public Builder currency(ExpenseLineRequestCurrency currency) {
             this.currency = Optional.of(currency);
             return this;
         }

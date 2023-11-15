@@ -43,7 +43,7 @@ public final class Invoice {
 
     private final Optional<Double> subTotal;
 
-    private final Optional<InvoiceStatusEnum> status;
+    private final Optional<InvoiceStatus> status;
 
     private final Optional<Double> totalTaxAmount;
 
@@ -91,7 +91,7 @@ public final class Invoice {
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
-            Optional<InvoiceStatusEnum> status,
+            Optional<InvoiceStatus> status,
             Optional<Double> totalTaxAmount,
             Optional<Double> totalAmount,
             Optional<Double> balance,
@@ -565,7 +565,7 @@ public final class Invoice {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<InvoiceStatusEnum> getStatus() {
+    public Optional<InvoiceStatus> getStatus() {
         return status;
     }
 
@@ -787,7 +787,7 @@ public final class Invoice {
 
         private Optional<Double> subTotal = Optional.empty();
 
-        private Optional<InvoiceStatusEnum> status = Optional.empty();
+        private Optional<InvoiceStatus> status = Optional.empty();
 
         private Optional<Double> totalTaxAmount = Optional.empty();
 
@@ -1001,12 +1001,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<InvoiceStatusEnum> status) {
+        public Builder status(Optional<InvoiceStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(InvoiceStatusEnum status) {
+        public Builder status(InvoiceStatus status) {
             this.status = Optional.of(status);
             return this;
         }
