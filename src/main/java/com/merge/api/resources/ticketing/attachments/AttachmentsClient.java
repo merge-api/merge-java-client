@@ -4,6 +4,7 @@ import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.resources.ticketing.attachments.requests.AttachmentsDownloadRetrieveRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsListRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsRetrieveRequest;
 import com.merge.api.resources.ticketing.attachments.requests.TicketingAttachmentEndpointRequest;
@@ -37,7 +38,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -112,7 +113,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -158,7 +159,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/attachments")
+                .addPathSegments("attachments")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -187,23 +188,28 @@ public class AttachmentsClient {
         }
     }
 
-    public InputStream downloadRetrieve(String id) {
-        return downloadRetrieve(id, null);
+    public InputStream downloadRetrieve(String id, AttachmentsDownloadRetrieveRequest request) {
+        return downloadRetrieve(id, request, null);
     }
 
-    public InputStream downloadRetrieve(String id, RequestOptions requestOptions) {
-        HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+    public InputStream downloadRetrieve(
+            String id, AttachmentsDownloadRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder _httpUrl = HttpUrl.parse(
+                        this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/attachments")
+                .addPathSegments("attachments")
                 .addPathSegment(id)
-                .addPathSegments("download")
-                .build();
-        Request _request = new Request.Builder()
-                .url(_httpUrl)
-                .method("GET", null)
+                .addPathSegments("download");
+        if (request.getMimeType().isPresent()) {
+            _httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
+        }
+        RequestBody _requestBody = null;
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(_httpUrl.build())
+                .method("GET", _requestBody)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .build();
+                .addHeader("Content-Type", "application/json");
+        Request _request = _requestBuilder.build();
         try {
             Response _response = clientOptions.httpClient().newCall(_request).execute();
             if (_response.isSuccessful()) {
@@ -224,7 +230,7 @@ public class AttachmentsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/attachments/meta/post")
+                .addPathSegments("attachments/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

@@ -7,20 +7,23 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.resources.crm.contacts.types.ContactsRetrieveRequestExpand;
 import java.util.Objects;
 import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = ContactsRetrieveRequest.Builder.class)
 public final class ContactsRetrieveRequest {
-    private final Optional<String> expand;
+    private final Optional<ContactsRetrieveRequestExpand> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeRemoteFields;
 
     private ContactsRetrieveRequest(
-            Optional<String> expand, Optional<Boolean> includeRemoteData, Optional<Boolean> includeRemoteFields) {
+            Optional<ContactsRetrieveRequestExpand> expand,
+            Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeRemoteFields) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -30,7 +33,7 @@ public final class ContactsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<String> getExpand() {
+    public Optional<ContactsRetrieveRequestExpand> getExpand() {
         return expand;
     }
 
@@ -78,7 +81,7 @@ public final class ContactsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> expand = Optional.empty();
+        private Optional<ContactsRetrieveRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
@@ -94,12 +97,12 @@ public final class ContactsRetrieveRequest {
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
+        public Builder expand(Optional<ContactsRetrieveRequestExpand> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(ContactsRetrieveRequestExpand expand) {
             this.expand = Optional.of(expand);
             return this;
         }

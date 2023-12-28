@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.types.ExpensesRetrieveRequestExpand;
+import com.merge.api.resources.accounting.expenses.types.ExpensesRetrieveRequestExpand;
 import java.util.Objects;
 import java.util.Optional;
 

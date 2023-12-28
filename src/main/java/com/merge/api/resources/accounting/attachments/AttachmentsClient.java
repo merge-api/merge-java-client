@@ -36,7 +36,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -104,7 +104,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -150,7 +150,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/attachments")
+                .addPathSegments("attachments")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -183,7 +183,7 @@ public class AttachmentsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/attachments/meta/post")
+                .addPathSegments("attachments/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

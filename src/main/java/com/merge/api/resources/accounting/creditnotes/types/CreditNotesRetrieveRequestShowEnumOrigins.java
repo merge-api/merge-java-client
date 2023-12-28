@@ -1,0 +1,23 @@
+package com.merge.api.resources.accounting.creditnotes.types;
+
+import com.fasterxml.jackson.annotation.JsonValue;
+
+public enum CreditNotesRetrieveRequestShowEnumOrigins {
+    STATUS("status"),
+
+    STATUS_TYPE("status,type"),
+
+    TYPE("type");
+
+    private final String value;
+
+    CreditNotesRetrieveRequestShowEnumOrigins(String value) {
+        this.value = value;
+    }
+
+    @JsonValue
+    @Override
+    public String toString() {
+        return this.value;
+    }
+}

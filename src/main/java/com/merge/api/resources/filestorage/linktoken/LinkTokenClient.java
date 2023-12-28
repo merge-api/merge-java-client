@@ -30,7 +30,7 @@ public class LinkTokenClient {
     public LinkToken create(EndUserDetailsRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/link-token")
+                .addPathSegments("link-token")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("end_user_email_address", request.getEndUserEmailAddress());

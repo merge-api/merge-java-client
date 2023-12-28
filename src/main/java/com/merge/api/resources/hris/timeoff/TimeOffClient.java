@@ -36,7 +36,7 @@ public class TimeOffClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off");
+                .addPathSegments("time-off");
         if (request.getApproverId().isPresent()) {
             _httpUrl.addQueryParameter("approver_id", request.getApproverId().get());
         }
@@ -123,7 +123,7 @@ public class TimeOffClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off");
+                .addPathSegments("time-off");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -168,7 +168,7 @@ public class TimeOffClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off")
+                .addPathSegments("time-off")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -212,7 +212,7 @@ public class TimeOffClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off/meta/post")
+                .addPathSegments("time-off/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

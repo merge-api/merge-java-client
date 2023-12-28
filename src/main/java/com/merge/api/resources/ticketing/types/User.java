@@ -29,6 +29,8 @@ public final class User {
 
     private final Optional<List<Optional<UserTeamsItem>>> teams;
 
+    private final Optional<List<Optional<UserRolesItem>>> roles;
+
     private final Optional<String> avatar;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -48,6 +50,7 @@ public final class User {
             Optional<String> emailAddress,
             Optional<Boolean> isActive,
             Optional<List<Optional<UserTeamsItem>>> teams,
+            Optional<List<Optional<UserRolesItem>>> roles,
             Optional<String> avatar,
             Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> createdAt,
@@ -60,6 +63,7 @@ public final class User {
         this.emailAddress = emailAddress;
         this.isActive = isActive;
         this.teams = teams;
+        this.roles = roles;
         this.avatar = avatar;
         this.remoteWasDeleted = remoteWasDeleted;
         this.createdAt = createdAt;
@@ -108,6 +112,11 @@ public final class User {
     @JsonProperty("teams")
     public Optional<List<Optional<UserTeamsItem>>> getTeams() {
         return teams;
+    }
+
+    @JsonProperty("roles")
+    public Optional<List<Optional<UserRolesItem>>> getRoles() {
+        return roles;
     }
 
     /**
@@ -162,6 +171,7 @@ public final class User {
                 && emailAddress.equals(other.emailAddress)
                 && isActive.equals(other.isActive)
                 && teams.equals(other.teams)
+                && roles.equals(other.roles)
                 && avatar.equals(other.avatar)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && createdAt.equals(other.createdAt)
@@ -179,6 +189,7 @@ public final class User {
                 this.emailAddress,
                 this.isActive,
                 this.teams,
+                this.roles,
                 this.avatar,
                 this.remoteWasDeleted,
                 this.createdAt,
@@ -210,6 +221,8 @@ public final class User {
 
         private Optional<List<Optional<UserTeamsItem>>> teams = Optional.empty();
 
+        private Optional<List<Optional<UserRolesItem>>> roles = Optional.empty();
+
         private Optional<String> avatar = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -231,6 +244,7 @@ public final class User {
             emailAddress(other.getEmailAddress());
             isActive(other.getIsActive());
             teams(other.getTeams());
+            roles(other.getRoles());
             avatar(other.getAvatar());
             remoteWasDeleted(other.getRemoteWasDeleted());
             createdAt(other.getCreatedAt());
@@ -303,6 +317,17 @@ public final class User {
 
         public Builder teams(List<Optional<UserTeamsItem>> teams) {
             this.teams = Optional.of(teams);
+            return this;
+        }
+
+        @JsonSetter(value = "roles", nulls = Nulls.SKIP)
+        public Builder roles(Optional<List<Optional<UserRolesItem>>> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public Builder roles(List<Optional<UserRolesItem>> roles) {
+            this.roles = Optional.of(roles);
             return this;
         }
 
@@ -380,6 +405,7 @@ public final class User {
                     emailAddress,
                     isActive,
                     teams,
+                    roles,
                     avatar,
                     remoteWasDeleted,
                     createdAt,

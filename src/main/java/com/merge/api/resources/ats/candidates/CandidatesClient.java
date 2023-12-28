@@ -38,7 +38,7 @@ public class CandidatesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates");
+                .addPathSegments("candidates");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -117,7 +117,7 @@ public class CandidatesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates");
+                .addPathSegments("candidates");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -163,7 +163,7 @@ public class CandidatesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates")
+                .addPathSegments("candidates")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -201,7 +201,7 @@ public class CandidatesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates")
+                .addPathSegments("candidates")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -247,7 +247,7 @@ public class CandidatesClient {
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates/ignore")
+                .addPathSegments("candidates/ignore")
                 .addPathSegment(modelId)
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
@@ -289,7 +289,7 @@ public class CandidatesClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates/meta/patch")
+                .addPathSegments("candidates/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -318,7 +318,7 @@ public class CandidatesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/candidates/meta/post")
+                .addPathSegments("candidates/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

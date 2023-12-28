@@ -30,7 +30,7 @@ public class CreditNotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/credit-notes");
+                .addPathSegments("credit-notes");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -117,7 +117,7 @@ public class CreditNotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/credit-notes")
+                .addPathSegments("credit-notes")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());

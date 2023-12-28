@@ -39,7 +39,7 @@ public class OpportunitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities");
+                .addPathSegments("opportunities");
         if (request.getAccountId().isPresent()) {
             _httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -130,7 +130,7 @@ public class OpportunitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities");
+                .addPathSegments("opportunities");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -175,7 +175,7 @@ public class OpportunitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities")
+                .addPathSegments("opportunities")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -226,7 +226,7 @@ public class OpportunitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities")
+                .addPathSegments("opportunities")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -271,7 +271,7 @@ public class OpportunitiesClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities/meta/patch")
+                .addPathSegments("opportunities/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -300,7 +300,7 @@ public class OpportunitiesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities/meta/post")
+                .addPathSegments("opportunities/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -330,7 +330,7 @@ public class OpportunitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/opportunities/remote-field-classes");
+                .addPathSegments("opportunities/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

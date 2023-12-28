@@ -30,7 +30,7 @@ public class GenerateKeyClient {
     public RemoteKey create(GenerateRemoteKeyRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/generate-key")
+                .addPathSegments("generate-key")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("name", request.getName());

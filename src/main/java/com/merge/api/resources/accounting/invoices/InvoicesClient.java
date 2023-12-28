@@ -36,7 +36,7 @@ public class InvoicesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/invoices");
+                .addPathSegments("invoices");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -127,7 +127,7 @@ public class InvoicesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/invoices");
+                .addPathSegments("invoices");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -172,7 +172,7 @@ public class InvoicesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/invoices")
+                .addPathSegments("invoices")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -216,7 +216,7 @@ public class InvoicesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/invoices/meta/post")
+                .addPathSegments("invoices/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

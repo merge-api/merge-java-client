@@ -25,7 +25,7 @@ public class AccountDetailsClient {
     public AccountDetails retrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/account-details")
+                .addPathSegments("account-details")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

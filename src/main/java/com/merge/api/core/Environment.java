@@ -5,6 +5,8 @@ public final class Environment {
 
     public static final Environment SANDBOX = new Environment("https://api-sandbox.merge.dev");
 
+    public static final Environment PRODUCTION_EU = new Environment("https://api-eu.merge.dev");
+
     private final String url;
 
     private Environment(String url) {

@@ -23,6 +23,8 @@ public final class PatchedContactRequest {
 
     private final Optional<String> account;
 
+    private final Optional<PatchedContactRequestOwner> owner;
+
     private final Optional<List<AddressRequest>> addresses;
 
     private final Optional<List<EmailAddressRequest>> emailAddresses;
@@ -41,6 +43,7 @@ public final class PatchedContactRequest {
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<String> account,
+            Optional<PatchedContactRequestOwner> owner,
             Optional<List<AddressRequest>> addresses,
             Optional<List<EmailAddressRequest>> emailAddresses,
             Optional<List<PhoneNumberRequest>> phoneNumbers,
@@ -51,6 +54,7 @@ public final class PatchedContactRequest {
         this.firstName = firstName;
         this.lastName = lastName;
         this.account = account;
+        this.owner = owner;
         this.addresses = addresses;
         this.emailAddresses = emailAddresses;
         this.phoneNumbers = phoneNumbers;
@@ -82,6 +86,14 @@ public final class PatchedContactRequest {
     @JsonProperty("account")
     public Optional<String> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The contact's owner.
+     */
+    @JsonProperty("owner")
+    public Optional<PatchedContactRequestOwner> getOwner() {
+        return owner;
     }
 
     @JsonProperty("addresses")
@@ -132,6 +144,7 @@ public final class PatchedContactRequest {
         return firstName.equals(other.firstName)
                 && lastName.equals(other.lastName)
                 && account.equals(other.account)
+                && owner.equals(other.owner)
                 && addresses.equals(other.addresses)
                 && emailAddresses.equals(other.emailAddresses)
                 && phoneNumbers.equals(other.phoneNumbers)
@@ -147,6 +160,7 @@ public final class PatchedContactRequest {
                 this.firstName,
                 this.lastName,
                 this.account,
+                this.owner,
                 this.addresses,
                 this.emailAddresses,
                 this.phoneNumbers,
@@ -173,6 +187,8 @@ public final class PatchedContactRequest {
 
         private Optional<String> account = Optional.empty();
 
+        private Optional<PatchedContactRequestOwner> owner = Optional.empty();
+
         private Optional<List<AddressRequest>> addresses = Optional.empty();
 
         private Optional<List<EmailAddressRequest>> emailAddresses = Optional.empty();
@@ -193,6 +209,7 @@ public final class PatchedContactRequest {
             firstName(other.getFirstName());
             lastName(other.getLastName());
             account(other.getAccount());
+            owner(other.getOwner());
             addresses(other.getAddresses());
             emailAddresses(other.getEmailAddresses());
             phoneNumbers(other.getPhoneNumbers());
@@ -233,6 +250,17 @@ public final class PatchedContactRequest {
 
         public Builder account(String account) {
             this.account = Optional.of(account);
+            return this;
+        }
+
+        @JsonSetter(value = "owner", nulls = Nulls.SKIP)
+        public Builder owner(Optional<PatchedContactRequestOwner> owner) {
+            this.owner = owner;
+            return this;
+        }
+
+        public Builder owner(PatchedContactRequestOwner owner) {
+            this.owner = Optional.of(owner);
             return this;
         }
 
@@ -318,6 +346,7 @@ public final class PatchedContactRequest {
                     firstName,
                     lastName,
                     account,
+                    owner,
                     addresses,
                     emailAddresses,
                     phoneNumbers,
