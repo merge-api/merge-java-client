@@ -50,7 +50,7 @@ public final class PaymentLineItem {
     }
 
     /**
-     * @return The amount of the PaymentLineItem.
+     * @return The amount being applied to the transaction.
      */
     @JsonProperty("applied_amount")
     public Optional<String> getAppliedAmount() {
@@ -58,7 +58,7 @@ public final class PaymentLineItem {
     }
 
     /**
-     * @return Applied date of the PaymentLineItem
+     * @return The date the payment portion is applied.
      */
     @JsonProperty("applied_date")
     public Optional<OffsetDateTime> getAppliedDate() {
@@ -73,11 +73,17 @@ public final class PaymentLineItem {
         return remoteId;
     }
 
+    /**
+     * @return The Merge ID of the transaction the payment portion is being applied to.
+     */
     @JsonProperty("related_object_id")
     public Optional<String> getRelatedObjectId() {
         return relatedObjectId;
     }
 
+    /**
+     * @return The type of transaction the payment portion is being applied to. Possible values include: INVOICE, JOURNAL_ENTRY, or CREDIT_NOTE.
+     */
     @JsonProperty("related_object_type")
     public Optional<String> getRelatedObjectType() {
         return relatedObjectType;

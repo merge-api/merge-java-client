@@ -30,7 +30,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/contacts");
+                .addPathSegments("contacts");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -96,7 +96,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/contacts")
+                .addPathSegments("contacts")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

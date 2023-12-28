@@ -29,7 +29,7 @@ public class AsyncPassthroughClient {
     public AsyncPassthroughReciept create(DataPassthroughRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/async-passthrough")
+                .addPathSegments("async-passthrough")
                 .build();
         RequestBody _requestBody;
         try {
@@ -64,7 +64,7 @@ public class AsyncPassthroughClient {
     public RemoteResponse retrieve(String asyncPassthroughReceiptId, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/async-passthrough")
+                .addPathSegments("async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)
                 .build();
         Request _request = new Request.Builder()

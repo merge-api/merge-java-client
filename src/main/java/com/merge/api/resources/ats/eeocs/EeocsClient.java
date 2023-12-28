@@ -30,7 +30,7 @@ public class EeocsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/eeocs");
+                .addPathSegments("eeocs");
         if (request.getCandidateId().isPresent()) {
             _httpUrl.addQueryParameter("candidate_id", request.getCandidateId().get());
         }
@@ -107,7 +107,7 @@ public class EeocsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/eeocs")
+                .addPathSegments("eeocs")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

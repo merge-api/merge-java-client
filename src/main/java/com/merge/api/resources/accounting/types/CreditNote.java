@@ -545,7 +545,7 @@ public final class CreditNote {
     }
 
     /**
-     * @return Array of <code>PaymentLineItems</code> object IDs.
+     * @return A list of the Payment Applied to Lines common models related to a given Invoice, Credit Note, or Journal Entry.
      */
     @JsonProperty("applied_payments")
     public Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> getAppliedPayments() {

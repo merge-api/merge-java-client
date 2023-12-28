@@ -33,6 +33,8 @@ public final class AccountDetailsAndActions {
 
     private final Optional<AccountDetailsAndActionsIntegration> integration;
 
+    private final String accountType;
+
     private AccountDetailsAndActions(
             String id,
             Optional<CategoryEnum> category,
@@ -43,7 +45,8 @@ public final class AccountDetailsAndActions {
             String endUserEmailAddress,
             String webhookListenerUrl,
             Optional<Boolean> isDuplicate,
-            Optional<AccountDetailsAndActionsIntegration> integration) {
+            Optional<AccountDetailsAndActionsIntegration> integration,
+            String accountType) {
         this.id = id;
         this.category = category;
         this.status = status;
@@ -54,6 +57,7 @@ public final class AccountDetailsAndActions {
         this.webhookListenerUrl = webhookListenerUrl;
         this.isDuplicate = isDuplicate;
         this.integration = integration;
+        this.accountType = accountType;
     }
 
     @JsonProperty("id")
@@ -109,6 +113,11 @@ public final class AccountDetailsAndActions {
         return integration;
     }
 
+    @JsonProperty("account_type")
+    public String getAccountType() {
+        return accountType;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -125,7 +134,8 @@ public final class AccountDetailsAndActions {
                 && endUserEmailAddress.equals(other.endUserEmailAddress)
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
                 && isDuplicate.equals(other.isDuplicate)
-                && integration.equals(other.integration);
+                && integration.equals(other.integration)
+                && accountType.equals(other.accountType);
     }
 
     @Override
@@ -140,7 +150,8 @@ public final class AccountDetailsAndActions {
                 this.endUserEmailAddress,
                 this.webhookListenerUrl,
                 this.isDuplicate,
-                this.integration);
+                this.integration,
+                this.accountType);
     }
 
     @Override
@@ -171,7 +182,11 @@ public final class AccountDetailsAndActions {
     }
 
     public interface WebhookListenerUrlStage {
-        _FinalStage webhookListenerUrl(String webhookListenerUrl);
+        AccountTypeStage webhookListenerUrl(String webhookListenerUrl);
+    }
+
+    public interface AccountTypeStage {
+        _FinalStage accountType(String accountType);
     }
 
     public interface _FinalStage {
@@ -205,6 +220,7 @@ public final class AccountDetailsAndActions {
                     EndUserOrganizationNameStage,
                     EndUserEmailAddressStage,
                     WebhookListenerUrlStage,
+                    AccountTypeStage,
                     _FinalStage {
         private String id;
 
@@ -215,6 +231,8 @@ public final class AccountDetailsAndActions {
         private String endUserEmailAddress;
 
         private String webhookListenerUrl;
+
+        private String accountType;
 
         private Optional<AccountDetailsAndActionsIntegration> integration = Optional.empty();
 
@@ -240,6 +258,7 @@ public final class AccountDetailsAndActions {
             webhookListenerUrl(other.getWebhookListenerUrl());
             isDuplicate(other.getIsDuplicate());
             integration(other.getIntegration());
+            accountType(other.getAccountType());
             return this;
         }
 
@@ -273,8 +292,15 @@ public final class AccountDetailsAndActions {
 
         @Override
         @JsonSetter("webhook_listener_url")
-        public _FinalStage webhookListenerUrl(String webhookListenerUrl) {
+        public AccountTypeStage webhookListenerUrl(String webhookListenerUrl) {
             this.webhookListenerUrl = webhookListenerUrl;
+            return this;
+        }
+
+        @Override
+        @JsonSetter("account_type")
+        public _FinalStage accountType(String accountType) {
+            this.accountType = accountType;
             return this;
         }
 
@@ -359,7 +385,8 @@ public final class AccountDetailsAndActions {
                     endUserEmailAddress,
                     webhookListenerUrl,
                     isDuplicate,
-                    integration);
+                    integration,
+                    accountType);
         }
     }
 }

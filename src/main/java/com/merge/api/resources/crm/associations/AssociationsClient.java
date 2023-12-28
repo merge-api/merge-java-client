@@ -37,7 +37,7 @@ public class AssociationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects")
                 .addPathSegment(objectId)
@@ -125,7 +125,7 @@ public class AssociationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(sourceClassId)
                 .addPathSegments("custom-objects")
                 .addPathSegment(sourceObjectId)

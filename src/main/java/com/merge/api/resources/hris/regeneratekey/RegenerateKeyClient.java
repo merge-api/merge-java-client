@@ -30,7 +30,7 @@ public class RegenerateKeyClient {
     public RemoteKey create(RemoteKeyForRegenerationRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/regenerate-key")
+                .addPathSegments("regenerate-key")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("name", request.getName());

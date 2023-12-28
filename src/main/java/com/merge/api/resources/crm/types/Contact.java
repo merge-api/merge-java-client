@@ -23,6 +23,8 @@ public final class Contact {
 
     private final Optional<ContactAccount> account;
 
+    private final Optional<ContactOwner> owner;
+
     private final Optional<List<Address>> addresses;
 
     private final Optional<List<EmailAddress>> emailAddresses;
@@ -53,6 +55,7 @@ public final class Contact {
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<ContactAccount> account,
+            Optional<ContactOwner> owner,
             Optional<List<Address>> addresses,
             Optional<List<EmailAddress>> emailAddresses,
             Optional<List<PhoneNumber>> phoneNumbers,
@@ -69,6 +72,7 @@ public final class Contact {
         this.firstName = firstName;
         this.lastName = lastName;
         this.account = account;
+        this.owner = owner;
         this.addresses = addresses;
         this.emailAddresses = emailAddresses;
         this.phoneNumbers = phoneNumbers;
@@ -106,6 +110,14 @@ public final class Contact {
     @JsonProperty("account")
     public Optional<ContactAccount> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The contact's owner.
+     */
+    @JsonProperty("owner")
+    public Optional<ContactOwner> getOwner() {
+        return owner;
     }
 
     @JsonProperty("addresses")
@@ -195,6 +207,7 @@ public final class Contact {
         return firstName.equals(other.firstName)
                 && lastName.equals(other.lastName)
                 && account.equals(other.account)
+                && owner.equals(other.owner)
                 && addresses.equals(other.addresses)
                 && emailAddresses.equals(other.emailAddresses)
                 && phoneNumbers.equals(other.phoneNumbers)
@@ -216,6 +229,7 @@ public final class Contact {
                 this.firstName,
                 this.lastName,
                 this.account,
+                this.owner,
                 this.addresses,
                 this.emailAddresses,
                 this.phoneNumbers,
@@ -247,6 +261,8 @@ public final class Contact {
         private Optional<String> lastName = Optional.empty();
 
         private Optional<ContactAccount> account = Optional.empty();
+
+        private Optional<ContactOwner> owner = Optional.empty();
 
         private Optional<List<Address>> addresses = Optional.empty();
 
@@ -280,6 +296,7 @@ public final class Contact {
             firstName(other.getFirstName());
             lastName(other.getLastName());
             account(other.getAccount());
+            owner(other.getOwner());
             addresses(other.getAddresses());
             emailAddresses(other.getEmailAddresses());
             phoneNumbers(other.getPhoneNumbers());
@@ -326,6 +343,17 @@ public final class Contact {
 
         public Builder account(ContactAccount account) {
             this.account = Optional.of(account);
+            return this;
+        }
+
+        @JsonSetter(value = "owner", nulls = Nulls.SKIP)
+        public Builder owner(Optional<ContactOwner> owner) {
+            this.owner = owner;
+            return this;
+        }
+
+        public Builder owner(ContactOwner owner) {
+            this.owner = Optional.of(owner);
             return this;
         }
 
@@ -477,6 +505,7 @@ public final class Contact {
                     firstName,
                     lastName,
                     account,
+                    owner,
                     addresses,
                     emailAddresses,
                     phoneNumbers,

@@ -498,6 +498,9 @@ public final class Payment {
         return accountingPeriod;
     }
 
+    /**
+     * @return A list of “Payment Applied to Lines” objects.
+     */
     @JsonProperty("applied_to_lines")
     public Optional<List<PaymentAppliedToLinesItem>> getAppliedToLines() {
         return appliedToLines;

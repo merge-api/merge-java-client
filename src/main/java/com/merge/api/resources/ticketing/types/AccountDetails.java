@@ -33,6 +33,8 @@ public final class AccountDetails {
 
     private final Optional<Boolean> isDuplicate;
 
+    private final Optional<String> accountType;
+
     private AccountDetails(
             Optional<String> id,
             Optional<String> integration,
@@ -43,7 +45,8 @@ public final class AccountDetails {
             Optional<String> endUserEmailAddress,
             Optional<String> status,
             Optional<String> webhookListenerUrl,
-            Optional<Boolean> isDuplicate) {
+            Optional<Boolean> isDuplicate,
+            Optional<String> accountType) {
         this.id = id;
         this.integration = integration;
         this.integrationSlug = integrationSlug;
@@ -54,6 +57,7 @@ public final class AccountDetails {
         this.status = status;
         this.webhookListenerUrl = webhookListenerUrl;
         this.isDuplicate = isDuplicate;
+        this.accountType = accountType;
     }
 
     @JsonProperty("id")
@@ -109,6 +113,11 @@ public final class AccountDetails {
         return isDuplicate;
     }
 
+    @JsonProperty("account_type")
+    public Optional<String> getAccountType() {
+        return accountType;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -125,7 +134,8 @@ public final class AccountDetails {
                 && endUserEmailAddress.equals(other.endUserEmailAddress)
                 && status.equals(other.status)
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
-                && isDuplicate.equals(other.isDuplicate);
+                && isDuplicate.equals(other.isDuplicate)
+                && accountType.equals(other.accountType);
     }
 
     @Override
@@ -140,7 +150,8 @@ public final class AccountDetails {
                 this.endUserEmailAddress,
                 this.status,
                 this.webhookListenerUrl,
-                this.isDuplicate);
+                this.isDuplicate,
+                this.accountType);
     }
 
     @Override
@@ -174,6 +185,8 @@ public final class AccountDetails {
 
         private Optional<Boolean> isDuplicate = Optional.empty();
 
+        private Optional<String> accountType = Optional.empty();
+
         private Builder() {}
 
         public Builder from(AccountDetails other) {
@@ -187,6 +200,7 @@ public final class AccountDetails {
             status(other.getStatus());
             webhookListenerUrl(other.getWebhookListenerUrl());
             isDuplicate(other.getIsDuplicate());
+            accountType(other.getAccountType());
             return this;
         }
 
@@ -300,6 +314,17 @@ public final class AccountDetails {
             return this;
         }
 
+        @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
+        public Builder accountType(Optional<String> accountType) {
+            this.accountType = accountType;
+            return this;
+        }
+
+        public Builder accountType(String accountType) {
+            this.accountType = Optional.of(accountType);
+            return this;
+        }
+
         public AccountDetails build() {
             return new AccountDetails(
                     id,
@@ -311,7 +336,8 @@ public final class AccountDetails {
                     endUserEmailAddress,
                     status,
                     webhookListenerUrl,
-                    isDuplicate);
+                    isDuplicate,
+                    accountType);
         }
     }
 }

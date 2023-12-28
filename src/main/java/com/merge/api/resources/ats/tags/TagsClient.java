@@ -28,7 +28,7 @@ public class TagsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/tags");
+                .addPathSegments("tags");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());

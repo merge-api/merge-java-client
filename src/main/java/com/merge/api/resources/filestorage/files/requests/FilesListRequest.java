@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.filestorage.types.FilesListRequestExpand;
+import com.merge.api.resources.filestorage.files.types.FilesListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -95,7 +95,7 @@ public final class FilesListRequest {
     }
 
     /**
-     * @return If provided, will only return files in this drive. If null, will return files in the top level drive.
+     * @return Specifying a drive id returns only the files in that drive. Specifying null returns only the files outside the top-level drive.
      */
     @JsonProperty("drive_id")
     public Optional<String> getDriveId() {
@@ -111,7 +111,7 @@ public final class FilesListRequest {
     }
 
     /**
-     * @return If provided, will only return files in this folder. If null, will return files in root directory.
+     * @return Specifying a folder id returns only the files in that folder. Specifying null returns only the files in root directory.
      */
     @JsonProperty("folder_id")
     public Optional<String> getFolderId() {

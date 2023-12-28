@@ -30,7 +30,7 @@ public class OfficesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/offices");
+                .addPathSegments("offices");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -93,7 +93,7 @@ public class OfficesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/offices")
+                .addPathSegments("offices")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(

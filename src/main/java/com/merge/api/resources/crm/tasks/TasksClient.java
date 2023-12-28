@@ -39,7 +39,7 @@ public class TasksClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks");
+                .addPathSegments("tasks");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -110,7 +110,7 @@ public class TasksClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks");
+                .addPathSegments("tasks");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -155,7 +155,7 @@ public class TasksClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks")
+                .addPathSegments("tasks")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -197,7 +197,7 @@ public class TasksClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks")
+                .addPathSegments("tasks")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -242,7 +242,7 @@ public class TasksClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks/meta/patch")
+                .addPathSegments("tasks/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -271,7 +271,7 @@ public class TasksClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks/meta/post")
+                .addPathSegments("tasks/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -301,7 +301,7 @@ public class TasksClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/tasks/remote-field-classes");
+                .addPathSegments("tasks/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

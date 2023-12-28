@@ -30,7 +30,7 @@ public class TeamsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/teams");
+                .addPathSegments("teams");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -93,7 +93,7 @@ public class TeamsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/teams")
+                .addPathSegments("teams")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(

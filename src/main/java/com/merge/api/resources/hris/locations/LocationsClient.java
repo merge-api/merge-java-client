@@ -30,7 +30,7 @@ public class LocationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/locations");
+                .addPathSegments("locations");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -105,7 +105,7 @@ public class LocationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/locations")
+                .addPathSegments("locations")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(

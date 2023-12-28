@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.types.EmployeesRetrieveRequestExpand;
-import com.merge.api.resources.hris.types.EmployeesRetrieveRequestRemoteFields;
-import com.merge.api.resources.hris.types.EmployeesRetrieveRequestShowEnumOrigins;
+import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestExpand;
+import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestRemoteFields;
+import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
 import java.util.Optional;
 

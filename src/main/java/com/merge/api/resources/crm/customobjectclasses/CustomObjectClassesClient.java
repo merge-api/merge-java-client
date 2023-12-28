@@ -30,7 +30,7 @@ public class CustomObjectClassesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes");
+                .addPathSegments("custom-object-classes");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -98,7 +98,7 @@ public class CustomObjectClassesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

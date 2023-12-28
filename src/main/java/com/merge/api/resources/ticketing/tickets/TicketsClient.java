@@ -41,7 +41,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets");
+                .addPathSegments("tickets");
         if (request.getAccountId().isPresent()) {
             _httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -187,7 +187,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets");
+                .addPathSegments("tickets");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -232,7 +232,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets")
+                .addPathSegments("tickets")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -283,7 +283,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets")
+                .addPathSegments("tickets")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -330,7 +330,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets")
+                .addPathSegments("tickets")
                 .addPathSegment(parentId)
                 .addPathSegments("collaborators");
         if (request.getCursor().isPresent()) {
@@ -378,7 +378,7 @@ public class TicketsClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets/meta/patch")
+                .addPathSegments("tickets/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -407,7 +407,7 @@ public class TicketsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets/meta/post")
+                .addPathSegments("tickets/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -437,7 +437,7 @@ public class TicketsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tickets/remote-field-classes");
+                .addPathSegments("tickets/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

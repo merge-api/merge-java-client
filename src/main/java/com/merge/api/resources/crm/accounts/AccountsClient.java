@@ -39,7 +39,7 @@ public class AccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts");
+                .addPathSegments("accounts");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -75,6 +75,9 @@ public class AccountsClient {
         if (request.getModifiedBefore().isPresent()) {
             _httpUrl.addQueryParameter(
                     "modified_before", request.getModifiedBefore().get().toString());
+        }
+        if (request.getName().isPresent()) {
+            _httpUrl.addQueryParameter("name", request.getName().get());
         }
         if (request.getOwnerId().isPresent()) {
             _httpUrl.addQueryParameter("owner_id", request.getOwnerId().get());
@@ -113,7 +116,7 @@ public class AccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts");
+                .addPathSegments("accounts");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -158,7 +161,7 @@ public class AccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts")
+                .addPathSegments("accounts")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -201,7 +204,7 @@ public class AccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts")
+                .addPathSegments("accounts")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -246,7 +249,7 @@ public class AccountsClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts/meta/patch")
+                .addPathSegments("accounts/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -275,7 +278,7 @@ public class AccountsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts/meta/post")
+                .addPathSegments("accounts/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -305,7 +308,7 @@ public class AccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/accounts/remote-field-classes");
+                .addPathSegments("accounts/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

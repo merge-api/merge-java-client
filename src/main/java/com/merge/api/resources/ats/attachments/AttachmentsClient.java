@@ -36,7 +36,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getCandidateId().isPresent()) {
             _httpUrl.addQueryParameter("candidate_id", request.getCandidateId().get());
         }
@@ -113,7 +113,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/attachments");
+                .addPathSegments("attachments");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -159,7 +159,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/attachments")
+                .addPathSegments("attachments")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -203,7 +203,7 @@ public class AttachmentsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/attachments/meta/post")
+                .addPathSegments("attachments/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

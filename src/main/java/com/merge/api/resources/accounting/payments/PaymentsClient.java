@@ -36,7 +36,7 @@ public class PaymentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/payments");
+                .addPathSegments("payments");
         if (request.getAccountId().isPresent()) {
             _httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -121,7 +121,7 @@ public class PaymentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/payments");
+                .addPathSegments("payments");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -166,7 +166,7 @@ public class PaymentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/payments")
+                .addPathSegments("payments")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -202,7 +202,7 @@ public class PaymentsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/payments/meta/post")
+                .addPathSegments("payments/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

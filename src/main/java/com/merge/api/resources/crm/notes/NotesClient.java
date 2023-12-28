@@ -38,7 +38,7 @@ public class NotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes");
+                .addPathSegments("notes");
         if (request.getAccountId().isPresent()) {
             _httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -122,7 +122,7 @@ public class NotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes");
+                .addPathSegments("notes");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -167,7 +167,7 @@ public class NotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes")
+                .addPathSegments("notes")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -208,7 +208,7 @@ public class NotesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes/meta/post")
+                .addPathSegments("notes/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -238,7 +238,7 @@ public class NotesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes/remote-field-classes");
+                .addPathSegments("notes/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

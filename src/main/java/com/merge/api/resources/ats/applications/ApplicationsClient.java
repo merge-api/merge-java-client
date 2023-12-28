@@ -38,7 +38,7 @@ public class ApplicationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/applications");
+                .addPathSegments("applications");
         if (request.getCandidateId().isPresent()) {
             _httpUrl.addQueryParameter("candidate_id", request.getCandidateId().get());
         }
@@ -125,7 +125,7 @@ public class ApplicationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/applications");
+                .addPathSegments("applications");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -171,7 +171,7 @@ public class ApplicationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/applications")
+                .addPathSegments("applications")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -209,7 +209,7 @@ public class ApplicationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/applications")
+                .addPathSegments("applications")
                 .addPathSegment(id)
                 .addPathSegments("change-stage");
         if (request.getIsDebugMode().isPresent()) {
@@ -261,7 +261,7 @@ public class ApplicationsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/applications/meta/post");
+                .addPathSegments("applications/meta/post");
         if (request.getApplicationRemoteTemplateId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "application_remote_template_id",

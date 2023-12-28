@@ -32,6 +32,8 @@ public final class AccountsListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> name;
+
     private final Optional<String> ownerId;
 
     private final Optional<Integer> pageSize;
@@ -48,6 +50,7 @@ public final class AccountsListRequest {
             Optional<Boolean> includeRemoteFields,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<String> ownerId,
             Optional<Integer> pageSize,
             Optional<String> remoteId) {
@@ -60,6 +63,7 @@ public final class AccountsListRequest {
         this.includeRemoteFields = includeRemoteFields;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.ownerId = ownerId;
         this.pageSize = pageSize;
         this.remoteId = remoteId;
@@ -138,6 +142,14 @@ public final class AccountsListRequest {
     }
 
     /**
+     * @return If provided, will only return accounts with this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return If provided, will only return accounts with this owner.
      */
     @JsonProperty("owner_id")
@@ -177,6 +189,7 @@ public final class AccountsListRequest {
                 && includeRemoteFields.equals(other.includeRemoteFields)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && ownerId.equals(other.ownerId)
                 && pageSize.equals(other.pageSize)
                 && remoteId.equals(other.remoteId);
@@ -194,6 +207,7 @@ public final class AccountsListRequest {
                 this.includeRemoteFields,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.ownerId,
                 this.pageSize,
                 this.remoteId);
@@ -228,6 +242,8 @@ public final class AccountsListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> name = Optional.empty();
+
         private Optional<String> ownerId = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
@@ -246,6 +262,7 @@ public final class AccountsListRequest {
             includeRemoteFields(other.getIncludeRemoteFields());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             ownerId(other.getOwnerId());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
@@ -351,6 +368,17 @@ public final class AccountsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
         @JsonSetter(value = "owner_id", nulls = Nulls.SKIP)
         public Builder ownerId(Optional<String> ownerId) {
             this.ownerId = ownerId;
@@ -395,6 +423,7 @@ public final class AccountsListRequest {
                     includeRemoteFields,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     ownerId,
                     pageSize,
                     remoteId);

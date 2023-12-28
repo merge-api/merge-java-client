@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.types.TimeOffRetrieveRequestExpand;
-import com.merge.api.resources.hris.types.TimeOffRetrieveRequestRemoteFields;
-import com.merge.api.resources.hris.types.TimeOffRetrieveRequestShowEnumOrigins;
+import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestExpand;
+import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestRemoteFields;
+import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
 import java.util.Optional;
 

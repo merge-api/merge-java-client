@@ -30,7 +30,7 @@ public class ScorecardsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/scorecards");
+                .addPathSegments("scorecards");
         if (request.getApplicationId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "application_id", request.getApplicationId().get());
@@ -115,7 +115,7 @@ public class ScorecardsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/scorecards")
+                .addPathSegments("scorecards")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());

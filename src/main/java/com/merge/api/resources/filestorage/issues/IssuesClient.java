@@ -29,7 +29,7 @@ public class IssuesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/issues");
+                .addPathSegments("issues");
         if (request.getAccountToken().isPresent()) {
             _httpUrl.addQueryParameter(
                     "account_token", request.getAccountToken().get());
@@ -109,7 +109,7 @@ public class IssuesClient {
     public Issue retrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/issues")
+                .addPathSegments("issues")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()

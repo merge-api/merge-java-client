@@ -55,6 +55,8 @@ public final class InvoiceRequest {
 
     private final Optional<List<InvoiceLineItemRequest>> lineItems;
 
+    private final Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders;
+
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
@@ -79,6 +81,7 @@ public final class InvoiceRequest {
             Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments,
             Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<List<InvoiceLineItemRequest>> lineItems,
+            Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams) {
         this.type = type;
@@ -100,6 +103,7 @@ public final class InvoiceRequest {
         this.payments = payments;
         this.trackingCategories = trackingCategories;
         this.lineItems = lineItems;
+        this.purchaseOrders = purchaseOrders;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
     }
@@ -570,6 +574,11 @@ public final class InvoiceRequest {
         return lineItems;
     }
 
+    @JsonProperty("purchase_orders")
+    public Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> getPurchaseOrders() {
+        return purchaseOrders;
+    }
+
     @JsonProperty("integration_params")
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
         return integrationParams;
@@ -606,6 +615,7 @@ public final class InvoiceRequest {
                 && payments.equals(other.payments)
                 && trackingCategories.equals(other.trackingCategories)
                 && lineItems.equals(other.lineItems)
+                && purchaseOrders.equals(other.purchaseOrders)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
@@ -632,6 +642,7 @@ public final class InvoiceRequest {
                 this.payments,
                 this.trackingCategories,
                 this.lineItems,
+                this.purchaseOrders,
                 this.integrationParams,
                 this.linkedAccountParams);
     }
@@ -685,6 +696,8 @@ public final class InvoiceRequest {
 
         private Optional<List<InvoiceLineItemRequest>> lineItems = Optional.empty();
 
+        private Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders = Optional.empty();
+
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
@@ -711,6 +724,7 @@ public final class InvoiceRequest {
             payments(other.getPayments());
             trackingCategories(other.getTrackingCategories());
             lineItems(other.getLineItems());
+            purchaseOrders(other.getPurchaseOrders());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             return this;
@@ -926,6 +940,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        @JsonSetter(value = "purchase_orders", nulls = Nulls.SKIP)
+        public Builder purchaseOrders(Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders) {
+            this.purchaseOrders = purchaseOrders;
+            return this;
+        }
+
+        public Builder purchaseOrders(List<Optional<InvoiceRequestPurchaseOrdersItem>> purchaseOrders) {
+            this.purchaseOrders = Optional.of(purchaseOrders);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -969,6 +994,7 @@ public final class InvoiceRequest {
                     payments,
                     trackingCategories,
                     lineItems,
+                    purchaseOrders,
                     integrationParams,
                     linkedAccountParams);
         }

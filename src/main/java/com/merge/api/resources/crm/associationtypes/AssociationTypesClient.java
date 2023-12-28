@@ -40,7 +40,7 @@ public class AssociationTypesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("association-types");
         if (request.getCreatedAfter().isPresent()) {
@@ -111,7 +111,7 @@ public class AssociationTypesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("association-types");
         if (request.getIsDebugMode().isPresent()) {
@@ -163,7 +163,7 @@ public class AssociationTypesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("association-types")
                 .addPathSegment(id);
@@ -202,7 +202,7 @@ public class AssociationTypesClient {
             String customObjectClassId, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("association-types/meta/post")
                 .build();

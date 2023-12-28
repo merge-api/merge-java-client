@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.types.ContactsListRequestExpand;
+import com.merge.api.resources.accounting.contacts.types.ContactsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;

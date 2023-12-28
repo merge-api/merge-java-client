@@ -38,7 +38,7 @@ public class LeadsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/leads");
+                .addPathSegments("leads");
         if (request.getConvertedAccountId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "converted_account_id", request.getConvertedAccountId().get());
@@ -128,7 +128,7 @@ public class LeadsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/leads");
+                .addPathSegments("leads");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -173,7 +173,7 @@ public class LeadsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/leads")
+                .addPathSegments("leads")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -214,7 +214,7 @@ public class LeadsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/leads/meta/post")
+                .addPathSegments("leads/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -244,7 +244,7 @@ public class LeadsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/leads/remote-field-classes");
+                .addPathSegments("leads/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

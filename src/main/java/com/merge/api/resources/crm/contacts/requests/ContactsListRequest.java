@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.resources.crm.contacts.types.ContactsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,7 +25,7 @@ public final class ContactsListRequest {
 
     private final Optional<String> emailAddresses;
 
-    private final Optional<String> expand;
+    private final Optional<ContactsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -48,7 +49,7 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> emailAddresses,
-            Optional<String> expand,
+            Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -117,7 +118,7 @@ public final class ContactsListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<String> getExpand() {
+    public Optional<ContactsListRequestExpand> getExpand() {
         return expand;
     }
 
@@ -248,7 +249,7 @@ public final class ContactsListRequest {
 
         private Optional<String> emailAddresses = Optional.empty();
 
-        private Optional<String> expand = Optional.empty();
+        private Optional<ContactsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -342,12 +343,12 @@ public final class ContactsListRequest {
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
+        public Builder expand(Optional<ContactsListRequestExpand> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(ContactsListRequestExpand expand) {
             this.expand = Optional.of(expand);
             return this;
         }

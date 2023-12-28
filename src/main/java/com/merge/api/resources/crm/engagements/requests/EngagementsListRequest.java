@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.types.EngagementsListRequestExpand;
+import com.merge.api.resources.crm.engagements.types.EngagementsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,6 +37,10 @@ public final class EngagementsListRequest {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> startedAfter;
+
+    private final Optional<OffsetDateTime> startedBefore;
+
     private EngagementsListRequest(
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -48,7 +52,9 @@ public final class EngagementsListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
-            Optional<String> remoteId) {
+            Optional<String> remoteId,
+            Optional<OffsetDateTime> startedAfter,
+            Optional<OffsetDateTime> startedBefore) {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
@@ -60,6 +66,8 @@ public final class EngagementsListRequest {
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
         this.remoteId = remoteId;
+        this.startedAfter = startedAfter;
+        this.startedBefore = startedBefore;
     }
 
     /**
@@ -150,6 +158,22 @@ public final class EngagementsListRequest {
         return remoteId;
     }
 
+    /**
+     * @return If provided, will only return engagements started after this datetime.
+     */
+    @JsonProperty("started_after")
+    public Optional<OffsetDateTime> getStartedAfter() {
+        return startedAfter;
+    }
+
+    /**
+     * @return If provided, will only return engagements started before this datetime.
+     */
+    @JsonProperty("started_before")
+    public Optional<OffsetDateTime> getStartedBefore() {
+        return startedBefore;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -167,7 +191,9 @@ public final class EngagementsListRequest {
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
-                && remoteId.equals(other.remoteId);
+                && remoteId.equals(other.remoteId)
+                && startedAfter.equals(other.startedAfter)
+                && startedBefore.equals(other.startedBefore);
     }
 
     @Override
@@ -183,7 +209,9 @@ public final class EngagementsListRequest {
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
-                this.remoteId);
+                this.remoteId,
+                this.startedAfter,
+                this.startedBefore);
     }
 
     @Override
@@ -219,6 +247,10 @@ public final class EngagementsListRequest {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> startedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> startedBefore = Optional.empty();
+
         private Builder() {}
 
         public Builder from(EngagementsListRequest other) {
@@ -233,6 +265,8 @@ public final class EngagementsListRequest {
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            startedAfter(other.getStartedAfter());
+            startedBefore(other.getStartedBefore());
             return this;
         }
 
@@ -357,6 +391,28 @@ public final class EngagementsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "started_after", nulls = Nulls.SKIP)
+        public Builder startedAfter(Optional<OffsetDateTime> startedAfter) {
+            this.startedAfter = startedAfter;
+            return this;
+        }
+
+        public Builder startedAfter(OffsetDateTime startedAfter) {
+            this.startedAfter = Optional.of(startedAfter);
+            return this;
+        }
+
+        @JsonSetter(value = "started_before", nulls = Nulls.SKIP)
+        public Builder startedBefore(Optional<OffsetDateTime> startedBefore) {
+            this.startedBefore = startedBefore;
+            return this;
+        }
+
+        public Builder startedBefore(OffsetDateTime startedBefore) {
+            this.startedBefore = Optional.of(startedBefore);
+            return this;
+        }
+
         public EngagementsListRequest build() {
             return new EngagementsListRequest(
                     createdAfter,
@@ -369,7 +425,9 @@ public final class EngagementsListRequest {
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,
-                    remoteId);
+                    remoteId,
+                    startedAfter,
+                    startedBefore);
         }
     }
 }
