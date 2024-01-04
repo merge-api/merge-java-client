@@ -36,7 +36,7 @@ public class InterviewsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("interviews");
+                .addPathSegments("api/ats/v1/interviews");
         if (request.getApplicationId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "application_id", request.getApplicationId().get());
@@ -125,7 +125,7 @@ public class InterviewsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("interviews");
+                .addPathSegments("api/ats/v1/interviews");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -171,7 +171,7 @@ public class InterviewsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("interviews")
+                .addPathSegments("api/ats/v1/interviews")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -215,7 +215,7 @@ public class InterviewsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("interviews/meta/post")
+                .addPathSegments("api/ats/v1/interviews/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

@@ -29,7 +29,7 @@ public class LinkedAccountsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("linked-accounts");
+                .addPathSegments("api/hris/v1/linked-accounts");
         if (request.getCategory().isPresent()) {
             _httpUrl.addQueryParameter("category", request.getCategory().get().toString());
         }

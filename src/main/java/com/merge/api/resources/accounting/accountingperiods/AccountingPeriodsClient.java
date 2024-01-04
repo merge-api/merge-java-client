@@ -30,7 +30,7 @@ public class AccountingPeriodsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("accounting-periods");
+                .addPathSegments("api/accounting/v1/accounting-periods");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
@@ -76,7 +76,7 @@ public class AccountingPeriodsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("accounting-periods")
+                .addPathSegments("api/accounting/v1/accounting-periods")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(

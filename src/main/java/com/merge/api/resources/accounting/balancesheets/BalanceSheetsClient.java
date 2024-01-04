@@ -30,7 +30,7 @@ public class BalanceSheetsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("balance-sheets");
+                .addPathSegments("api/accounting/v1/balance-sheets");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -99,7 +99,7 @@ public class BalanceSheetsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("balance-sheets")
+                .addPathSegments("api/accounting/v1/balance-sheets")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

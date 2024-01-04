@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.employees.types.IgnoreCommonModelRequestReason;
+import com.merge.api.resources.hris.types.IgnoreCommonModelRequestReason;
 import java.util.Objects;
 import java.util.Optional;
 

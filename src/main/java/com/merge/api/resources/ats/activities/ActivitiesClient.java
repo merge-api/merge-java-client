@@ -36,7 +36,7 @@ public class ActivitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("activities");
+                .addPathSegments("api/ats/v1/activities");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -113,7 +113,7 @@ public class ActivitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("activities");
+                .addPathSegments("api/ats/v1/activities");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -159,7 +159,7 @@ public class ActivitiesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("activities")
+                .addPathSegments("api/ats/v1/activities")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -203,7 +203,7 @@ public class ActivitiesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("activities/meta/post")
+                .addPathSegments("api/ats/v1/activities/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

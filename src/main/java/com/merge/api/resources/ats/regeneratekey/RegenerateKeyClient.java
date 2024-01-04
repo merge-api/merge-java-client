@@ -30,7 +30,7 @@ public class RegenerateKeyClient {
     public RemoteKey create(RemoteKeyForRegenerationRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("regenerate-key")
+                .addPathSegments("api/ats/v1/regenerate-key")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("name", request.getName());

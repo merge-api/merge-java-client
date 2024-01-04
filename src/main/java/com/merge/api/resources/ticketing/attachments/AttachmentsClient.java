@@ -38,7 +38,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("attachments");
+                .addPathSegments("api/ticketing/v1/attachments");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -113,7 +113,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("attachments");
+                .addPathSegments("api/ticketing/v1/attachments");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -159,7 +159,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("attachments")
+                .addPathSegments("api/ticketing/v1/attachments")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -197,7 +197,7 @@ public class AttachmentsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("attachments")
+                .addPathSegments("api/ticketing/v1/attachments")
                 .addPathSegment(id)
                 .addPathSegments("download");
         if (request.getMimeType().isPresent()) {
@@ -230,7 +230,7 @@ public class AttachmentsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("attachments/meta/post")
+                .addPathSegments("api/ticketing/v1/attachments/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

@@ -38,7 +38,7 @@ public class FilesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("files");
+                .addPathSegments("api/filestorage/v1/files");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -113,7 +113,7 @@ public class FilesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("files");
+                .addPathSegments("api/filestorage/v1/files");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -158,7 +158,7 @@ public class FilesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("files")
+                .addPathSegments("api/filestorage/v1/files")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -196,7 +196,7 @@ public class FilesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("files")
+                .addPathSegments("api/filestorage/v1/files")
                 .addPathSegment(id)
                 .addPathSegments("download");
         if (request.getMimeType().isPresent()) {
@@ -229,7 +229,7 @@ public class FilesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("files/meta/post")
+                .addPathSegments("api/filestorage/v1/files/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

@@ -30,7 +30,7 @@ public class TrackingCategoriesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("tracking-categories");
+                .addPathSegments("api/accounting/v1/tracking-categories");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -109,7 +109,7 @@ public class TrackingCategoriesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("tracking-categories")
+                .addPathSegments("api/accounting/v1/tracking-categories")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

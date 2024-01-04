@@ -40,7 +40,7 @@ public class CustomObjectsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("custom-object-classes")
+                .addPathSegments("api/crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects");
         if (request.getCreatedAfter().isPresent()) {
@@ -112,7 +112,7 @@ public class CustomObjectsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("custom-object-classes")
+                .addPathSegments("api/crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects");
         if (request.getIsDebugMode().isPresent()) {
@@ -164,7 +164,7 @@ public class CustomObjectsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("custom-object-classes")
+                .addPathSegments("api/crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects")
                 .addPathSegment(id);
@@ -205,7 +205,7 @@ public class CustomObjectsClient {
             String customObjectClassId, String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("custom-object-classes")
+                .addPathSegments("api/crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects/meta/patch")
                 .addPathSegment(id)
@@ -237,7 +237,7 @@ public class CustomObjectsClient {
             String customObjectClassId, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("custom-object-classes")
+                .addPathSegments("api/crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects/meta/post")
                 .build();

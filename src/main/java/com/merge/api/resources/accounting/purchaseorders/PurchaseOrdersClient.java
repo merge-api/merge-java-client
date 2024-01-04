@@ -36,7 +36,7 @@ public class PurchaseOrdersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("purchase-orders");
+                .addPathSegments("api/accounting/v1/purchase-orders");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -121,7 +121,7 @@ public class PurchaseOrdersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("purchase-orders");
+                .addPathSegments("api/accounting/v1/purchase-orders");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -166,7 +166,7 @@ public class PurchaseOrdersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("purchase-orders")
+                .addPathSegments("api/accounting/v1/purchase-orders")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -210,7 +210,7 @@ public class PurchaseOrdersClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("purchase-orders/meta/post")
+                .addPathSegments("api/accounting/v1/purchase-orders/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

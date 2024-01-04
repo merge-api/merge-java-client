@@ -25,7 +25,7 @@ public class AvailableActionsClient {
     public AvailableActions retrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("available-actions")
+                .addPathSegments("api/ats/v1/available-actions")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

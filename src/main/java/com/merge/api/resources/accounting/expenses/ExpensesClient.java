@@ -36,7 +36,7 @@ public class ExpensesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("expenses");
+                .addPathSegments("api/accounting/v1/expenses");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -115,7 +115,7 @@ public class ExpensesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("expenses");
+                .addPathSegments("api/accounting/v1/expenses");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -160,7 +160,7 @@ public class ExpensesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("expenses")
+                .addPathSegments("api/accounting/v1/expenses")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -196,7 +196,7 @@ public class ExpensesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("expenses/meta/post")
+                .addPathSegments("api/accounting/v1/expenses/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

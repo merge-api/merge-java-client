@@ -32,7 +32,7 @@ public class WebhookReceiversClient {
     public List<WebhookReceiver> list(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("webhook-receivers")
+                .addPathSegments("api/ats/v1/webhook-receivers")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -61,7 +61,7 @@ public class WebhookReceiversClient {
     public WebhookReceiver create(WebhookReceiverRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("webhook-receivers")
+                .addPathSegments("api/ats/v1/webhook-receivers")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("event", request.getEvent());

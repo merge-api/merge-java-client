@@ -40,7 +40,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts");
+                .addPathSegments("api/crm/v1/contacts");
         if (request.getAccountId().isPresent()) {
             _httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -122,7 +122,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts");
+                .addPathSegments("api/crm/v1/contacts");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -167,7 +167,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts")
+                .addPathSegments("api/crm/v1/contacts")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -210,7 +210,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts")
+                .addPathSegments("api/crm/v1/contacts")
                 .addPathSegment(id);
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -255,7 +255,7 @@ public class ContactsClient {
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts/ignore")
+                .addPathSegments("api/crm/v1/contacts/ignore")
                 .addPathSegment(modelId)
                 .build();
         RequestBody _requestBody;
@@ -291,7 +291,7 @@ public class ContactsClient {
     public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts/meta/patch")
+                .addPathSegments("api/crm/v1/contacts/meta/patch")
                 .addPathSegment(id)
                 .build();
         Request _request = new Request.Builder()
@@ -320,7 +320,7 @@ public class ContactsClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts/meta/post")
+                .addPathSegments("api/crm/v1/contacts/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -350,7 +350,7 @@ public class ContactsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("contacts/remote-field-classes");
+                .addPathSegments("api/crm/v1/contacts/remote-field-classes");
         if (request.getCursor().isPresent()) {
             _httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }

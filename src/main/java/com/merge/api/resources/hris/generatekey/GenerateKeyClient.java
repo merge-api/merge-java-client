@@ -30,7 +30,7 @@ public class GenerateKeyClient {
     public RemoteKey create(GenerateRemoteKeyRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("generate-key")
+                .addPathSegments("api/hris/v1/generate-key")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("name", request.getName());
