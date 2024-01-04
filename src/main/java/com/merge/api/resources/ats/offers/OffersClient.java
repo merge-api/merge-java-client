@@ -30,7 +30,7 @@ public class OffersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("offers");
+                .addPathSegments("api/ats/v1/offers");
         if (request.getApplicationId().isPresent()) {
             _httpUrl.addQueryParameter(
                     "application_id", request.getApplicationId().get());
@@ -111,7 +111,7 @@ public class OffersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("offers")
+                .addPathSegments("api/ats/v1/offers")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());

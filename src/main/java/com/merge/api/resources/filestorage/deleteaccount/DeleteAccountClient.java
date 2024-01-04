@@ -25,7 +25,7 @@ public class DeleteAccountClient {
     public void delete(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("delete-account")
+                .addPathSegments("api/filestorage/v1/delete-account")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestExpand;
-import com.merge.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestRemoteFields;
-import com.merge.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestShowEnumOrigins;
+import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestExpand;
+import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestRemoteFields;
+import com.merge.api.resources.accounting.types.CreditNotesRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
 import java.util.Optional;
 

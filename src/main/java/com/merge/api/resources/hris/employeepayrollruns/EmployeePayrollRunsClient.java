@@ -30,7 +30,7 @@ public class EmployeePayrollRunsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employee-payroll-runs");
+                .addPathSegments("api/hris/v1/employee-payroll-runs");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -121,7 +121,7 @@ public class EmployeePayrollRunsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employee-payroll-runs")
+                .addPathSegments("api/hris/v1/employee-payroll-runs")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());

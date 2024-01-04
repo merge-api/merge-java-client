@@ -37,7 +37,7 @@ public class EmployeesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employees");
+                .addPathSegments("api/hris/v1/employees");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -183,7 +183,7 @@ public class EmployeesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employees");
+                .addPathSegments("api/hris/v1/employees");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -228,7 +228,7 @@ public class EmployeesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employees")
+                .addPathSegments("api/hris/v1/employees")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -277,7 +277,7 @@ public class EmployeesClient {
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employees/ignore")
+                .addPathSegments("api/hris/v1/employees/ignore")
                 .addPathSegment(modelId)
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
@@ -319,7 +319,7 @@ public class EmployeesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("employees/meta/post")
+                .addPathSegments("api/hris/v1/employees/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

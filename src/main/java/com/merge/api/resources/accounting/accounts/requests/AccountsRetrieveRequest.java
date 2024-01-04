@@ -7,8 +7,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.accounts.types.AccountsRetrieveRequestRemoteFields;
-import com.merge.api.resources.accounting.accounts.types.AccountsRetrieveRequestShowEnumOrigins;
+import com.merge.api.resources.accounting.types.AccountsRetrieveRequestRemoteFields;
+import com.merge.api.resources.accounting.types.AccountsRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
 import java.util.Optional;
 

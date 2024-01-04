@@ -36,7 +36,7 @@ public class TimesheetEntriesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("timesheet-entries");
+                .addPathSegments("api/hris/v1/timesheet-entries");
         if (request.getCreatedAfter().isPresent()) {
             _httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -120,7 +120,7 @@ public class TimesheetEntriesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("timesheet-entries");
+                .addPathSegments("api/hris/v1/timesheet-entries");
         if (request.getIsDebugMode().isPresent()) {
             _httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -165,7 +165,7 @@ public class TimesheetEntriesClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("timesheet-entries")
+                .addPathSegments("api/hris/v1/timesheet-entries")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(
@@ -198,7 +198,7 @@ public class TimesheetEntriesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("timesheet-entries/meta/post")
+                .addPathSegments("api/hris/v1/timesheet-entries/meta/post")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)

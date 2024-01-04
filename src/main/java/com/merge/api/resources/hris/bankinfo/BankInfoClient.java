@@ -30,7 +30,7 @@ public class BankInfoClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("bank-info");
+                .addPathSegments("api/hris/v1/bank-info");
         if (request.getAccountType().isPresent()) {
             _httpUrl.addQueryParameter(
                     "account_type", request.getAccountType().get().toString());
@@ -117,7 +117,7 @@ public class BankInfoClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("bank-info")
+                .addPathSegments("api/hris/v1/bank-info")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

@@ -29,7 +29,7 @@ public class PhoneNumbersClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("phone-numbers")
+                .addPathSegments("api/accounting/v1/phone-numbers")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             _httpUrl.addQueryParameter(

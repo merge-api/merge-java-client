@@ -7,9 +7,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestExpand;
-import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestRemoteFields;
-import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestShowEnumOrigins;
+import com.merge.api.resources.ticketing.types.TicketsRetrieveRequestExpand;
+import com.merge.api.resources.ticketing.types.TicketsRetrieveRequestRemoteFields;
+import com.merge.api.resources.ticketing.types.TicketsRetrieveRequestShowEnumOrigins;
 import java.util.Objects;
 import java.util.Optional;
 

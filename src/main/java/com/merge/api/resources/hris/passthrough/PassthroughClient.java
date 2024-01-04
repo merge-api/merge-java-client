@@ -28,7 +28,7 @@ public class PassthroughClient {
     public RemoteResponse create(DataPassthroughRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("passthrough")
+                .addPathSegments("api/hris/v1/passthrough")
                 .build();
         RequestBody _requestBody;
         try {

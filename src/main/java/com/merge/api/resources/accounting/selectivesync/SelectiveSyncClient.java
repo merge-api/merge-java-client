@@ -34,7 +34,7 @@ public class SelectiveSyncClient {
     public List<LinkedAccountSelectiveSyncConfiguration> configurationsList(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("selective-sync/configurations")
+                .addPathSegments("api/accounting/v1/selective-sync/configurations")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
@@ -66,7 +66,7 @@ public class SelectiveSyncClient {
             LinkedAccountSelectiveSyncConfigurationListRequest request, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("selective-sync/configurations")
+                .addPathSegments("api/accounting/v1/selective-sync/configurations")
                 .build();
         Map<String, Object> _requestBodyProperties = new HashMap<>();
         _requestBodyProperties.put("sync_configurations", request.getSyncConfigurations());
@@ -107,7 +107,7 @@ public class SelectiveSyncClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("selective-sync/meta");
+                .addPathSegments("api/accounting/v1/selective-sync/meta");
         if (request.getCommonModel().isPresent()) {
             _httpUrl.addQueryParameter("common_model", request.getCommonModel().get());
         }

@@ -25,7 +25,7 @@ public class AccountTokenClient {
     public AccountToken retrieve(String publicToken, RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("account-token")
+                .addPathSegments("api/hris/v1/account-token")
                 .addPathSegment(publicToken)
                 .build();
         Request _request = new Request.Builder()

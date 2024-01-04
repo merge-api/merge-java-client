@@ -32,7 +32,7 @@ public class JobsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("jobs");
+                .addPathSegments("api/ats/v1/jobs");
         if (request.getCode().isPresent()) {
             _httpUrl.addQueryParameter("code", request.getCode().get());
         }
@@ -115,7 +115,7 @@ public class JobsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("jobs")
+                .addPathSegments("api/ats/v1/jobs")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -162,7 +162,7 @@ public class JobsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("jobs")
+                .addPathSegments("api/ats/v1/jobs")
                 .addPathSegment(jobId)
                 .addPathSegments("screening-questions");
         if (request.getCursor().isPresent()) {

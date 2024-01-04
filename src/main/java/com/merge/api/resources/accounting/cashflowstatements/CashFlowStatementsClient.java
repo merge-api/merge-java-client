@@ -30,7 +30,7 @@ public class CashFlowStatementsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("cash-flow-statements");
+                .addPathSegments("api/accounting/v1/cash-flow-statements");
         if (request.getCompanyId().isPresent()) {
             _httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -101,7 +101,7 @@ public class CashFlowStatementsClient {
         HttpUrl.Builder _httpUrl = HttpUrl.parse(
                         this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("cash-flow-statements")
+                .addPathSegments("api/accounting/v1/cash-flow-statements")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             _httpUrl.addQueryParameter("expand", request.getExpand().get());

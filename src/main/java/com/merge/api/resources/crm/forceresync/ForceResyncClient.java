@@ -28,7 +28,7 @@ public class ForceResyncClient {
     public List<SyncStatus> syncStatusResyncCreate(RequestOptions requestOptions) {
         HttpUrl _httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("sync-status/resync")
+                .addPathSegments("api/crm/v1/sync-status/resync")
                 .build();
         Request _request = new Request.Builder()
                 .url(_httpUrl)
