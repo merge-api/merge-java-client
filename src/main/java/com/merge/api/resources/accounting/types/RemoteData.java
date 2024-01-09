@@ -8,7 +8,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -17,9 +16,9 @@ import java.util.Optional;
 public final class RemoteData {
     private final String path;
 
-    private final Optional<Map<String, JsonNode>> data;
+    private final Optional<JsonNode> data;
 
-    private RemoteData(String path, Optional<Map<String, JsonNode>> data) {
+    private RemoteData(String path, Optional<JsonNode> data) {
         this.path = path;
         this.data = data;
     }
@@ -30,7 +29,7 @@ public final class RemoteData {
     }
 
     @JsonProperty("data")
-    public Optional<Map<String, JsonNode>> getData() {
+    public Optional<JsonNode> getData() {
         return data;
     }
 
@@ -67,16 +66,16 @@ public final class RemoteData {
     public interface _FinalStage {
         RemoteData build();
 
-        _FinalStage data(Optional<Map<String, JsonNode>> data);
+        _FinalStage data(Optional<JsonNode> data);
 
-        _FinalStage data(Map<String, JsonNode> data);
+        _FinalStage data(JsonNode data);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements PathStage, _FinalStage {
         private String path;
 
-        private Optional<Map<String, JsonNode>> data = Optional.empty();
+        private Optional<JsonNode> data = Optional.empty();
 
         private Builder() {}
 
@@ -95,14 +94,14 @@ public final class RemoteData {
         }
 
         @Override
-        public _FinalStage data(Map<String, JsonNode> data) {
+        public _FinalStage data(JsonNode data) {
             this.data = Optional.of(data);
             return this;
         }
 
         @Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
-        public _FinalStage data(Optional<Map<String, JsonNode>> data) {
+        public _FinalStage data(Optional<JsonNode> data) {
             this.data = data;
             return this;
         }
