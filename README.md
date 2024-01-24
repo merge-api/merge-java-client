@@ -1,7 +1,6 @@
 # Merge Java Library
 
 [![Maven Central](https://img.shields.io/maven-central/v/dev.merge/merge-java-client)](https://central.sonatype.com/artifact/dev.merge/merge-java-client) 
-[![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-SDK%20generated%20by%20Fern-brightgreen)](https://buildwithfern.com/?utm_source=merge-api/merge-java-client/readme)
 
 The Merge Java SDK provides convenient access to the Merge API from Java or Kotlin.
 
