@@ -152,7 +152,7 @@ public final class ApplicationRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ApplicationRequest && equalTo((ApplicationRequest) other);
@@ -177,7 +177,7 @@ public final class ApplicationRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.candidate,
@@ -193,7 +193,7 @@ public final class ApplicationRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -64,7 +64,7 @@ public final class NotesRetrieveRequest {
         return includeRemoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof NotesRetrieveRequest && equalTo((NotesRetrieveRequest) other);
@@ -81,12 +81,12 @@ public final class NotesRetrieveRequest {
                 && includeRemoteFields.equals(other.includeRemoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -398,7 +398,7 @@ public final class EmployeeRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EmployeeRequest && equalTo((EmployeeRequest) other);
@@ -441,7 +441,7 @@ public final class EmployeeRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.employeeNumber,
@@ -475,7 +475,7 @@ public final class EmployeeRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

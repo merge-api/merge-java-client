@@ -240,7 +240,7 @@ public final class PatchedTicketRequest {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PatchedTicketRequest && equalTo((PatchedTicketRequest) other);
@@ -272,7 +272,7 @@ public final class PatchedTicketRequest {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.name,
@@ -295,7 +295,7 @@ public final class PatchedTicketRequest {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

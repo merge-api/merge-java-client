@@ -51,7 +51,7 @@ public final class WebhookReceiverRequest {
         return key;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof WebhookReceiverRequest && equalTo((WebhookReceiverRequest) other);
@@ -66,12 +66,12 @@ public final class WebhookReceiverRequest {
         return event.equals(other.event) && isActive == other.isActive && key.equals(other.key);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.event, this.isActive, this.key);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -111,7 +111,7 @@ public final class WebhookReceiverRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(WebhookReceiverRequest other) {
             event(other.getEvent());
             isActive(other.getIsActive());
@@ -119,34 +119,34 @@ public final class WebhookReceiverRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("event")
         public IsActiveStage event(String event) {
             this.event = event;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("is_active")
         public _FinalStage isActive(boolean isActive) {
             this.isActive = isActive;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage key(String key) {
             this.key = Optional.of(key);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "key", nulls = Nulls.SKIP)
         public _FinalStage key(Optional<String> key) {
             this.key = key;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public WebhookReceiverRequest build() {
             return new WebhookReceiverRequest(event, isActive, key, additionalProperties);
         }

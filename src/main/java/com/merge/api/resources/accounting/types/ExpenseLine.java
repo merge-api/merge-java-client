@@ -505,7 +505,7 @@ public final class ExpenseLine {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ExpenseLine && equalTo((ExpenseLine) other);
@@ -534,7 +534,7 @@ public final class ExpenseLine {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.remoteId,
@@ -554,7 +554,7 @@ public final class ExpenseLine {
                 this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

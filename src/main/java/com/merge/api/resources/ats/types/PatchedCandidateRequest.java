@@ -216,7 +216,7 @@ public final class PatchedCandidateRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PatchedCandidateRequest && equalTo((PatchedCandidateRequest) other);
@@ -247,7 +247,7 @@ public final class PatchedCandidateRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.firstName,
@@ -269,7 +269,7 @@ public final class PatchedCandidateRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

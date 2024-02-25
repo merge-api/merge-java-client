@@ -48,7 +48,7 @@ public final class DebugModelLogSummary {
         return statusCode;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof DebugModelLogSummary && equalTo((DebugModelLogSummary) other);
@@ -63,12 +63,12 @@ public final class DebugModelLogSummary {
         return url.equals(other.url) && method.equals(other.method) && statusCode == other.statusCode;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.url, this.method, this.statusCode);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -108,7 +108,7 @@ public final class DebugModelLogSummary {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(DebugModelLogSummary other) {
             url(other.getUrl());
             method(other.getMethod());
@@ -116,28 +116,28 @@ public final class DebugModelLogSummary {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("url")
         public MethodStage url(String url) {
             this.url = url;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("method")
         public StatusCodeStage method(String method) {
             this.method = method;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("status_code")
         public _FinalStage statusCode(int statusCode) {
             this.statusCode = statusCode;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public DebugModelLogSummary build() {
             return new DebugModelLogSummary(url, method, statusCode, additionalProperties);
         }

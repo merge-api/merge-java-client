@@ -44,7 +44,7 @@ public final class IgnoreCommonModelRequest {
         return message;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof IgnoreCommonModelRequest && equalTo((IgnoreCommonModelRequest) other);
@@ -59,12 +59,12 @@ public final class IgnoreCommonModelRequest {
         return reason.equals(other.reason) && message.equals(other.message);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.reason, this.message);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -98,34 +98,34 @@ public final class IgnoreCommonModelRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(IgnoreCommonModelRequest other) {
             reason(other.getReason());
             message(other.getMessage());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("reason")
         public _FinalStage reason(IgnoreCommonModelRequestReason reason) {
             this.reason = reason;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage message(String message) {
             this.message = Optional.of(message);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "message", nulls = Nulls.SKIP)
         public _FinalStage message(Optional<String> message) {
             this.message = message;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public IgnoreCommonModelRequest build() {
             return new IgnoreCommonModelRequest(reason, message, additionalProperties);
         }

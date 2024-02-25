@@ -209,7 +209,7 @@ public final class TimesheetEntriesListRequest {
         return startedBefore;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimesheetEntriesListRequest && equalTo((TimesheetEntriesListRequest) other);
@@ -238,7 +238,7 @@ public final class TimesheetEntriesListRequest {
                 && startedBefore.equals(other.startedBefore);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -258,7 +258,7 @@ public final class TimesheetEntriesListRequest {
                 this.startedBefore);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

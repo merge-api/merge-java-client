@@ -74,7 +74,7 @@ public final class MetaResponse {
         return hasRequiredLinkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof MetaResponse && equalTo((MetaResponse) other);
@@ -93,7 +93,7 @@ public final class MetaResponse {
                 && hasRequiredLinkedAccountParams == other.hasRequiredLinkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.requestSchema,
@@ -103,7 +103,7 @@ public final class MetaResponse {
                 this.hasRequiredLinkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -158,7 +158,7 @@ public final class MetaResponse {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(MetaResponse other) {
             requestSchema(other.getRequestSchema());
             remoteFieldClasses(other.getRemoteFieldClasses());
@@ -168,59 +168,59 @@ public final class MetaResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("has_conditional_params")
         public HasRequiredLinkedAccountParamsStage hasConditionalParams(boolean hasConditionalParams) {
             this.hasConditionalParams = hasConditionalParams;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("has_required_linked_account_params")
         public _FinalStage hasRequiredLinkedAccountParams(boolean hasRequiredLinkedAccountParams) {
             this.hasRequiredLinkedAccountParams = hasRequiredLinkedAccountParams;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage status(LinkedAccountStatus status) {
             this.status = Optional.of(status);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public _FinalStage status(Optional<LinkedAccountStatus> status) {
             this.status = status;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage remoteFieldClasses(Map<String, JsonNode> remoteFieldClasses) {
             this.remoteFieldClasses = Optional.of(remoteFieldClasses);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "remote_field_classes", nulls = Nulls.SKIP)
         public _FinalStage remoteFieldClasses(Optional<Map<String, JsonNode>> remoteFieldClasses) {
             this.remoteFieldClasses = remoteFieldClasses;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage requestSchema(String key, JsonNode value) {
             this.requestSchema.put(key, value);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage putAllRequestSchema(Map<String, JsonNode> requestSchema) {
             this.requestSchema.putAll(requestSchema);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "request_schema", nulls = Nulls.SKIP)
         public _FinalStage requestSchema(Map<String, JsonNode> requestSchema) {
             this.requestSchema.clear();
@@ -228,7 +228,7 @@ public final class MetaResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public MetaResponse build() {
             return new MetaResponse(
                     requestSchema,

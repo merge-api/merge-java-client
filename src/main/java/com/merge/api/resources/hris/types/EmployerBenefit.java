@@ -157,7 +157,7 @@ public final class EmployerBenefit {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EmployerBenefit && equalTo((EmployerBenefit) other);
@@ -182,7 +182,7 @@ public final class EmployerBenefit {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -198,7 +198,7 @@ public final class EmployerBenefit {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

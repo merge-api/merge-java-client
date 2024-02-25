@@ -101,7 +101,7 @@ public final class AccountDetailsAndActionsIntegration {
         return availableModelOperations;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountDetailsAndActionsIntegration
@@ -124,7 +124,7 @@ public final class AccountDetailsAndActionsIntegration {
                 && availableModelOperations.equals(other.availableModelOperations);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.name,
@@ -137,7 +137,7 @@ public final class AccountDetailsAndActionsIntegration {
                 this.availableModelOperations);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -210,7 +210,7 @@ public final class AccountDetailsAndActionsIntegration {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AccountDetailsAndActionsIntegration other) {
             name(other.getName());
             categories(other.getCategories());
@@ -223,86 +223,86 @@ public final class AccountDetailsAndActionsIntegration {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("name")
         public ColorStage name(String name) {
             this.name = name;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("color")
         public SlugStage color(String color) {
             this.color = color;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("slug")
         public PassthroughAvailableStage slug(String slug) {
             this.slug = slug;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("passthrough_available")
         public _FinalStage passthroughAvailable(boolean passthroughAvailable) {
             this.passthroughAvailable = passthroughAvailable;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage availableModelOperations(List<ModelOperation> availableModelOperations) {
             this.availableModelOperations = Optional.of(availableModelOperations);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "available_model_operations", nulls = Nulls.SKIP)
         public _FinalStage availableModelOperations(Optional<List<ModelOperation>> availableModelOperations) {
             this.availableModelOperations = availableModelOperations;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage squareImage(String squareImage) {
             this.squareImage = Optional.of(squareImage);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "square_image", nulls = Nulls.SKIP)
         public _FinalStage squareImage(Optional<String> squareImage) {
             this.squareImage = squareImage;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage image(String image) {
             this.image = Optional.of(image);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "image", nulls = Nulls.SKIP)
         public _FinalStage image(Optional<String> image) {
             this.image = image;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllCategories(List<CategoriesEnum> categories) {
             this.categories.addAll(categories);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addCategories(CategoriesEnum categories) {
             this.categories.add(categories);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(List<CategoriesEnum> categories) {
             this.categories.clear();
@@ -310,7 +310,7 @@ public final class AccountDetailsAndActionsIntegration {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AccountDetailsAndActionsIntegration build() {
             return new AccountDetailsAndActionsIntegration(
                     name,

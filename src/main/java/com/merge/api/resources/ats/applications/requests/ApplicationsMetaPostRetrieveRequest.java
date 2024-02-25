@@ -38,7 +38,7 @@ public final class ApplicationsMetaPostRetrieveRequest {
         return applicationRemoteTemplateId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ApplicationsMetaPostRetrieveRequest
@@ -54,12 +54,12 @@ public final class ApplicationsMetaPostRetrieveRequest {
         return applicationRemoteTemplateId.equals(other.applicationRemoteTemplateId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.applicationRemoteTemplateId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

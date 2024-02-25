@@ -63,7 +63,7 @@ public final class WarningValidationProblem {
         return problemType;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof WarningValidationProblem && equalTo((WarningValidationProblem) other);
@@ -81,12 +81,12 @@ public final class WarningValidationProblem {
                 && problemType.equals(other.problemType);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.source, this.title, this.detail, this.problemType);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -132,7 +132,7 @@ public final class WarningValidationProblem {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(WarningValidationProblem other) {
             source(other.getSource());
             title(other.getTitle());
@@ -141,41 +141,41 @@ public final class WarningValidationProblem {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("title")
         public DetailStage title(String title) {
             this.title = title;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("detail")
         public ProblemTypeStage detail(String detail) {
             this.detail = detail;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("problem_type")
         public _FinalStage problemType(String problemType) {
             this.problemType = problemType;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage source(ValidationProblemSource source) {
             this.source = Optional.of(source);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "source", nulls = Nulls.SKIP)
         public _FinalStage source(Optional<ValidationProblemSource> source) {
             this.source = source;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public WarningValidationProblem build() {
             return new WarningValidationProblem(source, title, detail, problemType, additionalProperties);
         }

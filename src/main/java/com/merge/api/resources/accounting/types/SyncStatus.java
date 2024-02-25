@@ -91,7 +91,7 @@ public final class SyncStatus {
         return selectiveSyncConfigurationsUsage;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof SyncStatus && equalTo((SyncStatus) other);
@@ -112,7 +112,7 @@ public final class SyncStatus {
                 && selectiveSyncConfigurationsUsage.equals(other.selectiveSyncConfigurationsUsage);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.modelName,
@@ -124,7 +124,7 @@ public final class SyncStatus {
                 this.selectiveSyncConfigurationsUsage);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -191,7 +191,7 @@ public final class SyncStatus {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(SyncStatus other) {
             modelName(other.getModelName());
             modelId(other.getModelId());
@@ -203,42 +203,42 @@ public final class SyncStatus {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model_name")
         public ModelIdStage modelName(String modelName) {
             this.modelName = modelName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model_id")
         public StatusStage modelId(String modelId) {
             this.modelId = modelId;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("status")
         public IsInitialSyncStage status(SyncStatusStatusEnum status) {
             this.status = status;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("is_initial_sync")
         public _FinalStage isInitialSync(boolean isInitialSync) {
             this.isInitialSync = isInitialSync;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage selectiveSyncConfigurationsUsage(
                 SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage) {
             this.selectiveSyncConfigurationsUsage = Optional.of(selectiveSyncConfigurationsUsage);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "selective_sync_configurations_usage", nulls = Nulls.SKIP)
         public _FinalStage selectiveSyncConfigurationsUsage(
                 Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage) {
@@ -246,33 +246,33 @@ public final class SyncStatus {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage nextSyncStart(OffsetDateTime nextSyncStart) {
             this.nextSyncStart = Optional.of(nextSyncStart);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "next_sync_start", nulls = Nulls.SKIP)
         public _FinalStage nextSyncStart(Optional<OffsetDateTime> nextSyncStart) {
             this.nextSyncStart = nextSyncStart;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage lastSyncStart(OffsetDateTime lastSyncStart) {
             this.lastSyncStart = Optional.of(lastSyncStart);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "last_sync_start", nulls = Nulls.SKIP)
         public _FinalStage lastSyncStart(Optional<OffsetDateTime> lastSyncStart) {
             this.lastSyncStart = lastSyncStart;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public SyncStatus build() {
             return new SyncStatus(
                     modelName,

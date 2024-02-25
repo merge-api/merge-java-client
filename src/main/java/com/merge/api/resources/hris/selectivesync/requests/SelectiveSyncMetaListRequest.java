@@ -60,7 +60,7 @@ public final class SelectiveSyncMetaListRequest {
         return pageSize;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof SelectiveSyncMetaListRequest && equalTo((SelectiveSyncMetaListRequest) other);
@@ -75,12 +75,12 @@ public final class SelectiveSyncMetaListRequest {
         return commonModel.equals(other.commonModel) && cursor.equals(other.cursor) && pageSize.equals(other.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.commonModel, this.cursor, this.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

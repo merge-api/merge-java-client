@@ -49,7 +49,7 @@ public final class OperatorSchema {
         return isUnique;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof OperatorSchema && equalTo((OperatorSchema) other);
@@ -64,12 +64,12 @@ public final class OperatorSchema {
         return operator.equals(other.operator) && isUnique.equals(other.isUnique);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.operator, this.isUnique);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

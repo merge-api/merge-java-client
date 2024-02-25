@@ -509,7 +509,7 @@ public final class BalanceSheet {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof BalanceSheet && equalTo((BalanceSheet) other);
@@ -539,7 +539,7 @@ public final class BalanceSheet {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -560,7 +560,7 @@ public final class BalanceSheet {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

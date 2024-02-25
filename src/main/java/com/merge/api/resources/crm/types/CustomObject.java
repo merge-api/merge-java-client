@@ -99,7 +99,7 @@ public final class CustomObject {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CustomObject && equalTo((CustomObject) other);
@@ -120,7 +120,7 @@ public final class CustomObject {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.objectClass,
@@ -132,7 +132,7 @@ public final class CustomObject {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -17,6 +17,7 @@ import com.merge.api.resources.ats.candidates.CandidatesClient;
 import com.merge.api.resources.ats.deleteaccount.DeleteAccountClient;
 import com.merge.api.resources.ats.departments.DepartmentsClient;
 import com.merge.api.resources.ats.eeocs.EeocsClient;
+import com.merge.api.resources.ats.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.ats.forceresync.ForceResyncClient;
 import com.merge.api.resources.ats.generatekey.GenerateKeyClient;
 import com.merge.api.resources.ats.interviews.InterviewsClient;
@@ -30,6 +31,7 @@ import com.merge.api.resources.ats.offices.OfficesClient;
 import com.merge.api.resources.ats.passthrough.PassthroughClient;
 import com.merge.api.resources.ats.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.ats.rejectreasons.RejectReasonsClient;
+import com.merge.api.resources.ats.scopes.ScopesClient;
 import com.merge.api.resources.ats.scorecards.ScorecardsClient;
 import com.merge.api.resources.ats.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.ats.syncstatus.SyncStatusClient;
@@ -59,11 +61,15 @@ public class AtsClient {
 
     protected final Supplier<CandidatesClient> candidatesClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
     protected final Supplier<DepartmentsClient> departmentsClient;
 
     protected final Supplier<EeocsClient> eeocsClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -114,9 +120,11 @@ public class AtsClient {
         this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.candidatesClient = Suppliers.memoize(() -> new CandidatesClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.departmentsClient = Suppliers.memoize(() -> new DepartmentsClient(clientOptions));
         this.eeocsClient = Suppliers.memoize(() -> new EeocsClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.interviewsClient = Suppliers.memoize(() -> new InterviewsClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
@@ -174,6 +182,10 @@ public class AtsClient {
         return this.candidatesClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
     }
@@ -184,6 +196,10 @@ public class AtsClient {
 
     public EeocsClient eeocs() {
         return this.eeocsClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public GenerateKeyClient generateKey() {

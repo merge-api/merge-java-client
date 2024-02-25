@@ -157,7 +157,7 @@ public final class TaskRequest {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TaskRequest && equalTo((TaskRequest) other);
@@ -182,7 +182,7 @@ public final class TaskRequest {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.subject,
@@ -198,7 +198,7 @@ public final class TaskRequest {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

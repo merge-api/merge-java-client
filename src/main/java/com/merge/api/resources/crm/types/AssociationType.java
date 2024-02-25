@@ -126,7 +126,7 @@ public final class AssociationType {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AssociationType && equalTo((AssociationType) other);
@@ -150,7 +150,7 @@ public final class AssociationType {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.sourceObjectClass,
@@ -165,7 +165,7 @@ public final class AssociationType {
                 this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

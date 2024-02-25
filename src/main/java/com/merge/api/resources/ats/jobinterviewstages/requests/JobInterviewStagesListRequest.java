@@ -160,7 +160,7 @@ public final class JobInterviewStagesListRequest {
         return remoteId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof JobInterviewStagesListRequest && equalTo((JobInterviewStagesListRequest) other);
@@ -185,7 +185,7 @@ public final class JobInterviewStagesListRequest {
                 && remoteId.equals(other.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -201,7 +201,7 @@ public final class JobInterviewStagesListRequest {
                 this.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

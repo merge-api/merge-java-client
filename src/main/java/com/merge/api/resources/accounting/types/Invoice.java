@@ -156,7 +156,7 @@ public final class Invoice {
     }
 
     /**
-     * @return Whether the invoice is an accounts receivable or accounts payable. If <code>type</code> is <code>accounts_payable</code>, the invoice is a bill. If <code>type</code> is <code>accounts_receivable</code>, it is an invoice.
+     * @return Whether the invoice is an accounts receivable or accounts payable. If <code>type</code> is <code>ACCOUNTS_PAYABLE</code>, the invoice is a bill. If <code>type</code> is <code>ACCOUNTS_RECEIVABLE</code>, it is an invoice.
      * <ul>
      * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
      * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
@@ -686,7 +686,7 @@ public final class Invoice {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Invoice && equalTo((Invoice) other);
@@ -730,7 +730,7 @@ public final class Invoice {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -765,7 +765,7 @@ public final class Invoice {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

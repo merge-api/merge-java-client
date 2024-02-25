@@ -87,7 +87,7 @@ public final class TasksRemoteFieldClassesListRequest {
         return pageSize;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TasksRemoteFieldClassesListRequest
@@ -107,13 +107,13 @@ public final class TasksRemoteFieldClassesListRequest {
                 && pageSize.equals(other.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.cursor, this.includeDeletedData, this.includeRemoteData, this.includeRemoteFields, this.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

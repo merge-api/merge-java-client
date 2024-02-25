@@ -45,7 +45,7 @@ public final class RemoteFieldRequest {
         return value;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteFieldRequest && equalTo((RemoteFieldRequest) other);
@@ -60,12 +60,12 @@ public final class RemoteFieldRequest {
         return remoteFieldClass.equals(other.remoteFieldClass) && value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.remoteFieldClass, this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -99,34 +99,34 @@ public final class RemoteFieldRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(RemoteFieldRequest other) {
             remoteFieldClass(other.getRemoteFieldClass());
             value(other.getValue());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("remote_field_class")
         public _FinalStage remoteFieldClass(RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage value(String value) {
             this.value = Optional.of(value);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public _FinalStage value(Optional<String> value) {
             this.value = value;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public RemoteFieldRequest build() {
             return new RemoteFieldRequest(remoteFieldClass, value, additionalProperties);
         }

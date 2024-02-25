@@ -88,7 +88,7 @@ public final class JobsScreeningQuestionsListRequest {
         return pageSize;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof JobsScreeningQuestionsListRequest && equalTo((JobsScreeningQuestionsListRequest) other);
@@ -107,12 +107,12 @@ public final class JobsScreeningQuestionsListRequest {
                 && pageSize.equals(other.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.cursor, this.expand, this.includeDeletedData, this.includeRemoteData, this.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

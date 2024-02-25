@@ -8,7 +8,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.merge.api.core.ObjectMappers;
@@ -36,14 +35,14 @@ public final class FolderRequestPermissions {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((JsonNode) this.value);
+            return visitor.visit((PermissionRequest) this.value);
         } else if (this.type == 2) {
             return visitor.visit((List<FolderRequestPermissionsItem>) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof FolderRequestPermissions && equalTo((FolderRequestPermissions) other);
@@ -53,12 +52,12 @@ public final class FolderRequestPermissions {
         return value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value.toString();
     }
@@ -67,7 +66,7 @@ public final class FolderRequestPermissions {
         return new FolderRequestPermissions(value, 0);
     }
 
-    public static FolderRequestPermissions of(JsonNode value) {
+    public static FolderRequestPermissions of(PermissionRequest value) {
         return new FolderRequestPermissions(value, 1);
     }
 
@@ -78,7 +77,7 @@ public final class FolderRequestPermissions {
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(JsonNode value);
+        T visit(PermissionRequest value);
 
         T visit(List<FolderRequestPermissionsItem> value);
     }
@@ -88,7 +87,7 @@ public final class FolderRequestPermissions {
             super(FolderRequestPermissions.class);
         }
 
-        @Override
+        @java.lang.Override
         public FolderRequestPermissions deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
@@ -96,7 +95,7 @@ public final class FolderRequestPermissions {
             } catch (IllegalArgumentException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, JsonNode.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, PermissionRequest.class));
             } catch (IllegalArgumentException e) {
             }
             try {

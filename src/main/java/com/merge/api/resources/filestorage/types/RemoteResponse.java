@@ -91,7 +91,7 @@ public final class RemoteResponse {
         return headers;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteResponse && equalTo((RemoteResponse) other);
@@ -112,7 +112,7 @@ public final class RemoteResponse {
                 && headers.equals(other.headers);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.method,
@@ -124,7 +124,7 @@ public final class RemoteResponse {
                 this.headers);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -188,7 +188,7 @@ public final class RemoteResponse {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(RemoteResponse other) {
             method(other.getMethod());
             path(other.getPath());
@@ -200,74 +200,74 @@ public final class RemoteResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("method")
         public PathStage method(String method) {
             this.method = method;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("path")
         public StatusStage path(String path) {
             this.path = path;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("status")
         public ResponseStage status(int status) {
             this.status = status;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("response")
         public _FinalStage response(JsonNode response) {
             this.response = response;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage headers(Map<String, JsonNode> headers) {
             this.headers = Optional.of(headers);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
         public _FinalStage headers(Optional<Map<String, JsonNode>> headers) {
             this.headers = headers;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage responseType(ResponseTypeEnum responseType) {
             this.responseType = Optional.of(responseType);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "response_type", nulls = Nulls.SKIP)
         public _FinalStage responseType(Optional<ResponseTypeEnum> responseType) {
             this.responseType = responseType;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage responseHeaders(Map<String, JsonNode> responseHeaders) {
             this.responseHeaders = Optional.of(responseHeaders);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "response_headers", nulls = Nulls.SKIP)
         public _FinalStage responseHeaders(Optional<Map<String, JsonNode>> responseHeaders) {
             this.responseHeaders = responseHeaders;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public RemoteResponse build() {
             return new RemoteResponse(
                     method, path, status, response, responseHeaders, responseType, headers, additionalProperties);

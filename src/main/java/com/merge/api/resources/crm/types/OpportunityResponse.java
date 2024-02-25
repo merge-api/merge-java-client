@@ -65,7 +65,7 @@ public final class OpportunityResponse {
         return logs;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof OpportunityResponse && equalTo((OpportunityResponse) other);
@@ -83,12 +83,12 @@ public final class OpportunityResponse {
                 && logs.equals(other.logs);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.model, this.warnings, this.errors, this.logs);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -138,7 +138,7 @@ public final class OpportunityResponse {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(OpportunityResponse other) {
             model(other.getModel());
             warnings(other.getWarnings());
@@ -147,39 +147,39 @@ public final class OpportunityResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model")
         public _FinalStage model(Opportunity model) {
             this.model = model;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage logs(List<DebugModeLog> logs) {
             this.logs = Optional.of(logs);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "logs", nulls = Nulls.SKIP)
         public _FinalStage logs(Optional<List<DebugModeLog>> logs) {
             this.logs = logs;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllErrors(List<ErrorValidationProblem> errors) {
             this.errors.addAll(errors);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addErrors(ErrorValidationProblem errors) {
             this.errors.add(errors);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "errors", nulls = Nulls.SKIP)
         public _FinalStage errors(List<ErrorValidationProblem> errors) {
             this.errors.clear();
@@ -187,19 +187,19 @@ public final class OpportunityResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllWarnings(List<WarningValidationProblem> warnings) {
             this.warnings.addAll(warnings);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addWarnings(WarningValidationProblem warnings) {
             this.warnings.add(warnings);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "warnings", nulls = Nulls.SKIP)
         public _FinalStage warnings(List<WarningValidationProblem> warnings) {
             this.warnings.clear();
@@ -207,7 +207,7 @@ public final class OpportunityResponse {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public OpportunityResponse build() {
             return new OpportunityResponse(model, warnings, errors, logs, additionalProperties);
         }

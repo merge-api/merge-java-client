@@ -521,7 +521,7 @@ public final class InvoiceLineItem {
         return fieldMappings;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof InvoiceLineItem && equalTo((InvoiceLineItem) other);
@@ -552,7 +552,7 @@ public final class InvoiceLineItem {
                 && fieldMappings.equals(other.fieldMappings);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.remoteId,
@@ -574,7 +574,7 @@ public final class InvoiceLineItem {
                 this.fieldMappings);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

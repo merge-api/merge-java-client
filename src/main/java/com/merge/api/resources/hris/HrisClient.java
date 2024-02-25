@@ -19,6 +19,7 @@ import com.merge.api.resources.hris.employeepayrollruns.EmployeePayrollRunsClien
 import com.merge.api.resources.hris.employees.EmployeesClient;
 import com.merge.api.resources.hris.employerbenefits.EmployerBenefitsClient;
 import com.merge.api.resources.hris.employments.EmploymentsClient;
+import com.merge.api.resources.hris.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.hris.forceresync.ForceResyncClient;
 import com.merge.api.resources.hris.generatekey.GenerateKeyClient;
 import com.merge.api.resources.hris.groups.GroupsClient;
@@ -30,6 +31,7 @@ import com.merge.api.resources.hris.passthrough.PassthroughClient;
 import com.merge.api.resources.hris.paygroups.PayGroupsClient;
 import com.merge.api.resources.hris.payrollruns.PayrollRunsClient;
 import com.merge.api.resources.hris.regeneratekey.RegenerateKeyClient;
+import com.merge.api.resources.hris.scopes.ScopesClient;
 import com.merge.api.resources.hris.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.hris.syncstatus.SyncStatusClient;
 import com.merge.api.resources.hris.teams.TeamsClient;
@@ -58,6 +60,8 @@ public class HrisClient {
 
     protected final Supplier<CompaniesClient> companiesClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
     protected final Supplier<DependentsClient> dependentsClient;
@@ -69,6 +73,8 @@ public class HrisClient {
     protected final Supplier<EmployerBenefitsClient> employerBenefitsClient;
 
     protected final Supplier<EmploymentsClient> employmentsClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -116,12 +122,14 @@ public class HrisClient {
         this.bankInfoClient = Suppliers.memoize(() -> new BankInfoClient(clientOptions));
         this.benefitsClient = Suppliers.memoize(() -> new BenefitsClient(clientOptions));
         this.companiesClient = Suppliers.memoize(() -> new CompaniesClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.dependentsClient = Suppliers.memoize(() -> new DependentsClient(clientOptions));
         this.employeePayrollRunsClient = Suppliers.memoize(() -> new EmployeePayrollRunsClient(clientOptions));
         this.employeesClient = Suppliers.memoize(() -> new EmployeesClient(clientOptions));
         this.employerBenefitsClient = Suppliers.memoize(() -> new EmployerBenefitsClient(clientOptions));
         this.employmentsClient = Suppliers.memoize(() -> new EmploymentsClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.groupsClient = Suppliers.memoize(() -> new GroupsClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
@@ -174,6 +182,10 @@ public class HrisClient {
         return this.companiesClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
     }
@@ -196,6 +208,10 @@ public class HrisClient {
 
     public EmploymentsClient employments() {
         return this.employmentsClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public GenerateKeyClient generateKey() {

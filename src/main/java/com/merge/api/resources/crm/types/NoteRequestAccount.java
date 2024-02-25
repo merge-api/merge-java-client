@@ -38,7 +38,7 @@ public final class NoteRequestAccount {
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof NoteRequestAccount && equalTo((NoteRequestAccount) other);
@@ -48,12 +48,12 @@ public final class NoteRequestAccount {
         return value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value.toString();
     }
@@ -77,7 +77,7 @@ public final class NoteRequestAccount {
             super(NoteRequestAccount.class);
         }
 
-        @Override
+        @java.lang.Override
         public NoteRequestAccount deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

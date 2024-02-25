@@ -150,7 +150,7 @@ public final class TaxRate {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TaxRate && equalTo((TaxRate) other);
@@ -175,7 +175,7 @@ public final class TaxRate {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.description,
@@ -191,7 +191,7 @@ public final class TaxRate {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

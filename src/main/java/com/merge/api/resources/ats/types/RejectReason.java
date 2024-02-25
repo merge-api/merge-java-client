@@ -114,7 +114,7 @@ public final class RejectReason {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RejectReason && equalTo((RejectReason) other);
@@ -136,7 +136,7 @@ public final class RejectReason {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -149,7 +149,7 @@ public final class RejectReason {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

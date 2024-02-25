@@ -75,7 +75,7 @@ public final class AccountingPeriodsListRequest {
         return pageSize;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountingPeriodsListRequest && equalTo((AccountingPeriodsListRequest) other);
@@ -93,12 +93,12 @@ public final class AccountingPeriodsListRequest {
                 && pageSize.equals(other.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.cursor, this.includeDeletedData, this.includeRemoteData, this.pageSize);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

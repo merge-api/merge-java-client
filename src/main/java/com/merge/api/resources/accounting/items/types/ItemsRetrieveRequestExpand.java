@@ -27,7 +27,7 @@ public enum ItemsRetrieveRequestExpand {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }

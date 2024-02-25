@@ -70,7 +70,7 @@ public final class ApplicationEndpointRequest {
         return remoteUserId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ApplicationEndpointRequest && equalTo((ApplicationEndpointRequest) other);
@@ -88,12 +88,12 @@ public final class ApplicationEndpointRequest {
                 && remoteUserId.equals(other.remoteUserId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.isDebugMode, this.runAsync, this.model, this.remoteUserId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -139,7 +139,7 @@ public final class ApplicationEndpointRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(ApplicationEndpointRequest other) {
             isDebugMode(other.getIsDebugMode());
             runAsync(other.getRunAsync());
@@ -148,14 +148,14 @@ public final class ApplicationEndpointRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model")
         public RemoteUserIdStage model(ApplicationRequest model) {
             this.model = model;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("remote_user_id")
         public _FinalStage remoteUserId(String remoteUserId) {
             this.remoteUserId = remoteUserId;
@@ -166,13 +166,13 @@ public final class ApplicationEndpointRequest {
          * <p>Whether or not third-party updates should be run asynchronously.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage runAsync(Boolean runAsync) {
             this.runAsync = Optional.of(runAsync);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "run_async", nulls = Nulls.SKIP)
         public _FinalStage runAsync(Optional<Boolean> runAsync) {
             this.runAsync = runAsync;
@@ -183,20 +183,20 @@ public final class ApplicationEndpointRequest {
          * <p>Whether to include debug fields (such as log file links) in the response.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage isDebugMode(Boolean isDebugMode) {
             this.isDebugMode = Optional.of(isDebugMode);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "is_debug_mode", nulls = Nulls.SKIP)
         public _FinalStage isDebugMode(Optional<Boolean> isDebugMode) {
             this.isDebugMode = isDebugMode;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public ApplicationEndpointRequest build() {
             return new ApplicationEndpointRequest(isDebugMode, runAsync, model, remoteUserId, additionalProperties);
         }

@@ -108,7 +108,7 @@ public final class ReportItem {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ReportItem && equalTo((ReportItem) other);
@@ -129,13 +129,13 @@ public final class ReportItem {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.remoteId, this.name, this.value, this.subItems, this.company, this.createdAt, this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -78,7 +78,7 @@ public final class TimeOffRetrieveRequest {
         return showEnumOrigins;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimeOffRetrieveRequest && equalTo((TimeOffRetrieveRequest) other);
@@ -96,12 +96,12 @@ public final class TimeOffRetrieveRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

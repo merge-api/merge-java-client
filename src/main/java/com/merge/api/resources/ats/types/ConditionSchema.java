@@ -122,7 +122,7 @@ public final class ConditionSchema {
         return operators;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ConditionSchema && equalTo((ConditionSchema) other);
@@ -143,7 +143,7 @@ public final class ConditionSchema {
                 && operators.equals(other.operators);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -155,7 +155,7 @@ public final class ConditionSchema {
                 this.operators);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -221,7 +221,7 @@ public final class ConditionSchema {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(ConditionSchema other) {
             id(other.getId());
             commonModel(other.getCommonModel());
@@ -237,7 +237,7 @@ public final class ConditionSchema {
          * <p>The ID of the condition schema. This ID is used when updating selective syncs for a linked account.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("id")
         public ConditionTypeStage id(String id) {
             this.id = id;
@@ -257,7 +257,7 @@ public final class ConditionSchema {
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("condition_type")
         public _FinalStage conditionType(ConditionSchemaConditionType conditionType) {
             this.conditionType = conditionType;
@@ -268,7 +268,7 @@ public final class ConditionSchema {
          * <p>The schemas for the operators that can be used on a condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage addAllOperators(List<OperatorSchema> operators) {
             this.operators.addAll(operators);
             return this;
@@ -278,13 +278,13 @@ public final class ConditionSchema {
          * <p>The schemas for the operators that can be used on a condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage addOperators(OperatorSchema operators) {
             this.operators.add(operators);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "operators", nulls = Nulls.SKIP)
         public _FinalStage operators(List<OperatorSchema> operators) {
             this.operators.clear();
@@ -296,13 +296,13 @@ public final class ConditionSchema {
          * <p>Whether this condition can only be applied once. If false, the condition can be AND'd together multiple times.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage isUnique(Boolean isUnique) {
             this.isUnique = Optional.of(isUnique);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "is_unique", nulls = Nulls.SKIP)
         public _FinalStage isUnique(Optional<Boolean> isUnique) {
             this.isUnique = isUnique;
@@ -313,13 +313,13 @@ public final class ConditionSchema {
          * <p>The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. &quot;location_type&quot;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage fieldName(String fieldName) {
             this.fieldName = Optional.of(fieldName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "field_name", nulls = Nulls.SKIP)
         public _FinalStage fieldName(Optional<String> fieldName) {
             this.fieldName = fieldName;
@@ -330,13 +330,13 @@ public final class ConditionSchema {
          * <p>User-facing <em>native condition</em> name. e.g. &quot;Skip Manager&quot;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage nativeName(String nativeName) {
             this.nativeName = Optional.of(nativeName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "native_name", nulls = Nulls.SKIP)
         public _FinalStage nativeName(Optional<String> nativeName) {
             this.nativeName = nativeName;
@@ -347,20 +347,20 @@ public final class ConditionSchema {
          * <p>The common model for which a condition schema is defined.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage commonModel(String commonModel) {
             this.commonModel = Optional.of(commonModel);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "common_model", nulls = Nulls.SKIP)
         public _FinalStage commonModel(Optional<String> commonModel) {
             this.commonModel = commonModel;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public ConditionSchema build() {
             return new ConditionSchema(
                     id, commonModel, nativeName, fieldName, isUnique, conditionType, operators, additionalProperties);

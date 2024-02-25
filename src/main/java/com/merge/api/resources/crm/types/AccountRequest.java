@@ -141,7 +141,7 @@ public final class AccountRequest {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountRequest && equalTo((AccountRequest) other);
@@ -165,7 +165,7 @@ public final class AccountRequest {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.owner,
@@ -180,7 +180,7 @@ public final class AccountRequest {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

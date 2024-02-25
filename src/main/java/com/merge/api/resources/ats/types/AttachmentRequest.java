@@ -100,7 +100,7 @@ public final class AttachmentRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AttachmentRequest && equalTo((AttachmentRequest) other);
@@ -120,7 +120,7 @@ public final class AttachmentRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.fileName,
@@ -131,7 +131,7 @@ public final class AttachmentRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

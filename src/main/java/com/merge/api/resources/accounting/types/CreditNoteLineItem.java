@@ -225,7 +225,7 @@ public final class CreditNoteLineItem {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CreditNoteLineItem && equalTo((CreditNoteLineItem) other);
@@ -256,7 +256,7 @@ public final class CreditNoteLineItem {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.item,
@@ -278,7 +278,7 @@ public final class CreditNoteLineItem {
                 this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

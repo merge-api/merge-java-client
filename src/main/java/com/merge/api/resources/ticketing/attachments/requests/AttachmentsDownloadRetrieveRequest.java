@@ -37,7 +37,7 @@ public final class AttachmentsDownloadRetrieveRequest {
         return mimeType;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AttachmentsDownloadRetrieveRequest
@@ -53,12 +53,12 @@ public final class AttachmentsDownloadRetrieveRequest {
         return mimeType.equals(other.mimeType);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.mimeType);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

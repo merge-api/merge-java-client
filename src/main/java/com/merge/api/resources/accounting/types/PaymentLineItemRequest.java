@@ -107,7 +107,7 @@ public final class PaymentLineItemRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PaymentLineItemRequest && equalTo((PaymentLineItemRequest) other);
@@ -128,7 +128,7 @@ public final class PaymentLineItemRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.appliedAmount,
@@ -140,7 +140,7 @@ public final class PaymentLineItemRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

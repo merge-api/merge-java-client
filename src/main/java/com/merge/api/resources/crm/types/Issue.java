@@ -109,7 +109,7 @@ public final class Issue {
         return errorDetails;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Issue && equalTo((Issue) other);
@@ -131,7 +131,7 @@ public final class Issue {
                 && errorDetails.equals(other.errorDetails);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -144,7 +144,7 @@ public final class Issue {
                 this.errorDetails);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -214,7 +214,7 @@ public final class Issue {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(Issue other) {
             id(other.getId());
             status(other.getStatus());
@@ -227,72 +227,72 @@ public final class Issue {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("error_description")
         public _FinalStage errorDescription(String errorDescription) {
             this.errorDescription = errorDescription;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage errorDetails(List<String> errorDetails) {
             this.errorDetails = Optional.of(errorDetails);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "error_details", nulls = Nulls.SKIP)
         public _FinalStage errorDetails(Optional<List<String>> errorDetails) {
             this.errorDetails = errorDetails;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage isMuted(Boolean isMuted) {
             this.isMuted = Optional.of(isMuted);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "is_muted", nulls = Nulls.SKIP)
         public _FinalStage isMuted(Optional<Boolean> isMuted) {
             this.isMuted = isMuted;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage lastIncidentTime(OffsetDateTime lastIncidentTime) {
             this.lastIncidentTime = Optional.of(lastIncidentTime);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "last_incident_time", nulls = Nulls.SKIP)
         public _FinalStage lastIncidentTime(Optional<OffsetDateTime> lastIncidentTime) {
             this.lastIncidentTime = lastIncidentTime;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage firstIncidentTime(OffsetDateTime firstIncidentTime) {
             this.firstIncidentTime = Optional.of(firstIncidentTime);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "first_incident_time", nulls = Nulls.SKIP)
         public _FinalStage firstIncidentTime(Optional<OffsetDateTime> firstIncidentTime) {
             this.firstIncidentTime = firstIncidentTime;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage endUser(Map<String, JsonNode> endUser) {
             this.endUser = Optional.of(endUser);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "end_user", nulls = Nulls.SKIP)
         public _FinalStage endUser(Optional<Map<String, JsonNode>> endUser) {
             this.endUser = endUser;
@@ -307,33 +307,33 @@ public final class Issue {
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage status(IssueStatus status) {
             this.status = Optional.of(status);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public _FinalStage status(Optional<IssueStatus> status) {
             this.status = status;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.of(id);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public _FinalStage id(Optional<String> id) {
             this.id = id;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public Issue build() {
             return new Issue(
                     id,

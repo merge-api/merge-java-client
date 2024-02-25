@@ -38,7 +38,7 @@ public final class PaymentRequestTrackingCategoriesItem {
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PaymentRequestTrackingCategoriesItem
@@ -49,12 +49,12 @@ public final class PaymentRequestTrackingCategoriesItem {
         return value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value.toString();
     }
@@ -78,7 +78,7 @@ public final class PaymentRequestTrackingCategoriesItem {
             super(PaymentRequestTrackingCategoriesItem.class);
         }
 
-        @Override
+        @java.lang.Override
         public PaymentRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
                 throws IOException {
             Object value = p.readValueAs(Object.class);

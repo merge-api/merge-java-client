@@ -9,15 +9,25 @@ import com.merge.api.core.Environment;
 public final class MergeApiClientBuilder {
     private ClientOptions.Builder clientOptionsBuilder = ClientOptions.builder();
 
+    private String apiKey = null;
+
+    private String accountToken = null;
+
     private Environment environment = Environment.PRODUCTION;
 
+    /**
+     * Sets apiKey
+     */
     public MergeApiClientBuilder apiKey(String apiKey) {
-        this.clientOptionsBuilder.addHeader("Authorization", "Bearer " + apiKey);
+        this.apiKey = apiKey;
         return this;
     }
 
+    /**
+     * Sets accountToken
+     */
     public MergeApiClientBuilder accountToken(String accountToken) {
-        this.clientOptionsBuilder.addHeader("X-Account-Token", accountToken);
+        this.accountToken = accountToken;
         return this;
     }
 
@@ -32,6 +42,14 @@ public final class MergeApiClientBuilder {
     }
 
     public MergeApiClient build() {
+        if (apiKey == null) {
+            throw new RuntimeException("Please provide apiKey");
+        }
+        this.clientOptionsBuilder.addHeader("Authorization", "Bearer " + this.apiKey);
+        if (accountToken == null) {
+            throw new RuntimeException("Please provide accountToken");
+        }
+        this.clientOptionsBuilder.addHeader("X-Account-Token", this.accountToken);
         clientOptionsBuilder.environment(this.environment);
         return new MergeApiClient(clientOptionsBuilder.build());
     }

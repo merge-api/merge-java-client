@@ -34,11 +34,11 @@ public final class AccountIntegration {
 
     private final Optional<String> slug;
 
-    private final Optional<Boolean> isInBeta;
-
     private final Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls;
 
     private final Optional<String> webhookSetupGuideUrl;
+
+    private final Optional<Map<String, JsonNode>> categoryBetaStatus;
 
     private final Map<String, Object> additionalProperties;
 
@@ -49,9 +49,9 @@ public final class AccountIntegration {
             Optional<String> squareImage,
             Optional<String> color,
             Optional<String> slug,
-            Optional<Boolean> isInBeta,
             Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls,
             Optional<String> webhookSetupGuideUrl,
+            Optional<Map<String, JsonNode>> categoryBetaStatus,
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.categories = categories;
@@ -59,9 +59,9 @@ public final class AccountIntegration {
         this.squareImage = squareImage;
         this.color = color;
         this.slug = slug;
-        this.isInBeta = isInBeta;
         this.apiEndpointsToDocumentationUrls = apiEndpointsToDocumentationUrls;
         this.webhookSetupGuideUrl = webhookSetupGuideUrl;
+        this.categoryBetaStatus = categoryBetaStatus;
         this.additionalProperties = additionalProperties;
     }
 
@@ -111,14 +111,6 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.
-     */
-    @JsonProperty("is_in_beta")
-    public Optional<Boolean> getIsInBeta() {
-        return isInBeta;
-    }
-
-    /**
      * @return Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}
      */
     @JsonProperty("api_endpoints_to_documentation_urls")
@@ -134,7 +126,15 @@ public final class AccountIntegration {
         return webhookSetupGuideUrl;
     }
 
-    @Override
+    /**
+     * @return Category or categories this integration is in beta status for.
+     */
+    @JsonProperty("category_beta_status")
+    public Optional<Map<String, JsonNode>> getCategoryBetaStatus() {
+        return categoryBetaStatus;
+    }
+
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountIntegration && equalTo((AccountIntegration) other);
@@ -152,12 +152,12 @@ public final class AccountIntegration {
                 && squareImage.equals(other.squareImage)
                 && color.equals(other.color)
                 && slug.equals(other.slug)
-                && isInBeta.equals(other.isInBeta)
                 && apiEndpointsToDocumentationUrls.equals(other.apiEndpointsToDocumentationUrls)
-                && webhookSetupGuideUrl.equals(other.webhookSetupGuideUrl);
+                && webhookSetupGuideUrl.equals(other.webhookSetupGuideUrl)
+                && categoryBetaStatus.equals(other.categoryBetaStatus);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.name,
@@ -166,12 +166,12 @@ public final class AccountIntegration {
                 this.squareImage,
                 this.color,
                 this.slug,
-                this.isInBeta,
                 this.apiEndpointsToDocumentationUrls,
-                this.webhookSetupGuideUrl);
+                this.webhookSetupGuideUrl,
+                this.categoryBetaStatus);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -209,10 +209,6 @@ public final class AccountIntegration {
 
         _FinalStage slug(String slug);
 
-        _FinalStage isInBeta(Optional<Boolean> isInBeta);
-
-        _FinalStage isInBeta(Boolean isInBeta);
-
         _FinalStage apiEndpointsToDocumentationUrls(Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls);
 
         _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls);
@@ -220,17 +216,21 @@ public final class AccountIntegration {
         _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl);
 
         _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl);
+
+        _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus);
+
+        _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements NameStage, _FinalStage {
         private String name;
 
+        private Optional<Map<String, JsonNode>> categoryBetaStatus = Optional.empty();
+
         private Optional<String> webhookSetupGuideUrl = Optional.empty();
 
         private Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls = Optional.empty();
-
-        private Optional<Boolean> isInBeta = Optional.empty();
 
         private Optional<String> slug = Optional.empty();
 
@@ -247,7 +247,7 @@ public final class AccountIntegration {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AccountIntegration other) {
             name(other.getName());
             categories(other.getCategories());
@@ -255,9 +255,9 @@ public final class AccountIntegration {
             squareImage(other.getSquareImage());
             color(other.getColor());
             slug(other.getSlug());
-            isInBeta(other.getIsInBeta());
             apiEndpointsToDocumentationUrls(other.getApiEndpointsToDocumentationUrls());
             webhookSetupGuideUrl(other.getWebhookSetupGuideUrl());
+            categoryBetaStatus(other.getCategoryBetaStatus());
             return this;
         }
 
@@ -265,7 +265,7 @@ public final class AccountIntegration {
          * <p>Company name.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("name")
         public _FinalStage name(String name) {
             this.name = name;
@@ -273,16 +273,33 @@ public final class AccountIntegration {
         }
 
         /**
+         * <p>Category or categories this integration is in beta status for.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus) {
+            this.categoryBetaStatus = Optional.of(categoryBetaStatus);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "category_beta_status", nulls = Nulls.SKIP)
+        public _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus) {
+            this.categoryBetaStatus = categoryBetaStatus;
+            return this;
+        }
+
+        /**
          * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl) {
             this.webhookSetupGuideUrl = Optional.of(webhookSetupGuideUrl);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "webhook_setup_guide_url", nulls = Nulls.SKIP)
         public _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl) {
             this.webhookSetupGuideUrl = webhookSetupGuideUrl;
@@ -293,13 +310,13 @@ public final class AccountIntegration {
          * <p>Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls) {
             this.apiEndpointsToDocumentationUrls = Optional.of(apiEndpointsToDocumentationUrls);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "api_endpoints_to_documentation_urls", nulls = Nulls.SKIP)
         public _FinalStage apiEndpointsToDocumentationUrls(
                 Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls) {
@@ -307,30 +324,13 @@ public final class AccountIntegration {
             return this;
         }
 
-        /**
-         * <p>If checked, this integration will not appear in the linking flow, and will appear elsewhere with a Beta tag.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @Override
-        public _FinalStage isInBeta(Boolean isInBeta) {
-            this.isInBeta = Optional.of(isInBeta);
-            return this;
-        }
-
-        @Override
-        @JsonSetter(value = "is_in_beta", nulls = Nulls.SKIP)
-        public _FinalStage isInBeta(Optional<Boolean> isInBeta) {
-            this.isInBeta = isInBeta;
-            return this;
-        }
-
-        @Override
+        @java.lang.Override
         public _FinalStage slug(String slug) {
             this.slug = Optional.of(slug);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "slug", nulls = Nulls.SKIP)
         public _FinalStage slug(Optional<String> slug) {
             this.slug = slug;
@@ -341,13 +341,13 @@ public final class AccountIntegration {
          * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage color(String color) {
             this.color = Optional.of(color);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "color", nulls = Nulls.SKIP)
         public _FinalStage color(Optional<String> color) {
             this.color = color;
@@ -358,13 +358,13 @@ public final class AccountIntegration {
          * <p>Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage squareImage(String squareImage) {
             this.squareImage = Optional.of(squareImage);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "square_image", nulls = Nulls.SKIP)
         public _FinalStage squareImage(Optional<String> squareImage) {
             this.squareImage = squareImage;
@@ -375,13 +375,13 @@ public final class AccountIntegration {
          * <p>Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage image(String image) {
             this.image = Optional.of(image);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "image", nulls = Nulls.SKIP)
         public _FinalStage image(Optional<String> image) {
             this.image = image;
@@ -392,20 +392,20 @@ public final class AccountIntegration {
          * <p>Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage categories(List<CategoriesEnum> categories) {
             this.categories = Optional.of(categories);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(Optional<List<CategoriesEnum>> categories) {
             this.categories = categories;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AccountIntegration build() {
             return new AccountIntegration(
                     name,
@@ -414,9 +414,9 @@ public final class AccountIntegration {
                     squareImage,
                     color,
                     slug,
-                    isInBeta,
                     apiEndpointsToDocumentationUrls,
                     webhookSetupGuideUrl,
+                    categoryBetaStatus,
                     additionalProperties);
         }
     }

@@ -55,7 +55,7 @@ public final class AvailableActions {
         return availableModelOperations;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AvailableActions && equalTo((AvailableActions) other);
@@ -72,12 +72,12 @@ public final class AvailableActions {
                 && availableModelOperations.equals(other.availableModelOperations);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.integration, this.passthroughAvailable, this.availableModelOperations);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -117,7 +117,7 @@ public final class AvailableActions {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AvailableActions other) {
             integration(other.getIntegration());
             passthroughAvailable(other.getPassthroughAvailable());
@@ -125,34 +125,34 @@ public final class AvailableActions {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("integration")
         public PassthroughAvailableStage integration(AccountIntegration integration) {
             this.integration = integration;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("passthrough_available")
         public _FinalStage passthroughAvailable(boolean passthroughAvailable) {
             this.passthroughAvailable = passthroughAvailable;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage availableModelOperations(List<ModelOperation> availableModelOperations) {
             this.availableModelOperations = Optional.of(availableModelOperations);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "available_model_operations", nulls = Nulls.SKIP)
         public _FinalStage availableModelOperations(Optional<List<ModelOperation>> availableModelOperations) {
             this.availableModelOperations = availableModelOperations;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AvailableActions build() {
             return new AvailableActions(
                     integration, passthroughAvailable, availableModelOperations, additionalProperties);

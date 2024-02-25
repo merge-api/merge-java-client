@@ -151,7 +151,7 @@ public final class ScreeningQuestion {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ScreeningQuestion && equalTo((ScreeningQuestion) other);
@@ -175,7 +175,7 @@ public final class ScreeningQuestion {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -190,7 +190,7 @@ public final class ScreeningQuestion {
                 this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

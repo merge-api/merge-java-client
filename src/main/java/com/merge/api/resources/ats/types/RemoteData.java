@@ -43,7 +43,7 @@ public final class RemoteData {
         return data;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteData && equalTo((RemoteData) other);
@@ -58,12 +58,12 @@ public final class RemoteData {
         return path.equals(other.path) && data.equals(other.data);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.path, this.data);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -97,34 +97,34 @@ public final class RemoteData {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(RemoteData other) {
             path(other.getPath());
             data(other.getData());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("path")
         public _FinalStage path(String path) {
             this.path = path;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage data(JsonNode data) {
             this.data = Optional.of(data);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
         public _FinalStage data(Optional<JsonNode> data) {
             this.data = data;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public RemoteData build() {
             return new RemoteData(path, data, additionalProperties);
         }

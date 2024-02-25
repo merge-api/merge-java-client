@@ -172,7 +172,7 @@ public final class GroupsListRequest {
         return types;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof GroupsListRequest && equalTo((GroupsListRequest) other);
@@ -198,7 +198,7 @@ public final class GroupsListRequest {
                 && types.equals(other.types);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -215,7 +215,7 @@ public final class GroupsListRequest {
                 this.types);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

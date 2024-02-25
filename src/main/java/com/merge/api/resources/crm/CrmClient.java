@@ -19,6 +19,7 @@ import com.merge.api.resources.crm.customobjects.CustomObjectsClient;
 import com.merge.api.resources.crm.deleteaccount.DeleteAccountClient;
 import com.merge.api.resources.crm.engagements.EngagementsClient;
 import com.merge.api.resources.crm.engagementtypes.EngagementTypesClient;
+import com.merge.api.resources.crm.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.crm.forceresync.ForceResyncClient;
 import com.merge.api.resources.crm.generatekey.GenerateKeyClient;
 import com.merge.api.resources.crm.issues.IssuesClient;
@@ -29,6 +30,7 @@ import com.merge.api.resources.crm.notes.NotesClient;
 import com.merge.api.resources.crm.opportunities.OpportunitiesClient;
 import com.merge.api.resources.crm.passthrough.PassthroughClient;
 import com.merge.api.resources.crm.regeneratekey.RegenerateKeyClient;
+import com.merge.api.resources.crm.scopes.ScopesClient;
 import com.merge.api.resources.crm.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.crm.stages.StagesClient;
 import com.merge.api.resources.crm.syncstatus.SyncStatusClient;
@@ -62,11 +64,15 @@ public class CrmClient {
 
     protected final Supplier<AssociationsClient> associationsClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
     protected final Supplier<EngagementTypesClient> engagementTypesClient;
 
     protected final Supplier<EngagementsClient> engagementsClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -113,9 +119,11 @@ public class CrmClient {
         this.associationTypesClient = Suppliers.memoize(() -> new AssociationTypesClient(clientOptions));
         this.customObjectsClient = Suppliers.memoize(() -> new CustomObjectsClient(clientOptions));
         this.associationsClient = Suppliers.memoize(() -> new AssociationsClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.engagementTypesClient = Suppliers.memoize(() -> new EngagementTypesClient(clientOptions));
         this.engagementsClient = Suppliers.memoize(() -> new EngagementsClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
         this.leadsClient = Suppliers.memoize(() -> new LeadsClient(clientOptions));
@@ -178,6 +186,10 @@ public class CrmClient {
         return this.associationsClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
     }
@@ -188,6 +200,10 @@ public class CrmClient {
 
     public EngagementsClient engagements() {
         return this.engagementsClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public GenerateKeyClient generateKey() {

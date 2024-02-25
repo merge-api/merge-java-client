@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.CategoriesEnum;
 import com.merge.api.resources.hris.types.CommonModelScopesBodyRequest;
+import com.merge.api.resources.hris.types.IndividualCommonModelScopeDeserializerRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,6 +41,9 @@ public final class EndUserDetailsRequest {
 
     private final Optional<List<CommonModelScopesBodyRequest>> commonModels;
 
+    private final Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+            categoryCommonModelScopes;
+
     private final Map<String, Object> additionalProperties;
 
     private EndUserDetailsRequest(
@@ -51,6 +55,8 @@ public final class EndUserDetailsRequest {
             Optional<Integer> linkExpiryMins,
             Optional<Boolean> shouldCreateMagicLinkUrl,
             Optional<List<CommonModelScopesBodyRequest>> commonModels,
+            Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                    categoryCommonModelScopes,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -60,6 +66,7 @@ public final class EndUserDetailsRequest {
         this.linkExpiryMins = linkExpiryMins;
         this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
         this.commonModels = commonModels;
+        this.categoryCommonModelScopes = categoryCommonModelScopes;
         this.additionalProperties = additionalProperties;
     }
 
@@ -127,7 +134,16 @@ public final class EndUserDetailsRequest {
         return commonModels;
     }
 
-    @Override
+    /**
+     * @return When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.
+     */
+    @JsonProperty("category_common_model_scopes")
+    public Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+            getCategoryCommonModelScopes() {
+        return categoryCommonModelScopes;
+    }
+
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EndUserDetailsRequest && equalTo((EndUserDetailsRequest) other);
@@ -146,10 +162,11 @@ public final class EndUserDetailsRequest {
                 && integration.equals(other.integration)
                 && linkExpiryMins.equals(other.linkExpiryMins)
                 && shouldCreateMagicLinkUrl.equals(other.shouldCreateMagicLinkUrl)
-                && commonModels.equals(other.commonModels);
+                && commonModels.equals(other.commonModels)
+                && categoryCommonModelScopes.equals(other.categoryCommonModelScopes);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.endUserEmailAddress,
@@ -159,10 +176,11 @@ public final class EndUserDetailsRequest {
                 this.integration,
                 this.linkExpiryMins,
                 this.shouldCreateMagicLinkUrl,
-                this.commonModels);
+                this.commonModels,
+                this.categoryCommonModelScopes);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -209,6 +227,13 @@ public final class EndUserDetailsRequest {
         _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels);
 
         _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels);
+
+        _FinalStage categoryCommonModelScopes(
+                Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                        categoryCommonModelScopes);
+
+        _FinalStage categoryCommonModelScopes(
+                Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -219,6 +244,9 @@ public final class EndUserDetailsRequest {
         private String endUserOrganizationName;
 
         private String endUserOriginId;
+
+        private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                categoryCommonModelScopes = Optional.empty();
 
         private Optional<List<CommonModelScopesBodyRequest>> commonModels = Optional.empty();
 
@@ -235,7 +263,7 @@ public final class EndUserDetailsRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(EndUserDetailsRequest other) {
             endUserEmailAddress(other.getEndUserEmailAddress());
             endUserOrganizationName(other.getEndUserOrganizationName());
@@ -245,6 +273,7 @@ public final class EndUserDetailsRequest {
             linkExpiryMins(other.getLinkExpiryMins());
             shouldCreateMagicLinkUrl(other.getShouldCreateMagicLinkUrl());
             commonModels(other.getCommonModels());
+            categoryCommonModelScopes(other.getCategoryCommonModelScopes());
             return this;
         }
 
@@ -252,7 +281,7 @@ public final class EndUserDetailsRequest {
          * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("end_user_email_address")
         public EndUserOrganizationNameStage endUserEmailAddress(String endUserEmailAddress) {
             this.endUserEmailAddress = endUserEmailAddress;
@@ -263,7 +292,7 @@ public final class EndUserDetailsRequest {
          * <p>Your end user's organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("end_user_organization_name")
         public EndUserOriginIdStage endUserOrganizationName(String endUserOrganizationName) {
             this.endUserOrganizationName = endUserOrganizationName;
@@ -274,7 +303,7 @@ public final class EndUserDetailsRequest {
          * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("end_user_origin_id")
         public _FinalStage endUserOriginId(String endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
@@ -282,16 +311,36 @@ public final class EndUserDetailsRequest {
         }
 
         /**
+         * <p>When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage categoryCommonModelScopes(
+                Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes) {
+            this.categoryCommonModelScopes = Optional.of(categoryCommonModelScopes);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "category_common_model_scopes", nulls = Nulls.SKIP)
+        public _FinalStage categoryCommonModelScopes(
+                Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                        categoryCommonModelScopes) {
+            this.categoryCommonModelScopes = categoryCommonModelScopes;
+            return this;
+        }
+
+        /**
          * <p>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels) {
             this.commonModels = Optional.of(commonModels);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels) {
             this.commonModels = commonModels;
@@ -302,13 +351,13 @@ public final class EndUserDetailsRequest {
          * <p>Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl) {
             this.shouldCreateMagicLinkUrl = Optional.of(shouldCreateMagicLinkUrl);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "should_create_magic_link_url", nulls = Nulls.SKIP)
         public _FinalStage shouldCreateMagicLinkUrl(Optional<Boolean> shouldCreateMagicLinkUrl) {
             this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
@@ -319,13 +368,13 @@ public final class EndUserDetailsRequest {
          * <p>An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage linkExpiryMins(Integer linkExpiryMins) {
             this.linkExpiryMins = Optional.of(linkExpiryMins);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "link_expiry_mins", nulls = Nulls.SKIP)
         public _FinalStage linkExpiryMins(Optional<Integer> linkExpiryMins) {
             this.linkExpiryMins = linkExpiryMins;
@@ -336,13 +385,13 @@ public final class EndUserDetailsRequest {
          * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage integration(String integration) {
             this.integration = Optional.of(integration);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "integration", nulls = Nulls.SKIP)
         public _FinalStage integration(Optional<String> integration) {
             this.integration = integration;
@@ -353,7 +402,7 @@ public final class EndUserDetailsRequest {
          * <p>The integration categories to show in Merge Link.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage addAllCategories(List<CategoriesEnum> categories) {
             this.categories.addAll(categories);
             return this;
@@ -363,13 +412,13 @@ public final class EndUserDetailsRequest {
          * <p>The integration categories to show in Merge Link.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage addCategories(CategoriesEnum categories) {
             this.categories.add(categories);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(List<CategoriesEnum> categories) {
             this.categories.clear();
@@ -377,7 +426,7 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public EndUserDetailsRequest build() {
             return new EndUserDetailsRequest(
                     endUserEmailAddress,
@@ -388,6 +437,7 @@ public final class EndUserDetailsRequest {
                     linkExpiryMins,
                     shouldCreateMagicLinkUrl,
                     commonModels,
+                    categoryCommonModelScopes,
                     additionalProperties);
         }
     }

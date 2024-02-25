@@ -172,7 +172,7 @@ public final class AttachmentsListRequest {
         return ticketId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AttachmentsListRequest && equalTo((AttachmentsListRequest) other);
@@ -198,7 +198,7 @@ public final class AttachmentsListRequest {
                 && ticketId.equals(other.ticketId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -215,7 +215,7 @@ public final class AttachmentsListRequest {
                 this.ticketId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

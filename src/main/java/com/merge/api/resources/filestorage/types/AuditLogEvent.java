@@ -116,6 +116,7 @@ public final class AuditLogEvent {
      * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
      * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
      * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
+     * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>
      * <li><code>CHANGED_SCOPES</code> - CHANGED_SCOPES</li>
      * <li><code>CHANGED_PERSONAL_INFORMATION</code> - CHANGED_PERSONAL_INFORMATION</li>
      * <li><code>CHANGED_ORGANIZATION_SETTINGS</code> - CHANGED_ORGANIZATION_SETTINGS</li>
@@ -152,7 +153,7 @@ public final class AuditLogEvent {
         return createdAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AuditLogEvent && equalTo((AuditLogEvent) other);
@@ -174,7 +175,7 @@ public final class AuditLogEvent {
                 && createdAt.equals(other.createdAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -187,7 +188,7 @@ public final class AuditLogEvent {
                 this.createdAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -258,7 +259,7 @@ public final class AuditLogEvent {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AuditLogEvent other) {
             id(other.getId());
             userName(other.getUserName());
@@ -283,14 +284,14 @@ public final class AuditLogEvent {
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("role")
         public IpAddressStage role(AuditLogEventRole role) {
             this.role = role;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("ip_address")
         public EventTypeStage ipAddress(String ipAddress) {
             this.ipAddress = ipAddress;
@@ -311,6 +312,7 @@ public final class AuditLogEvent {
          * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
          * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
          * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
+         * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>
          * <li><code>CHANGED_SCOPES</code> - CHANGED_SCOPES</li>
          * <li><code>CHANGED_PERSONAL_INFORMATION</code> - CHANGED_PERSONAL_INFORMATION</li>
          * <li><code>CHANGED_ORGANIZATION_SETTINGS</code> - CHANGED_ORGANIZATION_SETTINGS</li>
@@ -333,27 +335,27 @@ public final class AuditLogEvent {
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("event_type")
         public EventDescriptionStage eventType(AuditLogEventEventType eventType) {
             this.eventType = eventType;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("event_description")
         public _FinalStage eventDescription(String eventDescription) {
             this.eventDescription = eventDescription;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage createdAt(OffsetDateTime createdAt) {
             this.createdAt = Optional.of(createdAt);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -364,13 +366,13 @@ public final class AuditLogEvent {
          * <p>The User's email at the time of this Event occurring.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage userEmail(String userEmail) {
             this.userEmail = Optional.of(userEmail);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "user_email", nulls = Nulls.SKIP)
         public _FinalStage userEmail(Optional<String> userEmail) {
             this.userEmail = userEmail;
@@ -381,33 +383,33 @@ public final class AuditLogEvent {
          * <p>The User's full name at the time of this Event occurring.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage userName(String userName) {
             this.userName = Optional.of(userName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "user_name", nulls = Nulls.SKIP)
         public _FinalStage userName(Optional<String> userName) {
             this.userName = userName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.of(id);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "id", nulls = Nulls.SKIP)
         public _FinalStage id(Optional<String> id) {
             this.id = id;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AuditLogEvent build() {
             return new AuditLogEvent(
                     id,

@@ -19,7 +19,7 @@ public enum AccountsRetrieveRequestShowEnumOrigins {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }

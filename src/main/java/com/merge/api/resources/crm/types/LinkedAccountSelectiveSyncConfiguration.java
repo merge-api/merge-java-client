@@ -39,7 +39,7 @@ public final class LinkedAccountSelectiveSyncConfiguration {
         return linkedAccountConditions;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkedAccountSelectiveSyncConfiguration
@@ -55,12 +55,12 @@ public final class LinkedAccountSelectiveSyncConfiguration {
         return linkedAccountConditions.equals(other.linkedAccountConditions);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.linkedAccountConditions);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

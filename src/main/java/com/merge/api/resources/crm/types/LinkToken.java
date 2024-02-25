@@ -54,7 +54,7 @@ public final class LinkToken {
         return magicLinkUrl;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkToken && equalTo((LinkToken) other);
@@ -71,12 +71,12 @@ public final class LinkToken {
                 && magicLinkUrl.equals(other.magicLinkUrl);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.linkToken, this.integrationName, this.magicLinkUrl);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -116,7 +116,7 @@ public final class LinkToken {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(LinkToken other) {
             linkToken(other.getLinkToken());
             integrationName(other.getIntegrationName());
@@ -124,40 +124,40 @@ public final class LinkToken {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("link_token")
         public _FinalStage linkToken(String linkToken) {
             this.linkToken = linkToken;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage magicLinkUrl(String magicLinkUrl) {
             this.magicLinkUrl = Optional.of(magicLinkUrl);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "magic_link_url", nulls = Nulls.SKIP)
         public _FinalStage magicLinkUrl(Optional<String> magicLinkUrl) {
             this.magicLinkUrl = magicLinkUrl;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage integrationName(String integrationName) {
             this.integrationName = Optional.of(integrationName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "integration_name", nulls = Nulls.SKIP)
         public _FinalStage integrationName(Optional<String> integrationName) {
             this.integrationName = integrationName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public LinkToken build() {
             return new LinkToken(linkToken, integrationName, magicLinkUrl, additionalProperties);
         }

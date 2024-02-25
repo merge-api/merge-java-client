@@ -487,7 +487,7 @@ public final class InvoiceLineItemRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof InvoiceLineItemRequest && equalTo((InvoiceLineItemRequest) other);
@@ -515,7 +515,7 @@ public final class InvoiceLineItemRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.remoteId,
@@ -534,7 +534,7 @@ public final class InvoiceLineItemRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

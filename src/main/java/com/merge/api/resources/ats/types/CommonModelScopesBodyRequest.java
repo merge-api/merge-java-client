@@ -55,7 +55,7 @@ public final class CommonModelScopesBodyRequest {
         return disabledFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CommonModelScopesBodyRequest && equalTo((CommonModelScopesBodyRequest) other);
@@ -72,12 +72,12 @@ public final class CommonModelScopesBodyRequest {
                 && disabledFields.equals(other.disabledFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.modelId, this.enabledActions, this.disabledFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -121,7 +121,7 @@ public final class CommonModelScopesBodyRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(CommonModelScopesBodyRequest other) {
             modelId(other.getModelId());
             enabledActions(other.getEnabledActions());
@@ -129,26 +129,26 @@ public final class CommonModelScopesBodyRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model_id")
         public _FinalStage modelId(String modelId) {
             this.modelId = modelId;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllDisabledFields(List<String> disabledFields) {
             this.disabledFields.addAll(disabledFields);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addDisabledFields(String disabledFields) {
             this.disabledFields.add(disabledFields);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "disabled_fields", nulls = Nulls.SKIP)
         public _FinalStage disabledFields(List<String> disabledFields) {
             this.disabledFields.clear();
@@ -156,19 +156,19 @@ public final class CommonModelScopesBodyRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllEnabledActions(List<EnabledActionsEnum> enabledActions) {
             this.enabledActions.addAll(enabledActions);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addEnabledActions(EnabledActionsEnum enabledActions) {
             this.enabledActions.add(enabledActions);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "enabled_actions", nulls = Nulls.SKIP)
         public _FinalStage enabledActions(List<EnabledActionsEnum> enabledActions) {
             this.enabledActions.clear();
@@ -176,7 +176,7 @@ public final class CommonModelScopesBodyRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public CommonModelScopesBodyRequest build() {
             return new CommonModelScopesBodyRequest(modelId, enabledActions, disabledFields, additionalProperties);
         }

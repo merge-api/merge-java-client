@@ -16,6 +16,7 @@ import com.merge.api.resources.ticketing.collections.CollectionsClient;
 import com.merge.api.resources.ticketing.comments.CommentsClient;
 import com.merge.api.resources.ticketing.contacts.ContactsClient;
 import com.merge.api.resources.ticketing.deleteaccount.DeleteAccountClient;
+import com.merge.api.resources.ticketing.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.ticketing.forceresync.ForceResyncClient;
 import com.merge.api.resources.ticketing.generatekey.GenerateKeyClient;
 import com.merge.api.resources.ticketing.issues.IssuesClient;
@@ -25,6 +26,7 @@ import com.merge.api.resources.ticketing.passthrough.PassthroughClient;
 import com.merge.api.resources.ticketing.projects.ProjectsClient;
 import com.merge.api.resources.ticketing.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.ticketing.roles.RolesClient;
+import com.merge.api.resources.ticketing.scopes.ScopesClient;
 import com.merge.api.resources.ticketing.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.ticketing.syncstatus.SyncStatusClient;
 import com.merge.api.resources.ticketing.tags.TagsClient;
@@ -57,7 +59,11 @@ public class TicketingClient {
 
     protected final Supplier<ContactsClient> contactsClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -103,7 +109,9 @@ public class TicketingClient {
         this.collectionsClient = Suppliers.memoize(() -> new CollectionsClient(clientOptions));
         this.commentsClient = Suppliers.memoize(() -> new CommentsClient(clientOptions));
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
         this.linkTokenClient = Suppliers.memoize(() -> new LinkTokenClient(clientOptions));
@@ -162,8 +170,16 @@ public class TicketingClient {
         return this.contactsClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public GenerateKeyClient generateKey() {

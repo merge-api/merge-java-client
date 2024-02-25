@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
+import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
@@ -69,6 +70,14 @@ public class TimeOffClient {
         if (request.getEmployeeId().isPresent()) {
             httpUrl.addQueryParameter("employee_id", request.getEmployeeId().get());
         }
+        if (request.getEndedAfter().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "ended_after", request.getEndedAfter().get().toString());
+        }
+        if (request.getEndedBefore().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "ended_before", request.getEndedBefore().get().toString());
+        }
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
         }
@@ -107,6 +116,14 @@ public class TimeOffClient {
             httpUrl.addQueryParameter(
                     "show_enum_origins", request.getShowEnumOrigins().get().toString());
         }
+        if (request.getStartedAfter().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "started_after", request.getStartedAfter().get().toString());
+        }
+        if (request.getStartedBefore().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "started_before", request.getStartedBefore().get().toString());
+        }
         if (request.getStatus().isPresent()) {
             httpUrl.addQueryParameter("status", request.getStatus().get().toString());
         }
@@ -117,8 +134,13 @@ public class TimeOffClient {
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         try {
-            Response response =
-                    clientOptions.httpClient().newCall(okhttpRequest).execute();
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions.getTimeout().isPresent()) {
+                client = client.newBuilder()
+                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
+                        .build();
+            }
+            Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), PaginatedTimeOffList.class);
             }
@@ -167,8 +189,13 @@ public class TimeOffClient {
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         try {
-            Response response =
-                    clientOptions.httpClient().newCall(okhttpRequest).execute();
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions.getTimeout().isPresent()) {
+                client = client.newBuilder()
+                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
+                        .build();
+            }
+            Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), TimeOffResponse.class);
             }
@@ -224,8 +251,13 @@ public class TimeOffClient {
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         try {
-            Response response =
-                    clientOptions.httpClient().newCall(okhttpRequest).execute();
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions.getTimeout().isPresent()) {
+                client = client.newBuilder()
+                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
+                        .build();
+            }
+            Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), TimeOff.class);
             }
@@ -259,8 +291,13 @@ public class TimeOffClient {
                 .addHeader("Content-Type", "application/json")
                 .build();
         try {
-            Response response =
-                    clientOptions.httpClient().newCall(okhttpRequest).execute();
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions.getTimeout().isPresent()) {
+                client = client.newBuilder()
+                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
+                        .build();
+            }
+            Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), MetaResponse.class);
             }

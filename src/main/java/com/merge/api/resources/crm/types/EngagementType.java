@@ -109,7 +109,7 @@ public final class EngagementType {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EngagementType && equalTo((EngagementType) other);
@@ -130,7 +130,7 @@ public final class EngagementType {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.activityType,
@@ -142,7 +142,7 @@ public final class EngagementType {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

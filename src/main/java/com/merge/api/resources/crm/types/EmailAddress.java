@@ -73,7 +73,7 @@ public final class EmailAddress {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EmailAddress && equalTo((EmailAddress) other);
@@ -91,12 +91,12 @@ public final class EmailAddress {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.emailAddress, this.emailAddressType, this.createdAt, this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

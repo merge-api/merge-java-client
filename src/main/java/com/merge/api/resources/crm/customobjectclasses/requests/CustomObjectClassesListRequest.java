@@ -148,7 +148,7 @@ public final class CustomObjectClassesListRequest {
         return remoteId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CustomObjectClassesListRequest && equalTo((CustomObjectClassesListRequest) other);
@@ -172,7 +172,7 @@ public final class CustomObjectClassesListRequest {
                 && remoteId.equals(other.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -187,7 +187,7 @@ public final class CustomObjectClassesListRequest {
                 this.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

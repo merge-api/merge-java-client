@@ -221,7 +221,7 @@ public final class ApplicationsListRequest {
         return source;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ApplicationsListRequest && equalTo((ApplicationsListRequest) other);
@@ -251,7 +251,7 @@ public final class ApplicationsListRequest {
                 && source.equals(other.source);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.candidateId,
@@ -272,7 +272,7 @@ public final class ApplicationsListRequest {
                 this.source);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

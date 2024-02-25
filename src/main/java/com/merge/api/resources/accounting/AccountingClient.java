@@ -21,6 +21,7 @@ import com.merge.api.resources.accounting.contacts.ContactsClient;
 import com.merge.api.resources.accounting.creditnotes.CreditNotesClient;
 import com.merge.api.resources.accounting.deleteaccount.DeleteAccountClient;
 import com.merge.api.resources.accounting.expenses.ExpensesClient;
+import com.merge.api.resources.accounting.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.accounting.forceresync.ForceResyncClient;
 import com.merge.api.resources.accounting.generatekey.GenerateKeyClient;
 import com.merge.api.resources.accounting.incomestatements.IncomeStatementsClient;
@@ -35,6 +36,7 @@ import com.merge.api.resources.accounting.payments.PaymentsClient;
 import com.merge.api.resources.accounting.phonenumbers.PhoneNumbersClient;
 import com.merge.api.resources.accounting.purchaseorders.PurchaseOrdersClient;
 import com.merge.api.resources.accounting.regeneratekey.RegenerateKeyClient;
+import com.merge.api.resources.accounting.scopes.ScopesClient;
 import com.merge.api.resources.accounting.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.accounting.syncstatus.SyncStatusClient;
 import com.merge.api.resources.accounting.taxrates.TaxRatesClient;
@@ -75,9 +77,13 @@ public class AccountingClient {
 
     protected final Supplier<CreditNotesClient> creditNotesClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
     protected final Supplier<ExpensesClient> expensesClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -137,8 +143,10 @@ public class AccountingClient {
         this.companyInfoClient = Suppliers.memoize(() -> new CompanyInfoClient(clientOptions));
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
         this.creditNotesClient = Suppliers.memoize(() -> new CreditNotesClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.expensesClient = Suppliers.memoize(() -> new ExpensesClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.incomeStatementsClient = Suppliers.memoize(() -> new IncomeStatementsClient(clientOptions));
         this.invoicesClient = Suppliers.memoize(() -> new InvoicesClient(clientOptions));
@@ -218,12 +226,20 @@ public class AccountingClient {
         return this.creditNotesClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
     }
 
     public ExpensesClient expenses() {
         return this.expensesClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public GenerateKeyClient generateKey() {

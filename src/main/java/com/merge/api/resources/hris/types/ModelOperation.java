@@ -64,7 +64,7 @@ public final class ModelOperation {
         return supportedFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ModelOperation && equalTo((ModelOperation) other);
@@ -82,13 +82,13 @@ public final class ModelOperation {
                 && supportedFields.equals(other.supportedFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.modelName, this.availableOperations, this.requiredPostParameters, this.supportedFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -140,7 +140,7 @@ public final class ModelOperation {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(ModelOperation other) {
             modelName(other.getModelName());
             availableOperations(other.getAvailableOperations());
@@ -149,26 +149,26 @@ public final class ModelOperation {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("model_name")
         public _FinalStage modelName(String modelName) {
             this.modelName = modelName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllSupportedFields(List<String> supportedFields) {
             this.supportedFields.addAll(supportedFields);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addSupportedFields(String supportedFields) {
             this.supportedFields.add(supportedFields);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "supported_fields", nulls = Nulls.SKIP)
         public _FinalStage supportedFields(List<String> supportedFields) {
             this.supportedFields.clear();
@@ -176,19 +176,19 @@ public final class ModelOperation {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllRequiredPostParameters(List<String> requiredPostParameters) {
             this.requiredPostParameters.addAll(requiredPostParameters);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addRequiredPostParameters(String requiredPostParameters) {
             this.requiredPostParameters.add(requiredPostParameters);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "required_post_parameters", nulls = Nulls.SKIP)
         public _FinalStage requiredPostParameters(List<String> requiredPostParameters) {
             this.requiredPostParameters.clear();
@@ -196,19 +196,19 @@ public final class ModelOperation {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllAvailableOperations(List<String> availableOperations) {
             this.availableOperations.addAll(availableOperations);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAvailableOperations(String availableOperations) {
             this.availableOperations.add(availableOperations);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "available_operations", nulls = Nulls.SKIP)
         public _FinalStage availableOperations(List<String> availableOperations) {
             this.availableOperations.clear();
@@ -216,7 +216,7 @@ public final class ModelOperation {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public ModelOperation build() {
             return new ModelOperation(
                     modelName, availableOperations, requiredPostParameters, supportedFields, additionalProperties);

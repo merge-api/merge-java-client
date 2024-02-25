@@ -52,7 +52,7 @@ public final class DebugModeLog {
         return logSummary;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof DebugModeLog && equalTo((DebugModeLog) other);
@@ -69,12 +69,12 @@ public final class DebugModeLog {
                 && logSummary.equals(other.logSummary);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.logId, this.dashboardView, this.logSummary);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -114,7 +114,7 @@ public final class DebugModeLog {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(DebugModeLog other) {
             logId(other.getLogId());
             dashboardView(other.getDashboardView());
@@ -122,28 +122,28 @@ public final class DebugModeLog {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("log_id")
         public DashboardViewStage logId(String logId) {
             this.logId = logId;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("dashboard_view")
         public LogSummaryStage dashboardView(String dashboardView) {
             this.dashboardView = dashboardView;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("log_summary")
         public _FinalStage logSummary(DebugModelLogSummary logSummary) {
             this.logSummary = logSummary;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public DebugModeLog build() {
             return new DebugModeLog(logId, dashboardView, logSummary, additionalProperties);
         }

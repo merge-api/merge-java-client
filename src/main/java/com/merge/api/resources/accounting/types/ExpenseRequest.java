@@ -506,7 +506,7 @@ public final class ExpenseRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ExpenseRequest && equalTo((ExpenseRequest) other);
@@ -535,7 +535,7 @@ public final class ExpenseRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.transactionDate,
@@ -555,7 +555,7 @@ public final class ExpenseRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

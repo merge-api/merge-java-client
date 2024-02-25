@@ -70,7 +70,7 @@ public final class PhoneNumberRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PhoneNumberRequest && equalTo((PhoneNumberRequest) other);
@@ -88,12 +88,12 @@ public final class PhoneNumberRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.phoneNumber, this.phoneNumberType, this.integrationParams, this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

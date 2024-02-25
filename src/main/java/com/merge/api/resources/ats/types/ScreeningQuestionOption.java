@@ -82,7 +82,7 @@ public final class ScreeningQuestionOption {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ScreeningQuestionOption && equalTo((ScreeningQuestionOption) other);
@@ -101,12 +101,12 @@ public final class ScreeningQuestionOption {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.remoteId, this.label, this.id, this.createdAt, this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
