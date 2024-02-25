@@ -174,7 +174,7 @@ public final class TimeOffRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimeOffRequest && equalTo((TimeOffRequest) other);
@@ -199,7 +199,7 @@ public final class TimeOffRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.employee,
@@ -215,7 +215,7 @@ public final class TimeOffRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

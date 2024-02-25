@@ -105,7 +105,7 @@ public final class Tag {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Tag && equalTo((Tag) other);
@@ -126,7 +126,7 @@ public final class Tag {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.remoteId,
@@ -138,7 +138,7 @@ public final class Tag {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

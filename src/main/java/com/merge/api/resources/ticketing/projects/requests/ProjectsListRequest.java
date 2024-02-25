@@ -136,7 +136,7 @@ public final class ProjectsListRequest {
         return remoteId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ProjectsListRequest && equalTo((ProjectsListRequest) other);
@@ -159,7 +159,7 @@ public final class ProjectsListRequest {
                 && remoteId.equals(other.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -173,7 +173,7 @@ public final class ProjectsListRequest {
                 this.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

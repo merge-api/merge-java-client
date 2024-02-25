@@ -43,7 +43,7 @@ public enum EeocsRetrieveRequestRemoteFields {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }

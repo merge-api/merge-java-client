@@ -97,7 +97,7 @@ public final class LinkedAccountCondition {
         return fieldName;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkedAccountCondition && equalTo((LinkedAccountCondition) other);
@@ -117,13 +117,13 @@ public final class LinkedAccountCondition {
                 && fieldName.equals(other.fieldName);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.conditionSchemaId, this.commonModel, this.nativeName, this.operator, this.value, this.fieldName);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -181,7 +181,7 @@ public final class LinkedAccountCondition {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(LinkedAccountCondition other) {
             conditionSchemaId(other.getConditionSchemaId());
             commonModel(other.getCommonModel());
@@ -196,7 +196,7 @@ public final class LinkedAccountCondition {
          * <p>The ID indicating which condition schema to use for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("condition_schema_id")
         public OperatorStage conditionSchemaId(String conditionSchemaId) {
             this.conditionSchemaId = conditionSchemaId;
@@ -207,7 +207,7 @@ public final class LinkedAccountCondition {
          * <p>The operator for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("operator")
         public _FinalStage operator(String operator) {
             this.operator = operator;
@@ -218,26 +218,26 @@ public final class LinkedAccountCondition {
          * <p>The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. &quot;location_type&quot;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage fieldName(String fieldName) {
             this.fieldName = Optional.of(fieldName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "field_name", nulls = Nulls.SKIP)
         public _FinalStage fieldName(Optional<String> fieldName) {
             this.fieldName = fieldName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage value(JsonNode value) {
             this.value = Optional.of(value);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public _FinalStage value(Optional<JsonNode> value) {
             this.value = value;
@@ -248,13 +248,13 @@ public final class LinkedAccountCondition {
          * <p>User-facing <em>native condition</em> name. e.g. &quot;Skip Manager&quot;.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage nativeName(String nativeName) {
             this.nativeName = Optional.of(nativeName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "native_name", nulls = Nulls.SKIP)
         public _FinalStage nativeName(Optional<String> nativeName) {
             this.nativeName = nativeName;
@@ -265,20 +265,20 @@ public final class LinkedAccountCondition {
          * <p>The common model for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage commonModel(String commonModel) {
             this.commonModel = Optional.of(commonModel);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "common_model", nulls = Nulls.SKIP)
         public _FinalStage commonModel(Optional<String> commonModel) {
             this.commonModel = commonModel;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public LinkedAccountCondition build() {
             return new LinkedAccountCondition(
                     conditionSchemaId, commonModel, nativeName, operator, value, fieldName, additionalProperties);

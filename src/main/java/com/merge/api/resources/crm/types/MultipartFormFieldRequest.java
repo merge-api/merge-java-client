@@ -92,7 +92,7 @@ public final class MultipartFormFieldRequest {
         return contentType;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof MultipartFormFieldRequest && equalTo((MultipartFormFieldRequest) other);
@@ -111,12 +111,12 @@ public final class MultipartFormFieldRequest {
                 && contentType.equals(other.contentType);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.name, this.data, this.encoding, this.fileName, this.contentType);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -168,7 +168,7 @@ public final class MultipartFormFieldRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(MultipartFormFieldRequest other) {
             name(other.getName());
             data(other.getData());
@@ -182,7 +182,7 @@ public final class MultipartFormFieldRequest {
          * <p>The name of the form field</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("name")
         public DataStage name(String name) {
             this.name = name;
@@ -193,7 +193,7 @@ public final class MultipartFormFieldRequest {
          * <p>The data for the form field.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("data")
         public _FinalStage data(String data) {
             this.data = data;
@@ -204,13 +204,13 @@ public final class MultipartFormFieldRequest {
          * <p>The MIME type of the file, if the field is for a file.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage contentType(String contentType) {
             this.contentType = Optional.of(contentType);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "content_type", nulls = Nulls.SKIP)
         public _FinalStage contentType(Optional<String> contentType) {
             this.contentType = contentType;
@@ -221,13 +221,13 @@ public final class MultipartFormFieldRequest {
          * <p>The file name of the form field, if the field is for a file.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage fileName(String fileName) {
             this.fileName = Optional.of(fileName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public _FinalStage fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -243,20 +243,20 @@ public final class MultipartFormFieldRequest {
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage encoding(MultipartFormFieldRequestEncoding encoding) {
             this.encoding = Optional.of(encoding);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "encoding", nulls = Nulls.SKIP)
         public _FinalStage encoding(Optional<MultipartFormFieldRequestEncoding> encoding) {
             this.encoding = encoding;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public MultipartFormFieldRequest build() {
             return new MultipartFormFieldRequest(name, data, encoding, fileName, contentType, additionalProperties);
         }

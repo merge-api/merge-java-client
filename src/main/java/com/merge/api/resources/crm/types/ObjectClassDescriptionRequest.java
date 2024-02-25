@@ -41,7 +41,7 @@ public final class ObjectClassDescriptionRequest {
         return originType;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ObjectClassDescriptionRequest && equalTo((ObjectClassDescriptionRequest) other);
@@ -56,12 +56,12 @@ public final class ObjectClassDescriptionRequest {
         return id.equals(other.id) && originType.equals(other.originType);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.id, this.originType);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -95,28 +95,28 @@ public final class ObjectClassDescriptionRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(ObjectClassDescriptionRequest other) {
             id(other.getId());
             originType(other.getOriginType());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("id")
         public OriginTypeStage id(String id) {
             this.id = id;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("origin_type")
         public _FinalStage originType(OriginTypeEnum originType) {
             this.originType = originType;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public ObjectClassDescriptionRequest build() {
             return new ObjectClassDescriptionRequest(id, originType, additionalProperties);
         }

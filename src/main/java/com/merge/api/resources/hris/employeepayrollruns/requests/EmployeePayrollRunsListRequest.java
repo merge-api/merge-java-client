@@ -221,7 +221,7 @@ public final class EmployeePayrollRunsListRequest {
         return startedBefore;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof EmployeePayrollRunsListRequest && equalTo((EmployeePayrollRunsListRequest) other);
@@ -251,7 +251,7 @@ public final class EmployeePayrollRunsListRequest {
                 && startedBefore.equals(other.startedBefore);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -272,7 +272,7 @@ public final class EmployeePayrollRunsListRequest {
                 this.startedBefore);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

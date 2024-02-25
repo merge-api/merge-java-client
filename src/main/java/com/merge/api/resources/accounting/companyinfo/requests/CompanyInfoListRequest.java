@@ -149,7 +149,7 @@ public final class CompanyInfoListRequest {
         return remoteId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CompanyInfoListRequest && equalTo((CompanyInfoListRequest) other);
@@ -173,7 +173,7 @@ public final class CompanyInfoListRequest {
                 && remoteId.equals(other.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -188,7 +188,7 @@ public final class CompanyInfoListRequest {
                 this.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

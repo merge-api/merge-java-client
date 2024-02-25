@@ -32,7 +32,7 @@ public final class ValidationProblemSource {
         return pointer;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ValidationProblemSource && equalTo((ValidationProblemSource) other);
@@ -47,12 +47,12 @@ public final class ValidationProblemSource {
         return pointer.equals(other.pointer);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.pointer);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -80,20 +80,20 @@ public final class ValidationProblemSource {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(ValidationProblemSource other) {
             pointer(other.getPointer());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("pointer")
         public _FinalStage pointer(String pointer) {
             this.pointer = pointer;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public ValidationProblemSource build() {
             return new ValidationProblemSource(pointer, additionalProperties);
         }

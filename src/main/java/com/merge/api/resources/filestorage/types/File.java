@@ -234,7 +234,7 @@ public final class File {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof File && equalTo((File) other);
@@ -266,7 +266,7 @@ public final class File {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -289,7 +289,7 @@ public final class File {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

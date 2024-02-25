@@ -5,15 +5,31 @@ package com.merge.api.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 public final class RequestOptions {
     private final String apiKey;
 
     private final String accountToken;
 
-    private RequestOptions(String apiKey, String accountToken) {
+    private final Optional<Integer> timeout;
+
+    private final TimeUnit timeoutTimeUnit;
+
+    private RequestOptions(String apiKey, String accountToken, Optional<Integer> timeout, TimeUnit timeoutTimeUnit) {
         this.apiKey = apiKey;
         this.accountToken = accountToken;
+        this.timeout = timeout;
+        this.timeoutTimeUnit = timeoutTimeUnit;
+    }
+
+    public Optional<Integer> getTimeout() {
+        return timeout;
+    }
+
+    public TimeUnit getTimeoutTimeUnit() {
+        return timeoutTimeUnit;
     }
 
     public Map<String, String> getHeaders() {
@@ -36,6 +52,10 @@ public final class RequestOptions {
 
         private String accountToken = null;
 
+        private Optional<Integer> timeout = null;
+
+        private TimeUnit timeoutTimeUnit = TimeUnit.SECONDS;
+
         public Builder apiKey(String apiKey) {
             this.apiKey = apiKey;
             return this;
@@ -46,8 +66,19 @@ public final class RequestOptions {
             return this;
         }
 
+        public Builder timeout(Integer timeout) {
+            this.timeout = Optional.of(timeout);
+            return this;
+        }
+
+        public Builder timeout(Integer timeout, TimeUnit timeoutTimeUnit) {
+            this.timeout = Optional.of(timeout);
+            this.timeoutTimeUnit = timeoutTimeUnit;
+            return this;
+        }
+
         public RequestOptions build() {
-            return new RequestOptions(apiKey, accountToken);
+            return new RequestOptions(apiKey, accountToken, timeout, timeoutTimeUnit);
         }
     }
 }

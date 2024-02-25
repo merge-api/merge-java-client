@@ -95,7 +95,7 @@ public final class TimesheetEntryRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimesheetEntryRequest && equalTo((TimesheetEntryRequest) other);
@@ -115,7 +115,7 @@ public final class TimesheetEntryRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.employee,
@@ -126,7 +126,7 @@ public final class TimesheetEntryRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

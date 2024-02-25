@@ -77,7 +77,7 @@ public final class Association {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Association && equalTo((Association) other);
@@ -96,13 +96,13 @@ public final class Association {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.sourceObject, this.targetObject, this.associationType, this.createdAt, this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

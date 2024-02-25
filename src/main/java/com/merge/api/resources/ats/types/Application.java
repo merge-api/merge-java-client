@@ -195,7 +195,7 @@ public final class Application {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Application && equalTo((Application) other);
@@ -224,7 +224,7 @@ public final class Application {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -244,7 +244,7 @@ public final class Application {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

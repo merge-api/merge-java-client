@@ -38,7 +38,7 @@ public final class ActivityRequestUser {
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ActivityRequestUser && equalTo((ActivityRequestUser) other);
@@ -48,12 +48,12 @@ public final class ActivityRequestUser {
         return value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value.toString();
     }
@@ -77,7 +77,7 @@ public final class ActivityRequestUser {
             super(ActivityRequestUser.class);
         }
 
-        @Override
+        @java.lang.Override
         public ActivityRequestUser deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

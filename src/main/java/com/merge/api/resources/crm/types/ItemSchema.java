@@ -55,7 +55,7 @@ public final class ItemSchema {
         return itemChoices;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ItemSchema && equalTo((ItemSchema) other);
@@ -72,12 +72,12 @@ public final class ItemSchema {
                 && itemChoices.equals(other.itemChoices);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.itemType, this.itemFormat, this.itemChoices);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

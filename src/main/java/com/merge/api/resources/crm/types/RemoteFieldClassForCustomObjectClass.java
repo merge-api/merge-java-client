@@ -122,7 +122,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteFieldClassForCustomObjectClass
@@ -147,7 +147,7 @@ public final class RemoteFieldClassForCustomObjectClass {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.displayName,
@@ -162,7 +162,7 @@ public final class RemoteFieldClassForCustomObjectClass {
                 this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

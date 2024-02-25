@@ -118,7 +118,7 @@ public final class CommentRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CommentRequest && equalTo((CommentRequest) other);
@@ -140,7 +140,7 @@ public final class CommentRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.user,
@@ -153,7 +153,7 @@ public final class CommentRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

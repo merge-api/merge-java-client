@@ -185,7 +185,7 @@ public final class VendorCreditsListRequest {
         return transactionDateBefore;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof VendorCreditsListRequest && equalTo((VendorCreditsListRequest) other);
@@ -212,7 +212,7 @@ public final class VendorCreditsListRequest {
                 && transactionDateBefore.equals(other.transactionDateBefore);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.companyId,
@@ -230,7 +230,7 @@ public final class VendorCreditsListRequest {
                 this.transactionDateBefore);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

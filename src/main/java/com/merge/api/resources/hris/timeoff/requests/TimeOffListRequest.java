@@ -36,6 +36,10 @@ public final class TimeOffListRequest {
 
     private final Optional<String> employeeId;
 
+    private final Optional<OffsetDateTime> endedAfter;
+
+    private final Optional<OffsetDateTime> endedBefore;
+
     private final Optional<TimeOffListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
@@ -56,6 +60,10 @@ public final class TimeOffListRequest {
 
     private final Optional<TimeOffListRequestShowEnumOrigins> showEnumOrigins;
 
+    private final Optional<OffsetDateTime> startedAfter;
+
+    private final Optional<OffsetDateTime> startedBefore;
+
     private final Optional<TimeOffListRequestStatus> status;
 
     private final Map<String, Object> additionalProperties;
@@ -66,6 +74,8 @@ public final class TimeOffListRequest {
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
+            Optional<OffsetDateTime> endedAfter,
+            Optional<OffsetDateTime> endedBefore,
             Optional<TimeOffListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
@@ -76,6 +86,8 @@ public final class TimeOffListRequest {
             Optional<String> remoteId,
             Optional<TimeOffListRequestRequestType> requestType,
             Optional<TimeOffListRequestShowEnumOrigins> showEnumOrigins,
+            Optional<OffsetDateTime> startedAfter,
+            Optional<OffsetDateTime> startedBefore,
             Optional<TimeOffListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.approverId = approverId;
@@ -83,6 +95,8 @@ public final class TimeOffListRequest {
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
+        this.endedAfter = endedAfter;
+        this.endedBefore = endedBefore;
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
@@ -93,6 +107,8 @@ public final class TimeOffListRequest {
         this.remoteId = remoteId;
         this.requestType = requestType;
         this.showEnumOrigins = showEnumOrigins;
+        this.startedAfter = startedAfter;
+        this.startedBefore = startedBefore;
         this.status = status;
         this.additionalProperties = additionalProperties;
     }
@@ -135,6 +151,22 @@ public final class TimeOffListRequest {
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
         return employeeId;
+    }
+
+    /**
+     * @return If provided, will only return employees that ended after this datetime.
+     */
+    @JsonProperty("ended_after")
+    public Optional<OffsetDateTime> getEndedAfter() {
+        return endedAfter;
+    }
+
+    /**
+     * @return If provided, will only return time-offs that ended before this datetime.
+     */
+    @JsonProperty("ended_before")
+    public Optional<OffsetDateTime> getEndedBefore() {
+        return endedBefore;
     }
 
     /**
@@ -226,6 +258,22 @@ public final class TimeOffListRequest {
     }
 
     /**
+     * @return If provided, will only return time-offs that started after this datetime.
+     */
+    @JsonProperty("started_after")
+    public Optional<OffsetDateTime> getStartedAfter() {
+        return startedAfter;
+    }
+
+    /**
+     * @return If provided, will only return time-offs that started before this datetime.
+     */
+    @JsonProperty("started_before")
+    public Optional<OffsetDateTime> getStartedBefore() {
+        return startedBefore;
+    }
+
+    /**
      * @return If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')
      * <ul>
      * <li><code>REQUESTED</code> - REQUESTED</li>
@@ -240,7 +288,7 @@ public final class TimeOffListRequest {
         return status;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimeOffListRequest && equalTo((TimeOffListRequest) other);
@@ -257,6 +305,8 @@ public final class TimeOffListRequest {
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
+                && endedAfter.equals(other.endedAfter)
+                && endedBefore.equals(other.endedBefore)
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
@@ -267,10 +317,12 @@ public final class TimeOffListRequest {
                 && remoteId.equals(other.remoteId)
                 && requestType.equals(other.requestType)
                 && showEnumOrigins.equals(other.showEnumOrigins)
+                && startedAfter.equals(other.startedAfter)
+                && startedBefore.equals(other.startedBefore)
                 && status.equals(other.status);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.approverId,
@@ -278,6 +330,8 @@ public final class TimeOffListRequest {
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
+                this.endedAfter,
+                this.endedBefore,
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
@@ -288,10 +342,12 @@ public final class TimeOffListRequest {
                 this.remoteId,
                 this.requestType,
                 this.showEnumOrigins,
+                this.startedAfter,
+                this.startedBefore,
                 this.status);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -311,6 +367,10 @@ public final class TimeOffListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
+
+        private Optional<OffsetDateTime> endedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> endedBefore = Optional.empty();
 
         private Optional<TimeOffListRequestExpand> expand = Optional.empty();
 
@@ -332,6 +392,10 @@ public final class TimeOffListRequest {
 
         private Optional<TimeOffListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
+        private Optional<OffsetDateTime> startedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> startedBefore = Optional.empty();
+
         private Optional<TimeOffListRequestStatus> status = Optional.empty();
 
         @JsonAnySetter
@@ -345,6 +409,8 @@ public final class TimeOffListRequest {
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
+            endedAfter(other.getEndedAfter());
+            endedBefore(other.getEndedBefore());
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
@@ -355,6 +421,8 @@ public final class TimeOffListRequest {
             remoteId(other.getRemoteId());
             requestType(other.getRequestType());
             showEnumOrigins(other.getShowEnumOrigins());
+            startedAfter(other.getStartedAfter());
+            startedBefore(other.getStartedBefore());
             status(other.getStatus());
             return this;
         }
@@ -411,6 +479,28 @@ public final class TimeOffListRequest {
 
         public Builder employeeId(String employeeId) {
             this.employeeId = Optional.of(employeeId);
+            return this;
+        }
+
+        @JsonSetter(value = "ended_after", nulls = Nulls.SKIP)
+        public Builder endedAfter(Optional<OffsetDateTime> endedAfter) {
+            this.endedAfter = endedAfter;
+            return this;
+        }
+
+        public Builder endedAfter(OffsetDateTime endedAfter) {
+            this.endedAfter = Optional.of(endedAfter);
+            return this;
+        }
+
+        @JsonSetter(value = "ended_before", nulls = Nulls.SKIP)
+        public Builder endedBefore(Optional<OffsetDateTime> endedBefore) {
+            this.endedBefore = endedBefore;
+            return this;
+        }
+
+        public Builder endedBefore(OffsetDateTime endedBefore) {
+            this.endedBefore = Optional.of(endedBefore);
             return this;
         }
 
@@ -524,6 +614,28 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        @JsonSetter(value = "started_after", nulls = Nulls.SKIP)
+        public Builder startedAfter(Optional<OffsetDateTime> startedAfter) {
+            this.startedAfter = startedAfter;
+            return this;
+        }
+
+        public Builder startedAfter(OffsetDateTime startedAfter) {
+            this.startedAfter = Optional.of(startedAfter);
+            return this;
+        }
+
+        @JsonSetter(value = "started_before", nulls = Nulls.SKIP)
+        public Builder startedBefore(Optional<OffsetDateTime> startedBefore) {
+            this.startedBefore = startedBefore;
+            return this;
+        }
+
+        public Builder startedBefore(OffsetDateTime startedBefore) {
+            this.startedBefore = Optional.of(startedBefore);
+            return this;
+        }
+
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<TimeOffListRequestStatus> status) {
             this.status = status;
@@ -542,6 +654,8 @@ public final class TimeOffListRequest {
                     createdBefore,
                     cursor,
                     employeeId,
+                    endedAfter,
+                    endedBefore,
                     expand,
                     includeDeletedData,
                     includeRemoteData,
@@ -552,6 +666,8 @@ public final class TimeOffListRequest {
                     remoteId,
                     requestType,
                     showEnumOrigins,
+                    startedAfter,
+                    startedBefore,
                     status,
                     additionalProperties);
         }

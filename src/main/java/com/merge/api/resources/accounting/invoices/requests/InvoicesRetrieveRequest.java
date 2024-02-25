@@ -76,7 +76,7 @@ public final class InvoicesRetrieveRequest {
         return showEnumOrigins;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof InvoicesRetrieveRequest && equalTo((InvoicesRetrieveRequest) other);
@@ -94,12 +94,12 @@ public final class InvoicesRetrieveRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

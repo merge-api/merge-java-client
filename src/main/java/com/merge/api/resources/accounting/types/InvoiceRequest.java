@@ -119,7 +119,7 @@ public final class InvoiceRequest {
     }
 
     /**
-     * @return Whether the invoice is an accounts receivable or accounts payable. If <code>type</code> is <code>accounts_payable</code>, the invoice is a bill. If <code>type</code> is <code>accounts_receivable</code>, it is an invoice.
+     * @return Whether the invoice is an accounts receivable or accounts payable. If <code>type</code> is <code>ACCOUNTS_PAYABLE</code>, the invoice is a bill. If <code>type</code> is <code>ACCOUNTS_RECEIVABLE</code>, it is an invoice.
      * <ul>
      * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
      * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
@@ -599,7 +599,7 @@ public final class InvoiceRequest {
         return linkedAccountParams;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof InvoiceRequest && equalTo((InvoiceRequest) other);
@@ -635,7 +635,7 @@ public final class InvoiceRequest {
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.type,
@@ -662,7 +662,7 @@ public final class InvoiceRequest {
                 this.linkedAccountParams);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

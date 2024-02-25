@@ -72,7 +72,7 @@ public final class UpdateApplicationStageRequest {
         return remoteUserId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof UpdateApplicationStageRequest && equalTo((UpdateApplicationStageRequest) other);
@@ -90,12 +90,12 @@ public final class UpdateApplicationStageRequest {
                 && remoteUserId.equals(other.remoteUserId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.isDebugMode, this.runAsync, this.jobInterviewStage, this.remoteUserId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -49,7 +49,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
         return includeRemoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CustomObjectClassesAssociationTypesRetrieveRequest
@@ -65,12 +65,12 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
         return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.expand, this.includeRemoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

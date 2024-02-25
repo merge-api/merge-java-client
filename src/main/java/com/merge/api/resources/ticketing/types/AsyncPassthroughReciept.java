@@ -32,7 +32,7 @@ public final class AsyncPassthroughReciept {
         return asyncPassthroughReceiptId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AsyncPassthroughReciept && equalTo((AsyncPassthroughReciept) other);
@@ -47,12 +47,12 @@ public final class AsyncPassthroughReciept {
         return asyncPassthroughReceiptId.equals(other.asyncPassthroughReceiptId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.asyncPassthroughReceiptId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -80,20 +80,20 @@ public final class AsyncPassthroughReciept {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AsyncPassthroughReciept other) {
             asyncPassthroughReceiptId(other.getAsyncPassthroughReceiptId());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("async_passthrough_receipt_id")
         public _FinalStage asyncPassthroughReceiptId(String asyncPassthroughReceiptId) {
             this.asyncPassthroughReceiptId = asyncPassthroughReceiptId;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AsyncPassthroughReciept build() {
             return new AsyncPassthroughReciept(asyncPassthroughReceiptId, additionalProperties);
         }

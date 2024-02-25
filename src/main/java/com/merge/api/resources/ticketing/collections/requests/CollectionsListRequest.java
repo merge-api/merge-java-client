@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.collections.types.CollectionsListRequestCollectionType;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +21,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CollectionsListRequest.Builder.class)
 public final class CollectionsListRequest {
-    private final Optional<CollectionsListRequestCollectionType> collectionType;
+    private final Optional<String> collectionType;
 
     private final Optional<OffsetDateTime> createdAfter;
 
@@ -53,7 +52,7 @@ public final class CollectionsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CollectionsListRequest(
-            Optional<CollectionsListRequestCollectionType> collectionType,
+            Optional<String> collectionType,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
@@ -87,13 +86,9 @@ public final class CollectionsListRequest {
 
     /**
      * @return If provided, will only return collections of the given type.
-     * <ul>
-     * <li><code>LIST</code> - LIST</li>
-     * <li><code>PROJECT</code> - PROJECT</li>
-     * </ul>
      */
     @JsonProperty("collection_type")
-    public Optional<CollectionsListRequestCollectionType> getCollectionType() {
+    public Optional<String> getCollectionType() {
         return collectionType;
     }
 
@@ -201,7 +196,7 @@ public final class CollectionsListRequest {
         return showEnumOrigins;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CollectionsListRequest && equalTo((CollectionsListRequest) other);
@@ -229,7 +224,7 @@ public final class CollectionsListRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.collectionType,
@@ -248,7 +243,7 @@ public final class CollectionsListRequest {
                 this.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -259,7 +254,7 @@ public final class CollectionsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<CollectionsListRequestCollectionType> collectionType = Optional.empty();
+        private Optional<String> collectionType = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
@@ -311,12 +306,12 @@ public final class CollectionsListRequest {
         }
 
         @JsonSetter(value = "collection_type", nulls = Nulls.SKIP)
-        public Builder collectionType(Optional<CollectionsListRequestCollectionType> collectionType) {
+        public Builder collectionType(Optional<String> collectionType) {
             this.collectionType = collectionType;
             return this;
         }
 
-        public Builder collectionType(CollectionsListRequestCollectionType collectionType) {
+        public Builder collectionType(String collectionType) {
             this.collectionType = Optional.of(collectionType);
             return this;
         }

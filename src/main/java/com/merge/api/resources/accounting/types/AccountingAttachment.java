@@ -138,7 +138,7 @@ public final class AccountingAttachment {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountingAttachment && equalTo((AccountingAttachment) other);
@@ -162,7 +162,7 @@ public final class AccountingAttachment {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -177,7 +177,7 @@ public final class AccountingAttachment {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -35,7 +35,7 @@ public final class CustomObjectRequest {
         return fields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CustomObjectRequest && equalTo((CustomObjectRequest) other);
@@ -50,12 +50,12 @@ public final class CustomObjectRequest {
         return fields.equals(other.fields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.fields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

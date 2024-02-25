@@ -83,7 +83,7 @@ public final class AssociationTypeRequestRequest {
         return isRequired;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AssociationTypeRequestRequest && equalTo((AssociationTypeRequestRequest) other);
@@ -103,7 +103,7 @@ public final class AssociationTypeRequestRequest {
                 && isRequired.equals(other.isRequired);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.sourceObjectClass,
@@ -114,7 +114,7 @@ public final class AssociationTypeRequestRequest {
                 this.isRequired);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -174,7 +174,7 @@ public final class AssociationTypeRequestRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AssociationTypeRequestRequest other) {
             sourceObjectClass(other.getSourceObjectClass());
             targetObjectClasses(other.getTargetObjectClasses());
@@ -185,72 +185,72 @@ public final class AssociationTypeRequestRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("source_object_class")
         public RemoteKeyNameStage sourceObjectClass(ObjectClassDescriptionRequest sourceObjectClass) {
             this.sourceObjectClass = sourceObjectClass;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("remote_key_name")
         public _FinalStage remoteKeyName(String remoteKeyName) {
             this.remoteKeyName = remoteKeyName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage isRequired(Boolean isRequired) {
             this.isRequired = Optional.of(isRequired);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "is_required", nulls = Nulls.SKIP)
         public _FinalStage isRequired(Optional<Boolean> isRequired) {
             this.isRequired = isRequired;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage cardinality(CardinalityEnum cardinality) {
             this.cardinality = Optional.of(cardinality);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "cardinality", nulls = Nulls.SKIP)
         public _FinalStage cardinality(Optional<CardinalityEnum> cardinality) {
             this.cardinality = cardinality;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage displayName(String displayName) {
             this.displayName = Optional.of(displayName);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "display_name", nulls = Nulls.SKIP)
         public _FinalStage displayName(Optional<String> displayName) {
             this.displayName = displayName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addAllTargetObjectClasses(List<ObjectClassDescriptionRequest> targetObjectClasses) {
             this.targetObjectClasses.addAll(targetObjectClasses);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage addTargetObjectClasses(ObjectClassDescriptionRequest targetObjectClasses) {
             this.targetObjectClasses.add(targetObjectClasses);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "target_object_classes", nulls = Nulls.SKIP)
         public _FinalStage targetObjectClasses(List<ObjectClassDescriptionRequest> targetObjectClasses) {
             this.targetObjectClasses.clear();
@@ -258,7 +258,7 @@ public final class AssociationTypeRequestRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AssociationTypeRequestRequest build() {
             return new AssociationTypeRequestRequest(
                     sourceObjectClass,

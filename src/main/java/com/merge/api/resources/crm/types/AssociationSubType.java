@@ -67,7 +67,7 @@ public final class AssociationSubType {
         return modifiedAt;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AssociationSubType && equalTo((AssociationSubType) other);
@@ -85,12 +85,12 @@ public final class AssociationSubType {
                 && modifiedAt.equals(other.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.id, this.originType, this.createdAt, this.modifiedAt);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

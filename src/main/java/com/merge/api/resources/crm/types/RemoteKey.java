@@ -40,7 +40,7 @@ public final class RemoteKey {
         return key;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteKey && equalTo((RemoteKey) other);
@@ -55,12 +55,12 @@ public final class RemoteKey {
         return name.equals(other.name) && key.equals(other.key);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.name, this.key);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -94,28 +94,28 @@ public final class RemoteKey {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(RemoteKey other) {
             name(other.getName());
             key(other.getKey());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("name")
         public KeyStage name(String name) {
             this.name = name;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("key")
         public _FinalStage key(String key) {
             this.key = key;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public RemoteKey build() {
             return new RemoteKey(name, key, additionalProperties);
         }

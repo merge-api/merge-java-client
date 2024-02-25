@@ -118,7 +118,7 @@ public final class RemoteFieldClass {
         return itemSchema;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteFieldClass && equalTo((RemoteFieldClass) other);
@@ -142,7 +142,7 @@ public final class RemoteFieldClass {
                 && itemSchema.equals(other.itemSchema);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -157,7 +157,7 @@ public final class RemoteFieldClass {
                 this.itemSchema);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

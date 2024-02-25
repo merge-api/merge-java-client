@@ -173,7 +173,7 @@ public final class CommentsListRequest {
         return ticketId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CommentsListRequest && equalTo((CommentsListRequest) other);
@@ -199,7 +199,7 @@ public final class CommentsListRequest {
                 && ticketId.equals(other.ticketId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -216,7 +216,7 @@ public final class CommentsListRequest {
                 this.ticketId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

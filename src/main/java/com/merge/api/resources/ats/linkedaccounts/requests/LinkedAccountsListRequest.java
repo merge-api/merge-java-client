@@ -190,7 +190,7 @@ public final class LinkedAccountsListRequest {
         return status;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkedAccountsListRequest && equalTo((LinkedAccountsListRequest) other);
@@ -217,7 +217,7 @@ public final class LinkedAccountsListRequest {
                 && status.equals(other.status);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.category,
@@ -235,7 +235,7 @@ public final class LinkedAccountsListRequest {
                 this.status);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

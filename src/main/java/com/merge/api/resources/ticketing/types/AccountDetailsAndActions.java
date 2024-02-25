@@ -129,7 +129,7 @@ public final class AccountDetailsAndActions {
         return accountType;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountDetailsAndActions && equalTo((AccountDetailsAndActions) other);
@@ -154,7 +154,7 @@ public final class AccountDetailsAndActions {
                 && accountType.equals(other.accountType);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -170,7 +170,7 @@ public final class AccountDetailsAndActions {
                 this.accountType);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -265,7 +265,7 @@ public final class AccountDetailsAndActions {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AccountDetailsAndActions other) {
             id(other.getId());
             category(other.getCategory());
@@ -281,55 +281,55 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("id")
         public StatusStage id(String id) {
             this.id = id;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("status")
         public EndUserOrganizationNameStage status(AccountDetailsAndActionsStatusEnum status) {
             this.status = status;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("end_user_organization_name")
         public EndUserEmailAddressStage endUserOrganizationName(String endUserOrganizationName) {
             this.endUserOrganizationName = endUserOrganizationName;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("end_user_email_address")
         public WebhookListenerUrlStage endUserEmailAddress(String endUserEmailAddress) {
             this.endUserEmailAddress = endUserEmailAddress;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("webhook_listener_url")
         public AccountTypeStage webhookListenerUrl(String webhookListenerUrl) {
             this.webhookListenerUrl = webhookListenerUrl;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("account_type")
         public _FinalStage accountType(String accountType) {
             this.accountType = accountType;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage integration(AccountDetailsAndActionsIntegration integration) {
             this.integration = Optional.of(integration);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "integration", nulls = Nulls.SKIP)
         public _FinalStage integration(Optional<AccountDetailsAndActionsIntegration> integration) {
             this.integration = integration;
@@ -340,59 +340,59 @@ public final class AccountDetailsAndActions {
          * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage isDuplicate(Boolean isDuplicate) {
             this.isDuplicate = Optional.of(isDuplicate);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "is_duplicate", nulls = Nulls.SKIP)
         public _FinalStage isDuplicate(Optional<Boolean> isDuplicate) {
             this.isDuplicate = isDuplicate;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage endUserOriginId(String endUserOriginId) {
             this.endUserOriginId = Optional.of(endUserOriginId);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "end_user_origin_id", nulls = Nulls.SKIP)
         public _FinalStage endUserOriginId(Optional<String> endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage statusDetail(String statusDetail) {
             this.statusDetail = Optional.of(statusDetail);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "status_detail", nulls = Nulls.SKIP)
         public _FinalStage statusDetail(Optional<String> statusDetail) {
             this.statusDetail = statusDetail;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage category(CategoryEnum category) {
             this.category = Optional.of(category);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
         public _FinalStage category(Optional<CategoryEnum> category) {
             this.category = category;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AccountDetailsAndActions build() {
             return new AccountDetailsAndActions(
                     id,

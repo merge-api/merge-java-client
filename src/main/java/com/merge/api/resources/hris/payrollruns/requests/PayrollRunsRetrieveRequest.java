@@ -65,7 +65,7 @@ public final class PayrollRunsRetrieveRequest {
         return showEnumOrigins;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PayrollRunsRetrieveRequest && equalTo((PayrollRunsRetrieveRequest) other);
@@ -82,12 +82,12 @@ public final class PayrollRunsRetrieveRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

@@ -124,7 +124,7 @@ public final class IssuesListRequest {
     }
 
     /**
-     * @return If True, will include muted issues
+     * @return If true, will include muted issues
      */
     @JsonProperty("include_muted")
     public Optional<String> getIncludeMuted() {
@@ -180,7 +180,7 @@ public final class IssuesListRequest {
         return status;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof IssuesListRequest && equalTo((IssuesListRequest) other);
@@ -207,7 +207,7 @@ public final class IssuesListRequest {
                 && status.equals(other.status);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.accountToken,
@@ -225,7 +225,7 @@ public final class IssuesListRequest {
                 this.status);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

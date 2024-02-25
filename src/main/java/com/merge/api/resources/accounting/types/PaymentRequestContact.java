@@ -38,7 +38,7 @@ public final class PaymentRequestContact {
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PaymentRequestContact && equalTo((PaymentRequestContact) other);
@@ -48,12 +48,12 @@ public final class PaymentRequestContact {
         return value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value.toString();
     }
@@ -77,7 +77,7 @@ public final class PaymentRequestContact {
             super(PaymentRequestContact.class);
         }
 
-        @Override
+        @java.lang.Override
         public PaymentRequestContact deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

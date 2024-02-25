@@ -226,7 +226,7 @@ public final class TimeOff {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof TimeOff && equalTo((TimeOff) other);
@@ -256,7 +256,7 @@ public final class TimeOff {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.id,
@@ -277,7 +277,7 @@ public final class TimeOff {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

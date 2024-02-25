@@ -23,13 +23,13 @@ import java.util.Optional;
 public final class RemoteField {
     private final RemoteFieldRemoteFieldClass remoteFieldClass;
 
-    private final Optional<JsonNode> value;
+    private final Optional<Map<String, JsonNode>> value;
 
     private final Map<String, Object> additionalProperties;
 
     private RemoteField(
             RemoteFieldRemoteFieldClass remoteFieldClass,
-            Optional<JsonNode> value,
+            Optional<Map<String, JsonNode>> value,
             Map<String, Object> additionalProperties) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
@@ -42,11 +42,11 @@ public final class RemoteField {
     }
 
     @JsonProperty("value")
-    public Optional<JsonNode> getValue() {
+    public Optional<Map<String, JsonNode>> getValue() {
         return value;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof RemoteField && equalTo((RemoteField) other);
@@ -61,12 +61,12 @@ public final class RemoteField {
         return remoteFieldClass.equals(other.remoteFieldClass) && value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.remoteFieldClass, this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -84,50 +84,50 @@ public final class RemoteField {
     public interface _FinalStage {
         RemoteField build();
 
-        _FinalStage value(Optional<JsonNode> value);
+        _FinalStage value(Optional<Map<String, JsonNode>> value);
 
-        _FinalStage value(JsonNode value);
+        _FinalStage value(Map<String, JsonNode> value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
         private RemoteFieldRemoteFieldClass remoteFieldClass;
 
-        private Optional<JsonNode> value = Optional.empty();
+        private Optional<Map<String, JsonNode>> value = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(RemoteField other) {
             remoteFieldClass(other.getRemoteFieldClass());
             value(other.getValue());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("remote_field_class")
         public _FinalStage remoteFieldClass(RemoteFieldRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }
 
-        @Override
-        public _FinalStage value(JsonNode value) {
+        @java.lang.Override
+        public _FinalStage value(Map<String, JsonNode> value) {
             this.value = Optional.of(value);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public _FinalStage value(Optional<JsonNode> value) {
+        public _FinalStage value(Optional<Map<String, JsonNode>> value) {
             this.value = value;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public RemoteField build() {
             return new RemoteField(remoteFieldClass, value, additionalProperties);
         }

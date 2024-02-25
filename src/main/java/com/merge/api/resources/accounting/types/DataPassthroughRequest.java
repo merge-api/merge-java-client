@@ -110,7 +110,7 @@ public final class DataPassthroughRequest {
         return normalizeResponse;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof DataPassthroughRequest && equalTo((DataPassthroughRequest) other);
@@ -132,7 +132,7 @@ public final class DataPassthroughRequest {
                 && normalizeResponse.equals(other.normalizeResponse);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.method,
@@ -145,7 +145,7 @@ public final class DataPassthroughRequest {
                 this.normalizeResponse);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -215,7 +215,7 @@ public final class DataPassthroughRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(DataPassthroughRequest other) {
             method(other.getMethod());
             path(other.getPath());
@@ -228,14 +228,14 @@ public final class DataPassthroughRequest {
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("method")
         public PathStage method(MethodEnum method) {
             this.method = method;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("path")
         public _FinalStage path(String path) {
             this.path = path;
@@ -246,26 +246,26 @@ public final class DataPassthroughRequest {
          * <p>Optional. If true, the response will always be an object of the form <code>{&quot;type&quot;: T, &quot;value&quot;: ...}</code> where <code>T</code> will be one of <code>string, boolean, number, null, array, object</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage normalizeResponse(Boolean normalizeResponse) {
             this.normalizeResponse = Optional.of(normalizeResponse);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "normalize_response", nulls = Nulls.SKIP)
         public _FinalStage normalizeResponse(Optional<Boolean> normalizeResponse) {
             this.normalizeResponse = normalizeResponse;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage requestFormat(RequestFormatEnum requestFormat) {
             this.requestFormat = Optional.of(requestFormat);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "request_format", nulls = Nulls.SKIP)
         public _FinalStage requestFormat(Optional<RequestFormatEnum> requestFormat) {
             this.requestFormat = requestFormat;
@@ -276,13 +276,13 @@ public final class DataPassthroughRequest {
          * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage headers(Map<String, JsonNode> headers) {
             this.headers = Optional.of(headers);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
         public _FinalStage headers(Optional<Map<String, JsonNode>> headers) {
             this.headers = headers;
@@ -293,46 +293,46 @@ public final class DataPassthroughRequest {
          * <p>Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         public _FinalStage multipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
             this.multipartFormData = Optional.of(multipartFormData);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "multipart_form_data", nulls = Nulls.SKIP)
         public _FinalStage multipartFormData(Optional<List<MultipartFormFieldRequest>> multipartFormData) {
             this.multipartFormData = multipartFormData;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage data(String data) {
             this.data = Optional.of(data);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
         public _FinalStage data(Optional<String> data) {
             this.data = data;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public _FinalStage baseUrlOverride(String baseUrlOverride) {
             this.baseUrlOverride = Optional.of(baseUrlOverride);
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter(value = "base_url_override", nulls = Nulls.SKIP)
         public _FinalStage baseUrlOverride(Optional<String> baseUrlOverride) {
             this.baseUrlOverride = baseUrlOverride;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public DataPassthroughRequest build() {
             return new DataPassthroughRequest(
                     method,

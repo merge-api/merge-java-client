@@ -209,7 +209,7 @@ public final class PaymentsListRequest {
         return transactionDateBefore;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PaymentsListRequest && equalTo((PaymentsListRequest) other);
@@ -238,7 +238,7 @@ public final class PaymentsListRequest {
                 && transactionDateBefore.equals(other.transactionDateBefore);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.accountId,
@@ -258,7 +258,7 @@ public final class PaymentsListRequest {
                 this.transactionDateBefore);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

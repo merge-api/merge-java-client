@@ -21,7 +21,7 @@ public enum TicketsListRequestPriority {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }

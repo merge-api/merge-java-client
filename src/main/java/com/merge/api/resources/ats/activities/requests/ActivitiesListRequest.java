@@ -186,7 +186,7 @@ public final class ActivitiesListRequest {
         return userId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ActivitiesListRequest && equalTo((ActivitiesListRequest) other);
@@ -213,7 +213,7 @@ public final class ActivitiesListRequest {
                 && userId.equals(other.userId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -231,7 +231,7 @@ public final class ActivitiesListRequest {
                 this.userId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

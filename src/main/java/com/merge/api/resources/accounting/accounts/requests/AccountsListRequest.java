@@ -186,7 +186,7 @@ public final class AccountsListRequest {
         return showEnumOrigins;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountsListRequest && equalTo((AccountsListRequest) other);
@@ -213,7 +213,7 @@ public final class AccountsListRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.companyId,
@@ -231,7 +231,7 @@ public final class AccountsListRequest {
                 this.showEnumOrigins);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

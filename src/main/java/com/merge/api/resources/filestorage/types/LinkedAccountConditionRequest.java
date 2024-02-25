@@ -56,7 +56,7 @@ public final class LinkedAccountConditionRequest {
         return value;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkedAccountConditionRequest && equalTo((LinkedAccountConditionRequest) other);
@@ -73,12 +73,12 @@ public final class LinkedAccountConditionRequest {
                 && value.equals(other.value);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.conditionSchemaId, this.operator, this.value);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -118,7 +118,7 @@ public final class LinkedAccountConditionRequest {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(LinkedAccountConditionRequest other) {
             conditionSchemaId(other.getConditionSchemaId());
             operator(other.getOperator());
@@ -130,7 +130,7 @@ public final class LinkedAccountConditionRequest {
          * <p>The ID indicating which condition schema to use for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("condition_schema_id")
         public OperatorStage conditionSchemaId(String conditionSchemaId) {
             this.conditionSchemaId = conditionSchemaId;
@@ -141,21 +141,21 @@ public final class LinkedAccountConditionRequest {
          * <p>The operator for a specific condition.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
-        @Override
+        @java.lang.Override
         @JsonSetter("operator")
         public ValueStage operator(String operator) {
             this.operator = operator;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("value")
         public _FinalStage value(JsonNode value) {
             this.value = value;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public LinkedAccountConditionRequest build() {
             return new LinkedAccountConditionRequest(conditionSchemaId, operator, value, additionalProperties);
         }

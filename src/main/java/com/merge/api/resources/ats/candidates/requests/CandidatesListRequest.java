@@ -197,7 +197,7 @@ public final class CandidatesListRequest {
         return tags;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof CandidatesListRequest && equalTo((CandidatesListRequest) other);
@@ -225,7 +225,7 @@ public final class CandidatesListRequest {
                 && tags.equals(other.tags);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.createdAfter,
@@ -244,7 +244,7 @@ public final class CandidatesListRequest {
                 this.tags);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

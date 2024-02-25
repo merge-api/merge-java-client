@@ -41,7 +41,7 @@ public final class AccountToken {
         return integration;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof AccountToken && equalTo((AccountToken) other);
@@ -56,12 +56,12 @@ public final class AccountToken {
         return accountToken.equals(other.accountToken) && integration.equals(other.integration);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.accountToken, this.integration);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -95,28 +95,28 @@ public final class AccountToken {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(AccountToken other) {
             accountToken(other.getAccountToken());
             integration(other.getIntegration());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("account_token")
         public IntegrationStage accountToken(String accountToken) {
             this.accountToken = accountToken;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("integration")
         public _FinalStage integration(AccountIntegration integration) {
             this.integration = integration;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public AccountToken build() {
             return new AccountToken(accountToken, integration, additionalProperties);
         }

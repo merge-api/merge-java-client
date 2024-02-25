@@ -41,7 +41,7 @@ public final class LinkedAccountStatus {
         return canMakeRequest;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof LinkedAccountStatus && equalTo((LinkedAccountStatus) other);
@@ -56,12 +56,12 @@ public final class LinkedAccountStatus {
         return linkedAccountStatus.equals(other.linkedAccountStatus) && canMakeRequest == other.canMakeRequest;
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.linkedAccountStatus, this.canMakeRequest);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }
@@ -95,28 +95,28 @@ public final class LinkedAccountStatus {
 
         private Builder() {}
 
-        @Override
+        @java.lang.Override
         public Builder from(LinkedAccountStatus other) {
             linkedAccountStatus(other.getLinkedAccountStatus());
             canMakeRequest(other.getCanMakeRequest());
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("linked_account_status")
         public CanMakeRequestStage linkedAccountStatus(String linkedAccountStatus) {
             this.linkedAccountStatus = linkedAccountStatus;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         @JsonSetter("can_make_request")
         public _FinalStage canMakeRequest(boolean canMakeRequest) {
             this.canMakeRequest = canMakeRequest;
             return this;
         }
 
-        @Override
+        @java.lang.Override
         public LinkedAccountStatus build() {
             return new LinkedAccountStatus(linkedAccountStatus, canMakeRequest, additionalProperties);
         }

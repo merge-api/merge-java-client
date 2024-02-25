@@ -150,7 +150,7 @@ public enum PurchaseOrdersRetrieveRequestExpand {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }

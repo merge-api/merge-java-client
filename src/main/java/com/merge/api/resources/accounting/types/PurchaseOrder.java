@@ -615,7 +615,7 @@ public final class PurchaseOrder {
         return remoteData;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PurchaseOrder && equalTo((PurchaseOrder) other);
@@ -653,7 +653,7 @@ public final class PurchaseOrder {
                 && remoteData.equals(other.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.status,
@@ -682,7 +682,7 @@ public final class PurchaseOrder {
                 this.remoteData);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

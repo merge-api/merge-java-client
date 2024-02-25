@@ -55,7 +55,7 @@ public final class PaginatedBalanceSheetList {
         return results;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PaginatedBalanceSheetList && equalTo((PaginatedBalanceSheetList) other);
@@ -70,12 +70,12 @@ public final class PaginatedBalanceSheetList {
         return next.equals(other.next) && previous.equals(other.previous) && results.equals(other.results);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(this.next, this.previous, this.results);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

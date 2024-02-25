@@ -12,6 +12,7 @@ import com.merge.api.resources.filestorage.audittrail.AuditTrailClient;
 import com.merge.api.resources.filestorage.availableactions.AvailableActionsClient;
 import com.merge.api.resources.filestorage.deleteaccount.DeleteAccountClient;
 import com.merge.api.resources.filestorage.drives.DrivesClient;
+import com.merge.api.resources.filestorage.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.filestorage.files.FilesClient;
 import com.merge.api.resources.filestorage.folders.FoldersClient;
 import com.merge.api.resources.filestorage.forceresync.ForceResyncClient;
@@ -22,6 +23,7 @@ import com.merge.api.resources.filestorage.linkedaccounts.LinkedAccountsClient;
 import com.merge.api.resources.filestorage.linktoken.LinkTokenClient;
 import com.merge.api.resources.filestorage.passthrough.PassthroughClient;
 import com.merge.api.resources.filestorage.regeneratekey.RegenerateKeyClient;
+import com.merge.api.resources.filestorage.scopes.ScopesClient;
 import com.merge.api.resources.filestorage.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.filestorage.syncstatus.SyncStatusClient;
 import com.merge.api.resources.filestorage.users.UsersClient;
@@ -41,9 +43,13 @@ public class FilestorageClient {
 
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
+    protected final Supplier<ScopesClient> scopesClient;
+
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
     protected final Supplier<DrivesClient> drivesClient;
+
+    protected final Supplier<FieldMappingClient> fieldMappingClient;
 
     protected final Supplier<FilesClient> filesClient;
 
@@ -80,8 +86,10 @@ public class FilestorageClient {
         this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
         this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
+        this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.drivesClient = Suppliers.memoize(() -> new DrivesClient(clientOptions));
+        this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.filesClient = Suppliers.memoize(() -> new FilesClient(clientOptions));
         this.foldersClient = Suppliers.memoize(() -> new FoldersClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
@@ -118,12 +126,20 @@ public class FilestorageClient {
         return this.availableActionsClient.get();
     }
 
+    public ScopesClient scopes() {
+        return this.scopesClient.get();
+    }
+
     public DeleteAccountClient deleteAccount() {
         return this.deleteAccountClient.get();
     }
 
     public DrivesClient drives() {
         return this.drivesClient.get();
+    }
+
+    public FieldMappingClient fieldMapping() {
+        return this.fieldMappingClient.get();
     }
 
     public FilesClient files() {

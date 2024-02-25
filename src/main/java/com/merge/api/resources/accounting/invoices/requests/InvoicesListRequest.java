@@ -238,7 +238,7 @@ public final class InvoicesListRequest {
         return type;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof InvoicesListRequest && equalTo((InvoicesListRequest) other);
@@ -269,7 +269,7 @@ public final class InvoicesListRequest {
                 && type.equals(other.type);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.companyId,
@@ -291,7 +291,7 @@ public final class InvoicesListRequest {
                 this.type);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

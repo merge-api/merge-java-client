@@ -267,7 +267,7 @@ public final class Lead {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof Lead && equalTo((Lead) other);
@@ -303,7 +303,7 @@ public final class Lead {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.owner,
@@ -330,7 +330,7 @@ public final class Lead {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

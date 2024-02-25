@@ -197,7 +197,7 @@ public final class ContactsListRequest {
         return remoteId;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof ContactsListRequest && equalTo((ContactsListRequest) other);
@@ -225,7 +225,7 @@ public final class ContactsListRequest {
                 && remoteId.equals(other.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.accountId,
@@ -244,7 +244,7 @@ public final class ContactsListRequest {
                 this.remoteId);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

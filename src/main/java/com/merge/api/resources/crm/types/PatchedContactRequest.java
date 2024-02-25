@@ -144,7 +144,7 @@ public final class PatchedContactRequest {
         return remoteFields;
     }
 
-    @Override
+    @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
         return other instanceof PatchedContactRequest && equalTo((PatchedContactRequest) other);
@@ -169,7 +169,7 @@ public final class PatchedContactRequest {
                 && remoteFields.equals(other.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.firstName,
@@ -185,7 +185,7 @@ public final class PatchedContactRequest {
                 this.remoteFields);
     }
 
-    @Override
+    @java.lang.Override
     public String toString() {
         return ObjectMappers.stringify(this);
     }

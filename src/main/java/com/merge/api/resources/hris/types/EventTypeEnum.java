@@ -28,6 +28,8 @@ public enum EventTypeEnum {
 
     DELETED_DESTINATION("DELETED_DESTINATION"),
 
+    CHANGED_DESTINATION("CHANGED_DESTINATION"),
+
     CHANGED_SCOPES("CHANGED_SCOPES"),
 
     CHANGED_PERSONAL_INFORMATION("CHANGED_PERSONAL_INFORMATION"),
@@ -73,7 +75,7 @@ public enum EventTypeEnum {
     }
 
     @JsonValue
-    @Override
+    @java.lang.Override
     public String toString() {
         return this.value;
     }
