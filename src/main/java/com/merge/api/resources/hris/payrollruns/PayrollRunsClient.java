@@ -45,7 +45,7 @@ public class PayrollRunsClient {
     public PaginatedPayrollRunList list(PayrollRunsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/payroll-runs");
+                .addPathSegments("hris/v1/payroll-runs");
         if (request.getCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -115,10 +115,8 @@ public class PayrollRunsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -152,7 +150,7 @@ public class PayrollRunsClient {
     public PayrollRun retrieve(String id, PayrollRunsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/payroll-runs")
+                .addPathSegments("hris/v1/payroll-runs")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -174,10 +172,8 @@ public class PayrollRunsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

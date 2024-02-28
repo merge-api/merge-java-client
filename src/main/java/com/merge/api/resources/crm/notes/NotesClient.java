@@ -54,7 +54,7 @@ public class NotesClient {
     public PaginatedNoteList list(NotesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes");
+                .addPathSegments("crm/v1/notes");
         if (request.getAccountId().isPresent()) {
             httpUrl.addQueryParameter("account_id", request.getAccountId().get());
         }
@@ -118,10 +118,8 @@ public class NotesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -148,7 +146,7 @@ public class NotesClient {
     public NoteResponse create(NoteEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes");
+                .addPathSegments("crm/v1/notes");
         if (request.getIsDebugMode().isPresent()) {
             httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -173,10 +171,8 @@ public class NotesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -210,7 +206,7 @@ public class NotesClient {
     public Note retrieve(String id, NotesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes")
+                .addPathSegments("crm/v1/notes")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -232,10 +228,8 @@ public class NotesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -262,7 +256,7 @@ public class NotesClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes/meta/post")
+                .addPathSegments("crm/v1/notes/meta/post")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -272,10 +266,8 @@ public class NotesClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -311,7 +303,7 @@ public class NotesClient {
             NotesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/notes/remote-field-classes");
+                .addPathSegments("crm/v1/notes/remote-field-classes");
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
@@ -340,10 +332,8 @@ public class NotesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

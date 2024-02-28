@@ -38,7 +38,7 @@ public class LinkTokenClient {
     public LinkToken create(EndUserDetailsRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/link-token")
+                .addPathSegments("crm/v1/link-token")
                 .build();
         RequestBody body;
         try {
@@ -55,10 +55,8 @@ public class LinkTokenClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

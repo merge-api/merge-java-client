@@ -52,7 +52,7 @@ public class TimeOffClient {
     public PaginatedTimeOffList list(TimeOffListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off");
+                .addPathSegments("hris/v1/time-off");
         if (request.getApproverId().isPresent()) {
             httpUrl.addQueryParameter("approver_id", request.getApproverId().get());
         }
@@ -135,10 +135,8 @@ public class TimeOffClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -165,7 +163,7 @@ public class TimeOffClient {
     public TimeOffResponse create(TimeOffEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off");
+                .addPathSegments("hris/v1/time-off");
         if (request.getIsDebugMode().isPresent()) {
             httpUrl.addQueryParameter(
                     "is_debug_mode", request.getIsDebugMode().get().toString());
@@ -190,10 +188,8 @@ public class TimeOffClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -227,7 +223,7 @@ public class TimeOffClient {
     public TimeOff retrieve(String id, TimeOffRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off")
+                .addPathSegments("hris/v1/time-off")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
@@ -252,10 +248,8 @@ public class TimeOffClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -282,7 +276,7 @@ public class TimeOffClient {
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/time-off/meta/post")
+                .addPathSegments("hris/v1/time-off/meta/post")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -292,10 +286,8 @@ public class TimeOffClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

@@ -43,7 +43,7 @@ public class FieldMappingClient {
     public FieldMappingApiInstanceResponse fieldMappingsRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/field-mappings")
+                .addPathSegments("ticketing/v1/field-mappings")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -53,10 +53,8 @@ public class FieldMappingClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -85,7 +83,7 @@ public class FieldMappingClient {
             CreateFieldMappingRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/field-mappings")
+                .addPathSegments("ticketing/v1/field-mappings")
                 .build();
         RequestBody body;
         try {
@@ -102,10 +100,8 @@ public class FieldMappingClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -133,7 +129,7 @@ public class FieldMappingClient {
     public FieldMappingInstanceResponse fieldMappingsDestroy(String fieldMappingId, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/field-mappings")
+                .addPathSegments("ticketing/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
                 .build();
         Request okhttpRequest = new Request.Builder()
@@ -144,10 +140,8 @@ public class FieldMappingClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -185,7 +179,7 @@ public class FieldMappingClient {
             String fieldMappingId, PatchedEditFieldMappingRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/field-mappings")
+                .addPathSegments("ticketing/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
                 .build();
         RequestBody body;
@@ -203,10 +197,8 @@ public class FieldMappingClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -242,7 +234,7 @@ public class FieldMappingClient {
             RemoteFieldsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/remote-fields");
+                .addPathSegments("ticketing/v1/remote-fields");
         if (request.getCommonModels().isPresent()) {
             httpUrl.addQueryParameter("common_models", request.getCommonModels().get());
         }
@@ -258,10 +250,8 @@ public class FieldMappingClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -288,7 +278,7 @@ public class FieldMappingClient {
     public ExternalTargetFieldApiResponse targetFieldsRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/target-fields")
+                .addPathSegments("ticketing/v1/target-fields")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -298,10 +288,8 @@ public class FieldMappingClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

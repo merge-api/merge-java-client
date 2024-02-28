@@ -45,7 +45,7 @@ public class BenefitsClient {
     public PaginatedBenefitList list(BenefitsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/benefits");
+                .addPathSegments("hris/v1/benefits");
         if (request.getCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -94,10 +94,8 @@ public class BenefitsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -131,7 +129,7 @@ public class BenefitsClient {
     public Benefit retrieve(String id, BenefitsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/hris/v1/benefits")
+                .addPathSegments("hris/v1/benefits")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -148,10 +146,8 @@ public class BenefitsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

@@ -45,7 +45,7 @@ public class TaxRatesClient {
     public PaginatedTaxRateList list(TaxRatesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/tax-rates");
+                .addPathSegments("accounting/v1/tax-rates");
         if (request.getCompanyId().isPresent()) {
             httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -94,10 +94,8 @@ public class TaxRatesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -131,7 +129,7 @@ public class TaxRatesClient {
     public TaxRate retrieve(String id, TaxRatesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/tax-rates")
+                .addPathSegments("accounting/v1/tax-rates")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -148,10 +146,8 @@ public class TaxRatesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

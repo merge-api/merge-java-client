@@ -45,7 +45,7 @@ public class DrivesClient {
     public PaginatedDriveList list(DrivesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/drives");
+                .addPathSegments("filestorage/v1/drives");
         if (request.getCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -91,10 +91,8 @@ public class DrivesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -128,7 +126,7 @@ public class DrivesClient {
     public Drive retrieve(String id, DrivesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/drives")
+                .addPathSegments("filestorage/v1/drives")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -142,10 +140,8 @@ public class DrivesClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

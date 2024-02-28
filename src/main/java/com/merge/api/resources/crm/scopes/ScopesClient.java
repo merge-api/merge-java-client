@@ -38,7 +38,7 @@ public class ScopesClient {
     public CommonModelScopeApi defaultScopesRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/default-scopes")
+                .addPathSegments("crm/v1/default-scopes")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -48,10 +48,8 @@ public class ScopesClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -78,7 +76,7 @@ public class ScopesClient {
     public CommonModelScopeApi linkedAccountScopesRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/linked-account-scopes")
+                .addPathSegments("crm/v1/linked-account-scopes")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -88,10 +86,8 @@ public class ScopesClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -119,7 +115,7 @@ public class ScopesClient {
             LinkedAccountCommonModelScopeDeserializerRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/linked-account-scopes")
+                .addPathSegments("crm/v1/linked-account-scopes")
                 .build();
         RequestBody body;
         try {
@@ -136,10 +132,8 @@ public class ScopesClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

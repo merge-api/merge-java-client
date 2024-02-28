@@ -45,7 +45,7 @@ public class TagsClient {
     public PaginatedTagList list(TagsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tags");
+                .addPathSegments("ticketing/v1/tags");
         if (request.getCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -88,10 +88,8 @@ public class TagsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -125,7 +123,7 @@ public class TagsClient {
     public Tag retrieve(String id, TagsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ticketing/v1/tags")
+                .addPathSegments("ticketing/v1/tags")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -139,10 +137,8 @@ public class TagsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

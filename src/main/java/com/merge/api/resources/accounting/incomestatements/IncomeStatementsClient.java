@@ -45,7 +45,7 @@ public class IncomeStatementsClient {
     public PaginatedIncomeStatementList list(IncomeStatementsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/income-statements");
+                .addPathSegments("accounting/v1/income-statements");
         if (request.getCompanyId().isPresent()) {
             httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }
@@ -94,10 +94,8 @@ public class IncomeStatementsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -132,7 +130,7 @@ public class IncomeStatementsClient {
     public IncomeStatement retrieve(String id, IncomeStatementsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/accounting/v1/income-statements")
+                .addPathSegments("accounting/v1/income-statements")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get());
@@ -149,10 +147,8 @@ public class IncomeStatementsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

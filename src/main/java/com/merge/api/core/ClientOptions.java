@@ -5,6 +5,7 @@ package com.merge.api.core;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 import okhttp3.OkHttpClient;
 
@@ -26,7 +27,7 @@ public final class ClientOptions {
         this.headers = new HashMap<>();
         this.headers.putAll(headers);
         this.headers.putAll(Map.of(
-                "X-Fern-SDK-Name", "com.merge.fern:api-sdk", "X-Fern-SDK-Version", "1.0.6", "X-Fern-Language", "JAVA"));
+                "X-Fern-SDK-Name", "com.merge.fern:api-sdk", "X-Fern-SDK-Version", "1.0.7", "X-Fern-Language", "JAVA"));
         this.headerSuppliers = headerSuppliers;
         this.httpClient = httpClient;
         ;
@@ -49,6 +50,19 @@ public final class ClientOptions {
 
     public OkHttpClient httpClient() {
         return this.httpClient;
+    }
+
+    public OkHttpClient httpClientWithTimeout(RequestOptions requestOptions) {
+        if (requestOptions == null) {
+            return this.httpClient;
+        }
+        return this.httpClient
+                .newBuilder()
+                .callTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
+                .connectTimeout(0, TimeUnit.SECONDS)
+                .writeTimeout(0, TimeUnit.SECONDS)
+                .readTimeout(0, TimeUnit.SECONDS)
+                .build();
     }
 
     public static Builder builder() {

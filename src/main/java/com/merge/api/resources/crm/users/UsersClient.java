@@ -50,7 +50,7 @@ public class UsersClient {
     public PaginatedUserList list(UsersListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/users");
+                .addPathSegments("crm/v1/users");
         if (request.getCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "created_after", request.getCreatedAfter().get().toString());
@@ -98,10 +98,8 @@ public class UsersClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -135,7 +133,7 @@ public class UsersClient {
     public User retrieve(String id, UsersRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/users")
+                .addPathSegments("crm/v1/users")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -154,10 +152,8 @@ public class UsersClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -184,7 +180,7 @@ public class UsersClient {
     public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/users/ignore")
+                .addPathSegments("crm/v1/users/ignore")
                 .addPathSegment(modelId)
                 .build();
         RequestBody body;
@@ -202,10 +198,8 @@ public class UsersClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -241,7 +235,7 @@ public class UsersClient {
             UsersRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/users/remote-field-classes");
+                .addPathSegments("crm/v1/users/remote-field-classes");
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
@@ -270,10 +264,8 @@ public class UsersClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

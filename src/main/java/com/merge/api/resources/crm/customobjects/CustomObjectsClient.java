@@ -58,7 +58,7 @@ public class CustomObjectsClient {
             RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects");
         if (request.getCreatedAfter().isPresent()) {
@@ -108,10 +108,8 @@ public class CustomObjectsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -140,7 +138,7 @@ public class CustomObjectsClient {
             String customObjectClassId, CrmCustomObjectEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects");
         if (request.getIsDebugMode().isPresent()) {
@@ -167,10 +165,8 @@ public class CustomObjectsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -212,7 +208,7 @@ public class CustomObjectsClient {
             RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects")
                 .addPathSegment(id);
@@ -233,10 +229,8 @@ public class CustomObjectsClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -264,7 +258,7 @@ public class CustomObjectsClient {
             String customObjectClassId, String id, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects/meta/patch")
                 .addPathSegment(id)
@@ -277,10 +271,8 @@ public class CustomObjectsClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -308,7 +300,7 @@ public class CustomObjectsClient {
             String customObjectClassId, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/crm/v1/custom-object-classes")
+                .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
                 .addPathSegments("custom-objects/meta/post")
                 .build();
@@ -320,10 +312,8 @@ public class CustomObjectsClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

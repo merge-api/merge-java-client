@@ -40,7 +40,7 @@ public class WebhookReceiversClient {
     public List<WebhookReceiver> list(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/webhook-receivers")
+                .addPathSegments("filestorage/v1/webhook-receivers")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -50,10 +50,8 @@ public class WebhookReceiversClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -81,7 +79,7 @@ public class WebhookReceiversClient {
     public WebhookReceiver create(WebhookReceiverRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/filestorage/v1/webhook-receivers")
+                .addPathSegments("filestorage/v1/webhook-receivers")
                 .build();
         RequestBody body;
         try {
@@ -98,10 +96,8 @@ public class WebhookReceiversClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
