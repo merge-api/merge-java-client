@@ -42,7 +42,7 @@ public class SelectiveSyncClient {
     public List<LinkedAccountSelectiveSyncConfiguration> configurationsList(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/selective-sync/configurations")
+                .addPathSegments("ats/v1/selective-sync/configurations")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -52,10 +52,8 @@ public class SelectiveSyncClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -86,7 +84,7 @@ public class SelectiveSyncClient {
             LinkedAccountSelectiveSyncConfigurationListRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/selective-sync/configurations")
+                .addPathSegments("ats/v1/selective-sync/configurations")
                 .build();
         RequestBody body;
         try {
@@ -103,10 +101,8 @@ public class SelectiveSyncClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -142,7 +138,7 @@ public class SelectiveSyncClient {
     public PaginatedConditionSchemaList metaList(SelectiveSyncMetaListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/selective-sync/meta");
+                .addPathSegments("ats/v1/selective-sync/meta");
         if (request.getCommonModel().isPresent()) {
             httpUrl.addQueryParameter("common_model", request.getCommonModel().get());
         }
@@ -160,10 +156,8 @@ public class SelectiveSyncClient {
         Request okhttpRequest = _requestBuilder.build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

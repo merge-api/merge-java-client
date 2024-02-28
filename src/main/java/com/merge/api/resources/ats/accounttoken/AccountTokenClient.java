@@ -35,7 +35,7 @@ public class AccountTokenClient {
     public AccountToken retrieve(String publicToken, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/account-token")
+                .addPathSegments("ats/v1/account-token")
                 .addPathSegment(publicToken)
                 .build();
         Request okhttpRequest = new Request.Builder()
@@ -46,10 +46,8 @@ public class AccountTokenClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {

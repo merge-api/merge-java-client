@@ -39,7 +39,7 @@ public class AsyncPassthroughClient {
     public AsyncPassthroughReciept create(DataPassthroughRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/async-passthrough")
+                .addPathSegments("ats/v1/async-passthrough")
                 .build();
         RequestBody body;
         try {
@@ -56,10 +56,8 @@ public class AsyncPassthroughClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
@@ -86,7 +84,7 @@ public class AsyncPassthroughClient {
     public RemoteResponse retrieve(String asyncPassthroughReceiptId, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("api/ats/v1/async-passthrough")
+                .addPathSegments("ats/v1/async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)
                 .build();
         Request okhttpRequest = new Request.Builder()
@@ -97,10 +95,8 @@ public class AsyncPassthroughClient {
                 .build();
         try {
             OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions.getTimeout().isPresent()) {
-                client = client.newBuilder()
-                        .readTimeout(requestOptions.getTimeout().get(), requestOptions.getTimeoutTimeUnit())
-                        .build();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
