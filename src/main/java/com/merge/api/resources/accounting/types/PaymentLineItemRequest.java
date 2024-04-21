@@ -22,11 +22,11 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = PaymentLineItemRequest.Builder.class)
 public final class PaymentLineItemRequest {
+    private final Optional<String> remoteId;
+
     private final Optional<String> appliedAmount;
 
     private final Optional<OffsetDateTime> appliedDate;
-
-    private final Optional<String> remoteId;
 
     private final Optional<String> relatedObjectId;
 
@@ -39,22 +39,30 @@ public final class PaymentLineItemRequest {
     private final Map<String, Object> additionalProperties;
 
     private PaymentLineItemRequest(
+            Optional<String> remoteId,
             Optional<String> appliedAmount,
             Optional<OffsetDateTime> appliedDate,
-            Optional<String> remoteId,
             Optional<String> relatedObjectId,
             Optional<String> relatedObjectType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
+        this.remoteId = remoteId;
         this.appliedAmount = appliedAmount;
         this.appliedDate = appliedDate;
-        this.remoteId = remoteId;
         this.relatedObjectId = relatedObjectId;
         this.relatedObjectType = relatedObjectType;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
     }
 
     /**
@@ -71,14 +79,6 @@ public final class PaymentLineItemRequest {
     @JsonProperty("applied_date")
     public Optional<OffsetDateTime> getAppliedDate() {
         return appliedDate;
-    }
-
-    /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
     }
 
     /**
@@ -119,9 +119,9 @@ public final class PaymentLineItemRequest {
     }
 
     private boolean equalTo(PaymentLineItemRequest other) {
-        return appliedAmount.equals(other.appliedAmount)
+        return remoteId.equals(other.remoteId)
+                && appliedAmount.equals(other.appliedAmount)
                 && appliedDate.equals(other.appliedDate)
-                && remoteId.equals(other.remoteId)
                 && relatedObjectId.equals(other.relatedObjectId)
                 && relatedObjectType.equals(other.relatedObjectType)
                 && integrationParams.equals(other.integrationParams)
@@ -131,9 +131,9 @@ public final class PaymentLineItemRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.remoteId,
                 this.appliedAmount,
                 this.appliedDate,
-                this.remoteId,
                 this.relatedObjectId,
                 this.relatedObjectType,
                 this.integrationParams,
@@ -151,11 +151,11 @@ public final class PaymentLineItemRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> remoteId = Optional.empty();
+
         private Optional<String> appliedAmount = Optional.empty();
 
         private Optional<OffsetDateTime> appliedDate = Optional.empty();
-
-        private Optional<String> remoteId = Optional.empty();
 
         private Optional<String> relatedObjectId = Optional.empty();
 
@@ -171,13 +171,24 @@ public final class PaymentLineItemRequest {
         private Builder() {}
 
         public Builder from(PaymentLineItemRequest other) {
+            remoteId(other.getRemoteId());
             appliedAmount(other.getAppliedAmount());
             appliedDate(other.getAppliedDate());
-            remoteId(other.getRemoteId());
             relatedObjectId(other.getRelatedObjectId());
             relatedObjectType(other.getRelatedObjectType());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -200,17 +211,6 @@ public final class PaymentLineItemRequest {
 
         public Builder appliedDate(OffsetDateTime appliedDate) {
             this.appliedDate = Optional.of(appliedDate);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -260,9 +260,9 @@ public final class PaymentLineItemRequest {
 
         public PaymentLineItemRequest build() {
             return new PaymentLineItemRequest(
+                    remoteId,
                     appliedAmount,
                     appliedDate,
-                    remoteId,
                     relatedObjectId,
                     relatedObjectType,
                     integrationParams,

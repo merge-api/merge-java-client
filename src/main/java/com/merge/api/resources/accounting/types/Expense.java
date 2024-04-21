@@ -23,6 +23,14 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Expense.Builder.class)
 public final class Expense {
+    private final Optional<String> id;
+
+    private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<OffsetDateTime> transactionDate;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
@@ -53,14 +61,6 @@ public final class Expense {
 
     private final Optional<ExpenseAccountingPeriod> accountingPeriod;
 
-    private final Optional<String> id;
-
-    private final Optional<String> remoteId;
-
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -68,6 +68,10 @@ public final class Expense {
     private final Map<String, Object> additionalProperties;
 
     private Expense(
+            Optional<String> id,
+            Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<OffsetDateTime> transactionDate,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<ExpenseAccount> account,
@@ -83,13 +87,13 @@ public final class Expense {
             Optional<List<Optional<ExpenseTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<ExpenseAccountingPeriod> accountingPeriod,
-            Optional<String> id,
-            Optional<String> remoteId,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.id = id;
+        this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.transactionDate = transactionDate;
         this.remoteCreatedAt = remoteCreatedAt;
         this.account = account;
@@ -105,13 +109,35 @@ public final class Expense {
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
-        this.id = id;
-        this.remoteId = remoteId;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -536,32 +562,6 @@ public final class Expense {
         return accountingPeriod;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -584,7 +584,11 @@ public final class Expense {
     }
 
     private boolean equalTo(Expense other) {
-        return transactionDate.equals(other.transactionDate)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && transactionDate.equals(other.transactionDate)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && account.equals(other.account)
                 && contact.equals(other.contact)
@@ -599,10 +603,6 @@ public final class Expense {
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
-                && id.equals(other.id)
-                && remoteId.equals(other.remoteId)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -610,6 +610,10 @@ public final class Expense {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.transactionDate,
                 this.remoteCreatedAt,
                 this.account,
@@ -625,10 +629,6 @@ public final class Expense {
                 this.trackingCategories,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
-                this.id,
-                this.remoteId,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -644,6 +644,14 @@ public final class Expense {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
@@ -674,14 +682,6 @@ public final class Expense {
 
         private Optional<ExpenseAccountingPeriod> accountingPeriod = Optional.empty();
 
-        private Optional<String> id = Optional.empty();
-
-        private Optional<String> remoteId = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -692,6 +692,10 @@ public final class Expense {
         private Builder() {}
 
         public Builder from(Expense other) {
+            id(other.getId());
+            remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             transactionDate(other.getTransactionDate());
             remoteCreatedAt(other.getRemoteCreatedAt());
             account(other.getAccount());
@@ -707,12 +711,52 @@ public final class Expense {
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
-            id(other.getId());
-            remoteId(other.getRemoteId());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -881,50 +925,6 @@ public final class Expense {
             return this;
         }
 
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
-            return this;
-        }
-
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -949,6 +949,10 @@ public final class Expense {
 
         public Expense build() {
             return new Expense(
+                    id,
+                    remoteId,
+                    createdAt,
+                    modifiedAt,
                     transactionDate,
                     remoteCreatedAt,
                     account,
@@ -964,10 +968,6 @@ public final class Expense {
                     trackingCategories,
                     remoteWasDeleted,
                     accountingPeriod,
-                    id,
-                    remoteId,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

@@ -22,6 +22,10 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = RemoteFieldClassForCustomObjectClass.Builder.class)
 public final class RemoteFieldClassForCustomObjectClass {
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> displayName;
 
     private final Optional<String> remoteKeyName;
@@ -38,13 +42,11 @@ public final class RemoteFieldClassForCustomObjectClass {
 
     private final Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldClassForCustomObjectClass(
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> displayName,
             Optional<String> remoteKeyName,
             Optional<String> description,
@@ -53,9 +55,9 @@ public final class RemoteFieldClassForCustomObjectClass {
             Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat,
             Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices,
             Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.displayName = displayName;
         this.remoteKeyName = remoteKeyName;
         this.description = description;
@@ -64,9 +66,20 @@ public final class RemoteFieldClassForCustomObjectClass {
         this.fieldFormat = fieldFormat;
         this.fieldChoices = fieldChoices;
         this.itemSchema = itemSchema;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     @JsonProperty("display_name")
@@ -109,19 +122,6 @@ public final class RemoteFieldClassForCustomObjectClass {
         return itemSchema;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -135,21 +135,23 @@ public final class RemoteFieldClassForCustomObjectClass {
     }
 
     private boolean equalTo(RemoteFieldClassForCustomObjectClass other) {
-        return displayName.equals(other.displayName)
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && displayName.equals(other.displayName)
                 && remoteKeyName.equals(other.remoteKeyName)
                 && description.equals(other.description)
                 && isRequired.equals(other.isRequired)
                 && fieldType.equals(other.fieldType)
                 && fieldFormat.equals(other.fieldFormat)
                 && fieldChoices.equals(other.fieldChoices)
-                && itemSchema.equals(other.itemSchema)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && itemSchema.equals(other.itemSchema);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.createdAt,
+                this.modifiedAt,
                 this.displayName,
                 this.remoteKeyName,
                 this.description,
@@ -157,9 +159,7 @@ public final class RemoteFieldClassForCustomObjectClass {
                 this.fieldType,
                 this.fieldFormat,
                 this.fieldChoices,
-                this.itemSchema,
-                this.createdAt,
-                this.modifiedAt);
+                this.itemSchema);
     }
 
     @java.lang.Override
@@ -173,6 +173,10 @@ public final class RemoteFieldClassForCustomObjectClass {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<String> displayName = Optional.empty();
 
         private Optional<String> remoteKeyName = Optional.empty();
@@ -189,16 +193,14 @@ public final class RemoteFieldClassForCustomObjectClass {
 
         private Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(RemoteFieldClassForCustomObjectClass other) {
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             displayName(other.getDisplayName());
             remoteKeyName(other.getRemoteKeyName());
             description(other.getDescription());
@@ -207,8 +209,28 @@ public final class RemoteFieldClassForCustomObjectClass {
             fieldFormat(other.getFieldFormat());
             fieldChoices(other.getFieldChoices());
             itemSchema(other.getItemSchema());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -300,30 +322,10 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public RemoteFieldClassForCustomObjectClass build() {
             return new RemoteFieldClassForCustomObjectClass(
+                    createdAt,
+                    modifiedAt,
                     displayName,
                     remoteKeyName,
                     description,
@@ -332,8 +334,6 @@ public final class RemoteFieldClassForCustomObjectClass {
                     fieldFormat,
                     fieldChoices,
                     itemSchema,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

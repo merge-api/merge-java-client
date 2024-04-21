@@ -10,10 +10,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +27,10 @@ public final class TimesheetEntry {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> employee;
 
     private final Optional<Double> hoursWorked;
@@ -33,30 +39,38 @@ public final class TimesheetEntry {
 
     private final Optional<OffsetDateTime> endTime;
 
-    private final Optional<OffsetDateTime> createdAt;
+    private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> modifiedAt;
+    private final Optional<Map<String, JsonNode>> fieldMappings;
+
+    private final Optional<List<Optional<Map<String, JsonNode>>>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
     private TimesheetEntry(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> employee,
             Optional<Double> hoursWorked,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
+            Optional<Boolean> remoteWasDeleted,
+            Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<List<Optional<Map<String, JsonNode>>>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.employee = employee;
         this.hoursWorked = hoursWorked;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
+        this.remoteWasDeleted = remoteWasDeleted;
+        this.fieldMappings = fieldMappings;
+        this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -71,6 +85,19 @@ public final class TimesheetEntry {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -105,17 +132,22 @@ public final class TimesheetEntry {
         return endTime;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
     }
 
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
+    @JsonProperty("field_mappings")
+    public Optional<Map<String, JsonNode>> getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonProperty("remote_data")
+    public Optional<List<Optional<Map<String, JsonNode>>>> getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -132,12 +164,15 @@ public final class TimesheetEntry {
     private boolean equalTo(TimesheetEntry other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && employee.equals(other.employee)
                 && hoursWorked.equals(other.hoursWorked)
                 && startTime.equals(other.startTime)
                 && endTime.equals(other.endTime)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && fieldMappings.equals(other.fieldMappings)
+                && remoteData.equals(other.remoteData);
     }
 
     @java.lang.Override
@@ -145,12 +180,15 @@ public final class TimesheetEntry {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.employee,
                 this.hoursWorked,
                 this.startTime,
                 this.endTime,
-                this.createdAt,
-                this.modifiedAt);
+                this.remoteWasDeleted,
+                this.fieldMappings,
+                this.remoteData);
     }
 
     @java.lang.Override
@@ -168,6 +206,10 @@ public final class TimesheetEntry {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<String> employee = Optional.empty();
 
         private Optional<Double> hoursWorked = Optional.empty();
@@ -176,9 +218,11 @@ public final class TimesheetEntry {
 
         private Optional<OffsetDateTime> endTime = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+
+        private Optional<List<Optional<Map<String, JsonNode>>>> remoteData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -188,12 +232,15 @@ public final class TimesheetEntry {
         public Builder from(TimesheetEntry other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             employee(other.getEmployee());
             hoursWorked(other.getHoursWorked());
             startTime(other.getStartTime());
             endTime(other.getEndTime());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            remoteWasDeleted(other.getRemoteWasDeleted());
+            fieldMappings(other.getFieldMappings());
+            remoteData(other.getRemoteData());
             return this;
         }
 
@@ -216,6 +263,28 @@ public final class TimesheetEntry {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -263,25 +332,36 @@ public final class TimesheetEntry {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
             return this;
         }
 
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
+        @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
+        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+            this.fieldMappings = fieldMappings;
             return this;
         }
 
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+            this.fieldMappings = Optional.of(fieldMappings);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
+        public Builder remoteData(Optional<List<Optional<Map<String, JsonNode>>>> remoteData) {
+            this.remoteData = remoteData;
+            return this;
+        }
+
+        public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
+            this.remoteData = Optional.of(remoteData);
             return this;
         }
 
@@ -289,12 +369,15 @@ public final class TimesheetEntry {
             return new TimesheetEntry(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     employee,
                     hoursWorked,
                     startTime,
                     endTime,
-                    createdAt,
-                    modifiedAt,
+                    remoteWasDeleted,
+                    fieldMappings,
+                    remoteData,
                     additionalProperties);
         }
     }

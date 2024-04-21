@@ -44,6 +44,8 @@ public final class EndUserDetailsRequest {
     private final Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
             categoryCommonModelScopes;
 
+    private final Optional<String> language;
+
     private final Map<String, Object> additionalProperties;
 
     private EndUserDetailsRequest(
@@ -57,6 +59,7 @@ public final class EndUserDetailsRequest {
             Optional<List<CommonModelScopesBodyRequest>> commonModels,
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
+            Optional<String> language,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -67,6 +70,7 @@ public final class EndUserDetailsRequest {
         this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
         this.commonModels = commonModels;
         this.categoryCommonModelScopes = categoryCommonModelScopes;
+        this.language = language;
         this.additionalProperties = additionalProperties;
     }
 
@@ -143,6 +147,14 @@ public final class EndUserDetailsRequest {
         return categoryCommonModelScopes;
     }
 
+    /**
+     * @return The language code for the language to localize Merge Link to.
+     */
+    @JsonProperty("language")
+    public Optional<String> getLanguage() {
+        return language;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -163,7 +175,8 @@ public final class EndUserDetailsRequest {
                 && linkExpiryMins.equals(other.linkExpiryMins)
                 && shouldCreateMagicLinkUrl.equals(other.shouldCreateMagicLinkUrl)
                 && commonModels.equals(other.commonModels)
-                && categoryCommonModelScopes.equals(other.categoryCommonModelScopes);
+                && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
+                && language.equals(other.language);
     }
 
     @java.lang.Override
@@ -177,7 +190,8 @@ public final class EndUserDetailsRequest {
                 this.linkExpiryMins,
                 this.shouldCreateMagicLinkUrl,
                 this.commonModels,
-                this.categoryCommonModelScopes);
+                this.categoryCommonModelScopes,
+                this.language);
     }
 
     @java.lang.Override
@@ -234,6 +248,10 @@ public final class EndUserDetailsRequest {
 
         _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
+
+        _FinalStage language(Optional<String> language);
+
+        _FinalStage language(String language);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -244,6 +262,8 @@ public final class EndUserDetailsRequest {
         private String endUserOrganizationName;
 
         private String endUserOriginId;
+
+        private Optional<String> language = Optional.empty();
 
         private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                 categoryCommonModelScopes = Optional.empty();
@@ -274,6 +294,7 @@ public final class EndUserDetailsRequest {
             shouldCreateMagicLinkUrl(other.getShouldCreateMagicLinkUrl());
             commonModels(other.getCommonModels());
             categoryCommonModelScopes(other.getCategoryCommonModelScopes());
+            language(other.getLanguage());
             return this;
         }
 
@@ -307,6 +328,23 @@ public final class EndUserDetailsRequest {
         @JsonSetter("end_user_origin_id")
         public _FinalStage endUserOriginId(String endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
+            return this;
+        }
+
+        /**
+         * <p>The language code for the language to localize Merge Link to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage language(String language) {
+            this.language = Optional.of(language);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "language", nulls = Nulls.SKIP)
+        public _FinalStage language(Optional<String> language) {
+            this.language = language;
             return this;
         }
 
@@ -438,6 +476,7 @@ public final class EndUserDetailsRequest {
                     shouldCreateMagicLinkUrl,
                     commonModels,
                     categoryCommonModelScopes,
+                    language,
                     additionalProperties);
         }
     }

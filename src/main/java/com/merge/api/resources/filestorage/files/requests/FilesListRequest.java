@@ -38,6 +38,8 @@ public final class FilesListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<String> mimeType;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -59,6 +61,7 @@ public final class FilesListRequest {
             Optional<String> folderId,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<String> mimeType,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> name,
@@ -73,6 +76,7 @@ public final class FilesListRequest {
         this.folderId = folderId;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.mimeType = mimeType;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.name = name;
@@ -146,6 +150,14 @@ public final class FilesListRequest {
     }
 
     /**
+     * @return If provided, will only return files with these mime_types. Multiple values can be separated by commas.
+     */
+    @JsonProperty("mime_type")
+    public Optional<String> getMimeType() {
+        return mimeType;
+    }
+
+    /**
      * @return If provided, only objects synced by Merge after this date time will be returned.
      */
     @JsonProperty("modified_after")
@@ -205,6 +217,7 @@ public final class FilesListRequest {
                 && folderId.equals(other.folderId)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && mimeType.equals(other.mimeType)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && name.equals(other.name)
@@ -223,6 +236,7 @@ public final class FilesListRequest {
                 this.folderId,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.mimeType,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.name,
@@ -257,6 +271,8 @@ public final class FilesListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<String> mimeType = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -281,6 +297,7 @@ public final class FilesListRequest {
             folderId(other.getFolderId());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            mimeType(other.getMimeType());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             name(other.getName());
@@ -377,6 +394,17 @@ public final class FilesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
+        public Builder mimeType(Optional<String> mimeType) {
+            this.mimeType = mimeType;
+            return this;
+        }
+
+        public Builder mimeType(String mimeType) {
+            this.mimeType = Optional.of(mimeType);
+            return this;
+        }
+
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -442,6 +470,7 @@ public final class FilesListRequest {
                     folderId,
                     includeDeletedData,
                     includeRemoteData,
+                    mimeType,
                     modifiedAfter,
                     modifiedBefore,
                     name,

@@ -26,14 +26,14 @@ public class ScopesClient {
     }
 
     /**
-     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>.
+     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi defaultScopesRetrieve() {
         return defaultScopesRetrieve(null);
     }
 
     /**
-     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>.
+     * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi defaultScopesRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -64,14 +64,14 @@ public class ScopesClient {
     }
 
     /**
-     * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>.
+     * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi linkedAccountScopesRetrieve() {
         return linkedAccountScopesRetrieve(null);
     }
 
     /**
-     * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>.
+     * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi linkedAccountScopesRetrieve(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -102,14 +102,14 @@ public class ScopesClient {
     }
 
     /**
-     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>
+     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>
      */
     public CommonModelScopeApi linkedAccountScopesCreate(LinkedAccountCommonModelScopeDeserializerRequest request) {
         return linkedAccountScopesCreate(request, null);
     }
 
     /**
-     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn More</a>
+     * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. <a href="https://help.merge.dev/en/articles/8828211-common-model-and-field-scopes">Learn more</a>
      */
     public CommonModelScopeApi linkedAccountScopesCreate(
             LinkedAccountCommonModelScopeDeserializerRequest request, RequestOptions requestOptions) {

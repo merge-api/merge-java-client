@@ -27,13 +27,13 @@ public final class PayGroup {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> payGroupName;
-
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> payGroupName;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -44,19 +44,19 @@ public final class PayGroup {
     private PayGroup(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> payGroupName,
-            Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> payGroupName,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
-        this.payGroupName = payGroupName;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.payGroupName = payGroupName;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -75,6 +75,19 @@ public final class PayGroup {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
+    }
+
     /**
      * @return The pay group name.
      */
@@ -89,19 +102,6 @@ public final class PayGroup {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
     }
 
     @JsonProperty("field_mappings")
@@ -128,10 +128,10 @@ public final class PayGroup {
     private boolean equalTo(PayGroup other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
-                && payGroupName.equals(other.payGroupName)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && payGroupName.equals(other.payGroupName)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -141,10 +141,10 @@ public final class PayGroup {
         return Objects.hash(
                 this.id,
                 this.remoteId,
-                this.payGroupName,
-                this.remoteWasDeleted,
                 this.createdAt,
                 this.modifiedAt,
+                this.payGroupName,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -164,13 +164,13 @@ public final class PayGroup {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> payGroupName = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> payGroupName = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -184,10 +184,10 @@ public final class PayGroup {
         public Builder from(PayGroup other) {
             id(other.getId());
             remoteId(other.getRemoteId());
-            payGroupName(other.getPayGroupName());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            payGroupName(other.getPayGroupName());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -215,28 +215,6 @@ public final class PayGroup {
             return this;
         }
 
-        @JsonSetter(value = "pay_group_name", nulls = Nulls.SKIP)
-        public Builder payGroupName(Optional<String> payGroupName) {
-            this.payGroupName = payGroupName;
-            return this;
-        }
-
-        public Builder payGroupName(String payGroupName) {
-            this.payGroupName = Optional.of(payGroupName);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
-            return this;
-        }
-
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -256,6 +234,28 @@ public final class PayGroup {
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
             this.modifiedAt = Optional.of(modifiedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "pay_group_name", nulls = Nulls.SKIP)
+        public Builder payGroupName(Optional<String> payGroupName) {
+            this.payGroupName = payGroupName;
+            return this;
+        }
+
+        public Builder payGroupName(String payGroupName) {
+            this.payGroupName = Optional.of(payGroupName);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -285,10 +285,10 @@ public final class PayGroup {
             return new PayGroup(
                     id,
                     remoteId,
-                    payGroupName,
-                    remoteWasDeleted,
                     createdAt,
                     modifiedAt,
+                    payGroupName,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

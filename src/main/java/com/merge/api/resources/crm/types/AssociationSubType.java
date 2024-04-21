@@ -23,35 +23,30 @@ import java.util.Optional;
 public final class AssociationSubType {
     private final Optional<String> id;
 
-    private final Optional<String> originType;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> originType;
 
     private final Map<String, Object> additionalProperties;
 
     private AssociationSubType(
             Optional<String> id,
-            Optional<String> originType,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> originType,
             Map<String, Object> additionalProperties) {
         this.id = id;
-        this.originType = originType;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.originType = originType;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
-    }
-
-    @JsonProperty("origin_type")
-    public Optional<String> getOriginType() {
-        return originType;
     }
 
     @JsonProperty("created_at")
@@ -67,6 +62,11 @@ public final class AssociationSubType {
         return modifiedAt;
     }
 
+    @JsonProperty("origin_type")
+    public Optional<String> getOriginType() {
+        return originType;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -80,14 +80,14 @@ public final class AssociationSubType {
 
     private boolean equalTo(AssociationSubType other) {
         return id.equals(other.id)
-                && originType.equals(other.originType)
                 && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && modifiedAt.equals(other.modifiedAt)
+                && originType.equals(other.originType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.originType, this.createdAt, this.modifiedAt);
+        return Objects.hash(this.id, this.createdAt, this.modifiedAt, this.originType);
     }
 
     @java.lang.Override
@@ -103,11 +103,11 @@ public final class AssociationSubType {
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
-        private Optional<String> originType = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> originType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -116,9 +116,9 @@ public final class AssociationSubType {
 
         public Builder from(AssociationSubType other) {
             id(other.getId());
-            originType(other.getOriginType());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            originType(other.getOriginType());
             return this;
         }
 
@@ -130,17 +130,6 @@ public final class AssociationSubType {
 
         public Builder id(String id) {
             this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "origin_type", nulls = Nulls.SKIP)
-        public Builder originType(Optional<String> originType) {
-            this.originType = originType;
-            return this;
-        }
-
-        public Builder originType(String originType) {
-            this.originType = Optional.of(originType);
             return this;
         }
 
@@ -166,8 +155,19 @@ public final class AssociationSubType {
             return this;
         }
 
+        @JsonSetter(value = "origin_type", nulls = Nulls.SKIP)
+        public Builder originType(Optional<String> originType) {
+            this.originType = originType;
+            return this;
+        }
+
+        public Builder originType(String originType) {
+            this.originType = Optional.of(originType);
+            return this;
+        }
+
         public AssociationSubType build() {
-            return new AssociationSubType(id, originType, createdAt, modifiedAt, additionalProperties);
+            return new AssociationSubType(id, createdAt, modifiedAt, originType, additionalProperties);
         }
     }
 }

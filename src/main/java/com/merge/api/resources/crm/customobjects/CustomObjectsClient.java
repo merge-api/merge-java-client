@@ -245,48 +245,6 @@ public class CustomObjectsClient {
     }
 
     /**
-     * Returns metadata for <code>CRMCustomObject</code> PATCHs.
-     */
-    public MetaResponse customObjectClassesCustomObjectsMetaPatchRetrieve(String customObjectClassId, String id) {
-        return customObjectClassesCustomObjectsMetaPatchRetrieve(customObjectClassId, id, null);
-    }
-
-    /**
-     * Returns metadata for <code>CRMCustomObject</code> PATCHs.
-     */
-    public MetaResponse customObjectClassesCustomObjectsMetaPatchRetrieve(
-            String customObjectClassId, String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("crm/v1/custom-object-classes")
-                .addPathSegment(customObjectClassId)
-                .addPathSegments("custom-objects/meta/patch")
-                .addPathSegment(id)
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .build();
-        try {
-            OkHttpClient client = clientOptions.httpClient();
-            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-                client = clientOptions.httpClientWithTimeout(requestOptions);
-            }
-            Response response = client.newCall(okhttpRequest).execute();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), MetaResponse.class);
-            }
-            throw new ApiError(
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Object.class));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    /**
      * Returns metadata for <code>CRMCustomObject</code> POSTs.
      */
     public MetaResponse customObjectClassesCustomObjectsMetaPostRetrieve(String customObjectClassId) {

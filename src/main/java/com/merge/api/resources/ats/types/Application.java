@@ -27,6 +27,10 @@ public final class Application {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<ApplicationCandidate> candidate;
 
     private final Optional<ApplicationJob> job;
@@ -34,6 +38,8 @@ public final class Application {
     private final Optional<OffsetDateTime> appliedAt;
 
     private final Optional<OffsetDateTime> rejectedAt;
+
+    private final Optional<List<Optional<ApplicationOffersItem>>> offers;
 
     private final Optional<String> source;
 
@@ -45,10 +51,6 @@ public final class Application {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -58,33 +60,35 @@ public final class Application {
     private Application(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<ApplicationCandidate> candidate,
             Optional<ApplicationJob> job,
             Optional<OffsetDateTime> appliedAt,
             Optional<OffsetDateTime> rejectedAt,
+            Optional<List<Optional<ApplicationOffersItem>>> offers,
             Optional<String> source,
             Optional<ApplicationCreditedTo> creditedTo,
             Optional<ApplicationCurrentStage> currentStage,
             Optional<ApplicationRejectReason> rejectReason,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.candidate = candidate;
         this.job = job;
         this.appliedAt = appliedAt;
         this.rejectedAt = rejectedAt;
+        this.offers = offers;
         this.source = source;
         this.creditedTo = creditedTo;
         this.currentStage = currentStage;
         this.rejectReason = rejectReason;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -101,6 +105,19 @@ public final class Application {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -133,6 +150,11 @@ public final class Application {
     @JsonProperty("rejected_at")
     public Optional<OffsetDateTime> getRejectedAt() {
         return rejectedAt;
+    }
+
+    @JsonProperty("offers")
+    public Optional<List<Optional<ApplicationOffersItem>>> getOffers() {
+        return offers;
     }
 
     /**
@@ -172,19 +194,6 @@ public final class Application {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -209,17 +218,18 @@ public final class Application {
     private boolean equalTo(Application other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && candidate.equals(other.candidate)
                 && job.equals(other.job)
                 && appliedAt.equals(other.appliedAt)
                 && rejectedAt.equals(other.rejectedAt)
+                && offers.equals(other.offers)
                 && source.equals(other.source)
                 && creditedTo.equals(other.creditedTo)
                 && currentStage.equals(other.currentStage)
                 && rejectReason.equals(other.rejectReason)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -229,17 +239,18 @@ public final class Application {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.candidate,
                 this.job,
                 this.appliedAt,
                 this.rejectedAt,
+                this.offers,
                 this.source,
                 this.creditedTo,
                 this.currentStage,
                 this.rejectReason,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -259,6 +270,10 @@ public final class Application {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<ApplicationCandidate> candidate = Optional.empty();
 
         private Optional<ApplicationJob> job = Optional.empty();
@@ -266,6 +281,8 @@ public final class Application {
         private Optional<OffsetDateTime> appliedAt = Optional.empty();
 
         private Optional<OffsetDateTime> rejectedAt = Optional.empty();
+
+        private Optional<List<Optional<ApplicationOffersItem>>> offers = Optional.empty();
 
         private Optional<String> source = Optional.empty();
 
@@ -276,10 +293,6 @@ public final class Application {
         private Optional<ApplicationRejectReason> rejectReason = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -293,17 +306,18 @@ public final class Application {
         public Builder from(Application other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             candidate(other.getCandidate());
             job(other.getJob());
             appliedAt(other.getAppliedAt());
             rejectedAt(other.getRejectedAt());
+            offers(other.getOffers());
             source(other.getSource());
             creditedTo(other.getCreditedTo());
             currentStage(other.getCurrentStage());
             rejectReason(other.getRejectReason());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -328,6 +342,28 @@ public final class Application {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -372,6 +408,17 @@ public final class Application {
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
             this.rejectedAt = Optional.of(rejectedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "offers", nulls = Nulls.SKIP)
+        public Builder offers(Optional<List<Optional<ApplicationOffersItem>>> offers) {
+            this.offers = offers;
+            return this;
+        }
+
+        public Builder offers(List<Optional<ApplicationOffersItem>> offers) {
+            this.offers = Optional.of(offers);
             return this;
         }
 
@@ -430,28 +477,6 @@ public final class Application {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -478,17 +503,18 @@ public final class Application {
             return new Application(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     candidate,
                     job,
                     appliedAt,
                     rejectedAt,
+                    offers,
                     source,
                     creditedTo,
                     currentStage,
                     rejectReason,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

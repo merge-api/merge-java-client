@@ -66,16 +66,25 @@ public final class DataPassthroughRequest {
         return method;
     }
 
+    /**
+     * @return The path of the request in the third party's platform.
+     */
     @JsonProperty("path")
     public String getPath() {
         return path;
     }
 
+    /**
+     * @return An optional override of the third party's base url for the request.
+     */
     @JsonProperty("base_url_override")
     public Optional<String> getBaseUrlOverride() {
         return baseUrlOverride;
     }
 
+    /**
+     * @return The data with the request. You must include a <code>request_format</code> parameter matching the data's format
+     */
     @JsonProperty("data")
     public Optional<String> getData() {
         return data;
@@ -235,6 +244,10 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>The path of the request in the third party's platform.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("path")
         public _FinalStage path(String path) {
@@ -306,6 +319,10 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>The data with the request. You must include a <code>request_format</code> parameter matching the data's format</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage data(String data) {
             this.data = Optional.of(data);
@@ -319,6 +336,10 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>An optional override of the third party's base url for the request.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage baseUrlOverride(String baseUrlOverride) {
             this.baseUrlOverride = Optional.of(baseUrlOverride);

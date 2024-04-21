@@ -51,6 +51,8 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> dependent;
 
+    private final Optional<List<RemoteFieldApi>> timesheetEntry;
+
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldApiResponse(
@@ -69,6 +71,7 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> payGroup,
             Optional<List<RemoteFieldApi>> group,
             Optional<List<RemoteFieldApi>> dependent,
+            Optional<List<RemoteFieldApi>> timesheetEntry,
             Map<String, Object> additionalProperties) {
         this.benefit = benefit;
         this.employerBenefit = employerBenefit;
@@ -85,6 +88,7 @@ public final class RemoteFieldApiResponse {
         this.payGroup = payGroup;
         this.group = group;
         this.dependent = dependent;
+        this.timesheetEntry = timesheetEntry;
         this.additionalProperties = additionalProperties;
     }
 
@@ -163,6 +167,11 @@ public final class RemoteFieldApiResponse {
         return dependent;
     }
 
+    @JsonProperty("TimesheetEntry")
+    public Optional<List<RemoteFieldApi>> getTimesheetEntry() {
+        return timesheetEntry;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -189,7 +198,8 @@ public final class RemoteFieldApiResponse {
                 && bankInfo.equals(other.bankInfo)
                 && payGroup.equals(other.payGroup)
                 && group.equals(other.group)
-                && dependent.equals(other.dependent);
+                && dependent.equals(other.dependent)
+                && timesheetEntry.equals(other.timesheetEntry);
     }
 
     @java.lang.Override
@@ -209,7 +219,8 @@ public final class RemoteFieldApiResponse {
                 this.bankInfo,
                 this.payGroup,
                 this.group,
-                this.dependent);
+                this.dependent,
+                this.timesheetEntry);
     }
 
     @java.lang.Override
@@ -253,6 +264,8 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> dependent = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> timesheetEntry = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -274,6 +287,7 @@ public final class RemoteFieldApiResponse {
             payGroup(other.getPayGroup());
             group(other.getGroup());
             dependent(other.getDependent());
+            timesheetEntry(other.getTimesheetEntry());
             return this;
         }
 
@@ -442,6 +456,17 @@ public final class RemoteFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "TimesheetEntry", nulls = Nulls.SKIP)
+        public Builder timesheetEntry(Optional<List<RemoteFieldApi>> timesheetEntry) {
+            this.timesheetEntry = timesheetEntry;
+            return this;
+        }
+
+        public Builder timesheetEntry(List<RemoteFieldApi> timesheetEntry) {
+            this.timesheetEntry = Optional.of(timesheetEntry);
+            return this;
+        }
+
         public RemoteFieldApiResponse build() {
             return new RemoteFieldApiResponse(
                     benefit,
@@ -459,6 +484,7 @@ public final class RemoteFieldApiResponse {
                     payGroup,
                     group,
                     dependent,
+                    timesheetEntry,
                     additionalProperties);
         }
     }

@@ -21,27 +21,40 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = PhoneNumber.Builder.class)
 public final class PhoneNumber {
-    private final Optional<String> value;
-
-    private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> value;
+
+    private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
+
     private final Map<String, Object> additionalProperties;
 
     private PhoneNumber(
-            Optional<String> value,
-            Optional<PhoneNumberPhoneNumberType> phoneNumberType,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> value,
+            Optional<PhoneNumberPhoneNumberType> phoneNumberType,
             Map<String, Object> additionalProperties) {
-        this.value = value;
-        this.phoneNumberType = phoneNumberType;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.value = value;
+        this.phoneNumberType = phoneNumberType;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -67,19 +80,6 @@ public final class PhoneNumber {
         return phoneNumberType;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -92,15 +92,15 @@ public final class PhoneNumber {
     }
 
     private boolean equalTo(PhoneNumber other) {
-        return value.equals(other.value)
-                && phoneNumberType.equals(other.phoneNumberType)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && value.equals(other.value)
+                && phoneNumberType.equals(other.phoneNumberType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.value, this.phoneNumberType, this.createdAt, this.modifiedAt);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.phoneNumberType);
     }
 
     @java.lang.Override
@@ -114,13 +114,13 @@ public final class PhoneNumber {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> value = Optional.empty();
-
-        private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> value = Optional.empty();
+
+        private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -128,32 +128,10 @@ public final class PhoneNumber {
         private Builder() {}
 
         public Builder from(PhoneNumber other) {
-            value(other.getValue());
-            phoneNumberType(other.getPhoneNumberType());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
-            return this;
-        }
-
-        @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public Builder value(Optional<String> value) {
-            this.value = value;
-            return this;
-        }
-
-        public Builder value(String value) {
-            this.value = Optional.of(value);
-            return this;
-        }
-
-        @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
-        public Builder phoneNumberType(Optional<PhoneNumberPhoneNumberType> phoneNumberType) {
-            this.phoneNumberType = phoneNumberType;
-            return this;
-        }
-
-        public Builder phoneNumberType(PhoneNumberPhoneNumberType phoneNumberType) {
-            this.phoneNumberType = Optional.of(phoneNumberType);
+            value(other.getValue());
+            phoneNumberType(other.getPhoneNumberType());
             return this;
         }
 
@@ -179,8 +157,30 @@ public final class PhoneNumber {
             return this;
         }
 
+        @JsonSetter(value = "value", nulls = Nulls.SKIP)
+        public Builder value(Optional<String> value) {
+            this.value = value;
+            return this;
+        }
+
+        public Builder value(String value) {
+            this.value = Optional.of(value);
+            return this;
+        }
+
+        @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
+        public Builder phoneNumberType(Optional<PhoneNumberPhoneNumberType> phoneNumberType) {
+            this.phoneNumberType = phoneNumberType;
+            return this;
+        }
+
+        public Builder phoneNumberType(PhoneNumberPhoneNumberType phoneNumberType) {
+            this.phoneNumberType = Optional.of(phoneNumberType);
+            return this;
+        }
+
         public PhoneNumber build() {
-            return new PhoneNumber(value, phoneNumberType, createdAt, modifiedAt, additionalProperties);
+            return new PhoneNumber(createdAt, modifiedAt, value, phoneNumberType, additionalProperties);
         }
     }
 }

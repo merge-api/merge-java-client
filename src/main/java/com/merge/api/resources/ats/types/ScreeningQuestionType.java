@@ -31,7 +31,7 @@ public final class ScreeningQuestionType {
 
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
-            return visitor.visit((TypeEnum) this.value);
+            return visitor.visit((ScreeningQuestionTypeEnum) this.value);
         } else if (this.type == 1) {
             return visitor.visit((String) this.value);
         }
@@ -58,7 +58,7 @@ public final class ScreeningQuestionType {
         return this.value.toString();
     }
 
-    public static ScreeningQuestionType of(TypeEnum value) {
+    public static ScreeningQuestionType of(ScreeningQuestionTypeEnum value) {
         return new ScreeningQuestionType(value, 0);
     }
 
@@ -67,7 +67,7 @@ public final class ScreeningQuestionType {
     }
 
     public interface Visitor<T> {
-        T visit(TypeEnum value);
+        T visit(ScreeningQuestionTypeEnum value);
 
         T visit(String value);
     }
@@ -81,7 +81,7 @@ public final class ScreeningQuestionType {
         public ScreeningQuestionType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, TypeEnum.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, ScreeningQuestionTypeEnum.class));
             } catch (IllegalArgumentException e) {
             }
             try {

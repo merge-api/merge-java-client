@@ -131,9 +131,6 @@ public class TicketsClient {
         if (request.getPriority().isPresent()) {
             httpUrl.addQueryParameter("priority", request.getPriority().get().toString());
         }
-        if (request.getProjectId().isPresent()) {
-            httpUrl.addQueryParameter("project_id", request.getProjectId().get());
-        }
         if (request.getRemoteCreatedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "remote_created_after",

@@ -159,7 +159,7 @@ public final class PatchedTicketRequest {
     }
 
     /**
-     * @return The ticket's type.
+     * @return The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.
      */
     @JsonProperty("ticket_type")
     public Optional<String> getTicketType() {

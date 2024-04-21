@@ -66,6 +66,72 @@ public enum ApplicationsRetrieveRequestExpand {
 
     JOB_REJECT_REASON("job,reject_reason"),
 
+    OFFERS("offers"),
+
+    OFFERS_CANDIDATE("offers,candidate"),
+
+    OFFERS_CANDIDATE_CREDITED_TO("offers,candidate,credited_to"),
+
+    OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE("offers,candidate,credited_to,current_stage"),
+
+    OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
+            "offers,candidate,credited_to,current_stage,reject_reason"),
+
+    OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON("offers,candidate,credited_to,reject_reason"),
+
+    OFFERS_CANDIDATE_CURRENT_STAGE("offers,candidate,current_stage"),
+
+    OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON("offers,candidate,current_stage,reject_reason"),
+
+    OFFERS_CANDIDATE_JOB("offers,candidate,job"),
+
+    OFFERS_CANDIDATE_JOB_CREDITED_TO("offers,candidate,job,credited_to"),
+
+    OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE("offers,candidate,job,credited_to,current_stage"),
+
+    OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
+            "offers,candidate,job,credited_to,current_stage,reject_reason"),
+
+    OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON("offers,candidate,job,credited_to,reject_reason"),
+
+    OFFERS_CANDIDATE_JOB_CURRENT_STAGE("offers,candidate,job,current_stage"),
+
+    OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON("offers,candidate,job,current_stage,reject_reason"),
+
+    OFFERS_CANDIDATE_JOB_REJECT_REASON("offers,candidate,job,reject_reason"),
+
+    OFFERS_CANDIDATE_REJECT_REASON("offers,candidate,reject_reason"),
+
+    OFFERS_CREDITED_TO("offers,credited_to"),
+
+    OFFERS_CREDITED_TO_CURRENT_STAGE("offers,credited_to,current_stage"),
+
+    OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("offers,credited_to,current_stage,reject_reason"),
+
+    OFFERS_CREDITED_TO_REJECT_REASON("offers,credited_to,reject_reason"),
+
+    OFFERS_CURRENT_STAGE("offers,current_stage"),
+
+    OFFERS_CURRENT_STAGE_REJECT_REASON("offers,current_stage,reject_reason"),
+
+    OFFERS_JOB("offers,job"),
+
+    OFFERS_JOB_CREDITED_TO("offers,job,credited_to"),
+
+    OFFERS_JOB_CREDITED_TO_CURRENT_STAGE("offers,job,credited_to,current_stage"),
+
+    OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("offers,job,credited_to,current_stage,reject_reason"),
+
+    OFFERS_JOB_CREDITED_TO_REJECT_REASON("offers,job,credited_to,reject_reason"),
+
+    OFFERS_JOB_CURRENT_STAGE("offers,job,current_stage"),
+
+    OFFERS_JOB_CURRENT_STAGE_REJECT_REASON("offers,job,current_stage,reject_reason"),
+
+    OFFERS_JOB_REJECT_REASON("offers,job,reject_reason"),
+
+    OFFERS_REJECT_REASON("offers,reject_reason"),
+
     REJECT_REASON("reject_reason");
 
     private final String value;

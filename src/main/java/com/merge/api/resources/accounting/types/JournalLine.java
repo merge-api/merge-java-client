@@ -22,7 +22,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = JournalLine.Builder.class)
 public final class JournalLine {
+    private final Optional<String> id;
+
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<JournalLineAccount> account;
 
@@ -44,16 +50,13 @@ public final class JournalLine {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<String> id;
-
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private JournalLine(
+            Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<JournalLineAccount> account,
             Optional<Double> netAmount,
             Optional<JournalLineTrackingCategory> trackingCategory,
@@ -64,11 +67,11 @@ public final class JournalLine {
             Optional<String> description,
             Optional<String> exchangeRate,
             Optional<Boolean> remoteWasDeleted,
-            Optional<String> id,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.account = account;
         this.netAmount = netAmount;
         this.trackingCategory = trackingCategory;
@@ -79,10 +82,12 @@ public final class JournalLine {
         this.description = description;
         this.exchangeRate = exchangeRate;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.id = id;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -91,6 +96,19 @@ public final class JournalLine {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     @JsonProperty("account")
@@ -469,24 +487,6 @@ public final class JournalLine {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -499,7 +499,10 @@ public final class JournalLine {
     }
 
     private boolean equalTo(JournalLine other) {
-        return remoteId.equals(other.remoteId)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && account.equals(other.account)
                 && netAmount.equals(other.netAmount)
                 && trackingCategory.equals(other.trackingCategory)
@@ -509,16 +512,16 @@ public final class JournalLine {
                 && contact.equals(other.contact)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.account,
                 this.netAmount,
                 this.trackingCategory,
@@ -528,10 +531,7 @@ public final class JournalLine {
                 this.contact,
                 this.description,
                 this.exchangeRate,
-                this.remoteWasDeleted,
-                this.id,
-                this.createdAt,
-                this.modifiedAt);
+                this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -545,7 +545,13 @@ public final class JournalLine {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<JournalLineAccount> account = Optional.empty();
 
@@ -567,19 +573,16 @@ public final class JournalLine {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<String> id = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(JournalLine other) {
+            id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             account(other.getAccount());
             netAmount(other.getNetAmount());
             trackingCategory(other.getTrackingCategory());
@@ -590,9 +593,17 @@ public final class JournalLine {
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            id(other.getId());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
             return this;
         }
 
@@ -604,6 +615,28 @@ public final class JournalLine {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -718,42 +751,12 @@ public final class JournalLine {
             return this;
         }
 
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public JournalLine build() {
             return new JournalLine(
+                    id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     account,
                     netAmount,
                     trackingCategory,
@@ -764,9 +767,6 @@ public final class JournalLine {
                     description,
                     exchangeRate,
                     remoteWasDeleted,
-                    id,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

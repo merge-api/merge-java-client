@@ -21,27 +21,40 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = EmailAddress.Builder.class)
 public final class EmailAddress {
-    private final Optional<String> value;
-
-    private final Optional<EmailAddressEmailAddressType> emailAddressType;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> value;
+
+    private final Optional<EmailAddressEmailAddressType> emailAddressType;
+
     private final Map<String, Object> additionalProperties;
 
     private EmailAddress(
-            Optional<String> value,
-            Optional<EmailAddressEmailAddressType> emailAddressType,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> value,
+            Optional<EmailAddressEmailAddressType> emailAddressType,
             Map<String, Object> additionalProperties) {
-        this.value = value;
-        this.emailAddressType = emailAddressType;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.value = value;
+        this.emailAddressType = emailAddressType;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -65,19 +78,6 @@ public final class EmailAddress {
         return emailAddressType;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -90,15 +90,15 @@ public final class EmailAddress {
     }
 
     private boolean equalTo(EmailAddress other) {
-        return value.equals(other.value)
-                && emailAddressType.equals(other.emailAddressType)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && value.equals(other.value)
+                && emailAddressType.equals(other.emailAddressType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.value, this.emailAddressType, this.createdAt, this.modifiedAt);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.emailAddressType);
     }
 
     @java.lang.Override
@@ -112,13 +112,13 @@ public final class EmailAddress {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> value = Optional.empty();
-
-        private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> value = Optional.empty();
+
+        private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -126,32 +126,10 @@ public final class EmailAddress {
         private Builder() {}
 
         public Builder from(EmailAddress other) {
-            value(other.getValue());
-            emailAddressType(other.getEmailAddressType());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
-            return this;
-        }
-
-        @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public Builder value(Optional<String> value) {
-            this.value = value;
-            return this;
-        }
-
-        public Builder value(String value) {
-            this.value = Optional.of(value);
-            return this;
-        }
-
-        @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
-        public Builder emailAddressType(Optional<EmailAddressEmailAddressType> emailAddressType) {
-            this.emailAddressType = emailAddressType;
-            return this;
-        }
-
-        public Builder emailAddressType(EmailAddressEmailAddressType emailAddressType) {
-            this.emailAddressType = Optional.of(emailAddressType);
+            value(other.getValue());
+            emailAddressType(other.getEmailAddressType());
             return this;
         }
 
@@ -177,8 +155,30 @@ public final class EmailAddress {
             return this;
         }
 
+        @JsonSetter(value = "value", nulls = Nulls.SKIP)
+        public Builder value(Optional<String> value) {
+            this.value = value;
+            return this;
+        }
+
+        public Builder value(String value) {
+            this.value = Optional.of(value);
+            return this;
+        }
+
+        @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
+        public Builder emailAddressType(Optional<EmailAddressEmailAddressType> emailAddressType) {
+            this.emailAddressType = emailAddressType;
+            return this;
+        }
+
+        public Builder emailAddressType(EmailAddressEmailAddressType emailAddressType) {
+            this.emailAddressType = Optional.of(emailAddressType);
+            return this;
+        }
+
         public EmailAddress build() {
-            return new EmailAddress(value, emailAddressType, createdAt, modifiedAt, additionalProperties);
+            return new EmailAddress(createdAt, modifiedAt, value, emailAddressType, additionalProperties);
         }
     }
 }

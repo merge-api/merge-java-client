@@ -25,6 +25,10 @@ import java.util.Optional;
 public final class ReportItem {
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> name;
 
     private final Optional<Double> value;
@@ -33,28 +37,24 @@ public final class ReportItem {
 
     private final Optional<String> company;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private ReportItem(
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<Double> value,
             Optional<List<Map<String, JsonNode>>> subItems,
             Optional<String> company,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.name = name;
         this.value = value;
         this.subItems = subItems;
         this.company = company;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
     }
 
@@ -64,6 +64,19 @@ public final class ReportItem {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -95,19 +108,6 @@ public final class ReportItem {
         return company;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -121,18 +121,18 @@ public final class ReportItem {
 
     private boolean equalTo(ReportItem other) {
         return remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && value.equals(other.value)
                 && subItems.equals(other.subItems)
-                && company.equals(other.company)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && company.equals(other.company);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.remoteId, this.name, this.value, this.subItems, this.company, this.createdAt, this.modifiedAt);
+                this.remoteId, this.createdAt, this.modifiedAt, this.name, this.value, this.subItems, this.company);
     }
 
     @java.lang.Override
@@ -148,6 +148,10 @@ public final class ReportItem {
     public static final class Builder {
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<Double> value = Optional.empty();
@@ -156,10 +160,6 @@ public final class ReportItem {
 
         private Optional<String> company = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -167,12 +167,12 @@ public final class ReportItem {
 
         public Builder from(ReportItem other) {
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             name(other.getName());
             value(other.getValue());
             subItems(other.getSubItems());
             company(other.getCompany());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             return this;
         }
 
@@ -184,6 +184,28 @@ public final class ReportItem {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -231,31 +253,9 @@ public final class ReportItem {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public ReportItem build() {
             return new ReportItem(
-                    remoteId, name, value, subItems, company, createdAt, modifiedAt, additionalProperties);
+                    remoteId, createdAt, modifiedAt, name, value, subItems, company, additionalProperties);
         }
     }
 }

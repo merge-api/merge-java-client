@@ -51,6 +51,8 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> dependent;
 
+    private final Optional<List<FieldMappingApiInstance>> timesheetEntry;
+
     private final Map<String, Object> additionalProperties;
 
     private FieldMappingApiInstanceResponse(
@@ -69,6 +71,7 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> payGroup,
             Optional<List<FieldMappingApiInstance>> group,
             Optional<List<FieldMappingApiInstance>> dependent,
+            Optional<List<FieldMappingApiInstance>> timesheetEntry,
             Map<String, Object> additionalProperties) {
         this.benefit = benefit;
         this.employerBenefit = employerBenefit;
@@ -85,6 +88,7 @@ public final class FieldMappingApiInstanceResponse {
         this.payGroup = payGroup;
         this.group = group;
         this.dependent = dependent;
+        this.timesheetEntry = timesheetEntry;
         this.additionalProperties = additionalProperties;
     }
 
@@ -163,6 +167,11 @@ public final class FieldMappingApiInstanceResponse {
         return dependent;
     }
 
+    @JsonProperty("TimesheetEntry")
+    public Optional<List<FieldMappingApiInstance>> getTimesheetEntry() {
+        return timesheetEntry;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -189,7 +198,8 @@ public final class FieldMappingApiInstanceResponse {
                 && bankInfo.equals(other.bankInfo)
                 && payGroup.equals(other.payGroup)
                 && group.equals(other.group)
-                && dependent.equals(other.dependent);
+                && dependent.equals(other.dependent)
+                && timesheetEntry.equals(other.timesheetEntry);
     }
 
     @java.lang.Override
@@ -209,7 +219,8 @@ public final class FieldMappingApiInstanceResponse {
                 this.bankInfo,
                 this.payGroup,
                 this.group,
-                this.dependent);
+                this.dependent,
+                this.timesheetEntry);
     }
 
     @java.lang.Override
@@ -253,6 +264,8 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> dependent = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> timesheetEntry = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -274,6 +287,7 @@ public final class FieldMappingApiInstanceResponse {
             payGroup(other.getPayGroup());
             group(other.getGroup());
             dependent(other.getDependent());
+            timesheetEntry(other.getTimesheetEntry());
             return this;
         }
 
@@ -442,6 +456,17 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "TimesheetEntry", nulls = Nulls.SKIP)
+        public Builder timesheetEntry(Optional<List<FieldMappingApiInstance>> timesheetEntry) {
+            this.timesheetEntry = timesheetEntry;
+            return this;
+        }
+
+        public Builder timesheetEntry(List<FieldMappingApiInstance> timesheetEntry) {
+            this.timesheetEntry = Optional.of(timesheetEntry);
+            return this;
+        }
+
         public FieldMappingApiInstanceResponse build() {
             return new FieldMappingApiInstanceResponse(
                     benefit,
@@ -459,6 +484,7 @@ public final class FieldMappingApiInstanceResponse {
                     payGroup,
                     group,
                     dependent,
+                    timesheetEntry,
                     additionalProperties);
         }
     }

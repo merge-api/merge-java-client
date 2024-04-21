@@ -136,6 +136,9 @@ public final class AuditLogEvent {
      * <li><code>CHANGED_LINKED_ACCOUNT_FIELD_MAPPING</code> - CHANGED_LINKED_ACCOUNT_FIELD_MAPPING</li>
      * <li><code>DELETED_INTEGRATION_WIDE_FIELD_MAPPING</code> - DELETED_INTEGRATION_WIDE_FIELD_MAPPING</li>
      * <li><code>DELETED_LINKED_ACCOUNT_FIELD_MAPPING</code> - DELETED_LINKED_ACCOUNT_FIELD_MAPPING</li>
+     * <li><code>FORCED_LINKED_ACCOUNT_RESYNC</code> - FORCED_LINKED_ACCOUNT_RESYNC</li>
+     * <li><code>MUTED_ISSUE</code> - MUTED_ISSUE</li>
+     * <li><code>GENERATED_MAGIC_LINK</code> - GENERATED_MAGIC_LINK</li>
      * </ul>
      */
     @JsonProperty("event_type")
@@ -332,6 +335,9 @@ public final class AuditLogEvent {
          * <li><code>CHANGED_LINKED_ACCOUNT_FIELD_MAPPING</code> - CHANGED_LINKED_ACCOUNT_FIELD_MAPPING</li>
          * <li><code>DELETED_INTEGRATION_WIDE_FIELD_MAPPING</code> - DELETED_INTEGRATION_WIDE_FIELD_MAPPING</li>
          * <li><code>DELETED_LINKED_ACCOUNT_FIELD_MAPPING</code> - DELETED_LINKED_ACCOUNT_FIELD_MAPPING</li>
+         * <li><code>FORCED_LINKED_ACCOUNT_RESYNC</code> - FORCED_LINKED_ACCOUNT_RESYNC</li>
+         * <li><code>MUTED_ISSUE</code> - MUTED_ISSUE</li>
+         * <li><code>GENERATED_MAGIC_LINK</code> - GENERATED_MAGIC_LINK</li>
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */

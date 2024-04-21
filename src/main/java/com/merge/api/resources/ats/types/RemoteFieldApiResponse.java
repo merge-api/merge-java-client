@@ -37,6 +37,8 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> job;
 
+    private final Optional<List<RemoteFieldApi>> jobPosting;
+
     private final Optional<List<RemoteFieldApi>> jobInterviewStage;
 
     private final Optional<List<RemoteFieldApi>> offer;
@@ -62,6 +64,7 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> eeoc,
             Optional<List<RemoteFieldApi>> scheduledInterview,
             Optional<List<RemoteFieldApi>> job,
+            Optional<List<RemoteFieldApi>> jobPosting,
             Optional<List<RemoteFieldApi>> jobInterviewStage,
             Optional<List<RemoteFieldApi>> offer,
             Optional<List<RemoteFieldApi>> office,
@@ -78,6 +81,7 @@ public final class RemoteFieldApiResponse {
         this.eeoc = eeoc;
         this.scheduledInterview = scheduledInterview;
         this.job = job;
+        this.jobPosting = jobPosting;
         this.jobInterviewStage = jobInterviewStage;
         this.offer = offer;
         this.office = office;
@@ -126,6 +130,11 @@ public final class RemoteFieldApiResponse {
     @JsonProperty("Job")
     public Optional<List<RemoteFieldApi>> getJob() {
         return job;
+    }
+
+    @JsonProperty("JobPosting")
+    public Optional<List<RemoteFieldApi>> getJobPosting() {
+        return jobPosting;
     }
 
     @JsonProperty("JobInterviewStage")
@@ -183,6 +192,7 @@ public final class RemoteFieldApiResponse {
                 && eeoc.equals(other.eeoc)
                 && scheduledInterview.equals(other.scheduledInterview)
                 && job.equals(other.job)
+                && jobPosting.equals(other.jobPosting)
                 && jobInterviewStage.equals(other.jobInterviewStage)
                 && offer.equals(other.offer)
                 && office.equals(other.office)
@@ -203,6 +213,7 @@ public final class RemoteFieldApiResponse {
                 this.eeoc,
                 this.scheduledInterview,
                 this.job,
+                this.jobPosting,
                 this.jobInterviewStage,
                 this.offer,
                 this.office,
@@ -239,6 +250,8 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> job = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> jobPosting = Optional.empty();
+
         private Optional<List<RemoteFieldApi>> jobInterviewStage = Optional.empty();
 
         private Optional<List<RemoteFieldApi>> offer = Optional.empty();
@@ -267,6 +280,7 @@ public final class RemoteFieldApiResponse {
             eeoc(other.getEeoc());
             scheduledInterview(other.getScheduledInterview());
             job(other.getJob());
+            jobPosting(other.getJobPosting());
             jobInterviewStage(other.getJobInterviewStage());
             offer(other.getOffer());
             office(other.getOffice());
@@ -365,6 +379,17 @@ public final class RemoteFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "JobPosting", nulls = Nulls.SKIP)
+        public Builder jobPosting(Optional<List<RemoteFieldApi>> jobPosting) {
+            this.jobPosting = jobPosting;
+            return this;
+        }
+
+        public Builder jobPosting(List<RemoteFieldApi> jobPosting) {
+            this.jobPosting = Optional.of(jobPosting);
+            return this;
+        }
+
         @JsonSetter(value = "JobInterviewStage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<List<RemoteFieldApi>> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
@@ -452,6 +477,7 @@ public final class RemoteFieldApiResponse {
                     eeoc,
                     scheduledInterview,
                     job,
+                    jobPosting,
                     jobInterviewStage,
                     offer,
                     office,

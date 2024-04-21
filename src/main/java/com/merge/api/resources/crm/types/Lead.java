@@ -23,6 +23,14 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Lead.Builder.class)
 public final class Lead {
+    private final Optional<String> id;
+
+    private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<LeadOwner> owner;
 
     private final Optional<String> leadSource;
@@ -53,14 +61,6 @@ public final class Lead {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<String> id;
-
-    private final Optional<String> remoteId;
-
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -70,6 +70,10 @@ public final class Lead {
     private final Map<String, Object> additionalProperties;
 
     private Lead(
+            Optional<String> id,
+            Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<LeadOwner> owner,
             Optional<String> leadSource,
             Optional<String> title,
@@ -85,14 +89,14 @@ public final class Lead {
             Optional<LeadConvertedContact> convertedContact,
             Optional<LeadConvertedAccount> convertedAccount,
             Optional<Boolean> remoteWasDeleted,
-            Optional<String> id,
-            Optional<String> remoteId,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.id = id;
+        this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.owner = owner;
         this.leadSource = leadSource;
         this.title = title;
@@ -108,14 +112,36 @@ public final class Lead {
         this.convertedContact = convertedContact;
         this.convertedAccount = convertedAccount;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.id = id;
-        this.remoteId = remoteId;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -226,32 +252,6 @@ public final class Lead {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -279,7 +279,11 @@ public final class Lead {
     }
 
     private boolean equalTo(Lead other) {
-        return owner.equals(other.owner)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && owner.equals(other.owner)
                 && leadSource.equals(other.leadSource)
                 && title.equals(other.title)
                 && company.equals(other.company)
@@ -294,10 +298,6 @@ public final class Lead {
                 && convertedContact.equals(other.convertedContact)
                 && convertedAccount.equals(other.convertedAccount)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
-                && remoteId.equals(other.remoteId)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
                 && remoteFields.equals(other.remoteFields);
@@ -306,6 +306,10 @@ public final class Lead {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.owner,
                 this.leadSource,
                 this.title,
@@ -321,10 +325,6 @@ public final class Lead {
                 this.convertedContact,
                 this.convertedAccount,
                 this.remoteWasDeleted,
-                this.id,
-                this.remoteId,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData,
                 this.remoteFields);
@@ -341,6 +341,14 @@ public final class Lead {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<LeadOwner> owner = Optional.empty();
 
         private Optional<String> leadSource = Optional.empty();
@@ -371,14 +379,6 @@ public final class Lead {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<String> id = Optional.empty();
-
-        private Optional<String> remoteId = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -391,6 +391,10 @@ public final class Lead {
         private Builder() {}
 
         public Builder from(Lead other) {
+            id(other.getId());
+            remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             owner(other.getOwner());
             leadSource(other.getLeadSource());
             title(other.getTitle());
@@ -406,13 +410,53 @@ public final class Lead {
             convertedContact(other.getConvertedContact());
             convertedAccount(other.getConvertedAccount());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            id(other.getId());
-            remoteId(other.getRemoteId());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -581,50 +625,6 @@ public final class Lead {
             return this;
         }
 
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
-            return this;
-        }
-
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -660,6 +660,10 @@ public final class Lead {
 
         public Lead build() {
             return new Lead(
+                    id,
+                    remoteId,
+                    createdAt,
+                    modifiedAt,
                     owner,
                     leadSource,
                     title,
@@ -675,10 +679,6 @@ public final class Lead {
                     convertedContact,
                     convertedAccount,
                     remoteWasDeleted,
-                    id,
-                    remoteId,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     remoteFields,

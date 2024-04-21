@@ -27,13 +27,13 @@ public final class RejectReason {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> name;
-
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> name;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -44,19 +44,19 @@ public final class RejectReason {
     private RejectReason(
             Optional<String> id,
             Optional<String> remoteId,
-            Optional<String> name,
-            Optional<Boolean> remoteWasDeleted,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> name,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
-        this.name = name;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.name = name;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -75,6 +75,19 @@ public final class RejectReason {
         return remoteId;
     }
 
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
+    }
+
     /**
      * @return The rejection reason’s name.
      */
@@ -89,19 +102,6 @@ public final class RejectReason {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
     }
 
     @JsonProperty("field_mappings")
@@ -128,10 +128,10 @@ public final class RejectReason {
     private boolean equalTo(RejectReason other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
-                && name.equals(other.name)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && name.equals(other.name)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -141,10 +141,10 @@ public final class RejectReason {
         return Objects.hash(
                 this.id,
                 this.remoteId,
-                this.name,
-                this.remoteWasDeleted,
                 this.createdAt,
                 this.modifiedAt,
+                this.name,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -164,13 +164,13 @@ public final class RejectReason {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> name = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -184,10 +184,10 @@ public final class RejectReason {
         public Builder from(RejectReason other) {
             id(other.getId());
             remoteId(other.getRemoteId());
-            name(other.getName());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            name(other.getName());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -215,28 +215,6 @@ public final class RejectReason {
             return this;
         }
 
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public Builder name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = Optional.of(name);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
-            return this;
-        }
-
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -256,6 +234,28 @@ public final class RejectReason {
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
             this.modifiedAt = Optional.of(modifiedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -285,10 +285,10 @@ public final class RejectReason {
             return new RejectReason(
                     id,
                     remoteId,
-                    name,
-                    remoteWasDeleted,
                     createdAt,
                     modifiedAt,
+                    name,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

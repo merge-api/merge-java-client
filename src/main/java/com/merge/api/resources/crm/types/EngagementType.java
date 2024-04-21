@@ -22,10 +22,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = EngagementType.Builder.class)
 public final class EngagementType {
-    private final Optional<EngagementTypeActivityType> activityType;
-
-    private final Optional<String> name;
-
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -34,48 +30,31 @@ public final class EngagementType {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<EngagementTypeActivityType> activityType;
+
+    private final Optional<String> name;
+
     private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
     private EngagementType(
-            Optional<EngagementTypeActivityType> activityType,
-            Optional<String> name,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<EngagementTypeActivityType> activityType,
+            Optional<String> name,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
-        this.activityType = activityType;
-        this.name = name;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.activityType = activityType;
+        this.name = name;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The engagement type's activity type.
-     * <ul>
-     * <li><code>CALL</code> - CALL</li>
-     * <li><code>MEETING</code> - MEETING</li>
-     * <li><code>EMAIL</code> - EMAIL</li>
-     * </ul>
-     */
-    @JsonProperty("activity_type")
-    public Optional<EngagementTypeActivityType> getActivityType() {
-        return activityType;
-    }
-
-    /**
-     * @return The engagement type's name.
-     */
-    @JsonProperty("name")
-    public Optional<String> getName() {
-        return name;
     }
 
     @JsonProperty("id")
@@ -104,6 +83,27 @@ public final class EngagementType {
         return modifiedAt;
     }
 
+    /**
+     * @return The engagement type's activity type.
+     * <ul>
+     * <li><code>CALL</code> - CALL</li>
+     * <li><code>MEETING</code> - MEETING</li>
+     * <li><code>EMAIL</code> - EMAIL</li>
+     * </ul>
+     */
+    @JsonProperty("activity_type")
+    public Optional<EngagementTypeActivityType> getActivityType() {
+        return activityType;
+    }
+
+    /**
+     * @return The engagement type's name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
@@ -121,24 +121,24 @@ public final class EngagementType {
     }
 
     private boolean equalTo(EngagementType other) {
-        return activityType.equals(other.activityType)
-                && name.equals(other.name)
-                && id.equals(other.id)
+        return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && activityType.equals(other.activityType)
+                && name.equals(other.name)
                 && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.activityType,
-                this.name,
                 this.id,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.activityType,
+                this.name,
                 this.remoteFields);
     }
 
@@ -153,10 +153,6 @@ public final class EngagementType {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<EngagementTypeActivityType> activityType = Optional.empty();
-
-        private Optional<String> name = Optional.empty();
-
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -164,6 +160,10 @@ public final class EngagementType {
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<EngagementTypeActivityType> activityType = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
@@ -173,35 +173,13 @@ public final class EngagementType {
         private Builder() {}
 
         public Builder from(EngagementType other) {
-            activityType(other.getActivityType());
-            name(other.getName());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            activityType(other.getActivityType());
+            name(other.getName());
             remoteFields(other.getRemoteFields());
-            return this;
-        }
-
-        @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<EngagementTypeActivityType> activityType) {
-            this.activityType = activityType;
-            return this;
-        }
-
-        public Builder activityType(EngagementTypeActivityType activityType) {
-            this.activityType = Optional.of(activityType);
-            return this;
-        }
-
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public Builder name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = Optional.of(name);
             return this;
         }
 
@@ -249,6 +227,28 @@ public final class EngagementType {
             return this;
         }
 
+        @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
+        public Builder activityType(Optional<EngagementTypeActivityType> activityType) {
+            this.activityType = activityType;
+            return this;
+        }
+
+        public Builder activityType(EngagementTypeActivityType activityType) {
+            this.activityType = Optional.of(activityType);
+            return this;
+        }
+
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
             this.remoteFields = remoteFields;
@@ -262,7 +262,7 @@ public final class EngagementType {
 
         public EngagementType build() {
             return new EngagementType(
-                    activityType, name, id, remoteId, createdAt, modifiedAt, remoteFields, additionalProperties);
+                    id, remoteId, createdAt, modifiedAt, activityType, name, remoteFields, additionalProperties);
         }
     }
 }
