@@ -37,6 +37,8 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> job;
 
+    private final Optional<List<FieldMappingApiInstance>> jobPosting;
+
     private final Optional<List<FieldMappingApiInstance>> jobInterviewStage;
 
     private final Optional<List<FieldMappingApiInstance>> offer;
@@ -62,6 +64,7 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> eeoc,
             Optional<List<FieldMappingApiInstance>> scheduledInterview,
             Optional<List<FieldMappingApiInstance>> job,
+            Optional<List<FieldMappingApiInstance>> jobPosting,
             Optional<List<FieldMappingApiInstance>> jobInterviewStage,
             Optional<List<FieldMappingApiInstance>> offer,
             Optional<List<FieldMappingApiInstance>> office,
@@ -78,6 +81,7 @@ public final class FieldMappingApiInstanceResponse {
         this.eeoc = eeoc;
         this.scheduledInterview = scheduledInterview;
         this.job = job;
+        this.jobPosting = jobPosting;
         this.jobInterviewStage = jobInterviewStage;
         this.offer = offer;
         this.office = office;
@@ -126,6 +130,11 @@ public final class FieldMappingApiInstanceResponse {
     @JsonProperty("Job")
     public Optional<List<FieldMappingApiInstance>> getJob() {
         return job;
+    }
+
+    @JsonProperty("JobPosting")
+    public Optional<List<FieldMappingApiInstance>> getJobPosting() {
+        return jobPosting;
     }
 
     @JsonProperty("JobInterviewStage")
@@ -183,6 +192,7 @@ public final class FieldMappingApiInstanceResponse {
                 && eeoc.equals(other.eeoc)
                 && scheduledInterview.equals(other.scheduledInterview)
                 && job.equals(other.job)
+                && jobPosting.equals(other.jobPosting)
                 && jobInterviewStage.equals(other.jobInterviewStage)
                 && offer.equals(other.offer)
                 && office.equals(other.office)
@@ -203,6 +213,7 @@ public final class FieldMappingApiInstanceResponse {
                 this.eeoc,
                 this.scheduledInterview,
                 this.job,
+                this.jobPosting,
                 this.jobInterviewStage,
                 this.offer,
                 this.office,
@@ -239,6 +250,8 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> job = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> jobPosting = Optional.empty();
+
         private Optional<List<FieldMappingApiInstance>> jobInterviewStage = Optional.empty();
 
         private Optional<List<FieldMappingApiInstance>> offer = Optional.empty();
@@ -267,6 +280,7 @@ public final class FieldMappingApiInstanceResponse {
             eeoc(other.getEeoc());
             scheduledInterview(other.getScheduledInterview());
             job(other.getJob());
+            jobPosting(other.getJobPosting());
             jobInterviewStage(other.getJobInterviewStage());
             offer(other.getOffer());
             office(other.getOffice());
@@ -365,6 +379,17 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "JobPosting", nulls = Nulls.SKIP)
+        public Builder jobPosting(Optional<List<FieldMappingApiInstance>> jobPosting) {
+            this.jobPosting = jobPosting;
+            return this;
+        }
+
+        public Builder jobPosting(List<FieldMappingApiInstance> jobPosting) {
+            this.jobPosting = Optional.of(jobPosting);
+            return this;
+        }
+
         @JsonSetter(value = "JobInterviewStage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<List<FieldMappingApiInstance>> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
@@ -452,6 +477,7 @@ public final class FieldMappingApiInstanceResponse {
                     eeoc,
                     scheduledInterview,
                     job,
+                    jobPosting,
                     jobInterviewStage,
                     offer,
                     office,

@@ -34,6 +34,8 @@ public final class AccountDetailsAndActions {
 
     private final String endUserEmailAddress;
 
+    private final Optional<String> subdomain;
+
     private final String webhookListenerUrl;
 
     private final Optional<Boolean> isDuplicate;
@@ -52,6 +54,7 @@ public final class AccountDetailsAndActions {
             Optional<String> endUserOriginId,
             String endUserOrganizationName,
             String endUserEmailAddress,
+            Optional<String> subdomain,
             String webhookListenerUrl,
             Optional<Boolean> isDuplicate,
             Optional<AccountDetailsAndActionsIntegration> integration,
@@ -64,6 +67,7 @@ public final class AccountDetailsAndActions {
         this.endUserOriginId = endUserOriginId;
         this.endUserOrganizationName = endUserOrganizationName;
         this.endUserEmailAddress = endUserEmailAddress;
+        this.subdomain = subdomain;
         this.webhookListenerUrl = webhookListenerUrl;
         this.isDuplicate = isDuplicate;
         this.integration = integration;
@@ -104,6 +108,14 @@ public final class AccountDetailsAndActions {
     @JsonProperty("end_user_email_address")
     public String getEndUserEmailAddress() {
         return endUserEmailAddress;
+    }
+
+    /**
+     * @return The tenant or domain the customer has provided access to.
+     */
+    @JsonProperty("subdomain")
+    public Optional<String> getSubdomain() {
+        return subdomain;
     }
 
     @JsonProperty("webhook_listener_url")
@@ -148,6 +160,7 @@ public final class AccountDetailsAndActions {
                 && endUserOriginId.equals(other.endUserOriginId)
                 && endUserOrganizationName.equals(other.endUserOrganizationName)
                 && endUserEmailAddress.equals(other.endUserEmailAddress)
+                && subdomain.equals(other.subdomain)
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
                 && isDuplicate.equals(other.isDuplicate)
                 && integration.equals(other.integration)
@@ -164,6 +177,7 @@ public final class AccountDetailsAndActions {
                 this.endUserOriginId,
                 this.endUserOrganizationName,
                 this.endUserEmailAddress,
+                this.subdomain,
                 this.webhookListenerUrl,
                 this.isDuplicate,
                 this.integration,
@@ -220,6 +234,10 @@ public final class AccountDetailsAndActions {
 
         _FinalStage endUserOriginId(String endUserOriginId);
 
+        _FinalStage subdomain(Optional<String> subdomain);
+
+        _FinalStage subdomain(String subdomain);
+
         _FinalStage isDuplicate(Optional<Boolean> isDuplicate);
 
         _FinalStage isDuplicate(Boolean isDuplicate);
@@ -254,6 +272,8 @@ public final class AccountDetailsAndActions {
 
         private Optional<Boolean> isDuplicate = Optional.empty();
 
+        private Optional<String> subdomain = Optional.empty();
+
         private Optional<String> endUserOriginId = Optional.empty();
 
         private Optional<String> statusDetail = Optional.empty();
@@ -274,6 +294,7 @@ public final class AccountDetailsAndActions {
             endUserOriginId(other.getEndUserOriginId());
             endUserOrganizationName(other.getEndUserOrganizationName());
             endUserEmailAddress(other.getEndUserEmailAddress());
+            subdomain(other.getSubdomain());
             webhookListenerUrl(other.getWebhookListenerUrl());
             isDuplicate(other.getIsDuplicate());
             integration(other.getIntegration());
@@ -353,6 +374,23 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
+        /**
+         * <p>The tenant or domain the customer has provided access to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage subdomain(String subdomain) {
+            this.subdomain = Optional.of(subdomain);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "subdomain", nulls = Nulls.SKIP)
+        public _FinalStage subdomain(Optional<String> subdomain) {
+            this.subdomain = subdomain;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage endUserOriginId(String endUserOriginId) {
             this.endUserOriginId = Optional.of(endUserOriginId);
@@ -402,6 +440,7 @@ public final class AccountDetailsAndActions {
                     endUserOriginId,
                     endUserOrganizationName,
                     endUserEmailAddress,
+                    subdomain,
                     webhookListenerUrl,
                     isDuplicate,
                     integration,

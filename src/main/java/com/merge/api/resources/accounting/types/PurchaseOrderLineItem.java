@@ -23,7 +23,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = PurchaseOrderLineItem.Builder.class)
 public final class PurchaseOrderLineItem {
+    private final Optional<String> id;
+
     private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
 
     private final Optional<String> description;
 
@@ -51,16 +57,13 @@ public final class PurchaseOrderLineItem {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<String> id;
-
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private PurchaseOrderLineItem(
+            Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> description,
             Optional<Double> unitPrice,
             Optional<Double> quantity,
@@ -74,11 +77,11 @@ public final class PurchaseOrderLineItem {
             Optional<String> exchangeRate,
             Optional<String> company,
             Optional<Boolean> remoteWasDeleted,
-            Optional<String> id,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.description = description;
         this.unitPrice = unitPrice;
         this.quantity = quantity;
@@ -92,10 +95,12 @@ public final class PurchaseOrderLineItem {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.id = id;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -104,6 +109,19 @@ public final class PurchaseOrderLineItem {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -515,24 +533,6 @@ public final class PurchaseOrderLineItem {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -545,7 +545,10 @@ public final class PurchaseOrderLineItem {
     }
 
     private boolean equalTo(PurchaseOrderLineItem other) {
-        return remoteId.equals(other.remoteId)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && description.equals(other.description)
                 && unitPrice.equals(other.unitPrice)
                 && quantity.equals(other.quantity)
@@ -558,16 +561,16 @@ public final class PurchaseOrderLineItem {
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.description,
                 this.unitPrice,
                 this.quantity,
@@ -580,10 +583,7 @@ public final class PurchaseOrderLineItem {
                 this.currency,
                 this.exchangeRate,
                 this.company,
-                this.remoteWasDeleted,
-                this.id,
-                this.createdAt,
-                this.modifiedAt);
+                this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -597,7 +597,13 @@ public final class PurchaseOrderLineItem {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -625,19 +631,16 @@ public final class PurchaseOrderLineItem {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<String> id = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(PurchaseOrderLineItem other) {
+            id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             description(other.getDescription());
             unitPrice(other.getUnitPrice());
             quantity(other.getQuantity());
@@ -651,9 +654,17 @@ public final class PurchaseOrderLineItem {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            id(other.getId());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
             return this;
         }
 
@@ -665,6 +676,28 @@ public final class PurchaseOrderLineItem {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -817,42 +850,12 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public PurchaseOrderLineItem build() {
             return new PurchaseOrderLineItem(
+                    id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     description,
                     unitPrice,
                     quantity,
@@ -866,9 +869,6 @@ public final class PurchaseOrderLineItem {
                     exchangeRate,
                     company,
                     remoteWasDeleted,
-                    id,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

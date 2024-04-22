@@ -8,6 +8,7 @@ import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.resources.accounting.payments.requests.PatchedPaymentEndpointRequest;
 import com.merge.api.resources.accounting.payments.requests.PaymentEndpointRequest;
 import com.merge.api.resources.accounting.payments.requests.PaymentsListRequest;
 import com.merge.api.resources.accounting.payments.requests.PaymentsRetrieveRequest;
@@ -228,6 +229,100 @@ public class PaymentsClient {
             Response response = client.newCall(okhttpRequest).execute();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Payment.class);
+            }
+            throw new ApiError(
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Object.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Updates a <code>Payment</code> object with the given <code>id</code>.
+     */
+    public PaymentResponse partialUpdate(String id, PatchedPaymentEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    /**
+     * Updates a <code>Payment</code> object with the given <code>id</code>.
+     */
+    public PaymentResponse partialUpdate(
+            String id, PatchedPaymentEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/payments")
+                .addPathSegment(id);
+        if (request.getIsDebugMode().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_debug_mode", request.getIsDebugMode().get().toString());
+        }
+        if (request.getRunAsync().isPresent()) {
+            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("model", request.getModel());
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        try {
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
+            }
+            Response response = client.newCall(okhttpRequest).execute();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), PaymentResponse.class);
+            }
+            throw new ApiError(
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Object.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Returns metadata for <code>Payment</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    /**
+     * Returns metadata for <code>Payment</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/payments/meta/patch")
+                .addPathSegment(id)
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try {
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
+            }
+            Response response = client.newCall(okhttpRequest).execute();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), MetaResponse.class);
             }
             throw new ApiError(
                     response.code(),

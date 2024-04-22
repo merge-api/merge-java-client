@@ -27,6 +27,10 @@ public final class EmployerBenefit {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<EmployerBenefitBenefitPlanType> benefitPlanType;
 
     private final Optional<String> name;
@@ -37,10 +41,6 @@ public final class EmployerBenefit {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<Optional<Map<String, JsonNode>>>> remoteData;
@@ -50,25 +50,25 @@ public final class EmployerBenefit {
     private EmployerBenefit(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<EmployerBenefitBenefitPlanType> benefitPlanType,
             Optional<String> name,
             Optional<String> description,
             Optional<String> deductionCode,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<Optional<Map<String, JsonNode>>>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.benefitPlanType = benefitPlanType;
         this.name = name;
         this.description = description;
         this.deductionCode = deductionCode;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -85,6 +85,19 @@ public final class EmployerBenefit {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -134,19 +147,6 @@ public final class EmployerBenefit {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -171,13 +171,13 @@ public final class EmployerBenefit {
     private boolean equalTo(EmployerBenefit other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && benefitPlanType.equals(other.benefitPlanType)
                 && name.equals(other.name)
                 && description.equals(other.description)
                 && deductionCode.equals(other.deductionCode)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -187,13 +187,13 @@ public final class EmployerBenefit {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.benefitPlanType,
                 this.name,
                 this.description,
                 this.deductionCode,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -213,6 +213,10 @@ public final class EmployerBenefit {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<EmployerBenefitBenefitPlanType> benefitPlanType = Optional.empty();
 
         private Optional<String> name = Optional.empty();
@@ -222,10 +226,6 @@ public final class EmployerBenefit {
         private Optional<String> deductionCode = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -239,13 +239,13 @@ public final class EmployerBenefit {
         public Builder from(EmployerBenefit other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             benefitPlanType(other.getBenefitPlanType());
             name(other.getName());
             description(other.getDescription());
             deductionCode(other.getDeductionCode());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -270,6 +270,28 @@ public final class EmployerBenefit {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -328,28 +350,6 @@ public final class EmployerBenefit {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -376,13 +376,13 @@ public final class EmployerBenefit {
             return new EmployerBenefit(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     benefitPlanType,
                     name,
                     description,
                     deductionCode,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

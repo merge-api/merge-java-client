@@ -21,27 +21,40 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Url.Builder.class)
 public final class Url {
-    private final Optional<String> value;
-
-    private final Optional<UrlUrlType> urlType;
-
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> value;
+
+    private final Optional<UrlUrlType> urlType;
+
     private final Map<String, Object> additionalProperties;
 
     private Url(
-            Optional<String> value,
-            Optional<UrlUrlType> urlType,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> value,
+            Optional<UrlUrlType> urlType,
             Map<String, Object> additionalProperties) {
-        this.value = value;
-        this.urlType = urlType;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.value = value;
+        this.urlType = urlType;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -69,19 +82,6 @@ public final class Url {
         return urlType;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -94,15 +94,15 @@ public final class Url {
     }
 
     private boolean equalTo(Url other) {
-        return value.equals(other.value)
-                && urlType.equals(other.urlType)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && value.equals(other.value)
+                && urlType.equals(other.urlType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.value, this.urlType, this.createdAt, this.modifiedAt);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.urlType);
     }
 
     @java.lang.Override
@@ -116,13 +116,13 @@ public final class Url {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> value = Optional.empty();
-
-        private Optional<UrlUrlType> urlType = Optional.empty();
-
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> value = Optional.empty();
+
+        private Optional<UrlUrlType> urlType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -130,32 +130,10 @@ public final class Url {
         private Builder() {}
 
         public Builder from(Url other) {
-            value(other.getValue());
-            urlType(other.getUrlType());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
-            return this;
-        }
-
-        @JsonSetter(value = "value", nulls = Nulls.SKIP)
-        public Builder value(Optional<String> value) {
-            this.value = value;
-            return this;
-        }
-
-        public Builder value(String value) {
-            this.value = Optional.of(value);
-            return this;
-        }
-
-        @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
-        public Builder urlType(Optional<UrlUrlType> urlType) {
-            this.urlType = urlType;
-            return this;
-        }
-
-        public Builder urlType(UrlUrlType urlType) {
-            this.urlType = Optional.of(urlType);
+            value(other.getValue());
+            urlType(other.getUrlType());
             return this;
         }
 
@@ -181,8 +159,30 @@ public final class Url {
             return this;
         }
 
+        @JsonSetter(value = "value", nulls = Nulls.SKIP)
+        public Builder value(Optional<String> value) {
+            this.value = value;
+            return this;
+        }
+
+        public Builder value(String value) {
+            this.value = Optional.of(value);
+            return this;
+        }
+
+        @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
+        public Builder urlType(Optional<UrlUrlType> urlType) {
+            this.urlType = urlType;
+            return this;
+        }
+
+        public Builder urlType(UrlUrlType urlType) {
+            this.urlType = Optional.of(urlType);
+            return this;
+        }
+
         public Url build() {
-            return new Url(value, urlType, createdAt, modifiedAt, additionalProperties);
+            return new Url(createdAt, modifiedAt, value, urlType, additionalProperties);
         }
     }
 }

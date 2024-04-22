@@ -26,6 +26,10 @@ public final class Permission {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<PermissionUser> user;
 
     private final Optional<PermissionGroup> group;
@@ -34,30 +38,26 @@ public final class Permission {
 
     private final Optional<List<Optional<PermissionRolesItem>>> roles;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private Permission(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<PermissionUser> user,
             Optional<PermissionGroup> group,
             Optional<PermissionType> type,
             Optional<List<Optional<PermissionRolesItem>>> roles,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.user = user;
         this.group = group;
         this.type = type;
         this.roles = roles;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
     }
 
@@ -72,6 +72,19 @@ public final class Permission {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -112,19 +125,6 @@ public final class Permission {
         return roles;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -139,18 +139,18 @@ public final class Permission {
     private boolean equalTo(Permission other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && user.equals(other.user)
                 && group.equals(other.group)
                 && type.equals(other.type)
-                && roles.equals(other.roles)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && roles.equals(other.roles);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.id, this.remoteId, this.user, this.group, this.type, this.roles, this.createdAt, this.modifiedAt);
+                this.id, this.remoteId, this.createdAt, this.modifiedAt, this.user, this.group, this.type, this.roles);
     }
 
     @java.lang.Override
@@ -168,6 +168,10 @@ public final class Permission {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<PermissionUser> user = Optional.empty();
 
         private Optional<PermissionGroup> group = Optional.empty();
@@ -175,10 +179,6 @@ public final class Permission {
         private Optional<PermissionType> type = Optional.empty();
 
         private Optional<List<Optional<PermissionRolesItem>>> roles = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -188,12 +188,12 @@ public final class Permission {
         public Builder from(Permission other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             user(other.getUser());
             group(other.getGroup());
             type(other.getType());
             roles(other.getRoles());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             return this;
         }
 
@@ -216,6 +216,28 @@ public final class Permission {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -263,30 +285,8 @@ public final class Permission {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public Permission build() {
-            return new Permission(id, remoteId, user, group, type, roles, createdAt, modifiedAt, additionalProperties);
+            return new Permission(id, remoteId, createdAt, modifiedAt, user, group, type, roles, additionalProperties);
         }
     }
 }

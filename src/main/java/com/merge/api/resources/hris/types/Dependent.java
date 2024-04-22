@@ -27,6 +27,10 @@ public final class Dependent {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> firstName;
 
     private final Optional<String> middleName;
@@ -51,10 +55,6 @@ public final class Dependent {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -64,6 +64,8 @@ public final class Dependent {
     private Dependent(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> firstName,
             Optional<String> middleName,
             Optional<String> lastName,
@@ -76,13 +78,13 @@ public final class Dependent {
             Optional<Boolean> isStudent,
             Optional<String> ssn,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.firstName = firstName;
         this.middleName = middleName;
         this.lastName = lastName;
@@ -95,8 +97,6 @@ public final class Dependent {
         this.isStudent = isStudent;
         this.ssn = ssn;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -113,6 +113,19 @@ public final class Dependent {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -223,19 +236,6 @@ public final class Dependent {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -260,6 +260,8 @@ public final class Dependent {
     private boolean equalTo(Dependent other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && firstName.equals(other.firstName)
                 && middleName.equals(other.middleName)
                 && lastName.equals(other.lastName)
@@ -272,8 +274,6 @@ public final class Dependent {
                 && isStudent.equals(other.isStudent)
                 && ssn.equals(other.ssn)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -283,6 +283,8 @@ public final class Dependent {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.firstName,
                 this.middleName,
                 this.lastName,
@@ -295,8 +297,6 @@ public final class Dependent {
                 this.isStudent,
                 this.ssn,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -315,6 +315,10 @@ public final class Dependent {
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -340,10 +344,6 @@ public final class Dependent {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -356,6 +356,8 @@ public final class Dependent {
         public Builder from(Dependent other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             firstName(other.getFirstName());
             middleName(other.getMiddleName());
             lastName(other.getLastName());
@@ -368,8 +370,6 @@ public final class Dependent {
             isStudent(other.getIsStudent());
             ssn(other.getSsn());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -394,6 +394,28 @@ public final class Dependent {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -529,28 +551,6 @@ public final class Dependent {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -577,6 +577,8 @@ public final class Dependent {
             return new Dependent(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     firstName,
                     middleName,
                     lastName,
@@ -589,8 +591,6 @@ public final class Dependent {
                     isStudent,
                     ssn,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

@@ -66,8 +66,6 @@ public final class TicketsListRequest {
 
     private final Optional<TicketsListRequestPriority> priority;
 
-    private final Optional<String> projectId;
-
     private final Optional<OffsetDateTime> remoteCreatedAfter;
 
     private final Optional<OffsetDateTime> remoteCreatedBefore;
@@ -111,7 +109,6 @@ public final class TicketsListRequest {
             Optional<Integer> pageSize,
             Optional<String> parentTicketId,
             Optional<TicketsListRequestPriority> priority,
-            Optional<String> projectId,
             Optional<OffsetDateTime> remoteCreatedAfter,
             Optional<OffsetDateTime> remoteCreatedBefore,
             Optional<TicketsListRequestRemoteFields> remoteFields,
@@ -143,7 +140,6 @@ public final class TicketsListRequest {
         this.pageSize = pageSize;
         this.parentTicketId = parentTicketId;
         this.priority = priority;
-        this.projectId = projectId;
         this.remoteCreatedAfter = remoteCreatedAfter;
         this.remoteCreatedBefore = remoteCreatedBefore;
         this.remoteFields = remoteFields;
@@ -324,14 +320,6 @@ public final class TicketsListRequest {
     }
 
     /**
-     * @return If provided, will only return tickets for this project.
-     */
-    @JsonProperty("project_id")
-    public Optional<String> getProjectId() {
-        return projectId;
-    }
-
-    /**
      * @return If provided, will only return tickets created in the third party platform after this datetime.
      */
     @JsonProperty("remote_created_after")
@@ -380,7 +368,7 @@ public final class TicketsListRequest {
     }
 
     /**
-     * @return Which fields should be returned in non-normalized form.
+     * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
     public Optional<TicketsListRequestShowEnumOrigins> getShowEnumOrigins() {
@@ -449,7 +437,6 @@ public final class TicketsListRequest {
                 && pageSize.equals(other.pageSize)
                 && parentTicketId.equals(other.parentTicketId)
                 && priority.equals(other.priority)
-                && projectId.equals(other.projectId)
                 && remoteCreatedAfter.equals(other.remoteCreatedAfter)
                 && remoteCreatedBefore.equals(other.remoteCreatedBefore)
                 && remoteFields.equals(other.remoteFields)
@@ -485,7 +472,6 @@ public final class TicketsListRequest {
                 this.pageSize,
                 this.parentTicketId,
                 this.priority,
-                this.projectId,
                 this.remoteCreatedAfter,
                 this.remoteCreatedBefore,
                 this.remoteFields,
@@ -549,8 +535,6 @@ public final class TicketsListRequest {
 
         private Optional<TicketsListRequestPriority> priority = Optional.empty();
 
-        private Optional<String> projectId = Optional.empty();
-
         private Optional<OffsetDateTime> remoteCreatedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedBefore = Optional.empty();
@@ -597,7 +581,6 @@ public final class TicketsListRequest {
             pageSize(other.getPageSize());
             parentTicketId(other.getParentTicketId());
             priority(other.getPriority());
-            projectId(other.getProjectId());
             remoteCreatedAfter(other.getRemoteCreatedAfter());
             remoteCreatedBefore(other.getRemoteCreatedBefore());
             remoteFields(other.getRemoteFields());
@@ -831,17 +814,6 @@ public final class TicketsListRequest {
             return this;
         }
 
-        @JsonSetter(value = "project_id", nulls = Nulls.SKIP)
-        public Builder projectId(Optional<String> projectId) {
-            this.projectId = projectId;
-            return this;
-        }
-
-        public Builder projectId(String projectId) {
-            this.projectId = Optional.of(projectId);
-            return this;
-        }
-
         @JsonSetter(value = "remote_created_after", nulls = Nulls.SKIP)
         public Builder remoteCreatedAfter(Optional<OffsetDateTime> remoteCreatedAfter) {
             this.remoteCreatedAfter = remoteCreatedAfter;
@@ -974,7 +946,6 @@ public final class TicketsListRequest {
                     pageSize,
                     parentTicketId,
                     priority,
-                    projectId,
                     remoteCreatedAfter,
                     remoteCreatedBefore,
                     remoteFields,

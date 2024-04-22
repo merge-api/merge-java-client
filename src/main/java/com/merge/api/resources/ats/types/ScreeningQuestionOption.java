@@ -21,31 +21,36 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = ScreeningQuestionOption.Builder.class)
 public final class ScreeningQuestionOption {
-    private final Optional<String> remoteId;
-
-    private final Optional<String> label;
-
     private final Optional<String> id;
+
+    private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> label;
+
     private final Map<String, Object> additionalProperties;
 
     private ScreeningQuestionOption(
-            Optional<String> remoteId,
-            Optional<String> label,
             Optional<String> id,
+            Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> label,
             Map<String, Object> additionalProperties) {
-        this.remoteId = remoteId;
-        this.label = label;
         this.id = id;
+        this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.label = label;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -54,19 +59,6 @@ public final class ScreeningQuestionOption {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
-    }
-
-    /**
-     * @return Available response options
-     */
-    @JsonProperty("label")
-    public Optional<String> getLabel() {
-        return label;
-    }
-
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
     }
 
     @JsonProperty("created_at")
@@ -82,6 +74,14 @@ public final class ScreeningQuestionOption {
         return modifiedAt;
     }
 
+    /**
+     * @return Available response options
+     */
+    @JsonProperty("label")
+    public Optional<String> getLabel() {
+        return label;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -94,16 +94,16 @@ public final class ScreeningQuestionOption {
     }
 
     private boolean equalTo(ScreeningQuestionOption other) {
-        return remoteId.equals(other.remoteId)
-                && label.equals(other.label)
-                && id.equals(other.id)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && modifiedAt.equals(other.modifiedAt)
+                && label.equals(other.label);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.remoteId, this.label, this.id, this.createdAt, this.modifiedAt);
+        return Objects.hash(this.id, this.remoteId, this.createdAt, this.modifiedAt, this.label);
     }
 
     @java.lang.Override
@@ -117,15 +117,15 @@ public final class ScreeningQuestionOption {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> remoteId = Optional.empty();
-
-        private Optional<String> label = Optional.empty();
-
         private Optional<String> id = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> label = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -133,33 +133,11 @@ public final class ScreeningQuestionOption {
         private Builder() {}
 
         public Builder from(ScreeningQuestionOption other) {
-            remoteId(other.getRemoteId());
-            label(other.getLabel());
             id(other.getId());
+            remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
-            return this;
-        }
-
-        @JsonSetter(value = "label", nulls = Nulls.SKIP)
-        public Builder label(Optional<String> label) {
-            this.label = label;
-            return this;
-        }
-
-        public Builder label(String label) {
-            this.label = Optional.of(label);
+            label(other.getLabel());
             return this;
         }
 
@@ -171,6 +149,17 @@ public final class ScreeningQuestionOption {
 
         public Builder id(String id) {
             this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -196,8 +185,19 @@ public final class ScreeningQuestionOption {
             return this;
         }
 
+        @JsonSetter(value = "label", nulls = Nulls.SKIP)
+        public Builder label(Optional<String> label) {
+            this.label = label;
+            return this;
+        }
+
+        public Builder label(String label) {
+            this.label = Optional.of(label);
+            return this;
+        }
+
         public ScreeningQuestionOption build() {
-            return new ScreeningQuestionOption(remoteId, label, id, createdAt, modifiedAt, additionalProperties);
+            return new ScreeningQuestionOption(id, remoteId, createdAt, modifiedAt, label, additionalProperties);
         }
     }
 }

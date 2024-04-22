@@ -27,6 +27,10 @@ public final class CreditNote {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<OffsetDateTime> transactionDate;
 
     private final Optional<CreditNoteStatus> status;
@@ -61,10 +65,6 @@ public final class CreditNote {
 
     private final Optional<CreditNoteAccountingPeriod> accountingPeriod;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -74,6 +74,8 @@ public final class CreditNote {
     private CreditNote(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<OffsetDateTime> transactionDate,
             Optional<CreditNoteStatus> status,
             Optional<String> number,
@@ -91,13 +93,13 @@ public final class CreditNote {
             Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments,
             Optional<Boolean> remoteWasDeleted,
             Optional<CreditNoteAccountingPeriod> accountingPeriod,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.transactionDate = transactionDate;
         this.status = status;
         this.number = number;
@@ -115,8 +117,6 @@ public final class CreditNote {
         this.appliedPayments = appliedPayments;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -133,6 +133,19 @@ public final class CreditNote {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -578,19 +591,6 @@ public final class CreditNote {
         return accountingPeriod;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -615,6 +615,8 @@ public final class CreditNote {
     private boolean equalTo(CreditNote other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && transactionDate.equals(other.transactionDate)
                 && status.equals(other.status)
                 && number.equals(other.number)
@@ -632,8 +634,6 @@ public final class CreditNote {
                 && appliedPayments.equals(other.appliedPayments)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -643,6 +643,8 @@ public final class CreditNote {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.transactionDate,
                 this.status,
                 this.number,
@@ -660,8 +662,6 @@ public final class CreditNote {
                 this.appliedPayments,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -680,6 +680,10 @@ public final class CreditNote {
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
@@ -715,10 +719,6 @@ public final class CreditNote {
 
         private Optional<CreditNoteAccountingPeriod> accountingPeriod = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -731,6 +731,8 @@ public final class CreditNote {
         public Builder from(CreditNote other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             transactionDate(other.getTransactionDate());
             status(other.getStatus());
             number(other.getNumber());
@@ -748,8 +750,6 @@ public final class CreditNote {
             appliedPayments(other.getAppliedPayments());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -774,6 +774,28 @@ public final class CreditNote {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -965,28 +987,6 @@ public final class CreditNote {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -1013,6 +1013,8 @@ public final class CreditNote {
             return new CreditNote(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     transactionDate,
                     status,
                     number,
@@ -1030,8 +1032,6 @@ public final class CreditNote {
                     appliedPayments,
                     remoteWasDeleted,
                     accountingPeriod,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

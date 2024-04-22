@@ -21,6 +21,10 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Address.Builder.class)
 public final class Address {
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> street1;
 
     private final Optional<String> street2;
@@ -35,13 +39,11 @@ public final class Address {
 
     private final Optional<AddressAddressType> addressType;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private Address(
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> street1,
             Optional<String> street2,
             Optional<String> city,
@@ -49,9 +51,9 @@ public final class Address {
             Optional<String> postalCode,
             Optional<AddressCountry> country,
             Optional<AddressAddressType> addressType,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.street1 = street1;
         this.street2 = street2;
         this.city = city;
@@ -59,9 +61,20 @@ public final class Address {
         this.postalCode = postalCode;
         this.country = country;
         this.addressType = addressType;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -375,19 +388,6 @@ public final class Address {
         return addressType;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -400,29 +400,29 @@ public final class Address {
     }
 
     private boolean equalTo(Address other) {
-        return street1.equals(other.street1)
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && street1.equals(other.street1)
                 && street2.equals(other.street2)
                 && city.equals(other.city)
                 && state.equals(other.state)
                 && postalCode.equals(other.postalCode)
                 && country.equals(other.country)
-                && addressType.equals(other.addressType)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && addressType.equals(other.addressType);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.createdAt,
+                this.modifiedAt,
                 this.street1,
                 this.street2,
                 this.city,
                 this.state,
                 this.postalCode,
                 this.country,
-                this.addressType,
-                this.createdAt,
-                this.modifiedAt);
+                this.addressType);
     }
 
     @java.lang.Override
@@ -436,6 +436,10 @@ public final class Address {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<String> street1 = Optional.empty();
 
         private Optional<String> street2 = Optional.empty();
@@ -450,16 +454,14 @@ public final class Address {
 
         private Optional<AddressAddressType> addressType = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(Address other) {
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             street1(other.getStreet1());
             street2(other.getStreet2());
             city(other.getCity());
@@ -467,8 +469,28 @@ public final class Address {
             postalCode(other.getPostalCode());
             country(other.getCountry());
             addressType(other.getAddressType());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -549,30 +571,10 @@ public final class Address {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public Address build() {
             return new Address(
+                    createdAt,
+                    modifiedAt,
                     street1,
                     street2,
                     city,
@@ -580,8 +582,6 @@ public final class Address {
                     postalCode,
                     country,
                     addressType,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

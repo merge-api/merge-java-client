@@ -27,6 +27,10 @@ public final class ScreeningQuestion {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<ScreeningQuestionJob> job;
 
     private final Optional<String> description;
@@ -39,34 +43,30 @@ public final class ScreeningQuestion {
 
     private final Optional<List<JsonNode>> options;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private ScreeningQuestion(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<ScreeningQuestionJob> job,
             Optional<String> description,
             Optional<String> title,
             Optional<ScreeningQuestionType> type,
             Optional<Boolean> required,
             Optional<List<JsonNode>> options,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.job = job;
         this.description = description;
         this.title = title;
         this.type = type;
         this.required = required;
         this.options = options;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
     }
 
@@ -81,6 +81,19 @@ public final class ScreeningQuestion {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -138,19 +151,6 @@ public final class ScreeningQuestion {
         return options;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -165,14 +165,14 @@ public final class ScreeningQuestion {
     private boolean equalTo(ScreeningQuestion other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && job.equals(other.job)
                 && description.equals(other.description)
                 && title.equals(other.title)
                 && type.equals(other.type)
                 && required.equals(other.required)
-                && options.equals(other.options)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && options.equals(other.options);
     }
 
     @java.lang.Override
@@ -180,14 +180,14 @@ public final class ScreeningQuestion {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.job,
                 this.description,
                 this.title,
                 this.type,
                 this.required,
-                this.options,
-                this.createdAt,
-                this.modifiedAt);
+                this.options);
     }
 
     @java.lang.Override
@@ -205,6 +205,10 @@ public final class ScreeningQuestion {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<ScreeningQuestionJob> job = Optional.empty();
 
         private Optional<String> description = Optional.empty();
@@ -217,10 +221,6 @@ public final class ScreeningQuestion {
 
         private Optional<List<JsonNode>> options = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -229,14 +229,14 @@ public final class ScreeningQuestion {
         public Builder from(ScreeningQuestion other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             job(other.getJob());
             description(other.getDescription());
             title(other.getTitle());
             type(other.getType());
             required(other.getRequired());
             options(other.getOptions());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             return this;
         }
 
@@ -259,6 +259,28 @@ public final class ScreeningQuestion {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -328,40 +350,18 @@ public final class ScreeningQuestion {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public ScreeningQuestion build() {
             return new ScreeningQuestion(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     job,
                     description,
                     title,
                     type,
                     required,
                     options,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

@@ -27,6 +27,10 @@ public final class Employee {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> employeeNumber;
 
     private final Optional<EmployeeCompany> company;
@@ -87,10 +91,6 @@ public final class Employee {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -100,6 +100,8 @@ public final class Employee {
     private Employee(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> employeeNumber,
             Optional<EmployeeCompany> company,
             Optional<String> firstName,
@@ -130,13 +132,13 @@ public final class Employee {
             Optional<String> avatar,
             Optional<Map<String, JsonNode>> customFields,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.employeeNumber = employeeNumber;
         this.company = company;
         this.firstName = firstName;
@@ -167,8 +169,6 @@ public final class Employee {
         this.avatar = avatar;
         this.customFields = customFields;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -185,6 +185,19 @@ public final class Employee {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -450,19 +463,6 @@ public final class Employee {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -487,6 +487,8 @@ public final class Employee {
     private boolean equalTo(Employee other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && employeeNumber.equals(other.employeeNumber)
                 && company.equals(other.company)
                 && firstName.equals(other.firstName)
@@ -517,8 +519,6 @@ public final class Employee {
                 && avatar.equals(other.avatar)
                 && customFields.equals(other.customFields)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -528,6 +528,8 @@ public final class Employee {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.employeeNumber,
                 this.company,
                 this.firstName,
@@ -558,8 +560,6 @@ public final class Employee {
                 this.avatar,
                 this.customFields,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -578,6 +578,10 @@ public final class Employee {
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<String> employeeNumber = Optional.empty();
 
@@ -639,10 +643,6 @@ public final class Employee {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -655,6 +655,8 @@ public final class Employee {
         public Builder from(Employee other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             employeeNumber(other.getEmployeeNumber());
             company(other.getCompany());
             firstName(other.getFirstName());
@@ -685,8 +687,6 @@ public final class Employee {
             avatar(other.getAvatar());
             customFields(other.getCustomFields());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -711,6 +711,28 @@ public final class Employee {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -1044,28 +1066,6 @@ public final class Employee {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -1092,6 +1092,8 @@ public final class Employee {
             return new Employee(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     employeeNumber,
                     company,
                     firstName,
@@ -1122,8 +1124,6 @@ public final class Employee {
                     avatar,
                     customFields,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

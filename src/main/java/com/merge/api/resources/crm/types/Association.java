@@ -22,31 +22,44 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Association.Builder.class)
 public final class Association {
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<Map<String, JsonNode>> sourceObject;
 
     private final Optional<Map<String, JsonNode>> targetObject;
 
     private final Optional<AssociationAssociationType> associationType;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Map<String, Object> additionalProperties;
 
     private Association(
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> sourceObject,
             Optional<Map<String, JsonNode>> targetObject,
             Optional<AssociationAssociationType> associationType,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.sourceObject = sourceObject;
         this.targetObject = targetObject;
         this.associationType = associationType;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     @JsonProperty("source_object")
@@ -64,19 +77,6 @@ public final class Association {
         return associationType;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -89,17 +89,17 @@ public final class Association {
     }
 
     private boolean equalTo(Association other) {
-        return sourceObject.equals(other.sourceObject)
+        return createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && sourceObject.equals(other.sourceObject)
                 && targetObject.equals(other.targetObject)
-                && associationType.equals(other.associationType)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && associationType.equals(other.associationType);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.sourceObject, this.targetObject, this.associationType, this.createdAt, this.modifiedAt);
+                this.createdAt, this.modifiedAt, this.sourceObject, this.targetObject, this.associationType);
     }
 
     @java.lang.Override
@@ -113,15 +113,15 @@ public final class Association {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<Map<String, JsonNode>> sourceObject = Optional.empty();
 
         private Optional<Map<String, JsonNode>> targetObject = Optional.empty();
 
         private Optional<AssociationAssociationType> associationType = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -129,11 +129,33 @@ public final class Association {
         private Builder() {}
 
         public Builder from(Association other) {
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             sourceObject(other.getSourceObject());
             targetObject(other.getTargetObject());
             associationType(other.getAssociationType());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -170,31 +192,9 @@ public final class Association {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public Association build() {
             return new Association(
-                    sourceObject, targetObject, associationType, createdAt, modifiedAt, additionalProperties);
+                    createdAt, modifiedAt, sourceObject, targetObject, associationType, additionalProperties);
         }
     }
 }

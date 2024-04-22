@@ -5,26 +5,20 @@ package com.merge.api.resources.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TypeEnum {
-    DATE("DATE"),
+public enum JobPostingStatusEnum {
+    PUBLISHED("PUBLISHED"),
 
-    FILE("FILE"),
+    CLOSED("CLOSED"),
 
-    SINGLE_SELECT("SINGLE_SELECT"),
+    DRAFT("DRAFT"),
 
-    MULTI_SELECT("MULTI_SELECT"),
+    INTERNAL("INTERNAL"),
 
-    SINGLE_LINE_TEXT("SINGLE_LINE_TEXT"),
-
-    MULTI_LINE_TEXT("MULTI_LINE_TEXT"),
-
-    NUMERIC("NUMERIC"),
-
-    BOOLEAN("BOOLEAN");
+    PENDING("PENDING");
 
     private final String value;
 
-    TypeEnum(String value) {
+    JobPostingStatusEnum(String value) {
         this.value = value;
     }
 

@@ -23,10 +23,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = Stage.Builder.class)
 public final class Stage {
-    private final Optional<String> name;
-
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -34,6 +30,10 @@ public final class Stage {
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> name;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -44,42 +44,26 @@ public final class Stage {
     private final Map<String, Object> additionalProperties;
 
     private Stage(
-            Optional<String> name,
-            Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> name,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
-        this.name = name;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.name = name;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
-    }
-
-    /**
-     * @return The stage's name.
-     */
-    @JsonProperty("name")
-    public Optional<String> getName() {
-        return name;
-    }
-
-    /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
-     */
-    @JsonProperty("remote_was_deleted")
-    public Optional<Boolean> getRemoteWasDeleted() {
-        return remoteWasDeleted;
     }
 
     @JsonProperty("id")
@@ -106,6 +90,22 @@ public final class Stage {
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
         return modifiedAt;
+    }
+
+    /**
+     * @return The stage's name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
     }
 
     @JsonProperty("field_mappings")
@@ -135,12 +135,12 @@ public final class Stage {
     }
 
     private boolean equalTo(Stage other) {
-        return name.equals(other.name)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
+        return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && name.equals(other.name)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
                 && remoteFields.equals(other.remoteFields);
@@ -149,12 +149,12 @@ public final class Stage {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.name,
-                this.remoteWasDeleted,
                 this.id,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.name,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData,
                 this.remoteFields);
@@ -171,10 +171,6 @@ public final class Stage {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> name = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -182,6 +178,10 @@ public final class Stage {
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -195,37 +195,15 @@ public final class Stage {
         private Builder() {}
 
         public Builder from(Stage other) {
-            name(other.getName());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            name(other.getName());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             remoteFields(other.getRemoteFields());
-            return this;
-        }
-
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public Builder name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = Optional.of(name);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -273,6 +251,28 @@ public final class Stage {
             return this;
         }
 
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -308,12 +308,12 @@ public final class Stage {
 
         public Stage build() {
             return new Stage(
-                    name,
-                    remoteWasDeleted,
                     id,
                     remoteId,
                     createdAt,
                     modifiedAt,
+                    name,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     remoteFields,

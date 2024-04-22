@@ -84,6 +84,9 @@ public class FilesClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getMimeType().isPresent()) {
+            httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

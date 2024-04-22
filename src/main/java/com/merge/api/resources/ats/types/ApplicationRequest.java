@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -29,6 +30,8 @@ public final class ApplicationRequest {
     private final Optional<OffsetDateTime> appliedAt;
 
     private final Optional<OffsetDateTime> rejectedAt;
+
+    private final Optional<List<Optional<ApplicationRequestOffersItem>>> offers;
 
     private final Optional<String> source;
 
@@ -51,6 +54,7 @@ public final class ApplicationRequest {
             Optional<ApplicationRequestJob> job,
             Optional<OffsetDateTime> appliedAt,
             Optional<OffsetDateTime> rejectedAt,
+            Optional<List<Optional<ApplicationRequestOffersItem>>> offers,
             Optional<String> source,
             Optional<ApplicationRequestCreditedTo> creditedTo,
             Optional<ApplicationRequestCurrentStage> currentStage,
@@ -63,6 +67,7 @@ public final class ApplicationRequest {
         this.job = job;
         this.appliedAt = appliedAt;
         this.rejectedAt = rejectedAt;
+        this.offers = offers;
         this.source = source;
         this.creditedTo = creditedTo;
         this.currentStage = currentStage;
@@ -103,6 +108,11 @@ public final class ApplicationRequest {
     @JsonProperty("rejected_at")
     public Optional<OffsetDateTime> getRejectedAt() {
         return rejectedAt;
+    }
+
+    @JsonProperty("offers")
+    public Optional<List<Optional<ApplicationRequestOffersItem>>> getOffers() {
+        return offers;
     }
 
     /**
@@ -168,6 +178,7 @@ public final class ApplicationRequest {
                 && job.equals(other.job)
                 && appliedAt.equals(other.appliedAt)
                 && rejectedAt.equals(other.rejectedAt)
+                && offers.equals(other.offers)
                 && source.equals(other.source)
                 && creditedTo.equals(other.creditedTo)
                 && currentStage.equals(other.currentStage)
@@ -184,6 +195,7 @@ public final class ApplicationRequest {
                 this.job,
                 this.appliedAt,
                 this.rejectedAt,
+                this.offers,
                 this.source,
                 this.creditedTo,
                 this.currentStage,
@@ -212,6 +224,8 @@ public final class ApplicationRequest {
 
         private Optional<OffsetDateTime> rejectedAt = Optional.empty();
 
+        private Optional<List<Optional<ApplicationRequestOffersItem>>> offers = Optional.empty();
+
         private Optional<String> source = Optional.empty();
 
         private Optional<ApplicationRequestCreditedTo> creditedTo = Optional.empty();
@@ -236,6 +250,7 @@ public final class ApplicationRequest {
             job(other.getJob());
             appliedAt(other.getAppliedAt());
             rejectedAt(other.getRejectedAt());
+            offers(other.getOffers());
             source(other.getSource());
             creditedTo(other.getCreditedTo());
             currentStage(other.getCurrentStage());
@@ -287,6 +302,17 @@ public final class ApplicationRequest {
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
             this.rejectedAt = Optional.of(rejectedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "offers", nulls = Nulls.SKIP)
+        public Builder offers(Optional<List<Optional<ApplicationRequestOffersItem>>> offers) {
+            this.offers = offers;
+            return this;
+        }
+
+        public Builder offers(List<Optional<ApplicationRequestOffersItem>> offers) {
+            this.offers = Optional.of(offers);
             return this;
         }
 
@@ -373,6 +399,7 @@ public final class ApplicationRequest {
                     job,
                     appliedAt,
                     rejectedAt,
+                    offers,
                     source,
                     creditedTo,
                     currentStage,

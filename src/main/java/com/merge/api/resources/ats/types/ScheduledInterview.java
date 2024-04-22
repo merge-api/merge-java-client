@@ -27,6 +27,10 @@ public final class ScheduledInterview {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<ScheduledInterviewApplication> application;
 
     private final Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage;
@@ -49,10 +53,6 @@ public final class ScheduledInterview {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -62,6 +62,8 @@ public final class ScheduledInterview {
     private ScheduledInterview(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<ScheduledInterviewApplication> application,
             Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage,
             Optional<ScheduledInterviewOrganizer> organizer,
@@ -73,13 +75,13 @@ public final class ScheduledInterview {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<ScheduledInterviewStatus> status,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.application = application;
         this.jobInterviewStage = jobInterviewStage;
         this.organizer = organizer;
@@ -91,8 +93,6 @@ public final class ScheduledInterview {
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.status = status;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -109,6 +109,19 @@ public final class ScheduledInterview {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -204,19 +217,6 @@ public final class ScheduledInterview {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -241,6 +241,8 @@ public final class ScheduledInterview {
     private boolean equalTo(ScheduledInterview other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && application.equals(other.application)
                 && jobInterviewStage.equals(other.jobInterviewStage)
                 && organizer.equals(other.organizer)
@@ -252,8 +254,6 @@ public final class ScheduledInterview {
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && status.equals(other.status)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -263,6 +263,8 @@ public final class ScheduledInterview {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.application,
                 this.jobInterviewStage,
                 this.organizer,
@@ -274,8 +276,6 @@ public final class ScheduledInterview {
                 this.remoteUpdatedAt,
                 this.status,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -294,6 +294,10 @@ public final class ScheduledInterview {
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<ScheduledInterviewApplication> application = Optional.empty();
 
@@ -317,10 +321,6 @@ public final class ScheduledInterview {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -333,6 +333,8 @@ public final class ScheduledInterview {
         public Builder from(ScheduledInterview other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             application(other.getApplication());
             jobInterviewStage(other.getJobInterviewStage());
             organizer(other.getOrganizer());
@@ -344,8 +346,6 @@ public final class ScheduledInterview {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             status(other.getStatus());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -370,6 +370,28 @@ public final class ScheduledInterview {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -494,28 +516,6 @@ public final class ScheduledInterview {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -542,6 +542,8 @@ public final class ScheduledInterview {
             return new ScheduledInterview(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     application,
                     jobInterviewStage,
                     organizer,
@@ -553,8 +555,6 @@ public final class ScheduledInterview {
                     remoteUpdatedAt,
                     status,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

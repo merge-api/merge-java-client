@@ -23,6 +23,14 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CreditNoteLineItem.Builder.class)
 public final class CreditNoteLineItem {
+    private final Optional<String> id;
+
+    private final Optional<String> remoteId;
+
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<CreditNoteLineItemItem> item;
 
     private final Optional<String> name;
@@ -47,19 +55,15 @@ public final class CreditNoteLineItem {
 
     private final Optional<CreditNoteLineItemCompany> company;
 
-    private final Optional<String> remoteId;
-
     private final Optional<Boolean> remoteWasDeleted;
-
-    private final Optional<String> id;
-
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
 
     private final Map<String, Object> additionalProperties;
 
     private CreditNoteLineItem(
+            Optional<String> id,
+            Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<CreditNoteLineItemItem> item,
             Optional<String> name,
             Optional<String> description,
@@ -72,12 +76,12 @@ public final class CreditNoteLineItem {
             List<String> trackingCategories,
             Optional<String> account,
             Optional<CreditNoteLineItemCompany> company,
-            Optional<String> remoteId,
             Optional<Boolean> remoteWasDeleted,
-            Optional<String> id,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Map<String, Object> additionalProperties) {
+        this.id = id;
+        this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.item = item;
         this.name = name;
         this.description = description;
@@ -90,12 +94,34 @@ public final class CreditNoteLineItem {
         this.trackingCategories = trackingCategories;
         this.account = account;
         this.company = company;
-        this.remoteId = remoteId;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.id = id;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     @JsonProperty("item")
@@ -192,37 +218,11 @@ public final class CreditNoteLineItem {
     }
 
     /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
-    }
-
-    /**
      * @return Indicates whether or not this object has been deleted in the third party platform.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
     }
 
     @java.lang.Override
@@ -237,7 +237,11 @@ public final class CreditNoteLineItem {
     }
 
     private boolean equalTo(CreditNoteLineItem other) {
-        return item.equals(other.item)
+        return id.equals(other.id)
+                && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
+                && item.equals(other.item)
                 && name.equals(other.name)
                 && description.equals(other.description)
                 && quantity.equals(other.quantity)
@@ -249,16 +253,16 @@ public final class CreditNoteLineItem {
                 && trackingCategories.equals(other.trackingCategories)
                 && account.equals(other.account)
                 && company.equals(other.company)
-                && remoteId.equals(other.remoteId)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.item,
                 this.name,
                 this.description,
@@ -271,11 +275,7 @@ public final class CreditNoteLineItem {
                 this.trackingCategories,
                 this.account,
                 this.company,
-                this.remoteId,
-                this.remoteWasDeleted,
-                this.id,
-                this.createdAt,
-                this.modifiedAt);
+                this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -289,6 +289,14 @@ public final class CreditNoteLineItem {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> id = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<CreditNoteLineItemItem> item = Optional.empty();
 
         private Optional<String> name = Optional.empty();
@@ -313,15 +321,7 @@ public final class CreditNoteLineItem {
 
         private Optional<CreditNoteLineItemCompany> company = Optional.empty();
 
-        private Optional<String> remoteId = Optional.empty();
-
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
-        private Optional<String> id = Optional.empty();
-
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -329,6 +329,10 @@ public final class CreditNoteLineItem {
         private Builder() {}
 
         public Builder from(CreditNoteLineItem other) {
+            id(other.getId());
+            remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             item(other.getItem());
             name(other.getName());
             description(other.getDescription());
@@ -341,11 +345,51 @@ public final class CreditNoteLineItem {
             trackingCategories(other.getTrackingCategories());
             account(other.getAccount());
             company(other.getCompany());
-            remoteId(other.getRemoteId());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            id(other.getId());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -487,17 +531,6 @@ public final class CreditNoteLineItem {
             return this;
         }
 
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
-            return this;
-        }
-
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -509,41 +542,12 @@ public final class CreditNoteLineItem {
             return this;
         }
 
-        @JsonSetter(value = "id", nulls = Nulls.SKIP)
-        public Builder id(Optional<String> id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder id(String id) {
-            this.id = Optional.of(id);
-            return this;
-        }
-
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         public CreditNoteLineItem build() {
             return new CreditNoteLineItem(
+                    id,
+                    remoteId,
+                    createdAt,
+                    modifiedAt,
                     item,
                     name,
                     description,
@@ -556,11 +560,7 @@ public final class CreditNoteLineItem {
                     trackingCategories,
                     account,
                     company,
-                    remoteId,
                     remoteWasDeleted,
-                    id,
-                    createdAt,
-                    modifiedAt,
                     additionalProperties);
         }
     }

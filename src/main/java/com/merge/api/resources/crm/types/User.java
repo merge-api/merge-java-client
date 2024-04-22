@@ -23,14 +23,6 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = User.Builder.class)
 public final class User {
-    private final Optional<String> name;
-
-    private final Optional<String> email;
-
-    private final Optional<Boolean> isActive;
-
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -38,6 +30,14 @@ public final class User {
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> name;
+
+    private final Optional<String> email;
+
+    private final Optional<Boolean> isActive;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -48,30 +48,56 @@ public final class User {
     private final Map<String, Object> additionalProperties;
 
     private User(
-            Optional<String> name,
-            Optional<String> email,
-            Optional<Boolean> isActive,
-            Optional<Boolean> remoteWasDeleted,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> name,
+            Optional<String> email,
+            Optional<Boolean> isActive,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
-        this.name = name;
-        this.email = email;
-        this.isActive = isActive;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.name = name;
+        this.email = email;
+        this.isActive = isActive;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -106,32 +132,6 @@ public final class User {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -159,14 +159,14 @@ public final class User {
     }
 
     private boolean equalTo(User other) {
-        return name.equals(other.name)
-                && email.equals(other.email)
-                && isActive.equals(other.isActive)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && id.equals(other.id)
+        return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && name.equals(other.name)
+                && email.equals(other.email)
+                && isActive.equals(other.isActive)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
                 && remoteFields.equals(other.remoteFields);
@@ -175,14 +175,14 @@ public final class User {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.name,
-                this.email,
-                this.isActive,
-                this.remoteWasDeleted,
                 this.id,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.name,
+                this.email,
+                this.isActive,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData,
                 this.remoteFields);
@@ -199,14 +199,6 @@ public final class User {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> name = Optional.empty();
-
-        private Optional<String> email = Optional.empty();
-
-        private Optional<Boolean> isActive = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -214,6 +206,14 @@ public final class User {
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
+
+        private Optional<String> email = Optional.empty();
+
+        private Optional<Boolean> isActive = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -227,61 +227,17 @@ public final class User {
         private Builder() {}
 
         public Builder from(User other) {
-            name(other.getName());
-            email(other.getEmail());
-            isActive(other.getIsActive());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            name(other.getName());
+            email(other.getEmail());
+            isActive(other.getIsActive());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             remoteFields(other.getRemoteFields());
-            return this;
-        }
-
-        @JsonSetter(value = "name", nulls = Nulls.SKIP)
-        public Builder name(Optional<String> name) {
-            this.name = name;
-            return this;
-        }
-
-        public Builder name(String name) {
-            this.name = Optional.of(name);
-            return this;
-        }
-
-        @JsonSetter(value = "email", nulls = Nulls.SKIP)
-        public Builder email(Optional<String> email) {
-            this.email = email;
-            return this;
-        }
-
-        public Builder email(String email) {
-            this.email = Optional.of(email);
-            return this;
-        }
-
-        @JsonSetter(value = "is_active", nulls = Nulls.SKIP)
-        public Builder isActive(Optional<Boolean> isActive) {
-            this.isActive = isActive;
-            return this;
-        }
-
-        public Builder isActive(Boolean isActive) {
-            this.isActive = Optional.of(isActive);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -329,6 +285,50 @@ public final class User {
             return this;
         }
 
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
+        @JsonSetter(value = "email", nulls = Nulls.SKIP)
+        public Builder email(Optional<String> email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = Optional.of(email);
+            return this;
+        }
+
+        @JsonSetter(value = "is_active", nulls = Nulls.SKIP)
+        public Builder isActive(Optional<Boolean> isActive) {
+            this.isActive = isActive;
+            return this;
+        }
+
+        public Builder isActive(Boolean isActive) {
+            this.isActive = Optional.of(isActive);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -364,14 +364,14 @@ public final class User {
 
         public User build() {
             return new User(
-                    name,
-                    email,
-                    isActive,
-                    remoteWasDeleted,
                     id,
                     remoteId,
                     createdAt,
                     modifiedAt,
+                    name,
+                    email,
+                    isActive,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     remoteFields,

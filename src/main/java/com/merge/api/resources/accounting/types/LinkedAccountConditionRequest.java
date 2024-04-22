@@ -9,16 +9,20 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = LinkedAccountConditionRequest.Builder.class)
 public final class LinkedAccountConditionRequest {
+    private final Optional<String> id;
+
     private final String conditionSchemaId;
 
     private final String operator;
@@ -28,11 +32,24 @@ public final class LinkedAccountConditionRequest {
     private final Map<String, Object> additionalProperties;
 
     private LinkedAccountConditionRequest(
-            String conditionSchemaId, String operator, JsonNode value, Map<String, Object> additionalProperties) {
+            Optional<String> id,
+            String conditionSchemaId,
+            String operator,
+            JsonNode value,
+            Map<String, Object> additionalProperties) {
+        this.id = id;
         this.conditionSchemaId = conditionSchemaId;
         this.operator = operator;
         this.value = value;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The ID indicating which Linked Account Condition this is.
+     */
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -68,14 +85,15 @@ public final class LinkedAccountConditionRequest {
     }
 
     private boolean equalTo(LinkedAccountConditionRequest other) {
-        return conditionSchemaId.equals(other.conditionSchemaId)
+        return id.equals(other.id)
+                && conditionSchemaId.equals(other.conditionSchemaId)
                 && operator.equals(other.operator)
                 && value.equals(other.value);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.conditionSchemaId, this.operator, this.value);
+        return Objects.hash(this.id, this.conditionSchemaId, this.operator, this.value);
     }
 
     @java.lang.Override
@@ -103,6 +121,10 @@ public final class LinkedAccountConditionRequest {
 
     public interface _FinalStage {
         LinkedAccountConditionRequest build();
+
+        _FinalStage id(Optional<String> id);
+
+        _FinalStage id(String id);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -113,6 +135,8 @@ public final class LinkedAccountConditionRequest {
 
         private JsonNode value;
 
+        private Optional<String> id = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -120,6 +144,7 @@ public final class LinkedAccountConditionRequest {
 
         @java.lang.Override
         public Builder from(LinkedAccountConditionRequest other) {
+            id(other.getId());
             conditionSchemaId(other.getConditionSchemaId());
             operator(other.getOperator());
             value(other.getValue());
@@ -155,9 +180,26 @@ public final class LinkedAccountConditionRequest {
             return this;
         }
 
+        /**
+         * <p>The ID indicating which Linked Account Condition this is.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage id(String id) {
+            this.id = Optional.of(id);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public _FinalStage id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
         @java.lang.Override
         public LinkedAccountConditionRequest build() {
-            return new LinkedAccountConditionRequest(conditionSchemaId, operator, value, additionalProperties);
+            return new LinkedAccountConditionRequest(id, conditionSchemaId, operator, value, additionalProperties);
         }
     }
 }

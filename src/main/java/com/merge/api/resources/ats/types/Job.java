@@ -27,6 +27,10 @@ public final class Job {
 
     private final Optional<String> remoteId;
 
+    private final Optional<OffsetDateTime> createdAt;
+
+    private final Optional<OffsetDateTime> modifiedAt;
+
     private final Optional<String> name;
 
     private final Optional<String> description;
@@ -34,6 +38,10 @@ public final class Job {
     private final Optional<String> code;
 
     private final Optional<JobStatus> status;
+
+    private final Optional<JobTypeEnum> type;
+
+    private final Optional<List<Optional<String>>> jobPostings;
 
     private final Optional<List<Url>> jobPostingUrls;
 
@@ -53,10 +61,6 @@ public final class Job {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<OffsetDateTime> createdAt;
-
-    private final Optional<OffsetDateTime> modifiedAt;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -66,10 +70,14 @@ public final class Job {
     private Job(
             Optional<String> id,
             Optional<String> remoteId,
+            Optional<OffsetDateTime> createdAt,
+            Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<String> description,
             Optional<String> code,
             Optional<JobStatus> status,
+            Optional<JobTypeEnum> type,
+            Optional<List<Optional<String>>> jobPostings,
             Optional<List<Url>> jobPostingUrls,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -79,17 +87,19 @@ public final class Job {
             Optional<List<Optional<JobHiringManagersItem>>> hiringManagers,
             Optional<List<Optional<JobRecruitersItem>>> recruiters,
             Optional<Boolean> remoteWasDeleted,
-            Optional<OffsetDateTime> createdAt,
-            Optional<OffsetDateTime> modifiedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
+        this.createdAt = createdAt;
+        this.modifiedAt = modifiedAt;
         this.name = name;
         this.description = description;
         this.code = code;
         this.status = status;
+        this.type = type;
+        this.jobPostings = jobPostings;
         this.jobPostingUrls = jobPostingUrls;
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
@@ -99,8 +109,6 @@ public final class Job {
         this.hiringManagers = hiringManagers;
         this.recruiters = recruiters;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.createdAt = createdAt;
-        this.modifiedAt = modifiedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -117,6 +125,19 @@ public final class Job {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -156,6 +177,27 @@ public final class Job {
     @JsonProperty("status")
     public Optional<JobStatus> getStatus() {
         return status;
+    }
+
+    /**
+     * @return The job's type.
+     * <ul>
+     * <li><code>POSTING</code> - POSTING</li>
+     * <li><code>REQUISITION</code> - REQUISITION</li>
+     * <li><code>PROFILE</code> - PROFILE</li>
+     * </ul>
+     */
+    @JsonProperty("type")
+    public Optional<JobTypeEnum> getType() {
+        return type;
+    }
+
+    /**
+     * @return IDs of <code>JobPosting</code> objects that serve as job postings for this <code>Job</code>.
+     */
+    @JsonProperty("job_postings")
+    public Optional<List<Optional<String>>> getJobPostings() {
+        return jobPostings;
     }
 
     @JsonProperty("job_posting_urls")
@@ -227,19 +269,6 @@ public final class Job {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -264,10 +293,14 @@ public final class Job {
     private boolean equalTo(Job other) {
         return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
+                && createdAt.equals(other.createdAt)
+                && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && description.equals(other.description)
                 && code.equals(other.code)
                 && status.equals(other.status)
+                && type.equals(other.type)
+                && jobPostings.equals(other.jobPostings)
                 && jobPostingUrls.equals(other.jobPostingUrls)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
@@ -277,8 +310,6 @@ public final class Job {
                 && hiringManagers.equals(other.hiringManagers)
                 && recruiters.equals(other.recruiters)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -288,10 +319,14 @@ public final class Job {
         return Objects.hash(
                 this.id,
                 this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.name,
                 this.description,
                 this.code,
                 this.status,
+                this.type,
+                this.jobPostings,
                 this.jobPostingUrls,
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
@@ -301,8 +336,6 @@ public final class Job {
                 this.hiringManagers,
                 this.recruiters,
                 this.remoteWasDeleted,
-                this.createdAt,
-                this.modifiedAt,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -322,6 +355,10 @@ public final class Job {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<OffsetDateTime> createdAt = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<String> description = Optional.empty();
@@ -329,6 +366,10 @@ public final class Job {
         private Optional<String> code = Optional.empty();
 
         private Optional<JobStatus> status = Optional.empty();
+
+        private Optional<JobTypeEnum> type = Optional.empty();
+
+        private Optional<List<Optional<String>>> jobPostings = Optional.empty();
 
         private Optional<List<Url>> jobPostingUrls = Optional.empty();
 
@@ -348,10 +389,6 @@ public final class Job {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
-
-        private Optional<OffsetDateTime> modifiedAt = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -364,10 +401,14 @@ public final class Job {
         public Builder from(Job other) {
             id(other.getId());
             remoteId(other.getRemoteId());
+            createdAt(other.getCreatedAt());
+            modifiedAt(other.getModifiedAt());
             name(other.getName());
             description(other.getDescription());
             code(other.getCode());
             status(other.getStatus());
+            type(other.getType());
+            jobPostings(other.getJobPostings());
             jobPostingUrls(other.getJobPostingUrls());
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
@@ -377,8 +418,6 @@ public final class Job {
             hiringManagers(other.getHiringManagers());
             recruiters(other.getRecruiters());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            createdAt(other.getCreatedAt());
-            modifiedAt(other.getModifiedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -403,6 +442,28 @@ public final class Job {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.of(remoteId);
+            return this;
+        }
+
+        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
+        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
+            this.createdAt = createdAt;
+            return this;
+        }
+
+        public Builder createdAt(OffsetDateTime createdAt) {
+            this.createdAt = Optional.of(createdAt);
+            return this;
+        }
+
+        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
+        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
+            this.modifiedAt = modifiedAt;
+            return this;
+        }
+
+        public Builder modifiedAt(OffsetDateTime modifiedAt) {
+            this.modifiedAt = Optional.of(modifiedAt);
             return this;
         }
 
@@ -447,6 +508,28 @@ public final class Job {
 
         public Builder status(JobStatus status) {
             this.status = Optional.of(status);
+            return this;
+        }
+
+        @JsonSetter(value = "type", nulls = Nulls.SKIP)
+        public Builder type(Optional<JobTypeEnum> type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder type(JobTypeEnum type) {
+            this.type = Optional.of(type);
+            return this;
+        }
+
+        @JsonSetter(value = "job_postings", nulls = Nulls.SKIP)
+        public Builder jobPostings(Optional<List<Optional<String>>> jobPostings) {
+            this.jobPostings = jobPostings;
+            return this;
+        }
+
+        public Builder jobPostings(List<Optional<String>> jobPostings) {
+            this.jobPostings = Optional.of(jobPostings);
             return this;
         }
 
@@ -549,28 +632,6 @@ public final class Job {
             return this;
         }
 
-        @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            this.createdAt = createdAt;
-            return this;
-        }
-
-        public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
-            return this;
-        }
-
-        @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
-        public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
-            this.modifiedAt = modifiedAt;
-            return this;
-        }
-
-        public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -597,10 +658,14 @@ public final class Job {
             return new Job(
                     id,
                     remoteId,
+                    createdAt,
+                    modifiedAt,
                     name,
                     description,
                     code,
                     status,
+                    type,
+                    jobPostings,
                     jobPostingUrls,
                     remoteCreatedAt,
                     remoteUpdatedAt,
@@ -610,8 +675,6 @@ public final class Job {
                     hiringManagers,
                     recruiters,
                     remoteWasDeleted,
-                    createdAt,
-                    modifiedAt,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

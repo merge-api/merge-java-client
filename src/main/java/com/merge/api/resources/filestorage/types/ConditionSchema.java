@@ -73,17 +73,11 @@ public final class ConditionSchema {
         return commonModel;
     }
 
-    /**
-     * @return User-facing <em>native condition</em> name. e.g. &quot;Skip Manager&quot;.
-     */
     @JsonProperty("native_name")
     public Optional<String> getNativeName() {
         return nativeName;
     }
 
-    /**
-     * @return The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. &quot;location_type&quot;.
-     */
     @JsonProperty("field_name")
     public Optional<String> getFieldName() {
         return fieldName;
@@ -309,10 +303,6 @@ public final class ConditionSchema {
             return this;
         }
 
-        /**
-         * <p>The name of the field on the common model that this condition corresponds to, if they conceptually match. e.g. &quot;location_type&quot;.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
         public _FinalStage fieldName(String fieldName) {
             this.fieldName = Optional.of(fieldName);
@@ -326,10 +316,6 @@ public final class ConditionSchema {
             return this;
         }
 
-        /**
-         * <p>User-facing <em>native condition</em> name. e.g. &quot;Skip Manager&quot;.</p>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
         @java.lang.Override
         public _FinalStage nativeName(String nativeName) {
             this.nativeName = Optional.of(nativeName);

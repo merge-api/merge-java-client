@@ -74,6 +74,9 @@ public class GroupsClient {
             httpUrl.addQueryParameter(
                     "modified_before", request.getModifiedBefore().get().toString());
         }
+        if (request.getNames().isPresent()) {
+            httpUrl.addQueryParameter("names", request.getNames().get());
+        }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }

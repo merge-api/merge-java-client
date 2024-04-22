@@ -35,6 +35,8 @@ public final class GroupsListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> names;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> remoteFields;
@@ -55,6 +57,7 @@ public final class GroupsListRequest {
             Optional<Boolean> includeRemoteData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> names,
             Optional<Integer> pageSize,
             Optional<String> remoteFields,
             Optional<String> remoteId,
@@ -68,6 +71,7 @@ public final class GroupsListRequest {
         this.includeRemoteData = includeRemoteData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.names = names;
         this.pageSize = pageSize;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
@@ -133,6 +137,14 @@ public final class GroupsListRequest {
     }
 
     /**
+     * @return If provided, will only return groups with these names. Multiple values can be separated by commas.
+     */
+    @JsonProperty("names")
+    public Optional<String> getNames() {
+        return names;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -157,7 +169,7 @@ public final class GroupsListRequest {
     }
 
     /**
-     * @return Which fields should be returned in non-normalized form.
+     * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
     public Optional<String> getShowEnumOrigins() {
@@ -191,6 +203,7 @@ public final class GroupsListRequest {
                 && includeRemoteData.equals(other.includeRemoteData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && names.equals(other.names)
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
@@ -208,6 +221,7 @@ public final class GroupsListRequest {
                 this.includeRemoteData,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.names,
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
@@ -240,6 +254,8 @@ public final class GroupsListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> names = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<String> remoteFields = Optional.empty();
@@ -263,6 +279,7 @@ public final class GroupsListRequest {
             includeRemoteData(other.getIncludeRemoteData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            names(other.getNames());
             pageSize(other.getPageSize());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
@@ -348,6 +365,17 @@ public final class GroupsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "names", nulls = Nulls.SKIP)
+        public Builder names(Optional<String> names) {
+            this.names = names;
+            return this;
+        }
+
+        public Builder names(String names) {
+            this.names = Optional.of(names);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -412,6 +440,7 @@ public final class GroupsListRequest {
                     includeRemoteData,
                     modifiedAfter,
                     modifiedBefore,
+                    names,
                     pageSize,
                     remoteFields,
                     remoteId,

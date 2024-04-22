@@ -27,6 +27,9 @@ public final class GenerateRemoteKeyRequest {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return The name of the remote key
+     */
     @JsonProperty("name")
     public String getName() {
         return name;
@@ -86,6 +89,10 @@ public final class GenerateRemoteKeyRequest {
             return this;
         }
 
+        /**
+         * <p>The name of the remote key</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("name")
         public _FinalStage name(String name) {

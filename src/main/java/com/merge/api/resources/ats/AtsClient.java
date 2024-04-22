@@ -23,6 +23,7 @@ import com.merge.api.resources.ats.generatekey.GenerateKeyClient;
 import com.merge.api.resources.ats.interviews.InterviewsClient;
 import com.merge.api.resources.ats.issues.IssuesClient;
 import com.merge.api.resources.ats.jobinterviewstages.JobInterviewStagesClient;
+import com.merge.api.resources.ats.jobpostings.JobPostingsClient;
 import com.merge.api.resources.ats.jobs.JobsClient;
 import com.merge.api.resources.ats.linkedaccounts.LinkedAccountsClient;
 import com.merge.api.resources.ats.linktoken.LinkTokenClient;
@@ -79,6 +80,8 @@ public class AtsClient {
 
     protected final Supplier<JobInterviewStagesClient> jobInterviewStagesClient;
 
+    protected final Supplier<JobPostingsClient> jobPostingsClient;
+
     protected final Supplier<JobsClient> jobsClient;
 
     protected final Supplier<LinkTokenClient> linkTokenClient;
@@ -129,6 +132,7 @@ public class AtsClient {
         this.interviewsClient = Suppliers.memoize(() -> new InterviewsClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
         this.jobInterviewStagesClient = Suppliers.memoize(() -> new JobInterviewStagesClient(clientOptions));
+        this.jobPostingsClient = Suppliers.memoize(() -> new JobPostingsClient(clientOptions));
         this.jobsClient = Suppliers.memoize(() -> new JobsClient(clientOptions));
         this.linkTokenClient = Suppliers.memoize(() -> new LinkTokenClient(clientOptions));
         this.linkedAccountsClient = Suppliers.memoize(() -> new LinkedAccountsClient(clientOptions));
@@ -216,6 +220,10 @@ public class AtsClient {
 
     public JobInterviewStagesClient jobInterviewStages() {
         return this.jobInterviewStagesClient.get();
+    }
+
+    public JobPostingsClient jobPostings() {
+        return this.jobPostingsClient.get();
     }
 
     public JobsClient jobs() {

@@ -21,43 +21,69 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = PaymentLineItem.Builder.class)
 public final class PaymentLineItem {
-    private final Optional<String> appliedAmount;
-
-    private final Optional<OffsetDateTime> appliedDate;
+    private final Optional<String> id;
 
     private final Optional<String> remoteId;
-
-    private final Optional<String> relatedObjectId;
-
-    private final Optional<String> relatedObjectType;
-
-    private final Optional<String> id;
 
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> appliedAmount;
+
+    private final Optional<OffsetDateTime> appliedDate;
+
+    private final Optional<String> relatedObjectId;
+
+    private final Optional<String> relatedObjectType;
+
     private final Map<String, Object> additionalProperties;
 
     private PaymentLineItem(
-            Optional<String> appliedAmount,
-            Optional<OffsetDateTime> appliedDate,
-            Optional<String> remoteId,
-            Optional<String> relatedObjectId,
-            Optional<String> relatedObjectType,
             Optional<String> id,
+            Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> appliedAmount,
+            Optional<OffsetDateTime> appliedDate,
+            Optional<String> relatedObjectId,
+            Optional<String> relatedObjectType,
             Map<String, Object> additionalProperties) {
-        this.appliedAmount = appliedAmount;
-        this.appliedDate = appliedDate;
-        this.remoteId = remoteId;
-        this.relatedObjectId = relatedObjectId;
-        this.relatedObjectType = relatedObjectType;
         this.id = id;
+        this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.appliedAmount = appliedAmount;
+        this.appliedDate = appliedDate;
+        this.relatedObjectId = relatedObjectId;
+        this.relatedObjectType = relatedObjectType;
         this.additionalProperties = additionalProperties;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
+    }
+
+    /**
+     * @return The third-party API ID of the matching object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonProperty("created_at")
+    public Optional<OffsetDateTime> getCreatedAt() {
+        return createdAt;
+    }
+
+    /**
+     * @return This is the datetime that this object was last updated by Merge
+     */
+    @JsonProperty("modified_at")
+    public Optional<OffsetDateTime> getModifiedAt() {
+        return modifiedAt;
     }
 
     /**
@@ -77,14 +103,6 @@ public final class PaymentLineItem {
     }
 
     /**
-     * @return The third-party API ID of the matching object.
-     */
-    @JsonProperty("remote_id")
-    public Optional<String> getRemoteId() {
-        return remoteId;
-    }
-
-    /**
      * @return The Merge ID of the transaction the payment portion is being applied to.
      */
     @JsonProperty("related_object_id")
@@ -100,24 +118,6 @@ public final class PaymentLineItem {
         return relatedObjectType;
     }
 
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
-    }
-
-    @JsonProperty("created_at")
-    public Optional<OffsetDateTime> getCreatedAt() {
-        return createdAt;
-    }
-
-    /**
-     * @return This is the datetime that this object was last updated by Merge
-     */
-    @JsonProperty("modified_at")
-    public Optional<OffsetDateTime> getModifiedAt() {
-        return modifiedAt;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -130,27 +130,27 @@ public final class PaymentLineItem {
     }
 
     private boolean equalTo(PaymentLineItem other) {
-        return appliedAmount.equals(other.appliedAmount)
-                && appliedDate.equals(other.appliedDate)
+        return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
-                && relatedObjectId.equals(other.relatedObjectId)
-                && relatedObjectType.equals(other.relatedObjectType)
-                && id.equals(other.id)
                 && createdAt.equals(other.createdAt)
-                && modifiedAt.equals(other.modifiedAt);
+                && modifiedAt.equals(other.modifiedAt)
+                && appliedAmount.equals(other.appliedAmount)
+                && appliedDate.equals(other.appliedDate)
+                && relatedObjectId.equals(other.relatedObjectId)
+                && relatedObjectType.equals(other.relatedObjectType);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
                 this.appliedAmount,
                 this.appliedDate,
-                this.remoteId,
                 this.relatedObjectId,
-                this.relatedObjectType,
-                this.id,
-                this.createdAt,
-                this.modifiedAt);
+                this.relatedObjectType);
     }
 
     @java.lang.Override
@@ -164,21 +164,21 @@ public final class PaymentLineItem {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> appliedAmount = Optional.empty();
-
-        private Optional<OffsetDateTime> appliedDate = Optional.empty();
+        private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
-
-        private Optional<String> relatedObjectId = Optional.empty();
-
-        private Optional<String> relatedObjectType = Optional.empty();
-
-        private Optional<String> id = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> appliedAmount = Optional.empty();
+
+        private Optional<OffsetDateTime> appliedDate = Optional.empty();
+
+        private Optional<String> relatedObjectId = Optional.empty();
+
+        private Optional<String> relatedObjectType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -186,69 +186,14 @@ public final class PaymentLineItem {
         private Builder() {}
 
         public Builder from(PaymentLineItem other) {
-            appliedAmount(other.getAppliedAmount());
-            appliedDate(other.getAppliedDate());
-            remoteId(other.getRemoteId());
-            relatedObjectId(other.getRelatedObjectId());
-            relatedObjectType(other.getRelatedObjectType());
             id(other.getId());
+            remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
-            return this;
-        }
-
-        @JsonSetter(value = "applied_amount", nulls = Nulls.SKIP)
-        public Builder appliedAmount(Optional<String> appliedAmount) {
-            this.appliedAmount = appliedAmount;
-            return this;
-        }
-
-        public Builder appliedAmount(String appliedAmount) {
-            this.appliedAmount = Optional.of(appliedAmount);
-            return this;
-        }
-
-        @JsonSetter(value = "applied_date", nulls = Nulls.SKIP)
-        public Builder appliedDate(Optional<OffsetDateTime> appliedDate) {
-            this.appliedDate = appliedDate;
-            return this;
-        }
-
-        public Builder appliedDate(OffsetDateTime appliedDate) {
-            this.appliedDate = Optional.of(appliedDate);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
-            return this;
-        }
-
-        @JsonSetter(value = "related_object_id", nulls = Nulls.SKIP)
-        public Builder relatedObjectId(Optional<String> relatedObjectId) {
-            this.relatedObjectId = relatedObjectId;
-            return this;
-        }
-
-        public Builder relatedObjectId(String relatedObjectId) {
-            this.relatedObjectId = Optional.of(relatedObjectId);
-            return this;
-        }
-
-        @JsonSetter(value = "related_object_type", nulls = Nulls.SKIP)
-        public Builder relatedObjectType(Optional<String> relatedObjectType) {
-            this.relatedObjectType = relatedObjectType;
-            return this;
-        }
-
-        public Builder relatedObjectType(String relatedObjectType) {
-            this.relatedObjectType = Optional.of(relatedObjectType);
+            appliedAmount(other.getAppliedAmount());
+            appliedDate(other.getAppliedDate());
+            relatedObjectId(other.getRelatedObjectId());
+            relatedObjectType(other.getRelatedObjectType());
             return this;
         }
 
@@ -260,6 +205,17 @@ public final class PaymentLineItem {
 
         public Builder id(String id) {
             this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -285,16 +241,60 @@ public final class PaymentLineItem {
             return this;
         }
 
+        @JsonSetter(value = "applied_amount", nulls = Nulls.SKIP)
+        public Builder appliedAmount(Optional<String> appliedAmount) {
+            this.appliedAmount = appliedAmount;
+            return this;
+        }
+
+        public Builder appliedAmount(String appliedAmount) {
+            this.appliedAmount = Optional.of(appliedAmount);
+            return this;
+        }
+
+        @JsonSetter(value = "applied_date", nulls = Nulls.SKIP)
+        public Builder appliedDate(Optional<OffsetDateTime> appliedDate) {
+            this.appliedDate = appliedDate;
+            return this;
+        }
+
+        public Builder appliedDate(OffsetDateTime appliedDate) {
+            this.appliedDate = Optional.of(appliedDate);
+            return this;
+        }
+
+        @JsonSetter(value = "related_object_id", nulls = Nulls.SKIP)
+        public Builder relatedObjectId(Optional<String> relatedObjectId) {
+            this.relatedObjectId = relatedObjectId;
+            return this;
+        }
+
+        public Builder relatedObjectId(String relatedObjectId) {
+            this.relatedObjectId = Optional.of(relatedObjectId);
+            return this;
+        }
+
+        @JsonSetter(value = "related_object_type", nulls = Nulls.SKIP)
+        public Builder relatedObjectType(Optional<String> relatedObjectType) {
+            this.relatedObjectType = relatedObjectType;
+            return this;
+        }
+
+        public Builder relatedObjectType(String relatedObjectType) {
+            this.relatedObjectType = Optional.of(relatedObjectType);
+            return this;
+        }
+
         public PaymentLineItem build() {
             return new PaymentLineItem(
-                    appliedAmount,
-                    appliedDate,
-                    remoteId,
-                    relatedObjectId,
-                    relatedObjectType,
                     id,
+                    remoteId,
                     createdAt,
                     modifiedAt,
+                    appliedAmount,
+                    appliedDate,
+                    relatedObjectId,
+                    relatedObjectType,
                     additionalProperties);
         }
     }

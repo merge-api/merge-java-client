@@ -23,49 +23,44 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CustomObject.Builder.class)
 public final class CustomObject {
-    private final Optional<String> objectClass;
-
-    private final Optional<Map<String, JsonNode>> fields;
+    private final Optional<String> id;
 
     private final Optional<String> remoteId;
-
-    private final Optional<String> id;
 
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
+
+    private final Optional<String> objectClass;
+
+    private final Optional<Map<String, JsonNode>> fields;
 
     private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
     private CustomObject(
-            Optional<String> objectClass,
-            Optional<Map<String, JsonNode>> fields,
-            Optional<String> remoteId,
             Optional<String> id,
+            Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> objectClass,
+            Optional<Map<String, JsonNode>> fields,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
-        this.objectClass = objectClass;
-        this.fields = fields;
-        this.remoteId = remoteId;
         this.id = id;
+        this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.objectClass = objectClass;
+        this.fields = fields;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("object_class")
-    public Optional<String> getObjectClass() {
-        return objectClass;
-    }
-
-    @JsonProperty("fields")
-    public Optional<Map<String, JsonNode>> getFields() {
-        return fields;
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -74,11 +69,6 @@ public final class CustomObject {
     @JsonProperty("remote_id")
     public Optional<String> getRemoteId() {
         return remoteId;
-    }
-
-    @JsonProperty("id")
-    public Optional<String> getId() {
-        return id;
     }
 
     @JsonProperty("created_at")
@@ -92,6 +82,16 @@ public final class CustomObject {
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
         return modifiedAt;
+    }
+
+    @JsonProperty("object_class")
+    public Optional<String> getObjectClass() {
+        return objectClass;
+    }
+
+    @JsonProperty("fields")
+    public Optional<Map<String, JsonNode>> getFields() {
+        return fields;
     }
 
     @JsonProperty("remote_fields")
@@ -111,24 +111,24 @@ public final class CustomObject {
     }
 
     private boolean equalTo(CustomObject other) {
-        return objectClass.equals(other.objectClass)
-                && fields.equals(other.fields)
+        return id.equals(other.id)
                 && remoteId.equals(other.remoteId)
-                && id.equals(other.id)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && objectClass.equals(other.objectClass)
+                && fields.equals(other.fields)
                 && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.objectClass,
-                this.fields,
-                this.remoteId,
                 this.id,
+                this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.objectClass,
+                this.fields,
                 this.remoteFields);
     }
 
@@ -143,17 +143,17 @@ public final class CustomObject {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> objectClass = Optional.empty();
-
-        private Optional<Map<String, JsonNode>> fields = Optional.empty();
+        private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
-
-        private Optional<String> id = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
+
+        private Optional<String> objectClass = Optional.empty();
+
+        private Optional<Map<String, JsonNode>> fields = Optional.empty();
 
         private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
@@ -163,46 +163,13 @@ public final class CustomObject {
         private Builder() {}
 
         public Builder from(CustomObject other) {
-            objectClass(other.getObjectClass());
-            fields(other.getFields());
-            remoteId(other.getRemoteId());
             id(other.getId());
+            remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            objectClass(other.getObjectClass());
+            fields(other.getFields());
             remoteFields(other.getRemoteFields());
-            return this;
-        }
-
-        @JsonSetter(value = "object_class", nulls = Nulls.SKIP)
-        public Builder objectClass(Optional<String> objectClass) {
-            this.objectClass = objectClass;
-            return this;
-        }
-
-        public Builder objectClass(String objectClass) {
-            this.objectClass = Optional.of(objectClass);
-            return this;
-        }
-
-        @JsonSetter(value = "fields", nulls = Nulls.SKIP)
-        public Builder fields(Optional<Map<String, JsonNode>> fields) {
-            this.fields = fields;
-            return this;
-        }
-
-        public Builder fields(Map<String, JsonNode> fields) {
-            this.fields = Optional.of(fields);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
-        public Builder remoteId(Optional<String> remoteId) {
-            this.remoteId = remoteId;
-            return this;
-        }
-
-        public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -214,6 +181,17 @@ public final class CustomObject {
 
         public Builder id(String id) {
             this.id = Optional.of(id);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.of(remoteId);
             return this;
         }
 
@@ -239,6 +217,28 @@ public final class CustomObject {
             return this;
         }
 
+        @JsonSetter(value = "object_class", nulls = Nulls.SKIP)
+        public Builder objectClass(Optional<String> objectClass) {
+            this.objectClass = objectClass;
+            return this;
+        }
+
+        public Builder objectClass(String objectClass) {
+            this.objectClass = Optional.of(objectClass);
+            return this;
+        }
+
+        @JsonSetter(value = "fields", nulls = Nulls.SKIP)
+        public Builder fields(Optional<Map<String, JsonNode>> fields) {
+            this.fields = fields;
+            return this;
+        }
+
+        public Builder fields(Map<String, JsonNode> fields) {
+            this.fields = Optional.of(fields);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
             this.remoteFields = remoteFields;
@@ -252,7 +252,7 @@ public final class CustomObject {
 
         public CustomObject build() {
             return new CustomObject(
-                    objectClass, fields, remoteId, id, createdAt, modifiedAt, remoteFields, additionalProperties);
+                    id, remoteId, createdAt, modifiedAt, objectClass, fields, remoteFields, additionalProperties);
         }
     }
 }

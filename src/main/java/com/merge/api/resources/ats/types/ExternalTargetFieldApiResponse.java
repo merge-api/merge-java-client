@@ -37,6 +37,8 @@ public final class ExternalTargetFieldApiResponse {
 
     private final Optional<List<ExternalTargetFieldApi>> job;
 
+    private final Optional<List<ExternalTargetFieldApi>> jobPosting;
+
     private final Optional<List<ExternalTargetFieldApi>> jobInterviewStage;
 
     private final Optional<List<ExternalTargetFieldApi>> offer;
@@ -62,6 +64,7 @@ public final class ExternalTargetFieldApiResponse {
             Optional<List<ExternalTargetFieldApi>> eeoc,
             Optional<List<ExternalTargetFieldApi>> scheduledInterview,
             Optional<List<ExternalTargetFieldApi>> job,
+            Optional<List<ExternalTargetFieldApi>> jobPosting,
             Optional<List<ExternalTargetFieldApi>> jobInterviewStage,
             Optional<List<ExternalTargetFieldApi>> offer,
             Optional<List<ExternalTargetFieldApi>> office,
@@ -78,6 +81,7 @@ public final class ExternalTargetFieldApiResponse {
         this.eeoc = eeoc;
         this.scheduledInterview = scheduledInterview;
         this.job = job;
+        this.jobPosting = jobPosting;
         this.jobInterviewStage = jobInterviewStage;
         this.offer = offer;
         this.office = office;
@@ -126,6 +130,11 @@ public final class ExternalTargetFieldApiResponse {
     @JsonProperty("Job")
     public Optional<List<ExternalTargetFieldApi>> getJob() {
         return job;
+    }
+
+    @JsonProperty("JobPosting")
+    public Optional<List<ExternalTargetFieldApi>> getJobPosting() {
+        return jobPosting;
     }
 
     @JsonProperty("JobInterviewStage")
@@ -183,6 +192,7 @@ public final class ExternalTargetFieldApiResponse {
                 && eeoc.equals(other.eeoc)
                 && scheduledInterview.equals(other.scheduledInterview)
                 && job.equals(other.job)
+                && jobPosting.equals(other.jobPosting)
                 && jobInterviewStage.equals(other.jobInterviewStage)
                 && offer.equals(other.offer)
                 && office.equals(other.office)
@@ -203,6 +213,7 @@ public final class ExternalTargetFieldApiResponse {
                 this.eeoc,
                 this.scheduledInterview,
                 this.job,
+                this.jobPosting,
                 this.jobInterviewStage,
                 this.offer,
                 this.office,
@@ -239,6 +250,8 @@ public final class ExternalTargetFieldApiResponse {
 
         private Optional<List<ExternalTargetFieldApi>> job = Optional.empty();
 
+        private Optional<List<ExternalTargetFieldApi>> jobPosting = Optional.empty();
+
         private Optional<List<ExternalTargetFieldApi>> jobInterviewStage = Optional.empty();
 
         private Optional<List<ExternalTargetFieldApi>> offer = Optional.empty();
@@ -267,6 +280,7 @@ public final class ExternalTargetFieldApiResponse {
             eeoc(other.getEeoc());
             scheduledInterview(other.getScheduledInterview());
             job(other.getJob());
+            jobPosting(other.getJobPosting());
             jobInterviewStage(other.getJobInterviewStage());
             offer(other.getOffer());
             office(other.getOffice());
@@ -365,6 +379,17 @@ public final class ExternalTargetFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "JobPosting", nulls = Nulls.SKIP)
+        public Builder jobPosting(Optional<List<ExternalTargetFieldApi>> jobPosting) {
+            this.jobPosting = jobPosting;
+            return this;
+        }
+
+        public Builder jobPosting(List<ExternalTargetFieldApi> jobPosting) {
+            this.jobPosting = Optional.of(jobPosting);
+            return this;
+        }
+
         @JsonSetter(value = "JobInterviewStage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<List<ExternalTargetFieldApi>> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
@@ -452,6 +477,7 @@ public final class ExternalTargetFieldApiResponse {
                     eeoc,
                     scheduledInterview,
                     job,
+                    jobPosting,
                     jobInterviewStage,
                     offer,
                     office,
