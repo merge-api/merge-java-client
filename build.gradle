@@ -46,8 +46,15 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '1.0.8'
+            version = '1.0.9'
             from components.java
+            pom {
+                scm {
+                    connection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
+                    developerConnection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
+                    url = 'https://github.com/merge-api/merge-java-client'
+                }
+            }
         }
     }
     repositories {

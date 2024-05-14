@@ -46,10 +46,9 @@ public final class MergeApiClientBuilder {
             throw new RuntimeException("Please provide apiKey");
         }
         this.clientOptionsBuilder.addHeader("Authorization", "Bearer " + this.apiKey);
-        if (accountToken == null) {
-            throw new RuntimeException("Please provide accountToken");
+        if (accountToken != null) {
+            this.clientOptionsBuilder.addHeader("X-Account-Token", this.accountToken);
         }
-        this.clientOptionsBuilder.addHeader("X-Account-Token", this.accountToken);
         clientOptionsBuilder.environment(this.environment);
         return new MergeApiClient(clientOptionsBuilder.build());
     }
