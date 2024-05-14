@@ -17,6 +17,7 @@ import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.ResponseBody;
 
 public class BenefitsClient {
     protected final ClientOptions clientOptions;
@@ -98,12 +99,14 @@ public class BenefitsClient {
                 client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
+            ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), PaginatedBenefitList.class);
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedBenefitList.class);
             }
             throw new ApiError(
                     response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Object.class));
+                    ObjectMappers.JSON_MAPPER.readValue(
+                            responseBody != null ? responseBody.string() : "{}", Object.class));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -150,12 +153,14 @@ public class BenefitsClient {
                 client = clientOptions.httpClientWithTimeout(requestOptions);
             }
             Response response = client.newCall(okhttpRequest).execute();
+            ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Benefit.class);
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Benefit.class);
             }
             throw new ApiError(
                     response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(response.body().string(), Object.class));
+                    ObjectMappers.JSON_MAPPER.readValue(
+                            responseBody != null ? responseBody.string() : "{}", Object.class));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
