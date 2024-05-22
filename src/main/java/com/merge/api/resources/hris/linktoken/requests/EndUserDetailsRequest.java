@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.types.CategoriesEnum;
@@ -46,6 +47,8 @@ public final class EndUserDetailsRequest {
 
     private final Optional<String> language;
 
+    private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
+
     private final Map<String, Object> additionalProperties;
 
     private EndUserDetailsRequest(
@@ -60,6 +63,7 @@ public final class EndUserDetailsRequest {
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
             Optional<String> language,
+            Optional<Map<String, JsonNode>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -71,6 +75,7 @@ public final class EndUserDetailsRequest {
         this.commonModels = commonModels;
         this.categoryCommonModelScopes = categoryCommonModelScopes;
         this.language = language;
+        this.integrationSpecificConfig = integrationSpecificConfig;
         this.additionalProperties = additionalProperties;
     }
 
@@ -155,6 +160,14 @@ public final class EndUserDetailsRequest {
         return language;
     }
 
+    /**
+     * @return A JSON object containing integration-specific configuration options.
+     */
+    @JsonProperty("integration_specific_config")
+    public Optional<Map<String, JsonNode>> getIntegrationSpecificConfig() {
+        return integrationSpecificConfig;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -176,7 +189,8 @@ public final class EndUserDetailsRequest {
                 && shouldCreateMagicLinkUrl.equals(other.shouldCreateMagicLinkUrl)
                 && commonModels.equals(other.commonModels)
                 && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
-                && language.equals(other.language);
+                && language.equals(other.language)
+                && integrationSpecificConfig.equals(other.integrationSpecificConfig);
     }
 
     @java.lang.Override
@@ -191,7 +205,8 @@ public final class EndUserDetailsRequest {
                 this.shouldCreateMagicLinkUrl,
                 this.commonModels,
                 this.categoryCommonModelScopes,
-                this.language);
+                this.language,
+                this.integrationSpecificConfig);
     }
 
     @java.lang.Override
@@ -252,6 +267,10 @@ public final class EndUserDetailsRequest {
         _FinalStage language(Optional<String> language);
 
         _FinalStage language(String language);
+
+        _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
+
+        _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -262,6 +281,8 @@ public final class EndUserDetailsRequest {
         private String endUserOrganizationName;
 
         private String endUserOriginId;
+
+        private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
 
         private Optional<String> language = Optional.empty();
 
@@ -295,6 +316,7 @@ public final class EndUserDetailsRequest {
             commonModels(other.getCommonModels());
             categoryCommonModelScopes(other.getCategoryCommonModelScopes());
             language(other.getLanguage());
+            integrationSpecificConfig(other.getIntegrationSpecificConfig());
             return this;
         }
 
@@ -328,6 +350,23 @@ public final class EndUserDetailsRequest {
         @JsonSetter("end_user_origin_id")
         public _FinalStage endUserOriginId(String endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
+            return this;
+        }
+
+        /**
+         * <p>A JSON object containing integration-specific configuration options.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig) {
+            this.integrationSpecificConfig = Optional.of(integrationSpecificConfig);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "integration_specific_config", nulls = Nulls.SKIP)
+        public _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig) {
+            this.integrationSpecificConfig = integrationSpecificConfig;
             return this;
         }
 
@@ -477,6 +516,7 @@ public final class EndUserDetailsRequest {
                     commonModels,
                     categoryCommonModelScopes,
                     language,
+                    integrationSpecificConfig,
                     additionalProperties);
         }
     }

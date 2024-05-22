@@ -31,7 +31,6 @@ import com.merge.api.resources.crm.opportunities.OpportunitiesClient;
 import com.merge.api.resources.crm.passthrough.PassthroughClient;
 import com.merge.api.resources.crm.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.crm.scopes.ScopesClient;
-import com.merge.api.resources.crm.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.crm.stages.StagesClient;
 import com.merge.api.resources.crm.syncstatus.SyncStatusClient;
 import com.merge.api.resources.crm.tasks.TasksClient;
@@ -92,8 +91,6 @@ public class CrmClient {
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<StagesClient> stagesClient;
 
     protected final Supplier<SyncStatusClient> syncStatusClient;
@@ -133,7 +130,6 @@ public class CrmClient {
         this.opportunitiesClient = Suppliers.memoize(() -> new OpportunitiesClient(clientOptions));
         this.passthroughClient = Suppliers.memoize(() -> new PassthroughClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.stagesClient = Suppliers.memoize(() -> new StagesClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
@@ -240,10 +236,6 @@ public class CrmClient {
 
     public RegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public StagesClient stages() {

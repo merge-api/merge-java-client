@@ -24,7 +24,6 @@ import com.merge.api.resources.filestorage.linktoken.LinkTokenClient;
 import com.merge.api.resources.filestorage.passthrough.PassthroughClient;
 import com.merge.api.resources.filestorage.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.filestorage.scopes.ScopesClient;
-import com.merge.api.resources.filestorage.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.filestorage.syncstatus.SyncStatusClient;
 import com.merge.api.resources.filestorage.users.UsersClient;
 import com.merge.api.resources.filestorage.webhookreceivers.WebhookReceiversClient;
@@ -69,8 +68,6 @@ public class FilestorageClient {
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
     protected final Supplier<ForceResyncClient> forceResyncClient;
@@ -99,7 +96,6 @@ public class FilestorageClient {
         this.linkedAccountsClient = Suppliers.memoize(() -> new LinkedAccountsClient(clientOptions));
         this.passthroughClient = Suppliers.memoize(() -> new PassthroughClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.usersClient = Suppliers.memoize(() -> new UsersClient(clientOptions));
@@ -176,10 +172,6 @@ public class FilestorageClient {
 
     public RegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public SyncStatusClient syncStatus() {

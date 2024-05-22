@@ -34,6 +34,8 @@ public final class RemoteFieldApi {
 
     private final Optional<AdvancedMetadata> advancedMetadata;
 
+    private final Optional<RemoteFieldApiCoverage> coverage;
+
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldApi(
@@ -42,12 +44,14 @@ public final class RemoteFieldApi {
             RemoteEndpointInfo remoteEndpointInfo,
             List<JsonNode> exampleValues,
             Optional<AdvancedMetadata> advancedMetadata,
+            Optional<RemoteFieldApiCoverage> coverage,
             Map<String, Object> additionalProperties) {
         this.schema = schema;
         this.remoteKeyName = remoteKeyName;
         this.remoteEndpointInfo = remoteEndpointInfo;
         this.exampleValues = exampleValues;
         this.advancedMetadata = advancedMetadata;
+        this.coverage = coverage;
         this.additionalProperties = additionalProperties;
     }
 
@@ -76,6 +80,11 @@ public final class RemoteFieldApi {
         return advancedMetadata;
     }
 
+    @JsonProperty("coverage")
+    public Optional<RemoteFieldApiCoverage> getCoverage() {
+        return coverage;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -92,13 +101,19 @@ public final class RemoteFieldApi {
                 && remoteKeyName.equals(other.remoteKeyName)
                 && remoteEndpointInfo.equals(other.remoteEndpointInfo)
                 && exampleValues.equals(other.exampleValues)
-                && advancedMetadata.equals(other.advancedMetadata);
+                && advancedMetadata.equals(other.advancedMetadata)
+                && coverage.equals(other.coverage);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.schema, this.remoteKeyName, this.remoteEndpointInfo, this.exampleValues, this.advancedMetadata);
+                this.schema,
+                this.remoteKeyName,
+                this.remoteEndpointInfo,
+                this.exampleValues,
+                this.advancedMetadata,
+                this.coverage);
     }
 
     @java.lang.Override
@@ -138,6 +153,10 @@ public final class RemoteFieldApi {
         _FinalStage advancedMetadata(Optional<AdvancedMetadata> advancedMetadata);
 
         _FinalStage advancedMetadata(AdvancedMetadata advancedMetadata);
+
+        _FinalStage coverage(Optional<RemoteFieldApiCoverage> coverage);
+
+        _FinalStage coverage(RemoteFieldApiCoverage coverage);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -145,6 +164,8 @@ public final class RemoteFieldApi {
         private String remoteKeyName;
 
         private RemoteEndpointInfo remoteEndpointInfo;
+
+        private Optional<RemoteFieldApiCoverage> coverage = Optional.empty();
 
         private Optional<AdvancedMetadata> advancedMetadata = Optional.empty();
 
@@ -164,6 +185,7 @@ public final class RemoteFieldApi {
             remoteEndpointInfo(other.getRemoteEndpointInfo());
             exampleValues(other.getExampleValues());
             advancedMetadata(other.getAdvancedMetadata());
+            coverage(other.getCoverage());
             return this;
         }
 
@@ -178,6 +200,19 @@ public final class RemoteFieldApi {
         @JsonSetter("remote_endpoint_info")
         public _FinalStage remoteEndpointInfo(RemoteEndpointInfo remoteEndpointInfo) {
             this.remoteEndpointInfo = remoteEndpointInfo;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage coverage(RemoteFieldApiCoverage coverage) {
+            this.coverage = Optional.of(coverage);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "coverage", nulls = Nulls.SKIP)
+        public _FinalStage coverage(Optional<RemoteFieldApiCoverage> coverage) {
+            this.coverage = coverage;
             return this;
         }
 
@@ -237,7 +272,13 @@ public final class RemoteFieldApi {
         @java.lang.Override
         public RemoteFieldApi build() {
             return new RemoteFieldApi(
-                    schema, remoteKeyName, remoteEndpointInfo, exampleValues, advancedMetadata, additionalProperties);
+                    schema,
+                    remoteKeyName,
+                    remoteEndpointInfo,
+                    exampleValues,
+                    advancedMetadata,
+                    coverage,
+                    additionalProperties);
         }
     }
 }

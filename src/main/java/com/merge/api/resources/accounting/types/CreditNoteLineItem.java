@@ -43,8 +43,6 @@ public final class CreditNoteLineItem {
 
     private final Optional<String> unitPrice;
 
-    private final Optional<String> taxRate;
-
     private final Optional<String> totalLineAmount;
 
     private final Optional<String> trackingCategory;
@@ -70,7 +68,6 @@ public final class CreditNoteLineItem {
             Optional<String> quantity,
             Optional<String> memo,
             Optional<String> unitPrice,
-            Optional<String> taxRate,
             Optional<String> totalLineAmount,
             Optional<String> trackingCategory,
             List<String> trackingCategories,
@@ -88,7 +85,6 @@ public final class CreditNoteLineItem {
         this.quantity = quantity;
         this.memo = memo;
         this.unitPrice = unitPrice;
-        this.taxRate = taxRate;
         this.totalLineAmount = totalLineAmount;
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
@@ -111,13 +107,16 @@ public final class CreditNoteLineItem {
         return remoteId;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
@@ -167,14 +166,6 @@ public final class CreditNoteLineItem {
     @JsonProperty("unit_price")
     public Optional<String> getUnitPrice() {
         return unitPrice;
-    }
-
-    /**
-     * @return The credit note line item's tax rate.
-     */
-    @JsonProperty("tax_rate")
-    public Optional<String> getTaxRate() {
-        return taxRate;
     }
 
     /**
@@ -247,7 +238,6 @@ public final class CreditNoteLineItem {
                 && quantity.equals(other.quantity)
                 && memo.equals(other.memo)
                 && unitPrice.equals(other.unitPrice)
-                && taxRate.equals(other.taxRate)
                 && totalLineAmount.equals(other.totalLineAmount)
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
@@ -269,7 +259,6 @@ public final class CreditNoteLineItem {
                 this.quantity,
                 this.memo,
                 this.unitPrice,
-                this.taxRate,
                 this.totalLineAmount,
                 this.trackingCategory,
                 this.trackingCategories,
@@ -309,8 +298,6 @@ public final class CreditNoteLineItem {
 
         private Optional<String> unitPrice = Optional.empty();
 
-        private Optional<String> taxRate = Optional.empty();
-
         private Optional<String> totalLineAmount = Optional.empty();
 
         private Optional<String> trackingCategory = Optional.empty();
@@ -339,7 +326,6 @@ public final class CreditNoteLineItem {
             quantity(other.getQuantity());
             memo(other.getMemo());
             unitPrice(other.getUnitPrice());
-            taxRate(other.getTaxRate());
             totalLineAmount(other.getTotalLineAmount());
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
@@ -459,17 +445,6 @@ public final class CreditNoteLineItem {
             return this;
         }
 
-        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
-        public Builder taxRate(Optional<String> taxRate) {
-            this.taxRate = taxRate;
-            return this;
-        }
-
-        public Builder taxRate(String taxRate) {
-            this.taxRate = Optional.of(taxRate);
-            return this;
-        }
-
         @JsonSetter(value = "total_line_amount", nulls = Nulls.SKIP)
         public Builder totalLineAmount(Optional<String> totalLineAmount) {
             this.totalLineAmount = totalLineAmount;
@@ -554,7 +529,6 @@ public final class CreditNoteLineItem {
                     quantity,
                     memo,
                     unitPrice,
-                    taxRate,
                     totalLineAmount,
                     trackingCategory,
                     trackingCategories,

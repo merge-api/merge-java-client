@@ -20,13 +20,25 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = JobPostingsRetrieveRequest.Builder.class)
 public final class JobPostingsRetrieveRequest {
+    private final Optional<String> expand;
+
     private final Optional<Boolean> includeRemoteData;
 
     private final Map<String, Object> additionalProperties;
 
-    private JobPostingsRetrieveRequest(Optional<Boolean> includeRemoteData, Map<String, Object> additionalProperties) {
+    private JobPostingsRetrieveRequest(
+            Optional<String> expand, Optional<Boolean> includeRemoteData, Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<String> getExpand() {
+        return expand;
     }
 
     /**
@@ -49,12 +61,12 @@ public final class JobPostingsRetrieveRequest {
     }
 
     private boolean equalTo(JobPostingsRetrieveRequest other) {
-        return includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData);
     }
 
     @java.lang.Override
@@ -68,6 +80,8 @@ public final class JobPostingsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> expand = Optional.empty();
+
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         @JsonAnySetter
@@ -76,7 +90,19 @@ public final class JobPostingsRetrieveRequest {
         private Builder() {}
 
         public Builder from(JobPostingsRetrieveRequest other) {
+            expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<String> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(expand);
             return this;
         }
 
@@ -92,7 +118,7 @@ public final class JobPostingsRetrieveRequest {
         }
 
         public JobPostingsRetrieveRequest build() {
-            return new JobPostingsRetrieveRequest(includeRemoteData, additionalProperties);
+            return new JobPostingsRetrieveRequest(expand, includeRemoteData, additionalProperties);
         }
     }
 }

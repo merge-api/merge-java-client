@@ -37,6 +37,8 @@ public final class PatchedPaymentRequest {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<PatchedPaymentRequestType> type;
+
     private final Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod;
@@ -57,6 +59,7 @@ public final class PatchedPaymentRequest {
             Optional<String> exchangeRate,
             Optional<PatchedPaymentRequestCompany> company,
             Optional<Double> totalAmount,
+            Optional<PatchedPaymentRequestType> type,
             Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod,
             Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines,
@@ -70,6 +73,7 @@ public final class PatchedPaymentRequest {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.totalAmount = totalAmount;
+        this.type = type;
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
         this.appliedToLines = appliedToLines;
@@ -442,6 +446,18 @@ public final class PatchedPaymentRequest {
         return totalAmount;
     }
 
+    /**
+     * @return The type of the invoice.
+     * <ul>
+     * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
+     * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
+     * </ul>
+     */
+    @JsonProperty("type")
+    public Optional<PatchedPaymentRequestType> getType() {
+        return type;
+    }
+
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -492,6 +508,7 @@ public final class PatchedPaymentRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
+                && type.equals(other.type)
                 && trackingCategories.equals(other.trackingCategories)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && appliedToLines.equals(other.appliedToLines)
@@ -509,6 +526,7 @@ public final class PatchedPaymentRequest {
                 this.exchangeRate,
                 this.company,
                 this.totalAmount,
+                this.type,
                 this.trackingCategories,
                 this.accountingPeriod,
                 this.appliedToLines,
@@ -541,6 +559,8 @@ public final class PatchedPaymentRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<PatchedPaymentRequestType> type = Optional.empty();
+
         private Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
 
@@ -565,6 +585,7 @@ public final class PatchedPaymentRequest {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
+            type(other.getType());
             trackingCategories(other.getTrackingCategories());
             accountingPeriod(other.getAccountingPeriod());
             appliedToLines(other.getAppliedToLines());
@@ -650,6 +671,17 @@ public final class PatchedPaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "type", nulls = Nulls.SKIP)
+        public Builder type(Optional<PatchedPaymentRequestType> type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder type(PatchedPaymentRequestType type) {
+            this.type = Optional.of(type);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(
                 Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories) {
@@ -716,6 +748,7 @@ public final class PatchedPaymentRequest {
                     exchangeRate,
                     company,
                     totalAmount,
+                    type,
                     trackingCategories,
                     accountingPeriod,
                     appliedToLines,

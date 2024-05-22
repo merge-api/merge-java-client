@@ -37,7 +37,6 @@ import com.merge.api.resources.accounting.phonenumbers.PhoneNumbersClient;
 import com.merge.api.resources.accounting.purchaseorders.PurchaseOrdersClient;
 import com.merge.api.resources.accounting.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.accounting.scopes.ScopesClient;
-import com.merge.api.resources.accounting.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.accounting.syncstatus.SyncStatusClient;
 import com.merge.api.resources.accounting.taxrates.TaxRatesClient;
 import com.merge.api.resources.accounting.trackingcategories.TrackingCategoriesClient;
@@ -111,8 +110,6 @@ public class AccountingClient {
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
     protected final Supplier<ForceResyncClient> forceResyncClient;
@@ -160,7 +157,6 @@ public class AccountingClient {
         this.phoneNumbersClient = Suppliers.memoize(() -> new PhoneNumbersClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new PurchaseOrdersClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.taxRatesClient = Suppliers.memoize(() -> new TaxRatesClient(clientOptions));
@@ -292,10 +288,6 @@ public class AccountingClient {
 
     public RegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public SyncStatusClient syncStatus() {

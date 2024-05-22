@@ -111,13 +111,16 @@ public final class TransactionLineItem {
         return remoteId;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
@@ -185,9 +188,6 @@ public final class TransactionLineItem {
         return totalLineAmount;
     }
 
-    /**
-     * @return The line item's tax rate.
-     */
     @JsonProperty("tax_rate")
     public Optional<String> getTaxRate() {
         return taxRate;

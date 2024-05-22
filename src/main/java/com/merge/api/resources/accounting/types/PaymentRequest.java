@@ -37,6 +37,8 @@ public final class PaymentRequest {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<PaymentRequestType> type;
+
     private final Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<PaymentRequestAccountingPeriod> accountingPeriod;
@@ -57,6 +59,7 @@ public final class PaymentRequest {
             Optional<String> exchangeRate,
             Optional<PaymentRequestCompany> company,
             Optional<Double> totalAmount,
+            Optional<PaymentRequestType> type,
             Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PaymentRequestAccountingPeriod> accountingPeriod,
             Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines,
@@ -70,6 +73,7 @@ public final class PaymentRequest {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.totalAmount = totalAmount;
+        this.type = type;
         this.trackingCategories = trackingCategories;
         this.accountingPeriod = accountingPeriod;
         this.appliedToLines = appliedToLines;
@@ -442,6 +446,18 @@ public final class PaymentRequest {
         return totalAmount;
     }
 
+    /**
+     * @return The type of the invoice.
+     * <ul>
+     * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
+     * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
+     * </ul>
+     */
+    @JsonProperty("type")
+    public Optional<PaymentRequestType> getType() {
+        return type;
+    }
+
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -492,6 +508,7 @@ public final class PaymentRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
+                && type.equals(other.type)
                 && trackingCategories.equals(other.trackingCategories)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && appliedToLines.equals(other.appliedToLines)
@@ -509,6 +526,7 @@ public final class PaymentRequest {
                 this.exchangeRate,
                 this.company,
                 this.totalAmount,
+                this.type,
                 this.trackingCategories,
                 this.accountingPeriod,
                 this.appliedToLines,
@@ -541,6 +559,8 @@ public final class PaymentRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<PaymentRequestType> type = Optional.empty();
+
         private Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<PaymentRequestAccountingPeriod> accountingPeriod = Optional.empty();
@@ -564,6 +584,7 @@ public final class PaymentRequest {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
+            type(other.getType());
             trackingCategories(other.getTrackingCategories());
             accountingPeriod(other.getAccountingPeriod());
             appliedToLines(other.getAppliedToLines());
@@ -649,6 +670,17 @@ public final class PaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "type", nulls = Nulls.SKIP)
+        public Builder type(Optional<PaymentRequestType> type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder type(PaymentRequestType type) {
+            this.type = Optional.of(type);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(
                 Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories) {
@@ -714,6 +746,7 @@ public final class PaymentRequest {
                     exchangeRate,
                     company,
                     totalAmount,
+                    type,
                     trackingCategories,
                     accountingPeriod,
                     appliedToLines,

@@ -89,16 +89,25 @@ public final class CustomObjectClass {
         return modifiedAt;
     }
 
+    /**
+     * @return The custom object class's name.
+     */
     @JsonProperty("name")
     public Optional<String> getName() {
         return name;
     }
 
+    /**
+     * @return The custom object class's description.
+     */
     @JsonProperty("description")
     public Optional<String> getDescription() {
         return description;
     }
 
+    /**
+     * @return The custom object class's singular and plural labels.
+     */
     @JsonProperty("labels")
     public Optional<Map<String, Optional<String>>> getLabels() {
         return labels;
@@ -109,6 +118,9 @@ public final class CustomObjectClass {
         return fields;
     }
 
+    /**
+     * @return The types of associations with other models that the custom object class can have.
+     */
     @JsonProperty("association_types")
     public Optional<List<Map<String, JsonNode>>> getAssociationTypes() {
         return associationTypes;
