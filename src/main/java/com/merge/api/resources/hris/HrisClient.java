@@ -32,7 +32,6 @@ import com.merge.api.resources.hris.paygroups.PayGroupsClient;
 import com.merge.api.resources.hris.payrollruns.PayrollRunsClient;
 import com.merge.api.resources.hris.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.hris.scopes.ScopesClient;
-import com.merge.api.resources.hris.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.hris.syncstatus.SyncStatusClient;
 import com.merge.api.resources.hris.teams.TeamsClient;
 import com.merge.api.resources.hris.timeoff.TimeOffClient;
@@ -96,8 +95,6 @@ public class HrisClient {
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
     protected final Supplier<ForceResyncClient> forceResyncClient;
@@ -140,7 +137,6 @@ public class HrisClient {
         this.payGroupsClient = Suppliers.memoize(() -> new PayGroupsClient(clientOptions));
         this.payrollRunsClient = Suppliers.memoize(() -> new PayrollRunsClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.teamsClient = Suppliers.memoize(() -> new TeamsClient(clientOptions));
@@ -252,10 +248,6 @@ public class HrisClient {
 
     public RegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public SyncStatusClient syncStatus() {

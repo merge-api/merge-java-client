@@ -39,6 +39,8 @@ public final class Group {
 
     private final Optional<Boolean> remoteWasDeleted;
 
+    private final Optional<Boolean> isCommonlyUsedAsTeam;
+
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
@@ -54,6 +56,7 @@ public final class Group {
             Optional<String> name,
             Optional<GroupType> type,
             Optional<Boolean> remoteWasDeleted,
+            Optional<Boolean> isCommonlyUsedAsTeam,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
@@ -65,6 +68,7 @@ public final class Group {
         this.name = name;
         this.type = type;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -83,13 +87,16 @@ public final class Group {
         return remoteId;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
@@ -135,6 +142,14 @@ public final class Group {
         return remoteWasDeleted;
     }
 
+    /**
+     * @return Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct.
+     */
+    @JsonProperty("is_commonly_used_as_team")
+    public Optional<Boolean> getIsCommonlyUsedAsTeam() {
+        return isCommonlyUsedAsTeam;
+    }
+
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -165,6 +180,7 @@ public final class Group {
                 && name.equals(other.name)
                 && type.equals(other.type)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && isCommonlyUsedAsTeam.equals(other.isCommonlyUsedAsTeam)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -180,6 +196,7 @@ public final class Group {
                 this.name,
                 this.type,
                 this.remoteWasDeleted,
+                this.isCommonlyUsedAsTeam,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -211,6 +228,8 @@ public final class Group {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
+        private Optional<Boolean> isCommonlyUsedAsTeam = Optional.empty();
+
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -229,6 +248,7 @@ public final class Group {
             name(other.getName());
             type(other.getType());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            isCommonlyUsedAsTeam(other.getIsCommonlyUsedAsTeam());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -322,6 +342,17 @@ public final class Group {
             return this;
         }
 
+        @JsonSetter(value = "is_commonly_used_as_team", nulls = Nulls.SKIP)
+        public Builder isCommonlyUsedAsTeam(Optional<Boolean> isCommonlyUsedAsTeam) {
+            this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
+            return this;
+        }
+
+        public Builder isCommonlyUsedAsTeam(Boolean isCommonlyUsedAsTeam) {
+            this.isCommonlyUsedAsTeam = Optional.of(isCommonlyUsedAsTeam);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -354,6 +385,7 @@ public final class Group {
                     name,
                     type,
                     remoteWasDeleted,
+                    isCommonlyUsedAsTeam,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

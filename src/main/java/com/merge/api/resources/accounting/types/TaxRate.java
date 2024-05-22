@@ -87,13 +87,16 @@ public final class TaxRate {
         return remoteId;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
@@ -109,7 +112,7 @@ public final class TaxRate {
     }
 
     /**
-     * @return The tax rate's total tax rate.
+     * @return The tax’s total tax rate - sum of the tax components (not compounded).
      */
     @JsonProperty("total_tax_rate")
     public Optional<Double> getTotalTaxRate() {
@@ -117,7 +120,7 @@ public final class TaxRate {
     }
 
     /**
-     * @return The tax rate's effective tax rate.
+     * @return The tax rate’s effective tax rate - total amount of tax with compounding.
      */
     @JsonProperty("effective_tax_rate")
     public Optional<Double> getEffectiveTaxRate() {
@@ -125,7 +128,7 @@ public final class TaxRate {
     }
 
     /**
-     * @return The company the tax rate belongs to.
+     * @return The subsidiary that the tax rate belongs to (in the case of multi-entity systems).
      */
     @JsonProperty("company")
     public Optional<TaxRateCompany> getCompany() {

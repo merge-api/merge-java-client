@@ -139,6 +139,9 @@ public final class AuditLogEvent {
      * <li><code>FORCED_LINKED_ACCOUNT_RESYNC</code> - FORCED_LINKED_ACCOUNT_RESYNC</li>
      * <li><code>MUTED_ISSUE</code> - MUTED_ISSUE</li>
      * <li><code>GENERATED_MAGIC_LINK</code> - GENERATED_MAGIC_LINK</li>
+     * <li><code>ENABLED_MERGE_WEBHOOK</code> - ENABLED_MERGE_WEBHOOK</li>
+     * <li><code>DISABLED_MERGE_WEBHOOK</code> - DISABLED_MERGE_WEBHOOK</li>
+     * <li><code>MERGE_WEBHOOK_TARGET_CHANGED</code> - MERGE_WEBHOOK_TARGET_CHANGED</li>
      * </ul>
      */
     @JsonProperty("event_type")
@@ -338,6 +341,9 @@ public final class AuditLogEvent {
          * <li><code>FORCED_LINKED_ACCOUNT_RESYNC</code> - FORCED_LINKED_ACCOUNT_RESYNC</li>
          * <li><code>MUTED_ISSUE</code> - MUTED_ISSUE</li>
          * <li><code>GENERATED_MAGIC_LINK</code> - GENERATED_MAGIC_LINK</li>
+         * <li><code>ENABLED_MERGE_WEBHOOK</code> - ENABLED_MERGE_WEBHOOK</li>
+         * <li><code>DISABLED_MERGE_WEBHOOK</code> - DISABLED_MERGE_WEBHOOK</li>
+         * <li><code>MERGE_WEBHOOK_TARGET_CHANGED</code> - MERGE_WEBHOOK_TARGET_CHANGED</li>
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */

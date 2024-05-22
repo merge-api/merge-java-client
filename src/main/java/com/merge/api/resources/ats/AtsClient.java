@@ -34,7 +34,6 @@ import com.merge.api.resources.ats.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.ats.rejectreasons.RejectReasonsClient;
 import com.merge.api.resources.ats.scopes.ScopesClient;
 import com.merge.api.resources.ats.scorecards.ScorecardsClient;
-import com.merge.api.resources.ats.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.ats.syncstatus.SyncStatusClient;
 import com.merge.api.resources.ats.tags.TagsClient;
 import com.merge.api.resources.ats.users.UsersClient;
@@ -100,8 +99,6 @@ public class AtsClient {
 
     protected final Supplier<ScorecardsClient> scorecardsClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
     protected final Supplier<ForceResyncClient> forceResyncClient;
@@ -142,7 +139,6 @@ public class AtsClient {
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
         this.rejectReasonsClient = Suppliers.memoize(() -> new RejectReasonsClient(clientOptions));
         this.scorecardsClient = Suppliers.memoize(() -> new ScorecardsClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new TagsClient(clientOptions));
@@ -260,10 +256,6 @@ public class AtsClient {
 
     public ScorecardsClient scorecards() {
         return this.scorecardsClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public SyncStatusClient syncStatus() {

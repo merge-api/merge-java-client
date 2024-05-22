@@ -61,13 +61,16 @@ public final class AccountingPeriod {
         return id;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {

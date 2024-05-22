@@ -31,6 +31,8 @@ public final class GroupsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<String> isCommonlyUsedAsTeam;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -55,6 +57,7 @@ public final class GroupsListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<String> isCommonlyUsedAsTeam,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> names,
@@ -69,6 +72,7 @@ public final class GroupsListRequest {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.names = names;
@@ -118,6 +122,14 @@ public final class GroupsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return If provided, specifies whether to return only Group objects which refer to a team in the third party platform. Note that this is an opinionated view based on how a team may be represented in the third party platform.
+     */
+    @JsonProperty("is_commonly_used_as_team")
+    public Optional<String> getIsCommonlyUsedAsTeam() {
+        return isCommonlyUsedAsTeam;
     }
 
     /**
@@ -201,6 +213,7 @@ public final class GroupsListRequest {
                 && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && isCommonlyUsedAsTeam.equals(other.isCommonlyUsedAsTeam)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && names.equals(other.names)
@@ -219,6 +232,7 @@ public final class GroupsListRequest {
                 this.cursor,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.isCommonlyUsedAsTeam,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.names,
@@ -250,6 +264,8 @@ public final class GroupsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<String> isCommonlyUsedAsTeam = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -277,6 +293,7 @@ public final class GroupsListRequest {
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            isCommonlyUsedAsTeam(other.getIsCommonlyUsedAsTeam());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             names(other.getNames());
@@ -340,6 +357,17 @@ public final class GroupsListRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.of(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "is_commonly_used_as_team", nulls = Nulls.SKIP)
+        public Builder isCommonlyUsedAsTeam(Optional<String> isCommonlyUsedAsTeam) {
+            this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
+            return this;
+        }
+
+        public Builder isCommonlyUsedAsTeam(String isCommonlyUsedAsTeam) {
+            this.isCommonlyUsedAsTeam = Optional.of(isCommonlyUsedAsTeam);
             return this;
         }
 
@@ -438,6 +466,7 @@ public final class GroupsListRequest {
                     cursor,
                     includeDeletedData,
                     includeRemoteData,
+                    isCommonlyUsedAsTeam,
                     modifiedAfter,
                     modifiedBefore,
                     names,

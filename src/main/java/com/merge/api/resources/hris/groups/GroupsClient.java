@@ -67,6 +67,11 @@ public class GroupsClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIsCommonlyUsedAsTeam().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_commonly_used_as_team",
+                    request.getIsCommonlyUsedAsTeam().get());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

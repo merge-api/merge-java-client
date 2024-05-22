@@ -5,17 +5,24 @@ package com.merge.api.resources.ticketing.contacts;
 
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
+import com.merge.api.core.MediaTypes;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.contacts.requests.ContactsListRequest;
 import com.merge.api.resources.ticketing.contacts.requests.ContactsRetrieveRequest;
+import com.merge.api.resources.ticketing.contacts.requests.TicketingContactEndpointRequest;
 import com.merge.api.resources.ticketing.types.Contact;
+import com.merge.api.resources.ticketing.types.MetaResponse;
 import com.merge.api.resources.ticketing.types.PaginatedContactList;
+import com.merge.api.resources.ticketing.types.TicketingContactResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -110,6 +117,61 @@ public class ContactsClient {
     }
 
     /**
+     * Creates a <code>Contact</code> object with the given values.
+     */
+    public TicketingContactResponse create(TicketingContactEndpointRequest request) {
+        return create(request, null);
+    }
+
+    /**
+     * Creates a <code>Contact</code> object with the given values.
+     */
+    public TicketingContactResponse create(TicketingContactEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("ticketing/v1/contacts");
+        if (request.getIsDebugMode().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_debug_mode", request.getIsDebugMode().get().toString());
+        }
+        if (request.getRunAsync().isPresent()) {
+            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("model", request.getModel());
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        try {
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
+            }
+            Response response = client.newCall(okhttpRequest).execute();
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TicketingContactResponse.class);
+            }
+            throw new ApiError(
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(
+                            responseBody != null ? responseBody.string() : "{}", Object.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
      * Returns a <code>Contact</code> object with the given <code>id</code>.
      */
     public Contact retrieve(String id) {
@@ -153,6 +215,46 @@ public class ContactsClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Contact.class);
+            }
+            throw new ApiError(
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(
+                            responseBody != null ? responseBody.string() : "{}", Object.class));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * Returns metadata for <code>TicketingContact</code> POSTs.
+     */
+    public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    /**
+     * Returns metadata for <code>TicketingContact</code> POSTs.
+     */
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("ticketing/v1/contacts/meta/post")
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try {
+            OkHttpClient client = clientOptions.httpClient();
+            if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+                client = clientOptions.httpClientWithTimeout(requestOptions);
+            }
+            Response response = client.newCall(okhttpRequest).execute();
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             throw new ApiError(
                     response.code(),

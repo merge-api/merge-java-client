@@ -45,6 +45,8 @@ public final class Payment {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<PaymentType> type;
+
     private final Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories;
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
@@ -73,6 +75,7 @@ public final class Payment {
             Optional<String> exchangeRate,
             Optional<PaymentCompany> company,
             Optional<Double> totalAmount,
+            Optional<PaymentType> type,
             Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
@@ -92,6 +95,7 @@ public final class Payment {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.totalAmount = totalAmount;
+        this.type = type;
         this.trackingCategories = trackingCategories;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
@@ -115,13 +119,16 @@ public final class Payment {
         return remoteId;
     }
 
+    /**
+     * @return The datetime that this object was created by Merge.
+     */
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
     }
 
     /**
-     * @return This is the datetime that this object was last updated by Merge
+     * @return The datetime that this object was modified by Merge.
      */
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
@@ -492,6 +499,18 @@ public final class Payment {
         return totalAmount;
     }
 
+    /**
+     * @return The type of the invoice.
+     * <ul>
+     * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
+     * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
+     * </ul>
+     */
+    @JsonProperty("type")
+    public Optional<PaymentType> getType() {
+        return type;
+    }
+
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<PaymentTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -562,6 +581,7 @@ public final class Payment {
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
+                && type.equals(other.type)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
@@ -585,6 +605,7 @@ public final class Payment {
                 this.exchangeRate,
                 this.company,
                 this.totalAmount,
+                this.type,
                 this.trackingCategories,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
@@ -627,6 +648,8 @@ public final class Payment {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<PaymentType> type = Optional.empty();
+
         private Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
@@ -658,6 +681,7 @@ public final class Payment {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
+            type(other.getType());
             trackingCategories(other.getTrackingCategories());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
@@ -789,6 +813,17 @@ public final class Payment {
             return this;
         }
 
+        @JsonSetter(value = "type", nulls = Nulls.SKIP)
+        public Builder type(Optional<PaymentType> type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder type(PaymentType type) {
+            this.type = Optional.of(type);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
@@ -879,6 +914,7 @@ public final class Payment {
                     exchangeRate,
                     company,
                     totalAmount,
+                    type,
                     trackingCategories,
                     remoteUpdatedAt,
                     remoteWasDeleted,

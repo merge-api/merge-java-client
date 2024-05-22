@@ -27,7 +27,6 @@ import com.merge.api.resources.ticketing.projects.ProjectsClient;
 import com.merge.api.resources.ticketing.regeneratekey.RegenerateKeyClient;
 import com.merge.api.resources.ticketing.roles.RolesClient;
 import com.merge.api.resources.ticketing.scopes.ScopesClient;
-import com.merge.api.resources.ticketing.selectivesync.SelectiveSyncClient;
 import com.merge.api.resources.ticketing.syncstatus.SyncStatusClient;
 import com.merge.api.resources.ticketing.tags.TagsClient;
 import com.merge.api.resources.ticketing.teams.TeamsClient;
@@ -81,8 +80,6 @@ public class TicketingClient {
 
     protected final Supplier<RolesClient> rolesClient;
 
-    protected final Supplier<SelectiveSyncClient> selectiveSyncClient;
-
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
     protected final Supplier<ForceResyncClient> forceResyncClient;
@@ -120,7 +117,6 @@ public class TicketingClient {
         this.projectsClient = Suppliers.memoize(() -> new ProjectsClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
         this.rolesClient = Suppliers.memoize(() -> new RolesClient(clientOptions));
-        this.selectiveSyncClient = Suppliers.memoize(() -> new SelectiveSyncClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.tagsClient = Suppliers.memoize(() -> new TagsClient(clientOptions));
@@ -212,10 +208,6 @@ public class TicketingClient {
 
     public RolesClient roles() {
         return this.rolesClient.get();
-    }
-
-    public SelectiveSyncClient selectiveSync() {
-        return this.selectiveSyncClient.get();
     }
 
     public SyncStatusClient syncStatus() {
