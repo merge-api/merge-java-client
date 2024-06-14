@@ -16,9 +16,9 @@ import java.util.function.Supplier;
 public class MergeApiClient {
     protected final ClientOptions clientOptions;
 
-    protected final Supplier<FilestorageClient> filestorageClient;
-
     protected final Supplier<AtsClient> atsClient;
+
+    protected final Supplier<FilestorageClient> filestorageClient;
 
     protected final Supplier<CrmClient> crmClient;
 
@@ -30,20 +30,20 @@ public class MergeApiClient {
 
     public MergeApiClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
-        this.filestorageClient = Suppliers.memoize(() -> new FilestorageClient(clientOptions));
         this.atsClient = Suppliers.memoize(() -> new AtsClient(clientOptions));
+        this.filestorageClient = Suppliers.memoize(() -> new FilestorageClient(clientOptions));
         this.crmClient = Suppliers.memoize(() -> new CrmClient(clientOptions));
         this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
         this.ticketingClient = Suppliers.memoize(() -> new TicketingClient(clientOptions));
         this.accountingClient = Suppliers.memoize(() -> new AccountingClient(clientOptions));
     }
 
-    public FilestorageClient filestorage() {
-        return this.filestorageClient.get();
-    }
-
     public AtsClient ats() {
         return this.atsClient.get();
+    }
+
+    public FilestorageClient filestorage() {
+        return this.filestorageClient.get();
     }
 
     public CrmClient crm() {
