@@ -46,7 +46,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = 'v1.0.13'
+            version = 'v1.0.14'
             from components.java
             pom {
                 scm {
