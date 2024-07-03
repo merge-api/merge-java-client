@@ -3,3 +3,4 @@
 README.md
 LICENSE.md
 
+src/main/java/com/merge/api/core/MergeApiApiError.java
