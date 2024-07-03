@@ -4,10 +4,10 @@
 package com.merge.api.resources.hris.scopes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeApiApiError;
-import com.merge.api.core.MergeApiError;
+import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.scopes.requests.LinkedAccountCommonModelScopeDeserializerRequest;
@@ -59,12 +59,12 @@ public class ScopesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -99,12 +99,12 @@ public class ScopesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -129,7 +129,7 @@ public class ScopesClient {
             body = RequestBody.create(
                     ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (JsonProcessingException e) {
-            throw new MergeApiError("Failed to serialize request", e);
+            throw new MergeException("Failed to serialize request", e);
         }
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -147,12 +147,12 @@ public class ScopesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 }
