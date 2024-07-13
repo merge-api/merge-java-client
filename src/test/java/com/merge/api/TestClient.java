@@ -3,9 +3,24 @@
  */
 package com.merge.api;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.merge.api.core.ObjectMappers;
+import com.merge.api.resources.ticketing.types.AccountToken;
+import org.junit.jupiter.api.Test;
+
 public final class TestClient {
-    public void test() {
-        // Add tests here and mark this file in .fernignore
-        assert true;
+
+    @Test
+    public void test_serde() throws JsonProcessingException {
+        String json =
+                "{\"account_token\":\"08JUhtxTFaOmfFsbMBNGx9zPCkRNnOd_NBn-O9XMN99PZ7vs22D1gA\",\"integration\":{\"name\":\"Azure DevOps\",\"abbreviated_name\":null,\"categories\":[\"ticketing\"],\"image\":\"https://merge-api-production.s3.amazonaws.com/media/Azure_DevOps.png\",\"square_image\":\"https://merge-api-production.s3.amazonaws.com/media/Azure_DevOps_Square_Logo.png\",\"color\":\"#0078D4\",\"slug\":\"azure-devops\",\"api_endpoints_to_documentation_urls\":{\"GET\":[],\"POST\":[],\"PATCH\":[]},\"webhook_setup_guide_url\":\"\",\"category_beta_status\":{}}}\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n"
+                        + "\n";
+        AccountToken a = ObjectMappers.JSON_MAPPER.readValue(json, AccountToken.class);
+        a.getAccountToken();
     }
 }
