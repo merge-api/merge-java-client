@@ -37,6 +37,8 @@ public final class ApplicationRequest {
 
     private final Optional<ApplicationRequestCreditedTo> creditedTo;
 
+    private final Optional<List<ApplicationRequestScreeningQuestionAnswersItem>> screeningQuestionAnswers;
+
     private final Optional<ApplicationRequestCurrentStage> currentStage;
 
     private final Optional<ApplicationRequestRejectReason> rejectReason;
@@ -57,6 +59,7 @@ public final class ApplicationRequest {
             Optional<List<Optional<ApplicationRequestOffersItem>>> offers,
             Optional<String> source,
             Optional<ApplicationRequestCreditedTo> creditedTo,
+            Optional<List<ApplicationRequestScreeningQuestionAnswersItem>> screeningQuestionAnswers,
             Optional<ApplicationRequestCurrentStage> currentStage,
             Optional<ApplicationRequestRejectReason> rejectReason,
             Optional<String> remoteTemplateId,
@@ -70,6 +73,7 @@ public final class ApplicationRequest {
         this.offers = offers;
         this.source = source;
         this.creditedTo = creditedTo;
+        this.screeningQuestionAnswers = screeningQuestionAnswers;
         this.currentStage = currentStage;
         this.rejectReason = rejectReason;
         this.remoteTemplateId = remoteTemplateId;
@@ -131,6 +135,11 @@ public final class ApplicationRequest {
         return creditedTo;
     }
 
+    @JsonProperty("screening_question_answers")
+    public Optional<List<ApplicationRequestScreeningQuestionAnswersItem>> getScreeningQuestionAnswers() {
+        return screeningQuestionAnswers;
+    }
+
     /**
      * @return The application's current stage.
      */
@@ -181,6 +190,7 @@ public final class ApplicationRequest {
                 && offers.equals(other.offers)
                 && source.equals(other.source)
                 && creditedTo.equals(other.creditedTo)
+                && screeningQuestionAnswers.equals(other.screeningQuestionAnswers)
                 && currentStage.equals(other.currentStage)
                 && rejectReason.equals(other.rejectReason)
                 && remoteTemplateId.equals(other.remoteTemplateId)
@@ -198,6 +208,7 @@ public final class ApplicationRequest {
                 this.offers,
                 this.source,
                 this.creditedTo,
+                this.screeningQuestionAnswers,
                 this.currentStage,
                 this.rejectReason,
                 this.remoteTemplateId,
@@ -230,6 +241,9 @@ public final class ApplicationRequest {
 
         private Optional<ApplicationRequestCreditedTo> creditedTo = Optional.empty();
 
+        private Optional<List<ApplicationRequestScreeningQuestionAnswersItem>> screeningQuestionAnswers =
+                Optional.empty();
+
         private Optional<ApplicationRequestCurrentStage> currentStage = Optional.empty();
 
         private Optional<ApplicationRequestRejectReason> rejectReason = Optional.empty();
@@ -253,6 +267,7 @@ public final class ApplicationRequest {
             offers(other.getOffers());
             source(other.getSource());
             creditedTo(other.getCreditedTo());
+            screeningQuestionAnswers(other.getScreeningQuestionAnswers());
             currentStage(other.getCurrentStage());
             rejectReason(other.getRejectReason());
             remoteTemplateId(other.getRemoteTemplateId());
@@ -338,6 +353,19 @@ public final class ApplicationRequest {
             return this;
         }
 
+        @JsonSetter(value = "screening_question_answers", nulls = Nulls.SKIP)
+        public Builder screeningQuestionAnswers(
+                Optional<List<ApplicationRequestScreeningQuestionAnswersItem>> screeningQuestionAnswers) {
+            this.screeningQuestionAnswers = screeningQuestionAnswers;
+            return this;
+        }
+
+        public Builder screeningQuestionAnswers(
+                List<ApplicationRequestScreeningQuestionAnswersItem> screeningQuestionAnswers) {
+            this.screeningQuestionAnswers = Optional.of(screeningQuestionAnswers);
+            return this;
+        }
+
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
         public Builder currentStage(Optional<ApplicationRequestCurrentStage> currentStage) {
             this.currentStage = currentStage;
@@ -402,6 +430,7 @@ public final class ApplicationRequest {
                     offers,
                     source,
                     creditedTo,
+                    screeningQuestionAnswers,
                     currentStage,
                     rejectReason,
                     remoteTemplateId,

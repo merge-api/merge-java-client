@@ -6,12 +6,12 @@ package com.merge.api.core;
 /**
  * This class serves as the base exception for all errors in the SDK.
  */
-public class MergeApiError extends RuntimeException {
-    public MergeApiError(String message) {
+public class MergeException extends RuntimeException {
+    public MergeException(String message) {
         super(message);
     }
 
-    public MergeApiError(String message, Exception e) {
+    public MergeException(String message, Exception e) {
         super(message, e);
     }
 }

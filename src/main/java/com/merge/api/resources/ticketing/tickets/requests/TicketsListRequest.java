@@ -86,6 +86,8 @@ public final class TicketsListRequest {
 
     private final Optional<String> ticketType;
 
+    private final Optional<String> ticketUrl;
+
     private final Map<String, Object> additionalProperties;
 
     private TicketsListRequest(
@@ -119,6 +121,7 @@ public final class TicketsListRequest {
             Optional<TicketsListRequestStatus> status,
             Optional<String> tags,
             Optional<String> ticketType,
+            Optional<String> ticketUrl,
             Map<String, Object> additionalProperties) {
         this.accountId = accountId;
         this.assigneeIds = assigneeIds;
@@ -150,6 +153,7 @@ public final class TicketsListRequest {
         this.status = status;
         this.tags = tags;
         this.ticketType = ticketType;
+        this.ticketUrl = ticketUrl;
         this.additionalProperties = additionalProperties;
     }
 
@@ -405,6 +409,14 @@ public final class TicketsListRequest {
         return ticketType;
     }
 
+    /**
+     * @return If provided, will only return tickets where the URL matches or contains the substring
+     */
+    @JsonProperty("ticket_url")
+    public Optional<String> getTicketUrl() {
+        return ticketUrl;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -446,7 +458,8 @@ public final class TicketsListRequest {
                 && showEnumOrigins.equals(other.showEnumOrigins)
                 && status.equals(other.status)
                 && tags.equals(other.tags)
-                && ticketType.equals(other.ticketType);
+                && ticketType.equals(other.ticketType)
+                && ticketUrl.equals(other.ticketUrl);
     }
 
     @java.lang.Override
@@ -481,7 +494,8 @@ public final class TicketsListRequest {
                 this.showEnumOrigins,
                 this.status,
                 this.tags,
-                this.ticketType);
+                this.ticketType,
+                this.ticketUrl);
     }
 
     @java.lang.Override
@@ -555,6 +569,8 @@ public final class TicketsListRequest {
 
         private Optional<String> ticketType = Optional.empty();
 
+        private Optional<String> ticketUrl = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -591,6 +607,7 @@ public final class TicketsListRequest {
             status(other.getStatus());
             tags(other.getTags());
             ticketType(other.getTicketType());
+            ticketUrl(other.getTicketUrl());
             return this;
         }
 
@@ -924,6 +941,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "ticket_url", nulls = Nulls.SKIP)
+        public Builder ticketUrl(Optional<String> ticketUrl) {
+            this.ticketUrl = ticketUrl;
+            return this;
+        }
+
+        public Builder ticketUrl(String ticketUrl) {
+            this.ticketUrl = Optional.of(ticketUrl);
+            return this;
+        }
+
         public TicketsListRequest build() {
             return new TicketsListRequest(
                     accountId,
@@ -956,6 +984,7 @@ public final class TicketsListRequest {
                     status,
                     tags,
                     ticketType,
+                    ticketUrl,
                     additionalProperties);
         }
     }

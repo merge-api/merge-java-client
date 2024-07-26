@@ -114,7 +114,7 @@ public final class TimesheetEntriesListRequest {
     }
 
     /**
-     * @return If provided, will only return employee payroll runs for this employee.
+     * @return If provided, will only return timesheet entries for this employee.
      */
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
@@ -122,7 +122,7 @@ public final class TimesheetEntriesListRequest {
     }
 
     /**
-     * @return If provided, will only return employee payroll runs ended after this datetime.
+     * @return If provided, will only return timesheet entries ended after this datetime.
      */
     @JsonProperty("ended_after")
     public Optional<String> getEndedAfter() {
@@ -130,7 +130,7 @@ public final class TimesheetEntriesListRequest {
     }
 
     /**
-     * @return If provided, will only return employee payroll runs ended before this datetime.
+     * @return If provided, will only return timesheet entries ended before this datetime.
      */
     @JsonProperty("ended_before")
     public Optional<String> getEndedBefore() {
@@ -194,7 +194,7 @@ public final class TimesheetEntriesListRequest {
     }
 
     /**
-     * @return If provided, will only return employee payroll runs started after this datetime.
+     * @return If provided, will only return timesheet entries started after this datetime.
      */
     @JsonProperty("started_after")
     public Optional<String> getStartedAfter() {
@@ -202,7 +202,7 @@ public final class TimesheetEntriesListRequest {
     }
 
     /**
-     * @return If provided, will only return employee payroll runs started before this datetime.
+     * @return If provided, will only return timesheet entries started before this datetime.
      */
     @JsonProperty("started_before")
     public Optional<String> getStartedBefore() {

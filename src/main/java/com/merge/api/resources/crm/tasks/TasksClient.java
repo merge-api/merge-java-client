@@ -3,10 +3,10 @@
  */
 package com.merge.api.resources.crm.tasks;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeApiApiError;
-import com.merge.api.core.MergeApiError;
+import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.crm.tasks.requests.PatchedTaskEndpointRequest;
@@ -116,12 +116,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedTaskList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -171,12 +171,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TaskResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -230,12 +230,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Task.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -286,12 +286,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TaskResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -327,12 +327,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -367,12 +367,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -416,6 +416,11 @@ public class TasksClient {
                     "include_remote_fields",
                     request.getIncludeRemoteFields().get().toString());
         }
+        if (request.getIsCommonModelField().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_common_model_field",
+                    request.getIsCommonModelField().get().toString());
+        }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
@@ -435,12 +440,12 @@ public class TasksClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 }

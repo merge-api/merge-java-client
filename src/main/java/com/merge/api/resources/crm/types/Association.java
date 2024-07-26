@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -26,9 +25,9 @@ public final class Association {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<Map<String, JsonNode>> sourceObject;
+    private final Optional<String> sourceObject;
 
-    private final Optional<Map<String, JsonNode>> targetObject;
+    private final Optional<String> targetObject;
 
     private final Optional<AssociationAssociationType> associationType;
 
@@ -37,8 +36,8 @@ public final class Association {
     private Association(
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<Map<String, JsonNode>> sourceObject,
-            Optional<Map<String, JsonNode>> targetObject,
+            Optional<String> sourceObject,
+            Optional<String> targetObject,
             Optional<AssociationAssociationType> associationType,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -66,12 +65,12 @@ public final class Association {
     }
 
     @JsonProperty("source_object")
-    public Optional<Map<String, JsonNode>> getSourceObject() {
+    public Optional<String> getSourceObject() {
         return sourceObject;
     }
 
     @JsonProperty("target_object")
-    public Optional<Map<String, JsonNode>> getTargetObject() {
+    public Optional<String> getTargetObject() {
         return targetObject;
     }
 
@@ -123,9 +122,9 @@ public final class Association {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> sourceObject = Optional.empty();
+        private Optional<String> sourceObject = Optional.empty();
 
-        private Optional<Map<String, JsonNode>> targetObject = Optional.empty();
+        private Optional<String> targetObject = Optional.empty();
 
         private Optional<AssociationAssociationType> associationType = Optional.empty();
 
@@ -166,23 +165,23 @@ public final class Association {
         }
 
         @JsonSetter(value = "source_object", nulls = Nulls.SKIP)
-        public Builder sourceObject(Optional<Map<String, JsonNode>> sourceObject) {
+        public Builder sourceObject(Optional<String> sourceObject) {
             this.sourceObject = sourceObject;
             return this;
         }
 
-        public Builder sourceObject(Map<String, JsonNode> sourceObject) {
+        public Builder sourceObject(String sourceObject) {
             this.sourceObject = Optional.of(sourceObject);
             return this;
         }
 
         @JsonSetter(value = "target_object", nulls = Nulls.SKIP)
-        public Builder targetObject(Optional<Map<String, JsonNode>> targetObject) {
+        public Builder targetObject(Optional<String> targetObject) {
             this.targetObject = targetObject;
             return this;
         }
 
-        public Builder targetObject(Map<String, JsonNode> targetObject) {
+        public Builder targetObject(String targetObject) {
             this.targetObject = Optional.of(targetObject);
             return this;
         }

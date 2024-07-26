@@ -29,6 +29,8 @@ public final class Tag {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<String> id;
+
     private final Optional<String> name;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -43,6 +45,7 @@ public final class Tag {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<String> id,
             Optional<String> name,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -51,6 +54,7 @@ public final class Tag {
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.id = id;
         this.name = name;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
@@ -80,6 +84,11 @@ public final class Tag {
     @JsonProperty("modified_at")
     public Optional<OffsetDateTime> getModifiedAt() {
         return modifiedAt;
+    }
+
+    @JsonProperty("id")
+    public Optional<String> getId() {
+        return id;
     }
 
     /**
@@ -123,6 +132,7 @@ public final class Tag {
         return remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && id.equals(other.id)
                 && name.equals(other.name)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
@@ -135,6 +145,7 @@ public final class Tag {
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.id,
                 this.name,
                 this.remoteWasDeleted,
                 this.fieldMappings,
@@ -158,6 +169,8 @@ public final class Tag {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
+        private Optional<String> id = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -175,6 +188,7 @@ public final class Tag {
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            id(other.getId());
             name(other.getName());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
@@ -212,6 +226,17 @@ public final class Tag {
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
             this.modifiedAt = Optional.of(modifiedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "id", nulls = Nulls.SKIP)
+        public Builder id(Optional<String> id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder id(String id) {
+            this.id = Optional.of(id);
             return this;
         }
 
@@ -264,6 +289,7 @@ public final class Tag {
                     remoteId,
                     createdAt,
                     modifiedAt,
+                    id,
                     name,
                     remoteWasDeleted,
                     fieldMappings,

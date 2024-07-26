@@ -47,6 +47,8 @@ public final class OpportunitiesListRequest {
 
     private final Optional<Integer> pageSize;
 
+    private final Optional<OffsetDateTime> remoteCreatedAfter;
+
     private final Optional<String> remoteFields;
 
     private final Optional<String> remoteId;
@@ -72,6 +74,7 @@ public final class OpportunitiesListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> ownerId,
             Optional<Integer> pageSize,
+            Optional<OffsetDateTime> remoteCreatedAfter,
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
@@ -90,6 +93,7 @@ public final class OpportunitiesListRequest {
         this.modifiedBefore = modifiedBefore;
         this.ownerId = ownerId;
         this.pageSize = pageSize;
+        this.remoteCreatedAfter = remoteCreatedAfter;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
@@ -195,6 +199,14 @@ public final class OpportunitiesListRequest {
     }
 
     /**
+     * @return If provided, will only return opportunities created in the third party platform after this datetime.
+     */
+    @JsonProperty("remote_created_after")
+    public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    /**
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
@@ -263,6 +275,7 @@ public final class OpportunitiesListRequest {
                 && modifiedBefore.equals(other.modifiedBefore)
                 && ownerId.equals(other.ownerId)
                 && pageSize.equals(other.pageSize)
+                && remoteCreatedAfter.equals(other.remoteCreatedAfter)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
                 && showEnumOrigins.equals(other.showEnumOrigins)
@@ -285,6 +298,7 @@ public final class OpportunitiesListRequest {
                 this.modifiedBefore,
                 this.ownerId,
                 this.pageSize,
+                this.remoteCreatedAfter,
                 this.remoteFields,
                 this.remoteId,
                 this.showEnumOrigins,
@@ -327,6 +341,8 @@ public final class OpportunitiesListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
+        private Optional<OffsetDateTime> remoteCreatedAfter = Optional.empty();
+
         private Optional<String> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -355,6 +371,7 @@ public final class OpportunitiesListRequest {
             modifiedBefore(other.getModifiedBefore());
             ownerId(other.getOwnerId());
             pageSize(other.getPageSize());
+            remoteCreatedAfter(other.getRemoteCreatedAfter());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
@@ -495,6 +512,17 @@ public final class OpportunitiesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_created_after", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAfter(Optional<OffsetDateTime> remoteCreatedAfter) {
+            this.remoteCreatedAfter = remoteCreatedAfter;
+            return this;
+        }
+
+        public Builder remoteCreatedAfter(OffsetDateTime remoteCreatedAfter) {
+            this.remoteCreatedAfter = Optional.of(remoteCreatedAfter);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<String> remoteFields) {
             this.remoteFields = remoteFields;
@@ -564,6 +592,7 @@ public final class OpportunitiesListRequest {
                     modifiedBefore,
                     ownerId,
                     pageSize,
+                    remoteCreatedAfter,
                     remoteFields,
                     remoteId,
                     showEnumOrigins,
