@@ -3,10 +3,10 @@
  */
 package com.merge.api.resources.ticketing.attachments;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeApiApiError;
-import com.merge.api.core.MergeApiError;
+import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsDownloadRetrieveRequest;
@@ -118,12 +118,12 @@ public class AttachmentsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedAttachmentList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -174,12 +174,12 @@ public class AttachmentsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TicketingAttachmentResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -228,31 +228,31 @@ public class AttachmentsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Attachment.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
     /**
-     * Returns an <code>Attachment</code> object with the given <code>id</code>.
+     * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
      */
     public InputStream downloadRetrieve(String id) {
         return downloadRetrieve(id, AttachmentsDownloadRetrieveRequest.builder().build());
     }
 
     /**
-     * Returns an <code>Attachment</code> object with the given <code>id</code>.
+     * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
      */
     public InputStream downloadRetrieve(String id, AttachmentsDownloadRetrieveRequest request) {
         return downloadRetrieve(id, request, null);
     }
 
     /**
-     * Returns an <code>Attachment</code> object with the given <code>id</code>.
+     * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
      */
     public InputStream downloadRetrieve(
             String id, AttachmentsDownloadRetrieveRequest request, RequestOptions requestOptions) {
@@ -280,12 +280,12 @@ public class AttachmentsClient {
                 return responseBody.byteStream();
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -320,12 +320,12 @@ public class AttachmentsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 }

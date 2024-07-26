@@ -29,6 +29,8 @@ public final class EmailAddress {
 
     private final Optional<EmailAddressEmailAddressType> emailAddressType;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private EmailAddress(
@@ -36,11 +38,13 @@ public final class EmailAddress {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
             Optional<EmailAddressEmailAddressType> emailAddressType,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.value = value;
         this.emailAddressType = emailAddressType;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -81,6 +85,14 @@ public final class EmailAddress {
         return emailAddressType;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -96,12 +108,13 @@ public final class EmailAddress {
         return createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && value.equals(other.value)
-                && emailAddressType.equals(other.emailAddressType);
+                && emailAddressType.equals(other.emailAddressType)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.emailAddressType);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.emailAddressType, this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -123,6 +136,8 @@ public final class EmailAddress {
 
         private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -133,6 +148,7 @@ public final class EmailAddress {
             modifiedAt(other.getModifiedAt());
             value(other.getValue());
             emailAddressType(other.getEmailAddressType());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -180,8 +196,20 @@ public final class EmailAddress {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public EmailAddress build() {
-            return new EmailAddress(createdAt, modifiedAt, value, emailAddressType, additionalProperties);
+            return new EmailAddress(
+                    createdAt, modifiedAt, value, emailAddressType, remoteWasDeleted, additionalProperties);
         }
     }
 }

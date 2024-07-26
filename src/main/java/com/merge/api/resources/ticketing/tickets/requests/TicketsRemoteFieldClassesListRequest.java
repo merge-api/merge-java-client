@@ -26,6 +26,8 @@ public final class TicketsRemoteFieldClassesListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> isCommonModelField;
+
     private final Optional<Integer> pageSize;
 
     private final Map<String, Object> additionalProperties;
@@ -34,11 +36,13 @@ public final class TicketsRemoteFieldClassesListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> isCommonModelField,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.isCommonModelField = isCommonModelField;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
     }
@@ -68,6 +72,14 @@ public final class TicketsRemoteFieldClassesListRequest {
     }
 
     /**
+     * @return If provided, will only return remote field classes with this is_common_model_field value
+     */
+    @JsonProperty("is_common_model_field")
+    public Optional<Boolean> getIsCommonModelField() {
+        return isCommonModelField;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -91,12 +103,14 @@ public final class TicketsRemoteFieldClassesListRequest {
         return cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && isCommonModelField.equals(other.isCommonModelField)
                 && pageSize.equals(other.pageSize);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.cursor, this.includeDeletedData, this.includeRemoteData, this.pageSize);
+        return Objects.hash(
+                this.cursor, this.includeDeletedData, this.includeRemoteData, this.isCommonModelField, this.pageSize);
     }
 
     @java.lang.Override
@@ -116,6 +130,8 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> isCommonModelField = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         @JsonAnySetter
@@ -127,6 +143,7 @@ public final class TicketsRemoteFieldClassesListRequest {
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            isCommonModelField(other.getIsCommonModelField());
             pageSize(other.getPageSize());
             return this;
         }
@@ -164,6 +181,17 @@ public final class TicketsRemoteFieldClassesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
+        public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
+            this.isCommonModelField = isCommonModelField;
+            return this;
+        }
+
+        public Builder isCommonModelField(Boolean isCommonModelField) {
+            this.isCommonModelField = Optional.of(isCommonModelField);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -177,7 +205,7 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         public TicketsRemoteFieldClassesListRequest build() {
             return new TicketsRemoteFieldClassesListRequest(
-                    cursor, includeDeletedData, includeRemoteData, pageSize, additionalProperties);
+                    cursor, includeDeletedData, includeRemoteData, isCommonModelField, pageSize, additionalProperties);
         }
     }
 }

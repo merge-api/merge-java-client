@@ -31,6 +31,8 @@ public final class ScreeningQuestionOption {
 
     private final Optional<String> label;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private ScreeningQuestionOption(
@@ -39,12 +41,14 @@ public final class ScreeningQuestionOption {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> label,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.label = label;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -85,6 +89,14 @@ public final class ScreeningQuestionOption {
         return label;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -101,12 +113,13 @@ public final class ScreeningQuestionOption {
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
-                && label.equals(other.label);
+                && label.equals(other.label)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.remoteId, this.createdAt, this.modifiedAt, this.label);
+        return Objects.hash(this.id, this.remoteId, this.createdAt, this.modifiedAt, this.label, this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -130,6 +143,8 @@ public final class ScreeningQuestionOption {
 
         private Optional<String> label = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -141,6 +156,7 @@ public final class ScreeningQuestionOption {
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             label(other.getLabel());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -199,8 +215,20 @@ public final class ScreeningQuestionOption {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public ScreeningQuestionOption build() {
-            return new ScreeningQuestionOption(id, remoteId, createdAt, modifiedAt, label, additionalProperties);
+            return new ScreeningQuestionOption(
+                    id, remoteId, createdAt, modifiedAt, label, remoteWasDeleted, additionalProperties);
         }
     }
 }

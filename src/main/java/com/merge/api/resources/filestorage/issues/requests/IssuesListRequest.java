@@ -42,6 +42,8 @@ public final class IssuesListRequest {
 
     private final Optional<OffsetDateTime> lastIncidentTimeBefore;
 
+    private final Optional<String> linkedAccountId;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> startDate;
@@ -61,6 +63,7 @@ public final class IssuesListRequest {
             Optional<String> integrationName,
             Optional<OffsetDateTime> lastIncidentTimeAfter,
             Optional<OffsetDateTime> lastIncidentTimeBefore,
+            Optional<String> linkedAccountId,
             Optional<Integer> pageSize,
             Optional<String> startDate,
             Optional<IssuesListRequestStatus> status,
@@ -75,6 +78,7 @@ public final class IssuesListRequest {
         this.integrationName = integrationName;
         this.lastIncidentTimeAfter = lastIncidentTimeAfter;
         this.lastIncidentTimeBefore = lastIncidentTimeBefore;
+        this.linkedAccountId = linkedAccountId;
         this.pageSize = pageSize;
         this.startDate = startDate;
         this.status = status;
@@ -153,6 +157,14 @@ public final class IssuesListRequest {
     }
 
     /**
+     * @return If provided, will only include issues pertaining to the linked account passed in.
+     */
+    @JsonProperty("linked_account_id")
+    public Optional<String> getLinkedAccountId() {
+        return linkedAccountId;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -202,6 +214,7 @@ public final class IssuesListRequest {
                 && integrationName.equals(other.integrationName)
                 && lastIncidentTimeAfter.equals(other.lastIncidentTimeAfter)
                 && lastIncidentTimeBefore.equals(other.lastIncidentTimeBefore)
+                && linkedAccountId.equals(other.linkedAccountId)
                 && pageSize.equals(other.pageSize)
                 && startDate.equals(other.startDate)
                 && status.equals(other.status);
@@ -220,6 +233,7 @@ public final class IssuesListRequest {
                 this.integrationName,
                 this.lastIncidentTimeAfter,
                 this.lastIncidentTimeBefore,
+                this.linkedAccountId,
                 this.pageSize,
                 this.startDate,
                 this.status);
@@ -256,6 +270,8 @@ public final class IssuesListRequest {
 
         private Optional<OffsetDateTime> lastIncidentTimeBefore = Optional.empty();
 
+        private Optional<String> linkedAccountId = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<String> startDate = Optional.empty();
@@ -278,6 +294,7 @@ public final class IssuesListRequest {
             integrationName(other.getIntegrationName());
             lastIncidentTimeAfter(other.getLastIncidentTimeAfter());
             lastIncidentTimeBefore(other.getLastIncidentTimeBefore());
+            linkedAccountId(other.getLinkedAccountId());
             pageSize(other.getPageSize());
             startDate(other.getStartDate());
             status(other.getStatus());
@@ -394,6 +411,17 @@ public final class IssuesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "linked_account_id", nulls = Nulls.SKIP)
+        public Builder linkedAccountId(Optional<String> linkedAccountId) {
+            this.linkedAccountId = linkedAccountId;
+            return this;
+        }
+
+        public Builder linkedAccountId(String linkedAccountId) {
+            this.linkedAccountId = Optional.of(linkedAccountId);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -439,6 +467,7 @@ public final class IssuesListRequest {
                     integrationName,
                     lastIncidentTimeAfter,
                     lastIncidentTimeBefore,
+                    linkedAccountId,
                     pageSize,
                     startDate,
                     status,

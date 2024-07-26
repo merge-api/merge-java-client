@@ -43,6 +43,8 @@ public final class ScreeningQuestion {
 
     private final Optional<List<JsonNode>> options;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private ScreeningQuestion(
@@ -56,6 +58,7 @@ public final class ScreeningQuestion {
             Optional<ScreeningQuestionType> type,
             Optional<Boolean> required,
             Optional<List<JsonNode>> options,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -67,6 +70,7 @@ public final class ScreeningQuestion {
         this.type = type;
         this.required = required;
         this.options = options;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -154,6 +158,14 @@ public final class ScreeningQuestion {
         return options;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -175,7 +187,8 @@ public final class ScreeningQuestion {
                 && title.equals(other.title)
                 && type.equals(other.type)
                 && required.equals(other.required)
-                && options.equals(other.options);
+                && options.equals(other.options)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -190,7 +203,8 @@ public final class ScreeningQuestion {
                 this.title,
                 this.type,
                 this.required,
-                this.options);
+                this.options,
+                this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -224,6 +238,8 @@ public final class ScreeningQuestion {
 
         private Optional<List<JsonNode>> options = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -240,6 +256,7 @@ public final class ScreeningQuestion {
             type(other.getType());
             required(other.getRequired());
             options(other.getOptions());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -353,6 +370,17 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public ScreeningQuestion build() {
             return new ScreeningQuestion(
                     id,
@@ -365,6 +393,7 @@ public final class ScreeningQuestion {
                     type,
                     required,
                     options,
+                    remoteWasDeleted,
                     additionalProperties);
         }
     }

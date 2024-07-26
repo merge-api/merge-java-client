@@ -187,7 +187,7 @@ public final class BankInfoListRequest {
     }
 
     /**
-     * @return Overrides the default ordering for this endpoint.
+     * @return Overrides the default ordering for this endpoint. Possible values include: remote_created_at, -remote_created_at.
      */
     @JsonProperty("order_by")
     public Optional<BankInfoListRequestOrderBy> getOrderBy() {

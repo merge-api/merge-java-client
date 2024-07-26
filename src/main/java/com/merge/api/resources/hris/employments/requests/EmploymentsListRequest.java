@@ -161,7 +161,7 @@ public final class EmploymentsListRequest {
     }
 
     /**
-     * @return Overrides the default ordering for this endpoint.
+     * @return Overrides the default ordering for this endpoint. Possible values include: effective_date, -effective_date.
      */
     @JsonProperty("order_by")
     public Optional<EmploymentsListRequestOrderBy> getOrderBy() {

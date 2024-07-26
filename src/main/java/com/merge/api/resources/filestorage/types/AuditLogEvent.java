@@ -142,6 +142,7 @@ public final class AuditLogEvent {
      * <li><code>ENABLED_MERGE_WEBHOOK</code> - ENABLED_MERGE_WEBHOOK</li>
      * <li><code>DISABLED_MERGE_WEBHOOK</code> - DISABLED_MERGE_WEBHOOK</li>
      * <li><code>MERGE_WEBHOOK_TARGET_CHANGED</code> - MERGE_WEBHOOK_TARGET_CHANGED</li>
+     * <li><code>END_USER_CREDENTIALS_ACCESSED</code> - END_USER_CREDENTIALS_ACCESSED</li>
      * </ul>
      */
     @JsonProperty("event_type")
@@ -344,6 +345,7 @@ public final class AuditLogEvent {
          * <li><code>ENABLED_MERGE_WEBHOOK</code> - ENABLED_MERGE_WEBHOOK</li>
          * <li><code>DISABLED_MERGE_WEBHOOK</code> - DISABLED_MERGE_WEBHOOK</li>
          * <li><code>MERGE_WEBHOOK_TARGET_CHANGED</code> - MERGE_WEBHOOK_TARGET_CHANGED</li>
+         * <li><code>END_USER_CREDENTIALS_ACCESSED</code> - END_USER_CREDENTIALS_ACCESSED</li>
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */

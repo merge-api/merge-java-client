@@ -45,6 +45,8 @@ public final class Application {
 
     private final Optional<ApplicationCreditedTo> creditedTo;
 
+    private final Optional<List<ApplicationScreeningQuestionAnswersItem>> screeningQuestionAnswers;
+
     private final Optional<ApplicationCurrentStage> currentStage;
 
     private final Optional<ApplicationRejectReason> rejectReason;
@@ -69,6 +71,7 @@ public final class Application {
             Optional<List<Optional<ApplicationOffersItem>>> offers,
             Optional<String> source,
             Optional<ApplicationCreditedTo> creditedTo,
+            Optional<List<ApplicationScreeningQuestionAnswersItem>> screeningQuestionAnswers,
             Optional<ApplicationCurrentStage> currentStage,
             Optional<ApplicationRejectReason> rejectReason,
             Optional<Boolean> remoteWasDeleted,
@@ -86,6 +89,7 @@ public final class Application {
         this.offers = offers;
         this.source = source;
         this.creditedTo = creditedTo;
+        this.screeningQuestionAnswers = screeningQuestionAnswers;
         this.currentStage = currentStage;
         this.rejectReason = rejectReason;
         this.remoteWasDeleted = remoteWasDeleted;
@@ -176,6 +180,11 @@ public final class Application {
         return creditedTo;
     }
 
+    @JsonProperty("screening_question_answers")
+    public Optional<List<ApplicationScreeningQuestionAnswersItem>> getScreeningQuestionAnswers() {
+        return screeningQuestionAnswers;
+    }
+
     /**
      * @return The application's current stage.
      */
@@ -230,6 +239,7 @@ public final class Application {
                 && offers.equals(other.offers)
                 && source.equals(other.source)
                 && creditedTo.equals(other.creditedTo)
+                && screeningQuestionAnswers.equals(other.screeningQuestionAnswers)
                 && currentStage.equals(other.currentStage)
                 && rejectReason.equals(other.rejectReason)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
@@ -251,6 +261,7 @@ public final class Application {
                 this.offers,
                 this.source,
                 this.creditedTo,
+                this.screeningQuestionAnswers,
                 this.currentStage,
                 this.rejectReason,
                 this.remoteWasDeleted,
@@ -291,6 +302,8 @@ public final class Application {
 
         private Optional<ApplicationCreditedTo> creditedTo = Optional.empty();
 
+        private Optional<List<ApplicationScreeningQuestionAnswersItem>> screeningQuestionAnswers = Optional.empty();
+
         private Optional<ApplicationCurrentStage> currentStage = Optional.empty();
 
         private Optional<ApplicationRejectReason> rejectReason = Optional.empty();
@@ -318,6 +331,7 @@ public final class Application {
             offers(other.getOffers());
             source(other.getSource());
             creditedTo(other.getCreditedTo());
+            screeningQuestionAnswers(other.getScreeningQuestionAnswers());
             currentStage(other.getCurrentStage());
             rejectReason(other.getRejectReason());
             remoteWasDeleted(other.getRemoteWasDeleted());
@@ -447,6 +461,19 @@ public final class Application {
             return this;
         }
 
+        @JsonSetter(value = "screening_question_answers", nulls = Nulls.SKIP)
+        public Builder screeningQuestionAnswers(
+                Optional<List<ApplicationScreeningQuestionAnswersItem>> screeningQuestionAnswers) {
+            this.screeningQuestionAnswers = screeningQuestionAnswers;
+            return this;
+        }
+
+        public Builder screeningQuestionAnswers(
+                List<ApplicationScreeningQuestionAnswersItem> screeningQuestionAnswers) {
+            this.screeningQuestionAnswers = Optional.of(screeningQuestionAnswers);
+            return this;
+        }
+
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
         public Builder currentStage(Optional<ApplicationCurrentStage> currentStage) {
             this.currentStage = currentStage;
@@ -515,6 +542,7 @@ public final class Application {
                     offers,
                     source,
                     creditedTo,
+                    screeningQuestionAnswers,
                     currentStage,
                     rejectReason,
                     remoteWasDeleted,

@@ -3,9 +3,9 @@
  */
 package com.merge.api.resources.ats.issues;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MergeApiApiError;
-import com.merge.api.core.MergeApiError;
+import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.issues.requests.IssuesListRequest;
@@ -27,21 +27,21 @@ public class IssuesClient {
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list() {
         return list(IssuesListRequest.builder().build());
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list(IssuesListRequest request) {
         return list(request, null);
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list(IssuesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -88,6 +88,10 @@ public class IssuesClient {
                     "last_incident_time_before",
                     request.getLastIncidentTimeBefore().get().toString());
         }
+        if (request.getLinkedAccountId().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "linked_account_id", request.getLinkedAccountId().get());
+        }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
@@ -113,12 +117,12 @@ public class IssuesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedIssueList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -154,12 +158,12 @@ public class IssuesClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Issue.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 }

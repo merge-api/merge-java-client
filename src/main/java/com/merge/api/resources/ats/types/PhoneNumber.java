@@ -29,6 +29,8 @@ public final class PhoneNumber {
 
     private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private PhoneNumber(
@@ -36,11 +38,13 @@ public final class PhoneNumber {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
             Optional<PhoneNumberPhoneNumberType> phoneNumberType,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.value = value;
         this.phoneNumberType = phoneNumberType;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -83,6 +87,14 @@ public final class PhoneNumber {
         return phoneNumberType;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -98,12 +110,13 @@ public final class PhoneNumber {
         return createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && value.equals(other.value)
-                && phoneNumberType.equals(other.phoneNumberType);
+                && phoneNumberType.equals(other.phoneNumberType)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.phoneNumberType);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.phoneNumberType, this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -125,6 +138,8 @@ public final class PhoneNumber {
 
         private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -135,6 +150,7 @@ public final class PhoneNumber {
             modifiedAt(other.getModifiedAt());
             value(other.getValue());
             phoneNumberType(other.getPhoneNumberType());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -182,8 +198,20 @@ public final class PhoneNumber {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public PhoneNumber build() {
-            return new PhoneNumber(createdAt, modifiedAt, value, phoneNumberType, additionalProperties);
+            return new PhoneNumber(
+                    createdAt, modifiedAt, value, phoneNumberType, remoteWasDeleted, additionalProperties);
         }
     }
 }

@@ -81,7 +81,7 @@ public final class LinkedAccountsListRequest {
     }
 
     /**
-     * @return Options: ('hris', 'ats', 'accounting', 'ticketing', 'crm', 'mktg', 'filestorage')
+     * @return Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>mktg</code>, <code>ticketing</code>
      * <ul>
      * <li><code>hris</code> - hris</li>
      * <li><code>ats</code> - ats</li>

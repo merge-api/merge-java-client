@@ -3,10 +3,10 @@
  */
 package com.merge.api.resources.accounting.contacts;
 
+import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeApiApiError;
-import com.merge.api.core.MergeApiError;
+import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.contacts.requests.ContactEndpointRequest;
@@ -124,12 +124,12 @@ public class ContactsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedContactList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -179,12 +179,12 @@ public class ContactsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ContactResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -240,12 +240,12 @@ public class ContactsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Contact.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 
@@ -280,12 +280,12 @@ public class ContactsClient {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new MergeApiApiError(
+            throw new ApiError(
                     "Error with status code " + response.code(),
                     response.code(),
                     ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
         } catch (IOException e) {
-            throw new MergeApiError("Network error executing HTTP request", e);
+            throw new MergeException("Network error executing HTTP request", e);
         }
     }
 }

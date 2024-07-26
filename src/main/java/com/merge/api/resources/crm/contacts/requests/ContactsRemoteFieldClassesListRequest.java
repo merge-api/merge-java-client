@@ -28,6 +28,8 @@ public final class ContactsRemoteFieldClassesListRequest {
 
     private final Optional<Boolean> includeRemoteFields;
 
+    private final Optional<Boolean> isCommonModelField;
+
     private final Optional<Integer> pageSize;
 
     private final Map<String, Object> additionalProperties;
@@ -37,12 +39,14 @@ public final class ContactsRemoteFieldClassesListRequest {
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> isCommonModelField,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.isCommonModelField = isCommonModelField;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
     }
@@ -80,6 +84,14 @@ public final class ContactsRemoteFieldClassesListRequest {
     }
 
     /**
+     * @return If provided, will only return remote field classes with this is_common_model_field value
+     */
+    @JsonProperty("is_common_model_field")
+    public Optional<Boolean> getIsCommonModelField() {
+        return isCommonModelField;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -104,13 +116,19 @@ public final class ContactsRemoteFieldClassesListRequest {
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
+                && isCommonModelField.equals(other.isCommonModelField)
                 && pageSize.equals(other.pageSize);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.cursor, this.includeDeletedData, this.includeRemoteData, this.includeRemoteFields, this.pageSize);
+                this.cursor,
+                this.includeDeletedData,
+                this.includeRemoteData,
+                this.includeRemoteFields,
+                this.isCommonModelField,
+                this.pageSize);
     }
 
     @java.lang.Override
@@ -132,6 +150,8 @@ public final class ContactsRemoteFieldClassesListRequest {
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
 
+        private Optional<Boolean> isCommonModelField = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         @JsonAnySetter
@@ -144,6 +164,7 @@ public final class ContactsRemoteFieldClassesListRequest {
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            isCommonModelField(other.getIsCommonModelField());
             pageSize(other.getPageSize());
             return this;
         }
@@ -192,6 +213,17 @@ public final class ContactsRemoteFieldClassesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
+        public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
+            this.isCommonModelField = isCommonModelField;
+            return this;
+        }
+
+        public Builder isCommonModelField(Boolean isCommonModelField) {
+            this.isCommonModelField = Optional.of(isCommonModelField);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -205,7 +237,13 @@ public final class ContactsRemoteFieldClassesListRequest {
 
         public ContactsRemoteFieldClassesListRequest build() {
             return new ContactsRemoteFieldClassesListRequest(
-                    cursor, includeDeletedData, includeRemoteData, includeRemoteFields, pageSize, additionalProperties);
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    isCommonModelField,
+                    pageSize,
+                    additionalProperties);
         }
     }
 }

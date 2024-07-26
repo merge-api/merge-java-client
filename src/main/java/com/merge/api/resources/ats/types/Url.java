@@ -29,6 +29,8 @@ public final class Url {
 
     private final Optional<UrlUrlType> urlType;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private Url(
@@ -36,11 +38,13 @@ public final class Url {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
             Optional<UrlUrlType> urlType,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.value = value;
         this.urlType = urlType;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -85,6 +89,14 @@ public final class Url {
         return urlType;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -100,12 +112,13 @@ public final class Url {
         return createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && value.equals(other.value)
-                && urlType.equals(other.urlType);
+                && urlType.equals(other.urlType)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.urlType);
+        return Objects.hash(this.createdAt, this.modifiedAt, this.value, this.urlType, this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -127,6 +140,8 @@ public final class Url {
 
         private Optional<UrlUrlType> urlType = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -137,6 +152,7 @@ public final class Url {
             modifiedAt(other.getModifiedAt());
             value(other.getValue());
             urlType(other.getUrlType());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -184,8 +200,19 @@ public final class Url {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public Url build() {
-            return new Url(createdAt, modifiedAt, value, urlType, additionalProperties);
+            return new Url(createdAt, modifiedAt, value, urlType, remoteWasDeleted, additionalProperties);
         }
     }
 }

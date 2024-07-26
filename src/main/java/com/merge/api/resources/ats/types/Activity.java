@@ -173,9 +173,6 @@ public final class Activity {
         return visibility;
     }
 
-    /**
-     * @return The activity’s candidate.
-     */
     @JsonProperty("candidate")
     public Optional<String> getCandidate() {
         return candidate;
