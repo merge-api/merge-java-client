@@ -6,6 +6,7 @@ package com.merge.api.core;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 import okhttp3.OkHttpClient;
 
@@ -76,6 +77,8 @@ public final class ClientOptions {
     public static final class Builder {
         private Environment environment;
 
+        private Consumer<OkHttpClient.Builder> okHttpConfigurer;
+
         private final Map<String, String> headers = new HashMap<>();
 
         private final Map<String, Supplier<String>> headerSuppliers = new HashMap<>();
@@ -95,11 +98,20 @@ public final class ClientOptions {
             return this;
         }
 
+        public Builder addOkHttpConfigurer(Consumer<OkHttpClient.Builder> okHttpConfigurer) {
+            this.okHttpConfigurer = okHttpConfigurer;
+            return this;
+        }
+
         public ClientOptions build() {
-            OkHttpClient okhttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new RetryInterceptor(3))
-                    .build();
-            return new ClientOptions(environment, headers, headerSuppliers, okhttpClient);
+            OkHttpClient.Builder okHttpClientBuilder = new OkHttpClient.Builder()
+                    .addInterceptor(new RetryInterceptor(3));
+
+            if (okHttpConfigurer != null) {
+                okHttpConfigurer.accept(okHttpClientBuilder);
+            }
+
+            return new ClientOptions(environment, headers, headerSuppliers, okHttpClientBuilder.build());
         }
     }
 }
