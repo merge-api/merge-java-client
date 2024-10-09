@@ -27,7 +27,7 @@ public final class FileRequest {
 
     private final Optional<String> fileThumbnailUrl;
 
-    private final Optional<Integer> size;
+    private final Optional<Long> size;
 
     private final Optional<String> mimeType;
 
@@ -49,7 +49,7 @@ public final class FileRequest {
             Optional<String> name,
             Optional<String> fileUrl,
             Optional<String> fileThumbnailUrl,
-            Optional<Integer> size,
+            Optional<Long> size,
             Optional<String> mimeType,
             Optional<String> description,
             Optional<FileRequestFolder> folder,
@@ -100,7 +100,7 @@ public final class FileRequest {
      * @return The file's size, in bytes.
      */
     @JsonProperty("size")
-    public Optional<Integer> getSize() {
+    public Optional<Long> getSize() {
         return size;
     }
 
@@ -212,7 +212,7 @@ public final class FileRequest {
 
         private Optional<String> fileThumbnailUrl = Optional.empty();
 
-        private Optional<Integer> size = Optional.empty();
+        private Optional<Long> size = Optional.empty();
 
         private Optional<String> mimeType = Optional.empty();
 
@@ -282,12 +282,12 @@ public final class FileRequest {
         }
 
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
-        public Builder size(Optional<Integer> size) {
+        public Builder size(Optional<Long> size) {
             this.size = size;
             return this;
         }
 
-        public Builder size(Integer size) {
+        public Builder size(Long size) {
             this.size = Optional.of(size);
             return this;
         }

@@ -39,6 +39,8 @@ public final class ExpenseRequest {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<ExpenseRequestCompany> company;
 
     private final Optional<String> memo;
@@ -53,6 +55,8 @@ public final class ExpenseRequest {
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private ExpenseRequest(
@@ -64,6 +68,7 @@ public final class ExpenseRequest {
             Optional<Double> totalTaxAmount,
             Optional<ExpenseRequestCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<Boolean> inclusiveOfTax,
             Optional<ExpenseRequestCompany> company,
             Optional<String> memo,
             Optional<List<ExpenseLineRequest>> lines,
@@ -71,6 +76,7 @@ public final class ExpenseRequest {
             Optional<ExpenseRequestAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.transactionDate = transactionDate;
         this.account = account;
@@ -80,6 +86,7 @@ public final class ExpenseRequest {
         this.totalTaxAmount = totalTaxAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.company = company;
         this.memo = memo;
         this.lines = lines;
@@ -87,6 +94,7 @@ public final class ExpenseRequest {
         this.accountingPeriod = accountingPeriod;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -463,6 +471,14 @@ public final class ExpenseRequest {
     }
 
     /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    /**
      * @return The company the expense belongs to.
      */
     @JsonProperty("company")
@@ -506,6 +522,11 @@ public final class ExpenseRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -526,13 +547,15 @@ public final class ExpenseRequest {
                 && totalTaxAmount.equals(other.totalTaxAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && company.equals(other.company)
                 && memo.equals(other.memo)
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -546,13 +569,15 @@ public final class ExpenseRequest {
                 this.totalTaxAmount,
                 this.currency,
                 this.exchangeRate,
+                this.inclusiveOfTax,
                 this.company,
                 this.memo,
                 this.lines,
                 this.trackingCategories,
                 this.accountingPeriod,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -582,6 +607,8 @@ public final class ExpenseRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<ExpenseRequestCompany> company = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
@@ -595,6 +622,8 @@ public final class ExpenseRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -610,6 +639,7 @@ public final class ExpenseRequest {
             totalTaxAmount(other.getTotalTaxAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            inclusiveOfTax(other.getInclusiveOfTax());
             company(other.getCompany());
             memo(other.getMemo());
             lines(other.getLines());
@@ -617,6 +647,7 @@ public final class ExpenseRequest {
             accountingPeriod(other.getAccountingPeriod());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -708,6 +739,17 @@ public final class ExpenseRequest {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<ExpenseRequestCompany> company) {
             this.company = company;
@@ -786,6 +828,17 @@ public final class ExpenseRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public ExpenseRequest build() {
             return new ExpenseRequest(
                     transactionDate,
@@ -796,6 +849,7 @@ public final class ExpenseRequest {
                     totalTaxAmount,
                     currency,
                     exchangeRate,
+                    inclusiveOfTax,
                     company,
                     memo,
                     lines,
@@ -803,6 +857,7 @@ public final class ExpenseRequest {
                     accountingPeriod,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

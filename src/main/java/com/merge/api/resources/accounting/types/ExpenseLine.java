@@ -50,6 +50,8 @@ public final class ExpenseLine {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<String> taxRate;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Map<String, Object> additionalProperties;
@@ -69,6 +71,7 @@ public final class ExpenseLine {
             Optional<ExpenseLineContact> contact,
             Optional<String> description,
             Optional<String> exchangeRate,
+            Optional<String> taxRate,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -85,6 +88,7 @@ public final class ExpenseLine {
         this.contact = contact;
         this.description = description;
         this.exchangeRate = exchangeRate;
+        this.taxRate = taxRate;
         this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
@@ -139,6 +143,9 @@ public final class ExpenseLine {
         return trackingCategory;
     }
 
+    /**
+     * @return The expense line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<ExpenseLineTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -501,7 +508,15 @@ public final class ExpenseLine {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -534,6 +549,7 @@ public final class ExpenseLine {
                 && contact.equals(other.contact)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
+                && taxRate.equals(other.taxRate)
                 && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
@@ -554,6 +570,7 @@ public final class ExpenseLine {
                 this.contact,
                 this.description,
                 this.exchangeRate,
+                this.taxRate,
                 this.remoteWasDeleted);
     }
 
@@ -596,6 +613,8 @@ public final class ExpenseLine {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         @JsonAnySetter
@@ -618,6 +637,7 @@ public final class ExpenseLine {
             contact(other.getContact());
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
+            taxRate(other.getTaxRate());
             remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
@@ -777,6 +797,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -804,6 +835,7 @@ public final class ExpenseLine {
                     contact,
                     description,
                     exchangeRate,
+                    taxRate,
                     remoteWasDeleted,
                     additionalProperties);
         }

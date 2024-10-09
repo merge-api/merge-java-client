@@ -70,6 +70,10 @@ public class ProjectsClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());
@@ -198,6 +202,10 @@ public class ProjectsClient {
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());

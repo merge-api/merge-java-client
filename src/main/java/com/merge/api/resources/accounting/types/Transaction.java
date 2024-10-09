@@ -41,6 +41,8 @@ public final class Transaction {
 
     private final Optional<TransactionContact> contact;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<String> totalAmount;
 
     private final Optional<TransactionCurrency> currency;
@@ -73,6 +75,7 @@ public final class Transaction {
             Optional<OffsetDateTime> transactionDate,
             Optional<TransactionAccount> account,
             Optional<TransactionContact> contact,
+            Optional<Boolean> inclusiveOfTax,
             Optional<String> totalAmount,
             Optional<TransactionCurrency> currency,
             Optional<String> exchangeRate,
@@ -93,6 +96,7 @@ public final class Transaction {
         this.transactionDate = transactionDate;
         this.account = account;
         this.contact = contact;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.totalAmount = totalAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
@@ -173,6 +177,14 @@ public final class Transaction {
     @JsonProperty("contact")
     public Optional<TransactionContact> getContact() {
         return contact;
+    }
+
+    /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
     }
 
     /**
@@ -526,7 +538,7 @@ public final class Transaction {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -572,6 +584,7 @@ public final class Transaction {
                 && transactionDate.equals(other.transactionDate)
                 && account.equals(other.account)
                 && contact.equals(other.contact)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
@@ -596,6 +609,7 @@ public final class Transaction {
                 this.transactionDate,
                 this.account,
                 this.contact,
+                this.inclusiveOfTax,
                 this.totalAmount,
                 this.currency,
                 this.exchangeRate,
@@ -637,6 +651,8 @@ public final class Transaction {
 
         private Optional<TransactionContact> contact = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<String> totalAmount = Optional.empty();
 
         private Optional<TransactionCurrency> currency = Optional.empty();
@@ -672,6 +688,7 @@ public final class Transaction {
             transactionDate(other.getTransactionDate());
             account(other.getAccount());
             contact(other.getContact());
+            inclusiveOfTax(other.getInclusiveOfTax());
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
@@ -781,6 +798,17 @@ public final class Transaction {
 
         public Builder contact(TransactionContact contact) {
             this.contact = Optional.of(contact);
+            return this;
+        }
+
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
             return this;
         }
 
@@ -906,6 +934,7 @@ public final class Transaction {
                     transactionDate,
                     account,
                     contact,
+                    inclusiveOfTax,
                     totalAmount,
                     currency,
                     exchangeRate,

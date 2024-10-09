@@ -10,10 +10,13 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.purchaseorders.requests.PurchaseOrderEndpointRequest;
+import com.merge.api.resources.accounting.purchaseorders.requests.PurchaseOrdersLineItemsRemoteFieldClassesListRequest;
 import com.merge.api.resources.accounting.purchaseorders.requests.PurchaseOrdersListRequest;
+import com.merge.api.resources.accounting.purchaseorders.requests.PurchaseOrdersRemoteFieldClassesListRequest;
 import com.merge.api.resources.accounting.purchaseorders.requests.PurchaseOrdersRetrieveRequest;
 import com.merge.api.resources.accounting.types.MetaResponse;
 import com.merge.api.resources.accounting.types.PaginatedPurchaseOrderList;
+import com.merge.api.resources.accounting.types.PaginatedRemoteFieldClassList;
 import com.merge.api.resources.accounting.types.PurchaseOrder;
 import com.merge.api.resources.accounting.types.PurchaseOrderResponse;
 import java.io.IOException;
@@ -80,6 +83,15 @@ public class PurchaseOrdersClient {
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeRemoteFields().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_fields",
+                    request.getIncludeRemoteFields().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getIssueDateAfter().isPresent()) {
             httpUrl.addQueryParameter(
@@ -219,6 +231,11 @@ public class PurchaseOrdersClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeRemoteFields().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_fields",
+                    request.getIncludeRemoteFields().get().toString());
+        }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
         }
@@ -240,6 +257,79 @@ public class PurchaseOrdersClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PurchaseOrder.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList() {
+        return lineItemsRemoteFieldClassesList(
+                PurchaseOrdersLineItemsRemoteFieldClassesListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList(
+            PurchaseOrdersLineItemsRemoteFieldClassesListRequest request) {
+        return lineItemsRemoteFieldClassesList(request, null);
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList(
+            PurchaseOrdersLineItemsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/purchase-orders/line-items/remote-field-classes");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
+        if (request.getIsCommonModelField().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_common_model_field",
+                    request.getIsCommonModelField().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(
@@ -280,6 +370,78 @@ public class PurchaseOrdersClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList() {
+        return remoteFieldClassesList(
+                PurchaseOrdersRemoteFieldClassesListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(PurchaseOrdersRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            PurchaseOrdersRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/purchase-orders/remote-field-classes");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
+        if (request.getIsCommonModelField().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_common_model_field",
+                    request.getIsCommonModelField().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

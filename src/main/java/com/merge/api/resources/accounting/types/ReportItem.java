@@ -37,6 +37,8 @@ public final class ReportItem {
 
     private final Optional<String> company;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Map<String, Object> additionalProperties;
 
     private ReportItem(
@@ -47,6 +49,7 @@ public final class ReportItem {
             Optional<Double> value,
             Optional<List<Map<String, JsonNode>>> subItems,
             Optional<String> company,
+            Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -55,6 +58,7 @@ public final class ReportItem {
         this.value = value;
         this.subItems = subItems;
         this.company = company;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
 
@@ -111,6 +115,14 @@ public final class ReportItem {
         return company;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -129,13 +141,21 @@ public final class ReportItem {
                 && name.equals(other.name)
                 && value.equals(other.value)
                 && subItems.equals(other.subItems)
-                && company.equals(other.company);
+                && company.equals(other.company)
+                && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.remoteId, this.createdAt, this.modifiedAt, this.name, this.value, this.subItems, this.company);
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
+                this.name,
+                this.value,
+                this.subItems,
+                this.company,
+                this.remoteWasDeleted);
     }
 
     @java.lang.Override
@@ -163,6 +183,8 @@ public final class ReportItem {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -176,6 +198,7 @@ public final class ReportItem {
             value(other.getValue());
             subItems(other.getSubItems());
             company(other.getCompany());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
 
@@ -256,9 +279,28 @@ public final class ReportItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            return this;
+        }
+
         public ReportItem build() {
             return new ReportItem(
-                    remoteId, createdAt, modifiedAt, name, value, subItems, company, additionalProperties);
+                    remoteId,
+                    createdAt,
+                    modifiedAt,
+                    name,
+                    value,
+                    subItems,
+                    company,
+                    remoteWasDeleted,
+                    additionalProperties);
         }
     }
 }

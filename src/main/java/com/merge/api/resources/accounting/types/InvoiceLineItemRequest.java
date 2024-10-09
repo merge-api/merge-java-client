@@ -40,6 +40,8 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<InvoiceLineItemRequestAccount> account;
 
+    private final Optional<String> taxRate;
+
     private final Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory;
 
     private final Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories;
@@ -49,6 +51,8 @@ public final class InvoiceLineItemRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -62,11 +66,13 @@ public final class InvoiceLineItemRequest {
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemRequestItem> item,
             Optional<InvoiceLineItemRequestAccount> account,
+            Optional<String> taxRate,
             Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory,
             Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.description = description;
@@ -77,11 +83,13 @@ public final class InvoiceLineItemRequest {
         this.exchangeRate = exchangeRate;
         this.item = item;
         this.account = account;
+        this.taxRate = taxRate;
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.company = company;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -459,11 +467,22 @@ public final class InvoiceLineItemRequest {
         return account;
     }
 
+    /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
     @JsonProperty("tracking_category")
     public Optional<InvoiceLineItemRequestTrackingCategory> getTrackingCategory() {
         return trackingCategory;
     }
 
+    /**
+     * @return The invoice line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -487,6 +506,11 @@ public final class InvoiceLineItemRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -508,11 +532,13 @@ public final class InvoiceLineItemRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && item.equals(other.item)
                 && account.equals(other.account)
+                && taxRate.equals(other.taxRate)
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -527,11 +553,13 @@ public final class InvoiceLineItemRequest {
                 this.exchangeRate,
                 this.item,
                 this.account,
+                this.taxRate,
                 this.trackingCategory,
                 this.trackingCategories,
                 this.company,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -563,6 +591,8 @@ public final class InvoiceLineItemRequest {
 
         private Optional<InvoiceLineItemRequestAccount> account = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory = Optional.empty();
 
         private Optional<List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>>> trackingCategories =
@@ -573,6 +603,8 @@ public final class InvoiceLineItemRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -589,11 +621,13 @@ public final class InvoiceLineItemRequest {
             exchangeRate(other.getExchangeRate());
             item(other.getItem());
             account(other.getAccount());
+            taxRate(other.getTaxRate());
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -696,6 +730,17 @@ public final class InvoiceLineItemRequest {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<InvoiceLineItemRequestTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -753,6 +798,17 @@ public final class InvoiceLineItemRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public InvoiceLineItemRequest build() {
             return new InvoiceLineItemRequest(
                     remoteId,
@@ -764,11 +820,13 @@ public final class InvoiceLineItemRequest {
                     exchangeRate,
                     item,
                     account,
+                    taxRate,
                     trackingCategory,
                     trackingCategories,
                     company,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

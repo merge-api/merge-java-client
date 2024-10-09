@@ -25,14 +25,18 @@ public final class PaymentsRetrieveRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeRemoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private PaymentsRetrieveRequest(
             Optional<PaymentsRetrieveRequestExpand> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeRemoteFields,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeRemoteFields = includeRemoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -52,6 +56,14 @@ public final class PaymentsRetrieveRequest {
         return includeRemoteData;
     }
 
+    /**
+     * @return Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+     */
+    @JsonProperty("include_remote_fields")
+    public Optional<Boolean> getIncludeRemoteFields() {
+        return includeRemoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -64,12 +76,14 @@ public final class PaymentsRetrieveRequest {
     }
 
     private boolean equalTo(PaymentsRetrieveRequest other) {
-        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand)
+                && includeRemoteData.equals(other.includeRemoteData)
+                && includeRemoteFields.equals(other.includeRemoteFields);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields);
     }
 
     @java.lang.Override
@@ -87,6 +101,8 @@ public final class PaymentsRetrieveRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeRemoteFields = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -95,6 +111,7 @@ public final class PaymentsRetrieveRequest {
         public Builder from(PaymentsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeRemoteFields(other.getIncludeRemoteFields());
             return this;
         }
 
@@ -120,8 +137,19 @@ public final class PaymentsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
+        public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
+            this.includeRemoteFields = includeRemoteFields;
+            return this;
+        }
+
+        public Builder includeRemoteFields(Boolean includeRemoteFields) {
+            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            return this;
+        }
+
         public PaymentsRetrieveRequest build() {
-            return new PaymentsRetrieveRequest(expand, includeRemoteData, additionalProperties);
+            return new PaymentsRetrieveRequest(expand, includeRemoteData, includeRemoteFields, additionalProperties);
         }
     }
 }

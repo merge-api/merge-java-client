@@ -78,6 +78,10 @@ public class ContactsClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

@@ -45,6 +45,10 @@ public final class Item {
 
     private final Optional<ItemCompany> company;
 
+    private final Optional<ItemPurchaseTaxRate> purchaseTaxRate;
+
+    private final Optional<ItemSalesTaxRate> salesTaxRate;
+
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -67,6 +71,8 @@ public final class Item {
             Optional<ItemPurchaseAccount> purchaseAccount,
             Optional<ItemSalesAccount> salesAccount,
             Optional<ItemCompany> company,
+            Optional<ItemPurchaseTaxRate> purchaseTaxRate,
+            Optional<ItemSalesTaxRate> salesTaxRate,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -83,6 +89,8 @@ public final class Item {
         this.purchaseAccount = purchaseAccount;
         this.salesAccount = salesAccount;
         this.company = company;
+        this.purchaseTaxRate = purchaseTaxRate;
+        this.salesTaxRate = salesTaxRate;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
@@ -180,6 +188,22 @@ public final class Item {
     }
 
     /**
+     * @return The default purchase tax rate for this item.
+     */
+    @JsonProperty("purchase_tax_rate")
+    public Optional<ItemPurchaseTaxRate> getPurchaseTaxRate() {
+        return purchaseTaxRate;
+    }
+
+    /**
+     * @return The default sales tax rate for this item.
+     */
+    @JsonProperty("sales_tax_rate")
+    public Optional<ItemSalesTaxRate> getSalesTaxRate() {
+        return salesTaxRate;
+    }
+
+    /**
      * @return When the third party's item note was updated.
      */
     @JsonProperty("remote_updated_at")
@@ -188,7 +212,7 @@ public final class Item {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -228,6 +252,8 @@ public final class Item {
                 && purchaseAccount.equals(other.purchaseAccount)
                 && salesAccount.equals(other.salesAccount)
                 && company.equals(other.company)
+                && purchaseTaxRate.equals(other.purchaseTaxRate)
+                && salesTaxRate.equals(other.salesTaxRate)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
@@ -248,6 +274,8 @@ public final class Item {
                 this.purchaseAccount,
                 this.salesAccount,
                 this.company,
+                this.purchaseTaxRate,
+                this.salesTaxRate,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
                 this.fieldMappings,
@@ -287,6 +315,10 @@ public final class Item {
 
         private Optional<ItemCompany> company = Optional.empty();
 
+        private Optional<ItemPurchaseTaxRate> purchaseTaxRate = Optional.empty();
+
+        private Optional<ItemSalesTaxRate> salesTaxRate = Optional.empty();
+
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -312,6 +344,8 @@ public final class Item {
             purchaseAccount(other.getPurchaseAccount());
             salesAccount(other.getSalesAccount());
             company(other.getCompany());
+            purchaseTaxRate(other.getPurchaseTaxRate());
+            salesTaxRate(other.getSalesTaxRate());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
@@ -440,6 +474,28 @@ public final class Item {
             return this;
         }
 
+        @JsonSetter(value = "purchase_tax_rate", nulls = Nulls.SKIP)
+        public Builder purchaseTaxRate(Optional<ItemPurchaseTaxRate> purchaseTaxRate) {
+            this.purchaseTaxRate = purchaseTaxRate;
+            return this;
+        }
+
+        public Builder purchaseTaxRate(ItemPurchaseTaxRate purchaseTaxRate) {
+            this.purchaseTaxRate = Optional.of(purchaseTaxRate);
+            return this;
+        }
+
+        @JsonSetter(value = "sales_tax_rate", nulls = Nulls.SKIP)
+        public Builder salesTaxRate(Optional<ItemSalesTaxRate> salesTaxRate) {
+            this.salesTaxRate = salesTaxRate;
+            return this;
+        }
+
+        public Builder salesTaxRate(ItemSalesTaxRate salesTaxRate) {
+            this.salesTaxRate = Optional.of(salesTaxRate);
+            return this;
+        }
+
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -497,6 +553,8 @@ public final class Item {
                     purchaseAccount,
                     salesAccount,
                     company,
+                    purchaseTaxRate,
+                    salesTaxRate,
                     remoteUpdatedAt,
                     remoteWasDeleted,
                     fieldMappings,

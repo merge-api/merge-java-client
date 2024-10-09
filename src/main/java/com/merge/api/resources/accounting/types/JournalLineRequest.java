@@ -38,6 +38,8 @@ public final class JournalLineRequest {
 
     private final Optional<String> contact;
 
+    private final Optional<String> taxRate;
+
     private final Optional<String> description;
 
     private final Optional<String> exchangeRate;
@@ -45,6 +47,8 @@ public final class JournalLineRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -57,10 +61,12 @@ public final class JournalLineRequest {
             Optional<JournalLineRequestCurrency> currency,
             Optional<String> company,
             Optional<String> contact,
+            Optional<String> taxRate,
             Optional<String> description,
             Optional<String> exchangeRate,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.account = account;
@@ -70,10 +76,12 @@ public final class JournalLineRequest {
         this.currency = currency;
         this.company = company;
         this.contact = contact;
+        this.taxRate = taxRate;
         this.description = description;
         this.exchangeRate = exchangeRate;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -103,6 +111,9 @@ public final class JournalLineRequest {
         return trackingCategory;
     }
 
+    /**
+     * @return The journal line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -438,6 +449,14 @@ public final class JournalLineRequest {
     }
 
     /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
      * @return The line's description.
      */
     @JsonProperty("description")
@@ -463,6 +482,11 @@ public final class JournalLineRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -483,10 +507,12 @@ public final class JournalLineRequest {
                 && currency.equals(other.currency)
                 && company.equals(other.company)
                 && contact.equals(other.contact)
+                && taxRate.equals(other.taxRate)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -500,10 +526,12 @@ public final class JournalLineRequest {
                 this.currency,
                 this.company,
                 this.contact,
+                this.taxRate,
                 this.description,
                 this.exchangeRate,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -534,6 +562,8 @@ public final class JournalLineRequest {
 
         private Optional<String> contact = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<String> description = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -541,6 +571,8 @@ public final class JournalLineRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -556,10 +588,12 @@ public final class JournalLineRequest {
             currency(other.getCurrency());
             company(other.getCompany());
             contact(other.getContact());
+            taxRate(other.getTaxRate());
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -652,6 +686,17 @@ public final class JournalLineRequest {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -696,6 +741,17 @@ public final class JournalLineRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public JournalLineRequest build() {
             return new JournalLineRequest(
                     remoteId,
@@ -706,10 +762,12 @@ public final class JournalLineRequest {
                     currency,
                     company,
                     contact,
+                    taxRate,
                     description,
                     exchangeRate,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

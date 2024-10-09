@@ -97,6 +97,10 @@ public class LeadsClient {
                     "include_remote_fields",
                     request.getIncludeRemoteFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());
@@ -335,6 +339,10 @@ public class LeadsClient {
             httpUrl.addQueryParameter(
                     "include_remote_fields",
                     request.getIncludeRemoteFields().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getIsCommonModelField().isPresent()) {
             httpUrl.addQueryParameter(

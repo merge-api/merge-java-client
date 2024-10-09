@@ -26,6 +26,8 @@ public final class AccountingPeriodsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<Integer> pageSize;
 
     private final Map<String, Object> additionalProperties;
@@ -34,11 +36,13 @@ public final class AccountingPeriodsListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
     }
@@ -52,7 +56,7 @@ public final class AccountingPeriodsListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -65,6 +69,14 @@ public final class AccountingPeriodsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -90,12 +102,14 @@ public final class AccountingPeriodsListRequest {
         return cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && pageSize.equals(other.pageSize);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.cursor, this.includeDeletedData, this.includeRemoteData, this.pageSize);
+        return Objects.hash(
+                this.cursor, this.includeDeletedData, this.includeRemoteData, this.includeShellData, this.pageSize);
     }
 
     @java.lang.Override
@@ -115,6 +129,8 @@ public final class AccountingPeriodsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         @JsonAnySetter
@@ -126,6 +142,7 @@ public final class AccountingPeriodsListRequest {
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             pageSize(other.getPageSize());
             return this;
         }
@@ -163,6 +180,17 @@ public final class AccountingPeriodsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -176,7 +204,7 @@ public final class AccountingPeriodsListRequest {
 
         public AccountingPeriodsListRequest build() {
             return new AccountingPeriodsListRequest(
-                    cursor, includeDeletedData, includeRemoteData, pageSize, additionalProperties);
+                    cursor, includeDeletedData, includeRemoteData, includeShellData, pageSize, additionalProperties);
         }
     }
 }

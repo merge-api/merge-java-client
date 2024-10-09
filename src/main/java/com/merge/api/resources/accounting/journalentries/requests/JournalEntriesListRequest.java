@@ -36,6 +36,10 @@ public final class JournalEntriesListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeRemoteFields;
+
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -58,6 +62,8 @@ public final class JournalEntriesListRequest {
             Optional<JournalEntriesListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -72,6 +78,8 @@ public final class JournalEntriesListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
@@ -122,7 +130,7 @@ public final class JournalEntriesListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -135,6 +143,22 @@ public final class JournalEntriesListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+     */
+    @JsonProperty("include_remote_fields")
+    public Optional<Boolean> getIncludeRemoteFields() {
+        return includeRemoteFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -204,6 +228,8 @@ public final class JournalEntriesListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
@@ -222,6 +248,8 @@ public final class JournalEntriesListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.includeRemoteFields,
+                this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
@@ -255,6 +283,10 @@ public final class JournalEntriesListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -280,6 +312,8 @@ public final class JournalEntriesListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
@@ -366,6 +400,28 @@ public final class JournalEntriesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
+        public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
+            this.includeRemoteFields = includeRemoteFields;
+            return this;
+        }
+
+        public Builder includeRemoteFields(Boolean includeRemoteFields) {
+            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -441,6 +497,8 @@ public final class JournalEntriesListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,

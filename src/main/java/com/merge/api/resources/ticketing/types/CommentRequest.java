@@ -61,7 +61,7 @@ public final class CommentRequest {
     }
 
     /**
-     * @return The author of the Comment, if the author is a User.
+     * @return The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
     @JsonProperty("user")
     public Optional<CommentRequestUser> getUser() {
@@ -69,7 +69,7 @@ public final class CommentRequest {
     }
 
     /**
-     * @return The author of the Comment, if the author is a Contact.
+     * @return The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
     @JsonProperty("contact")
     public Optional<CommentRequestContact> getContact() {

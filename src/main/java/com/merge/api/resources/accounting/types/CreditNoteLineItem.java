@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,11 +42,13 @@ public final class CreditNoteLineItem {
 
     private final Optional<String> unitPrice;
 
+    private final Optional<String> taxRate;
+
     private final Optional<String> totalLineAmount;
 
     private final Optional<String> trackingCategory;
 
-    private final List<String> trackingCategories;
+    private final Optional<List<Optional<String>>> trackingCategories;
 
     private final Optional<String> account;
 
@@ -68,9 +69,10 @@ public final class CreditNoteLineItem {
             Optional<String> quantity,
             Optional<String> memo,
             Optional<String> unitPrice,
+            Optional<String> taxRate,
             Optional<String> totalLineAmount,
             Optional<String> trackingCategory,
-            List<String> trackingCategories,
+            Optional<List<Optional<String>>> trackingCategories,
             Optional<String> account,
             Optional<CreditNoteLineItemCompany> company,
             Optional<Boolean> remoteWasDeleted,
@@ -85,6 +87,7 @@ public final class CreditNoteLineItem {
         this.quantity = quantity;
         this.memo = memo;
         this.unitPrice = unitPrice;
+        this.taxRate = taxRate;
         this.totalLineAmount = totalLineAmount;
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
@@ -169,6 +172,14 @@ public final class CreditNoteLineItem {
     }
 
     /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
      * @return The credit note line item's total.
      */
     @JsonProperty("total_line_amount")
@@ -188,7 +199,7 @@ public final class CreditNoteLineItem {
      * @return The credit note line item's associated tracking categories.
      */
     @JsonProperty("tracking_categories")
-    public List<String> getTrackingCategories() {
+    public Optional<List<Optional<String>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -209,7 +220,7 @@ public final class CreditNoteLineItem {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -238,6 +249,7 @@ public final class CreditNoteLineItem {
                 && quantity.equals(other.quantity)
                 && memo.equals(other.memo)
                 && unitPrice.equals(other.unitPrice)
+                && taxRate.equals(other.taxRate)
                 && totalLineAmount.equals(other.totalLineAmount)
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
@@ -259,6 +271,7 @@ public final class CreditNoteLineItem {
                 this.quantity,
                 this.memo,
                 this.unitPrice,
+                this.taxRate,
                 this.totalLineAmount,
                 this.trackingCategory,
                 this.trackingCategories,
@@ -298,11 +311,13 @@ public final class CreditNoteLineItem {
 
         private Optional<String> unitPrice = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<String> totalLineAmount = Optional.empty();
 
         private Optional<String> trackingCategory = Optional.empty();
 
-        private List<String> trackingCategories = new ArrayList<>();
+        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
 
         private Optional<String> account = Optional.empty();
 
@@ -326,6 +341,7 @@ public final class CreditNoteLineItem {
             quantity(other.getQuantity());
             memo(other.getMemo());
             unitPrice(other.getUnitPrice());
+            taxRate(other.getTaxRate());
             totalLineAmount(other.getTotalLineAmount());
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
@@ -445,6 +461,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "total_line_amount", nulls = Nulls.SKIP)
         public Builder totalLineAmount(Optional<String> totalLineAmount) {
             this.totalLineAmount = totalLineAmount;
@@ -468,19 +495,13 @@ public final class CreditNoteLineItem {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.clear();
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder addTrackingCategories(String trackingCategories) {
-            this.trackingCategories.add(trackingCategories);
-            return this;
-        }
-
-        public Builder addAllTrackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 
@@ -529,6 +550,7 @@ public final class CreditNoteLineItem {
                     quantity,
                     memo,
                     unitPrice,
+                    taxRate,
                     totalLineAmount,
                     trackingCategory,
                     trackingCategories,

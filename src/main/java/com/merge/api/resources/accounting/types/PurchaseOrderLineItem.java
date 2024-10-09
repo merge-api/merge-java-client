@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +42,7 @@ public final class PurchaseOrderLineItem {
 
     private final Optional<String> trackingCategory;
 
-    private final List<String> trackingCategories;
+    private final Optional<List<Optional<String>>> trackingCategories;
 
     private final Optional<String> taxAmount;
 
@@ -51,11 +50,15 @@ public final class PurchaseOrderLineItem {
 
     private final Optional<PurchaseOrderLineItemCurrency> currency;
 
+    private final Optional<String> taxRate;
+
     private final Optional<String> exchangeRate;
 
     private final Optional<String> company;
 
     private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -70,13 +73,15 @@ public final class PurchaseOrderLineItem {
             Optional<PurchaseOrderLineItemItem> item,
             Optional<String> account,
             Optional<String> trackingCategory,
-            List<String> trackingCategories,
+            Optional<List<Optional<String>>> trackingCategories,
             Optional<String> taxAmount,
             Optional<String> totalLineAmount,
             Optional<PurchaseOrderLineItemCurrency> currency,
+            Optional<String> taxRate,
             Optional<String> exchangeRate,
             Optional<String> company,
             Optional<Boolean> remoteWasDeleted,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -92,9 +97,11 @@ public final class PurchaseOrderLineItem {
         this.taxAmount = taxAmount;
         this.totalLineAmount = totalLineAmount;
         this.currency = currency;
+        this.taxRate = taxRate;
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -176,7 +183,7 @@ public final class PurchaseOrderLineItem {
      * @return The purchase order line item's associated tracking categories.
      */
     @JsonProperty("tracking_categories")
-    public List<String> getTrackingCategories() {
+    public Optional<List<Optional<String>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -513,6 +520,14 @@ public final class PurchaseOrderLineItem {
     }
 
     /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
      * @return The purchase order line item's exchange rate.
      */
     @JsonProperty("exchange_rate")
@@ -529,11 +544,16 @@ public final class PurchaseOrderLineItem {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -562,9 +582,11 @@ public final class PurchaseOrderLineItem {
                 && taxAmount.equals(other.taxAmount)
                 && totalLineAmount.equals(other.totalLineAmount)
                 && currency.equals(other.currency)
+                && taxRate.equals(other.taxRate)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
-                && remoteWasDeleted.equals(other.remoteWasDeleted);
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -584,9 +606,11 @@ public final class PurchaseOrderLineItem {
                 this.taxAmount,
                 this.totalLineAmount,
                 this.currency,
+                this.taxRate,
                 this.exchangeRate,
                 this.company,
-                this.remoteWasDeleted);
+                this.remoteWasDeleted,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -620,7 +644,7 @@ public final class PurchaseOrderLineItem {
 
         private Optional<String> trackingCategory = Optional.empty();
 
-        private List<String> trackingCategories = new ArrayList<>();
+        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
 
         private Optional<String> taxAmount = Optional.empty();
 
@@ -628,11 +652,15 @@ public final class PurchaseOrderLineItem {
 
         private Optional<PurchaseOrderLineItemCurrency> currency = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -654,9 +682,11 @@ public final class PurchaseOrderLineItem {
             taxAmount(other.getTaxAmount());
             totalLineAmount(other.getTotalLineAmount());
             currency(other.getCurrency());
+            taxRate(other.getTaxRate());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -771,19 +801,13 @@ public final class PurchaseOrderLineItem {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.clear();
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder addTrackingCategories(String trackingCategories) {
-            this.trackingCategories.add(trackingCategories);
-            return this;
-        }
-
-        public Builder addAllTrackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 
@@ -820,6 +844,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "exchange_rate", nulls = Nulls.SKIP)
         public Builder exchangeRate(Optional<String> exchangeRate) {
             this.exchangeRate = exchangeRate;
@@ -853,6 +888,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PurchaseOrderLineItem build() {
             return new PurchaseOrderLineItem(
                     id,
@@ -869,9 +915,11 @@ public final class PurchaseOrderLineItem {
                     taxAmount,
                     totalLineAmount,
                     currency,
+                    taxRate,
                     exchangeRate,
                     company,
                     remoteWasDeleted,
+                    remoteFields,
                     additionalProperties);
         }
     }

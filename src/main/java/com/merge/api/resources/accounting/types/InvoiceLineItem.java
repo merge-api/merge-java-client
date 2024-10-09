@@ -47,6 +47,8 @@ public final class InvoiceLineItem {
 
     private final Optional<InvoiceLineItemAccount> account;
 
+    private final Optional<String> taxRate;
+
     private final Optional<InvoiceLineItemTrackingCategory> trackingCategory;
 
     private final Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> trackingCategories;
@@ -56,6 +58,8 @@ public final class InvoiceLineItem {
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -72,11 +76,13 @@ public final class InvoiceLineItem {
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemItem> item,
             Optional<InvoiceLineItemAccount> account,
+            Optional<String> taxRate,
             Optional<InvoiceLineItemTrackingCategory> trackingCategory,
             Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -90,11 +96,13 @@ public final class InvoiceLineItem {
         this.exchangeRate = exchangeRate;
         this.item = item;
         this.account = account;
+        this.taxRate = taxRate;
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -493,11 +501,22 @@ public final class InvoiceLineItem {
         return account;
     }
 
+    /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
     @JsonProperty("tracking_category")
     public Optional<InvoiceLineItemTrackingCategory> getTrackingCategory() {
         return trackingCategory;
     }
 
+    /**
+     * @return The invoice line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -512,7 +531,7 @@ public final class InvoiceLineItem {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -522,6 +541,11 @@ public final class InvoiceLineItem {
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -548,11 +572,13 @@ public final class InvoiceLineItem {
                 && exchangeRate.equals(other.exchangeRate)
                 && item.equals(other.item)
                 && account.equals(other.account)
+                && taxRate.equals(other.taxRate)
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && fieldMappings.equals(other.fieldMappings);
+                && fieldMappings.equals(other.fieldMappings)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -570,11 +596,13 @@ public final class InvoiceLineItem {
                 this.exchangeRate,
                 this.item,
                 this.account,
+                this.taxRate,
                 this.trackingCategory,
                 this.trackingCategories,
                 this.company,
                 this.remoteWasDeleted,
-                this.fieldMappings);
+                this.fieldMappings,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -612,6 +640,8 @@ public final class InvoiceLineItem {
 
         private Optional<InvoiceLineItemAccount> account = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<InvoiceLineItemTrackingCategory> trackingCategory = Optional.empty();
 
         private Optional<List<Optional<InvoiceLineItemTrackingCategoriesItem>>> trackingCategories = Optional.empty();
@@ -621,6 +651,8 @@ public final class InvoiceLineItem {
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -640,11 +672,13 @@ public final class InvoiceLineItem {
             exchangeRate(other.getExchangeRate());
             item(other.getItem());
             account(other.getAccount());
+            taxRate(other.getTaxRate());
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -780,6 +814,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<InvoiceLineItemTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -836,6 +881,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public InvoiceLineItem build() {
             return new InvoiceLineItem(
                     id,
@@ -850,11 +906,13 @@ public final class InvoiceLineItem {
                     exchangeRate,
                     item,
                     account,
+                    taxRate,
                     trackingCategory,
                     trackingCategories,
                     company,
                     remoteWasDeleted,
                     fieldMappings,
+                    remoteFields,
                     additionalProperties);
         }
     }

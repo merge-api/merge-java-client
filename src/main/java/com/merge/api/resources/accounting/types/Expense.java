@@ -49,6 +49,8 @@ public final class Expense {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<ExpenseCompany> company;
 
     private final Optional<String> memo;
@@ -64,6 +66,8 @@ public final class Expense {
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -81,6 +85,7 @@ public final class Expense {
             Optional<Double> totalTaxAmount,
             Optional<ExpenseCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<Boolean> inclusiveOfTax,
             Optional<ExpenseCompany> company,
             Optional<String> memo,
             Optional<List<ExpenseLine>> lines,
@@ -89,6 +94,7 @@ public final class Expense {
             Optional<ExpenseAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -103,6 +109,7 @@ public final class Expense {
         this.totalTaxAmount = totalTaxAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.company = company;
         this.memo = memo;
         this.lines = lines;
@@ -111,6 +118,7 @@ public final class Expense {
         this.accountingPeriod = accountingPeriod;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -524,6 +532,14 @@ public final class Expense {
     }
 
     /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    /**
      * @return The company the expense belongs to.
      */
     @JsonProperty("company")
@@ -550,7 +566,7 @@ public final class Expense {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -573,6 +589,11 @@ public final class Expense {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -600,6 +621,7 @@ public final class Expense {
                 && totalTaxAmount.equals(other.totalTaxAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && company.equals(other.company)
                 && memo.equals(other.memo)
                 && lines.equals(other.lines)
@@ -607,7 +629,8 @@ public final class Expense {
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -626,6 +649,7 @@ public final class Expense {
                 this.totalTaxAmount,
                 this.currency,
                 this.exchangeRate,
+                this.inclusiveOfTax,
                 this.company,
                 this.memo,
                 this.lines,
@@ -633,7 +657,8 @@ public final class Expense {
                 this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -673,6 +698,8 @@ public final class Expense {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<ExpenseCompany> company = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
@@ -688,6 +715,8 @@ public final class Expense {
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -708,6 +737,7 @@ public final class Expense {
             totalTaxAmount(other.getTotalTaxAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            inclusiveOfTax(other.getInclusiveOfTax());
             company(other.getCompany());
             memo(other.getMemo());
             lines(other.getLines());
@@ -716,6 +746,7 @@ public final class Expense {
             accountingPeriod(other.getAccountingPeriod());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -862,6 +893,17 @@ public final class Expense {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<ExpenseCompany> company) {
             this.company = company;
@@ -950,6 +992,17 @@ public final class Expense {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public Expense build() {
             return new Expense(
                     id,
@@ -965,6 +1018,7 @@ public final class Expense {
                     totalTaxAmount,
                     currency,
                     exchangeRate,
+                    inclusiveOfTax,
                     company,
                     memo,
                     lines,
@@ -973,6 +1027,7 @@ public final class Expense {
                     accountingPeriod,
                     fieldMappings,
                     remoteData,
+                    remoteFields,
                     additionalProperties);
         }
     }

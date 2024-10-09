@@ -112,7 +112,7 @@ public final class TimeOffBalance {
     }
 
     /**
-     * @return The current remaining PTO balance, always measured in terms of hours.
+     * @return The current remaining PTO balance, measured in hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.
      */
     @JsonProperty("balance")
     public Optional<Double> getBalance() {
@@ -120,7 +120,7 @@ public final class TimeOffBalance {
     }
 
     /**
-     * @return The amount of PTO used in terms of hours.
+     * @return The amount of PTO used in terms of hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.
      */
     @JsonProperty("used")
     public Optional<Double> getUsed() {
@@ -144,7 +144,7 @@ public final class TimeOffBalance {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {

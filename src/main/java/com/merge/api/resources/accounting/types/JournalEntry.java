@@ -33,10 +33,6 @@ public final class JournalEntry {
 
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<OffsetDateTime> remoteCreatedAt;
-
-    private final Optional<OffsetDateTime> remoteUpdatedAt;
-
     private final Optional<List<Optional<JournalEntryPaymentsItem>>> payments;
 
     private final Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments;
@@ -48,6 +44,8 @@ public final class JournalEntry {
     private final Optional<String> exchangeRate;
 
     private final Optional<JournalEntryCompany> company;
+
+    private final Optional<Boolean> inclusiveOfTax;
 
     private final Optional<List<JournalLine>> lines;
 
@@ -61,9 +59,15 @@ public final class JournalEntry {
 
     private final Optional<JournalEntryAccountingPeriod> accountingPeriod;
 
+    private final Optional<OffsetDateTime> remoteCreatedAt;
+
+    private final Optional<OffsetDateTime> remoteUpdatedAt;
+
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -73,44 +77,48 @@ public final class JournalEntry {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<OffsetDateTime> transactionDate,
-            Optional<OffsetDateTime> remoteCreatedAt,
-            Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<JournalEntryPaymentsItem>>> payments,
             Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments,
             Optional<String> memo,
             Optional<JournalEntryCurrency> currency,
             Optional<String> exchangeRate,
             Optional<JournalEntryCompany> company,
+            Optional<Boolean> inclusiveOfTax,
             Optional<List<JournalLine>> lines,
             Optional<String> journalNumber,
             Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
             Optional<JournalEntryPostingStatus> postingStatus,
             Optional<JournalEntryAccountingPeriod> accountingPeriod,
+            Optional<OffsetDateTime> remoteCreatedAt,
+            Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
         this.transactionDate = transactionDate;
-        this.remoteCreatedAt = remoteCreatedAt;
-        this.remoteUpdatedAt = remoteUpdatedAt;
         this.payments = payments;
         this.appliedPayments = appliedPayments;
         this.memo = memo;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.lines = lines;
         this.journalNumber = journalNumber;
         this.trackingCategories = trackingCategories;
         this.remoteWasDeleted = remoteWasDeleted;
         this.postingStatus = postingStatus;
         this.accountingPeriod = accountingPeriod;
+        this.remoteCreatedAt = remoteCreatedAt;
+        this.remoteUpdatedAt = remoteUpdatedAt;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -149,22 +157,6 @@ public final class JournalEntry {
     @JsonProperty("transaction_date")
     public Optional<OffsetDateTime> getTransactionDate() {
         return transactionDate;
-    }
-
-    /**
-     * @return When the third party's journal entry was created.
-     */
-    @JsonProperty("remote_created_at")
-    public Optional<OffsetDateTime> getRemoteCreatedAt() {
-        return remoteCreatedAt;
-    }
-
-    /**
-     * @return When the third party's journal entry was updated.
-     */
-    @JsonProperty("remote_updated_at")
-    public Optional<OffsetDateTime> getRemoteUpdatedAt() {
-        return remoteUpdatedAt;
     }
 
     /**
@@ -523,6 +515,14 @@ public final class JournalEntry {
         return company;
     }
 
+    /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
     @JsonProperty("lines")
     public Optional<List<JournalLine>> getLines() {
         return lines;
@@ -541,6 +541,9 @@ public final class JournalEntry {
         return trackingCategories;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
@@ -566,6 +569,22 @@ public final class JournalEntry {
         return accountingPeriod;
     }
 
+    /**
+     * @return When the third party's journal entry was created.
+     */
+    @JsonProperty("remote_created_at")
+    public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    /**
+     * @return When the third party's journal entry was updated.
+     */
+    @JsonProperty("remote_updated_at")
+    public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -574,6 +593,11 @@ public final class JournalEntry {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -593,22 +617,24 @@ public final class JournalEntry {
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
                 && transactionDate.equals(other.transactionDate)
-                && remoteCreatedAt.equals(other.remoteCreatedAt)
-                && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && payments.equals(other.payments)
                 && appliedPayments.equals(other.appliedPayments)
                 && memo.equals(other.memo)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && lines.equals(other.lines)
                 && journalNumber.equals(other.journalNumber)
                 && trackingCategories.equals(other.trackingCategories)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && postingStatus.equals(other.postingStatus)
                 && accountingPeriod.equals(other.accountingPeriod)
+                && remoteCreatedAt.equals(other.remoteCreatedAt)
+                && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -619,22 +645,24 @@ public final class JournalEntry {
                 this.createdAt,
                 this.modifiedAt,
                 this.transactionDate,
-                this.remoteCreatedAt,
-                this.remoteUpdatedAt,
                 this.payments,
                 this.appliedPayments,
                 this.memo,
                 this.currency,
                 this.exchangeRate,
                 this.company,
+                this.inclusiveOfTax,
                 this.lines,
                 this.journalNumber,
                 this.trackingCategories,
                 this.remoteWasDeleted,
                 this.postingStatus,
                 this.accountingPeriod,
+                this.remoteCreatedAt,
+                this.remoteUpdatedAt,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -658,10 +686,6 @@ public final class JournalEntry {
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
-
-        private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
-
         private Optional<List<Optional<JournalEntryPaymentsItem>>> payments = Optional.empty();
 
         private Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments = Optional.empty();
@@ -673,6 +697,8 @@ public final class JournalEntry {
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<JournalEntryCompany> company = Optional.empty();
+
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
         private Optional<List<JournalLine>> lines = Optional.empty();
 
@@ -686,9 +712,15 @@ public final class JournalEntry {
 
         private Optional<JournalEntryAccountingPeriod> accountingPeriod = Optional.empty();
 
+        private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
+
+        private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
+
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -701,22 +733,24 @@ public final class JournalEntry {
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
             transactionDate(other.getTransactionDate());
-            remoteCreatedAt(other.getRemoteCreatedAt());
-            remoteUpdatedAt(other.getRemoteUpdatedAt());
             payments(other.getPayments());
             appliedPayments(other.getAppliedPayments());
             memo(other.getMemo());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
+            inclusiveOfTax(other.getInclusiveOfTax());
             lines(other.getLines());
             journalNumber(other.getJournalNumber());
             trackingCategories(other.getTrackingCategories());
             remoteWasDeleted(other.getRemoteWasDeleted());
             postingStatus(other.getPostingStatus());
             accountingPeriod(other.getAccountingPeriod());
+            remoteCreatedAt(other.getRemoteCreatedAt());
+            remoteUpdatedAt(other.getRemoteUpdatedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -772,28 +806,6 @@ public final class JournalEntry {
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
             this.transactionDate = Optional.of(transactionDate);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
-        public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
-            this.remoteCreatedAt = remoteCreatedAt;
-            return this;
-        }
-
-        public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
-        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
-            this.remoteUpdatedAt = remoteUpdatedAt;
-            return this;
-        }
-
-        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
             return this;
         }
 
@@ -860,6 +872,17 @@ public final class JournalEntry {
 
         public Builder company(JournalEntryCompany company) {
             this.company = Optional.of(company);
+            return this;
+        }
+
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
             return this;
         }
 
@@ -930,6 +953,28 @@ public final class JournalEntry {
             return this;
         }
 
+        @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
+            this.remoteCreatedAt = remoteCreatedAt;
+            return this;
+        }
+
+        public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
+            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
+        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
+            this.remoteUpdatedAt = remoteUpdatedAt;
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
+            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -952,6 +997,17 @@ public final class JournalEntry {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public JournalEntry build() {
             return new JournalEntry(
                     id,
@@ -959,22 +1015,24 @@ public final class JournalEntry {
                     createdAt,
                     modifiedAt,
                     transactionDate,
-                    remoteCreatedAt,
-                    remoteUpdatedAt,
                     payments,
                     appliedPayments,
                     memo,
                     currency,
                     exchangeRate,
                     company,
+                    inclusiveOfTax,
                     lines,
                     journalNumber,
                     trackingCategories,
                     remoteWasDeleted,
                     postingStatus,
                     accountingPeriod,
+                    remoteCreatedAt,
+                    remoteUpdatedAt,
                     fieldMappings,
                     remoteData,
+                    remoteFields,
                     additionalProperties);
         }
     }

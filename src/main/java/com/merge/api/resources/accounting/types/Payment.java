@@ -49,17 +49,19 @@ public final class Payment {
 
     private final Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<OffsetDateTime> remoteUpdatedAt;
-
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<PaymentAccountingPeriod> accountingPeriod;
 
     private final Optional<List<PaymentAppliedToLinesItem>> appliedToLines;
 
+    private final Optional<OffsetDateTime> remoteUpdatedAt;
+
+    private final Optional<Boolean> remoteWasDeleted;
+
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -77,12 +79,13 @@ public final class Payment {
             Optional<Double> totalAmount,
             Optional<PaymentType> type,
             Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories,
-            Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<Boolean> remoteWasDeleted,
             Optional<PaymentAccountingPeriod> accountingPeriod,
             Optional<List<PaymentAppliedToLinesItem>> appliedToLines,
+            Optional<OffsetDateTime> remoteUpdatedAt,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -97,12 +100,13 @@ public final class Payment {
         this.totalAmount = totalAmount;
         this.type = type;
         this.trackingCategories = trackingCategories;
-        this.remoteUpdatedAt = remoteUpdatedAt;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
         this.appliedToLines = appliedToLines;
+        this.remoteUpdatedAt = remoteUpdatedAt;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -517,22 +521,6 @@ public final class Payment {
     }
 
     /**
-     * @return When the third party's payment entry was updated.
-     */
-    @JsonProperty("remote_updated_at")
-    public Optional<OffsetDateTime> getRemoteUpdatedAt() {
-        return remoteUpdatedAt;
-    }
-
-    /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
-     */
-    @JsonProperty("remote_was_deleted")
-    public Optional<Boolean> getRemoteWasDeleted() {
-        return remoteWasDeleted;
-    }
-
-    /**
      * @return The accounting period that the Payment was generated in.
      */
     @JsonProperty("accounting_period")
@@ -548,6 +536,22 @@ public final class Payment {
         return appliedToLines;
     }
 
+    /**
+     * @return When the third party's payment entry was updated.
+     */
+    @JsonProperty("remote_updated_at")
+    public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
@@ -556,6 +560,11 @@ public final class Payment {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -583,12 +592,13 @@ public final class Payment {
                 && totalAmount.equals(other.totalAmount)
                 && type.equals(other.type)
                 && trackingCategories.equals(other.trackingCategories)
-                && remoteUpdatedAt.equals(other.remoteUpdatedAt)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && appliedToLines.equals(other.appliedToLines)
+                && remoteUpdatedAt.equals(other.remoteUpdatedAt)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -607,12 +617,13 @@ public final class Payment {
                 this.totalAmount,
                 this.type,
                 this.trackingCategories,
-                this.remoteUpdatedAt,
-                this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.appliedToLines,
+                this.remoteUpdatedAt,
+                this.remoteWasDeleted,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -652,17 +663,19 @@ public final class Payment {
 
         private Optional<List<Optional<PaymentTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<PaymentAccountingPeriod> accountingPeriod = Optional.empty();
 
         private Optional<List<PaymentAppliedToLinesItem>> appliedToLines = Optional.empty();
 
+        private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -683,12 +696,13 @@ public final class Payment {
             totalAmount(other.getTotalAmount());
             type(other.getType());
             trackingCategories(other.getTrackingCategories());
-            remoteUpdatedAt(other.getRemoteUpdatedAt());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
             appliedToLines(other.getAppliedToLines());
+            remoteUpdatedAt(other.getRemoteUpdatedAt());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -835,28 +849,6 @@ public final class Payment {
             return this;
         }
 
-        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
-        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
-            this.remoteUpdatedAt = remoteUpdatedAt;
-            return this;
-        }
-
-        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
-            return this;
-        }
-
         @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
         public Builder accountingPeriod(Optional<PaymentAccountingPeriod> accountingPeriod) {
             this.accountingPeriod = accountingPeriod;
@@ -876,6 +868,28 @@ public final class Payment {
 
         public Builder appliedToLines(List<PaymentAppliedToLinesItem> appliedToLines) {
             this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
+        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
+            this.remoteUpdatedAt = remoteUpdatedAt;
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
+            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -901,6 +915,17 @@ public final class Payment {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public Payment build() {
             return new Payment(
                     id,
@@ -916,12 +941,13 @@ public final class Payment {
                     totalAmount,
                     type,
                     trackingCategories,
-                    remoteUpdatedAt,
-                    remoteWasDeleted,
                     accountingPeriod,
                     appliedToLines,
+                    remoteUpdatedAt,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
+                    remoteFields,
                     additionalProperties);
         }
     }

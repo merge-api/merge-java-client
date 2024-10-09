@@ -46,6 +46,8 @@ public final class ContactRequest {
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private ContactRequest(
@@ -61,6 +63,7 @@ public final class ContactRequest {
             Optional<List<AccountingPhoneNumberRequest>> phoneNumbers,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.isSupplier = isSupplier;
@@ -74,6 +77,7 @@ public final class ContactRequest {
         this.phoneNumbers = phoneNumbers;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -171,6 +175,11 @@ public final class ContactRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -194,7 +203,8 @@ public final class ContactRequest {
                 && addresses.equals(other.addresses)
                 && phoneNumbers.equals(other.phoneNumbers)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -211,7 +221,8 @@ public final class ContactRequest {
                 this.addresses,
                 this.phoneNumbers,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -249,6 +260,8 @@ public final class ContactRequest {
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
 
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -267,6 +280,7 @@ public final class ContactRequest {
             phoneNumbers(other.getPhoneNumbers());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -402,6 +416,17 @@ public final class ContactRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public ContactRequest build() {
             return new ContactRequest(
                     name,
@@ -416,6 +441,7 @@ public final class ContactRequest {
                     phoneNumbers,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

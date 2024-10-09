@@ -25,7 +25,7 @@ public final class FolderRequest {
 
     private final Optional<String> folderUrl;
 
-    private final Optional<Integer> size;
+    private final Optional<Long> size;
 
     private final Optional<String> description;
 
@@ -44,7 +44,7 @@ public final class FolderRequest {
     private FolderRequest(
             Optional<String> name,
             Optional<String> folderUrl,
-            Optional<Integer> size,
+            Optional<Long> size,
             Optional<String> description,
             Optional<FolderRequestParentFolder> parentFolder,
             Optional<FolderRequestDrive> drive,
@@ -84,7 +84,7 @@ public final class FolderRequest {
      * @return The folder's size, in bytes.
      */
     @JsonProperty("size")
-    public Optional<Integer> getSize() {
+    public Optional<Long> getSize() {
         return size;
     }
 
@@ -182,7 +182,7 @@ public final class FolderRequest {
 
         private Optional<String> folderUrl = Optional.empty();
 
-        private Optional<Integer> size = Optional.empty();
+        private Optional<Long> size = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -237,12 +237,12 @@ public final class FolderRequest {
         }
 
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
-        public Builder size(Optional<Integer> size) {
+        public Builder size(Optional<Long> size) {
             this.size = size;
             return this;
         }
 
-        public Builder size(Integer size) {
+        public Builder size(Long size) {
             this.size = Optional.of(size);
             return this;
         }

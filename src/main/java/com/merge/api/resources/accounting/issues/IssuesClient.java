@@ -27,21 +27,21 @@ public class IssuesClient {
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list() {
         return list(IssuesListRequest.builder().build());
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list(IssuesListRequest request) {
         return list(request, null);
     }
 
     /**
-     * Gets issues.
+     * Gets all issues for Organization.
      */
     public PaginatedIssueList list(IssuesListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
@@ -87,6 +87,10 @@ public class IssuesClient {
             httpUrl.addQueryParameter(
                     "last_incident_time_before",
                     request.getLastIncidentTimeBefore().get().toString());
+        }
+        if (request.getLinkedAccountId().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "linked_account_id", request.getLinkedAccountId().get());
         }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());

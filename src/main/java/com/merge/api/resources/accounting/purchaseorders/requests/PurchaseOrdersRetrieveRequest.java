@@ -25,6 +25,8 @@ public final class PurchaseOrdersRetrieveRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeRemoteFields;
+
     private final Optional<String> remoteFields;
 
     private final Optional<String> showEnumOrigins;
@@ -34,11 +36,13 @@ public final class PurchaseOrdersRetrieveRequest {
     private PurchaseOrdersRetrieveRequest(
             Optional<PurchaseOrdersRetrieveRequestExpand> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeRemoteFields,
             Optional<String> remoteFields,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeRemoteFields = includeRemoteFields;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -58,6 +62,14 @@ public final class PurchaseOrdersRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+     */
+    @JsonProperty("include_remote_fields")
+    public Optional<Boolean> getIncludeRemoteFields() {
+        return includeRemoteFields;
     }
 
     /**
@@ -90,13 +102,15 @@ public final class PurchaseOrdersRetrieveRequest {
     private boolean equalTo(PurchaseOrdersRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeRemoteFields.equals(other.includeRemoteFields)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(
+                this.expand, this.includeRemoteData, this.includeRemoteFields, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -114,6 +128,8 @@ public final class PurchaseOrdersRetrieveRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeRemoteFields = Optional.empty();
+
         private Optional<String> remoteFields = Optional.empty();
 
         private Optional<String> showEnumOrigins = Optional.empty();
@@ -126,6 +142,7 @@ public final class PurchaseOrdersRetrieveRequest {
         public Builder from(PurchaseOrdersRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeRemoteFields(other.getIncludeRemoteFields());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -153,6 +170,17 @@ public final class PurchaseOrdersRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
+        public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
+            this.includeRemoteFields = includeRemoteFields;
+            return this;
+        }
+
+        public Builder includeRemoteFields(Boolean includeRemoteFields) {
+            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<String> remoteFields) {
             this.remoteFields = remoteFields;
@@ -177,7 +205,12 @@ public final class PurchaseOrdersRetrieveRequest {
 
         public PurchaseOrdersRetrieveRequest build() {
             return new PurchaseOrdersRetrieveRequest(
-                    expand, includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    expand,
+                    includeRemoteData,
+                    includeRemoteFields,
+                    remoteFields,
+                    showEnumOrigins,
+                    additionalProperties);
         }
     }
 }

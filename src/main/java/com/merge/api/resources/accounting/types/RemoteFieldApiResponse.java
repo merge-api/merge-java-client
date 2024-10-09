@@ -57,7 +57,11 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> transaction;
 
+    private final Optional<List<RemoteFieldApi>> accountingPeriod;
+
     private final Optional<List<RemoteFieldApi>> generalLedgerTransaction;
+
+    private final Optional<List<RemoteFieldApi>> bankFeedAccount;
 
     private final Map<String, Object> additionalProperties;
 
@@ -80,7 +84,9 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> expense,
             Optional<List<RemoteFieldApi>> vendorCredit,
             Optional<List<RemoteFieldApi>> transaction,
+            Optional<List<RemoteFieldApi>> accountingPeriod,
             Optional<List<RemoteFieldApi>> generalLedgerTransaction,
+            Optional<List<RemoteFieldApi>> bankFeedAccount,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -100,7 +106,9 @@ public final class RemoteFieldApiResponse {
         this.expense = expense;
         this.vendorCredit = vendorCredit;
         this.transaction = transaction;
+        this.accountingPeriod = accountingPeriod;
         this.generalLedgerTransaction = generalLedgerTransaction;
+        this.bankFeedAccount = bankFeedAccount;
         this.additionalProperties = additionalProperties;
     }
 
@@ -194,9 +202,19 @@ public final class RemoteFieldApiResponse {
         return transaction;
     }
 
+    @JsonProperty("AccountingPeriod")
+    public Optional<List<RemoteFieldApi>> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("GeneralLedgerTransaction")
     public Optional<List<RemoteFieldApi>> getGeneralLedgerTransaction() {
         return generalLedgerTransaction;
+    }
+
+    @JsonProperty("BankFeedAccount")
+    public Optional<List<RemoteFieldApi>> getBankFeedAccount() {
+        return bankFeedAccount;
     }
 
     @java.lang.Override
@@ -229,7 +247,9 @@ public final class RemoteFieldApiResponse {
                 && expense.equals(other.expense)
                 && vendorCredit.equals(other.vendorCredit)
                 && transaction.equals(other.transaction)
-                && generalLedgerTransaction.equals(other.generalLedgerTransaction);
+                && accountingPeriod.equals(other.accountingPeriod)
+                && generalLedgerTransaction.equals(other.generalLedgerTransaction)
+                && bankFeedAccount.equals(other.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -253,7 +273,9 @@ public final class RemoteFieldApiResponse {
                 this.expense,
                 this.vendorCredit,
                 this.transaction,
-                this.generalLedgerTransaction);
+                this.accountingPeriod,
+                this.generalLedgerTransaction,
+                this.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -303,7 +325,11 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> transaction = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> accountingPeriod = Optional.empty();
+
         private Optional<List<RemoteFieldApi>> generalLedgerTransaction = Optional.empty();
+
+        private Optional<List<RemoteFieldApi>> bankFeedAccount = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -329,7 +355,9 @@ public final class RemoteFieldApiResponse {
             expense(other.getExpense());
             vendorCredit(other.getVendorCredit());
             transaction(other.getTransaction());
+            accountingPeriod(other.getAccountingPeriod());
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
+            bankFeedAccount(other.getBankFeedAccount());
             return this;
         }
 
@@ -531,6 +559,17 @@ public final class RemoteFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "AccountingPeriod", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<List<RemoteFieldApi>> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(List<RemoteFieldApi> accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "GeneralLedgerTransaction", nulls = Nulls.SKIP)
         public Builder generalLedgerTransaction(Optional<List<RemoteFieldApi>> generalLedgerTransaction) {
             this.generalLedgerTransaction = generalLedgerTransaction;
@@ -539,6 +578,17 @@ public final class RemoteFieldApiResponse {
 
         public Builder generalLedgerTransaction(List<RemoteFieldApi> generalLedgerTransaction) {
             this.generalLedgerTransaction = Optional.of(generalLedgerTransaction);
+            return this;
+        }
+
+        @JsonSetter(value = "BankFeedAccount", nulls = Nulls.SKIP)
+        public Builder bankFeedAccount(Optional<List<RemoteFieldApi>> bankFeedAccount) {
+            this.bankFeedAccount = bankFeedAccount;
+            return this;
+        }
+
+        public Builder bankFeedAccount(List<RemoteFieldApi> bankFeedAccount) {
+            this.bankFeedAccount = Optional.of(bankFeedAccount);
             return this;
         }
 
@@ -562,7 +612,9 @@ public final class RemoteFieldApiResponse {
                     expense,
                     vendorCredit,
                     transaction,
+                    accountingPeriod,
                     generalLedgerTransaction,
+                    bankFeedAccount,
                     additionalProperties);
         }
     }

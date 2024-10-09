@@ -35,6 +35,8 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -53,6 +55,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
             Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -65,6 +68,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
@@ -113,7 +117,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -126,6 +130,14 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -180,6 +192,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
@@ -196,6 +209,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
@@ -227,6 +241,8 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -248,6 +264,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
@@ -332,6 +349,17 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -385,6 +413,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    includeShellData,
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,

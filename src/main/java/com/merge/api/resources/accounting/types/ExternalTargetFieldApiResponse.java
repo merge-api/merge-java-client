@@ -57,7 +57,11 @@ public final class ExternalTargetFieldApiResponse {
 
     private final Optional<List<ExternalTargetFieldApi>> transaction;
 
+    private final Optional<List<ExternalTargetFieldApi>> accountingPeriod;
+
     private final Optional<List<ExternalTargetFieldApi>> generalLedgerTransaction;
+
+    private final Optional<List<ExternalTargetFieldApi>> bankFeedAccount;
 
     private final Map<String, Object> additionalProperties;
 
@@ -80,7 +84,9 @@ public final class ExternalTargetFieldApiResponse {
             Optional<List<ExternalTargetFieldApi>> expense,
             Optional<List<ExternalTargetFieldApi>> vendorCredit,
             Optional<List<ExternalTargetFieldApi>> transaction,
+            Optional<List<ExternalTargetFieldApi>> accountingPeriod,
             Optional<List<ExternalTargetFieldApi>> generalLedgerTransaction,
+            Optional<List<ExternalTargetFieldApi>> bankFeedAccount,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -100,7 +106,9 @@ public final class ExternalTargetFieldApiResponse {
         this.expense = expense;
         this.vendorCredit = vendorCredit;
         this.transaction = transaction;
+        this.accountingPeriod = accountingPeriod;
         this.generalLedgerTransaction = generalLedgerTransaction;
+        this.bankFeedAccount = bankFeedAccount;
         this.additionalProperties = additionalProperties;
     }
 
@@ -194,9 +202,19 @@ public final class ExternalTargetFieldApiResponse {
         return transaction;
     }
 
+    @JsonProperty("AccountingPeriod")
+    public Optional<List<ExternalTargetFieldApi>> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("GeneralLedgerTransaction")
     public Optional<List<ExternalTargetFieldApi>> getGeneralLedgerTransaction() {
         return generalLedgerTransaction;
+    }
+
+    @JsonProperty("BankFeedAccount")
+    public Optional<List<ExternalTargetFieldApi>> getBankFeedAccount() {
+        return bankFeedAccount;
     }
 
     @java.lang.Override
@@ -229,7 +247,9 @@ public final class ExternalTargetFieldApiResponse {
                 && expense.equals(other.expense)
                 && vendorCredit.equals(other.vendorCredit)
                 && transaction.equals(other.transaction)
-                && generalLedgerTransaction.equals(other.generalLedgerTransaction);
+                && accountingPeriod.equals(other.accountingPeriod)
+                && generalLedgerTransaction.equals(other.generalLedgerTransaction)
+                && bankFeedAccount.equals(other.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -253,7 +273,9 @@ public final class ExternalTargetFieldApiResponse {
                 this.expense,
                 this.vendorCredit,
                 this.transaction,
-                this.generalLedgerTransaction);
+                this.accountingPeriod,
+                this.generalLedgerTransaction,
+                this.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -303,7 +325,11 @@ public final class ExternalTargetFieldApiResponse {
 
         private Optional<List<ExternalTargetFieldApi>> transaction = Optional.empty();
 
+        private Optional<List<ExternalTargetFieldApi>> accountingPeriod = Optional.empty();
+
         private Optional<List<ExternalTargetFieldApi>> generalLedgerTransaction = Optional.empty();
+
+        private Optional<List<ExternalTargetFieldApi>> bankFeedAccount = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -329,7 +355,9 @@ public final class ExternalTargetFieldApiResponse {
             expense(other.getExpense());
             vendorCredit(other.getVendorCredit());
             transaction(other.getTransaction());
+            accountingPeriod(other.getAccountingPeriod());
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
+            bankFeedAccount(other.getBankFeedAccount());
             return this;
         }
 
@@ -531,6 +559,17 @@ public final class ExternalTargetFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "AccountingPeriod", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<List<ExternalTargetFieldApi>> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(List<ExternalTargetFieldApi> accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "GeneralLedgerTransaction", nulls = Nulls.SKIP)
         public Builder generalLedgerTransaction(Optional<List<ExternalTargetFieldApi>> generalLedgerTransaction) {
             this.generalLedgerTransaction = generalLedgerTransaction;
@@ -539,6 +578,17 @@ public final class ExternalTargetFieldApiResponse {
 
         public Builder generalLedgerTransaction(List<ExternalTargetFieldApi> generalLedgerTransaction) {
             this.generalLedgerTransaction = Optional.of(generalLedgerTransaction);
+            return this;
+        }
+
+        @JsonSetter(value = "BankFeedAccount", nulls = Nulls.SKIP)
+        public Builder bankFeedAccount(Optional<List<ExternalTargetFieldApi>> bankFeedAccount) {
+            this.bankFeedAccount = bankFeedAccount;
+            return this;
+        }
+
+        public Builder bankFeedAccount(List<ExternalTargetFieldApi> bankFeedAccount) {
+            this.bankFeedAccount = Optional.of(bankFeedAccount);
             return this;
         }
 
@@ -562,7 +612,9 @@ public final class ExternalTargetFieldApiResponse {
                     expense,
                     vendorCredit,
                     transaction,
+                    accountingPeriod,
                     generalLedgerTransaction,
+                    bankFeedAccount,
                     additionalProperties);
         }
     }

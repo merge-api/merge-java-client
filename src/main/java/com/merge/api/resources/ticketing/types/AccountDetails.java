@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -42,6 +43,8 @@ public final class AccountDetails {
 
     private final Optional<String> accountType;
 
+    private final Optional<OffsetDateTime> completedAt;
+
     private final Map<String, Object> additionalProperties;
 
     private AccountDetails(
@@ -56,6 +59,7 @@ public final class AccountDetails {
             Optional<String> webhookListenerUrl,
             Optional<Boolean> isDuplicate,
             Optional<String> accountType,
+            Optional<OffsetDateTime> completedAt,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.integration = integration;
@@ -68,6 +72,7 @@ public final class AccountDetails {
         this.webhookListenerUrl = webhookListenerUrl;
         this.isDuplicate = isDuplicate;
         this.accountType = accountType;
+        this.completedAt = completedAt;
         this.additionalProperties = additionalProperties;
     }
 
@@ -129,6 +134,14 @@ public final class AccountDetails {
         return accountType;
     }
 
+    /**
+     * @return The time at which account completes the linking flow.
+     */
+    @JsonProperty("completed_at")
+    public Optional<OffsetDateTime> getCompletedAt() {
+        return completedAt;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -151,7 +164,8 @@ public final class AccountDetails {
                 && status.equals(other.status)
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
                 && isDuplicate.equals(other.isDuplicate)
-                && accountType.equals(other.accountType);
+                && accountType.equals(other.accountType)
+                && completedAt.equals(other.completedAt);
     }
 
     @java.lang.Override
@@ -167,7 +181,8 @@ public final class AccountDetails {
                 this.status,
                 this.webhookListenerUrl,
                 this.isDuplicate,
-                this.accountType);
+                this.accountType,
+                this.completedAt);
     }
 
     @java.lang.Override
@@ -203,6 +218,8 @@ public final class AccountDetails {
 
         private Optional<String> accountType = Optional.empty();
 
+        private Optional<OffsetDateTime> completedAt = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -220,6 +237,7 @@ public final class AccountDetails {
             webhookListenerUrl(other.getWebhookListenerUrl());
             isDuplicate(other.getIsDuplicate());
             accountType(other.getAccountType());
+            completedAt(other.getCompletedAt());
             return this;
         }
 
@@ -344,6 +362,17 @@ public final class AccountDetails {
             return this;
         }
 
+        @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
+        public Builder completedAt(Optional<OffsetDateTime> completedAt) {
+            this.completedAt = completedAt;
+            return this;
+        }
+
+        public Builder completedAt(OffsetDateTime completedAt) {
+            this.completedAt = Optional.of(completedAt);
+            return this;
+        }
+
         public AccountDetails build() {
             return new AccountDetails(
                     id,
@@ -357,6 +386,7 @@ public final class AccountDetails {
                     webhookListenerUrl,
                     isDuplicate,
                     accountType,
+                    completedAt,
                     additionalProperties);
         }
     }

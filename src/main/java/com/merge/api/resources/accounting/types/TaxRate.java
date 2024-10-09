@@ -31,13 +31,23 @@ public final class TaxRate {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
+    private final Optional<TaxRateCompany> company;
+
+    private final Optional<String> code;
+
+    private final Optional<String> name;
+
     private final Optional<String> description;
+
+    private final Optional<TaxRateStatus> status;
+
+    private final Optional<String> country;
 
     private final Optional<Double> totalTaxRate;
 
     private final Optional<Double> effectiveTaxRate;
 
-    private final Optional<TaxRateCompany> company;
+    private final Optional<List<TaxRateTaxComponentsItem>> taxComponents;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -52,10 +62,15 @@ public final class TaxRate {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
+            Optional<TaxRateCompany> company,
+            Optional<String> code,
+            Optional<String> name,
             Optional<String> description,
+            Optional<TaxRateStatus> status,
+            Optional<String> country,
             Optional<Double> totalTaxRate,
             Optional<Double> effectiveTaxRate,
-            Optional<TaxRateCompany> company,
+            Optional<List<TaxRateTaxComponentsItem>> taxComponents,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -64,10 +79,15 @@ public final class TaxRate {
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
+        this.company = company;
+        this.code = code;
+        this.name = name;
         this.description = description;
+        this.status = status;
+        this.country = country;
         this.totalTaxRate = totalTaxRate;
         this.effectiveTaxRate = effectiveTaxRate;
-        this.company = company;
+        this.taxComponents = taxComponents;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -104,11 +124,55 @@ public final class TaxRate {
     }
 
     /**
+     * @return The subsidiary that the tax rate belongs to (in the case of multi-entity systems).
+     */
+    @JsonProperty("company")
+    public Optional<TaxRateCompany> getCompany() {
+        return company;
+    }
+
+    /**
+     * @return The tax code associated with this tax rate or group of tax rates from the third-party platform.
+     */
+    @JsonProperty("code")
+    public Optional<String> getCode() {
+        return code;
+    }
+
+    /**
+     * @return The tax rate’s name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return The tax rate's description.
      */
     @JsonProperty("description")
     public Optional<String> getDescription() {
         return description;
+    }
+
+    /**
+     * @return The tax rate’s status - <code>ACTIVE</code> if an active tax rate, <code>ARCHIVED</code> if not active.
+     * <ul>
+     * <li><code>ACTIVE</code> - ACTIVE</li>
+     * <li><code>ARCHIVED</code> - ARCHIVED</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<TaxRateStatus> getStatus() {
+        return status;
+    }
+
+    /**
+     * @return The country the tax rate is associated with.
+     */
+    @JsonProperty("country")
+    public Optional<String> getCountry() {
+        return country;
     }
 
     /**
@@ -128,15 +192,15 @@ public final class TaxRate {
     }
 
     /**
-     * @return The subsidiary that the tax rate belongs to (in the case of multi-entity systems).
+     * @return The related tax components of the tax rate.
      */
-    @JsonProperty("company")
-    public Optional<TaxRateCompany> getCompany() {
-        return company;
+    @JsonProperty("tax_components")
+    public Optional<List<TaxRateTaxComponentsItem>> getTaxComponents() {
+        return taxComponents;
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -169,10 +233,15 @@ public final class TaxRate {
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
+                && company.equals(other.company)
+                && code.equals(other.code)
+                && name.equals(other.name)
                 && description.equals(other.description)
+                && status.equals(other.status)
+                && country.equals(other.country)
                 && totalTaxRate.equals(other.totalTaxRate)
                 && effectiveTaxRate.equals(other.effectiveTaxRate)
-                && company.equals(other.company)
+                && taxComponents.equals(other.taxComponents)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -185,10 +254,15 @@ public final class TaxRate {
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
+                this.company,
+                this.code,
+                this.name,
                 this.description,
+                this.status,
+                this.country,
                 this.totalTaxRate,
                 this.effectiveTaxRate,
-                this.company,
+                this.taxComponents,
                 this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
@@ -213,13 +287,23 @@ public final class TaxRate {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
+        private Optional<TaxRateCompany> company = Optional.empty();
+
+        private Optional<String> code = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
+
         private Optional<String> description = Optional.empty();
+
+        private Optional<TaxRateStatus> status = Optional.empty();
+
+        private Optional<String> country = Optional.empty();
 
         private Optional<Double> totalTaxRate = Optional.empty();
 
         private Optional<Double> effectiveTaxRate = Optional.empty();
 
-        private Optional<TaxRateCompany> company = Optional.empty();
+        private Optional<List<TaxRateTaxComponentsItem>> taxComponents = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -237,10 +321,15 @@ public final class TaxRate {
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
+            company(other.getCompany());
+            code(other.getCode());
+            name(other.getName());
             description(other.getDescription());
+            status(other.getStatus());
+            country(other.getCountry());
             totalTaxRate(other.getTotalTaxRate());
             effectiveTaxRate(other.getEffectiveTaxRate());
-            company(other.getCompany());
+            taxComponents(other.getTaxComponents());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -291,6 +380,39 @@ public final class TaxRate {
             return this;
         }
 
+        @JsonSetter(value = "company", nulls = Nulls.SKIP)
+        public Builder company(Optional<TaxRateCompany> company) {
+            this.company = company;
+            return this;
+        }
+
+        public Builder company(TaxRateCompany company) {
+            this.company = Optional.of(company);
+            return this;
+        }
+
+        @JsonSetter(value = "code", nulls = Nulls.SKIP)
+        public Builder code(Optional<String> code) {
+            this.code = code;
+            return this;
+        }
+
+        public Builder code(String code) {
+            this.code = Optional.of(code);
+            return this;
+        }
+
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -299,6 +421,28 @@ public final class TaxRate {
 
         public Builder description(String description) {
             this.description = Optional.of(description);
+            return this;
+        }
+
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<TaxRateStatus> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(TaxRateStatus status) {
+            this.status = Optional.of(status);
+            return this;
+        }
+
+        @JsonSetter(value = "country", nulls = Nulls.SKIP)
+        public Builder country(Optional<String> country) {
+            this.country = country;
+            return this;
+        }
+
+        public Builder country(String country) {
+            this.country = Optional.of(country);
             return this;
         }
 
@@ -324,14 +468,14 @@ public final class TaxRate {
             return this;
         }
 
-        @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<TaxRateCompany> company) {
-            this.company = company;
+        @JsonSetter(value = "tax_components", nulls = Nulls.SKIP)
+        public Builder taxComponents(Optional<List<TaxRateTaxComponentsItem>> taxComponents) {
+            this.taxComponents = taxComponents;
             return this;
         }
 
-        public Builder company(TaxRateCompany company) {
-            this.company = Optional.of(company);
+        public Builder taxComponents(List<TaxRateTaxComponentsItem> taxComponents) {
+            this.taxComponents = Optional.of(taxComponents);
             return this;
         }
 
@@ -374,10 +518,15 @@ public final class TaxRate {
                     remoteId,
                     createdAt,
                     modifiedAt,
+                    company,
+                    code,
+                    name,
                     description,
+                    status,
+                    country,
                     totalTaxRate,
                     effectiveTaxRate,
-                    company,
+                    taxComponents,
                     remoteWasDeleted,
                     fieldMappings,
                     remoteData,

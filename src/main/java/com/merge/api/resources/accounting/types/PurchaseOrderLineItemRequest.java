@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,13 +36,15 @@ public final class PurchaseOrderLineItemRequest {
 
     private final Optional<String> trackingCategory;
 
-    private final List<String> trackingCategories;
+    private final Optional<List<Optional<String>>> trackingCategories;
 
     private final Optional<String> taxAmount;
 
     private final Optional<String> totalLineAmount;
 
     private final Optional<PurchaseOrderLineItemRequestCurrency> currency;
+
+    private final Optional<String> taxRate;
 
     private final Optional<String> exchangeRate;
 
@@ -52,6 +53,8 @@ public final class PurchaseOrderLineItemRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -63,14 +66,16 @@ public final class PurchaseOrderLineItemRequest {
             Optional<PurchaseOrderLineItemRequestItem> item,
             Optional<String> account,
             Optional<String> trackingCategory,
-            List<String> trackingCategories,
+            Optional<List<Optional<String>>> trackingCategories,
             Optional<String> taxAmount,
             Optional<String> totalLineAmount,
             Optional<PurchaseOrderLineItemRequestCurrency> currency,
+            Optional<String> taxRate,
             Optional<String> exchangeRate,
             Optional<String> company,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.description = description;
@@ -83,10 +88,12 @@ public final class PurchaseOrderLineItemRequest {
         this.taxAmount = taxAmount;
         this.totalLineAmount = totalLineAmount;
         this.currency = currency;
+        this.taxRate = taxRate;
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -147,7 +154,7 @@ public final class PurchaseOrderLineItemRequest {
      * @return The purchase order line item's associated tracking categories.
      */
     @JsonProperty("tracking_categories")
-    public List<String> getTrackingCategories() {
+    public Optional<List<Optional<String>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -484,6 +491,14 @@ public final class PurchaseOrderLineItemRequest {
     }
 
     /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
      * @return The purchase order line item's exchange rate.
      */
     @JsonProperty("exchange_rate")
@@ -509,6 +524,11 @@ public final class PurchaseOrderLineItemRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -532,10 +552,12 @@ public final class PurchaseOrderLineItemRequest {
                 && taxAmount.equals(other.taxAmount)
                 && totalLineAmount.equals(other.totalLineAmount)
                 && currency.equals(other.currency)
+                && taxRate.equals(other.taxRate)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -552,10 +574,12 @@ public final class PurchaseOrderLineItemRequest {
                 this.taxAmount,
                 this.totalLineAmount,
                 this.currency,
+                this.taxRate,
                 this.exchangeRate,
                 this.company,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -583,13 +607,15 @@ public final class PurchaseOrderLineItemRequest {
 
         private Optional<String> trackingCategory = Optional.empty();
 
-        private List<String> trackingCategories = new ArrayList<>();
+        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
 
         private Optional<String> taxAmount = Optional.empty();
 
         private Optional<String> totalLineAmount = Optional.empty();
 
         private Optional<PurchaseOrderLineItemRequestCurrency> currency = Optional.empty();
+
+        private Optional<String> taxRate = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -598,6 +624,8 @@ public final class PurchaseOrderLineItemRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -616,10 +644,12 @@ public final class PurchaseOrderLineItemRequest {
             taxAmount(other.getTaxAmount());
             totalLineAmount(other.getTotalLineAmount());
             currency(other.getCurrency());
+            taxRate(other.getTaxRate());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -701,19 +731,13 @@ public final class PurchaseOrderLineItemRequest {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.clear();
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder addTrackingCategories(String trackingCategories) {
-            this.trackingCategories.add(trackingCategories);
-            return this;
-        }
-
-        public Builder addAllTrackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 
@@ -747,6 +771,17 @@ public final class PurchaseOrderLineItemRequest {
 
         public Builder currency(PurchaseOrderLineItemRequestCurrency currency) {
             this.currency = Optional.of(currency);
+            return this;
+        }
+
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
             return this;
         }
 
@@ -794,6 +829,17 @@ public final class PurchaseOrderLineItemRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PurchaseOrderLineItemRequest build() {
             return new PurchaseOrderLineItemRequest(
                     remoteId,
@@ -807,10 +853,12 @@ public final class PurchaseOrderLineItemRequest {
                     taxAmount,
                     totalLineAmount,
                     currency,
+                    taxRate,
                     exchangeRate,
                     company,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

@@ -43,6 +43,8 @@ public final class VendorCredit {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<VendorCreditCompany> company;
 
     private final Optional<List<VendorCreditLine>> lines;
@@ -70,6 +72,7 @@ public final class VendorCredit {
             Optional<Double> totalAmount,
             Optional<VendorCreditCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<Boolean> inclusiveOfTax,
             Optional<VendorCreditCompany> company,
             Optional<List<VendorCreditLine>> lines,
             Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
@@ -88,6 +91,7 @@ public final class VendorCredit {
         this.totalAmount = totalAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.company = company;
         this.lines = lines;
         this.trackingCategories = trackingCategories;
@@ -484,6 +488,14 @@ public final class VendorCredit {
     }
 
     /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    /**
      * @return The company the vendor credit belongs to.
      */
     @JsonProperty("company")
@@ -502,7 +514,7 @@ public final class VendorCredit {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -549,6 +561,7 @@ public final class VendorCredit {
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && company.equals(other.company)
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
@@ -571,6 +584,7 @@ public final class VendorCredit {
                 this.totalAmount,
                 this.currency,
                 this.exchangeRate,
+                this.inclusiveOfTax,
                 this.company,
                 this.lines,
                 this.trackingCategories,
@@ -611,6 +625,8 @@ public final class VendorCredit {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<VendorCreditCompany> company = Optional.empty();
 
         private Optional<List<VendorCreditLine>> lines = Optional.empty();
@@ -641,6 +657,7 @@ public final class VendorCredit {
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            inclusiveOfTax(other.getInclusiveOfTax());
             company(other.getCompany());
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
@@ -761,6 +778,17 @@ public final class VendorCredit {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<VendorCreditCompany> company) {
             this.company = company;
@@ -851,6 +879,7 @@ public final class VendorCredit {
                     totalAmount,
                     currency,
                     exchangeRate,
+                    inclusiveOfTax,
                     company,
                     lines,
                     trackingCategories,
