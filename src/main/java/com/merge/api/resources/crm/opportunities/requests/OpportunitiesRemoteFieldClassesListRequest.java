@@ -28,6 +28,8 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
 
     private final Optional<Boolean> includeRemoteFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<Boolean> isCommonModelField;
 
     private final Optional<Integer> pageSize;
@@ -39,6 +41,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Optional<Boolean> isCommonModelField,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
@@ -46,6 +49,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.isCommonModelField = isCommonModelField;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
@@ -60,7 +64,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -81,6 +85,14 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
     @JsonProperty("include_remote_fields")
     public Optional<Boolean> getIncludeRemoteFields() {
         return includeRemoteFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -116,6 +128,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData)
                 && isCommonModelField.equals(other.isCommonModelField)
                 && pageSize.equals(other.pageSize);
     }
@@ -127,6 +140,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
+                this.includeShellData,
                 this.isCommonModelField,
                 this.pageSize);
     }
@@ -150,6 +164,8 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<Boolean> isCommonModelField = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
@@ -164,6 +180,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             isCommonModelField(other.getIsCommonModelField());
             pageSize(other.getPageSize());
             return this;
@@ -213,6 +230,17 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
         public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
             this.isCommonModelField = isCommonModelField;
@@ -241,6 +269,7 @@ public final class OpportunitiesRemoteFieldClassesListRequest {
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,
+                    includeShellData,
                     isCommonModelField,
                     pageSize,
                     additionalProperties);

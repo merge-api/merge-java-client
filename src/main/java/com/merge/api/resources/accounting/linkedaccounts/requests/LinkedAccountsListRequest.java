@@ -183,7 +183,7 @@ public final class LinkedAccountsListRequest {
     }
 
     /**
-     * @return Filter by status. Options: <code>COMPLETE</code>, <code>INCOMPLETE</code>, <code>RELINK_NEEDED</code>
+     * @return Filter by status. Options: <code>COMPLETE</code>, <code>IDLE</code>, <code>INCOMPLETE</code>, <code>RELINK_NEEDED</code>
      */
     @JsonProperty("status")
     public Optional<String> getStatus() {

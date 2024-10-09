@@ -116,7 +116,7 @@ public final class Comment {
     }
 
     /**
-     * @return The author of the Comment, if the author is a User.
+     * @return The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
     @JsonProperty("user")
     public Optional<CommentUser> getUser() {
@@ -124,7 +124,7 @@ public final class Comment {
     }
 
     /**
-     * @return The author of the Comment, if the author is a Contact.
+     * @return The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
     @JsonProperty("contact")
     public Optional<CommentContact> getContact() {
@@ -171,6 +171,9 @@ public final class Comment {
         return remoteCreatedAt;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;

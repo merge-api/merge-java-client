@@ -13,7 +13,6 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,7 +42,7 @@ public final class TransactionLineItem {
 
     private final Optional<String> trackingCategory;
 
-    private final List<String> trackingCategories;
+    private final Optional<List<Optional<String>>> trackingCategories;
 
     private final Optional<String> totalLineAmount;
 
@@ -70,7 +69,7 @@ public final class TransactionLineItem {
             Optional<TransactionLineItemItem> item,
             Optional<String> account,
             Optional<String> trackingCategory,
-            List<String> trackingCategories,
+            Optional<List<Optional<String>>> trackingCategories,
             Optional<String> totalLineAmount,
             Optional<String> taxRate,
             Optional<TransactionLineItemCurrency> currency,
@@ -173,10 +172,10 @@ public final class TransactionLineItem {
     }
 
     /**
-     * @return The line's associated tracking categories.
+     * @return The transaction line item's associated tracking categories.
      */
     @JsonProperty("tracking_categories")
-    public List<String> getTrackingCategories() {
+    public Optional<List<Optional<String>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -188,6 +187,9 @@ public final class TransactionLineItem {
         return totalLineAmount;
     }
 
+    /**
+     * @return The tax rate that applies to this line item.
+     */
     @JsonProperty("tax_rate")
     public Optional<String> getTaxRate() {
         return taxRate;
@@ -526,7 +528,7 @@ public final class TransactionLineItem {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -617,7 +619,7 @@ public final class TransactionLineItem {
 
         private Optional<String> trackingCategory = Optional.empty();
 
-        private List<String> trackingCategories = new ArrayList<>();
+        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
 
         private Optional<String> totalLineAmount = Optional.empty();
 
@@ -768,19 +770,13 @@ public final class TransactionLineItem {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.clear();
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
+            this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder addTrackingCategories(String trackingCategories) {
-            this.trackingCategories.add(trackingCategories);
-            return this;
-        }
-
-        public Builder addAllTrackingCategories(List<String> trackingCategories) {
-            this.trackingCategories.addAll(trackingCategories);
+        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
+            this.trackingCategories = Optional.of(trackingCategories);
             return this;
         }
 

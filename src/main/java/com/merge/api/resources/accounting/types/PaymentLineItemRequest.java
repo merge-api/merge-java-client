@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -36,6 +37,8 @@ public final class PaymentLineItemRequest {
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private PaymentLineItemRequest(
@@ -46,6 +49,7 @@ public final class PaymentLineItemRequest {
             Optional<String> relatedObjectType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.appliedAmount = appliedAmount;
@@ -54,6 +58,7 @@ public final class PaymentLineItemRequest {
         this.relatedObjectType = relatedObjectType;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -107,6 +112,11 @@ public final class PaymentLineItemRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -125,7 +135,8 @@ public final class PaymentLineItemRequest {
                 && relatedObjectId.equals(other.relatedObjectId)
                 && relatedObjectType.equals(other.relatedObjectType)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -137,7 +148,8 @@ public final class PaymentLineItemRequest {
                 this.relatedObjectId,
                 this.relatedObjectType,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -165,6 +177,8 @@ public final class PaymentLineItemRequest {
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
 
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -178,6 +192,7 @@ public final class PaymentLineItemRequest {
             relatedObjectType(other.getRelatedObjectType());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -258,6 +273,17 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PaymentLineItemRequest build() {
             return new PaymentLineItemRequest(
                     remoteId,
@@ -267,6 +293,7 @@ public final class PaymentLineItemRequest {
                     relatedObjectType,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

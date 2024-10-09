@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -44,6 +45,8 @@ public final class AccountDetailsAndActions {
 
     private final String accountType;
 
+    private final OffsetDateTime completedAt;
+
     private final Map<String, Object> additionalProperties;
 
     private AccountDetailsAndActions(
@@ -59,6 +62,7 @@ public final class AccountDetailsAndActions {
             Optional<Boolean> isDuplicate,
             Optional<AccountDetailsAndActionsIntegration> integration,
             String accountType,
+            OffsetDateTime completedAt,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.category = category;
@@ -72,6 +76,7 @@ public final class AccountDetailsAndActions {
         this.isDuplicate = isDuplicate;
         this.integration = integration;
         this.accountType = accountType;
+        this.completedAt = completedAt;
         this.additionalProperties = additionalProperties;
     }
 
@@ -141,6 +146,11 @@ public final class AccountDetailsAndActions {
         return accountType;
     }
 
+    @JsonProperty("completed_at")
+    public OffsetDateTime getCompletedAt() {
+        return completedAt;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -164,7 +174,8 @@ public final class AccountDetailsAndActions {
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
                 && isDuplicate.equals(other.isDuplicate)
                 && integration.equals(other.integration)
-                && accountType.equals(other.accountType);
+                && accountType.equals(other.accountType)
+                && completedAt.equals(other.completedAt);
     }
 
     @java.lang.Override
@@ -181,7 +192,8 @@ public final class AccountDetailsAndActions {
                 this.webhookListenerUrl,
                 this.isDuplicate,
                 this.integration,
-                this.accountType);
+                this.accountType,
+                this.completedAt);
     }
 
     @java.lang.Override
@@ -216,7 +228,11 @@ public final class AccountDetailsAndActions {
     }
 
     public interface AccountTypeStage {
-        _FinalStage accountType(String accountType);
+        CompletedAtStage accountType(String accountType);
+    }
+
+    public interface CompletedAtStage {
+        _FinalStage completedAt(OffsetDateTime completedAt);
     }
 
     public interface _FinalStage {
@@ -255,6 +271,7 @@ public final class AccountDetailsAndActions {
                     EndUserEmailAddressStage,
                     WebhookListenerUrlStage,
                     AccountTypeStage,
+                    CompletedAtStage,
                     _FinalStage {
         private String id;
 
@@ -267,6 +284,8 @@ public final class AccountDetailsAndActions {
         private String webhookListenerUrl;
 
         private String accountType;
+
+        private OffsetDateTime completedAt;
 
         private Optional<AccountDetailsAndActionsIntegration> integration = Optional.empty();
 
@@ -299,6 +318,7 @@ public final class AccountDetailsAndActions {
             isDuplicate(other.getIsDuplicate());
             integration(other.getIntegration());
             accountType(other.getAccountType());
+            completedAt(other.getCompletedAt());
             return this;
         }
 
@@ -339,8 +359,15 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         @JsonSetter("account_type")
-        public _FinalStage accountType(String accountType) {
+        public CompletedAtStage accountType(String accountType) {
             this.accountType = accountType;
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter("completed_at")
+        public _FinalStage completedAt(OffsetDateTime completedAt) {
+            this.completedAt = completedAt;
             return this;
         }
 
@@ -445,6 +472,7 @@ public final class AccountDetailsAndActions {
                     isDuplicate,
                     integration,
                     accountType,
+                    completedAt,
                     additionalProperties);
         }
     }

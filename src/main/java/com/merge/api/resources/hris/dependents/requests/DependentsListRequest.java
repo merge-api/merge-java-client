@@ -33,6 +33,8 @@ public final class DependentsListRequest {
 
     private final Optional<Boolean> includeSensitiveFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
@@ -50,6 +52,7 @@ public final class DependentsListRequest {
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
@@ -61,6 +64,7 @@ public final class DependentsListRequest {
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
@@ -93,7 +97,7 @@ public final class DependentsListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -114,6 +118,14 @@ public final class DependentsListRequest {
     @JsonProperty("include_sensitive_fields")
     public Optional<Boolean> getIncludeSensitiveFields() {
         return includeSensitiveFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -166,6 +178,7 @@ public final class DependentsListRequest {
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
@@ -181,6 +194,7 @@ public final class DependentsListRequest {
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
+                this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
@@ -210,6 +224,8 @@ public final class DependentsListRequest {
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
@@ -230,6 +246,7 @@ public final class DependentsListRequest {
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
@@ -303,6 +320,17 @@ public final class DependentsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -355,6 +383,7 @@ public final class DependentsListRequest {
                     includeDeletedData,
                     includeRemoteData,
                     includeSensitiveFields,
+                    includeShellData,
                     modifiedAfter,
                     modifiedBefore,
                     pageSize,

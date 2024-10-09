@@ -73,6 +73,10 @@ public class DependentsClient {
                     "include_sensitive_fields",
                     request.getIncludeSensitiveFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getModifiedAfter().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_after", request.getModifiedAfter().get().toString());

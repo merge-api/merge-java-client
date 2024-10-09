@@ -38,6 +38,8 @@ public final class FilesListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> mimeType;
 
     private final Optional<OffsetDateTime> modifiedAfter;
@@ -61,6 +63,7 @@ public final class FilesListRequest {
             Optional<String> folderId,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<String> mimeType,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
@@ -76,6 +79,7 @@ public final class FilesListRequest {
         this.folderId = folderId;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.mimeType = mimeType;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
@@ -134,7 +138,7 @@ public final class FilesListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -147,6 +151,14 @@ public final class FilesListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -217,6 +229,7 @@ public final class FilesListRequest {
                 && folderId.equals(other.folderId)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && mimeType.equals(other.mimeType)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
@@ -236,6 +249,7 @@ public final class FilesListRequest {
                 this.folderId,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.includeShellData,
                 this.mimeType,
                 this.modifiedAfter,
                 this.modifiedBefore,
@@ -271,6 +285,8 @@ public final class FilesListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> mimeType = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
@@ -297,6 +313,7 @@ public final class FilesListRequest {
             folderId(other.getFolderId());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             mimeType(other.getMimeType());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
@@ -394,6 +411,17 @@ public final class FilesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;
@@ -470,6 +498,7 @@ public final class FilesListRequest {
                     folderId,
                     includeDeletedData,
                     includeRemoteData,
+                    includeShellData,
                     mimeType,
                     modifiedAfter,
                     modifiedBefore,

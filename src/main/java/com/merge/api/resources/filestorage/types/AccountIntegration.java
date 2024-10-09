@@ -94,7 +94,7 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;
+     * @return Company logo in rectangular shape.
      */
     @JsonProperty("image")
     public Optional<String> getImage() {
@@ -102,7 +102,7 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;
+     * @return Company logo in square shape.
      */
     @JsonProperty("square_image")
     public Optional<String> getSquareImage() {
@@ -376,7 +376,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;</p>
+         * <p>Company logo in square shape.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -393,7 +393,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;</p>
+         * <p>Company logo in rectangular shape.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

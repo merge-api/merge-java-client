@@ -26,6 +26,8 @@ public final class TicketsRemoteFieldClassesListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<Boolean> isCommonModelField;
 
     private final Optional<Integer> pageSize;
@@ -36,12 +38,14 @@ public final class TicketsRemoteFieldClassesListRequest {
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<Boolean> isCommonModelField,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.isCommonModelField = isCommonModelField;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
@@ -56,7 +60,7 @@ public final class TicketsRemoteFieldClassesListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -69,6 +73,14 @@ public final class TicketsRemoteFieldClassesListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -103,6 +115,7 @@ public final class TicketsRemoteFieldClassesListRequest {
         return cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && isCommonModelField.equals(other.isCommonModelField)
                 && pageSize.equals(other.pageSize);
     }
@@ -110,7 +123,12 @@ public final class TicketsRemoteFieldClassesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.cursor, this.includeDeletedData, this.includeRemoteData, this.isCommonModelField, this.pageSize);
+                this.cursor,
+                this.includeDeletedData,
+                this.includeRemoteData,
+                this.includeShellData,
+                this.isCommonModelField,
+                this.pageSize);
     }
 
     @java.lang.Override
@@ -130,6 +148,8 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<Boolean> isCommonModelField = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
@@ -143,6 +163,7 @@ public final class TicketsRemoteFieldClassesListRequest {
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             isCommonModelField(other.getIsCommonModelField());
             pageSize(other.getPageSize());
             return this;
@@ -181,6 +202,17 @@ public final class TicketsRemoteFieldClassesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
         public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
             this.isCommonModelField = isCommonModelField;
@@ -205,7 +237,13 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         public TicketsRemoteFieldClassesListRequest build() {
             return new TicketsRemoteFieldClassesListRequest(
-                    cursor, includeDeletedData, includeRemoteData, isCommonModelField, pageSize, additionalProperties);
+                    cursor,
+                    includeDeletedData,
+                    includeRemoteData,
+                    includeShellData,
+                    isCommonModelField,
+                    pageSize,
+                    additionalProperties);
         }
     }
 }

@@ -44,9 +44,13 @@ public final class ExpenseLineRequest {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<String> taxRate;
+
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -62,8 +66,10 @@ public final class ExpenseLineRequest {
             Optional<ExpenseLineRequestContact> contact,
             Optional<String> description,
             Optional<String> exchangeRate,
+            Optional<String> taxRate,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.remoteId = remoteId;
         this.item = item;
@@ -76,8 +82,10 @@ public final class ExpenseLineRequest {
         this.contact = contact;
         this.description = description;
         this.exchangeRate = exchangeRate;
+        this.taxRate = taxRate;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -110,6 +118,9 @@ public final class ExpenseLineRequest {
         return trackingCategory;
     }
 
+    /**
+     * @return The expense line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<ExpenseLineRequestTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -471,6 +482,14 @@ public final class ExpenseLineRequest {
         return exchangeRate;
     }
 
+    /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
     @JsonProperty("integration_params")
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
         return integrationParams;
@@ -479,6 +498,11 @@ public final class ExpenseLineRequest {
     @JsonProperty("linked_account_params")
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
         return linkedAccountParams;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -504,8 +528,10 @@ public final class ExpenseLineRequest {
                 && contact.equals(other.contact)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
+                && taxRate.equals(other.taxRate)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -522,8 +548,10 @@ public final class ExpenseLineRequest {
                 this.contact,
                 this.description,
                 this.exchangeRate,
+                this.taxRate,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -560,9 +588,13 @@ public final class ExpenseLineRequest {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -581,8 +613,10 @@ public final class ExpenseLineRequest {
             contact(other.getContact());
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
+            taxRate(other.getTaxRate());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -708,6 +742,17 @@ public final class ExpenseLineRequest {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -730,6 +775,17 @@ public final class ExpenseLineRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public ExpenseLineRequest build() {
             return new ExpenseLineRequest(
                     remoteId,
@@ -743,8 +799,10 @@ public final class ExpenseLineRequest {
                     contact,
                     description,
                     exchangeRate,
+                    taxRate,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

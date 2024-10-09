@@ -37,6 +37,8 @@ public final class JournalEntryRequest {
 
     private final Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<List<JournalLineRequest>> lines;
 
     private final Optional<String> journalNumber;
@@ -46,6 +48,8 @@ public final class JournalEntryRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -57,11 +61,13 @@ public final class JournalEntryRequest {
             Optional<String> exchangeRate,
             Optional<JournalEntryRequestCompany> company,
             Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories,
+            Optional<Boolean> inclusiveOfTax,
             Optional<List<JournalLineRequest>> lines,
             Optional<String> journalNumber,
             Optional<JournalEntryRequestPostingStatus> postingStatus,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.transactionDate = transactionDate;
         this.payments = payments;
@@ -70,11 +76,13 @@ public final class JournalEntryRequest {
         this.exchangeRate = exchangeRate;
         this.company = company;
         this.trackingCategories = trackingCategories;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.lines = lines;
         this.journalNumber = journalNumber;
         this.postingStatus = postingStatus;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -439,6 +447,14 @@ public final class JournalEntryRequest {
         return trackingCategories;
     }
 
+    /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
     @JsonProperty("lines")
     public Optional<List<JournalLineRequest>> getLines() {
         return lines;
@@ -474,6 +490,11 @@ public final class JournalEntryRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -493,11 +514,13 @@ public final class JournalEntryRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
                 && trackingCategories.equals(other.trackingCategories)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && lines.equals(other.lines)
                 && journalNumber.equals(other.journalNumber)
                 && postingStatus.equals(other.postingStatus)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -510,11 +533,13 @@ public final class JournalEntryRequest {
                 this.exchangeRate,
                 this.company,
                 this.trackingCategories,
+                this.inclusiveOfTax,
                 this.lines,
                 this.journalNumber,
                 this.postingStatus,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -543,6 +568,8 @@ public final class JournalEntryRequest {
         private Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<List<JournalLineRequest>> lines = Optional.empty();
 
         private Optional<String> journalNumber = Optional.empty();
@@ -552,6 +579,8 @@ public final class JournalEntryRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -566,11 +595,13 @@ public final class JournalEntryRequest {
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
             trackingCategories(other.getTrackingCategories());
+            inclusiveOfTax(other.getInclusiveOfTax());
             lines(other.getLines());
             journalNumber(other.getJournalNumber());
             postingStatus(other.getPostingStatus());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -653,6 +684,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
         public Builder lines(Optional<List<JournalLineRequest>> lines) {
             this.lines = lines;
@@ -708,6 +750,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public JournalEntryRequest build() {
             return new JournalEntryRequest(
                     transactionDate,
@@ -717,11 +770,13 @@ public final class JournalEntryRequest {
                     exchangeRate,
                     company,
                     trackingCategories,
+                    inclusiveOfTax,
                     lines,
                     journalNumber,
                     postingStatus,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

@@ -35,7 +35,7 @@ public final class Folder {
 
     private final Optional<String> folderUrl;
 
-    private final Optional<Integer> size;
+    private final Optional<Long> size;
 
     private final Optional<String> description;
 
@@ -64,7 +64,7 @@ public final class Folder {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<String> folderUrl,
-            Optional<Integer> size,
+            Optional<Long> size,
             Optional<String> description,
             Optional<FolderParentFolder> parentFolder,
             Optional<FolderDrive> drive,
@@ -143,7 +143,7 @@ public final class Folder {
      * @return The folder's size, in bytes.
      */
     @JsonProperty("size")
-    public Optional<Integer> getSize() {
+    public Optional<Long> getSize() {
         return size;
     }
 
@@ -196,7 +196,7 @@ public final class Folder {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -287,7 +287,7 @@ public final class Folder {
 
         private Optional<String> folderUrl = Optional.empty();
 
-        private Optional<Integer> size = Optional.empty();
+        private Optional<Long> size = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -399,12 +399,12 @@ public final class Folder {
         }
 
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
-        public Builder size(Optional<Integer> size) {
+        public Builder size(Optional<Long> size) {
             this.size = size;
             return this;
         }
 
-        public Builder size(Integer size) {
+        public Builder size(Long size) {
             this.size = Optional.of(size);
             return this;
         }

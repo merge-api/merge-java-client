@@ -51,6 +51,8 @@ public final class InvoiceRequest {
 
     private final Optional<Double> totalTaxAmount;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<Double> totalAmount;
 
     private final Optional<Double> balance;
@@ -66,6 +68,8 @@ public final class InvoiceRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -84,6 +88,7 @@ public final class InvoiceRequest {
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
             Optional<Double> totalTaxAmount,
+            Optional<Boolean> inclusiveOfTax,
             Optional<Double> totalAmount,
             Optional<Double> balance,
             Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments,
@@ -92,6 +97,7 @@ public final class InvoiceRequest {
             Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.type = type;
         this.contact = contact;
@@ -107,6 +113,7 @@ public final class InvoiceRequest {
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
         this.totalTaxAmount = totalTaxAmount;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.totalAmount = totalAmount;
         this.balance = balance;
         this.payments = payments;
@@ -115,6 +122,7 @@ public final class InvoiceRequest {
         this.purchaseOrders = purchaseOrders;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -551,6 +559,14 @@ public final class InvoiceRequest {
     }
 
     /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    /**
      * @return The invoice's total amount.
      */
     @JsonProperty("total_amount")
@@ -599,6 +615,11 @@ public final class InvoiceRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -625,6 +646,7 @@ public final class InvoiceRequest {
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
                 && totalTaxAmount.equals(other.totalTaxAmount)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && totalAmount.equals(other.totalAmount)
                 && balance.equals(other.balance)
                 && payments.equals(other.payments)
@@ -632,7 +654,8 @@ public final class InvoiceRequest {
                 && lineItems.equals(other.lineItems)
                 && purchaseOrders.equals(other.purchaseOrders)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -652,6 +675,7 @@ public final class InvoiceRequest {
                 this.totalDiscount,
                 this.subTotal,
                 this.totalTaxAmount,
+                this.inclusiveOfTax,
                 this.totalAmount,
                 this.balance,
                 this.payments,
@@ -659,7 +683,8 @@ public final class InvoiceRequest {
                 this.lineItems,
                 this.purchaseOrders,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -701,6 +726,8 @@ public final class InvoiceRequest {
 
         private Optional<Double> totalTaxAmount = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<Double> totalAmount = Optional.empty();
 
         private Optional<Double> balance = Optional.empty();
@@ -716,6 +743,8 @@ public final class InvoiceRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -737,6 +766,7 @@ public final class InvoiceRequest {
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
             totalTaxAmount(other.getTotalTaxAmount());
+            inclusiveOfTax(other.getInclusiveOfTax());
             totalAmount(other.getTotalAmount());
             balance(other.getBalance());
             payments(other.getPayments());
@@ -745,6 +775,7 @@ public final class InvoiceRequest {
             purchaseOrders(other.getPurchaseOrders());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -902,6 +933,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "total_amount", nulls = Nulls.SKIP)
         public Builder totalAmount(Optional<Double> totalAmount) {
             this.totalAmount = totalAmount;
@@ -991,6 +1033,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public InvoiceRequest build() {
             return new InvoiceRequest(
                     type,
@@ -1007,6 +1060,7 @@ public final class InvoiceRequest {
                     totalDiscount,
                     subTotal,
                     totalTaxAmount,
+                    inclusiveOfTax,
                     totalAmount,
                     balance,
                     payments,
@@ -1015,6 +1069,7 @@ public final class InvoiceRequest {
                     purchaseOrders,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

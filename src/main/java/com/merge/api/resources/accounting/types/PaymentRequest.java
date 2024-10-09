@@ -49,6 +49,8 @@ public final class PaymentRequest {
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private PaymentRequest(
@@ -65,6 +67,7 @@ public final class PaymentRequest {
             Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.transactionDate = transactionDate;
         this.contact = contact;
@@ -79,6 +82,7 @@ public final class PaymentRequest {
         this.appliedToLines = appliedToLines;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -489,6 +493,11 @@ public final class PaymentRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -513,7 +522,8 @@ public final class PaymentRequest {
                 && accountingPeriod.equals(other.accountingPeriod)
                 && appliedToLines.equals(other.appliedToLines)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -531,7 +541,8 @@ public final class PaymentRequest {
                 this.accountingPeriod,
                 this.appliedToLines,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -571,6 +582,8 @@ public final class PaymentRequest {
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
 
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -590,6 +603,7 @@ public final class PaymentRequest {
             appliedToLines(other.getAppliedToLines());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -737,6 +751,17 @@ public final class PaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PaymentRequest build() {
             return new PaymentRequest(
                     transactionDate,
@@ -752,6 +777,7 @@ public final class PaymentRequest {
                     appliedToLines,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

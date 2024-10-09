@@ -37,7 +37,7 @@ public final class File {
 
     private final Optional<String> fileThumbnailUrl;
 
-    private final Optional<Integer> size;
+    private final Optional<Long> size;
 
     private final Optional<String> mimeType;
 
@@ -69,7 +69,7 @@ public final class File {
             Optional<String> name,
             Optional<String> fileUrl,
             Optional<String> fileThumbnailUrl,
-            Optional<Integer> size,
+            Optional<Long> size,
             Optional<String> mimeType,
             Optional<String> description,
             Optional<FileFolder> folder,
@@ -159,7 +159,7 @@ public final class File {
      * @return The file's size, in bytes.
      */
     @JsonProperty("size")
-    public Optional<Integer> getSize() {
+    public Optional<Long> getSize() {
         return size;
     }
 
@@ -220,7 +220,7 @@ public final class File {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -317,7 +317,7 @@ public final class File {
 
         private Optional<String> fileThumbnailUrl = Optional.empty();
 
-        private Optional<Integer> size = Optional.empty();
+        private Optional<Long> size = Optional.empty();
 
         private Optional<String> mimeType = Optional.empty();
 
@@ -444,12 +444,12 @@ public final class File {
         }
 
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
-        public Builder size(Optional<Integer> size) {
+        public Builder size(Optional<Long> size) {
             this.size = size;
             return this;
         }
 
-        public Builder size(Integer size) {
+        public Builder size(Long size) {
             this.size = Optional.of(size);
             return this;
         }

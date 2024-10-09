@@ -10,7 +10,9 @@ public enum AccountDetailsAndActionsStatusEnum {
 
     INCOMPLETE("INCOMPLETE"),
 
-    RELINK_NEEDED("RELINK_NEEDED");
+    RELINK_NEEDED("RELINK_NEEDED"),
+
+    IDLE("IDLE");
 
     private final String value;
 

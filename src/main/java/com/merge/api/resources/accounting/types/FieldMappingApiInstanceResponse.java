@@ -57,7 +57,11 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> transaction;
 
+    private final Optional<List<FieldMappingApiInstance>> accountingPeriod;
+
     private final Optional<List<FieldMappingApiInstance>> generalLedgerTransaction;
+
+    private final Optional<List<FieldMappingApiInstance>> bankFeedAccount;
 
     private final Map<String, Object> additionalProperties;
 
@@ -80,7 +84,9 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> expense,
             Optional<List<FieldMappingApiInstance>> vendorCredit,
             Optional<List<FieldMappingApiInstance>> transaction,
+            Optional<List<FieldMappingApiInstance>> accountingPeriod,
             Optional<List<FieldMappingApiInstance>> generalLedgerTransaction,
+            Optional<List<FieldMappingApiInstance>> bankFeedAccount,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -100,7 +106,9 @@ public final class FieldMappingApiInstanceResponse {
         this.expense = expense;
         this.vendorCredit = vendorCredit;
         this.transaction = transaction;
+        this.accountingPeriod = accountingPeriod;
         this.generalLedgerTransaction = generalLedgerTransaction;
+        this.bankFeedAccount = bankFeedAccount;
         this.additionalProperties = additionalProperties;
     }
 
@@ -194,9 +202,19 @@ public final class FieldMappingApiInstanceResponse {
         return transaction;
     }
 
+    @JsonProperty("AccountingPeriod")
+    public Optional<List<FieldMappingApiInstance>> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("GeneralLedgerTransaction")
     public Optional<List<FieldMappingApiInstance>> getGeneralLedgerTransaction() {
         return generalLedgerTransaction;
+    }
+
+    @JsonProperty("BankFeedAccount")
+    public Optional<List<FieldMappingApiInstance>> getBankFeedAccount() {
+        return bankFeedAccount;
     }
 
     @java.lang.Override
@@ -229,7 +247,9 @@ public final class FieldMappingApiInstanceResponse {
                 && expense.equals(other.expense)
                 && vendorCredit.equals(other.vendorCredit)
                 && transaction.equals(other.transaction)
-                && generalLedgerTransaction.equals(other.generalLedgerTransaction);
+                && accountingPeriod.equals(other.accountingPeriod)
+                && generalLedgerTransaction.equals(other.generalLedgerTransaction)
+                && bankFeedAccount.equals(other.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -253,7 +273,9 @@ public final class FieldMappingApiInstanceResponse {
                 this.expense,
                 this.vendorCredit,
                 this.transaction,
-                this.generalLedgerTransaction);
+                this.accountingPeriod,
+                this.generalLedgerTransaction,
+                this.bankFeedAccount);
     }
 
     @java.lang.Override
@@ -303,7 +325,11 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> transaction = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> accountingPeriod = Optional.empty();
+
         private Optional<List<FieldMappingApiInstance>> generalLedgerTransaction = Optional.empty();
+
+        private Optional<List<FieldMappingApiInstance>> bankFeedAccount = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -329,7 +355,9 @@ public final class FieldMappingApiInstanceResponse {
             expense(other.getExpense());
             vendorCredit(other.getVendorCredit());
             transaction(other.getTransaction());
+            accountingPeriod(other.getAccountingPeriod());
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
+            bankFeedAccount(other.getBankFeedAccount());
             return this;
         }
 
@@ -531,6 +559,17 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "AccountingPeriod", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<List<FieldMappingApiInstance>> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(List<FieldMappingApiInstance> accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "GeneralLedgerTransaction", nulls = Nulls.SKIP)
         public Builder generalLedgerTransaction(Optional<List<FieldMappingApiInstance>> generalLedgerTransaction) {
             this.generalLedgerTransaction = generalLedgerTransaction;
@@ -539,6 +578,17 @@ public final class FieldMappingApiInstanceResponse {
 
         public Builder generalLedgerTransaction(List<FieldMappingApiInstance> generalLedgerTransaction) {
             this.generalLedgerTransaction = Optional.of(generalLedgerTransaction);
+            return this;
+        }
+
+        @JsonSetter(value = "BankFeedAccount", nulls = Nulls.SKIP)
+        public Builder bankFeedAccount(Optional<List<FieldMappingApiInstance>> bankFeedAccount) {
+            this.bankFeedAccount = bankFeedAccount;
+            return this;
+        }
+
+        public Builder bankFeedAccount(List<FieldMappingApiInstance> bankFeedAccount) {
+            this.bankFeedAccount = Optional.of(bankFeedAccount);
             return this;
         }
 
@@ -562,7 +612,9 @@ public final class FieldMappingApiInstanceResponse {
                     expense,
                     vendorCredit,
                     transaction,
+                    accountingPeriod,
                     generalLedgerTransaction,
+                    bankFeedAccount,
                     additionalProperties);
         }
     }

@@ -144,7 +144,7 @@ public final class Employment {
     }
 
     /**
-     * @return The position's pay rate in dollars.
+     * @return The position's pay rate.
      */
     @JsonProperty("pay_rate")
     public Optional<Double> getPayRate() {
@@ -551,7 +551,7 @@ public final class Employment {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {

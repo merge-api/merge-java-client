@@ -53,6 +53,8 @@ public final class EmployeesListRequest {
 
     private final Optional<Boolean> includeSensitiveFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> jobTitle;
 
     private final Optional<String> lastName;
@@ -106,6 +108,7 @@ public final class EmployeesListRequest {
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<Boolean> includeShellData,
             Optional<String> jobTitle,
             Optional<String> lastName,
             Optional<String> managerId,
@@ -139,6 +142,7 @@ public final class EmployeesListRequest {
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.includeShellData = includeShellData;
         this.jobTitle = jobTitle;
         this.lastName = lastName;
         this.managerId = managerId;
@@ -254,7 +258,7 @@ public final class EmployeesListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -275,6 +279,14 @@ public final class EmployeesListRequest {
     @JsonProperty("include_sensitive_fields")
     public Optional<Boolean> getIncludeSensitiveFields() {
         return includeSensitiveFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -447,6 +459,7 @@ public final class EmployeesListRequest {
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && includeShellData.equals(other.includeShellData)
                 && jobTitle.equals(other.jobTitle)
                 && lastName.equals(other.lastName)
                 && managerId.equals(other.managerId)
@@ -484,6 +497,7 @@ public final class EmployeesListRequest {
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
+                this.includeShellData,
                 this.jobTitle,
                 this.lastName,
                 this.managerId,
@@ -543,6 +557,8 @@ public final class EmployeesListRequest {
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> jobTitle = Optional.empty();
 
         private Optional<String> lastName = Optional.empty();
@@ -599,6 +615,7 @@ public final class EmployeesListRequest {
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            includeShellData(other.getIncludeShellData());
             jobTitle(other.getJobTitle());
             lastName(other.getLastName());
             managerId(other.getManagerId());
@@ -771,6 +788,17 @@ public final class EmployeesListRequest {
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
             this.includeSensitiveFields = Optional.of(includeSensitiveFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
             return this;
         }
 
@@ -988,6 +1016,7 @@ public final class EmployeesListRequest {
                     includeDeletedData,
                     includeRemoteData,
                     includeSensitiveFields,
+                    includeShellData,
                     jobTitle,
                     lastName,
                     managerId,

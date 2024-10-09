@@ -47,6 +47,8 @@ public final class CreditNote {
 
     private final Optional<Double> remainingCredit;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<List<CreditNoteLineItem>> lineItems;
 
     private final Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories;
@@ -84,6 +86,7 @@ public final class CreditNote {
             Optional<String> exchangeRate,
             Optional<Double> totalAmount,
             Optional<Double> remainingCredit,
+            Optional<Boolean> inclusiveOfTax,
             Optional<List<CreditNoteLineItem>> lineItems,
             Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories,
             Optional<CreditNoteCurrency> currency,
@@ -108,6 +111,7 @@ public final class CreditNote {
         this.exchangeRate = exchangeRate;
         this.totalAmount = totalAmount;
         this.remainingCredit = remainingCredit;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.lineItems = lineItems;
         this.trackingCategories = trackingCategories;
         this.currency = currency;
@@ -218,6 +222,14 @@ public final class CreditNote {
     @JsonProperty("remaining_credit")
     public Optional<Double> getRemainingCredit() {
         return remainingCredit;
+    }
+
+    /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
     }
 
     @JsonProperty("line_items")
@@ -579,7 +591,7 @@ public final class CreditNote {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -628,6 +640,7 @@ public final class CreditNote {
                 && exchangeRate.equals(other.exchangeRate)
                 && totalAmount.equals(other.totalAmount)
                 && remainingCredit.equals(other.remainingCredit)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && lineItems.equals(other.lineItems)
                 && trackingCategories.equals(other.trackingCategories)
                 && currency.equals(other.currency)
@@ -656,6 +669,7 @@ public final class CreditNote {
                 this.exchangeRate,
                 this.totalAmount,
                 this.remainingCredit,
+                this.inclusiveOfTax,
                 this.lineItems,
                 this.trackingCategories,
                 this.currency,
@@ -704,6 +718,8 @@ public final class CreditNote {
 
         private Optional<Double> remainingCredit = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<List<CreditNoteLineItem>> lineItems = Optional.empty();
 
         private Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories = Optional.empty();
@@ -744,6 +760,7 @@ public final class CreditNote {
             exchangeRate(other.getExchangeRate());
             totalAmount(other.getTotalAmount());
             remainingCredit(other.getRemainingCredit());
+            inclusiveOfTax(other.getInclusiveOfTax());
             lineItems(other.getLineItems());
             trackingCategories(other.getTrackingCategories());
             currency(other.getCurrency());
@@ -890,6 +907,17 @@ public final class CreditNote {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
         public Builder lineItems(Optional<List<CreditNoteLineItem>> lineItems) {
             this.lineItems = lineItems;
@@ -1026,6 +1054,7 @@ public final class CreditNote {
                     exchangeRate,
                     totalAmount,
                     remainingCredit,
+                    inclusiveOfTax,
                     lineItems,
                     trackingCategories,
                     currency,

@@ -36,6 +36,10 @@ public final class ContactsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeRemoteFields;
+
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> isCustomer;
 
     private final Optional<String> isSupplier;
@@ -62,6 +66,8 @@ public final class ContactsListRequest {
             Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Optional<String> isCustomer,
             Optional<String> isSupplier,
             Optional<OffsetDateTime> modifiedAfter,
@@ -78,6 +84,8 @@ public final class ContactsListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.isCustomer = isCustomer;
         this.isSupplier = isSupplier;
         this.modifiedAfter = modifiedAfter;
@@ -130,7 +138,7 @@ public final class ContactsListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -143,6 +151,22 @@ public final class ContactsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.
+     */
+    @JsonProperty("include_remote_fields")
+    public Optional<Boolean> getIncludeRemoteFields() {
+        return includeRemoteFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -228,6 +252,8 @@ public final class ContactsListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData)
                 && isCustomer.equals(other.isCustomer)
                 && isSupplier.equals(other.isSupplier)
                 && modifiedAfter.equals(other.modifiedAfter)
@@ -248,6 +274,8 @@ public final class ContactsListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.includeRemoteFields,
+                this.includeShellData,
                 this.isCustomer,
                 this.isSupplier,
                 this.modifiedAfter,
@@ -283,6 +311,10 @@ public final class ContactsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> isCustomer = Optional.empty();
 
         private Optional<String> isSupplier = Optional.empty();
@@ -312,6 +344,8 @@ public final class ContactsListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             isCustomer(other.getIsCustomer());
             isSupplier(other.getIsSupplier());
             modifiedAfter(other.getModifiedAfter());
@@ -397,6 +431,28 @@ public final class ContactsListRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.of(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
+        public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
+            this.includeRemoteFields = includeRemoteFields;
+            return this;
+        }
+
+        public Builder includeRemoteFields(Boolean includeRemoteFields) {
+            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
             return this;
         }
 
@@ -497,6 +553,8 @@ public final class ContactsListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    includeRemoteFields,
+                    includeShellData,
                     isCustomer,
                     isSupplier,
                     modifiedAfter,

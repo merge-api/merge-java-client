@@ -59,6 +59,8 @@ public final class Contact {
 
     private final Optional<List<RemoteData>> remoteData;
 
+    private final Optional<List<RemoteField>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private Contact(
@@ -80,6 +82,7 @@ public final class Contact {
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -99,6 +102,7 @@ public final class Contact {
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -224,7 +228,7 @@ public final class Contact {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
@@ -239,6 +243,11 @@ public final class Contact {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -270,7 +279,8 @@ public final class Contact {
                 && phoneNumbers.equals(other.phoneNumbers)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -293,7 +303,8 @@ public final class Contact {
                 this.phoneNumbers,
                 this.remoteWasDeleted,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -343,6 +354,8 @@ public final class Contact {
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -367,6 +380,7 @@ public final class Contact {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -568,6 +582,17 @@ public final class Contact {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public Contact build() {
             return new Contact(
                     id,
@@ -588,6 +613,7 @@ public final class Contact {
                     remoteWasDeleted,
                     fieldMappings,
                     remoteData,
+                    remoteFields,
                     additionalProperties);
         }
     }

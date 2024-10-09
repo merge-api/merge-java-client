@@ -10,13 +10,16 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.invoices.requests.InvoiceEndpointRequest;
+import com.merge.api.resources.accounting.invoices.requests.InvoicesLineItemsRemoteFieldClassesListRequest;
 import com.merge.api.resources.accounting.invoices.requests.InvoicesListRequest;
+import com.merge.api.resources.accounting.invoices.requests.InvoicesRemoteFieldClassesListRequest;
 import com.merge.api.resources.accounting.invoices.requests.InvoicesRetrieveRequest;
 import com.merge.api.resources.accounting.invoices.requests.PatchedInvoiceEndpointRequest;
 import com.merge.api.resources.accounting.types.Invoice;
 import com.merge.api.resources.accounting.types.InvoiceResponse;
 import com.merge.api.resources.accounting.types.MetaResponse;
 import com.merge.api.resources.accounting.types.PaginatedInvoiceList;
+import com.merge.api.resources.accounting.types.PaginatedRemoteFieldClassList;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,6 +87,15 @@ public class InvoicesClient {
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeRemoteFields().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_fields",
+                    request.getIncludeRemoteFields().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getIssueDateAfter().isPresent()) {
             httpUrl.addQueryParameter(
@@ -226,6 +238,11 @@ public class InvoicesClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeRemoteFields().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_fields",
+                    request.getIncludeRemoteFields().get().toString());
+        }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
         }
@@ -316,6 +333,79 @@ public class InvoicesClient {
     }
 
     /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList() {
+        return lineItemsRemoteFieldClassesList(
+                InvoicesLineItemsRemoteFieldClassesListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList(
+            InvoicesLineItemsRemoteFieldClassesListRequest request) {
+        return lineItemsRemoteFieldClassesList(request, null);
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList lineItemsRemoteFieldClassesList(
+            InvoicesLineItemsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/invoices/line-items/remote-field-classes");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
+        if (request.getIsCommonModelField().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_common_model_field",
+                    request.getIsCommonModelField().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
      * Returns metadata for <code>Invoice</code> PATCHs.
      */
     public MetaResponse metaPatchRetrieve(String id) {
@@ -385,6 +475,78 @@ public class InvoicesClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList() {
+        return remoteFieldClassesList(
+                InvoicesRemoteFieldClassesListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(InvoicesRemoteFieldClassesListRequest request) {
+        return remoteFieldClassesList(request, null);
+    }
+
+    /**
+     * Returns a list of <code>RemoteFieldClass</code> objects.
+     */
+    public PaginatedRemoteFieldClassList remoteFieldClassesList(
+            InvoicesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/invoices/remote-field-classes");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
+        if (request.getIsCommonModelField().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_common_model_field",
+                    request.getIsCommonModelField().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

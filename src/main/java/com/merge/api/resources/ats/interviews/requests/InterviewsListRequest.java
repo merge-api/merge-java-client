@@ -36,6 +36,8 @@ public final class InterviewsListRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> jobId;
 
     private final Optional<String> jobInterviewStageId;
@@ -64,6 +66,7 @@ public final class InterviewsListRequest {
             Optional<InterviewsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<String> jobId,
             Optional<String> jobInterviewStageId,
             Optional<OffsetDateTime> modifiedAfter,
@@ -81,6 +84,7 @@ public final class InterviewsListRequest {
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.jobId = jobId;
         this.jobInterviewStageId = jobInterviewStageId;
         this.modifiedAfter = modifiedAfter;
@@ -134,7 +138,7 @@ public final class InterviewsListRequest {
     }
 
     /**
-     * @return Whether to include data that was marked as deleted by third party webhooks.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("include_deleted_data")
     public Optional<Boolean> getIncludeDeletedData() {
@@ -147,6 +151,14 @@ public final class InterviewsListRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -240,6 +252,7 @@ public final class InterviewsListRequest {
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && jobId.equals(other.jobId)
                 && jobInterviewStageId.equals(other.jobInterviewStageId)
                 && modifiedAfter.equals(other.modifiedAfter)
@@ -261,6 +274,7 @@ public final class InterviewsListRequest {
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
+                this.includeShellData,
                 this.jobId,
                 this.jobInterviewStageId,
                 this.modifiedAfter,
@@ -297,6 +311,8 @@ public final class InterviewsListRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> jobId = Optional.empty();
 
         private Optional<String> jobInterviewStageId = Optional.empty();
@@ -328,6 +344,7 @@ public final class InterviewsListRequest {
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             jobId(other.getJobId());
             jobInterviewStageId(other.getJobInterviewStageId());
             modifiedAfter(other.getModifiedAfter());
@@ -414,6 +431,17 @@ public final class InterviewsListRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.of(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.of(includeShellData);
             return this;
         }
 
@@ -525,6 +553,7 @@ public final class InterviewsListRequest {
                     expand,
                     includeDeletedData,
                     includeRemoteData,
+                    includeShellData,
                     jobId,
                     jobInterviewStageId,
                     modifiedAfter,

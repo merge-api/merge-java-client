@@ -110,6 +110,10 @@ public class EmployeesClient {
                     "include_sensitive_fields",
                     request.getIncludeSensitiveFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getJobTitle().isPresent()) {
             httpUrl.addQueryParameter("job_title", request.getJobTitle().get());
         }

@@ -43,6 +43,8 @@ public final class PurchaseOrderRequest {
 
     private final Optional<PurchaseOrderRequestCurrency> currency;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<String> exchangeRate;
 
     private final Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories;
@@ -52,6 +54,8 @@ public final class PurchaseOrderRequest {
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
+    private final Optional<List<RemoteFieldRequest>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -66,11 +70,13 @@ public final class PurchaseOrderRequest {
             Optional<PurchaseOrderRequestCompany> company,
             Optional<Double> totalAmount,
             Optional<PurchaseOrderRequestCurrency> currency,
+            Optional<Boolean> inclusiveOfTax,
             Optional<String> exchangeRate,
             Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<List<PurchaseOrderLineItemRequest>> lineItems,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.status = status;
         this.issueDate = issueDate;
@@ -82,11 +88,13 @@ public final class PurchaseOrderRequest {
         this.company = company;
         this.totalAmount = totalAmount;
         this.currency = currency;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.exchangeRate = exchangeRate;
         this.trackingCategories = trackingCategories;
         this.lineItems = lineItems;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -486,6 +494,14 @@ public final class PurchaseOrderRequest {
     }
 
     /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    /**
      * @return The purchase order's exchange rate.
      */
     @JsonProperty("exchange_rate")
@@ -513,6 +529,11 @@ public final class PurchaseOrderRequest {
         return linkedAccountParams;
     }
 
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteFieldRequest>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -535,11 +556,13 @@ public final class PurchaseOrderRequest {
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && exchangeRate.equals(other.exchangeRate)
                 && trackingCategories.equals(other.trackingCategories)
                 && lineItems.equals(other.lineItems)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -555,11 +578,13 @@ public final class PurchaseOrderRequest {
                 this.company,
                 this.totalAmount,
                 this.currency,
+                this.inclusiveOfTax,
                 this.exchangeRate,
                 this.trackingCategories,
                 this.lineItems,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -593,6 +618,8 @@ public final class PurchaseOrderRequest {
 
         private Optional<PurchaseOrderRequestCurrency> currency = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories =
@@ -603,6 +630,8 @@ public final class PurchaseOrderRequest {
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
+        private Optional<List<RemoteFieldRequest>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -620,11 +649,13 @@ public final class PurchaseOrderRequest {
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
+            inclusiveOfTax(other.getInclusiveOfTax());
             exchangeRate(other.getExchangeRate());
             trackingCategories(other.getTrackingCategories());
             lineItems(other.getLineItems());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -738,6 +769,17 @@ public final class PurchaseOrderRequest {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "exchange_rate", nulls = Nulls.SKIP)
         public Builder exchangeRate(Optional<String> exchangeRate) {
             this.exchangeRate = exchangeRate;
@@ -795,6 +837,17 @@ public final class PurchaseOrderRequest {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteFieldRequest>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PurchaseOrderRequest build() {
             return new PurchaseOrderRequest(
                     status,
@@ -807,11 +860,13 @@ public final class PurchaseOrderRequest {
                     company,
                     totalAmount,
                     currency,
+                    inclusiveOfTax,
                     exchangeRate,
                     trackingCategories,
                     lineItems,
                     integrationParams,
                     linkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

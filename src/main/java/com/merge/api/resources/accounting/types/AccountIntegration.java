@@ -24,6 +24,8 @@ import java.util.Optional;
 public final class AccountIntegration {
     private final String name;
 
+    private final Optional<String> abbreviatedName;
+
     private final Optional<List<CategoriesEnum>> categories;
 
     private final Optional<String> image;
@@ -44,6 +46,7 @@ public final class AccountIntegration {
 
     private AccountIntegration(
             String name,
+            Optional<String> abbreviatedName,
             Optional<List<CategoriesEnum>> categories,
             Optional<String> image,
             Optional<String> squareImage,
@@ -54,6 +57,7 @@ public final class AccountIntegration {
             Optional<Map<String, JsonNode>> categoryBetaStatus,
             Map<String, Object> additionalProperties) {
         this.name = name;
+        this.abbreviatedName = abbreviatedName;
         this.categories = categories;
         this.image = image;
         this.squareImage = squareImage;
@@ -74,6 +78,14 @@ public final class AccountIntegration {
     }
 
     /**
+     * @return Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;
+     */
+    @JsonProperty("abbreviated_name")
+    public Optional<String> getAbbreviatedName() {
+        return abbreviatedName;
+    }
+
+    /**
      * @return Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].
      */
     @JsonProperty("categories")
@@ -82,7 +94,7 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;
+     * @return Company logo in rectangular shape.
      */
     @JsonProperty("image")
     public Optional<String> getImage() {
@@ -90,7 +102,7 @@ public final class AccountIntegration {
     }
 
     /**
-     * @return Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;
+     * @return Company logo in square shape.
      */
     @JsonProperty("square_image")
     public Optional<String> getSquareImage() {
@@ -147,6 +159,7 @@ public final class AccountIntegration {
 
     private boolean equalTo(AccountIntegration other) {
         return name.equals(other.name)
+                && abbreviatedName.equals(other.abbreviatedName)
                 && categories.equals(other.categories)
                 && image.equals(other.image)
                 && squareImage.equals(other.squareImage)
@@ -161,6 +174,7 @@ public final class AccountIntegration {
     public int hashCode() {
         return Objects.hash(
                 this.name,
+                this.abbreviatedName,
                 this.categories,
                 this.image,
                 this.squareImage,
@@ -188,6 +202,10 @@ public final class AccountIntegration {
 
     public interface _FinalStage {
         AccountIntegration build();
+
+        _FinalStage abbreviatedName(Optional<String> abbreviatedName);
+
+        _FinalStage abbreviatedName(String abbreviatedName);
 
         _FinalStage categories(Optional<List<CategoriesEnum>> categories);
 
@@ -242,6 +260,8 @@ public final class AccountIntegration {
 
         private Optional<List<CategoriesEnum>> categories = Optional.empty();
 
+        private Optional<String> abbreviatedName = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -250,6 +270,7 @@ public final class AccountIntegration {
         @java.lang.Override
         public Builder from(AccountIntegration other) {
             name(other.getName());
+            abbreviatedName(other.getAbbreviatedName());
             categories(other.getCategories());
             image(other.getImage());
             squareImage(other.getSquareImage());
@@ -355,7 +376,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>Company logo in square shape. &lt;b&gt;Upload an image with a white background.&lt;/b&gt;</p>
+         * <p>Company logo in square shape.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -372,7 +393,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>Company logo in rectangular shape. &lt;b&gt;Upload an image with a clear background.&lt;/b&gt;</p>
+         * <p>Company logo in rectangular shape.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -405,10 +426,28 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage abbreviatedName(String abbreviatedName) {
+            this.abbreviatedName = Optional.of(abbreviatedName);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "abbreviated_name", nulls = Nulls.SKIP)
+        public _FinalStage abbreviatedName(Optional<String> abbreviatedName) {
+            this.abbreviatedName = abbreviatedName;
+            return this;
+        }
+
         @java.lang.Override
         public AccountIntegration build() {
             return new AccountIntegration(
                     name,
+                    abbreviatedName,
                     categories,
                     image,
                     squareImage,

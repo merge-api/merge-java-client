@@ -57,7 +57,11 @@ public final class PurchaseOrder {
 
     private final Optional<List<PurchaseOrderLineItem>> lineItems;
 
+    private final Optional<Boolean> inclusiveOfTax;
+
     private final Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories;
+
+    private final Optional<PurchaseOrderAccountingPeriod> accountingPeriod;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -65,11 +69,11 @@ public final class PurchaseOrder {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<PurchaseOrderAccountingPeriod> accountingPeriod;
-
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -91,13 +95,15 @@ public final class PurchaseOrder {
             Optional<PurchaseOrderCurrency> currency,
             Optional<String> exchangeRate,
             Optional<List<PurchaseOrderLineItem>> lineItems,
+            Optional<Boolean> inclusiveOfTax,
             Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories,
+            Optional<PurchaseOrderAccountingPeriod> accountingPeriod,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<PurchaseOrderAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -116,13 +122,15 @@ public final class PurchaseOrder {
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.lineItems = lineItems;
+        this.inclusiveOfTax = inclusiveOfTax;
         this.trackingCategories = trackingCategories;
+        this.accountingPeriod = accountingPeriod;
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.accountingPeriod = accountingPeriod;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -571,9 +579,25 @@ public final class PurchaseOrder {
         return lineItems;
     }
 
+    /**
+     * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
+     */
+    @JsonProperty("inclusive_of_tax")
+    public Optional<Boolean> getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
+    }
+
+    /**
+     * @return The accounting period that the PurchaseOrder was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<PurchaseOrderAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
     }
 
     /**
@@ -593,19 +617,11 @@ public final class PurchaseOrder {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    /**
-     * @return The accounting period that the PurchaseOrder was generated in.
-     */
-    @JsonProperty("accounting_period")
-    public Optional<PurchaseOrderAccountingPeriod> getAccountingPeriod() {
-        return accountingPeriod;
     }
 
     @JsonProperty("field_mappings")
@@ -616,6 +632,11 @@ public final class PurchaseOrder {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -647,13 +668,15 @@ public final class PurchaseOrder {
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && lineItems.equals(other.lineItems)
+                && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && trackingCategories.equals(other.trackingCategories)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && accountingPeriod.equals(other.accountingPeriod)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -676,13 +699,15 @@ public final class PurchaseOrder {
                 this.currency,
                 this.exchangeRate,
                 this.lineItems,
+                this.inclusiveOfTax,
                 this.trackingCategories,
+                this.accountingPeriod,
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.remoteWasDeleted,
-                this.accountingPeriod,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -730,7 +755,11 @@ public final class PurchaseOrder {
 
         private Optional<List<PurchaseOrderLineItem>> lineItems = Optional.empty();
 
+        private Optional<Boolean> inclusiveOfTax = Optional.empty();
+
         private Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories = Optional.empty();
+
+        private Optional<PurchaseOrderAccountingPeriod> accountingPeriod = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -738,11 +767,11 @@ public final class PurchaseOrder {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<PurchaseOrderAccountingPeriod> accountingPeriod = Optional.empty();
-
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -767,13 +796,15 @@ public final class PurchaseOrder {
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             lineItems(other.getLineItems());
+            inclusiveOfTax(other.getInclusiveOfTax());
             trackingCategories(other.getTrackingCategories());
+            accountingPeriod(other.getAccountingPeriod());
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            accountingPeriod(other.getAccountingPeriod());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -964,6 +995,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
+        public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
+            this.inclusiveOfTax = inclusiveOfTax;
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
+            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            return this;
+        }
+
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(
                 Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories) {
@@ -973,6 +1015,17 @@ public final class PurchaseOrder {
 
         public Builder trackingCategories(List<Optional<PurchaseOrderTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = Optional.of(trackingCategories);
+            return this;
+        }
+
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<PurchaseOrderAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(PurchaseOrderAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.of(accountingPeriod);
             return this;
         }
 
@@ -1009,17 +1062,6 @@ public final class PurchaseOrder {
             return this;
         }
 
-        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
-        public Builder accountingPeriod(Optional<PurchaseOrderAccountingPeriod> accountingPeriod) {
-            this.accountingPeriod = accountingPeriod;
-            return this;
-        }
-
-        public Builder accountingPeriod(PurchaseOrderAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
-            return this;
-        }
-
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -1042,6 +1084,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public PurchaseOrder build() {
             return new PurchaseOrder(
                     id,
@@ -1061,13 +1114,15 @@ public final class PurchaseOrder {
                     currency,
                     exchangeRate,
                     lineItems,
+                    inclusiveOfTax,
                     trackingCategories,
+                    accountingPeriod,
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     remoteWasDeleted,
-                    accountingPeriod,
                     fieldMappings,
                     remoteData,
+                    remoteFields,
                     additionalProperties);
         }
     }

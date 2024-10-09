@@ -44,11 +44,15 @@ public final class JournalLine {
 
     private final Optional<String> contact;
 
+    private final Optional<String> taxRate;
+
     private final Optional<String> description;
 
     private final Optional<String> exchangeRate;
 
     private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<List<RemoteField>> remoteFields;
 
     private final Map<String, Object> additionalProperties;
 
@@ -64,9 +68,11 @@ public final class JournalLine {
             Optional<JournalLineCurrency> currency,
             Optional<String> company,
             Optional<String> contact,
+            Optional<String> taxRate,
             Optional<String> description,
             Optional<String> exchangeRate,
             Optional<Boolean> remoteWasDeleted,
+            Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -79,9 +85,11 @@ public final class JournalLine {
         this.currency = currency;
         this.company = company;
         this.contact = contact;
+        this.taxRate = taxRate;
         this.description = description;
         this.exchangeRate = exchangeRate;
         this.remoteWasDeleted = remoteWasDeleted;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -132,6 +140,9 @@ public final class JournalLine {
         return trackingCategory;
     }
 
+    /**
+     * @return The journal line item's associated tracking categories.
+     */
     @JsonProperty("tracking_categories")
     public Optional<List<Optional<JournalLineTrackingCategoriesItem>>> getTrackingCategories() {
         return trackingCategories;
@@ -467,6 +478,14 @@ public final class JournalLine {
     }
 
     /**
+     * @return The tax rate that applies to this line item.
+     */
+    @JsonProperty("tax_rate")
+    public Optional<String> getTaxRate() {
+        return taxRate;
+    }
+
+    /**
      * @return The line's description.
      */
     @JsonProperty("description")
@@ -483,11 +502,16 @@ public final class JournalLine {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform.
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonProperty("remote_fields")
+    public Optional<List<RemoteField>> getRemoteFields() {
+        return remoteFields;
     }
 
     @java.lang.Override
@@ -513,9 +537,11 @@ public final class JournalLine {
                 && currency.equals(other.currency)
                 && company.equals(other.company)
                 && contact.equals(other.contact)
+                && taxRate.equals(other.taxRate)
                 && description.equals(other.description)
                 && exchangeRate.equals(other.exchangeRate)
-                && remoteWasDeleted.equals(other.remoteWasDeleted);
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -532,9 +558,11 @@ public final class JournalLine {
                 this.currency,
                 this.company,
                 this.contact,
+                this.taxRate,
                 this.description,
                 this.exchangeRate,
-                this.remoteWasDeleted);
+                this.remoteWasDeleted,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -570,11 +598,15 @@ public final class JournalLine {
 
         private Optional<String> contact = Optional.empty();
 
+        private Optional<String> taxRate = Optional.empty();
+
         private Optional<String> description = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<List<RemoteField>> remoteFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -593,9 +625,11 @@ public final class JournalLine {
             currency(other.getCurrency());
             company(other.getCompany());
             contact(other.getContact());
+            taxRate(other.getTaxRate());
             description(other.getDescription());
             exchangeRate(other.getExchangeRate());
             remoteWasDeleted(other.getRemoteWasDeleted());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -721,6 +755,17 @@ public final class JournalLine {
             return this;
         }
 
+        @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
+        public Builder taxRate(Optional<String> taxRate) {
+            this.taxRate = taxRate;
+            return this;
+        }
+
+        public Builder taxRate(String taxRate) {
+            this.taxRate = Optional.of(taxRate);
+            return this;
+        }
+
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -754,6 +799,17 @@ public final class JournalLine {
             return this;
         }
 
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public Builder remoteFields(Optional<List<RemoteField>> remoteFields) {
+            this.remoteFields = remoteFields;
+            return this;
+        }
+
+        public Builder remoteFields(List<RemoteField> remoteFields) {
+            this.remoteFields = Optional.of(remoteFields);
+            return this;
+        }
+
         public JournalLine build() {
             return new JournalLine(
                     id,
@@ -767,9 +823,11 @@ public final class JournalLine {
                     currency,
                     company,
                     contact,
+                    taxRate,
                     description,
                     exchangeRate,
                     remoteWasDeleted,
+                    remoteFields,
                     additionalProperties);
         }
     }

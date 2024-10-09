@@ -16,6 +16,7 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.types.CategoriesEnum;
 import com.merge.api.resources.accounting.types.CommonModelScopesBodyRequest;
 import com.merge.api.resources.accounting.types.IndividualCommonModelScopeDeserializerRequest;
+import com.merge.api.resources.accounting.types.LanguageEnum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,12 +41,14 @@ public final class EndUserDetailsRequest {
 
     private final Optional<Boolean> shouldCreateMagicLinkUrl;
 
+    private final Optional<Boolean> hideAdminMagicLink;
+
     private final Optional<List<CommonModelScopesBodyRequest>> commonModels;
 
     private final Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
             categoryCommonModelScopes;
 
-    private final Optional<String> language;
+    private final Optional<LanguageEnum> language;
 
     private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
 
@@ -59,10 +62,11 @@ public final class EndUserDetailsRequest {
             Optional<String> integration,
             Optional<Integer> linkExpiryMins,
             Optional<Boolean> shouldCreateMagicLinkUrl,
+            Optional<Boolean> hideAdminMagicLink,
             Optional<List<CommonModelScopesBodyRequest>> commonModels,
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
-            Optional<String> language,
+            Optional<LanguageEnum> language,
             Optional<Map<String, JsonNode>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
@@ -72,6 +76,7 @@ public final class EndUserDetailsRequest {
         this.integration = integration;
         this.linkExpiryMins = linkExpiryMins;
         this.shouldCreateMagicLinkUrl = shouldCreateMagicLinkUrl;
+        this.hideAdminMagicLink = hideAdminMagicLink;
         this.commonModels = commonModels;
         this.categoryCommonModelScopes = categoryCommonModelScopes;
         this.language = language;
@@ -136,6 +141,14 @@ public final class EndUserDetailsRequest {
     }
 
     /**
+     * @return Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
+     */
+    @JsonProperty("hide_admin_magic_link")
+    public Optional<Boolean> getHideAdminMagicLink() {
+        return hideAdminMagicLink;
+    }
+
+    /**
      * @return An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.
      */
     @JsonProperty("common_models")
@@ -153,10 +166,14 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return The language code for the language to localize Merge Link to.
+     * @return The following subset of IETF language tags can be used to configure localization.
+     * <ul>
+     * <li><code>en</code> - en</li>
+     * <li><code>de</code> - de</li>
+     * </ul>
      */
     @JsonProperty("language")
-    public Optional<String> getLanguage() {
+    public Optional<LanguageEnum> getLanguage() {
         return language;
     }
 
@@ -187,6 +204,7 @@ public final class EndUserDetailsRequest {
                 && integration.equals(other.integration)
                 && linkExpiryMins.equals(other.linkExpiryMins)
                 && shouldCreateMagicLinkUrl.equals(other.shouldCreateMagicLinkUrl)
+                && hideAdminMagicLink.equals(other.hideAdminMagicLink)
                 && commonModels.equals(other.commonModels)
                 && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
                 && language.equals(other.language)
@@ -203,6 +221,7 @@ public final class EndUserDetailsRequest {
                 this.integration,
                 this.linkExpiryMins,
                 this.shouldCreateMagicLinkUrl,
+                this.hideAdminMagicLink,
                 this.commonModels,
                 this.categoryCommonModelScopes,
                 this.language,
@@ -253,6 +272,10 @@ public final class EndUserDetailsRequest {
 
         _FinalStage shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl);
 
+        _FinalStage hideAdminMagicLink(Optional<Boolean> hideAdminMagicLink);
+
+        _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink);
+
         _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels);
 
         _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels);
@@ -264,9 +287,9 @@ public final class EndUserDetailsRequest {
         _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
 
-        _FinalStage language(Optional<String> language);
+        _FinalStage language(Optional<LanguageEnum> language);
 
-        _FinalStage language(String language);
+        _FinalStage language(LanguageEnum language);
 
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
@@ -284,12 +307,14 @@ public final class EndUserDetailsRequest {
 
         private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
 
-        private Optional<String> language = Optional.empty();
+        private Optional<LanguageEnum> language = Optional.empty();
 
         private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                 categoryCommonModelScopes = Optional.empty();
 
         private Optional<List<CommonModelScopesBodyRequest>> commonModels = Optional.empty();
+
+        private Optional<Boolean> hideAdminMagicLink = Optional.empty();
 
         private Optional<Boolean> shouldCreateMagicLinkUrl = Optional.empty();
 
@@ -313,6 +338,7 @@ public final class EndUserDetailsRequest {
             integration(other.getIntegration());
             linkExpiryMins(other.getLinkExpiryMins());
             shouldCreateMagicLinkUrl(other.getShouldCreateMagicLinkUrl());
+            hideAdminMagicLink(other.getHideAdminMagicLink());
             commonModels(other.getCommonModels());
             categoryCommonModelScopes(other.getCategoryCommonModelScopes());
             language(other.getLanguage());
@@ -371,18 +397,22 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>The language code for the language to localize Merge Link to.</p>
+         * <p>The following subset of IETF language tags can be used to configure localization.</p>
+         * <ul>
+         * <li><code>en</code> - en</li>
+         * <li><code>de</code> - de</li>
+         * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage language(String language) {
+        public _FinalStage language(LanguageEnum language) {
             this.language = Optional.of(language);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "language", nulls = Nulls.SKIP)
-        public _FinalStage language(Optional<String> language) {
+        public _FinalStage language(Optional<LanguageEnum> language) {
             this.language = language;
             return this;
         }
@@ -421,6 +451,23 @@ public final class EndUserDetailsRequest {
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels) {
             this.commonModels = commonModels;
+            return this;
+        }
+
+        /**
+         * <p>Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink) {
+            this.hideAdminMagicLink = Optional.of(hideAdminMagicLink);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "hide_admin_magic_link", nulls = Nulls.SKIP)
+        public _FinalStage hideAdminMagicLink(Optional<Boolean> hideAdminMagicLink) {
+            this.hideAdminMagicLink = hideAdminMagicLink;
             return this;
         }
 
@@ -513,6 +560,7 @@ public final class EndUserDetailsRequest {
                     integration,
                     linkExpiryMins,
                     shouldCreateMagicLinkUrl,
+                    hideAdminMagicLink,
                     commonModels,
                     categoryCommonModelScopes,
                     language,

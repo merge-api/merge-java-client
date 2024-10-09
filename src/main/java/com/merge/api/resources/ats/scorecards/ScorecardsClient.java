@@ -75,6 +75,10 @@ public class ScorecardsClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getInterviewId().isPresent()) {
             httpUrl.addQueryParameter("interview_id", request.getInterviewId().get());
         }

@@ -16,6 +16,7 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.crm.types.CategoriesEnum;
 import com.merge.api.resources.crm.types.CommonModelScopesBodyRequest;
 import com.merge.api.resources.crm.types.IndividualCommonModelScopeDeserializerRequest;
+import com.merge.api.resources.crm.types.LanguageEnum;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +48,7 @@ public final class EndUserDetailsRequest {
     private final Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
             categoryCommonModelScopes;
 
-    private final Optional<String> language;
+    private final Optional<LanguageEnum> language;
 
     private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
 
@@ -65,7 +66,7 @@ public final class EndUserDetailsRequest {
             Optional<List<CommonModelScopesBodyRequest>> commonModels,
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
-            Optional<String> language,
+            Optional<LanguageEnum> language,
             Optional<Map<String, JsonNode>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
@@ -165,10 +166,14 @@ public final class EndUserDetailsRequest {
     }
 
     /**
-     * @return The language code for the language to localize Merge Link to.
+     * @return The following subset of IETF language tags can be used to configure localization.
+     * <ul>
+     * <li><code>en</code> - en</li>
+     * <li><code>de</code> - de</li>
+     * </ul>
      */
     @JsonProperty("language")
-    public Optional<String> getLanguage() {
+    public Optional<LanguageEnum> getLanguage() {
         return language;
     }
 
@@ -282,9 +287,9 @@ public final class EndUserDetailsRequest {
         _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
 
-        _FinalStage language(Optional<String> language);
+        _FinalStage language(Optional<LanguageEnum> language);
 
-        _FinalStage language(String language);
+        _FinalStage language(LanguageEnum language);
 
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
@@ -302,7 +307,7 @@ public final class EndUserDetailsRequest {
 
         private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
 
-        private Optional<String> language = Optional.empty();
+        private Optional<LanguageEnum> language = Optional.empty();
 
         private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                 categoryCommonModelScopes = Optional.empty();
@@ -392,18 +397,22 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>The language code for the language to localize Merge Link to.</p>
+         * <p>The following subset of IETF language tags can be used to configure localization.</p>
+         * <ul>
+         * <li><code>en</code> - en</li>
+         * <li><code>de</code> - de</li>
+         * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage language(String language) {
+        public _FinalStage language(LanguageEnum language) {
             this.language = Optional.of(language);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "language", nulls = Nulls.SKIP)
-        public _FinalStage language(Optional<String> language) {
+        public _FinalStage language(Optional<LanguageEnum> language) {
             this.language = language;
             return this;
         }
