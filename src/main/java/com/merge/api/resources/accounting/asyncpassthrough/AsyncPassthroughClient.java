@@ -10,9 +10,9 @@ import com.merge.api.core.MediaTypes;
 import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.resources.accounting.asyncpassthrough.types.AsyncPassthroughRetrieveResponse;
 import com.merge.api.resources.accounting.types.AsyncPassthroughReciept;
 import com.merge.api.resources.accounting.types.DataPassthroughRequest;
-import com.merge.api.resources.accounting.types.RemoteResponse;
 import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -79,14 +79,14 @@ public class AsyncPassthroughClient {
     /**
      * Retrieves data from earlier async-passthrough POST request
      */
-    public RemoteResponse retrieve(String asyncPassthroughReceiptId) {
+    public AsyncPassthroughRetrieveResponse retrieve(String asyncPassthroughReceiptId) {
         return retrieve(asyncPassthroughReceiptId, null);
     }
 
     /**
      * Retrieves data from earlier async-passthrough POST request
      */
-    public RemoteResponse retrieve(String asyncPassthroughReceiptId, RequestOptions requestOptions) {
+    public AsyncPassthroughRetrieveResponse retrieve(String asyncPassthroughReceiptId, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/async-passthrough")
@@ -105,7 +105,8 @@ public class AsyncPassthroughClient {
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), RemoteResponse.class);
+                return ObjectMappers.JSON_MAPPER.readValue(
+                        responseBody.string(), AsyncPassthroughRetrieveResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(
