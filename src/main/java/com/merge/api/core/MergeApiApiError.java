@@ -8,7 +8,7 @@
 package com.merge.api.core;
 
 /**
- * @Deprecated
+ * @deprecated
  * This exception type will be thrown for any non-2XX API responses.
  */
 public class MergeApiApiError extends MergeException {
