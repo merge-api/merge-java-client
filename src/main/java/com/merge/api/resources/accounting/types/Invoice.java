@@ -47,6 +47,8 @@ public final class Invoice {
 
     private final Optional<InvoiceCompany> company;
 
+    private final Optional<InvoiceEmployee> employee;
+
     private final Optional<InvoiceCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -77,6 +79,10 @@ public final class Invoice {
 
     private final Optional<List<InvoiceLineItem>> lineItems;
 
+    private final Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes;
+
+    private final Optional<List<InvoiceAppliedVendorCreditsItem>> appliedVendorCredits;
+
     private final Optional<Boolean> inclusiveOfTax;
 
     private final Optional<Boolean> remoteWasDeleted;
@@ -102,6 +108,7 @@ public final class Invoice {
             Optional<OffsetDateTime> paidOnDate,
             Optional<String> memo,
             Optional<InvoiceCompany> company,
+            Optional<InvoiceEmployee> employee,
             Optional<InvoiceCurrency> currency,
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
@@ -117,6 +124,8 @@ public final class Invoice {
             Optional<List<Optional<InvoicePaymentsItem>>> payments,
             Optional<List<Optional<InvoiceAppliedPaymentsItem>>> appliedPayments,
             Optional<List<InvoiceLineItem>> lineItems,
+            Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes,
+            Optional<List<InvoiceAppliedVendorCreditsItem>> appliedVendorCredits,
             Optional<Boolean> inclusiveOfTax,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -135,6 +144,7 @@ public final class Invoice {
         this.paidOnDate = paidOnDate;
         this.memo = memo;
         this.company = company;
+        this.employee = employee;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.totalDiscount = totalDiscount;
@@ -150,6 +160,8 @@ public final class Invoice {
         this.payments = payments;
         this.appliedPayments = appliedPayments;
         this.lineItems = lineItems;
+        this.appliedCreditNotes = appliedCreditNotes;
+        this.appliedVendorCredits = appliedVendorCredits;
         this.inclusiveOfTax = inclusiveOfTax;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
@@ -253,6 +265,14 @@ public final class Invoice {
     @JsonProperty("company")
     public Optional<InvoiceCompany> getCompany() {
         return company;
+    }
+
+    /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<InvoiceEmployee> getEmployee() {
+        return employee;
     }
 
     /**
@@ -683,6 +703,22 @@ public final class Invoice {
     }
 
     /**
+     * @return <code>CreditNoteApplyLines</code> applied to the Invoice.
+     */
+    @JsonProperty("applied_credit_notes")
+    public Optional<List<InvoiceAppliedCreditNotesItem>> getAppliedCreditNotes() {
+        return appliedCreditNotes;
+    }
+
+    /**
+     * @return <code>VendorCreditApplyLines</code> applied to the Invoice.
+     */
+    @JsonProperty("applied_vendor_credits")
+    public Optional<List<InvoiceAppliedVendorCreditsItem>> getAppliedVendorCredits() {
+        return appliedVendorCredits;
+    }
+
+    /**
      * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
      */
     @JsonProperty("inclusive_of_tax")
@@ -737,6 +773,7 @@ public final class Invoice {
                 && paidOnDate.equals(other.paidOnDate)
                 && memo.equals(other.memo)
                 && company.equals(other.company)
+                && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && totalDiscount.equals(other.totalDiscount)
@@ -752,6 +789,8 @@ public final class Invoice {
                 && payments.equals(other.payments)
                 && appliedPayments.equals(other.appliedPayments)
                 && lineItems.equals(other.lineItems)
+                && appliedCreditNotes.equals(other.appliedCreditNotes)
+                && appliedVendorCredits.equals(other.appliedVendorCredits)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
@@ -774,6 +813,7 @@ public final class Invoice {
                 this.paidOnDate,
                 this.memo,
                 this.company,
+                this.employee,
                 this.currency,
                 this.exchangeRate,
                 this.totalDiscount,
@@ -789,6 +829,8 @@ public final class Invoice {
                 this.payments,
                 this.appliedPayments,
                 this.lineItems,
+                this.appliedCreditNotes,
+                this.appliedVendorCredits,
                 this.inclusiveOfTax,
                 this.remoteWasDeleted,
                 this.fieldMappings,
@@ -831,6 +873,8 @@ public final class Invoice {
 
         private Optional<InvoiceCompany> company = Optional.empty();
 
+        private Optional<InvoiceEmployee> employee = Optional.empty();
+
         private Optional<InvoiceCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -861,6 +905,10 @@ public final class Invoice {
 
         private Optional<List<InvoiceLineItem>> lineItems = Optional.empty();
 
+        private Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes = Optional.empty();
+
+        private Optional<List<InvoiceAppliedVendorCreditsItem>> appliedVendorCredits = Optional.empty();
+
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
@@ -889,6 +937,7 @@ public final class Invoice {
             paidOnDate(other.getPaidOnDate());
             memo(other.getMemo());
             company(other.getCompany());
+            employee(other.getEmployee());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             totalDiscount(other.getTotalDiscount());
@@ -904,6 +953,8 @@ public final class Invoice {
             payments(other.getPayments());
             appliedPayments(other.getAppliedPayments());
             lineItems(other.getLineItems());
+            appliedCreditNotes(other.getAppliedCreditNotes());
+            appliedVendorCredits(other.getAppliedVendorCredits());
             inclusiveOfTax(other.getInclusiveOfTax());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
@@ -1041,6 +1092,17 @@ public final class Invoice {
 
         public Builder company(InvoiceCompany company) {
             this.company = Optional.of(company);
+            return this;
+        }
+
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<InvoiceEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(InvoiceEmployee employee) {
+            this.employee = Optional.of(employee);
             return this;
         }
 
@@ -1209,6 +1271,28 @@ public final class Invoice {
             return this;
         }
 
+        @JsonSetter(value = "applied_credit_notes", nulls = Nulls.SKIP)
+        public Builder appliedCreditNotes(Optional<List<InvoiceAppliedCreditNotesItem>> appliedCreditNotes) {
+            this.appliedCreditNotes = appliedCreditNotes;
+            return this;
+        }
+
+        public Builder appliedCreditNotes(List<InvoiceAppliedCreditNotesItem> appliedCreditNotes) {
+            this.appliedCreditNotes = Optional.of(appliedCreditNotes);
+            return this;
+        }
+
+        @JsonSetter(value = "applied_vendor_credits", nulls = Nulls.SKIP)
+        public Builder appliedVendorCredits(Optional<List<InvoiceAppliedVendorCreditsItem>> appliedVendorCredits) {
+            this.appliedVendorCredits = appliedVendorCredits;
+            return this;
+        }
+
+        public Builder appliedVendorCredits(List<InvoiceAppliedVendorCreditsItem> appliedVendorCredits) {
+            this.appliedVendorCredits = Optional.of(appliedVendorCredits);
+            return this;
+        }
+
         @JsonSetter(value = "inclusive_of_tax", nulls = Nulls.SKIP)
         public Builder inclusiveOfTax(Optional<Boolean> inclusiveOfTax) {
             this.inclusiveOfTax = inclusiveOfTax;
@@ -1278,6 +1362,7 @@ public final class Invoice {
                     paidOnDate,
                     memo,
                     company,
+                    employee,
                     currency,
                     exchangeRate,
                     totalDiscount,
@@ -1293,6 +1378,8 @@ public final class Invoice {
                     payments,
                     appliedPayments,
                     lineItems,
+                    appliedCreditNotes,
+                    appliedVendorCredits,
                     inclusiveOfTax,
                     remoteWasDeleted,
                     fieldMappings,

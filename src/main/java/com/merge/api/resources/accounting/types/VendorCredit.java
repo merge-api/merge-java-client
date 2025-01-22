@@ -51,6 +51,8 @@ public final class VendorCredit {
 
     private final Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories;
 
+    private final Optional<List<VendorCreditApplyLineForVendorCredit>> appliedToLines;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<VendorCreditAccountingPeriod> accountingPeriod;
@@ -76,6 +78,7 @@ public final class VendorCredit {
             Optional<VendorCreditCompany> company,
             Optional<List<VendorCreditLine>> lines,
             Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories,
+            Optional<List<VendorCreditApplyLineForVendorCredit>> appliedToLines,
             Optional<Boolean> remoteWasDeleted,
             Optional<VendorCreditAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -95,6 +98,7 @@ public final class VendorCredit {
         this.company = company;
         this.lines = lines;
         this.trackingCategories = trackingCategories;
+        this.appliedToLines = appliedToLines;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
         this.fieldMappings = fieldMappings;
@@ -514,6 +518,14 @@ public final class VendorCredit {
     }
 
     /**
+     * @return A list of VendorCredit Applied to Lines objects.
+     */
+    @JsonProperty("applied_to_lines")
+    public Optional<List<VendorCreditApplyLineForVendorCredit>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -565,6 +577,7 @@ public final class VendorCredit {
                 && company.equals(other.company)
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
+                && appliedToLines.equals(other.appliedToLines)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && fieldMappings.equals(other.fieldMappings)
@@ -588,6 +601,7 @@ public final class VendorCredit {
                 this.company,
                 this.lines,
                 this.trackingCategories,
+                this.appliedToLines,
                 this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.fieldMappings,
@@ -633,6 +647,8 @@ public final class VendorCredit {
 
         private Optional<List<Optional<VendorCreditTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
+        private Optional<List<VendorCreditApplyLineForVendorCredit>> appliedToLines = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<VendorCreditAccountingPeriod> accountingPeriod = Optional.empty();
@@ -661,6 +677,7 @@ public final class VendorCredit {
             company(other.getCompany());
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
+            appliedToLines(other.getAppliedToLines());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
             fieldMappings(other.getFieldMappings());
@@ -823,6 +840,17 @@ public final class VendorCredit {
             return this;
         }
 
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<VendorCreditApplyLineForVendorCredit>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<VendorCreditApplyLineForVendorCredit> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -883,6 +911,7 @@ public final class VendorCredit {
                     company,
                     lines,
                     trackingCategories,
+                    appliedToLines,
                     remoteWasDeleted,
                     accountingPeriod,
                     fieldMappings,

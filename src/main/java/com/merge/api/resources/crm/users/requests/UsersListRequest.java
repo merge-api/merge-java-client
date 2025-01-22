@@ -27,6 +27,8 @@ public final class UsersListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> email;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
@@ -49,6 +51,7 @@ public final class UsersListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> email,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -61,6 +64,7 @@ public final class UsersListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.email = email;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -94,6 +98,14 @@ public final class UsersListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return users with this email.
+     */
+    @JsonProperty("email")
+    public Optional<String> getEmail() {
+        return email;
     }
 
     /**
@@ -175,6 +187,7 @@ public final class UsersListRequest {
         return createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && email.equals(other.email)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -191,6 +204,7 @@ public final class UsersListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.email,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -218,6 +232,8 @@ public final class UsersListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> email = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
@@ -243,6 +259,7 @@ public final class UsersListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            email(other.getEmail());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -284,6 +301,17 @@ public final class UsersListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.of(cursor);
+            return this;
+        }
+
+        @JsonSetter(value = "email", nulls = Nulls.SKIP)
+        public Builder email(Optional<String> email) {
+            this.email = email;
+            return this;
+        }
+
+        public Builder email(String email) {
+            this.email = Optional.of(email);
             return this;
         }
 
@@ -380,6 +408,7 @@ public final class UsersListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    email,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

@@ -23,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = AccountsListRequest.Builder.class)
 public final class AccountsListRequest {
+    private final Optional<String> accountType;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -54,6 +56,7 @@ public final class AccountsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private AccountsListRequest(
+            Optional<String> accountType,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -69,6 +72,7 @@ public final class AccountsListRequest {
             Optional<String> remoteId,
             Optional<AccountsListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.accountType = accountType;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -84,6 +88,14 @@ public final class AccountsListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return If provided, will only provide accounts with the passed in enum.
+     */
+    @JsonProperty("account_type")
+    public Optional<String> getAccountType() {
+        return accountType;
     }
 
     /**
@@ -210,7 +222,8 @@ public final class AccountsListRequest {
     }
 
     private boolean equalTo(AccountsListRequest other) {
-        return companyId.equals(other.companyId)
+        return accountType.equals(other.accountType)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
@@ -229,6 +242,7 @@ public final class AccountsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.accountType,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
@@ -256,6 +270,8 @@ public final class AccountsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> accountType = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -290,6 +306,7 @@ public final class AccountsListRequest {
         private Builder() {}
 
         public Builder from(AccountsListRequest other) {
+            accountType(other.getAccountType());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
@@ -304,6 +321,17 @@ public final class AccountsListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
+        public Builder accountType(Optional<String> accountType) {
+            this.accountType = accountType;
+            return this;
+        }
+
+        public Builder accountType(String accountType) {
+            this.accountType = Optional.of(accountType);
             return this;
         }
 
@@ -463,6 +491,7 @@ public final class AccountsListRequest {
 
         public AccountsListRequest build() {
             return new AccountsListRequest(
+                    accountType,
                     companyId,
                     createdAfter,
                     createdBefore,

@@ -33,6 +33,9 @@ public final class RemoteData {
         this.additionalProperties = additionalProperties;
     }
 
+    /**
+     * @return The third-party API path that is being called.
+     */
     @JsonProperty("path")
     public String getPath() {
         return path;
@@ -104,6 +107,10 @@ public final class RemoteData {
             return this;
         }
 
+        /**
+         * <p>The third-party API path that is being called.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         @JsonSetter("path")
         public _FinalStage path(String path) {

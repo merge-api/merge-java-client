@@ -31,7 +31,7 @@ public final class AccountingPeriodStatus {
 
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
-            return visitor.visit((AccountingPeriodStatusEnum) this.value);
+            return visitor.visit((Status895Enum) this.value);
         } else if (this.type == 1) {
             return visitor.visit((String) this.value);
         }
@@ -58,7 +58,7 @@ public final class AccountingPeriodStatus {
         return this.value.toString();
     }
 
-    public static AccountingPeriodStatus of(AccountingPeriodStatusEnum value) {
+    public static AccountingPeriodStatus of(Status895Enum value) {
         return new AccountingPeriodStatus(value, 0);
     }
 
@@ -67,7 +67,7 @@ public final class AccountingPeriodStatus {
     }
 
     public interface Visitor<T> {
-        T visit(AccountingPeriodStatusEnum value);
+        T visit(Status895Enum value);
 
         T visit(String value);
     }
@@ -81,7 +81,7 @@ public final class AccountingPeriodStatus {
         public AccountingPeriodStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, AccountingPeriodStatusEnum.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, Status895Enum.class));
             } catch (IllegalArgumentException e) {
             }
             try {

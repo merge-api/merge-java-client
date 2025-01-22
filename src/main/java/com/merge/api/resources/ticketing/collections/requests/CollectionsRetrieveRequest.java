@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import com.merge.api.resources.ticketing.collections.types.CollectionsRetrieveRequestExpand;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -20,7 +21,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CollectionsRetrieveRequest.Builder.class)
 public final class CollectionsRetrieveRequest {
-    private final Optional<String> expand;
+    private final Optional<CollectionsRetrieveRequestExpand> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
@@ -31,7 +32,7 @@ public final class CollectionsRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private CollectionsRetrieveRequest(
-            Optional<String> expand,
+            Optional<CollectionsRetrieveRequestExpand> expand,
             Optional<Boolean> includeRemoteData,
             Optional<String> remoteFields,
             Optional<String> showEnumOrigins,
@@ -47,7 +48,7 @@ public final class CollectionsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<String> getExpand() {
+    public Optional<CollectionsRetrieveRequestExpand> getExpand() {
         return expand;
     }
 
@@ -109,7 +110,7 @@ public final class CollectionsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> expand = Optional.empty();
+        private Optional<CollectionsRetrieveRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
@@ -131,12 +132,12 @@ public final class CollectionsRetrieveRequest {
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
+        public Builder expand(Optional<CollectionsRetrieveRequestExpand> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(CollectionsRetrieveRequestExpand expand) {
             this.expand = Optional.of(expand);
             return this;
         }

@@ -27,6 +27,8 @@ public final class TicketRequest {
 
     private final Optional<List<Optional<TicketRequestAssigneesItem>>> assignees;
 
+    private final Optional<List<Optional<TicketRequestAssignedTeamsItem>>> assignedTeams;
+
     private final Optional<TicketRequestCreator> creator;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -49,6 +51,8 @@ public final class TicketRequest {
 
     private final Optional<List<Optional<String>>> tags;
 
+    private final Optional<List<Optional<String>>> roles;
+
     private final Optional<OffsetDateTime> completedAt;
 
     private final Optional<String> ticketUrl;
@@ -66,6 +70,7 @@ public final class TicketRequest {
     private TicketRequest(
             Optional<String> name,
             Optional<List<Optional<TicketRequestAssigneesItem>>> assignees,
+            Optional<List<Optional<TicketRequestAssignedTeamsItem>>> assignedTeams,
             Optional<TicketRequestCreator> creator,
             Optional<OffsetDateTime> dueDate,
             Optional<TicketRequestStatus> status,
@@ -77,6 +82,7 @@ public final class TicketRequest {
             Optional<TicketRequestParentTicket> parentTicket,
             Optional<List<Optional<TicketRequestAttachmentsItem>>> attachments,
             Optional<List<Optional<String>>> tags,
+            Optional<List<Optional<String>>> roles,
             Optional<OffsetDateTime> completedAt,
             Optional<String> ticketUrl,
             Optional<TicketRequestPriority> priority,
@@ -86,6 +92,7 @@ public final class TicketRequest {
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.assignees = assignees;
+        this.assignedTeams = assignedTeams;
         this.creator = creator;
         this.dueDate = dueDate;
         this.status = status;
@@ -97,6 +104,7 @@ public final class TicketRequest {
         this.parentTicket = parentTicket;
         this.attachments = attachments;
         this.tags = tags;
+        this.roles = roles;
         this.completedAt = completedAt;
         this.ticketUrl = ticketUrl;
         this.priority = priority;
@@ -114,9 +122,20 @@ public final class TicketRequest {
         return name;
     }
 
+    /**
+     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket.
+     */
     @JsonProperty("assignees")
     public Optional<List<Optional<TicketRequestAssigneesItem>>> getAssignees() {
         return assignees;
+    }
+
+    /**
+     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket.
+     */
+    @JsonProperty("assigned_teams")
+    public Optional<List<Optional<TicketRequestAssignedTeamsItem>>> getAssignedTeams() {
+        return assignedTeams;
     }
 
     /**
@@ -157,6 +176,9 @@ public final class TicketRequest {
         return description;
     }
 
+    /**
+     * @return The <code>Collections</code> that this <code>Ticket</code> is included in.
+     */
     @JsonProperty("collections")
     public Optional<List<Optional<TicketRequestCollectionsItem>>> getCollections() {
         return collections;
@@ -202,6 +224,11 @@ public final class TicketRequest {
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
+    }
+
+    @JsonProperty("roles")
+    public Optional<List<Optional<String>>> getRoles() {
+        return roles;
     }
 
     /**
@@ -263,6 +290,7 @@ public final class TicketRequest {
     private boolean equalTo(TicketRequest other) {
         return name.equals(other.name)
                 && assignees.equals(other.assignees)
+                && assignedTeams.equals(other.assignedTeams)
                 && creator.equals(other.creator)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -274,6 +302,7 @@ public final class TicketRequest {
                 && parentTicket.equals(other.parentTicket)
                 && attachments.equals(other.attachments)
                 && tags.equals(other.tags)
+                && roles.equals(other.roles)
                 && completedAt.equals(other.completedAt)
                 && ticketUrl.equals(other.ticketUrl)
                 && priority.equals(other.priority)
@@ -287,6 +316,7 @@ public final class TicketRequest {
         return Objects.hash(
                 this.name,
                 this.assignees,
+                this.assignedTeams,
                 this.creator,
                 this.dueDate,
                 this.status,
@@ -298,6 +328,7 @@ public final class TicketRequest {
                 this.parentTicket,
                 this.attachments,
                 this.tags,
+                this.roles,
                 this.completedAt,
                 this.ticketUrl,
                 this.priority,
@@ -321,6 +352,8 @@ public final class TicketRequest {
 
         private Optional<List<Optional<TicketRequestAssigneesItem>>> assignees = Optional.empty();
 
+        private Optional<List<Optional<TicketRequestAssignedTeamsItem>>> assignedTeams = Optional.empty();
+
         private Optional<TicketRequestCreator> creator = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -343,6 +376,8 @@ public final class TicketRequest {
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
+        private Optional<List<Optional<String>>> roles = Optional.empty();
+
         private Optional<OffsetDateTime> completedAt = Optional.empty();
 
         private Optional<String> ticketUrl = Optional.empty();
@@ -363,6 +398,7 @@ public final class TicketRequest {
         public Builder from(TicketRequest other) {
             name(other.getName());
             assignees(other.getAssignees());
+            assignedTeams(other.getAssignedTeams());
             creator(other.getCreator());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -374,6 +410,7 @@ public final class TicketRequest {
             parentTicket(other.getParentTicket());
             attachments(other.getAttachments());
             tags(other.getTags());
+            roles(other.getRoles());
             completedAt(other.getCompletedAt());
             ticketUrl(other.getTicketUrl());
             priority(other.getPriority());
@@ -402,6 +439,17 @@ public final class TicketRequest {
 
         public Builder assignees(List<Optional<TicketRequestAssigneesItem>> assignees) {
             this.assignees = Optional.of(assignees);
+            return this;
+        }
+
+        @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
+        public Builder assignedTeams(Optional<List<Optional<TicketRequestAssignedTeamsItem>>> assignedTeams) {
+            this.assignedTeams = assignedTeams;
+            return this;
+        }
+
+        public Builder assignedTeams(List<Optional<TicketRequestAssignedTeamsItem>> assignedTeams) {
+            this.assignedTeams = Optional.of(assignedTeams);
             return this;
         }
 
@@ -526,6 +574,17 @@ public final class TicketRequest {
             return this;
         }
 
+        @JsonSetter(value = "roles", nulls = Nulls.SKIP)
+        public Builder roles(Optional<List<Optional<String>>> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public Builder roles(List<Optional<String>> roles) {
+            this.roles = Optional.of(roles);
+            return this;
+        }
+
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;
@@ -596,6 +655,7 @@ public final class TicketRequest {
             return new TicketRequest(
                     name,
                     assignees,
+                    assignedTeams,
                     creator,
                     dueDate,
                     status,
@@ -607,6 +667,7 @@ public final class TicketRequest {
                     parentTicket,
                     attachments,
                     tags,
+                    roles,
                     completedAt,
                     ticketUrl,
                     priority,

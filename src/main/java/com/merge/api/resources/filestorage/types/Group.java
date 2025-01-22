@@ -36,11 +36,13 @@ public final class Group {
 
     private final List<String> users;
 
+    private final Optional<List<GroupChildGroupsItem>> childGroups;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
-    private final Optional<List<Optional<Map<String, JsonNode>>>> remoteData;
+    private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
@@ -51,9 +53,10 @@ public final class Group {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             List<String> users,
+            Optional<List<GroupChildGroupsItem>> childGroups,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
-            Optional<List<Optional<Map<String, JsonNode>>>> remoteData,
+            Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -61,6 +64,7 @@ public final class Group {
         this.modifiedAt = modifiedAt;
         this.name = name;
         this.users = users;
+        this.childGroups = childGroups;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -113,6 +117,14 @@ public final class Group {
     }
 
     /**
+     * @return Groups that inherit the permissions of the parent group.
+     */
+    @JsonProperty("child_groups")
+    public Optional<List<GroupChildGroupsItem>> getChildGroups() {
+        return childGroups;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -126,7 +138,7 @@ public final class Group {
     }
 
     @JsonProperty("remote_data")
-    public Optional<List<Optional<Map<String, JsonNode>>>> getRemoteData() {
+    public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
     }
 
@@ -148,6 +160,7 @@ public final class Group {
                 && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && users.equals(other.users)
+                && childGroups.equals(other.childGroups)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -162,6 +175,7 @@ public final class Group {
                 this.modifiedAt,
                 this.name,
                 this.users,
+                this.childGroups,
                 this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
@@ -190,11 +204,13 @@ public final class Group {
 
         private List<String> users = new ArrayList<>();
 
+        private Optional<List<GroupChildGroupsItem>> childGroups = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
-        private Optional<List<Optional<Map<String, JsonNode>>>> remoteData = Optional.empty();
+        private Optional<List<RemoteData>> remoteData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -208,6 +224,7 @@ public final class Group {
             modifiedAt(other.getModifiedAt());
             name(other.getName());
             users(other.getUsers());
+            childGroups(other.getChildGroups());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -286,6 +303,17 @@ public final class Group {
             return this;
         }
 
+        @JsonSetter(value = "child_groups", nulls = Nulls.SKIP)
+        public Builder childGroups(Optional<List<GroupChildGroupsItem>> childGroups) {
+            this.childGroups = childGroups;
+            return this;
+        }
+
+        public Builder childGroups(List<GroupChildGroupsItem> childGroups) {
+            this.childGroups = Optional.of(childGroups);
+            return this;
+        }
+
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -309,12 +337,12 @@ public final class Group {
         }
 
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
-        public Builder remoteData(Optional<List<Optional<Map<String, JsonNode>>>> remoteData) {
+        public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
             return this;
         }
 
-        public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
+        public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.of(remoteData);
             return this;
         }
@@ -327,6 +355,7 @@ public final class Group {
                     modifiedAt,
                     name,
                     users,
+                    childGroups,
                     remoteWasDeleted,
                     fieldMappings,
                     remoteData,

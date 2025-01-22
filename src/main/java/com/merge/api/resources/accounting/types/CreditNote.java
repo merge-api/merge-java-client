@@ -63,9 +63,11 @@ public final class CreditNote {
 
     private final Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments;
 
-    private final Optional<Boolean> remoteWasDeleted;
-
     private final Optional<CreditNoteAccountingPeriod> accountingPeriod;
+
+    private final Optional<List<CreditNoteApplyLineForCreditNote>> appliedToLines;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -94,8 +96,9 @@ public final class CreditNote {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<CreditNotePaymentsItem>>> payments,
             Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments,
-            Optional<Boolean> remoteWasDeleted,
             Optional<CreditNoteAccountingPeriod> accountingPeriod,
+            Optional<List<CreditNoteApplyLineForCreditNote>> appliedToLines,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
@@ -119,8 +122,9 @@ public final class CreditNote {
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.payments = payments;
         this.appliedPayments = appliedPayments;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.accountingPeriod = accountingPeriod;
+        this.appliedToLines = appliedToLines;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -591,19 +595,27 @@ public final class CreditNote {
     }
 
     /**
-     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
-     */
-    @JsonProperty("remote_was_deleted")
-    public Optional<Boolean> getRemoteWasDeleted() {
-        return remoteWasDeleted;
-    }
-
-    /**
      * @return The accounting period that the CreditNote was generated in.
      */
     @JsonProperty("accounting_period")
     public Optional<CreditNoteAccountingPeriod> getAccountingPeriod() {
         return accountingPeriod;
+    }
+
+    /**
+     * @return A list of the CreditNote Applied to Lines common models related to a given Credit Note
+     */
+    @JsonProperty("applied_to_lines")
+    public Optional<List<CreditNoteApplyLineForCreditNote>> getAppliedToLines() {
+        return appliedToLines;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
     }
 
     @JsonProperty("field_mappings")
@@ -648,8 +660,9 @@ public final class CreditNote {
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && payments.equals(other.payments)
                 && appliedPayments.equals(other.appliedPayments)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
+                && appliedToLines.equals(other.appliedToLines)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -677,8 +690,9 @@ public final class CreditNote {
                 this.remoteUpdatedAt,
                 this.payments,
                 this.appliedPayments,
-                this.remoteWasDeleted,
                 this.accountingPeriod,
+                this.appliedToLines,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -734,9 +748,11 @@ public final class CreditNote {
 
         private Optional<List<Optional<CreditNoteAppliedPaymentsItem>>> appliedPayments = Optional.empty();
 
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
         private Optional<CreditNoteAccountingPeriod> accountingPeriod = Optional.empty();
+
+        private Optional<List<CreditNoteApplyLineForCreditNote>> appliedToLines = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -768,8 +784,9 @@ public final class CreditNote {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             payments(other.getPayments());
             appliedPayments(other.getAppliedPayments());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             accountingPeriod(other.getAccountingPeriod());
+            appliedToLines(other.getAppliedToLines());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -996,17 +1013,6 @@ public final class CreditNote {
             return this;
         }
 
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
-            return this;
-        }
-
         @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
         public Builder accountingPeriod(Optional<CreditNoteAccountingPeriod> accountingPeriod) {
             this.accountingPeriod = accountingPeriod;
@@ -1015,6 +1021,28 @@ public final class CreditNote {
 
         public Builder accountingPeriod(CreditNoteAccountingPeriod accountingPeriod) {
             this.accountingPeriod = Optional.of(accountingPeriod);
+            return this;
+        }
+
+        @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
+        public Builder appliedToLines(Optional<List<CreditNoteApplyLineForCreditNote>> appliedToLines) {
+            this.appliedToLines = appliedToLines;
+            return this;
+        }
+
+        public Builder appliedToLines(List<CreditNoteApplyLineForCreditNote> appliedToLines) {
+            this.appliedToLines = Optional.of(appliedToLines);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
             return this;
         }
 
@@ -1062,8 +1090,9 @@ public final class CreditNote {
                     remoteUpdatedAt,
                     payments,
                     appliedPayments,
-                    remoteWasDeleted,
                     accountingPeriod,
+                    appliedToLines,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

@@ -40,6 +40,8 @@ public final class ExpenseLine {
 
     private final Optional<String> company;
 
+    private final Optional<ExpenseLineEmployee> employee;
+
     private final Optional<ExpenseLineCurrency> currency;
 
     private final Optional<ExpenseLineAccount> account;
@@ -66,6 +68,7 @@ public final class ExpenseLine {
             Optional<ExpenseLineTrackingCategory> trackingCategory,
             Optional<List<Optional<ExpenseLineTrackingCategoriesItem>>> trackingCategories,
             Optional<String> company,
+            Optional<ExpenseLineEmployee> employee,
             Optional<ExpenseLineCurrency> currency,
             Optional<ExpenseLineAccount> account,
             Optional<ExpenseLineContact> contact,
@@ -83,6 +86,7 @@ public final class ExpenseLine {
         this.trackingCategory = trackingCategory;
         this.trackingCategories = trackingCategories;
         this.company = company;
+        this.employee = employee;
         this.currency = currency;
         this.account = account;
         this.contact = contact;
@@ -152,11 +156,19 @@ public final class ExpenseLine {
     }
 
     /**
-     * @return The company the line belongs to.
+     * @return The company the expense belongs to.
      */
     @JsonProperty("company")
     public Optional<String> getCompany() {
         return company;
+    }
+
+    /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<ExpenseLineEmployee> getEmployee() {
+        return employee;
     }
 
     /**
@@ -544,6 +556,7 @@ public final class ExpenseLine {
                 && trackingCategory.equals(other.trackingCategory)
                 && trackingCategories.equals(other.trackingCategories)
                 && company.equals(other.company)
+                && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && account.equals(other.account)
                 && contact.equals(other.contact)
@@ -565,6 +578,7 @@ public final class ExpenseLine {
                 this.trackingCategory,
                 this.trackingCategories,
                 this.company,
+                this.employee,
                 this.currency,
                 this.account,
                 this.contact,
@@ -603,6 +617,8 @@ public final class ExpenseLine {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<ExpenseLineEmployee> employee = Optional.empty();
+
         private Optional<ExpenseLineCurrency> currency = Optional.empty();
 
         private Optional<ExpenseLineAccount> account = Optional.empty();
@@ -632,6 +648,7 @@ public final class ExpenseLine {
             trackingCategory(other.getTrackingCategory());
             trackingCategories(other.getTrackingCategories());
             company(other.getCompany());
+            employee(other.getEmployee());
             currency(other.getCurrency());
             account(other.getAccount());
             contact(other.getContact());
@@ -742,6 +759,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<ExpenseLineEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(ExpenseLineEmployee employee) {
+            this.employee = Optional.of(employee);
+            return this;
+        }
+
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
         public Builder currency(Optional<ExpenseLineCurrency> currency) {
             this.currency = currency;
@@ -830,6 +858,7 @@ public final class ExpenseLine {
                     trackingCategory,
                     trackingCategories,
                     company,
+                    employee,
                     currency,
                     account,
                     contact,

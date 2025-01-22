@@ -65,6 +65,9 @@ public class UsersClient {
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
+        if (request.getEmail().isPresent()) {
+            httpUrl.addQueryParameter("email", request.getEmail().get());
+        }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_deleted_data",

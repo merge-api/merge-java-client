@@ -91,7 +91,7 @@ public final class Permission {
     }
 
     /**
-     * @return The user that is granted this permission.
+     * @return The user that is granted this permission. This will only be populated if the type is <code>USER</code>.
      */
     @JsonProperty("user")
     public Optional<PermissionUser> getUser() {
@@ -99,7 +99,7 @@ public final class Permission {
     }
 
     /**
-     * @return The group that is granted this permission.
+     * @return The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.
      */
     @JsonProperty("group")
     public Optional<PermissionGroup> getGroup() {

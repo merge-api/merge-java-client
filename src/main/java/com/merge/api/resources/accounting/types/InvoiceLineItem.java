@@ -39,6 +39,8 @@ public final class InvoiceLineItem {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<InvoiceLineItemEmployee> employee;
+
     private final Optional<InvoiceLineItemCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -72,6 +74,7 @@ public final class InvoiceLineItem {
             Optional<Double> unitPrice,
             Optional<Double> quantity,
             Optional<Double> totalAmount,
+            Optional<InvoiceLineItemEmployee> employee,
             Optional<InvoiceLineItemCurrency> currency,
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemItem> item,
@@ -92,6 +95,7 @@ public final class InvoiceLineItem {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
+        this.employee = employee;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.item = item;
@@ -165,6 +169,14 @@ public final class InvoiceLineItem {
     @JsonProperty("total_amount")
     public Optional<Double> getTotalAmount() {
         return totalAmount;
+    }
+
+    /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<InvoiceLineItemEmployee> getEmployee() {
+        return employee;
     }
 
     /**
@@ -523,7 +535,7 @@ public final class InvoiceLineItem {
     }
 
     /**
-     * @return The company the line item belongs to.
+     * @return The company the invoice belongs to.
      */
     @JsonProperty("company")
     public Optional<String> getCompany() {
@@ -568,6 +580,7 @@ public final class InvoiceLineItem {
                 && unitPrice.equals(other.unitPrice)
                 && quantity.equals(other.quantity)
                 && totalAmount.equals(other.totalAmount)
+                && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && item.equals(other.item)
@@ -592,6 +605,7 @@ public final class InvoiceLineItem {
                 this.unitPrice,
                 this.quantity,
                 this.totalAmount,
+                this.employee,
                 this.currency,
                 this.exchangeRate,
                 this.item,
@@ -632,6 +646,8 @@ public final class InvoiceLineItem {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<InvoiceLineItemEmployee> employee = Optional.empty();
+
         private Optional<InvoiceLineItemCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -668,6 +684,7 @@ public final class InvoiceLineItem {
             unitPrice(other.getUnitPrice());
             quantity(other.getQuantity());
             totalAmount(other.getTotalAmount());
+            employee(other.getEmployee());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             item(other.getItem());
@@ -767,6 +784,17 @@ public final class InvoiceLineItem {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.of(totalAmount);
+            return this;
+        }
+
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<InvoiceLineItemEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(InvoiceLineItemEmployee employee) {
+            this.employee = Optional.of(employee);
             return this;
         }
 
@@ -902,6 +930,7 @@ public final class InvoiceLineItem {
                     unitPrice,
                     quantity,
                     totalAmount,
+                    employee,
                     currency,
                     exchangeRate,
                     item,

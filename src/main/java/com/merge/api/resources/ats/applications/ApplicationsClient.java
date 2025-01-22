@@ -146,6 +146,8 @@ public class ApplicationsClient {
 
     /**
      * Creates an <code>Application</code> object with the given values.
+     * For certain integrations, but not all, our API detects duplicate candidates and will associate applications with existing records in the third-party. New candidates are created and automatically linked to the application.
+     * <p>See our <a href="https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024">Help Center article</a> for detailed support per integration.</p>
      */
     public ApplicationResponse create(ApplicationEndpointRequest request) {
         return create(request, null);
@@ -153,6 +155,8 @@ public class ApplicationsClient {
 
     /**
      * Creates an <code>Application</code> object with the given values.
+     * For certain integrations, but not all, our API detects duplicate candidates and will associate applications with existing records in the third-party. New candidates are created and automatically linked to the application.
+     * <p>See our <a href="https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024">Help Center article</a> for detailed support per integration.</p>
      */
     public ApplicationResponse create(ApplicationEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())

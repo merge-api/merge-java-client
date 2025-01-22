@@ -22,7 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = TimesheetEntryRequest.Builder.class)
 public final class TimesheetEntryRequest {
-    private final Optional<String> employee;
+    private final Optional<TimesheetEntryRequestEmployee> employee;
 
     private final Optional<Double> hoursWorked;
 
@@ -37,7 +37,7 @@ public final class TimesheetEntryRequest {
     private final Map<String, Object> additionalProperties;
 
     private TimesheetEntryRequest(
-            Optional<String> employee,
+            Optional<TimesheetEntryRequestEmployee> employee,
             Optional<Double> hoursWorked,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
@@ -57,7 +57,7 @@ public final class TimesheetEntryRequest {
      * @return The employee the timesheet entry is for.
      */
     @JsonProperty("employee")
-    public Optional<String> getEmployee() {
+    public Optional<TimesheetEntryRequestEmployee> getEmployee() {
         return employee;
     }
 
@@ -137,7 +137,7 @@ public final class TimesheetEntryRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> employee = Optional.empty();
+        private Optional<TimesheetEntryRequestEmployee> employee = Optional.empty();
 
         private Optional<Double> hoursWorked = Optional.empty();
 
@@ -165,12 +165,12 @@ public final class TimesheetEntryRequest {
         }
 
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
-        public Builder employee(Optional<String> employee) {
+        public Builder employee(Optional<TimesheetEntryRequestEmployee> employee) {
             this.employee = employee;
             return this;
         }
 
-        public Builder employee(String employee) {
+        public Builder employee(TimesheetEntryRequestEmployee employee) {
             this.employee = Optional.of(employee);
             return this;
         }

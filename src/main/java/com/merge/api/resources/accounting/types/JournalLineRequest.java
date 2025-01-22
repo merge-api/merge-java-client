@@ -36,6 +36,8 @@ public final class JournalLineRequest {
 
     private final Optional<String> company;
 
+    private final Optional<String> employee;
+
     private final Optional<String> contact;
 
     private final Optional<String> taxRate;
@@ -60,6 +62,7 @@ public final class JournalLineRequest {
             Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<JournalLineRequestCurrency> currency,
             Optional<String> company,
+            Optional<String> employee,
             Optional<String> contact,
             Optional<String> taxRate,
             Optional<String> description,
@@ -75,6 +78,7 @@ public final class JournalLineRequest {
         this.trackingCategories = trackingCategories;
         this.currency = currency;
         this.company = company;
+        this.employee = employee;
         this.contact = contact;
         this.taxRate = taxRate;
         this.description = description;
@@ -443,6 +447,11 @@ public final class JournalLineRequest {
         return company;
     }
 
+    @JsonProperty("employee")
+    public Optional<String> getEmployee() {
+        return employee;
+    }
+
     @JsonProperty("contact")
     public Optional<String> getContact() {
         return contact;
@@ -506,6 +515,7 @@ public final class JournalLineRequest {
                 && trackingCategories.equals(other.trackingCategories)
                 && currency.equals(other.currency)
                 && company.equals(other.company)
+                && employee.equals(other.employee)
                 && contact.equals(other.contact)
                 && taxRate.equals(other.taxRate)
                 && description.equals(other.description)
@@ -525,6 +535,7 @@ public final class JournalLineRequest {
                 this.trackingCategories,
                 this.currency,
                 this.company,
+                this.employee,
                 this.contact,
                 this.taxRate,
                 this.description,
@@ -560,6 +571,8 @@ public final class JournalLineRequest {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<String> employee = Optional.empty();
+
         private Optional<String> contact = Optional.empty();
 
         private Optional<String> taxRate = Optional.empty();
@@ -587,6 +600,7 @@ public final class JournalLineRequest {
             trackingCategories(other.getTrackingCategories());
             currency(other.getCurrency());
             company(other.getCompany());
+            employee(other.getEmployee());
             contact(other.getContact());
             taxRate(other.getTaxRate());
             description(other.getDescription());
@@ -672,6 +686,17 @@ public final class JournalLineRequest {
 
         public Builder company(String company) {
             this.company = Optional.of(company);
+            return this;
+        }
+
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<String> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(String employee) {
+            this.employee = Optional.of(employee);
             return this;
         }
 
@@ -761,6 +786,7 @@ public final class JournalLineRequest {
                     trackingCategories,
                     currency,
                     company,
+                    employee,
                     contact,
                     taxRate,
                     description,

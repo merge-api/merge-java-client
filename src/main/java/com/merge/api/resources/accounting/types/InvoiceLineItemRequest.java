@@ -32,6 +32,8 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<InvoiceLineItemRequestEmployee> employee;
+
     private final Optional<InvoiceLineItemRequestCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -62,6 +64,7 @@ public final class InvoiceLineItemRequest {
             Optional<Double> unitPrice,
             Optional<Double> quantity,
             Optional<Double> totalAmount,
+            Optional<InvoiceLineItemRequestEmployee> employee,
             Optional<InvoiceLineItemRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemRequestItem> item,
@@ -79,6 +82,7 @@ public final class InvoiceLineItemRequest {
         this.unitPrice = unitPrice;
         this.quantity = quantity;
         this.totalAmount = totalAmount;
+        this.employee = employee;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.item = item;
@@ -131,6 +135,14 @@ public final class InvoiceLineItemRequest {
     @JsonProperty("total_amount")
     public Optional<Double> getTotalAmount() {
         return totalAmount;
+    }
+
+    /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<InvoiceLineItemRequestEmployee> getEmployee() {
+        return employee;
     }
 
     /**
@@ -489,7 +501,7 @@ public final class InvoiceLineItemRequest {
     }
 
     /**
-     * @return The company the line item belongs to.
+     * @return The company the invoice belongs to.
      */
     @JsonProperty("company")
     public Optional<String> getCompany() {
@@ -528,6 +540,7 @@ public final class InvoiceLineItemRequest {
                 && unitPrice.equals(other.unitPrice)
                 && quantity.equals(other.quantity)
                 && totalAmount.equals(other.totalAmount)
+                && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && item.equals(other.item)
@@ -549,6 +562,7 @@ public final class InvoiceLineItemRequest {
                 this.unitPrice,
                 this.quantity,
                 this.totalAmount,
+                this.employee,
                 this.currency,
                 this.exchangeRate,
                 this.item,
@@ -582,6 +596,8 @@ public final class InvoiceLineItemRequest {
         private Optional<Double> quantity = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
+
+        private Optional<InvoiceLineItemRequestEmployee> employee = Optional.empty();
 
         private Optional<InvoiceLineItemRequestCurrency> currency = Optional.empty();
 
@@ -617,6 +633,7 @@ public final class InvoiceLineItemRequest {
             unitPrice(other.getUnitPrice());
             quantity(other.getQuantity());
             totalAmount(other.getTotalAmount());
+            employee(other.getEmployee());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             item(other.getItem());
@@ -683,6 +700,17 @@ public final class InvoiceLineItemRequest {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.of(totalAmount);
+            return this;
+        }
+
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<InvoiceLineItemRequestEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(InvoiceLineItemRequestEmployee employee) {
+            this.employee = Optional.of(employee);
             return this;
         }
 
@@ -816,6 +844,7 @@ public final class InvoiceLineItemRequest {
                     unitPrice,
                     quantity,
                     totalAmount,
+                    employee,
                     currency,
                     exchangeRate,
                     item,

@@ -63,6 +63,8 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> bankFeedAccount;
 
+    private final Optional<List<FieldMappingApiInstance>> employee;
+
     private final Map<String, Object> additionalProperties;
 
     private FieldMappingApiInstanceResponse(
@@ -87,6 +89,7 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> accountingPeriod,
             Optional<List<FieldMappingApiInstance>> generalLedgerTransaction,
             Optional<List<FieldMappingApiInstance>> bankFeedAccount,
+            Optional<List<FieldMappingApiInstance>> employee,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -109,6 +112,7 @@ public final class FieldMappingApiInstanceResponse {
         this.accountingPeriod = accountingPeriod;
         this.generalLedgerTransaction = generalLedgerTransaction;
         this.bankFeedAccount = bankFeedAccount;
+        this.employee = employee;
         this.additionalProperties = additionalProperties;
     }
 
@@ -217,6 +221,11 @@ public final class FieldMappingApiInstanceResponse {
         return bankFeedAccount;
     }
 
+    @JsonProperty("Employee")
+    public Optional<List<FieldMappingApiInstance>> getEmployee() {
+        return employee;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -249,7 +258,8 @@ public final class FieldMappingApiInstanceResponse {
                 && transaction.equals(other.transaction)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && generalLedgerTransaction.equals(other.generalLedgerTransaction)
-                && bankFeedAccount.equals(other.bankFeedAccount);
+                && bankFeedAccount.equals(other.bankFeedAccount)
+                && employee.equals(other.employee);
     }
 
     @java.lang.Override
@@ -275,7 +285,8 @@ public final class FieldMappingApiInstanceResponse {
                 this.transaction,
                 this.accountingPeriod,
                 this.generalLedgerTransaction,
-                this.bankFeedAccount);
+                this.bankFeedAccount,
+                this.employee);
     }
 
     @java.lang.Override
@@ -331,6 +342,8 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> bankFeedAccount = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> employee = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -358,6 +371,7 @@ public final class FieldMappingApiInstanceResponse {
             accountingPeriod(other.getAccountingPeriod());
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
             bankFeedAccount(other.getBankFeedAccount());
+            employee(other.getEmployee());
             return this;
         }
 
@@ -592,6 +606,17 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "Employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<List<FieldMappingApiInstance>> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(List<FieldMappingApiInstance> employee) {
+            this.employee = Optional.of(employee);
+            return this;
+        }
+
         public FieldMappingApiInstanceResponse build() {
             return new FieldMappingApiInstanceResponse(
                     account,
@@ -615,6 +640,7 @@ public final class FieldMappingApiInstanceResponse {
                     accountingPeriod,
                     generalLedgerTransaction,
                     bankFeedAccount,
+                    employee,
                     additionalProperties);
         }
     }

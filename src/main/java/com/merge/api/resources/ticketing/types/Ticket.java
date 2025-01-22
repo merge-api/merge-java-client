@@ -35,6 +35,8 @@ public final class Ticket {
 
     private final Optional<List<Optional<TicketAssigneesItem>>> assignees;
 
+    private final Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams;
+
     private final Optional<TicketCreator> creator;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -56,6 +58,8 @@ public final class Ticket {
     private final Optional<List<Optional<TicketAttachmentsItem>>> attachments;
 
     private final Optional<List<Optional<String>>> tags;
+
+    private final Optional<List<Optional<String>>> roles;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -84,6 +88,7 @@ public final class Ticket {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<List<Optional<TicketAssigneesItem>>> assignees,
+            Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams,
             Optional<TicketCreator> creator,
             Optional<OffsetDateTime> dueDate,
             Optional<TicketStatus> status,
@@ -95,6 +100,7 @@ public final class Ticket {
             Optional<TicketParentTicket> parentTicket,
             Optional<List<Optional<TicketAttachmentsItem>>> attachments,
             Optional<List<Optional<String>>> tags,
+            Optional<List<Optional<String>>> roles,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<OffsetDateTime> completedAt,
@@ -111,6 +117,7 @@ public final class Ticket {
         this.modifiedAt = modifiedAt;
         this.name = name;
         this.assignees = assignees;
+        this.assignedTeams = assignedTeams;
         this.creator = creator;
         this.dueDate = dueDate;
         this.status = status;
@@ -122,6 +129,7 @@ public final class Ticket {
         this.parentTicket = parentTicket;
         this.attachments = attachments;
         this.tags = tags;
+        this.roles = roles;
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.completedAt = completedAt;
@@ -171,9 +179,20 @@ public final class Ticket {
         return name;
     }
 
+    /**
+     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket.
+     */
     @JsonProperty("assignees")
     public Optional<List<Optional<TicketAssigneesItem>>> getAssignees() {
         return assignees;
+    }
+
+    /**
+     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket.
+     */
+    @JsonProperty("assigned_teams")
+    public Optional<List<Optional<TicketAssignedTeamsItem>>> getAssignedTeams() {
+        return assignedTeams;
     }
 
     /**
@@ -214,6 +233,9 @@ public final class Ticket {
         return description;
     }
 
+    /**
+     * @return The <code>Collections</code> that this <code>Ticket</code> is included in.
+     */
     @JsonProperty("collections")
     public Optional<List<Optional<TicketCollectionsItem>>> getCollections() {
         return collections;
@@ -259,6 +281,11 @@ public final class Ticket {
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
+    }
+
+    @JsonProperty("roles")
+    public Optional<List<Optional<String>>> getRoles() {
+        return roles;
     }
 
     /**
@@ -348,6 +375,7 @@ public final class Ticket {
                 && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && assignees.equals(other.assignees)
+                && assignedTeams.equals(other.assignedTeams)
                 && creator.equals(other.creator)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -359,6 +387,7 @@ public final class Ticket {
                 && parentTicket.equals(other.parentTicket)
                 && attachments.equals(other.attachments)
                 && tags.equals(other.tags)
+                && roles.equals(other.roles)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && completedAt.equals(other.completedAt)
@@ -379,6 +408,7 @@ public final class Ticket {
                 this.modifiedAt,
                 this.name,
                 this.assignees,
+                this.assignedTeams,
                 this.creator,
                 this.dueDate,
                 this.status,
@@ -390,6 +420,7 @@ public final class Ticket {
                 this.parentTicket,
                 this.attachments,
                 this.tags,
+                this.roles,
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.completedAt,
@@ -424,6 +455,8 @@ public final class Ticket {
 
         private Optional<List<Optional<TicketAssigneesItem>>> assignees = Optional.empty();
 
+        private Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams = Optional.empty();
+
         private Optional<TicketCreator> creator = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -445,6 +478,8 @@ public final class Ticket {
         private Optional<List<Optional<TicketAttachmentsItem>>> attachments = Optional.empty();
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
+
+        private Optional<List<Optional<String>>> roles = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -476,6 +511,7 @@ public final class Ticket {
             modifiedAt(other.getModifiedAt());
             name(other.getName());
             assignees(other.getAssignees());
+            assignedTeams(other.getAssignedTeams());
             creator(other.getCreator());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -487,6 +523,7 @@ public final class Ticket {
             parentTicket(other.getParentTicket());
             attachments(other.getAttachments());
             tags(other.getTags());
+            roles(other.getRoles());
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             completedAt(other.getCompletedAt());
@@ -562,6 +599,17 @@ public final class Ticket {
 
         public Builder assignees(List<Optional<TicketAssigneesItem>> assignees) {
             this.assignees = Optional.of(assignees);
+            return this;
+        }
+
+        @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
+        public Builder assignedTeams(Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams) {
+            this.assignedTeams = assignedTeams;
+            return this;
+        }
+
+        public Builder assignedTeams(List<Optional<TicketAssignedTeamsItem>> assignedTeams) {
+            this.assignedTeams = Optional.of(assignedTeams);
             return this;
         }
 
@@ -686,6 +734,17 @@ public final class Ticket {
             return this;
         }
 
+        @JsonSetter(value = "roles", nulls = Nulls.SKIP)
+        public Builder roles(Optional<List<Optional<String>>> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public Builder roles(List<Optional<String>> roles) {
+            this.roles = Optional.of(roles);
+            return this;
+        }
+
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -793,6 +852,7 @@ public final class Ticket {
                     modifiedAt,
                     name,
                     assignees,
+                    assignedTeams,
                     creator,
                     dueDate,
                     status,
@@ -804,6 +864,7 @@ public final class Ticket {
                     parentTicket,
                     attachments,
                     tags,
+                    roles,
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     completedAt,

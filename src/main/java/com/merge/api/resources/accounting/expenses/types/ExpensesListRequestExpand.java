@@ -14,6 +14,10 @@ public enum ExpensesListRequestExpand {
 
     ACCOUNT_COMPANY_ACCOUNTING_PERIOD("account,company,accounting_period"),
 
+    ACCOUNT_COMPANY_EMPLOYEE("account,company,employee"),
+
+    ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("account,company,employee,accounting_period"),
+
     ACCOUNT_CONTACT("account,contact"),
 
     ACCOUNT_CONTACT_ACCOUNTING_PERIOD("account,contact,accounting_period"),
@@ -22,11 +26,27 @@ public enum ExpensesListRequestExpand {
 
     ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD("account,contact,company,accounting_period"),
 
+    ACCOUNT_CONTACT_COMPANY_EMPLOYEE("account,contact,company,employee"),
+
+    ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("account,contact,company,employee,accounting_period"),
+
+    ACCOUNT_CONTACT_EMPLOYEE("account,contact,employee"),
+
+    ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("account,contact,employee,accounting_period"),
+
+    ACCOUNT_EMPLOYEE("account,employee"),
+
+    ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD("account,employee,accounting_period"),
+
     ACCOUNTING_PERIOD("accounting_period"),
 
     COMPANY("company"),
 
     COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
+
+    COMPANY_EMPLOYEE("company,employee"),
+
+    COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("company,employee,accounting_period"),
 
     CONTACT("contact"),
 
@@ -35,6 +55,18 @@ public enum ExpensesListRequestExpand {
     CONTACT_COMPANY("contact,company"),
 
     CONTACT_COMPANY_ACCOUNTING_PERIOD("contact,company,accounting_period"),
+
+    CONTACT_COMPANY_EMPLOYEE("contact,company,employee"),
+
+    CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("contact,company,employee,accounting_period"),
+
+    CONTACT_EMPLOYEE("contact,employee"),
+
+    CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("contact,employee,accounting_period"),
+
+    EMPLOYEE("employee"),
+
+    EMPLOYEE_ACCOUNTING_PERIOD("employee,accounting_period"),
 
     TRACKING_CATEGORIES("tracking_categories"),
 
@@ -46,6 +78,11 @@ public enum ExpensesListRequestExpand {
 
     TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,account,company,accounting_period"),
 
+    TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE("tracking_categories,account,company,employee"),
+
+    TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
+            "tracking_categories,account,company,employee,accounting_period"),
+
     TRACKING_CATEGORIES_ACCOUNT_CONTACT("tracking_categories,account,contact"),
 
     TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD("tracking_categories,account,contact,accounting_period"),
@@ -55,11 +92,29 @@ public enum ExpensesListRequestExpand {
     TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,account,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE("tracking_categories,account,contact,company,employee"),
+
+    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
+            "tracking_categories,account,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE("tracking_categories,account,contact,employee"),
+
+    TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
+            "tracking_categories,account,contact,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE("tracking_categories,account,employee"),
+
+    TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,account,employee,accounting_period"),
+
     TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
 
     TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
 
     TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
+
+    TRACKING_CATEGORIES_COMPANY_EMPLOYEE("tracking_categories,company,employee"),
+
+    TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,company,employee,accounting_period"),
 
     TRACKING_CATEGORIES_CONTACT("tracking_categories,contact"),
 
@@ -67,7 +122,20 @@ public enum ExpensesListRequestExpand {
 
     TRACKING_CATEGORIES_CONTACT_COMPANY("tracking_categories,contact,company"),
 
-    TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,contact,company,accounting_period");
+    TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,contact,company,accounting_period"),
+
+    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE("tracking_categories,contact,company,employee"),
+
+    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
+            "tracking_categories,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_CONTACT_EMPLOYEE("tracking_categories,contact,employee"),
+
+    TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,contact,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_EMPLOYEE("tracking_categories,employee"),
+
+    TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,employee,accounting_period");
 
     private final String value;
 

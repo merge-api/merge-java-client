@@ -14,24 +14,24 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = FieldMappingApiInstanceRemoteField.Builder.class)
 public final class FieldMappingApiInstanceRemoteField {
-    private final String remoteKeyName;
+    private final Optional<String> remoteKeyName;
 
-    private final Map<String, JsonNode> schema;
+    private final Optional<Map<String, JsonNode>> schema;
 
     private final FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo;
 
     private final Map<String, Object> additionalProperties;
 
     private FieldMappingApiInstanceRemoteField(
-            String remoteKeyName,
-            Map<String, JsonNode> schema,
+            Optional<String> remoteKeyName,
+            Optional<Map<String, JsonNode>> schema,
             FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo,
             Map<String, Object> additionalProperties) {
         this.remoteKeyName = remoteKeyName;
@@ -41,12 +41,12 @@ public final class FieldMappingApiInstanceRemoteField {
     }
 
     @JsonProperty("remote_key_name")
-    public String getRemoteKeyName() {
+    public Optional<String> getRemoteKeyName() {
         return remoteKeyName;
     }
 
     @JsonProperty("schema")
-    public Map<String, JsonNode> getSchema() {
+    public Optional<Map<String, JsonNode>> getSchema() {
         return schema;
     }
 
@@ -83,37 +83,35 @@ public final class FieldMappingApiInstanceRemoteField {
         return ObjectMappers.stringify(this);
     }
 
-    public static RemoteKeyNameStage builder() {
+    public static RemoteEndpointInfoStage builder() {
         return new Builder();
-    }
-
-    public interface RemoteKeyNameStage {
-        RemoteEndpointInfoStage remoteKeyName(String remoteKeyName);
-
-        Builder from(FieldMappingApiInstanceRemoteField other);
     }
 
     public interface RemoteEndpointInfoStage {
         _FinalStage remoteEndpointInfo(FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo);
+
+        Builder from(FieldMappingApiInstanceRemoteField other);
     }
 
     public interface _FinalStage {
         FieldMappingApiInstanceRemoteField build();
 
+        _FinalStage remoteKeyName(Optional<String> remoteKeyName);
+
+        _FinalStage remoteKeyName(String remoteKeyName);
+
+        _FinalStage schema(Optional<Map<String, JsonNode>> schema);
+
         _FinalStage schema(Map<String, JsonNode> schema);
-
-        _FinalStage putAllSchema(Map<String, JsonNode> schema);
-
-        _FinalStage schema(String key, JsonNode value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements RemoteKeyNameStage, RemoteEndpointInfoStage, _FinalStage {
-        private String remoteKeyName;
-
+    public static final class Builder implements RemoteEndpointInfoStage, _FinalStage {
         private FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo;
 
-        private Map<String, JsonNode> schema = new LinkedHashMap<>();
+        private Optional<Map<String, JsonNode>> schema = Optional.empty();
+
+        private Optional<String> remoteKeyName = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -129,13 +127,6 @@ public final class FieldMappingApiInstanceRemoteField {
         }
 
         @java.lang.Override
-        @JsonSetter("remote_key_name")
-        public RemoteEndpointInfoStage remoteKeyName(String remoteKeyName) {
-            this.remoteKeyName = remoteKeyName;
-            return this;
-        }
-
-        @java.lang.Override
         @JsonSetter("remote_endpoint_info")
         public _FinalStage remoteEndpointInfo(FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo) {
             this.remoteEndpointInfo = remoteEndpointInfo;
@@ -143,22 +134,28 @@ public final class FieldMappingApiInstanceRemoteField {
         }
 
         @java.lang.Override
-        public _FinalStage schema(String key, JsonNode value) {
-            this.schema.put(key, value);
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage putAllSchema(Map<String, JsonNode> schema) {
-            this.schema.putAll(schema);
+        public _FinalStage schema(Map<String, JsonNode> schema) {
+            this.schema = Optional.of(schema);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "schema", nulls = Nulls.SKIP)
-        public _FinalStage schema(Map<String, JsonNode> schema) {
-            this.schema.clear();
-            this.schema.putAll(schema);
+        public _FinalStage schema(Optional<Map<String, JsonNode>> schema) {
+            this.schema = schema;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage remoteKeyName(String remoteKeyName) {
+            this.remoteKeyName = Optional.of(remoteKeyName);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "remote_key_name", nulls = Nulls.SKIP)
+        public _FinalStage remoteKeyName(Optional<String> remoteKeyName) {
+            this.remoteKeyName = remoteKeyName;
             return this;
         }
 
