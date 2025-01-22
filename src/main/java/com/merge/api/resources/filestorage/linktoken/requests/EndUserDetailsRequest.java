@@ -50,6 +50,8 @@ public final class EndUserDetailsRequest {
 
     private final Optional<LanguageEnum> language;
 
+    private final Optional<Boolean> areSyncsDisabled;
+
     private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
 
     private final Map<String, Object> additionalProperties;
@@ -67,6 +69,7 @@ public final class EndUserDetailsRequest {
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
             Optional<LanguageEnum> language,
+            Optional<Boolean> areSyncsDisabled,
             Optional<Map<String, JsonNode>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
@@ -80,6 +83,7 @@ public final class EndUserDetailsRequest {
         this.commonModels = commonModels;
         this.categoryCommonModelScopes = categoryCommonModelScopes;
         this.language = language;
+        this.areSyncsDisabled = areSyncsDisabled;
         this.integrationSpecificConfig = integrationSpecificConfig;
         this.additionalProperties = additionalProperties;
     }
@@ -178,6 +182,14 @@ public final class EndUserDetailsRequest {
     }
 
     /**
+     * @return The boolean that indicates whether initial, periodic, and force syncs will be disabled.
+     */
+    @JsonProperty("are_syncs_disabled")
+    public Optional<Boolean> getAreSyncsDisabled() {
+        return areSyncsDisabled;
+    }
+
+    /**
      * @return A JSON object containing integration-specific configuration options.
      */
     @JsonProperty("integration_specific_config")
@@ -208,6 +220,7 @@ public final class EndUserDetailsRequest {
                 && commonModels.equals(other.commonModels)
                 && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
                 && language.equals(other.language)
+                && areSyncsDisabled.equals(other.areSyncsDisabled)
                 && integrationSpecificConfig.equals(other.integrationSpecificConfig);
     }
 
@@ -225,6 +238,7 @@ public final class EndUserDetailsRequest {
                 this.commonModels,
                 this.categoryCommonModelScopes,
                 this.language,
+                this.areSyncsDisabled,
                 this.integrationSpecificConfig);
     }
 
@@ -291,6 +305,10 @@ public final class EndUserDetailsRequest {
 
         _FinalStage language(LanguageEnum language);
 
+        _FinalStage areSyncsDisabled(Optional<Boolean> areSyncsDisabled);
+
+        _FinalStage areSyncsDisabled(Boolean areSyncsDisabled);
+
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
         _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
@@ -306,6 +324,8 @@ public final class EndUserDetailsRequest {
         private String endUserOriginId;
 
         private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
+
+        private Optional<Boolean> areSyncsDisabled = Optional.empty();
 
         private Optional<LanguageEnum> language = Optional.empty();
 
@@ -342,6 +362,7 @@ public final class EndUserDetailsRequest {
             commonModels(other.getCommonModels());
             categoryCommonModelScopes(other.getCategoryCommonModelScopes());
             language(other.getLanguage());
+            areSyncsDisabled(other.getAreSyncsDisabled());
             integrationSpecificConfig(other.getIntegrationSpecificConfig());
             return this;
         }
@@ -393,6 +414,23 @@ public final class EndUserDetailsRequest {
         @JsonSetter(value = "integration_specific_config", nulls = Nulls.SKIP)
         public _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig) {
             this.integrationSpecificConfig = integrationSpecificConfig;
+            return this;
+        }
+
+        /**
+         * <p>The boolean that indicates whether initial, periodic, and force syncs will be disabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage areSyncsDisabled(Boolean areSyncsDisabled) {
+            this.areSyncsDisabled = Optional.of(areSyncsDisabled);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "are_syncs_disabled", nulls = Nulls.SKIP)
+        public _FinalStage areSyncsDisabled(Optional<Boolean> areSyncsDisabled) {
+            this.areSyncsDisabled = areSyncsDisabled;
             return this;
         }
 
@@ -564,6 +602,7 @@ public final class EndUserDetailsRequest {
                     commonModels,
                     categoryCommonModelScopes,
                     language,
+                    areSyncsDisabled,
                     integrationSpecificConfig,
                     additionalProperties);
         }

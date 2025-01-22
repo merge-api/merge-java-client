@@ -33,7 +33,7 @@ public final class PatchedPaymentRequestAppliedToLinesItem {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((PaymentLineItem) this.value);
+            return visitor.visit((PaymentLineItemRequest) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
@@ -63,14 +63,14 @@ public final class PatchedPaymentRequestAppliedToLinesItem {
         return new PatchedPaymentRequestAppliedToLinesItem(value, 0);
     }
 
-    public static PatchedPaymentRequestAppliedToLinesItem of(PaymentLineItem value) {
+    public static PatchedPaymentRequestAppliedToLinesItem of(PaymentLineItemRequest value) {
         return new PatchedPaymentRequestAppliedToLinesItem(value, 1);
     }
 
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(PaymentLineItem value);
+        T visit(PaymentLineItemRequest value);
     }
 
     static final class Deserializer extends StdDeserializer<PatchedPaymentRequestAppliedToLinesItem> {
@@ -87,7 +87,7 @@ public final class PatchedPaymentRequestAppliedToLinesItem {
             } catch (IllegalArgumentException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, PaymentLineItem.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, PaymentLineItemRequest.class));
             } catch (IllegalArgumentException e) {
             }
             throw new JsonParseException(p, "Failed to deserialize");

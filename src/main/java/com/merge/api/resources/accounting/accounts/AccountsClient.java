@@ -55,6 +55,9 @@ public class AccountsClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts");
+        if (request.getAccountType().isPresent()) {
+            httpUrl.addQueryParameter("account_type", request.getAccountType().get());
+        }
         if (request.getCompanyId().isPresent()) {
             httpUrl.addQueryParameter("company_id", request.getCompanyId().get());
         }

@@ -30,9 +30,11 @@ public final class TimesheetEntriesListRequest {
 
     private final Optional<String> employeeId;
 
-    private final Optional<String> endedAfter;
+    private final Optional<OffsetDateTime> endedAfter;
 
-    private final Optional<String> endedBefore;
+    private final Optional<OffsetDateTime> endedBefore;
+
+    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -50,9 +52,9 @@ public final class TimesheetEntriesListRequest {
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> startedAfter;
+    private final Optional<OffsetDateTime> startedAfter;
 
-    private final Optional<String> startedBefore;
+    private final Optional<OffsetDateTime> startedBefore;
 
     private final Map<String, Object> additionalProperties;
 
@@ -61,8 +63,9 @@ public final class TimesheetEntriesListRequest {
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
-            Optional<String> endedAfter,
-            Optional<String> endedBefore,
+            Optional<OffsetDateTime> endedAfter,
+            Optional<OffsetDateTime> endedBefore,
+            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -71,8 +74,8 @@ public final class TimesheetEntriesListRequest {
             Optional<TimesheetEntriesListRequestOrderBy> orderBy,
             Optional<Integer> pageSize,
             Optional<String> remoteId,
-            Optional<String> startedAfter,
-            Optional<String> startedBefore,
+            Optional<OffsetDateTime> startedAfter,
+            Optional<OffsetDateTime> startedBefore,
             Map<String, Object> additionalProperties) {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -80,6 +83,7 @@ public final class TimesheetEntriesListRequest {
         this.employeeId = employeeId;
         this.endedAfter = endedAfter;
         this.endedBefore = endedBefore;
+        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -129,7 +133,7 @@ public final class TimesheetEntriesListRequest {
      * @return If provided, will only return timesheet entries ended after this datetime.
      */
     @JsonProperty("ended_after")
-    public Optional<String> getEndedAfter() {
+    public Optional<OffsetDateTime> getEndedAfter() {
         return endedAfter;
     }
 
@@ -137,8 +141,16 @@ public final class TimesheetEntriesListRequest {
      * @return If provided, will only return timesheet entries ended before this datetime.
      */
     @JsonProperty("ended_before")
-    public Optional<String> getEndedBefore() {
+    public Optional<OffsetDateTime> getEndedBefore() {
         return endedBefore;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<String> getExpand() {
+        return expand;
     }
 
     /**
@@ -209,7 +221,7 @@ public final class TimesheetEntriesListRequest {
      * @return If provided, will only return timesheet entries started after this datetime.
      */
     @JsonProperty("started_after")
-    public Optional<String> getStartedAfter() {
+    public Optional<OffsetDateTime> getStartedAfter() {
         return startedAfter;
     }
 
@@ -217,7 +229,7 @@ public final class TimesheetEntriesListRequest {
      * @return If provided, will only return timesheet entries started before this datetime.
      */
     @JsonProperty("started_before")
-    public Optional<String> getStartedBefore() {
+    public Optional<OffsetDateTime> getStartedBefore() {
         return startedBefore;
     }
 
@@ -239,6 +251,7 @@ public final class TimesheetEntriesListRequest {
                 && employeeId.equals(other.employeeId)
                 && endedAfter.equals(other.endedAfter)
                 && endedBefore.equals(other.endedBefore)
+                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -260,6 +273,7 @@ public final class TimesheetEntriesListRequest {
                 this.employeeId,
                 this.endedAfter,
                 this.endedBefore,
+                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -291,9 +305,11 @@ public final class TimesheetEntriesListRequest {
 
         private Optional<String> employeeId = Optional.empty();
 
-        private Optional<String> endedAfter = Optional.empty();
+        private Optional<OffsetDateTime> endedAfter = Optional.empty();
 
-        private Optional<String> endedBefore = Optional.empty();
+        private Optional<OffsetDateTime> endedBefore = Optional.empty();
+
+        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -311,9 +327,9 @@ public final class TimesheetEntriesListRequest {
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> startedAfter = Optional.empty();
+        private Optional<OffsetDateTime> startedAfter = Optional.empty();
 
-        private Optional<String> startedBefore = Optional.empty();
+        private Optional<OffsetDateTime> startedBefore = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -327,6 +343,7 @@ public final class TimesheetEntriesListRequest {
             employeeId(other.getEmployeeId());
             endedAfter(other.getEndedAfter());
             endedBefore(other.getEndedBefore());
+            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -385,24 +402,35 @@ public final class TimesheetEntriesListRequest {
         }
 
         @JsonSetter(value = "ended_after", nulls = Nulls.SKIP)
-        public Builder endedAfter(Optional<String> endedAfter) {
+        public Builder endedAfter(Optional<OffsetDateTime> endedAfter) {
             this.endedAfter = endedAfter;
             return this;
         }
 
-        public Builder endedAfter(String endedAfter) {
+        public Builder endedAfter(OffsetDateTime endedAfter) {
             this.endedAfter = Optional.of(endedAfter);
             return this;
         }
 
         @JsonSetter(value = "ended_before", nulls = Nulls.SKIP)
-        public Builder endedBefore(Optional<String> endedBefore) {
+        public Builder endedBefore(Optional<OffsetDateTime> endedBefore) {
             this.endedBefore = endedBefore;
             return this;
         }
 
-        public Builder endedBefore(String endedBefore) {
+        public Builder endedBefore(OffsetDateTime endedBefore) {
             this.endedBefore = Optional.of(endedBefore);
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<String> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(expand);
             return this;
         }
 
@@ -495,23 +523,23 @@ public final class TimesheetEntriesListRequest {
         }
 
         @JsonSetter(value = "started_after", nulls = Nulls.SKIP)
-        public Builder startedAfter(Optional<String> startedAfter) {
+        public Builder startedAfter(Optional<OffsetDateTime> startedAfter) {
             this.startedAfter = startedAfter;
             return this;
         }
 
-        public Builder startedAfter(String startedAfter) {
+        public Builder startedAfter(OffsetDateTime startedAfter) {
             this.startedAfter = Optional.of(startedAfter);
             return this;
         }
 
         @JsonSetter(value = "started_before", nulls = Nulls.SKIP)
-        public Builder startedBefore(Optional<String> startedBefore) {
+        public Builder startedBefore(Optional<OffsetDateTime> startedBefore) {
             this.startedBefore = startedBefore;
             return this;
         }
 
-        public Builder startedBefore(String startedBefore) {
+        public Builder startedBefore(OffsetDateTime startedBefore) {
             this.startedBefore = Optional.of(startedBefore);
             return this;
         }
@@ -524,6 +552,7 @@ public final class TimesheetEntriesListRequest {
                     employeeId,
                     endedAfter,
                     endedBefore,
+                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

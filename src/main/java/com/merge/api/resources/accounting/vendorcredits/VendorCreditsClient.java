@@ -5,18 +5,25 @@ package com.merge.api.resources.accounting.vendorcredits;
 
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
+import com.merge.api.core.MediaTypes;
 import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.resources.accounting.types.MetaResponse;
 import com.merge.api.resources.accounting.types.PaginatedVendorCreditList;
 import com.merge.api.resources.accounting.types.VendorCredit;
+import com.merge.api.resources.accounting.types.VendorCreditResponse;
+import com.merge.api.resources.accounting.vendorcredits.requests.VendorCreditEndpointRequest;
 import com.merge.api.resources.accounting.vendorcredits.requests.VendorCreditsListRequest;
 import com.merge.api.resources.accounting.vendorcredits.requests.VendorCreditsRetrieveRequest;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
@@ -128,6 +135,61 @@ public class VendorCreditsClient {
     }
 
     /**
+     * Creates a <code>VendorCredit</code> object with the given values.
+     */
+    public VendorCreditResponse create(VendorCreditEndpointRequest request) {
+        return create(request, null);
+    }
+
+    /**
+     * Creates a <code>VendorCredit</code> object with the given values.
+     */
+    public VendorCreditResponse create(VendorCreditEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/vendor-credits");
+        if (request.getIsDebugMode().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "is_debug_mode", request.getIsDebugMode().get().toString());
+        }
+        if (request.getRunAsync().isPresent()) {
+            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("model", request.getModel());
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), VendorCreditResponse.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
      * Returns a <code>VendorCredit</code> object with the given <code>id</code>.
      */
     public VendorCredit retrieve(String id) {
@@ -170,6 +232,46 @@ public class VendorCreditsClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), VendorCredit.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns metadata for <code>VendorCredit</code> POSTs.
+     */
+    public MetaResponse metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    /**
+     * Returns metadata for <code>VendorCredit</code> POSTs.
+     */
+    public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/vendor-credits/meta/post")
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

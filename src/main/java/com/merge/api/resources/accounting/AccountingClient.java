@@ -11,18 +11,23 @@ import com.merge.api.resources.accounting.accounts.AccountsClient;
 import com.merge.api.resources.accounting.accounttoken.AccountTokenClient;
 import com.merge.api.resources.accounting.addresses.AddressesClient;
 import com.merge.api.resources.accounting.asyncpassthrough.AsyncPassthroughClient;
+import com.merge.api.resources.accounting.asynctasks.AsyncTasksClient;
 import com.merge.api.resources.accounting.attachments.AttachmentsClient;
 import com.merge.api.resources.accounting.audittrail.AuditTrailClient;
 import com.merge.api.resources.accounting.availableactions.AvailableActionsClient;
 import com.merge.api.resources.accounting.balancesheets.BalanceSheetsClient;
+import com.merge.api.resources.accounting.bankfeedaccounts.BankFeedAccountsClient;
+import com.merge.api.resources.accounting.bankfeedtransactions.BankFeedTransactionsClient;
 import com.merge.api.resources.accounting.cashflowstatements.CashFlowStatementsClient;
 import com.merge.api.resources.accounting.companyinfo.CompanyInfoClient;
 import com.merge.api.resources.accounting.contacts.ContactsClient;
 import com.merge.api.resources.accounting.creditnotes.CreditNotesClient;
 import com.merge.api.resources.accounting.deleteaccount.DeleteAccountClient;
+import com.merge.api.resources.accounting.employees.EmployeesClient;
 import com.merge.api.resources.accounting.expenses.ExpensesClient;
 import com.merge.api.resources.accounting.fieldmapping.FieldMappingClient;
 import com.merge.api.resources.accounting.forceresync.ForceResyncClient;
+import com.merge.api.resources.accounting.generalledgertransactions.GeneralLedgerTransactionsClient;
 import com.merge.api.resources.accounting.generatekey.GenerateKeyClient;
 import com.merge.api.resources.accounting.incomestatements.IncomeStatementsClient;
 import com.merge.api.resources.accounting.invoices.InvoicesClient;
@@ -60,6 +65,8 @@ public class AccountingClient {
 
     protected final Supplier<AsyncPassthroughClient> asyncPassthroughClient;
 
+    protected final Supplier<AsyncTasksClient> asyncTasksClient;
+
     protected final Supplier<AttachmentsClient> attachmentsClient;
 
     protected final Supplier<AuditTrailClient> auditTrailClient;
@@ -67,6 +74,10 @@ public class AccountingClient {
     protected final Supplier<AvailableActionsClient> availableActionsClient;
 
     protected final Supplier<BalanceSheetsClient> balanceSheetsClient;
+
+    protected final Supplier<BankFeedAccountsClient> bankFeedAccountsClient;
+
+    protected final Supplier<BankFeedTransactionsClient> bankFeedTransactionsClient;
 
     protected final Supplier<CashFlowStatementsClient> cashFlowStatementsClient;
 
@@ -80,9 +91,13 @@ public class AccountingClient {
 
     protected final Supplier<DeleteAccountClient> deleteAccountClient;
 
+    protected final Supplier<EmployeesClient> employeesClient;
+
     protected final Supplier<ExpensesClient> expensesClient;
 
     protected final Supplier<FieldMappingClient> fieldMappingClient;
+
+    protected final Supplier<GeneralLedgerTransactionsClient> generalLedgerTransactionsClient;
 
     protected final Supplier<GenerateKeyClient> generateKeyClient;
 
@@ -132,18 +147,24 @@ public class AccountingClient {
         this.accountsClient = Suppliers.memoize(() -> new AccountsClient(clientOptions));
         this.addressesClient = Suppliers.memoize(() -> new AddressesClient(clientOptions));
         this.asyncPassthroughClient = Suppliers.memoize(() -> new AsyncPassthroughClient(clientOptions));
+        this.asyncTasksClient = Suppliers.memoize(() -> new AsyncTasksClient(clientOptions));
         this.attachmentsClient = Suppliers.memoize(() -> new AttachmentsClient(clientOptions));
         this.auditTrailClient = Suppliers.memoize(() -> new AuditTrailClient(clientOptions));
         this.availableActionsClient = Suppliers.memoize(() -> new AvailableActionsClient(clientOptions));
         this.balanceSheetsClient = Suppliers.memoize(() -> new BalanceSheetsClient(clientOptions));
+        this.bankFeedAccountsClient = Suppliers.memoize(() -> new BankFeedAccountsClient(clientOptions));
+        this.bankFeedTransactionsClient = Suppliers.memoize(() -> new BankFeedTransactionsClient(clientOptions));
         this.cashFlowStatementsClient = Suppliers.memoize(() -> new CashFlowStatementsClient(clientOptions));
         this.companyInfoClient = Suppliers.memoize(() -> new CompanyInfoClient(clientOptions));
         this.contactsClient = Suppliers.memoize(() -> new ContactsClient(clientOptions));
         this.creditNotesClient = Suppliers.memoize(() -> new CreditNotesClient(clientOptions));
         this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
+        this.employeesClient = Suppliers.memoize(() -> new EmployeesClient(clientOptions));
         this.expensesClient = Suppliers.memoize(() -> new ExpensesClient(clientOptions));
         this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
+        this.generalLedgerTransactionsClient =
+                Suppliers.memoize(() -> new GeneralLedgerTransactionsClient(clientOptions));
         this.generateKeyClient = Suppliers.memoize(() -> new GenerateKeyClient(clientOptions));
         this.incomeStatementsClient = Suppliers.memoize(() -> new IncomeStatementsClient(clientOptions));
         this.invoicesClient = Suppliers.memoize(() -> new InvoicesClient(clientOptions));
@@ -190,6 +211,10 @@ public class AccountingClient {
         return this.asyncPassthroughClient.get();
     }
 
+    public AsyncTasksClient asyncTasks() {
+        return this.asyncTasksClient.get();
+    }
+
     public AttachmentsClient attachments() {
         return this.attachmentsClient.get();
     }
@@ -204,6 +229,14 @@ public class AccountingClient {
 
     public BalanceSheetsClient balanceSheets() {
         return this.balanceSheetsClient.get();
+    }
+
+    public BankFeedAccountsClient bankFeedAccounts() {
+        return this.bankFeedAccountsClient.get();
+    }
+
+    public BankFeedTransactionsClient bankFeedTransactions() {
+        return this.bankFeedTransactionsClient.get();
     }
 
     public CashFlowStatementsClient cashFlowStatements() {
@@ -230,12 +263,20 @@ public class AccountingClient {
         return this.deleteAccountClient.get();
     }
 
+    public EmployeesClient employees() {
+        return this.employeesClient.get();
+    }
+
     public ExpensesClient expenses() {
         return this.expensesClient.get();
     }
 
     public FieldMappingClient fieldMapping() {
         return this.fieldMappingClient.get();
+    }
+
+    public GeneralLedgerTransactionsClient generalLedgerTransactions() {
+        return this.generalLedgerTransactionsClient.get();
     }
 
     public GenerateKeyClient generateKey() {

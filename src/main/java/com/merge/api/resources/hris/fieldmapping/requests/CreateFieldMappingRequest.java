@@ -18,10 +18,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = CreateFieldMappingRequest.Builder.class)
 public final class CreateFieldMappingRequest {
+    private final Optional<Boolean> excludeRemoteFieldMetadata;
+
     private final String targetFieldName;
 
     private final String targetFieldDescription;
@@ -37,6 +40,7 @@ public final class CreateFieldMappingRequest {
     private final Map<String, Object> additionalProperties;
 
     private CreateFieldMappingRequest(
+            Optional<Boolean> excludeRemoteFieldMetadata,
             String targetFieldName,
             String targetFieldDescription,
             List<JsonNode> remoteFieldTraversalPath,
@@ -44,6 +48,7 @@ public final class CreateFieldMappingRequest {
             String remoteUrlPath,
             String commonModelName,
             Map<String, Object> additionalProperties) {
+        this.excludeRemoteFieldMetadata = excludeRemoteFieldMetadata;
         this.targetFieldName = targetFieldName;
         this.targetFieldDescription = targetFieldDescription;
         this.remoteFieldTraversalPath = remoteFieldTraversalPath;
@@ -51,6 +56,14 @@ public final class CreateFieldMappingRequest {
         this.remoteUrlPath = remoteUrlPath;
         this.commonModelName = commonModelName;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return If <code>true</code>, remote fields metadata is excluded from each field mapping instance (i.e. <code>remote_fields.remote_key_name</code> and <code>remote_fields.schema</code> will be null). This will increase the speed of the request since these fields require some calculations.
+     */
+    @JsonProperty("exclude_remote_field_metadata")
+    public Optional<Boolean> getExcludeRemoteFieldMetadata() {
+        return excludeRemoteFieldMetadata;
     }
 
     /**
@@ -113,7 +126,8 @@ public final class CreateFieldMappingRequest {
     }
 
     private boolean equalTo(CreateFieldMappingRequest other) {
-        return targetFieldName.equals(other.targetFieldName)
+        return excludeRemoteFieldMetadata.equals(other.excludeRemoteFieldMetadata)
+                && targetFieldName.equals(other.targetFieldName)
                 && targetFieldDescription.equals(other.targetFieldDescription)
                 && remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
                 && remoteMethod.equals(other.remoteMethod)
@@ -124,6 +138,7 @@ public final class CreateFieldMappingRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.excludeRemoteFieldMetadata,
                 this.targetFieldName,
                 this.targetFieldDescription,
                 this.remoteFieldTraversalPath,
@@ -166,6 +181,10 @@ public final class CreateFieldMappingRequest {
     public interface _FinalStage {
         CreateFieldMappingRequest build();
 
+        _FinalStage excludeRemoteFieldMetadata(Optional<Boolean> excludeRemoteFieldMetadata);
+
+        _FinalStage excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata);
+
         _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath);
 
         _FinalStage addRemoteFieldTraversalPath(JsonNode remoteFieldTraversalPath);
@@ -193,6 +212,8 @@ public final class CreateFieldMappingRequest {
 
         private List<JsonNode> remoteFieldTraversalPath = new ArrayList<>();
 
+        private Optional<Boolean> excludeRemoteFieldMetadata = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -200,6 +221,7 @@ public final class CreateFieldMappingRequest {
 
         @java.lang.Override
         public Builder from(CreateFieldMappingRequest other) {
+            excludeRemoteFieldMetadata(other.getExcludeRemoteFieldMetadata());
             targetFieldName(other.getTargetFieldName());
             targetFieldDescription(other.getTargetFieldDescription());
             remoteFieldTraversalPath(other.getRemoteFieldTraversalPath());
@@ -292,9 +314,27 @@ public final class CreateFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>If <code>true</code>, remote fields metadata is excluded from each field mapping instance (i.e. <code>remote_fields.remote_key_name</code> and <code>remote_fields.schema</code> will be null). This will increase the speed of the request since these fields require some calculations.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata) {
+            this.excludeRemoteFieldMetadata = Optional.of(excludeRemoteFieldMetadata);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "exclude_remote_field_metadata", nulls = Nulls.SKIP)
+        public _FinalStage excludeRemoteFieldMetadata(Optional<Boolean> excludeRemoteFieldMetadata) {
+            this.excludeRemoteFieldMetadata = excludeRemoteFieldMetadata;
+            return this;
+        }
+
         @java.lang.Override
         public CreateFieldMappingRequest build() {
             return new CreateFieldMappingRequest(
+                    excludeRemoteFieldMetadata,
                     targetFieldName,
                     targetFieldDescription,
                     remoteFieldTraversalPath,

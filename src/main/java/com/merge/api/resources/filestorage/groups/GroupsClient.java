@@ -59,6 +59,9 @@ public class GroupsClient {
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
+        if (request.getExpand().isPresent()) {
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
+        }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_deleted_data",
@@ -133,6 +136,9 @@ public class GroupsClient {
                 .newBuilder()
                 .addPathSegments("filestorage/v1/groups")
                 .addPathSegment(id);
+        if (request.getExpand().isPresent()) {
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
+        }
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());

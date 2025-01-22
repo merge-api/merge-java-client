@@ -31,7 +31,7 @@ public final class AccountRequestCurrency {
 
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
-            return visitor.visit((CurrencyEnum) this.value);
+            return visitor.visit((TransactionCurrencyEnum) this.value);
         } else if (this.type == 1) {
             return visitor.visit((String) this.value);
         }
@@ -58,7 +58,7 @@ public final class AccountRequestCurrency {
         return this.value.toString();
     }
 
-    public static AccountRequestCurrency of(CurrencyEnum value) {
+    public static AccountRequestCurrency of(TransactionCurrencyEnum value) {
         return new AccountRequestCurrency(value, 0);
     }
 
@@ -67,7 +67,7 @@ public final class AccountRequestCurrency {
     }
 
     public interface Visitor<T> {
-        T visit(CurrencyEnum value);
+        T visit(TransactionCurrencyEnum value);
 
         T visit(String value);
     }
@@ -81,7 +81,7 @@ public final class AccountRequestCurrency {
         public AccountRequestCurrency deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, CurrencyEnum.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, TransactionCurrencyEnum.class));
             } catch (IllegalArgumentException e) {
             }
             try {

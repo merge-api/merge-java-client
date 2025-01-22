@@ -35,6 +35,8 @@ public final class InvoiceRequest {
 
     private final Optional<OffsetDateTime> paidOnDate;
 
+    private final Optional<InvoiceRequestEmployee> employee;
+
     private final Optional<String> memo;
 
     private final Optional<InvoiceRequestStatus> status;
@@ -80,6 +82,7 @@ public final class InvoiceRequest {
             Optional<OffsetDateTime> issueDate,
             Optional<OffsetDateTime> dueDate,
             Optional<OffsetDateTime> paidOnDate,
+            Optional<InvoiceRequestEmployee> employee,
             Optional<String> memo,
             Optional<InvoiceRequestStatus> status,
             Optional<InvoiceRequestCompany> company,
@@ -105,6 +108,7 @@ public final class InvoiceRequest {
         this.issueDate = issueDate;
         this.dueDate = dueDate;
         this.paidOnDate = paidOnDate;
+        this.employee = employee;
         this.memo = memo;
         this.status = status;
         this.company = company;
@@ -176,6 +180,14 @@ public final class InvoiceRequest {
     @JsonProperty("paid_on_date")
     public Optional<OffsetDateTime> getPaidOnDate() {
         return paidOnDate;
+    }
+
+    /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<InvoiceRequestEmployee> getEmployee() {
+        return employee;
     }
 
     /**
@@ -638,6 +650,7 @@ public final class InvoiceRequest {
                 && issueDate.equals(other.issueDate)
                 && dueDate.equals(other.dueDate)
                 && paidOnDate.equals(other.paidOnDate)
+                && employee.equals(other.employee)
                 && memo.equals(other.memo)
                 && status.equals(other.status)
                 && company.equals(other.company)
@@ -667,6 +680,7 @@ public final class InvoiceRequest {
                 this.issueDate,
                 this.dueDate,
                 this.paidOnDate,
+                this.employee,
                 this.memo,
                 this.status,
                 this.company,
@@ -709,6 +723,8 @@ public final class InvoiceRequest {
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
         private Optional<OffsetDateTime> paidOnDate = Optional.empty();
+
+        private Optional<InvoiceRequestEmployee> employee = Optional.empty();
 
         private Optional<String> memo = Optional.empty();
 
@@ -758,6 +774,7 @@ public final class InvoiceRequest {
             issueDate(other.getIssueDate());
             dueDate(other.getDueDate());
             paidOnDate(other.getPaidOnDate());
+            employee(other.getEmployee());
             memo(other.getMemo());
             status(other.getStatus());
             company(other.getCompany());
@@ -842,6 +859,17 @@ public final class InvoiceRequest {
 
         public Builder paidOnDate(OffsetDateTime paidOnDate) {
             this.paidOnDate = Optional.of(paidOnDate);
+            return this;
+        }
+
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<InvoiceRequestEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(InvoiceRequestEmployee employee) {
+            this.employee = Optional.of(employee);
             return this;
         }
 
@@ -1052,6 +1080,7 @@ public final class InvoiceRequest {
                     issueDate,
                     dueDate,
                     paidOnDate,
+                    employee,
                     memo,
                     status,
                     company,

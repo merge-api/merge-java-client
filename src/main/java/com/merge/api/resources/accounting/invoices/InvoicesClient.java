@@ -113,6 +113,9 @@ public class InvoicesClient {
             httpUrl.addQueryParameter(
                     "modified_before", request.getModifiedBefore().get().toString());
         }
+        if (request.getNumber().isPresent()) {
+            httpUrl.addQueryParameter("number", request.getNumber().get());
+        }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
@@ -125,6 +128,9 @@ public class InvoicesClient {
         if (request.getShowEnumOrigins().isPresent()) {
             httpUrl.addQueryParameter(
                     "show_enum_origins", request.getShowEnumOrigins().get());
+        }
+        if (request.getStatus().isPresent()) {
+            httpUrl.addQueryParameter("status", request.getStatus().get().toString());
         }
         if (request.getType().isPresent()) {
             httpUrl.addQueryParameter("type", request.getType().get().toString());
@@ -156,6 +162,7 @@ public class InvoicesClient {
 
     /**
      * Creates an <code>Invoice</code> object with the given values.
+     * Including a <code>PurchaseOrder</code> id in the <code>purchase_orders</code> property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
      */
     public InvoiceResponse create(InvoiceEndpointRequest request) {
         return create(request, null);
@@ -163,6 +170,7 @@ public class InvoicesClient {
 
     /**
      * Creates an <code>Invoice</code> object with the given values.
+     * Including a <code>PurchaseOrder</code> id in the <code>purchase_orders</code> property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
      */
     public InvoiceResponse create(InvoiceEndpointRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())

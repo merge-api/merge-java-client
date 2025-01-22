@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestExpand;
+import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestStatus;
 import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestType;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -51,6 +52,8 @@ public final class InvoicesListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> number;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> remoteFields;
@@ -58,6 +61,8 @@ public final class InvoicesListRequest {
     private final Optional<String> remoteId;
 
     private final Optional<String> showEnumOrigins;
+
+    private final Optional<InvoicesListRequestStatus> status;
 
     private final Optional<InvoicesListRequestType> type;
 
@@ -78,10 +83,12 @@ public final class InvoicesListRequest {
             Optional<OffsetDateTime> issueDateBefore,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> number,
             Optional<Integer> pageSize,
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
+            Optional<InvoicesListRequestStatus> status,
             Optional<InvoicesListRequestType> type,
             Map<String, Object> additionalProperties) {
         this.companyId = companyId;
@@ -98,10 +105,12 @@ public final class InvoicesListRequest {
         this.issueDateBefore = issueDateBefore;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.number = number;
         this.pageSize = pageSize;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
+        this.status = status;
         this.type = type;
         this.additionalProperties = additionalProperties;
     }
@@ -219,6 +228,14 @@ public final class InvoicesListRequest {
     }
 
     /**
+     * @return If provided, will only return Invoices with this number.
+     */
+    @JsonProperty("number")
+    public Optional<String> getNumber() {
+        return number;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -251,7 +268,23 @@ public final class InvoicesListRequest {
     }
 
     /**
-     * @return If provided, will only return Invoices with this type
+     * @return If provided, will only return Invoices with this status.
+     * <ul>
+     * <li><code>PAID</code> - PAID</li>
+     * <li><code>DRAFT</code> - DRAFT</li>
+     * <li><code>SUBMITTED</code> - SUBMITTED</li>
+     * <li><code>PARTIALLY_PAID</code> - PARTIALLY_PAID</li>
+     * <li><code>OPEN</code> - OPEN</li>
+     * <li><code>VOID</code> - VOID</li>
+     * </ul>
+     */
+    @JsonProperty("status")
+    public Optional<InvoicesListRequestStatus> getStatus() {
+        return status;
+    }
+
+    /**
+     * @return If provided, will only return Invoices with this type.
      * <ul>
      * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
      * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
@@ -288,10 +321,12 @@ public final class InvoicesListRequest {
                 && issueDateBefore.equals(other.issueDateBefore)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && number.equals(other.number)
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
                 && showEnumOrigins.equals(other.showEnumOrigins)
+                && status.equals(other.status)
                 && type.equals(other.type);
     }
 
@@ -312,10 +347,12 @@ public final class InvoicesListRequest {
                 this.issueDateBefore,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.number,
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
                 this.showEnumOrigins,
+                this.status,
                 this.type);
     }
 
@@ -358,6 +395,8 @@ public final class InvoicesListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> number = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<String> remoteFields = Optional.empty();
@@ -365,6 +404,8 @@ public final class InvoicesListRequest {
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<String> showEnumOrigins = Optional.empty();
+
+        private Optional<InvoicesListRequestStatus> status = Optional.empty();
 
         private Optional<InvoicesListRequestType> type = Optional.empty();
 
@@ -388,10 +429,12 @@ public final class InvoicesListRequest {
             issueDateBefore(other.getIssueDateBefore());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            number(other.getNumber());
             pageSize(other.getPageSize());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            status(other.getStatus());
             type(other.getType());
             return this;
         }
@@ -550,6 +593,17 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "number", nulls = Nulls.SKIP)
+        public Builder number(Optional<String> number) {
+            this.number = number;
+            return this;
+        }
+
+        public Builder number(String number) {
+            this.number = Optional.of(number);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -594,6 +648,17 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<InvoicesListRequestStatus> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(InvoicesListRequestStatus status) {
+            this.status = Optional.of(status);
+            return this;
+        }
+
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<InvoicesListRequestType> type) {
             this.type = type;
@@ -621,10 +686,12 @@ public final class InvoicesListRequest {
                     issueDateBefore,
                     modifiedAfter,
                     modifiedBefore,
+                    number,
                     pageSize,
                     remoteFields,
                     remoteId,
                     showEnumOrigins,
+                    status,
                     type,
                     additionalProperties);
         }

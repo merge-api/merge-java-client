@@ -15,7 +15,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,8 +44,6 @@ public final class TrackingCategory {
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
-    private final Optional<List<RemoteData>> remoteData;
-
     private final Map<String, Object> additionalProperties;
 
     private TrackingCategory(
@@ -61,7 +58,6 @@ public final class TrackingCategory {
             Optional<TrackingCategoryCompany> company,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
-            Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -74,7 +70,6 @@ public final class TrackingCategory {
         this.company = company;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
-        this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -139,16 +134,13 @@ public final class TrackingCategory {
         return categoryType;
     }
 
-    /**
-     * @return ID of the parent tracking category.
-     */
     @JsonProperty("parent_category")
     public Optional<String> getParentCategory() {
         return parentCategory;
     }
 
     /**
-     * @return The company the tracking category belongs to.
+     * @return The company the GeneralLedgerTransaction belongs to.
      */
     @JsonProperty("company")
     public Optional<TrackingCategoryCompany> getCompany() {
@@ -166,11 +158,6 @@ public final class TrackingCategory {
     @JsonProperty("field_mappings")
     public Optional<Map<String, JsonNode>> getFieldMappings() {
         return fieldMappings;
-    }
-
-    @JsonProperty("remote_data")
-    public Optional<List<RemoteData>> getRemoteData() {
-        return remoteData;
     }
 
     @java.lang.Override
@@ -195,8 +182,7 @@ public final class TrackingCategory {
                 && parentCategory.equals(other.parentCategory)
                 && company.equals(other.company)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && fieldMappings.equals(other.fieldMappings);
     }
 
     @java.lang.Override
@@ -212,8 +198,7 @@ public final class TrackingCategory {
                 this.parentCategory,
                 this.company,
                 this.remoteWasDeleted,
-                this.fieldMappings,
-                this.remoteData);
+                this.fieldMappings);
     }
 
     @java.lang.Override
@@ -249,8 +234,6 @@ public final class TrackingCategory {
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
-        private Optional<List<RemoteData>> remoteData = Optional.empty();
-
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -268,7 +251,6 @@ public final class TrackingCategory {
             company(other.getCompany());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
-            remoteData(other.getRemoteData());
             return this;
         }
 
@@ -393,17 +375,6 @@ public final class TrackingCategory {
             return this;
         }
 
-        @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
-        public Builder remoteData(Optional<List<RemoteData>> remoteData) {
-            this.remoteData = remoteData;
-            return this;
-        }
-
-        public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
-            return this;
-        }
-
         public TrackingCategory build() {
             return new TrackingCategory(
                     id,
@@ -417,7 +388,6 @@ public final class TrackingCategory {
                     company,
                     remoteWasDeleted,
                     fieldMappings,
-                    remoteData,
                     additionalProperties);
         }
     }

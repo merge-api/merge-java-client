@@ -27,6 +27,8 @@ public final class GroupsListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> expand;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
@@ -47,6 +49,7 @@ public final class GroupsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -58,6 +61,7 @@ public final class GroupsListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -90,6 +94,14 @@ public final class GroupsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<String> getExpand() {
+        return expand;
     }
 
     /**
@@ -163,6 +175,7 @@ public final class GroupsListRequest {
         return createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -178,6 +191,7 @@ public final class GroupsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -204,6 +218,8 @@ public final class GroupsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> expand = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
@@ -227,6 +243,7 @@ public final class GroupsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -267,6 +284,17 @@ public final class GroupsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.of(cursor);
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<String> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(expand);
             return this;
         }
 
@@ -352,6 +380,7 @@ public final class GroupsListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

@@ -11,6 +11,7 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.hris.fieldmapping.requests.CreateFieldMappingRequest;
+import com.merge.api.resources.hris.fieldmapping.requests.FieldMappingsRetrieveRequest;
 import com.merge.api.resources.hris.fieldmapping.requests.PatchedEditFieldMappingRequest;
 import com.merge.api.resources.hris.fieldmapping.requests.RemoteFieldsRetrieveRequest;
 import com.merge.api.resources.hris.types.ExternalTargetFieldApiResponse;
@@ -18,6 +19,8 @@ import com.merge.api.resources.hris.types.FieldMappingApiInstanceResponse;
 import com.merge.api.resources.hris.types.FieldMappingInstanceResponse;
 import com.merge.api.resources.hris.types.RemoteFieldApiResponse;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -37,23 +40,35 @@ public class FieldMappingClient {
      * Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. <a href="https://docs.merge.dev/supplemental-data/field-mappings/overview/">Learn more</a>.
      */
     public FieldMappingApiInstanceResponse fieldMappingsRetrieve() {
-        return fieldMappingsRetrieve(null);
+        return fieldMappingsRetrieve(FieldMappingsRetrieveRequest.builder().build());
     }
 
     /**
      * Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. <a href="https://docs.merge.dev/supplemental-data/field-mappings/overview/">Learn more</a>.
      */
-    public FieldMappingApiInstanceResponse fieldMappingsRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+    public FieldMappingApiInstanceResponse fieldMappingsRetrieve(FieldMappingsRetrieveRequest request) {
+        return fieldMappingsRetrieve(request, null);
+    }
+
+    /**
+     * Get all Field Mappings for this Linked Account. Field Mappings are mappings between third-party Remote Fields and user defined Merge fields. <a href="https://docs.merge.dev/supplemental-data/field-mappings/overview/">Learn more</a>.
+     */
+    public FieldMappingApiInstanceResponse fieldMappingsRetrieve(
+            FieldMappingsRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/field-mappings")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegments("hris/v1/field-mappings");
+        if (request.getExcludeRemoteFieldMetadata().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "exclude_remote_field_metadata",
+                    request.getExcludeRemoteFieldMetadata().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .build();
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -86,23 +101,34 @@ public class FieldMappingClient {
      */
     public FieldMappingInstanceResponse fieldMappingsCreate(
             CreateFieldMappingRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/field-mappings")
-                .build();
+                .addPathSegments("hris/v1/field-mappings");
+        if (request.getExcludeRemoteFieldMetadata().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "exclude_remote_field_metadata",
+                    request.getExcludeRemoteFieldMetadata().get().toString());
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("target_field_name", request.getTargetFieldName());
+        properties.put("target_field_description", request.getTargetFieldDescription());
+        properties.put("remote_field_traversal_path", request.getRemoteFieldTraversalPath());
+        properties.put("remote_method", request.getRemoteMethod());
+        properties.put("remote_url_path", request.getRemoteUrlPath());
+        properties.put("common_model_name", request.getCommonModelName());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-        } catch (JsonProcessingException e) {
-            throw new MergeException("Failed to serialize request", e);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .build();
+                .addHeader("Content-Type", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);

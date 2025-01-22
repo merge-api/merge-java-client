@@ -27,6 +27,8 @@ public final class PatchedTicketRequest {
 
     private final Optional<List<Optional<String>>> assignees;
 
+    private final Optional<List<Optional<String>>> assignedTeams;
+
     private final Optional<String> creator;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -47,6 +49,8 @@ public final class PatchedTicketRequest {
 
     private final Optional<List<Optional<String>>> tags;
 
+    private final Optional<List<Optional<String>>> roles;
+
     private final Optional<OffsetDateTime> completedAt;
 
     private final Optional<String> ticketUrl;
@@ -64,6 +68,7 @@ public final class PatchedTicketRequest {
     private PatchedTicketRequest(
             Optional<String> name,
             Optional<List<Optional<String>>> assignees,
+            Optional<List<Optional<String>>> assignedTeams,
             Optional<String> creator,
             Optional<OffsetDateTime> dueDate,
             Optional<PatchedTicketRequestStatus> status,
@@ -74,6 +79,7 @@ public final class PatchedTicketRequest {
             Optional<String> contact,
             Optional<String> parentTicket,
             Optional<List<Optional<String>>> tags,
+            Optional<List<Optional<String>>> roles,
             Optional<OffsetDateTime> completedAt,
             Optional<String> ticketUrl,
             Optional<PatchedTicketRequestPriority> priority,
@@ -83,6 +89,7 @@ public final class PatchedTicketRequest {
             Map<String, Object> additionalProperties) {
         this.name = name;
         this.assignees = assignees;
+        this.assignedTeams = assignedTeams;
         this.creator = creator;
         this.dueDate = dueDate;
         this.status = status;
@@ -93,6 +100,7 @@ public final class PatchedTicketRequest {
         this.contact = contact;
         this.parentTicket = parentTicket;
         this.tags = tags;
+        this.roles = roles;
         this.completedAt = completedAt;
         this.ticketUrl = ticketUrl;
         this.priority = priority;
@@ -110,9 +118,20 @@ public final class PatchedTicketRequest {
         return name;
     }
 
+    /**
+     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket.
+     */
     @JsonProperty("assignees")
     public Optional<List<Optional<String>>> getAssignees() {
         return assignees;
+    }
+
+    /**
+     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket.
+     */
+    @JsonProperty("assigned_teams")
+    public Optional<List<Optional<String>>> getAssignedTeams() {
+        return assignedTeams;
     }
 
     /**
@@ -153,6 +172,9 @@ public final class PatchedTicketRequest {
         return description;
     }
 
+    /**
+     * @return The <code>Collections</code> that this <code>Ticket</code> is included in.
+     */
     @JsonProperty("collections")
     public Optional<List<Optional<String>>> getCollections() {
         return collections;
@@ -193,6 +215,11 @@ public final class PatchedTicketRequest {
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
+    }
+
+    @JsonProperty("roles")
+    public Optional<List<Optional<String>>> getRoles() {
+        return roles;
     }
 
     /**
@@ -254,6 +281,7 @@ public final class PatchedTicketRequest {
     private boolean equalTo(PatchedTicketRequest other) {
         return name.equals(other.name)
                 && assignees.equals(other.assignees)
+                && assignedTeams.equals(other.assignedTeams)
                 && creator.equals(other.creator)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -264,6 +292,7 @@ public final class PatchedTicketRequest {
                 && contact.equals(other.contact)
                 && parentTicket.equals(other.parentTicket)
                 && tags.equals(other.tags)
+                && roles.equals(other.roles)
                 && completedAt.equals(other.completedAt)
                 && ticketUrl.equals(other.ticketUrl)
                 && priority.equals(other.priority)
@@ -277,6 +306,7 @@ public final class PatchedTicketRequest {
         return Objects.hash(
                 this.name,
                 this.assignees,
+                this.assignedTeams,
                 this.creator,
                 this.dueDate,
                 this.status,
@@ -287,6 +317,7 @@ public final class PatchedTicketRequest {
                 this.contact,
                 this.parentTicket,
                 this.tags,
+                this.roles,
                 this.completedAt,
                 this.ticketUrl,
                 this.priority,
@@ -310,6 +341,8 @@ public final class PatchedTicketRequest {
 
         private Optional<List<Optional<String>>> assignees = Optional.empty();
 
+        private Optional<List<Optional<String>>> assignedTeams = Optional.empty();
+
         private Optional<String> creator = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -329,6 +362,8 @@ public final class PatchedTicketRequest {
         private Optional<String> parentTicket = Optional.empty();
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
+
+        private Optional<List<Optional<String>>> roles = Optional.empty();
 
         private Optional<OffsetDateTime> completedAt = Optional.empty();
 
@@ -350,6 +385,7 @@ public final class PatchedTicketRequest {
         public Builder from(PatchedTicketRequest other) {
             name(other.getName());
             assignees(other.getAssignees());
+            assignedTeams(other.getAssignedTeams());
             creator(other.getCreator());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -360,6 +396,7 @@ public final class PatchedTicketRequest {
             contact(other.getContact());
             parentTicket(other.getParentTicket());
             tags(other.getTags());
+            roles(other.getRoles());
             completedAt(other.getCompletedAt());
             ticketUrl(other.getTicketUrl());
             priority(other.getPriority());
@@ -388,6 +425,17 @@ public final class PatchedTicketRequest {
 
         public Builder assignees(List<Optional<String>> assignees) {
             this.assignees = Optional.of(assignees);
+            return this;
+        }
+
+        @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
+        public Builder assignedTeams(Optional<List<Optional<String>>> assignedTeams) {
+            this.assignedTeams = assignedTeams;
+            return this;
+        }
+
+        public Builder assignedTeams(List<Optional<String>> assignedTeams) {
+            this.assignedTeams = Optional.of(assignedTeams);
             return this;
         }
 
@@ -501,6 +549,17 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        @JsonSetter(value = "roles", nulls = Nulls.SKIP)
+        public Builder roles(Optional<List<Optional<String>>> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public Builder roles(List<Optional<String>> roles) {
+            this.roles = Optional.of(roles);
+            return this;
+        }
+
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;
@@ -571,6 +630,7 @@ public final class PatchedTicketRequest {
             return new PatchedTicketRequest(
                     name,
                     assignees,
+                    assignedTeams,
                     creator,
                     dueDate,
                     status,
@@ -581,6 +641,7 @@ public final class PatchedTicketRequest {
                     contact,
                     parentTicket,
                     tags,
+                    roles,
                     completedAt,
                     ticketUrl,
                     priority,

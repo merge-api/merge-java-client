@@ -22,29 +22,29 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonDeserialize(builder = FieldPermissionDeserializerRequest.Builder.class)
 public final class FieldPermissionDeserializerRequest {
-    private final Optional<List<JsonNode>> enabled;
+    private final Optional<List<JsonNode>> enabledFields;
 
-    private final Optional<List<JsonNode>> disabled;
+    private final Optional<List<JsonNode>> disabledFields;
 
     private final Map<String, Object> additionalProperties;
 
     private FieldPermissionDeserializerRequest(
-            Optional<List<JsonNode>> enabled,
-            Optional<List<JsonNode>> disabled,
+            Optional<List<JsonNode>> enabledFields,
+            Optional<List<JsonNode>> disabledFields,
             Map<String, Object> additionalProperties) {
-        this.enabled = enabled;
-        this.disabled = disabled;
+        this.enabledFields = enabledFields;
+        this.disabledFields = disabledFields;
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("enabled")
-    public Optional<List<JsonNode>> getEnabled() {
-        return enabled;
+    @JsonProperty("enabled_fields")
+    public Optional<List<JsonNode>> getEnabledFields() {
+        return enabledFields;
     }
 
-    @JsonProperty("disabled")
-    public Optional<List<JsonNode>> getDisabled() {
-        return disabled;
+    @JsonProperty("disabled_fields")
+    public Optional<List<JsonNode>> getDisabledFields() {
+        return disabledFields;
     }
 
     @java.lang.Override
@@ -60,12 +60,12 @@ public final class FieldPermissionDeserializerRequest {
     }
 
     private boolean equalTo(FieldPermissionDeserializerRequest other) {
-        return enabled.equals(other.enabled) && disabled.equals(other.disabled);
+        return enabledFields.equals(other.enabledFields) && disabledFields.equals(other.disabledFields);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.enabled, this.disabled);
+        return Objects.hash(this.enabledFields, this.disabledFields);
     }
 
     @java.lang.Override
@@ -79,9 +79,9 @@ public final class FieldPermissionDeserializerRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<JsonNode>> enabled = Optional.empty();
+        private Optional<List<JsonNode>> enabledFields = Optional.empty();
 
-        private Optional<List<JsonNode>> disabled = Optional.empty();
+        private Optional<List<JsonNode>> disabledFields = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -89,35 +89,35 @@ public final class FieldPermissionDeserializerRequest {
         private Builder() {}
 
         public Builder from(FieldPermissionDeserializerRequest other) {
-            enabled(other.getEnabled());
-            disabled(other.getDisabled());
+            enabledFields(other.getEnabledFields());
+            disabledFields(other.getDisabledFields());
             return this;
         }
 
-        @JsonSetter(value = "enabled", nulls = Nulls.SKIP)
-        public Builder enabled(Optional<List<JsonNode>> enabled) {
-            this.enabled = enabled;
+        @JsonSetter(value = "enabled_fields", nulls = Nulls.SKIP)
+        public Builder enabledFields(Optional<List<JsonNode>> enabledFields) {
+            this.enabledFields = enabledFields;
             return this;
         }
 
-        public Builder enabled(List<JsonNode> enabled) {
-            this.enabled = Optional.of(enabled);
+        public Builder enabledFields(List<JsonNode> enabledFields) {
+            this.enabledFields = Optional.of(enabledFields);
             return this;
         }
 
-        @JsonSetter(value = "disabled", nulls = Nulls.SKIP)
-        public Builder disabled(Optional<List<JsonNode>> disabled) {
-            this.disabled = disabled;
+        @JsonSetter(value = "disabled_fields", nulls = Nulls.SKIP)
+        public Builder disabledFields(Optional<List<JsonNode>> disabledFields) {
+            this.disabledFields = disabledFields;
             return this;
         }
 
-        public Builder disabled(List<JsonNode> disabled) {
-            this.disabled = Optional.of(disabled);
+        public Builder disabledFields(List<JsonNode> disabledFields) {
+            this.disabledFields = Optional.of(disabledFields);
             return this;
         }
 
         public FieldPermissionDeserializerRequest build() {
-            return new FieldPermissionDeserializerRequest(enabled, disabled, additionalProperties);
+            return new FieldPermissionDeserializerRequest(enabledFields, disabledFields, additionalProperties);
         }
     }
 }

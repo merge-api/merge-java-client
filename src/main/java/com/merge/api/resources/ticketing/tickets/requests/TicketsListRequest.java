@@ -16,7 +16,6 @@ import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestExpand;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestPriority;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestRemoteFields;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestShowEnumOrigins;
-import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestStatus;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -82,7 +81,7 @@ public final class TicketsListRequest {
 
     private final Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins;
 
-    private final Optional<TicketsListRequestStatus> status;
+    private final Optional<String> status;
 
     private final Optional<String> tags;
 
@@ -121,7 +120,7 @@ public final class TicketsListRequest {
             Optional<OffsetDateTime> remoteUpdatedAfter,
             Optional<OffsetDateTime> remoteUpdatedBefore,
             Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins,
-            Optional<TicketsListRequestStatus> status,
+            Optional<String> status,
             Optional<String> tags,
             Optional<String> ticketType,
             Optional<String> ticketUrl,
@@ -393,15 +392,9 @@ public final class TicketsListRequest {
 
     /**
      * @return If provided, will only return tickets of this status.
-     * <ul>
-     * <li><code>OPEN</code> - OPEN</li>
-     * <li><code>CLOSED</code> - CLOSED</li>
-     * <li><code>IN_PROGRESS</code> - IN_PROGRESS</li>
-     * <li><code>ON_HOLD</code> - ON_HOLD</li>
-     * </ul>
      */
     @JsonProperty("status")
-    public Optional<TicketsListRequestStatus> getStatus() {
+    public Optional<String> getStatus() {
         return status;
     }
 
@@ -579,7 +572,7 @@ public final class TicketsListRequest {
 
         private Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
-        private Optional<TicketsListRequestStatus> status = Optional.empty();
+        private Optional<String> status = Optional.empty();
 
         private Optional<String> tags = Optional.empty();
 
@@ -937,12 +930,12 @@ public final class TicketsListRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TicketsListRequestStatus> status) {
+        public Builder status(Optional<String> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TicketsListRequestStatus status) {
+        public Builder status(String status) {
             this.status = Optional.of(status);
             return this;
         }

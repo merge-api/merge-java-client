@@ -53,7 +53,7 @@ public final class Folder {
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
-    private final Optional<List<Optional<Map<String, JsonNode>>>> remoteData;
+    private final Optional<List<RemoteData>> remoteData;
 
     private final Map<String, Object> additionalProperties;
 
@@ -73,7 +73,7 @@ public final class Folder {
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
-            Optional<List<Optional<Map<String, JsonNode>>>> remoteData,
+            Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -209,7 +209,7 @@ public final class Folder {
     }
 
     @JsonProperty("remote_data")
-    public Optional<List<Optional<Map<String, JsonNode>>>> getRemoteData() {
+    public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
     }
 
@@ -305,7 +305,7 @@ public final class Folder {
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
-        private Optional<List<Optional<Map<String, JsonNode>>>> remoteData = Optional.empty();
+        private Optional<List<RemoteData>> remoteData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -498,12 +498,12 @@ public final class Folder {
         }
 
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
-        public Builder remoteData(Optional<List<Optional<Map<String, JsonNode>>>> remoteData) {
+        public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
             return this;
         }
 
-        public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
+        public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.of(remoteData);
             return this;
         }

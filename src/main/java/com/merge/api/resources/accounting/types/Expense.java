@@ -53,6 +53,8 @@ public final class Expense {
 
     private final Optional<ExpenseCompany> company;
 
+    private final Optional<ExpenseEmployee> employee;
+
     private final Optional<String> memo;
 
     private final Optional<List<ExpenseLine>> lines;
@@ -87,6 +89,7 @@ public final class Expense {
             Optional<String> exchangeRate,
             Optional<Boolean> inclusiveOfTax,
             Optional<ExpenseCompany> company,
+            Optional<ExpenseEmployee> employee,
             Optional<String> memo,
             Optional<List<ExpenseLine>> lines,
             Optional<List<Optional<ExpenseTrackingCategoriesItem>>> trackingCategories,
@@ -111,6 +114,7 @@ public final class Expense {
         this.exchangeRate = exchangeRate;
         this.inclusiveOfTax = inclusiveOfTax;
         this.company = company;
+        this.employee = employee;
         this.memo = memo;
         this.lines = lines;
         this.trackingCategories = trackingCategories;
@@ -548,6 +552,14 @@ public final class Expense {
     }
 
     /**
+     * @return The employee this overall transaction relates to.
+     */
+    @JsonProperty("employee")
+    public Optional<ExpenseEmployee> getEmployee() {
+        return employee;
+    }
+
+    /**
      * @return The expense's private note.
      */
     @JsonProperty("memo")
@@ -623,6 +635,7 @@ public final class Expense {
                 && exchangeRate.equals(other.exchangeRate)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && company.equals(other.company)
+                && employee.equals(other.employee)
                 && memo.equals(other.memo)
                 && lines.equals(other.lines)
                 && trackingCategories.equals(other.trackingCategories)
@@ -651,6 +664,7 @@ public final class Expense {
                 this.exchangeRate,
                 this.inclusiveOfTax,
                 this.company,
+                this.employee,
                 this.memo,
                 this.lines,
                 this.trackingCategories,
@@ -702,6 +716,8 @@ public final class Expense {
 
         private Optional<ExpenseCompany> company = Optional.empty();
 
+        private Optional<ExpenseEmployee> employee = Optional.empty();
+
         private Optional<String> memo = Optional.empty();
 
         private Optional<List<ExpenseLine>> lines = Optional.empty();
@@ -739,6 +755,7 @@ public final class Expense {
             exchangeRate(other.getExchangeRate());
             inclusiveOfTax(other.getInclusiveOfTax());
             company(other.getCompany());
+            employee(other.getEmployee());
             memo(other.getMemo());
             lines(other.getLines());
             trackingCategories(other.getTrackingCategories());
@@ -915,6 +932,17 @@ public final class Expense {
             return this;
         }
 
+        @JsonSetter(value = "employee", nulls = Nulls.SKIP)
+        public Builder employee(Optional<ExpenseEmployee> employee) {
+            this.employee = employee;
+            return this;
+        }
+
+        public Builder employee(ExpenseEmployee employee) {
+            this.employee = Optional.of(employee);
+            return this;
+        }
+
         @JsonSetter(value = "memo", nulls = Nulls.SKIP)
         public Builder memo(Optional<String> memo) {
             this.memo = memo;
@@ -1020,6 +1048,7 @@ public final class Expense {
                     exchangeRate,
                     inclusiveOfTax,
                     company,
+                    employee,
                     memo,
                     lines,
                     trackingCategories,

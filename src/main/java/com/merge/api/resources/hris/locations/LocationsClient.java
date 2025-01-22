@@ -88,14 +88,15 @@ public class LocationsClient {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
         if (request.getRemoteFields().isPresent()) {
-            httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
+            httpUrl.addQueryParameter(
+                    "remote_fields", request.getRemoteFields().get().toString());
         }
         if (request.getRemoteId().isPresent()) {
             httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
         }
         if (request.getShowEnumOrigins().isPresent()) {
             httpUrl.addQueryParameter(
-                    "show_enum_origins", request.getShowEnumOrigins().get());
+                    "show_enum_origins", request.getShowEnumOrigins().get().toString());
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -149,11 +150,12 @@ public class LocationsClient {
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
         if (request.getRemoteFields().isPresent()) {
-            httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
+            httpUrl.addQueryParameter(
+                    "remote_fields", request.getRemoteFields().get().toString());
         }
         if (request.getShowEnumOrigins().isPresent()) {
             httpUrl.addQueryParameter(
-                    "show_enum_origins", request.getShowEnumOrigins().get());
+                    "show_enum_origins", request.getShowEnumOrigins().get().toString());
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

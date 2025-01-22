@@ -22,6 +22,38 @@ public enum TicketsRetrieveRequestExpand {
 
     ACCOUNT_PARENT_TICKET("account,parent_ticket"),
 
+    ASSIGNED_TEAMS("assigned_teams"),
+
+    ASSIGNED_TEAMS_ACCOUNT("assigned_teams,account"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CONTACT("assigned_teams,account,contact"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("assigned_teams,account,contact,creator"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("assigned_teams,account,contact,creator,parent_ticket"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET("assigned_teams,account,contact,parent_ticket"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CREATOR("assigned_teams,account,creator"),
+
+    ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET("assigned_teams,account,creator,parent_ticket"),
+
+    ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("assigned_teams,account,parent_ticket"),
+
+    ASSIGNED_TEAMS_CONTACT("assigned_teams,contact"),
+
+    ASSIGNED_TEAMS_CONTACT_CREATOR("assigned_teams,contact,creator"),
+
+    ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET("assigned_teams,contact,creator,parent_ticket"),
+
+    ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("assigned_teams,contact,parent_ticket"),
+
+    ASSIGNED_TEAMS_CREATOR("assigned_teams,creator"),
+
+    ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("assigned_teams,creator,parent_ticket"),
+
+    ASSIGNED_TEAMS_PARENT_TICKET("assigned_teams,parent_ticket"),
+
     ASSIGNEES("assignees"),
 
     ASSIGNEES_ACCOUNT("assignees,account"),
@@ -39,6 +71,39 @@ public enum TicketsRetrieveRequestExpand {
     ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET("assignees,account,creator,parent_ticket"),
 
     ASSIGNEES_ACCOUNT_PARENT_TICKET("assignees,account,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS("assignees,assigned_teams"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT("assignees,assigned_teams,account"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT("assignees,assigned_teams,account,contact"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("assignees,assigned_teams,account,contact,creator"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "assignees,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET("assignees,assigned_teams,account,contact,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR("assignees,assigned_teams,account,creator"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET("assignees,assigned_teams,account,creator,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("assignees,assigned_teams,account,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CONTACT("assignees,assigned_teams,contact"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR("assignees,assigned_teams,contact,creator"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET("assignees,assigned_teams,contact,creator,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("assignees,assigned_teams,contact,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CREATOR("assignees,assigned_teams,creator"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("assignees,assigned_teams,creator,parent_ticket"),
+
+    ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET("assignees,assigned_teams,parent_ticket"),
 
     ASSIGNEES_COLLECTIONS("assignees,collections"),
 
@@ -58,6 +123,46 @@ public enum TicketsRetrieveRequestExpand {
     ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET("assignees,collections,account,creator,parent_ticket"),
 
     ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET("assignees,collections,account,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS("assignees,collections,assigned_teams"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("assignees,collections,assigned_teams,account"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("assignees,collections,assigned_teams,account,contact"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
+            "assignees,collections,assigned_teams,account,contact,creator"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "assignees,collections,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "assignees,collections,assigned_teams,account,contact,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("assignees,collections,assigned_teams,account,creator"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "assignees,collections,assigned_teams,account,creator,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
+            "assignees,collections,assigned_teams,account,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT("assignees,collections,assigned_teams,contact"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("assignees,collections,assigned_teams,contact,creator"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "assignees,collections,assigned_teams,contact,creator,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
+            "assignees,collections,assigned_teams,contact,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR("assignees,collections,assigned_teams,creator"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
+            "assignees,collections,assigned_teams,creator,parent_ticket"),
+
+    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("assignees,collections,assigned_teams,parent_ticket"),
 
     ASSIGNEES_COLLECTIONS_CONTACT("assignees,collections,contact"),
 
@@ -105,6 +210,42 @@ public enum TicketsRetrieveRequestExpand {
 
     ATTACHMENTS_ACCOUNT_PARENT_TICKET("attachments,account,parent_ticket"),
 
+    ATTACHMENTS_ASSIGNED_TEAMS("attachments,assigned_teams"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT("attachments,assigned_teams,account"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,assigned_teams,account,contact"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("attachments,assigned_teams,account,contact,creator"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "attachments,assigned_teams,account,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,assigned_teams,account,creator"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "attachments,assigned_teams,account,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("attachments,assigned_teams,account,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT("attachments,assigned_teams,contact"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,assigned_teams,contact,creator"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assigned_teams,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("attachments,assigned_teams,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CREATOR("attachments,assigned_teams,creator"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("attachments,assigned_teams,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET("attachments,assigned_teams,parent_ticket"),
+
     ATTACHMENTS_ASSIGNEES("attachments,assignees"),
 
     ATTACHMENTS_ASSIGNEES_ACCOUNT("attachments,assignees,account"),
@@ -123,6 +264,46 @@ public enum TicketsRetrieveRequestExpand {
     ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET("attachments,assignees,account,creator,parent_ticket"),
 
     ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET("attachments,assignees,account,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS("attachments,assignees,assigned_teams"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT("attachments,assignees,assigned_teams,account"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,assignees,assigned_teams,account,contact"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
+            "attachments,assignees,assigned_teams,account,contact,creator"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,account,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,assignees,assigned_teams,account,creator"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,account,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,account,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT("attachments,assignees,assigned_teams,contact"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,assignees,assigned_teams,contact,creator"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR("attachments,assignees,assigned_teams,creator"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
+            "attachments,assignees,assigned_teams,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET("attachments,assignees,assigned_teams,parent_ticket"),
 
     ATTACHMENTS_ASSIGNEES_COLLECTIONS("attachments,assignees,collections"),
 
@@ -145,6 +326,53 @@ public enum TicketsRetrieveRequestExpand {
             "attachments,assignees,collections,account,creator,parent_ticket"),
 
     ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET("attachments,assignees,collections,account,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS("attachments,assignees,collections,assigned_teams"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT(
+            "attachments,assignees,collections,assigned_teams,account"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT(
+            "attachments,assignees,collections,assigned_teams,account,contact"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
+            "attachments,assignees,collections,assigned_teams,account,contact,creator"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR(
+            "attachments,assignees,collections,assigned_teams,account,creator"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,account,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT(
+            "attachments,assignees,collections,assigned_teams,contact"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR(
+            "attachments,assignees,collections,assigned_teams,contact,creator"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,contact,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR(
+            "attachments,assignees,collections,assigned_teams,creator"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,creator,parent_ticket"),
+
+    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET(
+            "attachments,assignees,collections,assigned_teams,parent_ticket"),
 
     ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT("attachments,assignees,collections,contact"),
 
@@ -194,6 +422,46 @@ public enum TicketsRetrieveRequestExpand {
 
     ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET("attachments,collections,account,parent_ticket"),
 
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS("attachments,collections,assigned_teams"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("attachments,collections,assigned_teams,account"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,collections,assigned_teams,account,contact"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
+            "attachments,collections,assigned_teams,account,contact,creator"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,collections,assigned_teams,account,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "attachments,collections,assigned_teams,account,contact,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,collections,assigned_teams,account,creator"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "attachments,collections,assigned_teams,account,creator,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
+            "attachments,collections,assigned_teams,account,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT("attachments,collections,assigned_teams,contact"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,collections,assigned_teams,contact,creator"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "attachments,collections,assigned_teams,contact,creator,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
+            "attachments,collections,assigned_teams,contact,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR("attachments,collections,assigned_teams,creator"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
+            "attachments,collections,assigned_teams,creator,parent_ticket"),
+
+    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("attachments,collections,assigned_teams,parent_ticket"),
+
     ATTACHMENTS_COLLECTIONS_CONTACT("attachments,collections,contact"),
 
     ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR("attachments,collections,contact,creator"),
@@ -239,6 +507,42 @@ public enum TicketsRetrieveRequestExpand {
     COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET("collections,account,creator,parent_ticket"),
 
     COLLECTIONS_ACCOUNT_PARENT_TICKET("collections,account,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS("collections,assigned_teams"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("collections,assigned_teams,account"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("collections,assigned_teams,account,contact"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("collections,assigned_teams,account,contact,creator"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
+            "collections,assigned_teams,account,contact,creator,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
+            "collections,assigned_teams,account,contact,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("collections,assigned_teams,account,creator"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
+            "collections,assigned_teams,account,creator,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("collections,assigned_teams,account,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CONTACT("collections,assigned_teams,contact"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("collections,assigned_teams,contact,creator"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
+            "collections,assigned_teams,contact,creator,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("collections,assigned_teams,contact,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CREATOR("collections,assigned_teams,creator"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("collections,assigned_teams,creator,parent_ticket"),
+
+    COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("collections,assigned_teams,parent_ticket"),
 
     COLLECTIONS_CONTACT("collections,contact"),
 

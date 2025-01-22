@@ -11,14 +11,14 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.tickets.requests.PatchedTicketEndpointRequest;
 import com.merge.api.resources.ticketing.tickets.requests.TicketEndpointRequest;
-import com.merge.api.resources.ticketing.tickets.requests.TicketsCollaboratorsListRequest;
 import com.merge.api.resources.ticketing.tickets.requests.TicketsListRequest;
 import com.merge.api.resources.ticketing.tickets.requests.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.resources.ticketing.tickets.requests.TicketsRetrieveRequest;
+import com.merge.api.resources.ticketing.tickets.requests.TicketsViewersListRequest;
 import com.merge.api.resources.ticketing.types.MetaResponse;
 import com.merge.api.resources.ticketing.types.PaginatedRemoteFieldClassList;
 import com.merge.api.resources.ticketing.types.PaginatedTicketList;
-import com.merge.api.resources.ticketing.types.PaginatedUserList;
+import com.merge.api.resources.ticketing.types.PaginatedViewerList;
 import com.merge.api.resources.ticketing.types.Ticket;
 import com.merge.api.resources.ticketing.types.TicketResponse;
 import java.io.IOException;
@@ -169,7 +169,7 @@ public class TicketsClient {
                     "show_enum_origins", request.getShowEnumOrigins().get().toString());
         }
         if (request.getStatus().isPresent()) {
-            httpUrl.addQueryParameter("status", request.getStatus().get().toString());
+            httpUrl.addQueryParameter("status", request.getStatus().get());
         }
         if (request.getTags().isPresent()) {
             httpUrl.addQueryParameter("tags", request.getTags().get());
@@ -385,30 +385,29 @@ public class TicketsClient {
     }
 
     /**
-     * Returns a list of <code>User</code> objects.
+     * Returns a list of <code>Viewer</code> objects.
      */
-    public PaginatedUserList collaboratorsList(String parentId) {
-        return collaboratorsList(
-                parentId, TicketsCollaboratorsListRequest.builder().build());
+    public PaginatedViewerList viewersList(String ticketId) {
+        return viewersList(ticketId, TicketsViewersListRequest.builder().build());
     }
 
     /**
-     * Returns a list of <code>User</code> objects.
+     * Returns a list of <code>Viewer</code> objects.
      */
-    public PaginatedUserList collaboratorsList(String parentId, TicketsCollaboratorsListRequest request) {
-        return collaboratorsList(parentId, request, null);
+    public PaginatedViewerList viewersList(String ticketId, TicketsViewersListRequest request) {
+        return viewersList(ticketId, request, null);
     }
 
     /**
-     * Returns a list of <code>User</code> objects.
+     * Returns a list of <code>Viewer</code> objects.
      */
-    public PaginatedUserList collaboratorsList(
-            String parentId, TicketsCollaboratorsListRequest request, RequestOptions requestOptions) {
+    public PaginatedViewerList viewersList(
+            String ticketId, TicketsViewersListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets")
-                .addPathSegment(parentId)
-                .addPathSegments("collaborators");
+                .addPathSegment(ticketId)
+                .addPathSegments("viewers");
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
@@ -444,7 +443,7 @@ public class TicketsClient {
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedUserList.class);
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedViewerList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

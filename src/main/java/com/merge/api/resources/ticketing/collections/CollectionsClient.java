@@ -10,10 +10,8 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsListRequest;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsRetrieveRequest;
-import com.merge.api.resources.ticketing.collections.requests.CollectionsUsersListRequest;
 import com.merge.api.resources.ticketing.types.Collection;
 import com.merge.api.resources.ticketing.types.PaginatedCollectionList;
-import com.merge.api.resources.ticketing.types.PaginatedUserList;
 import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -66,7 +64,7 @@ public class CollectionsClient {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
         if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get());
+            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
         }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -154,7 +152,7 @@ public class CollectionsClient {
                 .addPathSegments("ticketing/v1/collections")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get());
+            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
         }
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -181,77 +179,6 @@ public class CollectionsClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Collection.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
-    }
-
-    /**
-     * Returns a list of <code>User</code> objects.
-     */
-    public PaginatedUserList usersList(String parentId) {
-        return usersList(parentId, CollectionsUsersListRequest.builder().build());
-    }
-
-    /**
-     * Returns a list of <code>User</code> objects.
-     */
-    public PaginatedUserList usersList(String parentId, CollectionsUsersListRequest request) {
-        return usersList(parentId, request, null);
-    }
-
-    /**
-     * Returns a list of <code>User</code> objects.
-     */
-    public PaginatedUserList usersList(
-            String parentId, CollectionsUsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ticketing/v1/collections")
-                .addPathSegment(parentId)
-                .addPathSegments("users");
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedUserList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

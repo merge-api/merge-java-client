@@ -71,6 +71,9 @@ public class ContactsClient {
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
+        if (request.getEmailAddress().isPresent()) {
+            httpUrl.addQueryParameter("email_address", request.getEmailAddress().get());
+        }
         if (request.getExpand().isPresent()) {
             httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
         }
@@ -105,6 +108,9 @@ public class ContactsClient {
         if (request.getModifiedBefore().isPresent()) {
             httpUrl.addQueryParameter(
                     "modified_before", request.getModifiedBefore().get().toString());
+        }
+        if (request.getName().isPresent()) {
+            httpUrl.addQueryParameter("name", request.getName().get());
         }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());

@@ -70,10 +70,15 @@ public class TimesheetEntriesClient {
             httpUrl.addQueryParameter("employee_id", request.getEmployeeId().get());
         }
         if (request.getEndedAfter().isPresent()) {
-            httpUrl.addQueryParameter("ended_after", request.getEndedAfter().get());
+            httpUrl.addQueryParameter(
+                    "ended_after", request.getEndedAfter().get().toString());
         }
         if (request.getEndedBefore().isPresent()) {
-            httpUrl.addQueryParameter("ended_before", request.getEndedBefore().get());
+            httpUrl.addQueryParameter(
+                    "ended_before", request.getEndedBefore().get().toString());
+        }
+        if (request.getExpand().isPresent()) {
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
         }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -106,11 +111,12 @@ public class TimesheetEntriesClient {
             httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
         }
         if (request.getStartedAfter().isPresent()) {
-            httpUrl.addQueryParameter("started_after", request.getStartedAfter().get());
+            httpUrl.addQueryParameter(
+                    "started_after", request.getStartedAfter().get().toString());
         }
         if (request.getStartedBefore().isPresent()) {
             httpUrl.addQueryParameter(
-                    "started_before", request.getStartedBefore().get());
+                    "started_before", request.getStartedBefore().get().toString());
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
@@ -214,6 +220,9 @@ public class TimesheetEntriesClient {
                 .newBuilder()
                 .addPathSegments("hris/v1/timesheet-entries")
                 .addPathSegment(id);
+        if (request.getExpand().isPresent()) {
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
+        }
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());

@@ -39,6 +39,8 @@ public final class Account {
 
     private final Optional<String> type;
 
+    private final Optional<AccountAccountType> accountType;
+
     private final Optional<AccountStatus> status;
 
     private final Optional<Double> currentBalance;
@@ -68,6 +70,7 @@ public final class Account {
             Optional<String> description,
             Optional<AccountClassification> classification,
             Optional<String> type,
+            Optional<AccountAccountType> accountType,
             Optional<AccountStatus> status,
             Optional<Double> currentBalance,
             Optional<AccountCurrency> currency,
@@ -86,6 +89,7 @@ public final class Account {
         this.description = description;
         this.classification = classification;
         this.type = type;
+        this.accountType = accountType;
         this.status = status;
         this.currentBalance = currentBalance;
         this.currency = currency;
@@ -164,6 +168,29 @@ public final class Account {
     @JsonProperty("type")
     public Optional<String> getType() {
         return type;
+    }
+
+    /**
+     * @return Normalized account type- which is a narrower and more specific grouping within the account's classification.
+     * <ul>
+     * <li><code>BANK</code> - BANK</li>
+     * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+     * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
+     * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
+     * <li><code>FIXED_ASSET</code> - FIXED_ASSET</li>
+     * <li><code>OTHER_ASSET</code> - OTHER_ASSET</li>
+     * <li><code>OTHER_CURRENT_ASSET</code> - OTHER_CURRENT_ASSET</li>
+     * <li><code>OTHER_EXPENSE</code> - OTHER_EXPENSE</li>
+     * <li><code>OTHER_INCOME</code> - OTHER_INCOME</li>
+     * <li><code>COST_OF_GOODS_SOLD</code> - COST_OF_GOODS_SOLD</li>
+     * <li><code>OTHER_CURRENT_LIABILITY</code> - OTHER_CURRENT_LIABILITY</li>
+     * <li><code>LONG_TERM_LIABILITY</code> - LONG_TERM_LIABILITY</li>
+     * <li><code>NON_POSTING</code> - NON_POSTING</li>
+     * </ul>
+     */
+    @JsonProperty("account_type")
+    public Optional<AccountAccountType> getAccountType() {
+        return accountType;
     }
 
     /**
@@ -565,6 +592,7 @@ public final class Account {
                 && description.equals(other.description)
                 && classification.equals(other.classification)
                 && type.equals(other.type)
+                && accountType.equals(other.accountType)
                 && status.equals(other.status)
                 && currentBalance.equals(other.currentBalance)
                 && currency.equals(other.currency)
@@ -587,6 +615,7 @@ public final class Account {
                 this.description,
                 this.classification,
                 this.type,
+                this.accountType,
                 this.status,
                 this.currentBalance,
                 this.currency,
@@ -625,6 +654,8 @@ public final class Account {
 
         private Optional<String> type = Optional.empty();
 
+        private Optional<AccountAccountType> accountType = Optional.empty();
+
         private Optional<AccountStatus> status = Optional.empty();
 
         private Optional<Double> currentBalance = Optional.empty();
@@ -657,6 +688,7 @@ public final class Account {
             description(other.getDescription());
             classification(other.getClassification());
             type(other.getType());
+            accountType(other.getAccountType());
             status(other.getStatus());
             currentBalance(other.getCurrentBalance());
             currency(other.getCurrency());
@@ -754,6 +786,17 @@ public final class Account {
 
         public Builder type(String type) {
             this.type = Optional.of(type);
+            return this;
+        }
+
+        @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
+        public Builder accountType(Optional<AccountAccountType> accountType) {
+            this.accountType = accountType;
+            return this;
+        }
+
+        public Builder accountType(AccountAccountType accountType) {
+            this.accountType = Optional.of(accountType);
             return this;
         }
 
@@ -866,6 +909,7 @@ public final class Account {
                     description,
                     classification,
                     type,
+                    accountType,
                     status,
                     currentBalance,
                     currency,

@@ -66,7 +66,7 @@ public final class PermissionRequest {
     }
 
     /**
-     * @return The user that is granted this permission.
+     * @return The user that is granted this permission. This will only be populated if the type is <code>USER</code>.
      */
     @JsonProperty("user")
     public Optional<PermissionRequestUser> getUser() {
@@ -74,7 +74,7 @@ public final class PermissionRequest {
     }
 
     /**
-     * @return The group that is granted this permission.
+     * @return The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.
      */
     @JsonProperty("group")
     public Optional<PermissionRequestGroup> getGroup() {

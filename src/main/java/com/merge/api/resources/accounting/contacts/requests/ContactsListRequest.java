@@ -30,6 +30,8 @@ public final class ContactsListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> emailAddress;
+
     private final Optional<ContactsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
@@ -48,6 +50,8 @@ public final class ContactsListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> name;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> remoteFields;
@@ -63,6 +67,7 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> emailAddress,
             Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
@@ -72,6 +77,7 @@ public final class ContactsListRequest {
             Optional<String> isSupplier,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<Integer> pageSize,
             Optional<String> remoteFields,
             Optional<String> remoteId,
@@ -81,6 +87,7 @@ public final class ContactsListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.emailAddress = emailAddress;
         this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
@@ -90,6 +97,7 @@ public final class ContactsListRequest {
         this.isSupplier = isSupplier;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.pageSize = pageSize;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
@@ -127,6 +135,14 @@ public final class ContactsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return Contacts that match this email.
+     */
+    @JsonProperty("email_address")
+    public Optional<String> getEmailAddress() {
+        return emailAddress;
     }
 
     /**
@@ -202,6 +218,14 @@ public final class ContactsListRequest {
     }
 
     /**
+     * @return If provided, will only return Contacts that match this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -249,6 +273,7 @@ public final class ContactsListRequest {
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && emailAddress.equals(other.emailAddress)
                 && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
@@ -258,6 +283,7 @@ public final class ContactsListRequest {
                 && isSupplier.equals(other.isSupplier)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
@@ -271,6 +297,7 @@ public final class ContactsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.emailAddress,
                 this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
@@ -280,6 +307,7 @@ public final class ContactsListRequest {
                 this.isSupplier,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
@@ -305,6 +333,8 @@ public final class ContactsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> emailAddress = Optional.empty();
+
         private Optional<ContactsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
@@ -322,6 +352,8 @@ public final class ContactsListRequest {
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
 
@@ -341,6 +373,7 @@ public final class ContactsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            emailAddress(other.getEmailAddress());
             expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
@@ -350,6 +383,7 @@ public final class ContactsListRequest {
             isSupplier(other.getIsSupplier());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             pageSize(other.getPageSize());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
@@ -398,6 +432,17 @@ public final class ContactsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.of(cursor);
+            return this;
+        }
+
+        @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
+        public Builder emailAddress(Optional<String> emailAddress) {
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = Optional.of(emailAddress);
             return this;
         }
 
@@ -500,6 +545,17 @@ public final class ContactsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.of(name);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -550,6 +606,7 @@ public final class ContactsListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    emailAddress,
                     expand,
                     includeDeletedData,
                     includeRemoteData,
@@ -559,6 +616,7 @@ public final class ContactsListRequest {
                     isSupplier,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     pageSize,
                     remoteFields,
                     remoteId,
