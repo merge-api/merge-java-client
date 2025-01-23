@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Attachment.Builder.class)
 public final class Attachment {
     private final Optional<String> id;
@@ -260,7 +260,7 @@ public final class Attachment {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -271,7 +271,7 @@ public final class Attachment {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -282,7 +282,7 @@ public final class Attachment {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -293,7 +293,7 @@ public final class Attachment {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -304,7 +304,7 @@ public final class Attachment {
         }
 
         public Builder fileName(String fileName) {
-            this.fileName = Optional.of(fileName);
+            this.fileName = Optional.ofNullable(fileName);
             return this;
         }
 
@@ -315,7 +315,7 @@ public final class Attachment {
         }
 
         public Builder fileUrl(String fileUrl) {
-            this.fileUrl = Optional.of(fileUrl);
+            this.fileUrl = Optional.ofNullable(fileUrl);
             return this;
         }
 
@@ -326,7 +326,7 @@ public final class Attachment {
         }
 
         public Builder candidate(String candidate) {
-            this.candidate = Optional.of(candidate);
+            this.candidate = Optional.ofNullable(candidate);
             return this;
         }
 
@@ -337,7 +337,7 @@ public final class Attachment {
         }
 
         public Builder attachmentType(AttachmentAttachmentType attachmentType) {
-            this.attachmentType = Optional.of(attachmentType);
+            this.attachmentType = Optional.ofNullable(attachmentType);
             return this;
         }
 
@@ -348,7 +348,7 @@ public final class Attachment {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -359,7 +359,7 @@ public final class Attachment {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -370,7 +370,7 @@ public final class Attachment {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

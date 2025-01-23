@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedAccountRequest.Builder.class)
 public final class BankFeedAccountRequest {
     private final Optional<String> sourceAccountId;
@@ -589,7 +589,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder sourceAccountId(String sourceAccountId) {
-            this.sourceAccountId = Optional.of(sourceAccountId);
+            this.sourceAccountId = Optional.ofNullable(sourceAccountId);
             return this;
         }
 
@@ -600,7 +600,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder targetAccountId(String targetAccountId) {
-            this.targetAccountId = Optional.of(targetAccountId);
+            this.targetAccountId = Optional.ofNullable(targetAccountId);
             return this;
         }
 
@@ -611,7 +611,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder sourceAccountName(String sourceAccountName) {
-            this.sourceAccountName = Optional.of(sourceAccountName);
+            this.sourceAccountName = Optional.ofNullable(sourceAccountName);
             return this;
         }
 
@@ -622,7 +622,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder sourceAccountNumber(String sourceAccountNumber) {
-            this.sourceAccountNumber = Optional.of(sourceAccountNumber);
+            this.sourceAccountNumber = Optional.ofNullable(sourceAccountNumber);
             return this;
         }
 
@@ -633,7 +633,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder targetAccountName(String targetAccountName) {
-            this.targetAccountName = Optional.of(targetAccountName);
+            this.targetAccountName = Optional.ofNullable(targetAccountName);
             return this;
         }
 
@@ -644,7 +644,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder currency(BankFeedAccountRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -655,7 +655,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder feedStatus(BankFeedAccountRequestFeedStatus feedStatus) {
-            this.feedStatus = Optional.of(feedStatus);
+            this.feedStatus = Optional.ofNullable(feedStatus);
             return this;
         }
 
@@ -666,7 +666,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder feedStartDate(OffsetDateTime feedStartDate) {
-            this.feedStartDate = Optional.of(feedStartDate);
+            this.feedStartDate = Optional.ofNullable(feedStartDate);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder sourceAccountBalance(Double sourceAccountBalance) {
-            this.sourceAccountBalance = Optional.of(sourceAccountBalance);
+            this.sourceAccountBalance = Optional.ofNullable(sourceAccountBalance);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder accountType(BankFeedAccountRequestAccountType accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class BankFeedAccountRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DebugModelLogSummary.Builder.class)
 public final class DebugModelLogSummary {
     private final String url;
@@ -78,13 +79,13 @@ public final class DebugModelLogSummary {
     }
 
     public interface UrlStage {
-        MethodStage url(String url);
+        MethodStage url(@NotNull String url);
 
         Builder from(DebugModelLogSummary other);
     }
 
     public interface MethodStage {
-        StatusCodeStage method(String method);
+        StatusCodeStage method(@NotNull String method);
     }
 
     public interface StatusCodeStage {
@@ -118,14 +119,14 @@ public final class DebugModelLogSummary {
 
         @java.lang.Override
         @JsonSetter("url")
-        public MethodStage url(String url) {
+        public MethodStage url(@NotNull String url) {
             this.url = url;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("method")
-        public StatusCodeStage method(String method) {
+        public StatusCodeStage method(@NotNull String method) {
             this.method = method;
             return this;
         }

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PurchaseOrder.Builder.class)
 public final class PurchaseOrder {
     private final Optional<String> id;
@@ -815,7 +815,7 @@ public final class PurchaseOrder {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -826,7 +826,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -837,7 +837,7 @@ public final class PurchaseOrder {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -848,7 +848,7 @@ public final class PurchaseOrder {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -859,7 +859,7 @@ public final class PurchaseOrder {
         }
 
         public Builder status(PurchaseOrderStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -870,7 +870,7 @@ public final class PurchaseOrder {
         }
 
         public Builder issueDate(OffsetDateTime issueDate) {
-            this.issueDate = Optional.of(issueDate);
+            this.issueDate = Optional.ofNullable(issueDate);
             return this;
         }
 
@@ -881,7 +881,7 @@ public final class PurchaseOrder {
         }
 
         public Builder purchaseOrderNumber(String purchaseOrderNumber) {
-            this.purchaseOrderNumber = Optional.of(purchaseOrderNumber);
+            this.purchaseOrderNumber = Optional.ofNullable(purchaseOrderNumber);
             return this;
         }
 
@@ -892,7 +892,7 @@ public final class PurchaseOrder {
         }
 
         public Builder deliveryDate(OffsetDateTime deliveryDate) {
-            this.deliveryDate = Optional.of(deliveryDate);
+            this.deliveryDate = Optional.ofNullable(deliveryDate);
             return this;
         }
 
@@ -903,7 +903,7 @@ public final class PurchaseOrder {
         }
 
         public Builder deliveryAddress(PurchaseOrderDeliveryAddress deliveryAddress) {
-            this.deliveryAddress = Optional.of(deliveryAddress);
+            this.deliveryAddress = Optional.ofNullable(deliveryAddress);
             return this;
         }
 
@@ -914,7 +914,7 @@ public final class PurchaseOrder {
         }
 
         public Builder customer(String customer) {
-            this.customer = Optional.of(customer);
+            this.customer = Optional.ofNullable(customer);
             return this;
         }
 
@@ -925,7 +925,7 @@ public final class PurchaseOrder {
         }
 
         public Builder vendor(PurchaseOrderVendor vendor) {
-            this.vendor = Optional.of(vendor);
+            this.vendor = Optional.ofNullable(vendor);
             return this;
         }
 
@@ -936,7 +936,7 @@ public final class PurchaseOrder {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -947,7 +947,7 @@ public final class PurchaseOrder {
         }
 
         public Builder company(PurchaseOrderCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -958,7 +958,7 @@ public final class PurchaseOrder {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -969,7 +969,7 @@ public final class PurchaseOrder {
         }
 
         public Builder currency(PurchaseOrderCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -980,7 +980,7 @@ public final class PurchaseOrder {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -991,7 +991,7 @@ public final class PurchaseOrder {
         }
 
         public Builder lineItems(List<PurchaseOrderLineItem> lineItems) {
-            this.lineItems = Optional.of(lineItems);
+            this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
 
@@ -1002,7 +1002,7 @@ public final class PurchaseOrder {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -1014,7 +1014,7 @@ public final class PurchaseOrder {
         }
 
         public Builder trackingCategories(List<Optional<PurchaseOrderTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -1025,7 +1025,7 @@ public final class PurchaseOrder {
         }
 
         public Builder accountingPeriod(PurchaseOrderAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -1036,7 +1036,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -1047,7 +1047,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -1058,7 +1058,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -1069,7 +1069,7 @@ public final class PurchaseOrder {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -1080,7 +1080,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -1091,7 +1091,7 @@ public final class PurchaseOrder {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

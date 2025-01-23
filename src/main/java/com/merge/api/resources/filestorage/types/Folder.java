@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Folder.Builder.class)
 public final class Folder {
     private final Optional<String> id;
@@ -339,7 +339,7 @@ public final class Folder {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -350,7 +350,7 @@ public final class Folder {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class Folder {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class Folder {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class Folder {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class Folder {
         }
 
         public Builder folderUrl(String folderUrl) {
-            this.folderUrl = Optional.of(folderUrl);
+            this.folderUrl = Optional.ofNullable(folderUrl);
             return this;
         }
 
@@ -405,7 +405,7 @@ public final class Folder {
         }
 
         public Builder size(Long size) {
-            this.size = Optional.of(size);
+            this.size = Optional.ofNullable(size);
             return this;
         }
 
@@ -416,7 +416,7 @@ public final class Folder {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -427,7 +427,7 @@ public final class Folder {
         }
 
         public Builder parentFolder(FolderParentFolder parentFolder) {
-            this.parentFolder = Optional.of(parentFolder);
+            this.parentFolder = Optional.ofNullable(parentFolder);
             return this;
         }
 
@@ -438,7 +438,7 @@ public final class Folder {
         }
 
         public Builder drive(FolderDrive drive) {
-            this.drive = Optional.of(drive);
+            this.drive = Optional.ofNullable(drive);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class Folder {
         }
 
         public Builder permissions(FolderPermissions permissions) {
-            this.permissions = Optional.of(permissions);
+            this.permissions = Optional.ofNullable(permissions);
             return this;
         }
 
@@ -460,7 +460,7 @@ public final class Folder {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -471,7 +471,7 @@ public final class Folder {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -482,7 +482,7 @@ public final class Folder {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -493,7 +493,7 @@ public final class Folder {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -504,7 +504,7 @@ public final class Folder {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

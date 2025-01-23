@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = LeadsListRequest.Builder.class)
 public final class LeadsListRequest {
     private final Optional<String> convertedAccountId;
@@ -364,7 +364,7 @@ public final class LeadsListRequest {
         }
 
         public Builder convertedAccountId(String convertedAccountId) {
-            this.convertedAccountId = Optional.of(convertedAccountId);
+            this.convertedAccountId = Optional.ofNullable(convertedAccountId);
             return this;
         }
 
@@ -375,7 +375,7 @@ public final class LeadsListRequest {
         }
 
         public Builder convertedContactId(String convertedContactId) {
-            this.convertedContactId = Optional.of(convertedContactId);
+            this.convertedContactId = Optional.ofNullable(convertedContactId);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class LeadsListRequest {
         }
 
         public Builder createdAfter(OffsetDateTime createdAfter) {
-            this.createdAfter = Optional.of(createdAfter);
+            this.createdAfter = Optional.ofNullable(createdAfter);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class LeadsListRequest {
         }
 
         public Builder createdBefore(OffsetDateTime createdBefore) {
-            this.createdBefore = Optional.of(createdBefore);
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -408,7 +408,7 @@ public final class LeadsListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -419,7 +419,7 @@ public final class LeadsListRequest {
         }
 
         public Builder emailAddresses(String emailAddresses) {
-            this.emailAddresses = Optional.of(emailAddresses);
+            this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
         }
 
@@ -430,7 +430,7 @@ public final class LeadsListRequest {
         }
 
         public Builder expand(LeadsListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class LeadsListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -452,7 +452,7 @@ public final class LeadsListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -463,7 +463,7 @@ public final class LeadsListRequest {
         }
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
-            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
             return this;
         }
 
@@ -474,7 +474,7 @@ public final class LeadsListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -485,7 +485,7 @@ public final class LeadsListRequest {
         }
 
         public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
-            this.modifiedAfter = Optional.of(modifiedAfter);
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
             return this;
         }
 
@@ -496,7 +496,7 @@ public final class LeadsListRequest {
         }
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
-            this.modifiedBefore = Optional.of(modifiedBefore);
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
             return this;
         }
 
@@ -507,7 +507,7 @@ public final class LeadsListRequest {
         }
 
         public Builder ownerId(String ownerId) {
-            this.ownerId = Optional.of(ownerId);
+            this.ownerId = Optional.ofNullable(ownerId);
             return this;
         }
 
@@ -518,7 +518,7 @@ public final class LeadsListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -529,7 +529,7 @@ public final class LeadsListRequest {
         }
 
         public Builder phoneNumbers(String phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -540,7 +540,7 @@ public final class LeadsListRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 

@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DataPassthroughRequest.Builder.class)
 public final class DataPassthroughRequest {
     private final MethodEnum method;
@@ -164,13 +165,13 @@ public final class DataPassthroughRequest {
     }
 
     public interface MethodStage {
-        PathStage method(MethodEnum method);
+        PathStage method(@NotNull MethodEnum method);
 
         Builder from(DataPassthroughRequest other);
     }
 
     public interface PathStage {
-        _FinalStage path(String path);
+        _FinalStage path(@NotNull String path);
     }
 
     public interface _FinalStage {
@@ -239,7 +240,7 @@ public final class DataPassthroughRequest {
 
         @java.lang.Override
         @JsonSetter("method")
-        public PathStage method(MethodEnum method) {
+        public PathStage method(@NotNull MethodEnum method) {
             this.method = method;
             return this;
         }
@@ -250,7 +251,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         @JsonSetter("path")
-        public _FinalStage path(String path) {
+        public _FinalStage path(@NotNull String path) {
             this.path = path;
             return this;
         }
@@ -261,7 +262,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         public _FinalStage normalizeResponse(Boolean normalizeResponse) {
-            this.normalizeResponse = Optional.of(normalizeResponse);
+            this.normalizeResponse = Optional.ofNullable(normalizeResponse);
             return this;
         }
 
@@ -274,7 +275,7 @@ public final class DataPassthroughRequest {
 
         @java.lang.Override
         public _FinalStage requestFormat(RequestFormatEnum requestFormat) {
-            this.requestFormat = Optional.of(requestFormat);
+            this.requestFormat = Optional.ofNullable(requestFormat);
             return this;
         }
 
@@ -291,7 +292,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         public _FinalStage headers(Map<String, JsonNode> headers) {
-            this.headers = Optional.of(headers);
+            this.headers = Optional.ofNullable(headers);
             return this;
         }
 
@@ -308,7 +309,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         public _FinalStage multipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
-            this.multipartFormData = Optional.of(multipartFormData);
+            this.multipartFormData = Optional.ofNullable(multipartFormData);
             return this;
         }
 
@@ -325,7 +326,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         public _FinalStage data(String data) {
-            this.data = Optional.of(data);
+            this.data = Optional.ofNullable(data);
             return this;
         }
 
@@ -342,7 +343,7 @@ public final class DataPassthroughRequest {
          */
         @java.lang.Override
         public _FinalStage baseUrlOverride(String baseUrlOverride) {
-            this.baseUrlOverride = Optional.of(baseUrlOverride);
+            this.baseUrlOverride = Optional.ofNullable(baseUrlOverride);
             return this;
         }
 

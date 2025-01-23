@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Employee.Builder.class)
 public final class Employee {
     private final Optional<String> id;
@@ -250,7 +251,7 @@ public final class Employee {
     }
 
     public interface StatusStage {
-        _FinalStage status(EmployeeStatus status);
+        _FinalStage status(@NotNull EmployeeStatus status);
 
         Builder from(Employee other);
     }
@@ -375,14 +376,14 @@ public final class Employee {
          */
         @java.lang.Override
         @JsonSetter("status")
-        public _FinalStage status(EmployeeStatus status) {
+        public _FinalStage status(@NotNull EmployeeStatus status) {
             this.status = status;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -395,7 +396,7 @@ public final class Employee {
 
         @java.lang.Override
         public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -412,7 +413,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -429,7 +430,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage company(EmployeeCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -446,7 +447,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage emailAddress(String emailAddress) {
-            this.emailAddress = Optional.of(emailAddress);
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -463,7 +464,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage employeeNumber(String employeeNumber) {
-            this.employeeNumber = Optional.of(employeeNumber);
+            this.employeeNumber = Optional.ofNullable(employeeNumber);
             return this;
         }
 
@@ -480,7 +481,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage isContractor(Boolean isContractor) {
-            this.isContractor = Optional.of(isContractor);
+            this.isContractor = Optional.ofNullable(isContractor);
             return this;
         }
 
@@ -497,7 +498,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -514,7 +515,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -531,7 +532,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -548,7 +549,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -565,7 +566,7 @@ public final class Employee {
          */
         @java.lang.Override
         public _FinalStage remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -578,7 +579,7 @@ public final class Employee {
 
         @java.lang.Override
         public _FinalStage id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 

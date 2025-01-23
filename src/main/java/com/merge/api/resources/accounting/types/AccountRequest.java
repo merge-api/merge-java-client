@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountRequest.Builder.class)
 public final class AccountRequest {
     private final Optional<String> name;
@@ -624,7 +624,7 @@ public final class AccountRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -635,7 +635,7 @@ public final class AccountRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -646,7 +646,7 @@ public final class AccountRequest {
         }
 
         public Builder classification(AccountRequestClassification classification) {
-            this.classification = Optional.of(classification);
+            this.classification = Optional.ofNullable(classification);
             return this;
         }
 
@@ -657,7 +657,7 @@ public final class AccountRequest {
         }
 
         public Builder type(String type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -668,7 +668,7 @@ public final class AccountRequest {
         }
 
         public Builder accountType(AccountRequestAccountType accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -679,7 +679,7 @@ public final class AccountRequest {
         }
 
         public Builder status(AccountRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -690,7 +690,7 @@ public final class AccountRequest {
         }
 
         public Builder currentBalance(Double currentBalance) {
-            this.currentBalance = Optional.of(currentBalance);
+            this.currentBalance = Optional.ofNullable(currentBalance);
             return this;
         }
 
@@ -701,7 +701,7 @@ public final class AccountRequest {
         }
 
         public Builder currency(AccountRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -712,7 +712,7 @@ public final class AccountRequest {
         }
 
         public Builder accountNumber(String accountNumber) {
-            this.accountNumber = Optional.of(accountNumber);
+            this.accountNumber = Optional.ofNullable(accountNumber);
             return this;
         }
 
@@ -723,7 +723,7 @@ public final class AccountRequest {
         }
 
         public Builder parentAccount(String parentAccount) {
-            this.parentAccount = Optional.of(parentAccount);
+            this.parentAccount = Optional.ofNullable(parentAccount);
             return this;
         }
 
@@ -734,7 +734,7 @@ public final class AccountRequest {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -745,7 +745,7 @@ public final class AccountRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -756,7 +756,7 @@ public final class AccountRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

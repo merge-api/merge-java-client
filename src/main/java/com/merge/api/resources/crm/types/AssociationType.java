@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AssociationType.Builder.class)
 public final class AssociationType {
     private final Optional<String> id;
@@ -228,7 +228,7 @@ public final class AssociationType {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -239,7 +239,7 @@ public final class AssociationType {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -250,7 +250,7 @@ public final class AssociationType {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -261,7 +261,7 @@ public final class AssociationType {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -272,7 +272,7 @@ public final class AssociationType {
         }
 
         public Builder sourceObjectClass(Map<String, JsonNode> sourceObjectClass) {
-            this.sourceObjectClass = Optional.of(sourceObjectClass);
+            this.sourceObjectClass = Optional.ofNullable(sourceObjectClass);
             return this;
         }
 
@@ -283,7 +283,7 @@ public final class AssociationType {
         }
 
         public Builder targetObjectClasses(List<AssociationSubType> targetObjectClasses) {
-            this.targetObjectClasses = Optional.of(targetObjectClasses);
+            this.targetObjectClasses = Optional.ofNullable(targetObjectClasses);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class AssociationType {
         }
 
         public Builder remoteKeyName(String remoteKeyName) {
-            this.remoteKeyName = Optional.of(remoteKeyName);
+            this.remoteKeyName = Optional.ofNullable(remoteKeyName);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class AssociationType {
         }
 
         public Builder displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class AssociationType {
         }
 
         public Builder cardinality(AssociationTypeCardinality cardinality) {
-            this.cardinality = Optional.of(cardinality);
+            this.cardinality = Optional.ofNullable(cardinality);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class AssociationType {
         }
 
         public Builder isRequired(Boolean isRequired) {
-            this.isRequired = Optional.of(isRequired);
+            this.isRequired = Optional.ofNullable(isRequired);
             return this;
         }
 

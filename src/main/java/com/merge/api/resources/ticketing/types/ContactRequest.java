@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ContactRequest.Builder.class)
 public final class ContactRequest {
     private final Optional<String> name;
@@ -187,7 +187,7 @@ public final class ContactRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -198,7 +198,7 @@ public final class ContactRequest {
         }
 
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Optional.of(emailAddress);
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -209,7 +209,7 @@ public final class ContactRequest {
         }
 
         public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = Optional.of(phoneNumber);
+            this.phoneNumber = Optional.ofNullable(phoneNumber);
             return this;
         }
 
@@ -220,7 +220,7 @@ public final class ContactRequest {
         }
 
         public Builder details(String details) {
-            this.details = Optional.of(details);
+            this.details = Optional.ofNullable(details);
             return this;
         }
 
@@ -231,7 +231,7 @@ public final class ContactRequest {
         }
 
         public Builder account(ContactRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -242,7 +242,7 @@ public final class ContactRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -253,7 +253,7 @@ public final class ContactRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

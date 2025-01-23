@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountIntegration.Builder.class)
 public final class AccountIntegration {
     private final String name;
@@ -195,7 +196,7 @@ public final class AccountIntegration {
     }
 
     public interface NameStage {
-        _FinalStage name(String name);
+        _FinalStage name(@NotNull String name);
 
         Builder from(AccountIntegration other);
     }
@@ -288,7 +289,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         @JsonSetter("name")
-        public _FinalStage name(String name) {
+        public _FinalStage name(@NotNull String name) {
             this.name = name;
             return this;
         }
@@ -299,7 +300,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus) {
-            this.categoryBetaStatus = Optional.of(categoryBetaStatus);
+            this.categoryBetaStatus = Optional.ofNullable(categoryBetaStatus);
             return this;
         }
 
@@ -316,7 +317,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl) {
-            this.webhookSetupGuideUrl = Optional.of(webhookSetupGuideUrl);
+            this.webhookSetupGuideUrl = Optional.ofNullable(webhookSetupGuideUrl);
             return this;
         }
 
@@ -333,7 +334,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls) {
-            this.apiEndpointsToDocumentationUrls = Optional.of(apiEndpointsToDocumentationUrls);
+            this.apiEndpointsToDocumentationUrls = Optional.ofNullable(apiEndpointsToDocumentationUrls);
             return this;
         }
 
@@ -347,7 +348,7 @@ public final class AccountIntegration {
 
         @java.lang.Override
         public _FinalStage slug(String slug) {
-            this.slug = Optional.of(slug);
+            this.slug = Optional.ofNullable(slug);
             return this;
         }
 
@@ -364,7 +365,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage color(String color) {
-            this.color = Optional.of(color);
+            this.color = Optional.ofNullable(color);
             return this;
         }
 
@@ -381,7 +382,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage squareImage(String squareImage) {
-            this.squareImage = Optional.of(squareImage);
+            this.squareImage = Optional.ofNullable(squareImage);
             return this;
         }
 
@@ -398,7 +399,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage image(String image) {
-            this.image = Optional.of(image);
+            this.image = Optional.ofNullable(image);
             return this;
         }
 
@@ -415,7 +416,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage categories(List<CategoriesEnum> categories) {
-            this.categories = Optional.of(categories);
+            this.categories = Optional.ofNullable(categories);
             return this;
         }
 
@@ -432,7 +433,7 @@ public final class AccountIntegration {
          */
         @java.lang.Override
         public _FinalStage abbreviatedName(String abbreviatedName) {
-            this.abbreviatedName = Optional.of(abbreviatedName);
+            this.abbreviatedName = Optional.ofNullable(abbreviatedName);
             return this;
         }
 

@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNoteApplyLineForCreditNoteRequest.Builder.class)
 public final class CreditNoteApplyLineForCreditNoteRequest {
     private final Optional<String> remoteId;
@@ -169,7 +169,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -180,7 +180,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder invoice(CreditNoteApplyLineForCreditNoteRequestInvoice invoice) {
-            this.invoice = Optional.of(invoice);
+            this.invoice = Optional.ofNullable(invoice);
             return this;
         }
 
@@ -191,7 +191,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder appliedDate(OffsetDateTime appliedDate) {
-            this.appliedDate = Optional.of(appliedDate);
+            this.appliedDate = Optional.ofNullable(appliedDate);
             return this;
         }
 
@@ -202,7 +202,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder appliedAmount(String appliedAmount) {
-            this.appliedAmount = Optional.of(appliedAmount);
+            this.appliedAmount = Optional.ofNullable(appliedAmount);
             return this;
         }
 
@@ -213,7 +213,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -224,7 +224,7 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

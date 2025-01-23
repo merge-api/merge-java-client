@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TaskResponse.Builder.class)
 public final class TaskResponse {
     private final Task model;
@@ -98,7 +99,7 @@ public final class TaskResponse {
     }
 
     public interface ModelStage {
-        _FinalStage model(Task model);
+        _FinalStage model(@NotNull Task model);
 
         Builder from(TaskResponse other);
     }
@@ -149,14 +150,14 @@ public final class TaskResponse {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(Task model) {
+        public _FinalStage model(@NotNull Task model) {
             this.model = model;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage logs(List<DebugModeLog> logs) {
-            this.logs = Optional.of(logs);
+            this.logs = Optional.ofNullable(logs);
             return this;
         }
 

@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffRequest.Builder.class)
 public final class TimeOffRequest {
     private final Optional<TimeOffRequestEmployee> employee;
@@ -275,7 +275,7 @@ public final class TimeOffRequest {
         }
 
         public Builder employee(TimeOffRequestEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -286,7 +286,7 @@ public final class TimeOffRequest {
         }
 
         public Builder approver(TimeOffRequestApprover approver) {
-            this.approver = Optional.of(approver);
+            this.approver = Optional.ofNullable(approver);
             return this;
         }
 
@@ -297,7 +297,7 @@ public final class TimeOffRequest {
         }
 
         public Builder status(TimeOffRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -308,7 +308,7 @@ public final class TimeOffRequest {
         }
 
         public Builder employeeNote(String employeeNote) {
-            this.employeeNote = Optional.of(employeeNote);
+            this.employeeNote = Optional.ofNullable(employeeNote);
             return this;
         }
 
@@ -319,7 +319,7 @@ public final class TimeOffRequest {
         }
 
         public Builder units(TimeOffRequestUnits units) {
-            this.units = Optional.of(units);
+            this.units = Optional.ofNullable(units);
             return this;
         }
 
@@ -330,7 +330,7 @@ public final class TimeOffRequest {
         }
 
         public Builder amount(Double amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -341,7 +341,7 @@ public final class TimeOffRequest {
         }
 
         public Builder requestType(TimeOffRequestRequestType requestType) {
-            this.requestType = Optional.of(requestType);
+            this.requestType = Optional.ofNullable(requestType);
             return this;
         }
 
@@ -352,7 +352,7 @@ public final class TimeOffRequest {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -363,7 +363,7 @@ public final class TimeOffRequest {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -374,7 +374,7 @@ public final class TimeOffRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -385,7 +385,7 @@ public final class TimeOffRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

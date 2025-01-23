@@ -39,15 +39,6 @@ public class CustomObjectsClient {
     /**
      * Returns a list of <code>CustomObject</code> objects.
      */
-    public PaginatedCustomObjectList customObjectClassesCustomObjectsList(String customObjectClassId) {
-        return customObjectClassesCustomObjectsList(
-                customObjectClassId,
-                CustomObjectClassesCustomObjectsListRequest.builder().build());
-    }
-
-    /**
-     * Returns a list of <code>CustomObject</code> objects.
-     */
     public PaginatedCustomObjectList customObjectClassesCustomObjectsList(
             String customObjectClassId, CustomObjectClassesCustomObjectsListRequest request) {
         return customObjectClassesCustomObjectsList(customObjectClassId, request, null);
@@ -112,7 +103,8 @@ public class CustomObjectsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -171,7 +163,8 @@ public class CustomObjectsClient {
                 .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -190,16 +183,6 @@ public class CustomObjectsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>CustomObject</code> object with the given <code>id</code>.
-     */
-    public CustomObject customObjectClassesCustomObjectsRetrieve(String customObjectClassId, String id) {
-        return customObjectClassesCustomObjectsRetrieve(
-                customObjectClassId,
-                id,
-                CustomObjectClassesCustomObjectsRetrieveRequest.builder().build());
     }
 
     /**
@@ -237,7 +220,8 @@ public class CustomObjectsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -281,6 +265,7 @@ public class CustomObjectsClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -359,7 +344,8 @@ public class CustomObjectsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

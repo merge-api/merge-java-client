@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ScreeningQuestion.Builder.class)
 public final class ScreeningQuestion {
     private final Optional<String> id;
@@ -267,7 +267,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -278,7 +278,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -289,7 +289,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -300,7 +300,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -311,7 +311,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder job(ScreeningQuestionJob job) {
-            this.job = Optional.of(job);
+            this.job = Optional.ofNullable(job);
             return this;
         }
 
@@ -322,7 +322,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -333,7 +333,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder title(String title) {
-            this.title = Optional.of(title);
+            this.title = Optional.ofNullable(title);
             return this;
         }
 
@@ -344,7 +344,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder type(ScreeningQuestionType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -355,7 +355,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder required(Boolean required) {
-            this.required = Optional.of(required);
+            this.required = Optional.ofNullable(required);
             return this;
         }
 
@@ -366,7 +366,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder options(List<JsonNode> options) {
-            this.options = Optional.of(options);
+            this.options = Optional.ofNullable(options);
             return this;
         }
 
@@ -377,7 +377,7 @@ public final class ScreeningQuestion {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 

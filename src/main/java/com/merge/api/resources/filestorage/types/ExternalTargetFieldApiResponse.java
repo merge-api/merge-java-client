@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ExternalTargetFieldApiResponse.Builder.class)
 public final class ExternalTargetFieldApiResponse {
     private final Optional<List<ExternalTargetFieldApi>> file;
@@ -139,7 +139,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder file(List<ExternalTargetFieldApi> file) {
-            this.file = Optional.of(file);
+            this.file = Optional.ofNullable(file);
             return this;
         }
 
@@ -150,7 +150,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder folder(List<ExternalTargetFieldApi> folder) {
-            this.folder = Optional.of(folder);
+            this.folder = Optional.ofNullable(folder);
             return this;
         }
 
@@ -161,7 +161,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder drive(List<ExternalTargetFieldApi> drive) {
-            this.drive = Optional.of(drive);
+            this.drive = Optional.ofNullable(drive);
             return this;
         }
 
@@ -172,7 +172,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder group(List<ExternalTargetFieldApi> group) {
-            this.group = Optional.of(group);
+            this.group = Optional.ofNullable(group);
             return this;
         }
 
@@ -183,7 +183,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder user(List<ExternalTargetFieldApi> user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 

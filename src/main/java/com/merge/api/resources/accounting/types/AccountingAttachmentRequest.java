@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountingAttachmentRequest.Builder.class)
 public final class AccountingAttachmentRequest {
     private final Optional<String> fileName;
@@ -149,7 +149,7 @@ public final class AccountingAttachmentRequest {
         }
 
         public Builder fileName(String fileName) {
-            this.fileName = Optional.of(fileName);
+            this.fileName = Optional.ofNullable(fileName);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class AccountingAttachmentRequest {
         }
 
         public Builder fileUrl(String fileUrl) {
-            this.fileUrl = Optional.of(fileUrl);
+            this.fileUrl = Optional.ofNullable(fileUrl);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class AccountingAttachmentRequest {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -182,7 +182,7 @@ public final class AccountingAttachmentRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class AccountingAttachmentRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

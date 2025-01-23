@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InvoiceLineItemRequest.Builder.class)
 public final class InvoiceLineItemRequest {
     private final Optional<String> remoteId;
@@ -655,7 +655,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -666,7 +666,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder unitPrice(Double unitPrice) {
-            this.unitPrice = Optional.of(unitPrice);
+            this.unitPrice = Optional.ofNullable(unitPrice);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder quantity(Double quantity) {
-            this.quantity = Optional.of(quantity);
+            this.quantity = Optional.ofNullable(quantity);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder employee(InvoiceLineItemRequestEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder currency(InvoiceLineItemRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -743,7 +743,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder item(InvoiceLineItemRequestItem item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -754,7 +754,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder account(InvoiceLineItemRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -765,7 +765,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder taxRate(String taxRate) {
-            this.taxRate = Optional.of(taxRate);
+            this.taxRate = Optional.ofNullable(taxRate);
             return this;
         }
 
@@ -776,7 +776,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder trackingCategory(InvoiceLineItemRequestTrackingCategory trackingCategory) {
-            this.trackingCategory = Optional.of(trackingCategory);
+            this.trackingCategory = Optional.ofNullable(trackingCategory);
             return this;
         }
 
@@ -789,7 +789,7 @@ public final class InvoiceLineItemRequest {
 
         public Builder trackingCategories(
                 List<Optional<InvoiceLineItemRequestTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -800,7 +800,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -811,7 +811,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -822,7 +822,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -833,7 +833,7 @@ public final class InvoiceLineItemRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

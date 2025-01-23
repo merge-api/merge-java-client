@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ScheduledInterviewRequest.Builder.class)
 public final class ScheduledInterviewRequest {
     private final Optional<ScheduledInterviewRequestApplication> application;
@@ -245,7 +245,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder application(ScheduledInterviewRequestApplication application) {
-            this.application = Optional.of(application);
+            this.application = Optional.ofNullable(application);
             return this;
         }
 
@@ -256,7 +256,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder jobInterviewStage(ScheduledInterviewRequestJobInterviewStage jobInterviewStage) {
-            this.jobInterviewStage = Optional.of(jobInterviewStage);
+            this.jobInterviewStage = Optional.ofNullable(jobInterviewStage);
             return this;
         }
 
@@ -267,7 +267,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder organizer(ScheduledInterviewRequestOrganizer organizer) {
-            this.organizer = Optional.of(organizer);
+            this.organizer = Optional.ofNullable(organizer);
             return this;
         }
 
@@ -278,7 +278,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder interviewers(List<Optional<ScheduledInterviewRequestInterviewersItem>> interviewers) {
-            this.interviewers = Optional.of(interviewers);
+            this.interviewers = Optional.ofNullable(interviewers);
             return this;
         }
 
@@ -289,7 +289,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder location(String location) {
-            this.location = Optional.of(location);
+            this.location = Optional.ofNullable(location);
             return this;
         }
 
@@ -300,7 +300,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder startAt(OffsetDateTime startAt) {
-            this.startAt = Optional.of(startAt);
+            this.startAt = Optional.ofNullable(startAt);
             return this;
         }
 
@@ -311,7 +311,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder endAt(OffsetDateTime endAt) {
-            this.endAt = Optional.of(endAt);
+            this.endAt = Optional.ofNullable(endAt);
             return this;
         }
 
@@ -322,7 +322,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder status(ScheduledInterviewRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -333,7 +333,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -344,7 +344,7 @@ public final class ScheduledInterviewRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

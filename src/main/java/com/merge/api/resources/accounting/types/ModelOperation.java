@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ModelOperation.Builder.class)
 public final class ModelOperation {
     private final String modelName;
@@ -98,7 +99,7 @@ public final class ModelOperation {
     }
 
     public interface ModelNameStage {
-        _FinalStage modelName(String modelName);
+        _FinalStage modelName(@NotNull String modelName);
 
         Builder from(ModelOperation other);
     }
@@ -151,7 +152,7 @@ public final class ModelOperation {
 
         @java.lang.Override
         @JsonSetter("model_name")
-        public _FinalStage modelName(String modelName) {
+        public _FinalStage modelName(@NotNull String modelName) {
             this.modelName = modelName;
             return this;
         }

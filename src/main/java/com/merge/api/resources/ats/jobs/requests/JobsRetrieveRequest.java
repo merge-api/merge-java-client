@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JobsRetrieveRequest.Builder.class)
 public final class JobsRetrieveRequest {
     private final Optional<JobsRetrieveRequestExpand> expand;
@@ -138,7 +138,7 @@ public final class JobsRetrieveRequest {
         }
 
         public Builder expand(JobsRetrieveRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -149,7 +149,7 @@ public final class JobsRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class JobsRetrieveRequest {
         }
 
         public Builder remoteFields(String remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class JobsRetrieveRequest {
         }
 
         public Builder showEnumOrigins(String showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 

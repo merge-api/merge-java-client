@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ScreeningQuestionAnswerRequest.Builder.class)
 public final class ScreeningQuestionAnswerRequest {
     private final Optional<String> remoteId;
@@ -149,7 +149,7 @@ public final class ScreeningQuestionAnswerRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class ScreeningQuestionAnswerRequest {
         }
 
         public Builder question(ScreeningQuestionAnswerRequestQuestion question) {
-            this.question = Optional.of(question);
+            this.question = Optional.ofNullable(question);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class ScreeningQuestionAnswerRequest {
         }
 
         public Builder answer(String answer) {
-            this.answer = Optional.of(answer);
+            this.answer = Optional.ofNullable(answer);
             return this;
         }
 
@@ -182,7 +182,7 @@ public final class ScreeningQuestionAnswerRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class ScreeningQuestionAnswerRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

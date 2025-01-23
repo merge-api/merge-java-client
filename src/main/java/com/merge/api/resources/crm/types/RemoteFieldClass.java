@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldClass.Builder.class)
 public final class RemoteFieldClass {
     private final Optional<String> id;
@@ -214,7 +214,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -225,7 +225,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 
@@ -236,7 +236,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder remoteKeyName(String remoteKeyName) {
-            this.remoteKeyName = Optional.of(remoteKeyName);
+            this.remoteKeyName = Optional.ofNullable(remoteKeyName);
             return this;
         }
 
@@ -247,7 +247,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -258,7 +258,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder isCustom(Boolean isCustom) {
-            this.isCustom = Optional.of(isCustom);
+            this.isCustom = Optional.ofNullable(isCustom);
             return this;
         }
 
@@ -269,7 +269,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder isRequired(Boolean isRequired) {
-            this.isRequired = Optional.of(isRequired);
+            this.isRequired = Optional.ofNullable(isRequired);
             return this;
         }
 
@@ -280,7 +280,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder fieldType(RemoteFieldClassFieldType fieldType) {
-            this.fieldType = Optional.of(fieldType);
+            this.fieldType = Optional.ofNullable(fieldType);
             return this;
         }
 
@@ -291,7 +291,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder fieldFormat(RemoteFieldClassFieldFormat fieldFormat) {
-            this.fieldFormat = Optional.of(fieldFormat);
+            this.fieldFormat = Optional.ofNullable(fieldFormat);
             return this;
         }
 
@@ -302,7 +302,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder fieldChoices(List<RemoteFieldClassFieldChoicesItem> fieldChoices) {
-            this.fieldChoices = Optional.of(fieldChoices);
+            this.fieldChoices = Optional.ofNullable(fieldChoices);
             return this;
         }
 
@@ -313,7 +313,7 @@ public final class RemoteFieldClass {
         }
 
         public Builder itemSchema(ItemSchema itemSchema) {
-            this.itemSchema = Optional.of(itemSchema);
+            this.itemSchema = Optional.ofNullable(itemSchema);
             return this;
         }
 

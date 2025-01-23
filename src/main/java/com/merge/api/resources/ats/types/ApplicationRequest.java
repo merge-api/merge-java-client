@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ApplicationRequest.Builder.class)
 public final class ApplicationRequest {
     private final Optional<ApplicationRequestCandidate> candidate;
@@ -283,7 +283,7 @@ public final class ApplicationRequest {
         }
 
         public Builder candidate(ApplicationRequestCandidate candidate) {
-            this.candidate = Optional.of(candidate);
+            this.candidate = Optional.ofNullable(candidate);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class ApplicationRequest {
         }
 
         public Builder job(ApplicationRequestJob job) {
-            this.job = Optional.of(job);
+            this.job = Optional.ofNullable(job);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class ApplicationRequest {
         }
 
         public Builder appliedAt(OffsetDateTime appliedAt) {
-            this.appliedAt = Optional.of(appliedAt);
+            this.appliedAt = Optional.ofNullable(appliedAt);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class ApplicationRequest {
         }
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
-            this.rejectedAt = Optional.of(rejectedAt);
+            this.rejectedAt = Optional.ofNullable(rejectedAt);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class ApplicationRequest {
         }
 
         public Builder offers(List<Optional<ApplicationRequestOffersItem>> offers) {
-            this.offers = Optional.of(offers);
+            this.offers = Optional.ofNullable(offers);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class ApplicationRequest {
         }
 
         public Builder source(String source) {
-            this.source = Optional.of(source);
+            this.source = Optional.ofNullable(source);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class ApplicationRequest {
         }
 
         public Builder creditedTo(ApplicationRequestCreditedTo creditedTo) {
-            this.creditedTo = Optional.of(creditedTo);
+            this.creditedTo = Optional.ofNullable(creditedTo);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class ApplicationRequest {
 
         public Builder screeningQuestionAnswers(
                 List<ApplicationRequestScreeningQuestionAnswersItem> screeningQuestionAnswers) {
-            this.screeningQuestionAnswers = Optional.of(screeningQuestionAnswers);
+            this.screeningQuestionAnswers = Optional.ofNullable(screeningQuestionAnswers);
             return this;
         }
 
@@ -373,7 +373,7 @@ public final class ApplicationRequest {
         }
 
         public Builder currentStage(ApplicationRequestCurrentStage currentStage) {
-            this.currentStage = Optional.of(currentStage);
+            this.currentStage = Optional.ofNullable(currentStage);
             return this;
         }
 
@@ -384,7 +384,7 @@ public final class ApplicationRequest {
         }
 
         public Builder rejectReason(ApplicationRequestRejectReason rejectReason) {
-            this.rejectReason = Optional.of(rejectReason);
+            this.rejectReason = Optional.ofNullable(rejectReason);
             return this;
         }
 
@@ -395,7 +395,7 @@ public final class ApplicationRequest {
         }
 
         public Builder remoteTemplateId(String remoteTemplateId) {
-            this.remoteTemplateId = Optional.of(remoteTemplateId);
+            this.remoteTemplateId = Optional.ofNullable(remoteTemplateId);
             return this;
         }
 
@@ -406,7 +406,7 @@ public final class ApplicationRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -417,7 +417,7 @@ public final class ApplicationRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

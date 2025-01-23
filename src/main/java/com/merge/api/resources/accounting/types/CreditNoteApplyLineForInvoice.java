@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNoteApplyLineForInvoice.Builder.class)
 public final class CreditNoteApplyLineForInvoice {
     private final Optional<String> remoteId;
@@ -190,7 +190,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -201,7 +201,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -212,7 +212,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -223,7 +223,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder creditNote(CreditNoteApplyLineForInvoiceCreditNote creditNote) {
-            this.creditNote = Optional.of(creditNote);
+            this.creditNote = Optional.ofNullable(creditNote);
             return this;
         }
 
@@ -234,7 +234,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder appliedDate(OffsetDateTime appliedDate) {
-            this.appliedDate = Optional.of(appliedDate);
+            this.appliedDate = Optional.ofNullable(appliedDate);
             return this;
         }
 
@@ -245,7 +245,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder appliedAmount(String appliedAmount) {
-            this.appliedAmount = Optional.of(appliedAmount);
+            this.appliedAmount = Optional.ofNullable(appliedAmount);
             return this;
         }
 
@@ -256,7 +256,7 @@ public final class CreditNoteApplyLineForInvoice {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 

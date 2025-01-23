@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DependentsRetrieveRequest.Builder.class)
 public final class DependentsRetrieveRequest {
     private final Optional<Boolean> includeRemoteData;
@@ -105,7 +105,7 @@ public final class DependentsRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -116,7 +116,7 @@ public final class DependentsRetrieveRequest {
         }
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
-            this.includeSensitiveFields = Optional.of(includeSensitiveFields);
+            this.includeSensitiveFields = Optional.ofNullable(includeSensitiveFields);
             return this;
         }
 

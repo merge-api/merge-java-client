@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ActivitiesRetrieveRequest.Builder.class)
 public final class ActivitiesRetrieveRequest {
     private final Optional<String> expand;
@@ -139,7 +139,7 @@ public final class ActivitiesRetrieveRequest {
         }
 
         public Builder expand(String expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -150,7 +150,7 @@ public final class ActivitiesRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -161,7 +161,7 @@ public final class ActivitiesRetrieveRequest {
         }
 
         public Builder remoteFields(ActivitiesRetrieveRequestRemoteFields remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -172,7 +172,7 @@ public final class ActivitiesRetrieveRequest {
         }
 
         public Builder showEnumOrigins(ActivitiesRetrieveRequestShowEnumOrigins showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 

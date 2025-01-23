@@ -28,13 +28,6 @@ public class AddressesClient {
     /**
      * Returns an <code>Address</code> object with the given <code>id</code>.
      */
-    public Address retrieve(String id) {
-        return retrieve(id, AddressesRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns an <code>Address</code> object with the given <code>id</code>.
-     */
     public Address retrieve(String id, AddressesRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -62,7 +55,8 @@ public class AddressesClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

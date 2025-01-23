@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountDetails.Builder.class)
 public final class AccountDetails {
     private final Optional<String> id;
@@ -248,7 +248,7 @@ public final class AccountDetails {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -259,7 +259,7 @@ public final class AccountDetails {
         }
 
         public Builder integration(String integration) {
-            this.integration = Optional.of(integration);
+            this.integration = Optional.ofNullable(integration);
             return this;
         }
 
@@ -270,7 +270,7 @@ public final class AccountDetails {
         }
 
         public Builder integrationSlug(String integrationSlug) {
-            this.integrationSlug = Optional.of(integrationSlug);
+            this.integrationSlug = Optional.ofNullable(integrationSlug);
             return this;
         }
 
@@ -281,7 +281,7 @@ public final class AccountDetails {
         }
 
         public Builder category(CategoryEnum category) {
-            this.category = Optional.of(category);
+            this.category = Optional.ofNullable(category);
             return this;
         }
 
@@ -292,7 +292,7 @@ public final class AccountDetails {
         }
 
         public Builder endUserOriginId(String endUserOriginId) {
-            this.endUserOriginId = Optional.of(endUserOriginId);
+            this.endUserOriginId = Optional.ofNullable(endUserOriginId);
             return this;
         }
 
@@ -303,7 +303,7 @@ public final class AccountDetails {
         }
 
         public Builder endUserOrganizationName(String endUserOrganizationName) {
-            this.endUserOrganizationName = Optional.of(endUserOrganizationName);
+            this.endUserOrganizationName = Optional.ofNullable(endUserOrganizationName);
             return this;
         }
 
@@ -314,7 +314,7 @@ public final class AccountDetails {
         }
 
         public Builder endUserEmailAddress(String endUserEmailAddress) {
-            this.endUserEmailAddress = Optional.of(endUserEmailAddress);
+            this.endUserEmailAddress = Optional.ofNullable(endUserEmailAddress);
             return this;
         }
 
@@ -325,7 +325,7 @@ public final class AccountDetails {
         }
 
         public Builder status(String status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -336,7 +336,7 @@ public final class AccountDetails {
         }
 
         public Builder webhookListenerUrl(String webhookListenerUrl) {
-            this.webhookListenerUrl = Optional.of(webhookListenerUrl);
+            this.webhookListenerUrl = Optional.ofNullable(webhookListenerUrl);
             return this;
         }
 
@@ -347,7 +347,7 @@ public final class AccountDetails {
         }
 
         public Builder isDuplicate(Boolean isDuplicate) {
-            this.isDuplicate = Optional.of(isDuplicate);
+            this.isDuplicate = Optional.ofNullable(isDuplicate);
             return this;
         }
 
@@ -358,7 +358,7 @@ public final class AccountDetails {
         }
 
         public Builder accountType(String accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -369,7 +369,7 @@ public final class AccountDetails {
         }
 
         public Builder completedAt(OffsetDateTime completedAt) {
-            this.completedAt = Optional.of(completedAt);
+            this.completedAt = Optional.ofNullable(completedAt);
             return this;
         }
 

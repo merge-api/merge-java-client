@@ -31,18 +31,6 @@ public class AssociationsClient {
      * Returns a list of <code>Association</code> objects.
      */
     public PaginatedAssociationList customObjectClassesCustomObjectsAssociationsList(
-            String customObjectClassId, String objectId) {
-        return customObjectClassesCustomObjectsAssociationsList(
-                customObjectClassId,
-                objectId,
-                CustomObjectClassesCustomObjectsAssociationsListRequest.builder()
-                        .build());
-    }
-
-    /**
-     * Returns a list of <code>Association</code> objects.
-     */
-    public PaginatedAssociationList customObjectClassesCustomObjectsAssociationsList(
             String customObjectClassId,
             String objectId,
             CustomObjectClassesCustomObjectsAssociationsListRequest request) {
@@ -113,7 +101,8 @@ public class AssociationsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -132,25 +121,6 @@ public class AssociationsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
-     */
-    public Association customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
-            String sourceClassId,
-            String sourceObjectId,
-            String targetClassId,
-            String targetObjectId) {
-        return customObjectClassesCustomObjectsAssociationsUpdate(
-                associationTypeId,
-                sourceClassId,
-                sourceObjectId,
-                targetClassId,
-                targetObjectId,
-                CustomObjectClassesCustomObjectsAssociationsUpdateRequest.builder()
-                        .build());
     }
 
     /**
@@ -199,7 +169,8 @@ public class AssociationsClient {
                 .url(httpUrl.build())
                 .method("PUT", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

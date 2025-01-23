@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedOpportunityRequest.Builder.class)
 public final class PatchedOpportunityRequest {
     private final Optional<String> name;
@@ -276,7 +276,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -287,7 +287,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -298,7 +298,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder amount(Integer amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -309,7 +309,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder owner(String owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -320,7 +320,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder account(String account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -331,7 +331,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder stage(String stage) {
-            this.stage = Optional.of(stage);
+            this.stage = Optional.ofNullable(stage);
             return this;
         }
 
@@ -342,7 +342,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder status(PatchedOpportunityRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -353,7 +353,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
-            this.lastActivityAt = Optional.of(lastActivityAt);
+            this.lastActivityAt = Optional.ofNullable(lastActivityAt);
             return this;
         }
 
@@ -364,7 +364,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder closeDate(OffsetDateTime closeDate) {
-            this.closeDate = Optional.of(closeDate);
+            this.closeDate = Optional.ofNullable(closeDate);
             return this;
         }
 
@@ -375,7 +375,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class PatchedOpportunityRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

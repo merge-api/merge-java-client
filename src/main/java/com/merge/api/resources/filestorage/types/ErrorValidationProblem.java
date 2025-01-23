@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ErrorValidationProblem.Builder.class)
 public final class ErrorValidationProblem {
     private final Optional<ValidationProblemSource> source;
@@ -96,17 +97,17 @@ public final class ErrorValidationProblem {
     }
 
     public interface TitleStage {
-        DetailStage title(String title);
+        DetailStage title(@NotNull String title);
 
         Builder from(ErrorValidationProblem other);
     }
 
     public interface DetailStage {
-        ProblemTypeStage detail(String detail);
+        ProblemTypeStage detail(@NotNull String detail);
     }
 
     public interface ProblemTypeStage {
-        _FinalStage problemType(String problemType);
+        _FinalStage problemType(@NotNull String problemType);
     }
 
     public interface _FinalStage {
@@ -143,28 +144,28 @@ public final class ErrorValidationProblem {
 
         @java.lang.Override
         @JsonSetter("title")
-        public DetailStage title(String title) {
+        public DetailStage title(@NotNull String title) {
             this.title = title;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("detail")
-        public ProblemTypeStage detail(String detail) {
+        public ProblemTypeStage detail(@NotNull String detail) {
             this.detail = detail;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("problem_type")
-        public _FinalStage problemType(String problemType) {
+        public _FinalStage problemType(@NotNull String problemType) {
             this.problemType = problemType;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage source(ValidationProblemSource source) {
-            this.source = Optional.of(source);
+            this.source = Optional.ofNullable(source);
             return this;
         }
 

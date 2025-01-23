@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = UsersRemoteFieldClassesListRequest.Builder.class)
 public final class UsersRemoteFieldClassesListRequest {
     private final Optional<String> cursor;
@@ -193,7 +193,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -204,7 +204,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -215,7 +215,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -226,7 +226,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
-            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
             return this;
         }
 
@@ -237,7 +237,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -248,7 +248,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder isCommonModelField(Boolean isCommonModelField) {
-            this.isCommonModelField = Optional.of(isCommonModelField);
+            this.isCommonModelField = Optional.ofNullable(isCommonModelField);
             return this;
         }
 
@@ -259,7 +259,7 @@ public final class UsersRemoteFieldClassesListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 

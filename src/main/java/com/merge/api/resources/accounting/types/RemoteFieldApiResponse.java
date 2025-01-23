@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldApiResponse.Builder.class)
 public final class RemoteFieldApiResponse {
     private final Optional<List<RemoteFieldApi>> account;
@@ -382,7 +382,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder account(List<RemoteFieldApi> account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -393,7 +393,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder accountingAttachment(List<RemoteFieldApi> accountingAttachment) {
-            this.accountingAttachment = Optional.of(accountingAttachment);
+            this.accountingAttachment = Optional.ofNullable(accountingAttachment);
             return this;
         }
 
@@ -404,7 +404,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder balanceSheet(List<RemoteFieldApi> balanceSheet) {
-            this.balanceSheet = Optional.of(balanceSheet);
+            this.balanceSheet = Optional.ofNullable(balanceSheet);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder cashFlowStatement(List<RemoteFieldApi> cashFlowStatement) {
-            this.cashFlowStatement = Optional.of(cashFlowStatement);
+            this.cashFlowStatement = Optional.ofNullable(cashFlowStatement);
             return this;
         }
 
@@ -426,7 +426,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder companyInfo(List<RemoteFieldApi> companyInfo) {
-            this.companyInfo = Optional.of(companyInfo);
+            this.companyInfo = Optional.ofNullable(companyInfo);
             return this;
         }
 
@@ -437,7 +437,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder contact(List<RemoteFieldApi> contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -448,7 +448,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder incomeStatement(List<RemoteFieldApi> incomeStatement) {
-            this.incomeStatement = Optional.of(incomeStatement);
+            this.incomeStatement = Optional.ofNullable(incomeStatement);
             return this;
         }
 
@@ -459,7 +459,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder creditNote(List<RemoteFieldApi> creditNote) {
-            this.creditNote = Optional.of(creditNote);
+            this.creditNote = Optional.ofNullable(creditNote);
             return this;
         }
 
@@ -470,7 +470,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder item(List<RemoteFieldApi> item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -481,7 +481,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder purchaseOrder(List<RemoteFieldApi> purchaseOrder) {
-            this.purchaseOrder = Optional.of(purchaseOrder);
+            this.purchaseOrder = Optional.ofNullable(purchaseOrder);
             return this;
         }
 
@@ -492,7 +492,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder trackingCategory(List<RemoteFieldApi> trackingCategory) {
-            this.trackingCategory = Optional.of(trackingCategory);
+            this.trackingCategory = Optional.ofNullable(trackingCategory);
             return this;
         }
 
@@ -503,7 +503,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder journalEntry(List<RemoteFieldApi> journalEntry) {
-            this.journalEntry = Optional.of(journalEntry);
+            this.journalEntry = Optional.ofNullable(journalEntry);
             return this;
         }
 
@@ -514,7 +514,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder taxRate(List<RemoteFieldApi> taxRate) {
-            this.taxRate = Optional.of(taxRate);
+            this.taxRate = Optional.ofNullable(taxRate);
             return this;
         }
 
@@ -525,7 +525,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder invoice(List<RemoteFieldApi> invoice) {
-            this.invoice = Optional.of(invoice);
+            this.invoice = Optional.ofNullable(invoice);
             return this;
         }
 
@@ -536,7 +536,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder payment(List<RemoteFieldApi> payment) {
-            this.payment = Optional.of(payment);
+            this.payment = Optional.ofNullable(payment);
             return this;
         }
 
@@ -547,7 +547,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder expense(List<RemoteFieldApi> expense) {
-            this.expense = Optional.of(expense);
+            this.expense = Optional.ofNullable(expense);
             return this;
         }
 
@@ -558,7 +558,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder vendorCredit(List<RemoteFieldApi> vendorCredit) {
-            this.vendorCredit = Optional.of(vendorCredit);
+            this.vendorCredit = Optional.ofNullable(vendorCredit);
             return this;
         }
 
@@ -569,7 +569,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder transaction(List<RemoteFieldApi> transaction) {
-            this.transaction = Optional.of(transaction);
+            this.transaction = Optional.ofNullable(transaction);
             return this;
         }
 
@@ -580,7 +580,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder accountingPeriod(List<RemoteFieldApi> accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -591,7 +591,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder generalLedgerTransaction(List<RemoteFieldApi> generalLedgerTransaction) {
-            this.generalLedgerTransaction = Optional.of(generalLedgerTransaction);
+            this.generalLedgerTransaction = Optional.ofNullable(generalLedgerTransaction);
             return this;
         }
 
@@ -602,7 +602,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder bankFeedAccount(List<RemoteFieldApi> bankFeedAccount) {
-            this.bankFeedAccount = Optional.of(bankFeedAccount);
+            this.bankFeedAccount = Optional.ofNullable(bankFeedAccount);
             return this;
         }
 
@@ -613,7 +613,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder employee(List<RemoteFieldApi> employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 

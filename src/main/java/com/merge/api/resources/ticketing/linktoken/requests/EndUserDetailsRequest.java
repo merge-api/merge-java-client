@@ -23,8 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EndUserDetailsRequest.Builder.class)
 public final class EndUserDetailsRequest {
     private final String endUserEmailAddress;
@@ -252,17 +253,17 @@ public final class EndUserDetailsRequest {
     }
 
     public interface EndUserEmailAddressStage {
-        EndUserOrganizationNameStage endUserEmailAddress(String endUserEmailAddress);
+        EndUserOrganizationNameStage endUserEmailAddress(@NotNull String endUserEmailAddress);
 
         Builder from(EndUserDetailsRequest other);
     }
 
     public interface EndUserOrganizationNameStage {
-        EndUserOriginIdStage endUserOrganizationName(String endUserOrganizationName);
+        EndUserOriginIdStage endUserOrganizationName(@NotNull String endUserOrganizationName);
     }
 
     public interface EndUserOriginIdStage {
-        _FinalStage endUserOriginId(String endUserOriginId);
+        _FinalStage endUserOriginId(@NotNull String endUserOriginId);
     }
 
     public interface _FinalStage {
@@ -373,7 +374,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         @JsonSetter("end_user_email_address")
-        public EndUserOrganizationNameStage endUserEmailAddress(String endUserEmailAddress) {
+        public EndUserOrganizationNameStage endUserEmailAddress(@NotNull String endUserEmailAddress) {
             this.endUserEmailAddress = endUserEmailAddress;
             return this;
         }
@@ -384,7 +385,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         @JsonSetter("end_user_organization_name")
-        public EndUserOriginIdStage endUserOrganizationName(String endUserOrganizationName) {
+        public EndUserOriginIdStage endUserOrganizationName(@NotNull String endUserOrganizationName) {
             this.endUserOrganizationName = endUserOrganizationName;
             return this;
         }
@@ -395,7 +396,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         @JsonSetter("end_user_origin_id")
-        public _FinalStage endUserOriginId(String endUserOriginId) {
+        public _FinalStage endUserOriginId(@NotNull String endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
             return this;
         }
@@ -406,7 +407,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig) {
-            this.integrationSpecificConfig = Optional.of(integrationSpecificConfig);
+            this.integrationSpecificConfig = Optional.ofNullable(integrationSpecificConfig);
             return this;
         }
 
@@ -423,7 +424,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage areSyncsDisabled(Boolean areSyncsDisabled) {
-            this.areSyncsDisabled = Optional.of(areSyncsDisabled);
+            this.areSyncsDisabled = Optional.ofNullable(areSyncsDisabled);
             return this;
         }
 
@@ -444,7 +445,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage language(LanguageEnum language) {
-            this.language = Optional.of(language);
+            this.language = Optional.ofNullable(language);
             return this;
         }
 
@@ -462,7 +463,7 @@ public final class EndUserDetailsRequest {
         @java.lang.Override
         public _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes) {
-            this.categoryCommonModelScopes = Optional.of(categoryCommonModelScopes);
+            this.categoryCommonModelScopes = Optional.ofNullable(categoryCommonModelScopes);
             return this;
         }
 
@@ -481,7 +482,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels) {
-            this.commonModels = Optional.of(commonModels);
+            this.commonModels = Optional.ofNullable(commonModels);
             return this;
         }
 
@@ -498,7 +499,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink) {
-            this.hideAdminMagicLink = Optional.of(hideAdminMagicLink);
+            this.hideAdminMagicLink = Optional.ofNullable(hideAdminMagicLink);
             return this;
         }
 
@@ -515,7 +516,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl) {
-            this.shouldCreateMagicLinkUrl = Optional.of(shouldCreateMagicLinkUrl);
+            this.shouldCreateMagicLinkUrl = Optional.ofNullable(shouldCreateMagicLinkUrl);
             return this;
         }
 
@@ -532,7 +533,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage linkExpiryMins(Integer linkExpiryMins) {
-            this.linkExpiryMins = Optional.of(linkExpiryMins);
+            this.linkExpiryMins = Optional.ofNullable(linkExpiryMins);
             return this;
         }
 
@@ -549,7 +550,7 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage integration(String integration) {
-            this.integration = Optional.of(integration);
+            this.integration = Optional.ofNullable(integration);
             return this;
         }
 

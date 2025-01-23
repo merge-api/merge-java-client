@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AsyncPostTaskResult.Builder.class)
 public final class AsyncPostTaskResult {
     private final Optional<Integer> statusCode;
@@ -99,7 +99,7 @@ public final class AsyncPostTaskResult {
         }
 
         public Builder statusCode(Integer statusCode) {
-            this.statusCode = Optional.of(statusCode);
+            this.statusCode = Optional.ofNullable(statusCode);
             return this;
         }
 
@@ -110,7 +110,7 @@ public final class AsyncPostTaskResult {
         }
 
         public Builder response(Map<String, JsonNode> response) {
-            this.response = Optional.of(response);
+            this.response = Optional.ofNullable(response);
             return this;
         }
 

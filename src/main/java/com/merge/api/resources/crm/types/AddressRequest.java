@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AddressRequest.Builder.class)
 public final class AddressRequest {
     private final Optional<String> street1;
@@ -476,7 +476,7 @@ public final class AddressRequest {
         }
 
         public Builder street1(String street1) {
-            this.street1 = Optional.of(street1);
+            this.street1 = Optional.ofNullable(street1);
             return this;
         }
 
@@ -487,7 +487,7 @@ public final class AddressRequest {
         }
 
         public Builder street2(String street2) {
-            this.street2 = Optional.of(street2);
+            this.street2 = Optional.ofNullable(street2);
             return this;
         }
 
@@ -498,7 +498,7 @@ public final class AddressRequest {
         }
 
         public Builder city(String city) {
-            this.city = Optional.of(city);
+            this.city = Optional.ofNullable(city);
             return this;
         }
 
@@ -509,7 +509,7 @@ public final class AddressRequest {
         }
 
         public Builder state(String state) {
-            this.state = Optional.of(state);
+            this.state = Optional.ofNullable(state);
             return this;
         }
 
@@ -520,7 +520,7 @@ public final class AddressRequest {
         }
 
         public Builder postalCode(String postalCode) {
-            this.postalCode = Optional.of(postalCode);
+            this.postalCode = Optional.ofNullable(postalCode);
             return this;
         }
 
@@ -531,7 +531,7 @@ public final class AddressRequest {
         }
 
         public Builder country(AddressRequestCountry country) {
-            this.country = Optional.of(country);
+            this.country = Optional.ofNullable(country);
             return this;
         }
 
@@ -542,7 +542,7 @@ public final class AddressRequest {
         }
 
         public Builder addressType(AddressRequestAddressType addressType) {
-            this.addressType = Optional.of(addressType);
+            this.addressType = Optional.ofNullable(addressType);
             return this;
         }
 
@@ -553,7 +553,7 @@ public final class AddressRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -564,7 +564,7 @@ public final class AddressRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

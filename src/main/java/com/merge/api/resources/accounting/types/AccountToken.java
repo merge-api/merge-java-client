@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountToken.Builder.class)
 public final class AccountToken {
     private final String accountToken;
@@ -71,13 +72,13 @@ public final class AccountToken {
     }
 
     public interface AccountTokenStage {
-        IntegrationStage accountToken(String accountToken);
+        IntegrationStage accountToken(@NotNull String accountToken);
 
         Builder from(AccountToken other);
     }
 
     public interface IntegrationStage {
-        _FinalStage integration(AccountIntegration integration);
+        _FinalStage integration(@NotNull AccountIntegration integration);
     }
 
     public interface _FinalStage {
@@ -104,14 +105,14 @@ public final class AccountToken {
 
         @java.lang.Override
         @JsonSetter("account_token")
-        public IntegrationStage accountToken(String accountToken) {
+        public IntegrationStage accountToken(@NotNull String accountToken) {
             this.accountToken = accountToken;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("integration")
-        public _FinalStage integration(AccountIntegration integration) {
+        public _FinalStage integration(@NotNull AccountIntegration integration) {
             this.integration = integration;
             return this;
         }

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Job.Builder.class)
 public final class Job {
     private final Optional<String> id;
@@ -433,7 +433,7 @@ public final class Job {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -444,7 +444,7 @@ public final class Job {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -455,7 +455,7 @@ public final class Job {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -466,7 +466,7 @@ public final class Job {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -477,7 +477,7 @@ public final class Job {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -488,7 +488,7 @@ public final class Job {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -499,7 +499,7 @@ public final class Job {
         }
 
         public Builder code(String code) {
-            this.code = Optional.of(code);
+            this.code = Optional.ofNullable(code);
             return this;
         }
 
@@ -510,7 +510,7 @@ public final class Job {
         }
 
         public Builder status(JobStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -521,7 +521,7 @@ public final class Job {
         }
 
         public Builder type(JobTypeEnum type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -532,7 +532,7 @@ public final class Job {
         }
 
         public Builder jobPostings(List<Optional<String>> jobPostings) {
-            this.jobPostings = Optional.of(jobPostings);
+            this.jobPostings = Optional.ofNullable(jobPostings);
             return this;
         }
 
@@ -543,7 +543,7 @@ public final class Job {
         }
 
         public Builder jobPostingUrls(List<Url> jobPostingUrls) {
-            this.jobPostingUrls = Optional.of(jobPostingUrls);
+            this.jobPostingUrls = Optional.ofNullable(jobPostingUrls);
             return this;
         }
 
@@ -554,7 +554,7 @@ public final class Job {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -565,7 +565,7 @@ public final class Job {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -576,7 +576,7 @@ public final class Job {
         }
 
         public Builder confidential(Boolean confidential) {
-            this.confidential = Optional.of(confidential);
+            this.confidential = Optional.ofNullable(confidential);
             return this;
         }
 
@@ -587,7 +587,7 @@ public final class Job {
         }
 
         public Builder departments(List<Optional<JobDepartmentsItem>> departments) {
-            this.departments = Optional.of(departments);
+            this.departments = Optional.ofNullable(departments);
             return this;
         }
 
@@ -598,7 +598,7 @@ public final class Job {
         }
 
         public Builder offices(List<Optional<JobOfficesItem>> offices) {
-            this.offices = Optional.of(offices);
+            this.offices = Optional.ofNullable(offices);
             return this;
         }
 
@@ -609,7 +609,7 @@ public final class Job {
         }
 
         public Builder hiringManagers(List<Optional<JobHiringManagersItem>> hiringManagers) {
-            this.hiringManagers = Optional.of(hiringManagers);
+            this.hiringManagers = Optional.ofNullable(hiringManagers);
             return this;
         }
 
@@ -620,7 +620,7 @@ public final class Job {
         }
 
         public Builder recruiters(List<Optional<JobRecruitersItem>> recruiters) {
-            this.recruiters = Optional.of(recruiters);
+            this.recruiters = Optional.ofNullable(recruiters);
             return this;
         }
 
@@ -631,7 +631,7 @@ public final class Job {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -642,7 +642,7 @@ public final class Job {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -653,7 +653,7 @@ public final class Job {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

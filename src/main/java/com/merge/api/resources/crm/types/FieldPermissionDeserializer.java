@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldPermissionDeserializer.Builder.class)
 public final class FieldPermissionDeserializer {
     private final Optional<List<JsonNode>> enabledFields;
@@ -100,7 +100,7 @@ public final class FieldPermissionDeserializer {
         }
 
         public Builder enabledFields(List<JsonNode> enabledFields) {
-            this.enabledFields = Optional.of(enabledFields);
+            this.enabledFields = Optional.ofNullable(enabledFields);
             return this;
         }
 
@@ -111,7 +111,7 @@ public final class FieldPermissionDeserializer {
         }
 
         public Builder disabledFields(List<JsonNode> disabledFields) {
-            this.disabledFields = Optional.of(disabledFields);
+            this.disabledFields = Optional.ofNullable(disabledFields);
             return this;
         }
 

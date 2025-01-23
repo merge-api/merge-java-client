@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountDetailsAndActionsIntegration.Builder.class)
 public final class AccountDetailsAndActionsIntegration {
     private final String name;
@@ -147,17 +148,17 @@ public final class AccountDetailsAndActionsIntegration {
     }
 
     public interface NameStage {
-        ColorStage name(String name);
+        ColorStage name(@NotNull String name);
 
         Builder from(AccountDetailsAndActionsIntegration other);
     }
 
     public interface ColorStage {
-        SlugStage color(String color);
+        SlugStage color(@NotNull String color);
     }
 
     public interface SlugStage {
-        PassthroughAvailableStage slug(String slug);
+        PassthroughAvailableStage slug(@NotNull String slug);
     }
 
     public interface PassthroughAvailableStage {
@@ -225,21 +226,21 @@ public final class AccountDetailsAndActionsIntegration {
 
         @java.lang.Override
         @JsonSetter("name")
-        public ColorStage name(String name) {
+        public ColorStage name(@NotNull String name) {
             this.name = name;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("color")
-        public SlugStage color(String color) {
+        public SlugStage color(@NotNull String color) {
             this.color = color;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("slug")
-        public PassthroughAvailableStage slug(String slug) {
+        public PassthroughAvailableStage slug(@NotNull String slug) {
             this.slug = slug;
             return this;
         }
@@ -253,7 +254,7 @@ public final class AccountDetailsAndActionsIntegration {
 
         @java.lang.Override
         public _FinalStage availableModelOperations(List<ModelOperation> availableModelOperations) {
-            this.availableModelOperations = Optional.of(availableModelOperations);
+            this.availableModelOperations = Optional.ofNullable(availableModelOperations);
             return this;
         }
 
@@ -266,7 +267,7 @@ public final class AccountDetailsAndActionsIntegration {
 
         @java.lang.Override
         public _FinalStage squareImage(String squareImage) {
-            this.squareImage = Optional.of(squareImage);
+            this.squareImage = Optional.ofNullable(squareImage);
             return this;
         }
 
@@ -279,7 +280,7 @@ public final class AccountDetailsAndActionsIntegration {
 
         @java.lang.Override
         public _FinalStage image(String image) {
-            this.image = Optional.of(image);
+            this.image = Optional.ofNullable(image);
             return this;
         }
 

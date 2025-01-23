@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PurchaseOrderRequest.Builder.class)
 public final class PurchaseOrderRequest {
     private final Optional<PurchaseOrderRequestStatus> status;
@@ -666,7 +666,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder status(PurchaseOrderRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder issueDate(OffsetDateTime issueDate) {
-            this.issueDate = Optional.of(issueDate);
+            this.issueDate = Optional.ofNullable(issueDate);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder deliveryDate(OffsetDateTime deliveryDate) {
-            this.deliveryDate = Optional.of(deliveryDate);
+            this.deliveryDate = Optional.ofNullable(deliveryDate);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder deliveryAddress(PurchaseOrderRequestDeliveryAddress deliveryAddress) {
-            this.deliveryAddress = Optional.of(deliveryAddress);
+            this.deliveryAddress = Optional.ofNullable(deliveryAddress);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder customer(String customer) {
-            this.customer = Optional.of(customer);
+            this.customer = Optional.ofNullable(customer);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder vendor(PurchaseOrderRequestVendor vendor) {
-            this.vendor = Optional.of(vendor);
+            this.vendor = Optional.ofNullable(vendor);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -743,7 +743,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder company(PurchaseOrderRequestCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -754,7 +754,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -765,7 +765,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder currency(PurchaseOrderRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -776,7 +776,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -787,7 +787,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -800,7 +800,7 @@ public final class PurchaseOrderRequest {
 
         public Builder trackingCategories(
                 List<Optional<PurchaseOrderRequestTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -811,7 +811,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder lineItems(List<PurchaseOrderLineItemRequest> lineItems) {
-            this.lineItems = Optional.of(lineItems);
+            this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
 
@@ -822,7 +822,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -833,7 +833,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -844,7 +844,7 @@ public final class PurchaseOrderRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

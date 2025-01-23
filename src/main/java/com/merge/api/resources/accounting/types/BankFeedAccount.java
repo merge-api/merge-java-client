@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedAccount.Builder.class)
 public final class BankFeedAccount {
     private final Optional<String> id;
@@ -672,7 +672,7 @@ public final class BankFeedAccount {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -683,7 +683,7 @@ public final class BankFeedAccount {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -694,7 +694,7 @@ public final class BankFeedAccount {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -705,7 +705,7 @@ public final class BankFeedAccount {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -716,7 +716,7 @@ public final class BankFeedAccount {
         }
 
         public Builder sourceAccountId(String sourceAccountId) {
-            this.sourceAccountId = Optional.of(sourceAccountId);
+            this.sourceAccountId = Optional.ofNullable(sourceAccountId);
             return this;
         }
 
@@ -727,7 +727,7 @@ public final class BankFeedAccount {
         }
 
         public Builder targetAccountId(String targetAccountId) {
-            this.targetAccountId = Optional.of(targetAccountId);
+            this.targetAccountId = Optional.ofNullable(targetAccountId);
             return this;
         }
 
@@ -738,7 +738,7 @@ public final class BankFeedAccount {
         }
 
         public Builder sourceAccountName(String sourceAccountName) {
-            this.sourceAccountName = Optional.of(sourceAccountName);
+            this.sourceAccountName = Optional.ofNullable(sourceAccountName);
             return this;
         }
 
@@ -749,7 +749,7 @@ public final class BankFeedAccount {
         }
 
         public Builder sourceAccountNumber(String sourceAccountNumber) {
-            this.sourceAccountNumber = Optional.of(sourceAccountNumber);
+            this.sourceAccountNumber = Optional.ofNullable(sourceAccountNumber);
             return this;
         }
 
@@ -760,7 +760,7 @@ public final class BankFeedAccount {
         }
 
         public Builder targetAccountName(String targetAccountName) {
-            this.targetAccountName = Optional.of(targetAccountName);
+            this.targetAccountName = Optional.ofNullable(targetAccountName);
             return this;
         }
 
@@ -771,7 +771,7 @@ public final class BankFeedAccount {
         }
 
         public Builder currency(BankFeedAccountCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -782,7 +782,7 @@ public final class BankFeedAccount {
         }
 
         public Builder feedStatus(BankFeedAccountFeedStatus feedStatus) {
-            this.feedStatus = Optional.of(feedStatus);
+            this.feedStatus = Optional.ofNullable(feedStatus);
             return this;
         }
 
@@ -793,7 +793,7 @@ public final class BankFeedAccount {
         }
 
         public Builder feedStartDate(OffsetDateTime feedStartDate) {
-            this.feedStartDate = Optional.of(feedStartDate);
+            this.feedStartDate = Optional.ofNullable(feedStartDate);
             return this;
         }
 
@@ -804,7 +804,7 @@ public final class BankFeedAccount {
         }
 
         public Builder sourceAccountBalance(Double sourceAccountBalance) {
-            this.sourceAccountBalance = Optional.of(sourceAccountBalance);
+            this.sourceAccountBalance = Optional.ofNullable(sourceAccountBalance);
             return this;
         }
 
@@ -815,7 +815,7 @@ public final class BankFeedAccount {
         }
 
         public Builder accountType(BankFeedAccountAccountType accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -826,7 +826,7 @@ public final class BankFeedAccount {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -837,7 +837,7 @@ public final class BankFeedAccount {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -848,7 +848,7 @@ public final class BankFeedAccount {
         }
 
         public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

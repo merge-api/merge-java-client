@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Address.Builder.class)
 public final class Address {
     private final Optional<OffsetDateTime> createdAt;
@@ -497,7 +497,7 @@ public final class Address {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -508,7 +508,7 @@ public final class Address {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -519,7 +519,7 @@ public final class Address {
         }
 
         public Builder type(AddressType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -530,7 +530,7 @@ public final class Address {
         }
 
         public Builder street1(String street1) {
-            this.street1 = Optional.of(street1);
+            this.street1 = Optional.ofNullable(street1);
             return this;
         }
 
@@ -541,7 +541,7 @@ public final class Address {
         }
 
         public Builder street2(String street2) {
-            this.street2 = Optional.of(street2);
+            this.street2 = Optional.ofNullable(street2);
             return this;
         }
 
@@ -552,7 +552,7 @@ public final class Address {
         }
 
         public Builder city(String city) {
-            this.city = Optional.of(city);
+            this.city = Optional.ofNullable(city);
             return this;
         }
 
@@ -563,7 +563,7 @@ public final class Address {
         }
 
         public Builder state(JsonNode state) {
-            this.state = Optional.of(state);
+            this.state = Optional.ofNullable(state);
             return this;
         }
 
@@ -574,7 +574,7 @@ public final class Address {
         }
 
         public Builder countrySubdivision(String countrySubdivision) {
-            this.countrySubdivision = Optional.of(countrySubdivision);
+            this.countrySubdivision = Optional.ofNullable(countrySubdivision);
             return this;
         }
 
@@ -585,7 +585,7 @@ public final class Address {
         }
 
         public Builder country(AddressCountry country) {
-            this.country = Optional.of(country);
+            this.country = Optional.ofNullable(country);
             return this;
         }
 
@@ -596,7 +596,7 @@ public final class Address {
         }
 
         public Builder zipCode(String zipCode) {
-            this.zipCode = Optional.of(zipCode);
+            this.zipCode = Optional.ofNullable(zipCode);
             return this;
         }
 

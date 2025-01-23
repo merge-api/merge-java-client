@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNoteRequest.Builder.class)
 public final class CreditNoteRequest {
     private final Optional<OffsetDateTime> transactionDate;
@@ -683,7 +683,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -694,7 +694,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder status(CreditNoteRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -705,7 +705,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder number(String number) {
-            this.number = Optional.of(number);
+            this.number = Optional.ofNullable(number);
             return this;
         }
 
@@ -716,7 +716,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder contact(CreditNoteRequestContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -727,7 +727,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder company(CreditNoteRequestCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -738,7 +738,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -749,7 +749,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -760,7 +760,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder remainingCredit(Double remainingCredit) {
-            this.remainingCredit = Optional.of(remainingCredit);
+            this.remainingCredit = Optional.ofNullable(remainingCredit);
             return this;
         }
 
@@ -771,7 +771,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -782,7 +782,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder lineItems(List<CreditNoteRequestLineItemsItem> lineItems) {
-            this.lineItems = Optional.of(lineItems);
+            this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
 
@@ -794,7 +794,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder trackingCategories(List<Optional<CreditNoteRequestTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -805,7 +805,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder currency(CreditNoteRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -816,7 +816,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder payments(List<Optional<CreditNoteRequestPaymentsItem>> payments) {
-            this.payments = Optional.of(payments);
+            this.payments = Optional.ofNullable(payments);
             return this;
         }
 
@@ -827,7 +827,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder appliedPayments(List<Optional<CreditNoteRequestAppliedPaymentsItem>> appliedPayments) {
-            this.appliedPayments = Optional.of(appliedPayments);
+            this.appliedPayments = Optional.ofNullable(appliedPayments);
             return this;
         }
 
@@ -838,7 +838,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder accountingPeriod(CreditNoteRequestAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -849,7 +849,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder appliedToLines(List<CreditNoteApplyLineForCreditNoteRequest> appliedToLines) {
-            this.appliedToLines = Optional.of(appliedToLines);
+            this.appliedToLines = Optional.ofNullable(appliedToLines);
             return this;
         }
 
@@ -860,7 +860,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -871,7 +871,7 @@ public final class CreditNoteRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

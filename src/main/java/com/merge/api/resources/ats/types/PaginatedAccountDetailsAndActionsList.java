@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaginatedAccountDetailsAndActionsList.Builder.class)
 public final class PaginatedAccountDetailsAndActionsList {
     private final Optional<String> next;
@@ -112,7 +112,7 @@ public final class PaginatedAccountDetailsAndActionsList {
         }
 
         public Builder next(String next) {
-            this.next = Optional.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
@@ -123,7 +123,7 @@ public final class PaginatedAccountDetailsAndActionsList {
         }
 
         public Builder previous(String previous) {
-            this.previous = Optional.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
@@ -134,7 +134,7 @@ public final class PaginatedAccountDetailsAndActionsList {
         }
 
         public Builder results(List<AccountDetailsAndActions> results) {
-            this.results = Optional.of(results);
+            this.results = Optional.ofNullable(results);
             return this;
         }
 

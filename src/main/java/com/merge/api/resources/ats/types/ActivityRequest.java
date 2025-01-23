@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ActivityRequest.Builder.class)
 public final class ActivityRequest {
     private final Optional<ActivityRequestUser> user;
@@ -211,7 +211,7 @@ public final class ActivityRequest {
         }
 
         public Builder user(ActivityRequestUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -222,7 +222,7 @@ public final class ActivityRequest {
         }
 
         public Builder activityType(ActivityRequestActivityType activityType) {
-            this.activityType = Optional.of(activityType);
+            this.activityType = Optional.ofNullable(activityType);
             return this;
         }
 
@@ -233,7 +233,7 @@ public final class ActivityRequest {
         }
 
         public Builder subject(String subject) {
-            this.subject = Optional.of(subject);
+            this.subject = Optional.ofNullable(subject);
             return this;
         }
 
@@ -244,7 +244,7 @@ public final class ActivityRequest {
         }
 
         public Builder body(String body) {
-            this.body = Optional.of(body);
+            this.body = Optional.ofNullable(body);
             return this;
         }
 
@@ -255,7 +255,7 @@ public final class ActivityRequest {
         }
 
         public Builder visibility(ActivityRequestVisibility visibility) {
-            this.visibility = Optional.of(visibility);
+            this.visibility = Optional.ofNullable(visibility);
             return this;
         }
 
@@ -266,7 +266,7 @@ public final class ActivityRequest {
         }
 
         public Builder candidate(String candidate) {
-            this.candidate = Optional.of(candidate);
+            this.candidate = Optional.ofNullable(candidate);
             return this;
         }
 
@@ -277,7 +277,7 @@ public final class ActivityRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -288,7 +288,7 @@ public final class ActivityRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

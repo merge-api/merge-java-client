@@ -28,13 +28,6 @@ public class PhoneNumbersClient {
     /**
      * Returns an <code>AccountingPhoneNumber</code> object with the given <code>id</code>.
      */
-    public AccountingPhoneNumber retrieve(String id) {
-        return retrieve(id, PhoneNumbersRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns an <code>AccountingPhoneNumber</code> object with the given <code>id</code>.
-     */
     public AccountingPhoneNumber retrieve(String id, PhoneNumbersRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -56,7 +49,8 @@ public class PhoneNumbersClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

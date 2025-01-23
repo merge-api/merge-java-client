@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo.Builder.class)
 public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
     private final Optional<String> method;
@@ -114,7 +114,7 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
         }
 
         public Builder method(String method) {
-            this.method = Optional.of(method);
+            this.method = Optional.ofNullable(method);
             return this;
         }
 
@@ -125,7 +125,7 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
         }
 
         public Builder urlPath(String urlPath) {
-            this.urlPath = Optional.of(urlPath);
+            this.urlPath = Optional.ofNullable(urlPath);
             return this;
         }
 
@@ -136,7 +136,7 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
         }
 
         public Builder fieldTraversalPath(List<String> fieldTraversalPath) {
-            this.fieldTraversalPath = Optional.of(fieldTraversalPath);
+            this.fieldTraversalPath = Optional.ofNullable(fieldTraversalPath);
             return this;
         }
 

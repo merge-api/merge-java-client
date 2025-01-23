@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JournalEntry.Builder.class)
 public final class JournalEntry {
     private final Optional<String> id;
@@ -761,7 +761,7 @@ public final class JournalEntry {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -772,7 +772,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -783,7 +783,7 @@ public final class JournalEntry {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -794,7 +794,7 @@ public final class JournalEntry {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -805,7 +805,7 @@ public final class JournalEntry {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -816,7 +816,7 @@ public final class JournalEntry {
         }
 
         public Builder payments(List<Optional<JournalEntryPaymentsItem>> payments) {
-            this.payments = Optional.of(payments);
+            this.payments = Optional.ofNullable(payments);
             return this;
         }
 
@@ -827,7 +827,7 @@ public final class JournalEntry {
         }
 
         public Builder appliedPayments(List<Optional<JournalEntryAppliedPaymentsItem>> appliedPayments) {
-            this.appliedPayments = Optional.of(appliedPayments);
+            this.appliedPayments = Optional.ofNullable(appliedPayments);
             return this;
         }
 
@@ -838,7 +838,7 @@ public final class JournalEntry {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -849,7 +849,7 @@ public final class JournalEntry {
         }
 
         public Builder currency(JournalEntryCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -860,7 +860,7 @@ public final class JournalEntry {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -871,7 +871,7 @@ public final class JournalEntry {
         }
 
         public Builder company(JournalEntryCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -882,7 +882,7 @@ public final class JournalEntry {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -893,7 +893,7 @@ public final class JournalEntry {
         }
 
         public Builder lines(List<JournalLine> lines) {
-            this.lines = Optional.of(lines);
+            this.lines = Optional.ofNullable(lines);
             return this;
         }
 
@@ -904,7 +904,7 @@ public final class JournalEntry {
         }
 
         public Builder journalNumber(String journalNumber) {
-            this.journalNumber = Optional.of(journalNumber);
+            this.journalNumber = Optional.ofNullable(journalNumber);
             return this;
         }
 
@@ -916,7 +916,7 @@ public final class JournalEntry {
         }
 
         public Builder trackingCategories(List<Optional<JournalEntryTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -927,7 +927,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -938,7 +938,7 @@ public final class JournalEntry {
         }
 
         public Builder postingStatus(JournalEntryPostingStatus postingStatus) {
-            this.postingStatus = Optional.of(postingStatus);
+            this.postingStatus = Optional.ofNullable(postingStatus);
             return this;
         }
 
@@ -949,7 +949,7 @@ public final class JournalEntry {
         }
 
         public Builder accountingPeriod(JournalEntryAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -960,7 +960,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -971,7 +971,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -982,7 +982,7 @@ public final class JournalEntry {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -993,7 +993,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -1004,7 +1004,7 @@ public final class JournalEntry {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

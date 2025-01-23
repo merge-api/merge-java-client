@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CrmCustomObjectEndpointRequest.Builder.class)
 public final class CrmCustomObjectEndpointRequest {
     private final Optional<Boolean> isDebugMode;
@@ -91,7 +92,7 @@ public final class CrmCustomObjectEndpointRequest {
     }
 
     public interface ModelStage {
-        _FinalStage model(CustomObjectRequest model);
+        _FinalStage model(@NotNull CustomObjectRequest model);
 
         Builder from(CrmCustomObjectEndpointRequest other);
     }
@@ -131,7 +132,7 @@ public final class CrmCustomObjectEndpointRequest {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(CustomObjectRequest model) {
+        public _FinalStage model(@NotNull CustomObjectRequest model) {
             this.model = model;
             return this;
         }
@@ -142,7 +143,7 @@ public final class CrmCustomObjectEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage runAsync(Boolean runAsync) {
-            this.runAsync = Optional.of(runAsync);
+            this.runAsync = Optional.ofNullable(runAsync);
             return this;
         }
 
@@ -159,7 +160,7 @@ public final class CrmCustomObjectEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage isDebugMode(Boolean isDebugMode) {
-            this.isDebugMode = Optional.of(isDebugMode);
+            this.isDebugMode = Optional.ofNullable(isDebugMode);
             return this;
         }
 

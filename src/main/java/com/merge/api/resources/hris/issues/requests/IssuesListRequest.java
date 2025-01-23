@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = IssuesListRequest.Builder.class)
 public final class IssuesListRequest {
     private final Optional<String> accountToken;
@@ -308,7 +308,7 @@ public final class IssuesListRequest {
         }
 
         public Builder accountToken(String accountToken) {
-            this.accountToken = Optional.of(accountToken);
+            this.accountToken = Optional.ofNullable(accountToken);
             return this;
         }
 
@@ -319,7 +319,7 @@ public final class IssuesListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -330,7 +330,7 @@ public final class IssuesListRequest {
         }
 
         public Builder endDate(String endDate) {
-            this.endDate = Optional.of(endDate);
+            this.endDate = Optional.ofNullable(endDate);
             return this;
         }
 
@@ -341,7 +341,7 @@ public final class IssuesListRequest {
         }
 
         public Builder endUserOrganizationName(String endUserOrganizationName) {
-            this.endUserOrganizationName = Optional.of(endUserOrganizationName);
+            this.endUserOrganizationName = Optional.ofNullable(endUserOrganizationName);
             return this;
         }
 
@@ -352,7 +352,7 @@ public final class IssuesListRequest {
         }
 
         public Builder firstIncidentTimeAfter(OffsetDateTime firstIncidentTimeAfter) {
-            this.firstIncidentTimeAfter = Optional.of(firstIncidentTimeAfter);
+            this.firstIncidentTimeAfter = Optional.ofNullable(firstIncidentTimeAfter);
             return this;
         }
 
@@ -363,7 +363,7 @@ public final class IssuesListRequest {
         }
 
         public Builder firstIncidentTimeBefore(OffsetDateTime firstIncidentTimeBefore) {
-            this.firstIncidentTimeBefore = Optional.of(firstIncidentTimeBefore);
+            this.firstIncidentTimeBefore = Optional.ofNullable(firstIncidentTimeBefore);
             return this;
         }
 
@@ -374,7 +374,7 @@ public final class IssuesListRequest {
         }
 
         public Builder includeMuted(String includeMuted) {
-            this.includeMuted = Optional.of(includeMuted);
+            this.includeMuted = Optional.ofNullable(includeMuted);
             return this;
         }
 
@@ -385,7 +385,7 @@ public final class IssuesListRequest {
         }
 
         public Builder integrationName(String integrationName) {
-            this.integrationName = Optional.of(integrationName);
+            this.integrationName = Optional.ofNullable(integrationName);
             return this;
         }
 
@@ -396,7 +396,7 @@ public final class IssuesListRequest {
         }
 
         public Builder lastIncidentTimeAfter(OffsetDateTime lastIncidentTimeAfter) {
-            this.lastIncidentTimeAfter = Optional.of(lastIncidentTimeAfter);
+            this.lastIncidentTimeAfter = Optional.ofNullable(lastIncidentTimeAfter);
             return this;
         }
 
@@ -407,7 +407,7 @@ public final class IssuesListRequest {
         }
 
         public Builder lastIncidentTimeBefore(OffsetDateTime lastIncidentTimeBefore) {
-            this.lastIncidentTimeBefore = Optional.of(lastIncidentTimeBefore);
+            this.lastIncidentTimeBefore = Optional.ofNullable(lastIncidentTimeBefore);
             return this;
         }
 
@@ -418,7 +418,7 @@ public final class IssuesListRequest {
         }
 
         public Builder linkedAccountId(String linkedAccountId) {
-            this.linkedAccountId = Optional.of(linkedAccountId);
+            this.linkedAccountId = Optional.ofNullable(linkedAccountId);
             return this;
         }
 
@@ -429,7 +429,7 @@ public final class IssuesListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -440,7 +440,7 @@ public final class IssuesListRequest {
         }
 
         public Builder startDate(String startDate) {
-            this.startDate = Optional.of(startDate);
+            this.startDate = Optional.ofNullable(startDate);
             return this;
         }
 
@@ -451,7 +451,7 @@ public final class IssuesListRequest {
         }
 
         public Builder status(IssuesListRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 

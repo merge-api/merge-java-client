@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Role.Builder.class)
 public final class Role {
     private final Optional<String> id;
@@ -242,7 +242,7 @@ public final class Role {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -253,7 +253,7 @@ public final class Role {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -264,7 +264,7 @@ public final class Role {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -275,7 +275,7 @@ public final class Role {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -286,7 +286,7 @@ public final class Role {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -297,7 +297,7 @@ public final class Role {
         }
 
         public Builder ticketActions(List<Optional<RoleTicketActionsItem>> ticketActions) {
-            this.ticketActions = Optional.of(ticketActions);
+            this.ticketActions = Optional.ofNullable(ticketActions);
             return this;
         }
 
@@ -308,7 +308,7 @@ public final class Role {
         }
 
         public Builder ticketAccess(RoleTicketAccess ticketAccess) {
-            this.ticketAccess = Optional.of(ticketAccess);
+            this.ticketAccess = Optional.ofNullable(ticketAccess);
             return this;
         }
 
@@ -319,7 +319,7 @@ public final class Role {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -330,7 +330,7 @@ public final class Role {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -341,7 +341,7 @@ public final class Role {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

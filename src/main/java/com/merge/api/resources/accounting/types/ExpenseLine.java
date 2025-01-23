@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ExpenseLine.Builder.class)
 public final class ExpenseLine {
     private final Optional<String> id;
@@ -666,7 +666,7 @@ public final class ExpenseLine {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class ExpenseLine {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class ExpenseLine {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class ExpenseLine {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class ExpenseLine {
         }
 
         public Builder item(ExpenseLineItem item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class ExpenseLine {
         }
 
         public Builder netAmount(Double netAmount) {
-            this.netAmount = Optional.of(netAmount);
+            this.netAmount = Optional.ofNullable(netAmount);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class ExpenseLine {
         }
 
         public Builder trackingCategory(ExpenseLineTrackingCategory trackingCategory) {
-            this.trackingCategory = Optional.of(trackingCategory);
+            this.trackingCategory = Optional.ofNullable(trackingCategory);
             return this;
         }
 
@@ -744,7 +744,7 @@ public final class ExpenseLine {
         }
 
         public Builder trackingCategories(List<Optional<ExpenseLineTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -755,7 +755,7 @@ public final class ExpenseLine {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -766,7 +766,7 @@ public final class ExpenseLine {
         }
 
         public Builder employee(ExpenseLineEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -777,7 +777,7 @@ public final class ExpenseLine {
         }
 
         public Builder currency(ExpenseLineCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -788,7 +788,7 @@ public final class ExpenseLine {
         }
 
         public Builder account(ExpenseLineAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -799,7 +799,7 @@ public final class ExpenseLine {
         }
 
         public Builder contact(ExpenseLineContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -810,7 +810,7 @@ public final class ExpenseLine {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -821,7 +821,7 @@ public final class ExpenseLine {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -832,7 +832,7 @@ public final class ExpenseLine {
         }
 
         public Builder taxRate(String taxRate) {
-            this.taxRate = Optional.of(taxRate);
+            this.taxRate = Optional.ofNullable(taxRate);
             return this;
         }
 
@@ -843,7 +843,7 @@ public final class ExpenseLine {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
