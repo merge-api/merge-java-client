@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = NoteRequest.Builder.class)
 public final class NoteRequest {
     private final Optional<NoteRequestOwner> owner;
@@ -202,7 +202,7 @@ public final class NoteRequest {
         }
 
         public Builder owner(NoteRequestOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -213,7 +213,7 @@ public final class NoteRequest {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -224,7 +224,7 @@ public final class NoteRequest {
         }
 
         public Builder contact(NoteRequestContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -235,7 +235,7 @@ public final class NoteRequest {
         }
 
         public Builder account(NoteRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -246,7 +246,7 @@ public final class NoteRequest {
         }
 
         public Builder opportunity(NoteRequestOpportunity opportunity) {
-            this.opportunity = Optional.of(opportunity);
+            this.opportunity = Optional.ofNullable(opportunity);
             return this;
         }
 
@@ -257,7 +257,7 @@ public final class NoteRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -268,7 +268,7 @@ public final class NoteRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -279,7 +279,7 @@ public final class NoteRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

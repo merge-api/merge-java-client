@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FilesDownloadRetrieveRequest.Builder.class)
 public final class FilesDownloadRetrieveRequest {
     private final Optional<String> mimeType;
@@ -87,7 +87,7 @@ public final class FilesDownloadRetrieveRequest {
         }
 
         public Builder mimeType(String mimeType) {
-            this.mimeType = Optional.of(mimeType);
+            this.mimeType = Optional.ofNullable(mimeType);
             return this;
         }
 

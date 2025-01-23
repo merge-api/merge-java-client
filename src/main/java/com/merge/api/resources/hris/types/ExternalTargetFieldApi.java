@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ExternalTargetFieldApi.Builder.class)
 public final class ExternalTargetFieldApi {
     private final Optional<String> name;
@@ -110,7 +110,7 @@ public final class ExternalTargetFieldApi {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -121,7 +121,7 @@ public final class ExternalTargetFieldApi {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -132,7 +132,7 @@ public final class ExternalTargetFieldApi {
         }
 
         public Builder isMapped(String isMapped) {
-            this.isMapped = Optional.of(isMapped);
+            this.isMapped = Optional.ofNullable(isMapped);
             return this;
         }
 

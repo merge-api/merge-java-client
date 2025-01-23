@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BalanceSheet.Builder.class)
 public final class BalanceSheet {
     private final Optional<String> id;
@@ -638,7 +638,7 @@ public final class BalanceSheet {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -649,7 +649,7 @@ public final class BalanceSheet {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -660,7 +660,7 @@ public final class BalanceSheet {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -671,7 +671,7 @@ public final class BalanceSheet {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -682,7 +682,7 @@ public final class BalanceSheet {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -693,7 +693,7 @@ public final class BalanceSheet {
         }
 
         public Builder currency(BalanceSheetCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -704,7 +704,7 @@ public final class BalanceSheet {
         }
 
         public Builder company(BalanceSheetCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -715,7 +715,7 @@ public final class BalanceSheet {
         }
 
         public Builder date(OffsetDateTime date) {
-            this.date = Optional.of(date);
+            this.date = Optional.ofNullable(date);
             return this;
         }
 
@@ -726,7 +726,7 @@ public final class BalanceSheet {
         }
 
         public Builder netAssets(Double netAssets) {
-            this.netAssets = Optional.of(netAssets);
+            this.netAssets = Optional.ofNullable(netAssets);
             return this;
         }
 
@@ -737,7 +737,7 @@ public final class BalanceSheet {
         }
 
         public Builder assets(List<ReportItem> assets) {
-            this.assets = Optional.of(assets);
+            this.assets = Optional.ofNullable(assets);
             return this;
         }
 
@@ -748,7 +748,7 @@ public final class BalanceSheet {
         }
 
         public Builder liabilities(List<ReportItem> liabilities) {
-            this.liabilities = Optional.of(liabilities);
+            this.liabilities = Optional.ofNullable(liabilities);
             return this;
         }
 
@@ -759,7 +759,7 @@ public final class BalanceSheet {
         }
 
         public Builder equity(List<ReportItem> equity) {
-            this.equity = Optional.of(equity);
+            this.equity = Optional.ofNullable(equity);
             return this;
         }
 
@@ -770,7 +770,7 @@ public final class BalanceSheet {
         }
 
         public Builder remoteGeneratedAt(OffsetDateTime remoteGeneratedAt) {
-            this.remoteGeneratedAt = Optional.of(remoteGeneratedAt);
+            this.remoteGeneratedAt = Optional.ofNullable(remoteGeneratedAt);
             return this;
         }
 
@@ -781,7 +781,7 @@ public final class BalanceSheet {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -792,7 +792,7 @@ public final class BalanceSheet {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -803,7 +803,7 @@ public final class BalanceSheet {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

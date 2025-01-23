@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployerBenefit.Builder.class)
 public final class EmployerBenefit {
     private final Optional<String> id;
@@ -261,7 +261,7 @@ public final class EmployerBenefit {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -272,7 +272,7 @@ public final class EmployerBenefit {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -283,7 +283,7 @@ public final class EmployerBenefit {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class EmployerBenefit {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class EmployerBenefit {
         }
 
         public Builder benefitPlanType(EmployerBenefitBenefitPlanType benefitPlanType) {
-            this.benefitPlanType = Optional.of(benefitPlanType);
+            this.benefitPlanType = Optional.ofNullable(benefitPlanType);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class EmployerBenefit {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class EmployerBenefit {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class EmployerBenefit {
         }
 
         public Builder deductionCode(String deductionCode) {
-            this.deductionCode = Optional.of(deductionCode);
+            this.deductionCode = Optional.ofNullable(deductionCode);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class EmployerBenefit {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -360,7 +360,7 @@ public final class EmployerBenefit {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class EmployerBenefit {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

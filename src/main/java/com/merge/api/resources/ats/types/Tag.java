@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Tag.Builder.class)
 public final class Tag {
     private final Optional<String> remoteId;
@@ -189,7 +189,7 @@ public final class Tag {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -200,7 +200,7 @@ public final class Tag {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -211,7 +211,7 @@ public final class Tag {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -222,7 +222,7 @@ public final class Tag {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -233,7 +233,7 @@ public final class Tag {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -244,7 +244,7 @@ public final class Tag {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -255,7 +255,7 @@ public final class Tag {
         }
 
         public Builder remoteData(List<Optional<Map<String, JsonNode>>> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

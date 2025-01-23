@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = SyncStatusListRequest.Builder.class)
 public final class SyncStatusListRequest {
     private final Optional<String> cursor;
@@ -102,7 +102,7 @@ public final class SyncStatusListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -113,7 +113,7 @@ public final class SyncStatusListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 

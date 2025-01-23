@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AssociationSubType.Builder.class)
 public final class AssociationSubType {
     private final Optional<String> id;
@@ -132,7 +132,7 @@ public final class AssociationSubType {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -143,7 +143,7 @@ public final class AssociationSubType {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -154,7 +154,7 @@ public final class AssociationSubType {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -165,7 +165,7 @@ public final class AssociationSubType {
         }
 
         public Builder originType(String originType) {
-            this.originType = Optional.of(originType);
+            this.originType = Optional.ofNullable(originType);
             return this;
         }
 

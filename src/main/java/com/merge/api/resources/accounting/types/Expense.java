@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Expense.Builder.class)
 public final class Expense {
     private final Optional<String> id;
@@ -774,7 +774,7 @@ public final class Expense {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -785,7 +785,7 @@ public final class Expense {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -796,7 +796,7 @@ public final class Expense {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -807,7 +807,7 @@ public final class Expense {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -818,7 +818,7 @@ public final class Expense {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -829,7 +829,7 @@ public final class Expense {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -840,7 +840,7 @@ public final class Expense {
         }
 
         public Builder account(ExpenseAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -851,7 +851,7 @@ public final class Expense {
         }
 
         public Builder contact(ExpenseContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -862,7 +862,7 @@ public final class Expense {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -873,7 +873,7 @@ public final class Expense {
         }
 
         public Builder subTotal(Double subTotal) {
-            this.subTotal = Optional.of(subTotal);
+            this.subTotal = Optional.ofNullable(subTotal);
             return this;
         }
 
@@ -884,7 +884,7 @@ public final class Expense {
         }
 
         public Builder totalTaxAmount(Double totalTaxAmount) {
-            this.totalTaxAmount = Optional.of(totalTaxAmount);
+            this.totalTaxAmount = Optional.ofNullable(totalTaxAmount);
             return this;
         }
 
@@ -895,7 +895,7 @@ public final class Expense {
         }
 
         public Builder currency(ExpenseCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -906,7 +906,7 @@ public final class Expense {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -917,7 +917,7 @@ public final class Expense {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -928,7 +928,7 @@ public final class Expense {
         }
 
         public Builder company(ExpenseCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -939,7 +939,7 @@ public final class Expense {
         }
 
         public Builder employee(ExpenseEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -950,7 +950,7 @@ public final class Expense {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -961,7 +961,7 @@ public final class Expense {
         }
 
         public Builder lines(List<ExpenseLine> lines) {
-            this.lines = Optional.of(lines);
+            this.lines = Optional.ofNullable(lines);
             return this;
         }
 
@@ -972,7 +972,7 @@ public final class Expense {
         }
 
         public Builder trackingCategories(List<Optional<ExpenseTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -983,7 +983,7 @@ public final class Expense {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -994,7 +994,7 @@ public final class Expense {
         }
 
         public Builder accountingPeriod(ExpenseAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -1005,7 +1005,7 @@ public final class Expense {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -1016,7 +1016,7 @@ public final class Expense {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -1027,7 +1027,7 @@ public final class Expense {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

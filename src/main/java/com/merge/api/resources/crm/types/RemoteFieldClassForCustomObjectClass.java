@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldClassForCustomObjectClass.Builder.class)
 public final class RemoteFieldClassForCustomObjectClass {
     private final Optional<OffsetDateTime> createdAt;
@@ -222,7 +222,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -233,7 +233,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -244,7 +244,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 
@@ -255,7 +255,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder remoteKeyName(String remoteKeyName) {
-            this.remoteKeyName = Optional.of(remoteKeyName);
+            this.remoteKeyName = Optional.ofNullable(remoteKeyName);
             return this;
         }
 
@@ -266,7 +266,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -277,7 +277,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder isRequired(Boolean isRequired) {
-            this.isRequired = Optional.of(isRequired);
+            this.isRequired = Optional.ofNullable(isRequired);
             return this;
         }
 
@@ -288,7 +288,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder fieldType(RemoteFieldClassForCustomObjectClassFieldType fieldType) {
-            this.fieldType = Optional.of(fieldType);
+            this.fieldType = Optional.ofNullable(fieldType);
             return this;
         }
 
@@ -299,7 +299,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder fieldFormat(RemoteFieldClassForCustomObjectClassFieldFormat fieldFormat) {
-            this.fieldFormat = Optional.of(fieldFormat);
+            this.fieldFormat = Optional.ofNullable(fieldFormat);
             return this;
         }
 
@@ -310,7 +310,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder fieldChoices(List<RemoteFieldClassForCustomObjectClassFieldChoicesItem> fieldChoices) {
-            this.fieldChoices = Optional.of(fieldChoices);
+            this.fieldChoices = Optional.ofNullable(fieldChoices);
             return this;
         }
 
@@ -321,7 +321,7 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         public Builder itemSchema(RemoteFieldClassForCustomObjectClassItemSchema itemSchema) {
-            this.itemSchema = Optional.of(itemSchema);
+            this.itemSchema = Optional.ofNullable(itemSchema);
             return this;
         }
 

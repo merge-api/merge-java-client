@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = IgnoreCommonModelRequest.Builder.class)
 public final class IgnoreCommonModelRequest {
     private final ReasonEnum reason;
@@ -74,7 +75,7 @@ public final class IgnoreCommonModelRequest {
     }
 
     public interface ReasonStage {
-        _FinalStage reason(ReasonEnum reason);
+        _FinalStage reason(@NotNull ReasonEnum reason);
 
         Builder from(IgnoreCommonModelRequest other);
     }
@@ -107,14 +108,14 @@ public final class IgnoreCommonModelRequest {
 
         @java.lang.Override
         @JsonSetter("reason")
-        public _FinalStage reason(ReasonEnum reason) {
+        public _FinalStage reason(@NotNull ReasonEnum reason) {
             this.reason = reason;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage message(String message) {
-            this.message = Optional.of(message);
+            this.message = Optional.ofNullable(message);
             return this;
         }
 

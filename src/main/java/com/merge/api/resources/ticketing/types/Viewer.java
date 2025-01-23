@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Viewer.Builder.class)
 public final class Viewer {
     private final Optional<String> id;
@@ -167,7 +167,7 @@ public final class Viewer {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -178,7 +178,7 @@ public final class Viewer {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -189,7 +189,7 @@ public final class Viewer {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -200,7 +200,7 @@ public final class Viewer {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -211,7 +211,7 @@ public final class Viewer {
         }
 
         public Builder team(ViewerTeam team) {
-            this.team = Optional.of(team);
+            this.team = Optional.ofNullable(team);
             return this;
         }
 
@@ -222,7 +222,7 @@ public final class Viewer {
         }
 
         public Builder user(ViewerUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 

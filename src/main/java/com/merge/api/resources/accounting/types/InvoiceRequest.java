@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InvoiceRequest.Builder.class)
 public final class InvoiceRequest {
     private final Optional<InvoiceRequestType> type;
@@ -803,7 +803,7 @@ public final class InvoiceRequest {
         }
 
         public Builder type(InvoiceRequestType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -814,7 +814,7 @@ public final class InvoiceRequest {
         }
 
         public Builder contact(InvoiceRequestContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -825,7 +825,7 @@ public final class InvoiceRequest {
         }
 
         public Builder number(String number) {
-            this.number = Optional.of(number);
+            this.number = Optional.ofNullable(number);
             return this;
         }
 
@@ -836,7 +836,7 @@ public final class InvoiceRequest {
         }
 
         public Builder issueDate(OffsetDateTime issueDate) {
-            this.issueDate = Optional.of(issueDate);
+            this.issueDate = Optional.ofNullable(issueDate);
             return this;
         }
 
@@ -847,7 +847,7 @@ public final class InvoiceRequest {
         }
 
         public Builder dueDate(OffsetDateTime dueDate) {
-            this.dueDate = Optional.of(dueDate);
+            this.dueDate = Optional.ofNullable(dueDate);
             return this;
         }
 
@@ -858,7 +858,7 @@ public final class InvoiceRequest {
         }
 
         public Builder paidOnDate(OffsetDateTime paidOnDate) {
-            this.paidOnDate = Optional.of(paidOnDate);
+            this.paidOnDate = Optional.ofNullable(paidOnDate);
             return this;
         }
 
@@ -869,7 +869,7 @@ public final class InvoiceRequest {
         }
 
         public Builder employee(InvoiceRequestEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -880,7 +880,7 @@ public final class InvoiceRequest {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -891,7 +891,7 @@ public final class InvoiceRequest {
         }
 
         public Builder status(InvoiceRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -902,7 +902,7 @@ public final class InvoiceRequest {
         }
 
         public Builder company(InvoiceRequestCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -913,7 +913,7 @@ public final class InvoiceRequest {
         }
 
         public Builder currency(InvoiceRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -924,7 +924,7 @@ public final class InvoiceRequest {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -935,7 +935,7 @@ public final class InvoiceRequest {
         }
 
         public Builder totalDiscount(Double totalDiscount) {
-            this.totalDiscount = Optional.of(totalDiscount);
+            this.totalDiscount = Optional.ofNullable(totalDiscount);
             return this;
         }
 
@@ -946,7 +946,7 @@ public final class InvoiceRequest {
         }
 
         public Builder subTotal(Double subTotal) {
-            this.subTotal = Optional.of(subTotal);
+            this.subTotal = Optional.ofNullable(subTotal);
             return this;
         }
 
@@ -957,7 +957,7 @@ public final class InvoiceRequest {
         }
 
         public Builder totalTaxAmount(Double totalTaxAmount) {
-            this.totalTaxAmount = Optional.of(totalTaxAmount);
+            this.totalTaxAmount = Optional.ofNullable(totalTaxAmount);
             return this;
         }
 
@@ -968,7 +968,7 @@ public final class InvoiceRequest {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -979,7 +979,7 @@ public final class InvoiceRequest {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -990,7 +990,7 @@ public final class InvoiceRequest {
         }
 
         public Builder balance(Double balance) {
-            this.balance = Optional.of(balance);
+            this.balance = Optional.ofNullable(balance);
             return this;
         }
 
@@ -1001,7 +1001,7 @@ public final class InvoiceRequest {
         }
 
         public Builder payments(List<Optional<InvoiceRequestPaymentsItem>> payments) {
-            this.payments = Optional.of(payments);
+            this.payments = Optional.ofNullable(payments);
             return this;
         }
 
@@ -1013,7 +1013,7 @@ public final class InvoiceRequest {
         }
 
         public Builder trackingCategories(List<Optional<InvoiceRequestTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -1024,7 +1024,7 @@ public final class InvoiceRequest {
         }
 
         public Builder lineItems(List<InvoiceLineItemRequest> lineItems) {
-            this.lineItems = Optional.of(lineItems);
+            this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
 
@@ -1035,7 +1035,7 @@ public final class InvoiceRequest {
         }
 
         public Builder purchaseOrders(List<Optional<InvoiceRequestPurchaseOrdersItem>> purchaseOrders) {
-            this.purchaseOrders = Optional.of(purchaseOrders);
+            this.purchaseOrders = Optional.ofNullable(purchaseOrders);
             return this;
         }
 
@@ -1046,7 +1046,7 @@ public final class InvoiceRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -1057,7 +1057,7 @@ public final class InvoiceRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -1068,7 +1068,7 @@ public final class InvoiceRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

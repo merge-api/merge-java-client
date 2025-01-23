@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Offer.Builder.class)
 public final class Offer {
     private final Optional<String> id;
@@ -316,7 +316,7 @@ public final class Offer {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class Offer {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class Offer {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class Offer {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -360,7 +360,7 @@ public final class Offer {
         }
 
         public Builder application(OfferApplication application) {
-            this.application = Optional.of(application);
+            this.application = Optional.ofNullable(application);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class Offer {
         }
 
         public Builder creator(OfferCreator creator) {
-            this.creator = Optional.of(creator);
+            this.creator = Optional.ofNullable(creator);
             return this;
         }
 
@@ -382,7 +382,7 @@ public final class Offer {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -393,7 +393,7 @@ public final class Offer {
         }
 
         public Builder closedAt(OffsetDateTime closedAt) {
-            this.closedAt = Optional.of(closedAt);
+            this.closedAt = Optional.ofNullable(closedAt);
             return this;
         }
 
@@ -404,7 +404,7 @@ public final class Offer {
         }
 
         public Builder sentAt(OffsetDateTime sentAt) {
-            this.sentAt = Optional.of(sentAt);
+            this.sentAt = Optional.ofNullable(sentAt);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class Offer {
         }
 
         public Builder startDate(OffsetDateTime startDate) {
-            this.startDate = Optional.of(startDate);
+            this.startDate = Optional.ofNullable(startDate);
             return this;
         }
 
@@ -426,7 +426,7 @@ public final class Offer {
         }
 
         public Builder status(OfferStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -437,7 +437,7 @@ public final class Offer {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -448,7 +448,7 @@ public final class Offer {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -459,7 +459,7 @@ public final class Offer {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

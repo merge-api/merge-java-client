@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FolderRequest.Builder.class)
 public final class FolderRequest {
     private final Optional<String> name;
@@ -221,7 +221,7 @@ public final class FolderRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -232,7 +232,7 @@ public final class FolderRequest {
         }
 
         public Builder folderUrl(String folderUrl) {
-            this.folderUrl = Optional.of(folderUrl);
+            this.folderUrl = Optional.ofNullable(folderUrl);
             return this;
         }
 
@@ -243,7 +243,7 @@ public final class FolderRequest {
         }
 
         public Builder size(Long size) {
-            this.size = Optional.of(size);
+            this.size = Optional.ofNullable(size);
             return this;
         }
 
@@ -254,7 +254,7 @@ public final class FolderRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -265,7 +265,7 @@ public final class FolderRequest {
         }
 
         public Builder parentFolder(FolderRequestParentFolder parentFolder) {
-            this.parentFolder = Optional.of(parentFolder);
+            this.parentFolder = Optional.ofNullable(parentFolder);
             return this;
         }
 
@@ -276,7 +276,7 @@ public final class FolderRequest {
         }
 
         public Builder drive(FolderRequestDrive drive) {
-            this.drive = Optional.of(drive);
+            this.drive = Optional.ofNullable(drive);
             return this;
         }
 
@@ -287,7 +287,7 @@ public final class FolderRequest {
         }
 
         public Builder permissions(FolderRequestPermissions permissions) {
-            this.permissions = Optional.of(permissions);
+            this.permissions = Optional.ofNullable(permissions);
             return this;
         }
 
@@ -298,7 +298,7 @@ public final class FolderRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -309,7 +309,7 @@ public final class FolderRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

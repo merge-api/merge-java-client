@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AdvancedMetadata.Builder.class)
 public final class AdvancedMetadata {
     private final String id;
@@ -119,7 +120,7 @@ public final class AdvancedMetadata {
     }
 
     public interface IdStage {
-        _FinalStage id(String id);
+        _FinalStage id(@NotNull String id);
 
         Builder from(AdvancedMetadata other);
     }
@@ -180,14 +181,14 @@ public final class AdvancedMetadata {
 
         @java.lang.Override
         @JsonSetter("id")
-        public _FinalStage id(String id) {
+        public _FinalStage id(@NotNull String id) {
             this.id = id;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage fieldChoices(List<JsonNode> fieldChoices) {
-            this.fieldChoices = Optional.of(fieldChoices);
+            this.fieldChoices = Optional.ofNullable(fieldChoices);
             return this;
         }
 
@@ -200,7 +201,7 @@ public final class AdvancedMetadata {
 
         @java.lang.Override
         public _FinalStage isCustom(Boolean isCustom) {
-            this.isCustom = Optional.of(isCustom);
+            this.isCustom = Optional.ofNullable(isCustom);
             return this;
         }
 
@@ -213,7 +214,7 @@ public final class AdvancedMetadata {
 
         @java.lang.Override
         public _FinalStage isRequired(Boolean isRequired) {
-            this.isRequired = Optional.of(isRequired);
+            this.isRequired = Optional.ofNullable(isRequired);
             return this;
         }
 
@@ -226,7 +227,7 @@ public final class AdvancedMetadata {
 
         @java.lang.Override
         public _FinalStage description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -239,7 +240,7 @@ public final class AdvancedMetadata {
 
         @java.lang.Override
         public _FinalStage displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 

@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedTransactionRequestRequest.Builder.class)
 public final class BankFeedTransactionRequestRequest {
     private final Optional<BankFeedTransactionRequestRequestBankFeedAccount> bankFeedAccount;
@@ -260,7 +260,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder bankFeedAccount(BankFeedTransactionRequestRequestBankFeedAccount bankFeedAccount) {
-            this.bankFeedAccount = Optional.of(bankFeedAccount);
+            this.bankFeedAccount = Optional.ofNullable(bankFeedAccount);
             return this;
         }
 
@@ -271,7 +271,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -282,7 +282,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder postedDate(OffsetDateTime postedDate) {
-            this.postedDate = Optional.of(postedDate);
+            this.postedDate = Optional.ofNullable(postedDate);
             return this;
         }
 
@@ -293,7 +293,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder amount(Double amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -304,7 +304,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -315,7 +315,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder transactionType(String transactionType) {
-            this.transactionType = Optional.of(transactionType);
+            this.transactionType = Optional.ofNullable(transactionType);
             return this;
         }
 
@@ -326,7 +326,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder payee(String payee) {
-            this.payee = Optional.of(payee);
+            this.payee = Optional.ofNullable(payee);
             return this;
         }
 
@@ -337,7 +337,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder creditOrDebit(BankFeedTransactionRequestRequestCreditOrDebit creditOrDebit) {
-            this.creditOrDebit = Optional.of(creditOrDebit);
+            this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }
 
@@ -348,7 +348,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder sourceTransactionId(String sourceTransactionId) {
-            this.sourceTransactionId = Optional.of(sourceTransactionId);
+            this.sourceTransactionId = Optional.ofNullable(sourceTransactionId);
             return this;
         }
 
@@ -359,7 +359,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -370,7 +370,7 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

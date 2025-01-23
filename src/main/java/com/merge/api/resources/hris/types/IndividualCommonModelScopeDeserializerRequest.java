@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = IndividualCommonModelScopeDeserializerRequest.Builder.class)
 public final class IndividualCommonModelScopeDeserializerRequest {
     private final String modelName;
@@ -87,7 +88,7 @@ public final class IndividualCommonModelScopeDeserializerRequest {
     }
 
     public interface ModelNameStage {
-        _FinalStage modelName(String modelName);
+        _FinalStage modelName(@NotNull String modelName);
 
         Builder from(IndividualCommonModelScopeDeserializerRequest other);
     }
@@ -127,14 +128,14 @@ public final class IndividualCommonModelScopeDeserializerRequest {
 
         @java.lang.Override
         @JsonSetter("model_name")
-        public _FinalStage modelName(String modelName) {
+        public _FinalStage modelName(@NotNull String modelName) {
             this.modelName = modelName;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage fieldPermissions(FieldPermissionDeserializerRequest fieldPermissions) {
-            this.fieldPermissions = Optional.of(fieldPermissions);
+            this.fieldPermissions = Optional.ofNullable(fieldPermissions);
             return this;
         }
 
@@ -147,7 +148,7 @@ public final class IndividualCommonModelScopeDeserializerRequest {
 
         @java.lang.Override
         public _FinalStage modelPermissions(Map<String, ModelPermissionDeserializerRequest> modelPermissions) {
-            this.modelPermissions = Optional.of(modelPermissions);
+            this.modelPermissions = Optional.ofNullable(modelPermissions);
             return this;
         }
 

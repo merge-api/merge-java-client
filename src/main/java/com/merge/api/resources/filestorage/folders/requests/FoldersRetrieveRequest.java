@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FoldersRetrieveRequest.Builder.class)
 public final class FoldersRetrieveRequest {
     private final Optional<FoldersRetrieveRequestExpand> expand;
@@ -105,7 +105,7 @@ public final class FoldersRetrieveRequest {
         }
 
         public Builder expand(FoldersRetrieveRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -116,7 +116,7 @@ public final class FoldersRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 

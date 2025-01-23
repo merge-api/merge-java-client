@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Payment.Builder.class)
 public final class Payment {
     private final Optional<String> id;
@@ -713,7 +713,7 @@ public final class Payment {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -724,7 +724,7 @@ public final class Payment {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -735,7 +735,7 @@ public final class Payment {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -746,7 +746,7 @@ public final class Payment {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -757,7 +757,7 @@ public final class Payment {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -768,7 +768,7 @@ public final class Payment {
         }
 
         public Builder contact(PaymentContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -779,7 +779,7 @@ public final class Payment {
         }
 
         public Builder account(PaymentAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -790,7 +790,7 @@ public final class Payment {
         }
 
         public Builder currency(PaymentCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -801,7 +801,7 @@ public final class Payment {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -812,7 +812,7 @@ public final class Payment {
         }
 
         public Builder company(PaymentCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -823,7 +823,7 @@ public final class Payment {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -834,7 +834,7 @@ public final class Payment {
         }
 
         public Builder type(PaymentType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -845,7 +845,7 @@ public final class Payment {
         }
 
         public Builder trackingCategories(List<Optional<PaymentTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -856,7 +856,7 @@ public final class Payment {
         }
 
         public Builder accountingPeriod(PaymentAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -867,7 +867,7 @@ public final class Payment {
         }
 
         public Builder appliedToLines(List<PaymentAppliedToLinesItem> appliedToLines) {
-            this.appliedToLines = Optional.of(appliedToLines);
+            this.appliedToLines = Optional.ofNullable(appliedToLines);
             return this;
         }
 
@@ -878,7 +878,7 @@ public final class Payment {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -889,7 +889,7 @@ public final class Payment {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -900,7 +900,7 @@ public final class Payment {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -911,7 +911,7 @@ public final class Payment {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -922,7 +922,7 @@ public final class Payment {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

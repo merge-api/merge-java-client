@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ItemSchema.Builder.class)
 public final class ItemSchema {
     private final Optional<ItemTypeEnum> itemType;
@@ -113,7 +113,7 @@ public final class ItemSchema {
         }
 
         public Builder itemType(ItemTypeEnum itemType) {
-            this.itemType = Optional.of(itemType);
+            this.itemType = Optional.ofNullable(itemType);
             return this;
         }
 
@@ -124,7 +124,7 @@ public final class ItemSchema {
         }
 
         public Builder itemFormat(ItemFormatEnum itemFormat) {
-            this.itemFormat = Optional.of(itemFormat);
+            this.itemFormat = Optional.ofNullable(itemFormat);
             return this;
         }
 
@@ -135,7 +135,7 @@ public final class ItemSchema {
         }
 
         public Builder itemChoices(List<String> itemChoices) {
-            this.itemChoices = Optional.of(itemChoices);
+            this.itemChoices = Optional.ofNullable(itemChoices);
             return this;
         }
 

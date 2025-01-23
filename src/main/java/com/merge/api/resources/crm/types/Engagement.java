@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Engagement.Builder.class)
 public final class Engagement {
     private final Optional<String> id;
@@ -354,7 +354,7 @@ public final class Engagement {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -365,7 +365,7 @@ public final class Engagement {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -376,7 +376,7 @@ public final class Engagement {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -387,7 +387,7 @@ public final class Engagement {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -398,7 +398,7 @@ public final class Engagement {
         }
 
         public Builder owner(EngagementOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -409,7 +409,7 @@ public final class Engagement {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -420,7 +420,7 @@ public final class Engagement {
         }
 
         public Builder subject(String subject) {
-            this.subject = Optional.of(subject);
+            this.subject = Optional.ofNullable(subject);
             return this;
         }
 
@@ -431,7 +431,7 @@ public final class Engagement {
         }
 
         public Builder direction(EngagementDirection direction) {
-            this.direction = Optional.of(direction);
+            this.direction = Optional.ofNullable(direction);
             return this;
         }
 
@@ -442,7 +442,7 @@ public final class Engagement {
         }
 
         public Builder engagementType(EngagementEngagementType engagementType) {
-            this.engagementType = Optional.of(engagementType);
+            this.engagementType = Optional.ofNullable(engagementType);
             return this;
         }
 
@@ -453,7 +453,7 @@ public final class Engagement {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -464,7 +464,7 @@ public final class Engagement {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -475,7 +475,7 @@ public final class Engagement {
         }
 
         public Builder account(EngagementAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -486,7 +486,7 @@ public final class Engagement {
         }
 
         public Builder contacts(List<Optional<EngagementContactsItem>> contacts) {
-            this.contacts = Optional.of(contacts);
+            this.contacts = Optional.ofNullable(contacts);
             return this;
         }
 
@@ -497,7 +497,7 @@ public final class Engagement {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -508,7 +508,7 @@ public final class Engagement {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -519,7 +519,7 @@ public final class Engagement {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -530,7 +530,7 @@ public final class Engagement {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

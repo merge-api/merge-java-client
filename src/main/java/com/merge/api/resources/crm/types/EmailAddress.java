@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmailAddress.Builder.class)
 public final class EmailAddress {
     private final Optional<OffsetDateTime> createdAt;
@@ -138,7 +138,7 @@ public final class EmailAddress {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -149,7 +149,7 @@ public final class EmailAddress {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class EmailAddress {
         }
 
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Optional.of(emailAddress);
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class EmailAddress {
         }
 
         public Builder emailAddressType(String emailAddressType) {
-            this.emailAddressType = Optional.of(emailAddressType);
+            this.emailAddressType = Optional.ofNullable(emailAddressType);
             return this;
         }
 

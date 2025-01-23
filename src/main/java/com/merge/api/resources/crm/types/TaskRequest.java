@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TaskRequest.Builder.class)
 public final class TaskRequest {
     private final Optional<String> subject;
@@ -258,7 +258,7 @@ public final class TaskRequest {
         }
 
         public Builder subject(String subject) {
-            this.subject = Optional.of(subject);
+            this.subject = Optional.ofNullable(subject);
             return this;
         }
 
@@ -269,7 +269,7 @@ public final class TaskRequest {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -280,7 +280,7 @@ public final class TaskRequest {
         }
 
         public Builder owner(TaskRequestOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -291,7 +291,7 @@ public final class TaskRequest {
         }
 
         public Builder account(TaskRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -302,7 +302,7 @@ public final class TaskRequest {
         }
 
         public Builder opportunity(TaskRequestOpportunity opportunity) {
-            this.opportunity = Optional.of(opportunity);
+            this.opportunity = Optional.ofNullable(opportunity);
             return this;
         }
 
@@ -313,7 +313,7 @@ public final class TaskRequest {
         }
 
         public Builder completedDate(OffsetDateTime completedDate) {
-            this.completedDate = Optional.of(completedDate);
+            this.completedDate = Optional.ofNullable(completedDate);
             return this;
         }
 
@@ -324,7 +324,7 @@ public final class TaskRequest {
         }
 
         public Builder dueDate(OffsetDateTime dueDate) {
-            this.dueDate = Optional.of(dueDate);
+            this.dueDate = Optional.ofNullable(dueDate);
             return this;
         }
 
@@ -335,7 +335,7 @@ public final class TaskRequest {
         }
 
         public Builder status(TaskRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -346,7 +346,7 @@ public final class TaskRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -357,7 +357,7 @@ public final class TaskRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -368,7 +368,7 @@ public final class TaskRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

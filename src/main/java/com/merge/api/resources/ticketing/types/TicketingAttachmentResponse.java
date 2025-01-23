@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketingAttachmentResponse.Builder.class)
 public final class TicketingAttachmentResponse {
     private final Attachment model;
@@ -98,7 +99,7 @@ public final class TicketingAttachmentResponse {
     }
 
     public interface ModelStage {
-        _FinalStage model(Attachment model);
+        _FinalStage model(@NotNull Attachment model);
 
         Builder from(TicketingAttachmentResponse other);
     }
@@ -149,14 +150,14 @@ public final class TicketingAttachmentResponse {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(Attachment model) {
+        public _FinalStage model(@NotNull Attachment model) {
             this.model = model;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage logs(List<DebugModeLog> logs) {
-            this.logs = Optional.of(logs);
+            this.logs = Optional.ofNullable(logs);
             return this;
         }
 

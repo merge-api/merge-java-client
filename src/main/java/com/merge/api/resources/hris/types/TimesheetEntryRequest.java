@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimesheetEntryRequest.Builder.class)
 public final class TimesheetEntryRequest {
     private final Optional<TimesheetEntryRequestEmployee> employee;
@@ -171,7 +171,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder employee(TimesheetEntryRequestEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -182,7 +182,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder hoursWorked(Double hoursWorked) {
-            this.hoursWorked = Optional.of(hoursWorked);
+            this.hoursWorked = Optional.ofNullable(hoursWorked);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -204,7 +204,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -215,7 +215,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -226,7 +226,7 @@ public final class TimesheetEntryRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

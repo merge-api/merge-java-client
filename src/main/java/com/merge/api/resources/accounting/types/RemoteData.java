@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteData.Builder.class)
 public final class RemoteData {
     private final String path;
@@ -76,7 +77,7 @@ public final class RemoteData {
     }
 
     public interface PathStage {
-        _FinalStage path(String path);
+        _FinalStage path(@NotNull String path);
 
         Builder from(RemoteData other);
     }
@@ -113,14 +114,14 @@ public final class RemoteData {
          */
         @java.lang.Override
         @JsonSetter("path")
-        public _FinalStage path(String path) {
+        public _FinalStage path(@NotNull String path) {
             this.path = path;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage data(JsonNode data) {
-            this.data = Optional.of(data);
+            this.data = Optional.ofNullable(data);
             return this;
         }
 

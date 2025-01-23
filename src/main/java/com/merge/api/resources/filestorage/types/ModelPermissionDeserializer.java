@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ModelPermissionDeserializer.Builder.class)
 public final class ModelPermissionDeserializer {
     private final Optional<Boolean> isEnabled;
@@ -84,7 +84,7 @@ public final class ModelPermissionDeserializer {
         }
 
         public Builder isEnabled(Boolean isEnabled) {
-            this.isEnabled = Optional.of(isEnabled);
+            this.isEnabled = Optional.ofNullable(isEnabled);
             return this;
         }
 

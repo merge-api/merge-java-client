@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GroupsRetrieveRequest.Builder.class)
 public final class GroupsRetrieveRequest {
     private final Optional<Boolean> includeRemoteData;
@@ -121,7 +121,7 @@ public final class GroupsRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -132,7 +132,7 @@ public final class GroupsRetrieveRequest {
         }
 
         public Builder remoteFields(String remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -143,7 +143,7 @@ public final class GroupsRetrieveRequest {
         }
 
         public Builder showEnumOrigins(String showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 

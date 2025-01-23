@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceTargetField.Builder.class)
 public final class FieldMappingApiInstanceTargetField {
     private final String name;
@@ -82,13 +83,13 @@ public final class FieldMappingApiInstanceTargetField {
     }
 
     public interface NameStage {
-        DescriptionStage name(String name);
+        DescriptionStage name(@NotNull String name);
 
         Builder from(FieldMappingApiInstanceTargetField other);
     }
 
     public interface DescriptionStage {
-        IsOrganizationWideStage description(String description);
+        IsOrganizationWideStage description(@NotNull String description);
     }
 
     public interface IsOrganizationWideStage {
@@ -122,14 +123,14 @@ public final class FieldMappingApiInstanceTargetField {
 
         @java.lang.Override
         @JsonSetter("name")
-        public DescriptionStage name(String name) {
+        public DescriptionStage name(@NotNull String name) {
             this.name = name;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("description")
-        public IsOrganizationWideStage description(String description) {
+        public IsOrganizationWideStage description(@NotNull String description) {
             this.description = description;
             return this;
         }

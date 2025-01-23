@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ScheduledInterview.Builder.class)
 public final class ScheduledInterview {
     private final Optional<String> id;
@@ -361,7 +361,7 @@ public final class ScheduledInterview {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class ScheduledInterview {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class ScheduledInterview {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class ScheduledInterview {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -405,7 +405,7 @@ public final class ScheduledInterview {
         }
 
         public Builder application(ScheduledInterviewApplication application) {
-            this.application = Optional.of(application);
+            this.application = Optional.ofNullable(application);
             return this;
         }
 
@@ -416,7 +416,7 @@ public final class ScheduledInterview {
         }
 
         public Builder jobInterviewStage(ScheduledInterviewJobInterviewStage jobInterviewStage) {
-            this.jobInterviewStage = Optional.of(jobInterviewStage);
+            this.jobInterviewStage = Optional.ofNullable(jobInterviewStage);
             return this;
         }
 
@@ -427,7 +427,7 @@ public final class ScheduledInterview {
         }
 
         public Builder organizer(ScheduledInterviewOrganizer organizer) {
-            this.organizer = Optional.of(organizer);
+            this.organizer = Optional.ofNullable(organizer);
             return this;
         }
 
@@ -438,7 +438,7 @@ public final class ScheduledInterview {
         }
 
         public Builder interviewers(List<Optional<ScheduledInterviewInterviewersItem>> interviewers) {
-            this.interviewers = Optional.of(interviewers);
+            this.interviewers = Optional.ofNullable(interviewers);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class ScheduledInterview {
         }
 
         public Builder location(String location) {
-            this.location = Optional.of(location);
+            this.location = Optional.ofNullable(location);
             return this;
         }
 
@@ -460,7 +460,7 @@ public final class ScheduledInterview {
         }
 
         public Builder startAt(OffsetDateTime startAt) {
-            this.startAt = Optional.of(startAt);
+            this.startAt = Optional.ofNullable(startAt);
             return this;
         }
 
@@ -471,7 +471,7 @@ public final class ScheduledInterview {
         }
 
         public Builder endAt(OffsetDateTime endAt) {
-            this.endAt = Optional.of(endAt);
+            this.endAt = Optional.ofNullable(endAt);
             return this;
         }
 
@@ -482,7 +482,7 @@ public final class ScheduledInterview {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -493,7 +493,7 @@ public final class ScheduledInterview {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -504,7 +504,7 @@ public final class ScheduledInterview {
         }
 
         public Builder status(ScheduledInterviewStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -515,7 +515,7 @@ public final class ScheduledInterview {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -526,7 +526,7 @@ public final class ScheduledInterview {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -537,7 +537,7 @@ public final class ScheduledInterview {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

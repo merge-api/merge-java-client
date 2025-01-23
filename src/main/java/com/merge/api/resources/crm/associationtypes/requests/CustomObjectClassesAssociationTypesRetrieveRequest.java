@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CustomObjectClassesAssociationTypesRetrieveRequest.Builder.class)
 public final class CustomObjectClassesAssociationTypesRetrieveRequest {
     private final Optional<String> expand;
@@ -103,7 +103,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
         }
 
         public Builder expand(String expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -114,7 +114,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 

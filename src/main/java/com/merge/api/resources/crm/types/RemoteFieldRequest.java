@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldRequest.Builder.class)
 public final class RemoteFieldRequest {
     private final RemoteFieldRequestRemoteFieldClass remoteFieldClass;
@@ -76,7 +77,7 @@ public final class RemoteFieldRequest {
     }
 
     public interface RemoteFieldClassStage {
-        _FinalStage remoteFieldClass(RemoteFieldRequestRemoteFieldClass remoteFieldClass);
+        _FinalStage remoteFieldClass(@NotNull RemoteFieldRequestRemoteFieldClass remoteFieldClass);
 
         Builder from(RemoteFieldRequest other);
     }
@@ -109,14 +110,14 @@ public final class RemoteFieldRequest {
 
         @java.lang.Override
         @JsonSetter("remote_field_class")
-        public _FinalStage remoteFieldClass(RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
+        public _FinalStage remoteFieldClass(@NotNull RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage value(JsonNode value) {
-            this.value = Optional.of(value);
+            this.value = Optional.ofNullable(value);
             return this;
         }
 

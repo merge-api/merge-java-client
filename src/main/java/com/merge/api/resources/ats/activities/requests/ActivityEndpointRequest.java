@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ActivityEndpointRequest.Builder.class)
 public final class ActivityEndpointRequest {
     private final Optional<Boolean> isDebugMode;
@@ -103,13 +104,13 @@ public final class ActivityEndpointRequest {
     }
 
     public interface ModelStage {
-        RemoteUserIdStage model(ActivityRequest model);
+        RemoteUserIdStage model(@NotNull ActivityRequest model);
 
         Builder from(ActivityEndpointRequest other);
     }
 
     public interface RemoteUserIdStage {
-        _FinalStage remoteUserId(String remoteUserId);
+        _FinalStage remoteUserId(@NotNull String remoteUserId);
     }
 
     public interface _FinalStage {
@@ -150,14 +151,14 @@ public final class ActivityEndpointRequest {
 
         @java.lang.Override
         @JsonSetter("model")
-        public RemoteUserIdStage model(ActivityRequest model) {
+        public RemoteUserIdStage model(@NotNull ActivityRequest model) {
             this.model = model;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("remote_user_id")
-        public _FinalStage remoteUserId(String remoteUserId) {
+        public _FinalStage remoteUserId(@NotNull String remoteUserId) {
             this.remoteUserId = remoteUserId;
             return this;
         }
@@ -168,7 +169,7 @@ public final class ActivityEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage runAsync(Boolean runAsync) {
-            this.runAsync = Optional.of(runAsync);
+            this.runAsync = Optional.ofNullable(runAsync);
             return this;
         }
 
@@ -185,7 +186,7 @@ public final class ActivityEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage isDebugMode(Boolean isDebugMode) {
-            this.isDebugMode = Optional.of(isDebugMode);
+            this.isDebugMode = Optional.ofNullable(isDebugMode);
             return this;
         }
 

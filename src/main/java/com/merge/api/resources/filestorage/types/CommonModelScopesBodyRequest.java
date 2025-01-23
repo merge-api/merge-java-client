@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CommonModelScopesBodyRequest.Builder.class)
 public final class CommonModelScopesBodyRequest {
     private final String modelId;
@@ -87,7 +88,7 @@ public final class CommonModelScopesBodyRequest {
     }
 
     public interface ModelIdStage {
-        _FinalStage modelId(String modelId);
+        _FinalStage modelId(@NotNull String modelId);
 
         Builder from(CommonModelScopesBodyRequest other);
     }
@@ -131,7 +132,7 @@ public final class CommonModelScopesBodyRequest {
 
         @java.lang.Override
         @JsonSetter("model_id")
-        public _FinalStage modelId(String modelId) {
+        public _FinalStage modelId(@NotNull String modelId) {
             this.modelId = modelId;
             return this;
         }

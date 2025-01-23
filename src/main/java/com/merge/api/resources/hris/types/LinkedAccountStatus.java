@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = LinkedAccountStatus.Builder.class)
 public final class LinkedAccountStatus {
     private final String linkedAccountStatus;
@@ -71,7 +72,7 @@ public final class LinkedAccountStatus {
     }
 
     public interface LinkedAccountStatusStage {
-        CanMakeRequestStage linkedAccountStatus(String linkedAccountStatus);
+        CanMakeRequestStage linkedAccountStatus(@NotNull String linkedAccountStatus);
 
         Builder from(LinkedAccountStatus other);
     }
@@ -104,7 +105,7 @@ public final class LinkedAccountStatus {
 
         @java.lang.Override
         @JsonSetter("linked_account_status")
-        public CanMakeRequestStage linkedAccountStatus(String linkedAccountStatus) {
+        public CanMakeRequestStage linkedAccountStatus(@NotNull String linkedAccountStatus) {
             this.linkedAccountStatus = linkedAccountStatus;
             return this;
         }

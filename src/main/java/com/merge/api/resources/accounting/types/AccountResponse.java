@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountResponse.Builder.class)
 public final class AccountResponse {
     private final Account model;
@@ -98,7 +99,7 @@ public final class AccountResponse {
     }
 
     public interface ModelStage {
-        _FinalStage model(Account model);
+        _FinalStage model(@NotNull Account model);
 
         Builder from(AccountResponse other);
     }
@@ -149,14 +150,14 @@ public final class AccountResponse {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(Account model) {
+        public _FinalStage model(@NotNull Account model) {
             this.model = model;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage logs(List<DebugModeLog> logs) {
-            this.logs = Optional.of(logs);
+            this.logs = Optional.ofNullable(logs);
             return this;
         }
 

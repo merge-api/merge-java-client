@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreateFieldMappingRequest.Builder.class)
 public final class CreateFieldMappingRequest {
     private final Optional<Boolean> excludeRemoteFieldMetadata;
@@ -157,25 +158,25 @@ public final class CreateFieldMappingRequest {
     }
 
     public interface TargetFieldNameStage {
-        TargetFieldDescriptionStage targetFieldName(String targetFieldName);
+        TargetFieldDescriptionStage targetFieldName(@NotNull String targetFieldName);
 
         Builder from(CreateFieldMappingRequest other);
     }
 
     public interface TargetFieldDescriptionStage {
-        RemoteMethodStage targetFieldDescription(String targetFieldDescription);
+        RemoteMethodStage targetFieldDescription(@NotNull String targetFieldDescription);
     }
 
     public interface RemoteMethodStage {
-        RemoteUrlPathStage remoteMethod(String remoteMethod);
+        RemoteUrlPathStage remoteMethod(@NotNull String remoteMethod);
     }
 
     public interface RemoteUrlPathStage {
-        CommonModelNameStage remoteUrlPath(String remoteUrlPath);
+        CommonModelNameStage remoteUrlPath(@NotNull String remoteUrlPath);
     }
 
     public interface CommonModelNameStage {
-        _FinalStage commonModelName(String commonModelName);
+        _FinalStage commonModelName(@NotNull String commonModelName);
     }
 
     public interface _FinalStage {
@@ -237,7 +238,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter("target_field_name")
-        public TargetFieldDescriptionStage targetFieldName(String targetFieldName) {
+        public TargetFieldDescriptionStage targetFieldName(@NotNull String targetFieldName) {
             this.targetFieldName = targetFieldName;
             return this;
         }
@@ -248,7 +249,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter("target_field_description")
-        public RemoteMethodStage targetFieldDescription(String targetFieldDescription) {
+        public RemoteMethodStage targetFieldDescription(@NotNull String targetFieldDescription) {
             this.targetFieldDescription = targetFieldDescription;
             return this;
         }
@@ -259,7 +260,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter("remote_method")
-        public RemoteUrlPathStage remoteMethod(String remoteMethod) {
+        public RemoteUrlPathStage remoteMethod(@NotNull String remoteMethod) {
             this.remoteMethod = remoteMethod;
             return this;
         }
@@ -270,7 +271,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter("remote_url_path")
-        public CommonModelNameStage remoteUrlPath(String remoteUrlPath) {
+        public CommonModelNameStage remoteUrlPath(@NotNull String remoteUrlPath) {
             this.remoteUrlPath = remoteUrlPath;
             return this;
         }
@@ -281,7 +282,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         @JsonSetter("common_model_name")
-        public _FinalStage commonModelName(String commonModelName) {
+        public _FinalStage commonModelName(@NotNull String commonModelName) {
             this.commonModelName = commonModelName;
             return this;
         }
@@ -320,7 +321,7 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         public _FinalStage excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata) {
-            this.excludeRemoteFieldMetadata = Optional.of(excludeRemoteFieldMetadata);
+            this.excludeRemoteFieldMetadata = Optional.ofNullable(excludeRemoteFieldMetadata);
             return this;
         }
 

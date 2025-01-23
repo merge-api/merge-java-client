@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CommonModelScopeApi.Builder.class)
 public final class CommonModelScopeApi {
     private final List<IndividualCommonModelScopeDeserializer> commonModels;

@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AsyncPassthroughReciept.Builder.class)
 public final class AsyncPassthroughReciept {
     private final String asyncPassthroughReceiptId;
@@ -62,7 +63,7 @@ public final class AsyncPassthroughReciept {
     }
 
     public interface AsyncPassthroughReceiptIdStage {
-        _FinalStage asyncPassthroughReceiptId(String asyncPassthroughReceiptId);
+        _FinalStage asyncPassthroughReceiptId(@NotNull String asyncPassthroughReceiptId);
 
         Builder from(AsyncPassthroughReciept other);
     }
@@ -88,7 +89,7 @@ public final class AsyncPassthroughReciept {
 
         @java.lang.Override
         @JsonSetter("async_passthrough_receipt_id")
-        public _FinalStage asyncPassthroughReceiptId(String asyncPassthroughReceiptId) {
+        public _FinalStage asyncPassthroughReceiptId(@NotNull String asyncPassthroughReceiptId) {
             this.asyncPassthroughReceiptId = asyncPassthroughReceiptId;
             return this;
         }

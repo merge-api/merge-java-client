@@ -17,8 +17,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AvailableActions.Builder.class)
 public final class AvailableActions {
     private final AccountIntegration integration;
@@ -87,7 +88,7 @@ public final class AvailableActions {
     }
 
     public interface IntegrationStage {
-        PassthroughAvailableStage integration(AccountIntegration integration);
+        PassthroughAvailableStage integration(@NotNull AccountIntegration integration);
 
         Builder from(AvailableActions other);
     }
@@ -127,7 +128,7 @@ public final class AvailableActions {
 
         @java.lang.Override
         @JsonSetter("integration")
-        public PassthroughAvailableStage integration(AccountIntegration integration) {
+        public PassthroughAvailableStage integration(@NotNull AccountIntegration integration) {
             this.integration = integration;
             return this;
         }
@@ -141,7 +142,7 @@ public final class AvailableActions {
 
         @java.lang.Override
         public _FinalStage availableModelOperations(List<ModelOperation> availableModelOperations) {
-            this.availableModelOperations = Optional.of(availableModelOperations);
+            this.availableModelOperations = Optional.ofNullable(availableModelOperations);
             return this;
         }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = VendorCredit.Builder.class)
 public final class VendorCredit {
     private final Optional<String> id;
@@ -692,7 +692,7 @@ public final class VendorCredit {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -703,7 +703,7 @@ public final class VendorCredit {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -714,7 +714,7 @@ public final class VendorCredit {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -725,7 +725,7 @@ public final class VendorCredit {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -736,7 +736,7 @@ public final class VendorCredit {
         }
 
         public Builder number(String number) {
-            this.number = Optional.of(number);
+            this.number = Optional.ofNullable(number);
             return this;
         }
 
@@ -747,7 +747,7 @@ public final class VendorCredit {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -758,7 +758,7 @@ public final class VendorCredit {
         }
 
         public Builder vendor(VendorCreditVendor vendor) {
-            this.vendor = Optional.of(vendor);
+            this.vendor = Optional.ofNullable(vendor);
             return this;
         }
 
@@ -769,7 +769,7 @@ public final class VendorCredit {
         }
 
         public Builder totalAmount(Double totalAmount) {
-            this.totalAmount = Optional.of(totalAmount);
+            this.totalAmount = Optional.ofNullable(totalAmount);
             return this;
         }
 
@@ -780,7 +780,7 @@ public final class VendorCredit {
         }
 
         public Builder currency(VendorCreditCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -791,7 +791,7 @@ public final class VendorCredit {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -802,7 +802,7 @@ public final class VendorCredit {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -813,7 +813,7 @@ public final class VendorCredit {
         }
 
         public Builder company(VendorCreditCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -824,7 +824,7 @@ public final class VendorCredit {
         }
 
         public Builder lines(List<VendorCreditLine> lines) {
-            this.lines = Optional.of(lines);
+            this.lines = Optional.ofNullable(lines);
             return this;
         }
 
@@ -836,7 +836,7 @@ public final class VendorCredit {
         }
 
         public Builder trackingCategories(List<Optional<VendorCreditTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -847,7 +847,7 @@ public final class VendorCredit {
         }
 
         public Builder appliedToLines(List<VendorCreditApplyLineForVendorCredit> appliedToLines) {
-            this.appliedToLines = Optional.of(appliedToLines);
+            this.appliedToLines = Optional.ofNullable(appliedToLines);
             return this;
         }
 
@@ -858,7 +858,7 @@ public final class VendorCredit {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -869,7 +869,7 @@ public final class VendorCredit {
         }
 
         public Builder accountingPeriod(VendorCreditAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -880,7 +880,7 @@ public final class VendorCredit {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -891,7 +891,7 @@ public final class VendorCredit {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

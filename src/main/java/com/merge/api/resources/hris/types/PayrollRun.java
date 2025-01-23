@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PayrollRun.Builder.class)
 public final class PayrollRun {
     private final Optional<String> id;
@@ -285,7 +285,7 @@ public final class PayrollRun {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -296,7 +296,7 @@ public final class PayrollRun {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -307,7 +307,7 @@ public final class PayrollRun {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -318,7 +318,7 @@ public final class PayrollRun {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -329,7 +329,7 @@ public final class PayrollRun {
         }
 
         public Builder runState(PayrollRunRunState runState) {
-            this.runState = Optional.of(runState);
+            this.runState = Optional.ofNullable(runState);
             return this;
         }
 
@@ -340,7 +340,7 @@ public final class PayrollRun {
         }
 
         public Builder runType(PayrollRunRunType runType) {
-            this.runType = Optional.of(runType);
+            this.runType = Optional.ofNullable(runType);
             return this;
         }
 
@@ -351,7 +351,7 @@ public final class PayrollRun {
         }
 
         public Builder startDate(OffsetDateTime startDate) {
-            this.startDate = Optional.of(startDate);
+            this.startDate = Optional.ofNullable(startDate);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class PayrollRun {
         }
 
         public Builder endDate(OffsetDateTime endDate) {
-            this.endDate = Optional.of(endDate);
+            this.endDate = Optional.ofNullable(endDate);
             return this;
         }
 
@@ -373,7 +373,7 @@ public final class PayrollRun {
         }
 
         public Builder checkDate(OffsetDateTime checkDate) {
-            this.checkDate = Optional.of(checkDate);
+            this.checkDate = Optional.ofNullable(checkDate);
             return this;
         }
 
@@ -384,7 +384,7 @@ public final class PayrollRun {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -395,7 +395,7 @@ public final class PayrollRun {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -406,7 +406,7 @@ public final class PayrollRun {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

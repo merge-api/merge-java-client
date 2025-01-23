@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketRequest.Builder.class)
 public final class TicketRequest {
     private final Optional<String> name;
@@ -427,7 +427,7 @@ public final class TicketRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -438,7 +438,7 @@ public final class TicketRequest {
         }
 
         public Builder assignees(List<Optional<TicketRequestAssigneesItem>> assignees) {
-            this.assignees = Optional.of(assignees);
+            this.assignees = Optional.ofNullable(assignees);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class TicketRequest {
         }
 
         public Builder assignedTeams(List<Optional<TicketRequestAssignedTeamsItem>> assignedTeams) {
-            this.assignedTeams = Optional.of(assignedTeams);
+            this.assignedTeams = Optional.ofNullable(assignedTeams);
             return this;
         }
 
@@ -460,7 +460,7 @@ public final class TicketRequest {
         }
 
         public Builder creator(TicketRequestCreator creator) {
-            this.creator = Optional.of(creator);
+            this.creator = Optional.ofNullable(creator);
             return this;
         }
 
@@ -471,7 +471,7 @@ public final class TicketRequest {
         }
 
         public Builder dueDate(OffsetDateTime dueDate) {
-            this.dueDate = Optional.of(dueDate);
+            this.dueDate = Optional.ofNullable(dueDate);
             return this;
         }
 
@@ -482,7 +482,7 @@ public final class TicketRequest {
         }
 
         public Builder status(TicketRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -493,7 +493,7 @@ public final class TicketRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -504,7 +504,7 @@ public final class TicketRequest {
         }
 
         public Builder collections(List<Optional<TicketRequestCollectionsItem>> collections) {
-            this.collections = Optional.of(collections);
+            this.collections = Optional.ofNullable(collections);
             return this;
         }
 
@@ -515,7 +515,7 @@ public final class TicketRequest {
         }
 
         public Builder ticketType(String ticketType) {
-            this.ticketType = Optional.of(ticketType);
+            this.ticketType = Optional.ofNullable(ticketType);
             return this;
         }
 
@@ -526,7 +526,7 @@ public final class TicketRequest {
         }
 
         public Builder account(TicketRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -537,7 +537,7 @@ public final class TicketRequest {
         }
 
         public Builder contact(TicketRequestContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -548,7 +548,7 @@ public final class TicketRequest {
         }
 
         public Builder parentTicket(TicketRequestParentTicket parentTicket) {
-            this.parentTicket = Optional.of(parentTicket);
+            this.parentTicket = Optional.ofNullable(parentTicket);
             return this;
         }
 
@@ -559,7 +559,7 @@ public final class TicketRequest {
         }
 
         public Builder attachments(List<Optional<TicketRequestAttachmentsItem>> attachments) {
-            this.attachments = Optional.of(attachments);
+            this.attachments = Optional.ofNullable(attachments);
             return this;
         }
 
@@ -570,7 +570,7 @@ public final class TicketRequest {
         }
 
         public Builder tags(List<Optional<String>> tags) {
-            this.tags = Optional.of(tags);
+            this.tags = Optional.ofNullable(tags);
             return this;
         }
 
@@ -581,7 +581,7 @@ public final class TicketRequest {
         }
 
         public Builder roles(List<Optional<String>> roles) {
-            this.roles = Optional.of(roles);
+            this.roles = Optional.ofNullable(roles);
             return this;
         }
 
@@ -592,7 +592,7 @@ public final class TicketRequest {
         }
 
         public Builder completedAt(OffsetDateTime completedAt) {
-            this.completedAt = Optional.of(completedAt);
+            this.completedAt = Optional.ofNullable(completedAt);
             return this;
         }
 
@@ -603,7 +603,7 @@ public final class TicketRequest {
         }
 
         public Builder ticketUrl(String ticketUrl) {
-            this.ticketUrl = Optional.of(ticketUrl);
+            this.ticketUrl = Optional.ofNullable(ticketUrl);
             return this;
         }
 
@@ -614,7 +614,7 @@ public final class TicketRequest {
         }
 
         public Builder priority(TicketRequestPriority priority) {
-            this.priority = Optional.of(priority);
+            this.priority = Optional.ofNullable(priority);
             return this;
         }
 
@@ -625,7 +625,7 @@ public final class TicketRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -636,7 +636,7 @@ public final class TicketRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -647,7 +647,7 @@ public final class TicketRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

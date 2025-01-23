@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TransactionLineItem.Builder.class)
 public final class TransactionLineItem {
     private final Optional<String> id;
@@ -666,7 +666,7 @@ public final class TransactionLineItem {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class TransactionLineItem {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class TransactionLineItem {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class TransactionLineItem {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class TransactionLineItem {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class TransactionLineItem {
         }
 
         public Builder unitPrice(String unitPrice) {
-            this.unitPrice = Optional.of(unitPrice);
+            this.unitPrice = Optional.ofNullable(unitPrice);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class TransactionLineItem {
         }
 
         public Builder quantity(String quantity) {
-            this.quantity = Optional.of(quantity);
+            this.quantity = Optional.ofNullable(quantity);
             return this;
         }
 
@@ -743,7 +743,7 @@ public final class TransactionLineItem {
         }
 
         public Builder item(TransactionLineItemItem item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -754,7 +754,7 @@ public final class TransactionLineItem {
         }
 
         public Builder account(String account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -765,7 +765,7 @@ public final class TransactionLineItem {
         }
 
         public Builder trackingCategory(String trackingCategory) {
-            this.trackingCategory = Optional.of(trackingCategory);
+            this.trackingCategory = Optional.ofNullable(trackingCategory);
             return this;
         }
 
@@ -776,7 +776,7 @@ public final class TransactionLineItem {
         }
 
         public Builder trackingCategories(List<Optional<String>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -787,7 +787,7 @@ public final class TransactionLineItem {
         }
 
         public Builder totalLineAmount(String totalLineAmount) {
-            this.totalLineAmount = Optional.of(totalLineAmount);
+            this.totalLineAmount = Optional.ofNullable(totalLineAmount);
             return this;
         }
 
@@ -798,7 +798,7 @@ public final class TransactionLineItem {
         }
 
         public Builder taxRate(String taxRate) {
-            this.taxRate = Optional.of(taxRate);
+            this.taxRate = Optional.ofNullable(taxRate);
             return this;
         }
 
@@ -809,7 +809,7 @@ public final class TransactionLineItem {
         }
 
         public Builder currency(TransactionLineItemCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -820,7 +820,7 @@ public final class TransactionLineItem {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -831,7 +831,7 @@ public final class TransactionLineItem {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -842,7 +842,7 @@ public final class TransactionLineItem {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 

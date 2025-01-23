@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = UsersRetrieveRequest.Builder.class)
 public final class UsersRetrieveRequest {
     private final Optional<UsersRetrieveRequestExpand> expand;
@@ -105,7 +105,7 @@ public final class UsersRetrieveRequest {
         }
 
         public Builder expand(UsersRetrieveRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -116,7 +116,7 @@ public final class UsersRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 

@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Issue.Builder.class)
 public final class Issue {
     private final Optional<String> id;
@@ -154,7 +155,7 @@ public final class Issue {
     }
 
     public interface ErrorDescriptionStage {
-        _FinalStage errorDescription(String errorDescription);
+        _FinalStage errorDescription(@NotNull String errorDescription);
 
         Builder from(Issue other);
     }
@@ -229,14 +230,14 @@ public final class Issue {
 
         @java.lang.Override
         @JsonSetter("error_description")
-        public _FinalStage errorDescription(String errorDescription) {
+        public _FinalStage errorDescription(@NotNull String errorDescription) {
             this.errorDescription = errorDescription;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage errorDetails(List<String> errorDetails) {
-            this.errorDetails = Optional.of(errorDetails);
+            this.errorDetails = Optional.ofNullable(errorDetails);
             return this;
         }
 
@@ -249,7 +250,7 @@ public final class Issue {
 
         @java.lang.Override
         public _FinalStage isMuted(Boolean isMuted) {
-            this.isMuted = Optional.of(isMuted);
+            this.isMuted = Optional.ofNullable(isMuted);
             return this;
         }
 
@@ -262,7 +263,7 @@ public final class Issue {
 
         @java.lang.Override
         public _FinalStage lastIncidentTime(OffsetDateTime lastIncidentTime) {
-            this.lastIncidentTime = Optional.of(lastIncidentTime);
+            this.lastIncidentTime = Optional.ofNullable(lastIncidentTime);
             return this;
         }
 
@@ -275,7 +276,7 @@ public final class Issue {
 
         @java.lang.Override
         public _FinalStage firstIncidentTime(OffsetDateTime firstIncidentTime) {
-            this.firstIncidentTime = Optional.of(firstIncidentTime);
+            this.firstIncidentTime = Optional.ofNullable(firstIncidentTime);
             return this;
         }
 
@@ -288,7 +289,7 @@ public final class Issue {
 
         @java.lang.Override
         public _FinalStage endUser(Map<String, JsonNode> endUser) {
-            this.endUser = Optional.of(endUser);
+            this.endUser = Optional.ofNullable(endUser);
             return this;
         }
 
@@ -309,7 +310,7 @@ public final class Issue {
          */
         @java.lang.Override
         public _FinalStage status(IssueStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -322,7 +323,7 @@ public final class Issue {
 
         @java.lang.Override
         public _FinalStage id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Location.Builder.class)
 public final class Location {
     private final Optional<String> id;
@@ -594,7 +594,7 @@ public final class Location {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -605,7 +605,7 @@ public final class Location {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -616,7 +616,7 @@ public final class Location {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -627,7 +627,7 @@ public final class Location {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -638,7 +638,7 @@ public final class Location {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -649,7 +649,7 @@ public final class Location {
         }
 
         public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = Optional.of(phoneNumber);
+            this.phoneNumber = Optional.ofNullable(phoneNumber);
             return this;
         }
 
@@ -660,7 +660,7 @@ public final class Location {
         }
 
         public Builder street1(String street1) {
-            this.street1 = Optional.of(street1);
+            this.street1 = Optional.ofNullable(street1);
             return this;
         }
 
@@ -671,7 +671,7 @@ public final class Location {
         }
 
         public Builder street2(String street2) {
-            this.street2 = Optional.of(street2);
+            this.street2 = Optional.ofNullable(street2);
             return this;
         }
 
@@ -682,7 +682,7 @@ public final class Location {
         }
 
         public Builder city(String city) {
-            this.city = Optional.of(city);
+            this.city = Optional.ofNullable(city);
             return this;
         }
 
@@ -693,7 +693,7 @@ public final class Location {
         }
 
         public Builder state(String state) {
-            this.state = Optional.of(state);
+            this.state = Optional.ofNullable(state);
             return this;
         }
 
@@ -704,7 +704,7 @@ public final class Location {
         }
 
         public Builder zipCode(String zipCode) {
-            this.zipCode = Optional.of(zipCode);
+            this.zipCode = Optional.ofNullable(zipCode);
             return this;
         }
 
@@ -715,7 +715,7 @@ public final class Location {
         }
 
         public Builder country(LocationCountry country) {
-            this.country = Optional.of(country);
+            this.country = Optional.ofNullable(country);
             return this;
         }
 
@@ -726,7 +726,7 @@ public final class Location {
         }
 
         public Builder locationType(LocationLocationType locationType) {
-            this.locationType = Optional.of(locationType);
+            this.locationType = Optional.ofNullable(locationType);
             return this;
         }
 
@@ -737,7 +737,7 @@ public final class Location {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -748,7 +748,7 @@ public final class Location {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -759,7 +759,7 @@ public final class Location {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

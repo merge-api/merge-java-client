@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Permission.Builder.class)
 public final class Permission {
     private final Optional<String> id;
@@ -207,7 +207,7 @@ public final class Permission {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -218,7 +218,7 @@ public final class Permission {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -229,7 +229,7 @@ public final class Permission {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -240,7 +240,7 @@ public final class Permission {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -251,7 +251,7 @@ public final class Permission {
         }
 
         public Builder user(PermissionUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -262,7 +262,7 @@ public final class Permission {
         }
 
         public Builder group(PermissionGroup group) {
-            this.group = Optional.of(group);
+            this.group = Optional.ofNullable(group);
             return this;
         }
 
@@ -273,7 +273,7 @@ public final class Permission {
         }
 
         public Builder type(PermissionType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -284,7 +284,7 @@ public final class Permission {
         }
 
         public Builder roles(List<Optional<PermissionRolesItem>> roles) {
-            this.roles = Optional.of(roles);
+            this.roles = Optional.ofNullable(roles);
             return this;
         }
 

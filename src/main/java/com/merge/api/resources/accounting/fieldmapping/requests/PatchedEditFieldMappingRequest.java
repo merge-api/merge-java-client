@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedEditFieldMappingRequest.Builder.class)
 public final class PatchedEditFieldMappingRequest {
     private final Optional<List<JsonNode>> remoteFieldTraversalPath;
@@ -123,7 +123,7 @@ public final class PatchedEditFieldMappingRequest {
         }
 
         public Builder remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
-            this.remoteFieldTraversalPath = Optional.of(remoteFieldTraversalPath);
+            this.remoteFieldTraversalPath = Optional.ofNullable(remoteFieldTraversalPath);
             return this;
         }
 
@@ -134,7 +134,7 @@ public final class PatchedEditFieldMappingRequest {
         }
 
         public Builder remoteMethod(String remoteMethod) {
-            this.remoteMethod = Optional.of(remoteMethod);
+            this.remoteMethod = Optional.ofNullable(remoteMethod);
             return this;
         }
 
@@ -145,7 +145,7 @@ public final class PatchedEditFieldMappingRequest {
         }
 
         public Builder remoteUrlPath(String remoteUrlPath) {
-            this.remoteUrlPath = Optional.of(remoteUrlPath);
+            this.remoteUrlPath = Optional.ofNullable(remoteUrlPath);
             return this;
         }
 
