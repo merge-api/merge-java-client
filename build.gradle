@@ -74,12 +74,6 @@ publishing {
             version = '1.1.0'
             from components.java
             pom {
-                licenses {
-                    license {
-                        name = 'The MIT License (MIT)'
-                        url = 'https://mit-license.org/'
-                    }
-                }
                 scm {
                     connection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
                     developerConnection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
