@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CommentRequest.Builder.class)
 public final class CommentRequest {
     private final Optional<CommentRequestUser> user;
@@ -204,7 +204,7 @@ public final class CommentRequest {
         }
 
         public Builder user(CommentRequestUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -215,7 +215,7 @@ public final class CommentRequest {
         }
 
         public Builder contact(CommentRequestContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -226,7 +226,7 @@ public final class CommentRequest {
         }
 
         public Builder body(String body) {
-            this.body = Optional.of(body);
+            this.body = Optional.ofNullable(body);
             return this;
         }
 
@@ -237,7 +237,7 @@ public final class CommentRequest {
         }
 
         public Builder htmlBody(String htmlBody) {
-            this.htmlBody = Optional.of(htmlBody);
+            this.htmlBody = Optional.ofNullable(htmlBody);
             return this;
         }
 
@@ -248,7 +248,7 @@ public final class CommentRequest {
         }
 
         public Builder ticket(CommentRequestTicket ticket) {
-            this.ticket = Optional.of(ticket);
+            this.ticket = Optional.ofNullable(ticket);
             return this;
         }
 
@@ -259,7 +259,7 @@ public final class CommentRequest {
         }
 
         public Builder isPrivate(Boolean isPrivate) {
-            this.isPrivate = Optional.of(isPrivate);
+            this.isPrivate = Optional.ofNullable(isPrivate);
             return this;
         }
 
@@ -270,7 +270,7 @@ public final class CommentRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -281,7 +281,7 @@ public final class CommentRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

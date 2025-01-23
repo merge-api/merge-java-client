@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ContactRequest.Builder.class)
 public final class ContactRequest {
     private final Optional<String> name;
@@ -291,7 +291,7 @@ public final class ContactRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -302,7 +302,7 @@ public final class ContactRequest {
         }
 
         public Builder isSupplier(Boolean isSupplier) {
-            this.isSupplier = Optional.of(isSupplier);
+            this.isSupplier = Optional.ofNullable(isSupplier);
             return this;
         }
 
@@ -313,7 +313,7 @@ public final class ContactRequest {
         }
 
         public Builder isCustomer(Boolean isCustomer) {
-            this.isCustomer = Optional.of(isCustomer);
+            this.isCustomer = Optional.ofNullable(isCustomer);
             return this;
         }
 
@@ -324,7 +324,7 @@ public final class ContactRequest {
         }
 
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Optional.of(emailAddress);
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -335,7 +335,7 @@ public final class ContactRequest {
         }
 
         public Builder taxNumber(String taxNumber) {
-            this.taxNumber = Optional.of(taxNumber);
+            this.taxNumber = Optional.ofNullable(taxNumber);
             return this;
         }
 
@@ -346,7 +346,7 @@ public final class ContactRequest {
         }
 
         public Builder status(ContactRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -357,7 +357,7 @@ public final class ContactRequest {
         }
 
         public Builder currency(String currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -368,7 +368,7 @@ public final class ContactRequest {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -379,7 +379,7 @@ public final class ContactRequest {
         }
 
         public Builder addresses(List<Optional<ContactRequestAddressesItem>> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -390,7 +390,7 @@ public final class ContactRequest {
         }
 
         public Builder phoneNumbers(List<AccountingPhoneNumberRequest> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -401,7 +401,7 @@ public final class ContactRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -412,7 +412,7 @@ public final class ContactRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -423,7 +423,7 @@ public final class ContactRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

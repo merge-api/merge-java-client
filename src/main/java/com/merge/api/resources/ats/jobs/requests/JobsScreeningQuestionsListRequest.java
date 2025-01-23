@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JobsScreeningQuestionsListRequest.Builder.class)
 public final class JobsScreeningQuestionsListRequest {
     private final Optional<String> cursor;
@@ -176,7 +176,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -187,7 +187,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder expand(JobsScreeningQuestionsListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -198,7 +198,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -209,7 +209,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -220,7 +220,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -231,7 +231,7 @@ public final class JobsScreeningQuestionsListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 

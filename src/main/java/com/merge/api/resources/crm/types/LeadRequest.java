@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = LeadRequest.Builder.class)
 public final class LeadRequest {
     private final Optional<LeadRequestOwner> owner;
@@ -313,7 +313,7 @@ public final class LeadRequest {
         }
 
         public Builder owner(LeadRequestOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -324,7 +324,7 @@ public final class LeadRequest {
         }
 
         public Builder leadSource(String leadSource) {
-            this.leadSource = Optional.of(leadSource);
+            this.leadSource = Optional.ofNullable(leadSource);
             return this;
         }
 
@@ -335,7 +335,7 @@ public final class LeadRequest {
         }
 
         public Builder title(String title) {
-            this.title = Optional.of(title);
+            this.title = Optional.ofNullable(title);
             return this;
         }
 
@@ -346,7 +346,7 @@ public final class LeadRequest {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -357,7 +357,7 @@ public final class LeadRequest {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -368,7 +368,7 @@ public final class LeadRequest {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -379,7 +379,7 @@ public final class LeadRequest {
         }
 
         public Builder addresses(List<AddressRequest> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -390,7 +390,7 @@ public final class LeadRequest {
         }
 
         public Builder emailAddresses(List<EmailAddressRequest> emailAddresses) {
-            this.emailAddresses = Optional.of(emailAddresses);
+            this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
         }
 
@@ -401,7 +401,7 @@ public final class LeadRequest {
         }
 
         public Builder phoneNumbers(List<PhoneNumberRequest> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -412,7 +412,7 @@ public final class LeadRequest {
         }
 
         public Builder convertedDate(OffsetDateTime convertedDate) {
-            this.convertedDate = Optional.of(convertedDate);
+            this.convertedDate = Optional.ofNullable(convertedDate);
             return this;
         }
 
@@ -423,7 +423,7 @@ public final class LeadRequest {
         }
 
         public Builder convertedContact(LeadRequestConvertedContact convertedContact) {
-            this.convertedContact = Optional.of(convertedContact);
+            this.convertedContact = Optional.ofNullable(convertedContact);
             return this;
         }
 
@@ -434,7 +434,7 @@ public final class LeadRequest {
         }
 
         public Builder convertedAccount(LeadRequestConvertedAccount convertedAccount) {
-            this.convertedAccount = Optional.of(convertedAccount);
+            this.convertedAccount = Optional.ofNullable(convertedAccount);
             return this;
         }
 
@@ -445,7 +445,7 @@ public final class LeadRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -456,7 +456,7 @@ public final class LeadRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -467,7 +467,7 @@ public final class LeadRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

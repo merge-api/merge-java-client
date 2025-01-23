@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Contact.Builder.class)
 public final class Contact {
     private final Optional<String> id;
@@ -344,7 +344,7 @@ public final class Contact {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -355,7 +355,7 @@ public final class Contact {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -366,7 +366,7 @@ public final class Contact {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -377,7 +377,7 @@ public final class Contact {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -388,7 +388,7 @@ public final class Contact {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -399,7 +399,7 @@ public final class Contact {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -410,7 +410,7 @@ public final class Contact {
         }
 
         public Builder account(ContactAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -421,7 +421,7 @@ public final class Contact {
         }
 
         public Builder owner(ContactOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -432,7 +432,7 @@ public final class Contact {
         }
 
         public Builder addresses(List<Address> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -443,7 +443,7 @@ public final class Contact {
         }
 
         public Builder emailAddresses(List<EmailAddress> emailAddresses) {
-            this.emailAddresses = Optional.of(emailAddresses);
+            this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
         }
 
@@ -454,7 +454,7 @@ public final class Contact {
         }
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -465,7 +465,7 @@ public final class Contact {
         }
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
-            this.lastActivityAt = Optional.of(lastActivityAt);
+            this.lastActivityAt = Optional.ofNullable(lastActivityAt);
             return this;
         }
 
@@ -476,7 +476,7 @@ public final class Contact {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -487,7 +487,7 @@ public final class Contact {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -498,7 +498,7 @@ public final class Contact {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -509,7 +509,7 @@ public final class Contact {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -520,7 +520,7 @@ public final class Contact {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceResponse.Builder.class)
 public final class FieldMappingApiInstanceResponse {
     private final Optional<List<FieldMappingApiInstance>> benefit;
@@ -298,7 +298,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder benefit(List<FieldMappingApiInstance> benefit) {
-            this.benefit = Optional.of(benefit);
+            this.benefit = Optional.ofNullable(benefit);
             return this;
         }
 
@@ -309,7 +309,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder employerBenefit(List<FieldMappingApiInstance> employerBenefit) {
-            this.employerBenefit = Optional.of(employerBenefit);
+            this.employerBenefit = Optional.ofNullable(employerBenefit);
             return this;
         }
 
@@ -320,7 +320,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder company(List<FieldMappingApiInstance> company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -331,7 +331,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder employeePayrollRun(List<FieldMappingApiInstance> employeePayrollRun) {
-            this.employeePayrollRun = Optional.of(employeePayrollRun);
+            this.employeePayrollRun = Optional.ofNullable(employeePayrollRun);
             return this;
         }
 
@@ -342,7 +342,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder employee(List<FieldMappingApiInstance> employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -353,7 +353,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder employment(List<FieldMappingApiInstance> employment) {
-            this.employment = Optional.of(employment);
+            this.employment = Optional.ofNullable(employment);
             return this;
         }
 
@@ -364,7 +364,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder location(List<FieldMappingApiInstance> location) {
-            this.location = Optional.of(location);
+            this.location = Optional.ofNullable(location);
             return this;
         }
 
@@ -375,7 +375,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder payrollRun(List<FieldMappingApiInstance> payrollRun) {
-            this.payrollRun = Optional.of(payrollRun);
+            this.payrollRun = Optional.ofNullable(payrollRun);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder team(List<FieldMappingApiInstance> team) {
-            this.team = Optional.of(team);
+            this.team = Optional.ofNullable(team);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder timeOff(List<FieldMappingApiInstance> timeOff) {
-            this.timeOff = Optional.of(timeOff);
+            this.timeOff = Optional.ofNullable(timeOff);
             return this;
         }
 
@@ -408,7 +408,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder timeOffBalance(List<FieldMappingApiInstance> timeOffBalance) {
-            this.timeOffBalance = Optional.of(timeOffBalance);
+            this.timeOffBalance = Optional.ofNullable(timeOffBalance);
             return this;
         }
 
@@ -419,7 +419,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder bankInfo(List<FieldMappingApiInstance> bankInfo) {
-            this.bankInfo = Optional.of(bankInfo);
+            this.bankInfo = Optional.ofNullable(bankInfo);
             return this;
         }
 
@@ -430,7 +430,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder payGroup(List<FieldMappingApiInstance> payGroup) {
-            this.payGroup = Optional.of(payGroup);
+            this.payGroup = Optional.ofNullable(payGroup);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder group(List<FieldMappingApiInstance> group) {
-            this.group = Optional.of(group);
+            this.group = Optional.ofNullable(group);
             return this;
         }
 
@@ -452,7 +452,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder dependent(List<FieldMappingApiInstance> dependent) {
-            this.dependent = Optional.of(dependent);
+            this.dependent = Optional.ofNullable(dependent);
             return this;
         }
 
@@ -463,7 +463,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder timesheetEntry(List<FieldMappingApiInstance> timesheetEntry) {
-            this.timesheetEntry = Optional.of(timesheetEntry);
+            this.timesheetEntry = Optional.ofNullable(timesheetEntry);
             return this;
         }
 

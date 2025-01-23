@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Opportunity.Builder.class)
 public final class Opportunity {
     private final Optional<String> id;
@@ -375,7 +375,7 @@ public final class Opportunity {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class Opportunity {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class Opportunity {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -408,7 +408,7 @@ public final class Opportunity {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -419,7 +419,7 @@ public final class Opportunity {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -430,7 +430,7 @@ public final class Opportunity {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class Opportunity {
         }
 
         public Builder amount(Integer amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -452,7 +452,7 @@ public final class Opportunity {
         }
 
         public Builder owner(OpportunityOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -463,7 +463,7 @@ public final class Opportunity {
         }
 
         public Builder account(OpportunityAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -474,7 +474,7 @@ public final class Opportunity {
         }
 
         public Builder stage(OpportunityStage stage) {
-            this.stage = Optional.of(stage);
+            this.stage = Optional.ofNullable(stage);
             return this;
         }
 
@@ -485,7 +485,7 @@ public final class Opportunity {
         }
 
         public Builder status(OpportunityStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -496,7 +496,7 @@ public final class Opportunity {
         }
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
-            this.lastActivityAt = Optional.of(lastActivityAt);
+            this.lastActivityAt = Optional.ofNullable(lastActivityAt);
             return this;
         }
 
@@ -507,7 +507,7 @@ public final class Opportunity {
         }
 
         public Builder closeDate(OffsetDateTime closeDate) {
-            this.closeDate = Optional.of(closeDate);
+            this.closeDate = Optional.ofNullable(closeDate);
             return this;
         }
 
@@ -518,7 +518,7 @@ public final class Opportunity {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -529,7 +529,7 @@ public final class Opportunity {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -540,7 +540,7 @@ public final class Opportunity {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -551,7 +551,7 @@ public final class Opportunity {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -562,7 +562,7 @@ public final class Opportunity {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

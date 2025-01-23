@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Task.Builder.class)
 public final class Task {
     private final Optional<String> id;
@@ -340,7 +340,7 @@ public final class Task {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -351,7 +351,7 @@ public final class Task {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class Task {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -373,7 +373,7 @@ public final class Task {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -384,7 +384,7 @@ public final class Task {
         }
 
         public Builder subject(String subject) {
-            this.subject = Optional.of(subject);
+            this.subject = Optional.ofNullable(subject);
             return this;
         }
 
@@ -395,7 +395,7 @@ public final class Task {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -406,7 +406,7 @@ public final class Task {
         }
 
         public Builder owner(TaskOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -417,7 +417,7 @@ public final class Task {
         }
 
         public Builder account(TaskAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -428,7 +428,7 @@ public final class Task {
         }
 
         public Builder opportunity(TaskOpportunity opportunity) {
-            this.opportunity = Optional.of(opportunity);
+            this.opportunity = Optional.ofNullable(opportunity);
             return this;
         }
 
@@ -439,7 +439,7 @@ public final class Task {
         }
 
         public Builder completedDate(OffsetDateTime completedDate) {
-            this.completedDate = Optional.of(completedDate);
+            this.completedDate = Optional.ofNullable(completedDate);
             return this;
         }
 
@@ -450,7 +450,7 @@ public final class Task {
         }
 
         public Builder dueDate(OffsetDateTime dueDate) {
-            this.dueDate = Optional.of(dueDate);
+            this.dueDate = Optional.ofNullable(dueDate);
             return this;
         }
 
@@ -461,7 +461,7 @@ public final class Task {
         }
 
         public Builder status(TaskStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -472,7 +472,7 @@ public final class Task {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -483,7 +483,7 @@ public final class Task {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -494,7 +494,7 @@ public final class Task {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -505,7 +505,7 @@ public final class Task {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

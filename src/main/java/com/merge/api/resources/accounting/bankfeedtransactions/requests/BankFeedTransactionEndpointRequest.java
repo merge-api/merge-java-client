@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedTransactionEndpointRequest.Builder.class)
 public final class BankFeedTransactionEndpointRequest {
     private final Optional<Boolean> isDebugMode;
@@ -92,7 +93,7 @@ public final class BankFeedTransactionEndpointRequest {
     }
 
     public interface ModelStage {
-        _FinalStage model(BankFeedTransactionRequestRequest model);
+        _FinalStage model(@NotNull BankFeedTransactionRequestRequest model);
 
         Builder from(BankFeedTransactionEndpointRequest other);
     }
@@ -132,7 +133,7 @@ public final class BankFeedTransactionEndpointRequest {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(BankFeedTransactionRequestRequest model) {
+        public _FinalStage model(@NotNull BankFeedTransactionRequestRequest model) {
             this.model = model;
             return this;
         }
@@ -143,7 +144,7 @@ public final class BankFeedTransactionEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage runAsync(Boolean runAsync) {
-            this.runAsync = Optional.of(runAsync);
+            this.runAsync = Optional.ofNullable(runAsync);
             return this;
         }
 
@@ -160,7 +161,7 @@ public final class BankFeedTransactionEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage isDebugMode(Boolean isDebugMode) {
-            this.isDebugMode = Optional.of(isDebugMode);
+            this.isDebugMode = Optional.ofNullable(isDebugMode);
             return this;
         }
 

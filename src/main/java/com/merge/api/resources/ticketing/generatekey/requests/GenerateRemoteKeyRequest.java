@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GenerateRemoteKeyRequest.Builder.class)
 public final class GenerateRemoteKeyRequest {
     private final String name;
@@ -65,7 +66,7 @@ public final class GenerateRemoteKeyRequest {
     }
 
     public interface NameStage {
-        _FinalStage name(String name);
+        _FinalStage name(@NotNull String name);
 
         Builder from(GenerateRemoteKeyRequest other);
     }
@@ -95,7 +96,7 @@ public final class GenerateRemoteKeyRequest {
          */
         @java.lang.Override
         @JsonSetter("name")
-        public _FinalStage name(String name) {
+        public _FinalStage name(@NotNull String name) {
             this.name = name;
             return this;
         }

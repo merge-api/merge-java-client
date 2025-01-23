@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceResponse.Builder.class)
 public final class FieldMappingApiInstanceResponse {
     private final Optional<List<FieldMappingApiInstance>> file;
@@ -139,7 +139,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder file(List<FieldMappingApiInstance> file) {
-            this.file = Optional.of(file);
+            this.file = Optional.ofNullable(file);
             return this;
         }
 
@@ -150,7 +150,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder folder(List<FieldMappingApiInstance> folder) {
-            this.folder = Optional.of(folder);
+            this.folder = Optional.ofNullable(folder);
             return this;
         }
 
@@ -161,7 +161,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder drive(List<FieldMappingApiInstance> drive) {
-            this.drive = Optional.of(drive);
+            this.drive = Optional.ofNullable(drive);
             return this;
         }
 
@@ -172,7 +172,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder group(List<FieldMappingApiInstance> group) {
-            this.group = Optional.of(group);
+            this.group = Optional.ofNullable(group);
             return this;
         }
 
@@ -183,7 +183,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder user(List<FieldMappingApiInstance> user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 

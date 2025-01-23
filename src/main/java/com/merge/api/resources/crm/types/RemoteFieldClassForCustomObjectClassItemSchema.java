@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldClassForCustomObjectClassItemSchema.Builder.class)
 public final class RemoteFieldClassForCustomObjectClassItemSchema {
     private final Optional<String> itemType;
@@ -114,7 +114,7 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
         }
 
         public Builder itemType(String itemType) {
-            this.itemType = Optional.of(itemType);
+            this.itemType = Optional.ofNullable(itemType);
             return this;
         }
 
@@ -125,7 +125,7 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
         }
 
         public Builder itemFormat(String itemFormat) {
-            this.itemFormat = Optional.of(itemFormat);
+            this.itemFormat = Optional.ofNullable(itemFormat);
             return this;
         }
 
@@ -136,7 +136,7 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
         }
 
         public Builder itemChoices(List<Optional<String>> itemChoices) {
-            this.itemChoices = Optional.of(itemChoices);
+            this.itemChoices = Optional.ofNullable(itemChoices);
             return this;
         }
 

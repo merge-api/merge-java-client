@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Employment.Builder.class)
 public final class Employment {
     private final Optional<String> id;
@@ -699,7 +699,7 @@ public final class Employment {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class Employment {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class Employment {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class Employment {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -743,7 +743,7 @@ public final class Employment {
         }
 
         public Builder employee(EmploymentEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -754,7 +754,7 @@ public final class Employment {
         }
 
         public Builder jobTitle(String jobTitle) {
-            this.jobTitle = Optional.of(jobTitle);
+            this.jobTitle = Optional.ofNullable(jobTitle);
             return this;
         }
 
@@ -765,7 +765,7 @@ public final class Employment {
         }
 
         public Builder payRate(Double payRate) {
-            this.payRate = Optional.of(payRate);
+            this.payRate = Optional.ofNullable(payRate);
             return this;
         }
 
@@ -776,7 +776,7 @@ public final class Employment {
         }
 
         public Builder payPeriod(EmploymentPayPeriod payPeriod) {
-            this.payPeriod = Optional.of(payPeriod);
+            this.payPeriod = Optional.ofNullable(payPeriod);
             return this;
         }
 
@@ -787,7 +787,7 @@ public final class Employment {
         }
 
         public Builder payFrequency(EmploymentPayFrequency payFrequency) {
-            this.payFrequency = Optional.of(payFrequency);
+            this.payFrequency = Optional.ofNullable(payFrequency);
             return this;
         }
 
@@ -798,7 +798,7 @@ public final class Employment {
         }
 
         public Builder payCurrency(EmploymentPayCurrency payCurrency) {
-            this.payCurrency = Optional.of(payCurrency);
+            this.payCurrency = Optional.ofNullable(payCurrency);
             return this;
         }
 
@@ -809,7 +809,7 @@ public final class Employment {
         }
 
         public Builder payGroup(EmploymentPayGroup payGroup) {
-            this.payGroup = Optional.of(payGroup);
+            this.payGroup = Optional.ofNullable(payGroup);
             return this;
         }
 
@@ -820,7 +820,7 @@ public final class Employment {
         }
 
         public Builder flsaStatus(EmploymentFlsaStatus flsaStatus) {
-            this.flsaStatus = Optional.of(flsaStatus);
+            this.flsaStatus = Optional.ofNullable(flsaStatus);
             return this;
         }
 
@@ -831,7 +831,7 @@ public final class Employment {
         }
 
         public Builder effectiveDate(OffsetDateTime effectiveDate) {
-            this.effectiveDate = Optional.of(effectiveDate);
+            this.effectiveDate = Optional.ofNullable(effectiveDate);
             return this;
         }
 
@@ -842,7 +842,7 @@ public final class Employment {
         }
 
         public Builder employmentType(EmploymentEmploymentType employmentType) {
-            this.employmentType = Optional.of(employmentType);
+            this.employmentType = Optional.ofNullable(employmentType);
             return this;
         }
 
@@ -853,7 +853,7 @@ public final class Employment {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -864,7 +864,7 @@ public final class Employment {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -875,7 +875,7 @@ public final class Employment {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

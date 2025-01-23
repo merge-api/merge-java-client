@@ -18,8 +18,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteEndpointInfo.Builder.class)
 public final class RemoteEndpointInfo {
     private final String method;
@@ -88,13 +89,13 @@ public final class RemoteEndpointInfo {
     }
 
     public interface MethodStage {
-        UrlPathStage method(String method);
+        UrlPathStage method(@NotNull String method);
 
         Builder from(RemoteEndpointInfo other);
     }
 
     public interface UrlPathStage {
-        _FinalStage urlPath(String urlPath);
+        _FinalStage urlPath(@NotNull String urlPath);
     }
 
     public interface _FinalStage {
@@ -130,14 +131,14 @@ public final class RemoteEndpointInfo {
 
         @java.lang.Override
         @JsonSetter("method")
-        public UrlPathStage method(String method) {
+        public UrlPathStage method(@NotNull String method) {
             this.method = method;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("url_path")
-        public _FinalStage urlPath(String urlPath) {
+        public _FinalStage urlPath(@NotNull String urlPath) {
             this.urlPath = urlPath;
             return this;
         }

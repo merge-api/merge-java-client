@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JournalEntryRequest.Builder.class)
 public final class JournalEntryRequest {
     private final Optional<OffsetDateTime> transactionDate;
@@ -612,7 +612,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -623,7 +623,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder payments(List<Optional<JournalEntryRequestPaymentsItem>> payments) {
-            this.payments = Optional.of(payments);
+            this.payments = Optional.ofNullable(payments);
             return this;
         }
 
@@ -634,7 +634,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -645,7 +645,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder currency(JournalEntryRequestCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -656,7 +656,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -667,7 +667,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder company(JournalEntryRequestCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -680,7 +680,7 @@ public final class JournalEntryRequest {
 
         public Builder trackingCategories(
                 List<Optional<JournalEntryRequestTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -691,7 +691,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
-            this.inclusiveOfTax = Optional.of(inclusiveOfTax);
+            this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
             return this;
         }
 
@@ -702,7 +702,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder lines(List<JournalLineRequest> lines) {
-            this.lines = Optional.of(lines);
+            this.lines = Optional.ofNullable(lines);
             return this;
         }
 
@@ -713,7 +713,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder journalNumber(String journalNumber) {
-            this.journalNumber = Optional.of(journalNumber);
+            this.journalNumber = Optional.ofNullable(journalNumber);
             return this;
         }
 
@@ -724,7 +724,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder postingStatus(JournalEntryRequestPostingStatus postingStatus) {
-            this.postingStatus = Optional.of(postingStatus);
+            this.postingStatus = Optional.ofNullable(postingStatus);
             return this;
         }
 
@@ -735,7 +735,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -746,7 +746,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -757,7 +757,7 @@ public final class JournalEntryRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

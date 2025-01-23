@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Comment.Builder.class)
 public final class Comment {
     private final Optional<String> id;
@@ -305,7 +305,7 @@ public final class Comment {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class Comment {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class Comment {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class Comment {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class Comment {
         }
 
         public Builder user(CommentUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -360,7 +360,7 @@ public final class Comment {
         }
 
         public Builder contact(CommentContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class Comment {
         }
 
         public Builder body(String body) {
-            this.body = Optional.of(body);
+            this.body = Optional.ofNullable(body);
             return this;
         }
 
@@ -382,7 +382,7 @@ public final class Comment {
         }
 
         public Builder htmlBody(String htmlBody) {
-            this.htmlBody = Optional.of(htmlBody);
+            this.htmlBody = Optional.ofNullable(htmlBody);
             return this;
         }
 
@@ -393,7 +393,7 @@ public final class Comment {
         }
 
         public Builder ticket(CommentTicket ticket) {
-            this.ticket = Optional.of(ticket);
+            this.ticket = Optional.ofNullable(ticket);
             return this;
         }
 
@@ -404,7 +404,7 @@ public final class Comment {
         }
 
         public Builder isPrivate(Boolean isPrivate) {
-            this.isPrivate = Optional.of(isPrivate);
+            this.isPrivate = Optional.ofNullable(isPrivate);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class Comment {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -426,7 +426,7 @@ public final class Comment {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -437,7 +437,7 @@ public final class Comment {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -448,7 +448,7 @@ public final class Comment {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CustomObjectClassesCustomObjectsAssociationsUpdateRequest.Builder.class)
 public final class CustomObjectClassesCustomObjectsAssociationsUpdateRequest {
     private final Optional<Boolean> isDebugMode;
@@ -103,7 +103,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsUpdateRequest {
         }
 
         public Builder isDebugMode(Boolean isDebugMode) {
-            this.isDebugMode = Optional.of(isDebugMode);
+            this.isDebugMode = Optional.ofNullable(isDebugMode);
             return this;
         }
 
@@ -114,7 +114,7 @@ public final class CustomObjectClassesCustomObjectsAssociationsUpdateRequest {
         }
 
         public Builder runAsync(Boolean runAsync) {
-            this.runAsync = Optional.of(runAsync);
+            this.runAsync = Optional.ofNullable(runAsync);
             return this;
         }
 

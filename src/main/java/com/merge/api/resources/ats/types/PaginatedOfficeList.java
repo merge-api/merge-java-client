@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaginatedOfficeList.Builder.class)
 public final class PaginatedOfficeList {
     private final Optional<String> next;
@@ -111,7 +111,7 @@ public final class PaginatedOfficeList {
         }
 
         public Builder next(String next) {
-            this.next = Optional.of(next);
+            this.next = Optional.ofNullable(next);
             return this;
         }
 
@@ -122,7 +122,7 @@ public final class PaginatedOfficeList {
         }
 
         public Builder previous(String previous) {
-            this.previous = Optional.of(previous);
+            this.previous = Optional.ofNullable(previous);
             return this;
         }
 
@@ -133,7 +133,7 @@ public final class PaginatedOfficeList {
         }
 
         public Builder results(List<Office> results) {
-            this.results = Optional.of(results);
+            this.results = Optional.ofNullable(results);
             return this;
         }
 

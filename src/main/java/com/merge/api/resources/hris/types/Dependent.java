@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Dependent.Builder.class)
 public final class Dependent {
     private final Optional<String> id;
@@ -385,7 +385,7 @@ public final class Dependent {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -396,7 +396,7 @@ public final class Dependent {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -407,7 +407,7 @@ public final class Dependent {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -418,7 +418,7 @@ public final class Dependent {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -429,7 +429,7 @@ public final class Dependent {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -440,7 +440,7 @@ public final class Dependent {
         }
 
         public Builder middleName(String middleName) {
-            this.middleName = Optional.of(middleName);
+            this.middleName = Optional.ofNullable(middleName);
             return this;
         }
 
@@ -451,7 +451,7 @@ public final class Dependent {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -462,7 +462,7 @@ public final class Dependent {
         }
 
         public Builder relationship(DependentRelationship relationship) {
-            this.relationship = Optional.of(relationship);
+            this.relationship = Optional.ofNullable(relationship);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class Dependent {
         }
 
         public Builder employee(String employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -484,7 +484,7 @@ public final class Dependent {
         }
 
         public Builder dateOfBirth(OffsetDateTime dateOfBirth) {
-            this.dateOfBirth = Optional.of(dateOfBirth);
+            this.dateOfBirth = Optional.ofNullable(dateOfBirth);
             return this;
         }
 
@@ -495,7 +495,7 @@ public final class Dependent {
         }
 
         public Builder gender(DependentGender gender) {
-            this.gender = Optional.of(gender);
+            this.gender = Optional.ofNullable(gender);
             return this;
         }
 
@@ -506,7 +506,7 @@ public final class Dependent {
         }
 
         public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = Optional.of(phoneNumber);
+            this.phoneNumber = Optional.ofNullable(phoneNumber);
             return this;
         }
 
@@ -517,7 +517,7 @@ public final class Dependent {
         }
 
         public Builder homeLocation(String homeLocation) {
-            this.homeLocation = Optional.of(homeLocation);
+            this.homeLocation = Optional.ofNullable(homeLocation);
             return this;
         }
 
@@ -528,7 +528,7 @@ public final class Dependent {
         }
 
         public Builder isStudent(Boolean isStudent) {
-            this.isStudent = Optional.of(isStudent);
+            this.isStudent = Optional.ofNullable(isStudent);
             return this;
         }
 
@@ -539,7 +539,7 @@ public final class Dependent {
         }
 
         public Builder ssn(String ssn) {
-            this.ssn = Optional.of(ssn);
+            this.ssn = Optional.ofNullable(ssn);
             return this;
         }
 
@@ -550,7 +550,7 @@ public final class Dependent {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -561,7 +561,7 @@ public final class Dependent {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -572,7 +572,7 @@ public final class Dependent {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

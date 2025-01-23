@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Scorecard.Builder.class)
 public final class Scorecard {
     private final Optional<String> id;
@@ -295,7 +295,7 @@ public final class Scorecard {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -306,7 +306,7 @@ public final class Scorecard {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -317,7 +317,7 @@ public final class Scorecard {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -328,7 +328,7 @@ public final class Scorecard {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -339,7 +339,7 @@ public final class Scorecard {
         }
 
         public Builder application(ScorecardApplication application) {
-            this.application = Optional.of(application);
+            this.application = Optional.ofNullable(application);
             return this;
         }
 
@@ -350,7 +350,7 @@ public final class Scorecard {
         }
 
         public Builder interview(ScorecardInterview interview) {
-            this.interview = Optional.of(interview);
+            this.interview = Optional.ofNullable(interview);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class Scorecard {
         }
 
         public Builder interviewer(ScorecardInterviewer interviewer) {
-            this.interviewer = Optional.of(interviewer);
+            this.interviewer = Optional.ofNullable(interviewer);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class Scorecard {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class Scorecard {
         }
 
         public Builder submittedAt(OffsetDateTime submittedAt) {
-            this.submittedAt = Optional.of(submittedAt);
+            this.submittedAt = Optional.ofNullable(submittedAt);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class Scorecard {
         }
 
         public Builder overallRecommendation(ScorecardOverallRecommendation overallRecommendation) {
-            this.overallRecommendation = Optional.of(overallRecommendation);
+            this.overallRecommendation = Optional.ofNullable(overallRecommendation);
             return this;
         }
 
@@ -405,7 +405,7 @@ public final class Scorecard {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -416,7 +416,7 @@ public final class Scorecard {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -427,7 +427,7 @@ public final class Scorecard {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

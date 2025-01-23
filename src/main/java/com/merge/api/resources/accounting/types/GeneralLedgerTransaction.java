@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GeneralLedgerTransaction.Builder.class)
 public final class GeneralLedgerTransaction {
     private final Optional<String> id;
@@ -350,7 +350,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder underlyingTransactionRemoteId(String underlyingTransactionRemoteId) {
-            this.underlyingTransactionRemoteId = Optional.of(underlyingTransactionRemoteId);
+            this.underlyingTransactionRemoteId = Optional.ofNullable(underlyingTransactionRemoteId);
             return this;
         }
 
@@ -407,7 +407,7 @@ public final class GeneralLedgerTransaction {
 
         public Builder underlyingTransactionType(
                 GeneralLedgerTransactionUnderlyingTransactionType underlyingTransactionType) {
-            this.underlyingTransactionType = Optional.of(underlyingTransactionType);
+            this.underlyingTransactionType = Optional.ofNullable(underlyingTransactionType);
             return this;
         }
 
@@ -418,7 +418,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder accountingPeriod(GeneralLedgerTransactionAccountingPeriod accountingPeriod) {
-            this.accountingPeriod = Optional.of(accountingPeriod);
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
 
@@ -429,7 +429,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder company(GeneralLedgerTransactionCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -440,7 +440,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -451,7 +451,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -464,7 +464,7 @@ public final class GeneralLedgerTransaction {
 
         public Builder trackingCategories(
                 List<Optional<GeneralLedgerTransactionTrackingCategoriesItem>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -475,7 +475,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder postingDate(OffsetDateTime postingDate) {
-            this.postingDate = Optional.of(postingDate);
+            this.postingDate = Optional.ofNullable(postingDate);
             return this;
         }
 
@@ -489,7 +489,7 @@ public final class GeneralLedgerTransaction {
 
         public Builder generalLedgerTransactionLines(
                 List<GeneralLedgerTransactionGeneralLedgerTransactionLinesItem> generalLedgerTransactionLines) {
-            this.generalLedgerTransactionLines = Optional.of(generalLedgerTransactionLines);
+            this.generalLedgerTransactionLines = Optional.ofNullable(generalLedgerTransactionLines);
             return this;
         }
 
@@ -500,7 +500,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -511,7 +511,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -522,7 +522,7 @@ public final class GeneralLedgerTransaction {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

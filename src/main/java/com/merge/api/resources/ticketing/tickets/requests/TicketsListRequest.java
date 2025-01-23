@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketsListRequest.Builder.class)
 public final class TicketsListRequest {
     private final Optional<String> accountId;
@@ -628,7 +628,7 @@ public final class TicketsListRequest {
         }
 
         public Builder accountId(String accountId) {
-            this.accountId = Optional.of(accountId);
+            this.accountId = Optional.ofNullable(accountId);
             return this;
         }
 
@@ -639,7 +639,7 @@ public final class TicketsListRequest {
         }
 
         public Builder assigneeIds(String assigneeIds) {
-            this.assigneeIds = Optional.of(assigneeIds);
+            this.assigneeIds = Optional.ofNullable(assigneeIds);
             return this;
         }
 
@@ -650,7 +650,7 @@ public final class TicketsListRequest {
         }
 
         public Builder collectionIds(String collectionIds) {
-            this.collectionIds = Optional.of(collectionIds);
+            this.collectionIds = Optional.ofNullable(collectionIds);
             return this;
         }
 
@@ -661,7 +661,7 @@ public final class TicketsListRequest {
         }
 
         public Builder completedAfter(OffsetDateTime completedAfter) {
-            this.completedAfter = Optional.of(completedAfter);
+            this.completedAfter = Optional.ofNullable(completedAfter);
             return this;
         }
 
@@ -672,7 +672,7 @@ public final class TicketsListRequest {
         }
 
         public Builder completedBefore(OffsetDateTime completedBefore) {
-            this.completedBefore = Optional.of(completedBefore);
+            this.completedBefore = Optional.ofNullable(completedBefore);
             return this;
         }
 
@@ -683,7 +683,7 @@ public final class TicketsListRequest {
         }
 
         public Builder contactId(String contactId) {
-            this.contactId = Optional.of(contactId);
+            this.contactId = Optional.ofNullable(contactId);
             return this;
         }
 
@@ -694,7 +694,7 @@ public final class TicketsListRequest {
         }
 
         public Builder createdAfter(OffsetDateTime createdAfter) {
-            this.createdAfter = Optional.of(createdAfter);
+            this.createdAfter = Optional.ofNullable(createdAfter);
             return this;
         }
 
@@ -705,7 +705,7 @@ public final class TicketsListRequest {
         }
 
         public Builder createdBefore(OffsetDateTime createdBefore) {
-            this.createdBefore = Optional.of(createdBefore);
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -716,7 +716,7 @@ public final class TicketsListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -727,7 +727,7 @@ public final class TicketsListRequest {
         }
 
         public Builder dueAfter(OffsetDateTime dueAfter) {
-            this.dueAfter = Optional.of(dueAfter);
+            this.dueAfter = Optional.ofNullable(dueAfter);
             return this;
         }
 
@@ -738,7 +738,7 @@ public final class TicketsListRequest {
         }
 
         public Builder dueBefore(OffsetDateTime dueBefore) {
-            this.dueBefore = Optional.of(dueBefore);
+            this.dueBefore = Optional.ofNullable(dueBefore);
             return this;
         }
 
@@ -749,7 +749,7 @@ public final class TicketsListRequest {
         }
 
         public Builder expand(TicketsListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -760,7 +760,7 @@ public final class TicketsListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -771,7 +771,7 @@ public final class TicketsListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -782,7 +782,7 @@ public final class TicketsListRequest {
         }
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
-            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
             return this;
         }
 
@@ -793,7 +793,7 @@ public final class TicketsListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -804,7 +804,7 @@ public final class TicketsListRequest {
         }
 
         public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
-            this.modifiedAfter = Optional.of(modifiedAfter);
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
             return this;
         }
 
@@ -815,7 +815,7 @@ public final class TicketsListRequest {
         }
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
-            this.modifiedBefore = Optional.of(modifiedBefore);
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
             return this;
         }
 
@@ -826,7 +826,7 @@ public final class TicketsListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -837,7 +837,7 @@ public final class TicketsListRequest {
         }
 
         public Builder parentTicketId(String parentTicketId) {
-            this.parentTicketId = Optional.of(parentTicketId);
+            this.parentTicketId = Optional.ofNullable(parentTicketId);
             return this;
         }
 
@@ -848,7 +848,7 @@ public final class TicketsListRequest {
         }
 
         public Builder priority(TicketsListRequestPriority priority) {
-            this.priority = Optional.of(priority);
+            this.priority = Optional.ofNullable(priority);
             return this;
         }
 
@@ -859,7 +859,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteCreatedAfter(OffsetDateTime remoteCreatedAfter) {
-            this.remoteCreatedAfter = Optional.of(remoteCreatedAfter);
+            this.remoteCreatedAfter = Optional.ofNullable(remoteCreatedAfter);
             return this;
         }
 
@@ -870,7 +870,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteCreatedBefore(OffsetDateTime remoteCreatedBefore) {
-            this.remoteCreatedBefore = Optional.of(remoteCreatedBefore);
+            this.remoteCreatedBefore = Optional.ofNullable(remoteCreatedBefore);
             return this;
         }
 
@@ -881,7 +881,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteFields(TicketsListRequestRemoteFields remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -892,7 +892,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -903,7 +903,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteUpdatedAfter(OffsetDateTime remoteUpdatedAfter) {
-            this.remoteUpdatedAfter = Optional.of(remoteUpdatedAfter);
+            this.remoteUpdatedAfter = Optional.ofNullable(remoteUpdatedAfter);
             return this;
         }
 
@@ -914,7 +914,7 @@ public final class TicketsListRequest {
         }
 
         public Builder remoteUpdatedBefore(OffsetDateTime remoteUpdatedBefore) {
-            this.remoteUpdatedBefore = Optional.of(remoteUpdatedBefore);
+            this.remoteUpdatedBefore = Optional.ofNullable(remoteUpdatedBefore);
             return this;
         }
 
@@ -925,7 +925,7 @@ public final class TicketsListRequest {
         }
 
         public Builder showEnumOrigins(TicketsListRequestShowEnumOrigins showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 
@@ -936,7 +936,7 @@ public final class TicketsListRequest {
         }
 
         public Builder status(String status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -947,7 +947,7 @@ public final class TicketsListRequest {
         }
 
         public Builder tags(String tags) {
-            this.tags = Optional.of(tags);
+            this.tags = Optional.ofNullable(tags);
             return this;
         }
 
@@ -958,7 +958,7 @@ public final class TicketsListRequest {
         }
 
         public Builder ticketType(String ticketType) {
-            this.ticketType = Optional.of(ticketType);
+            this.ticketType = Optional.ofNullable(ticketType);
             return this;
         }
 
@@ -969,7 +969,7 @@ public final class TicketsListRequest {
         }
 
         public Builder ticketUrl(String ticketUrl) {
-            this.ticketUrl = Optional.of(ticketUrl);
+            this.ticketUrl = Optional.ofNullable(ticketUrl);
             return this;
         }
 

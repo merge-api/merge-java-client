@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = MultipartFormFieldRequest.Builder.class)
 public final class MultipartFormFieldRequest {
     private final String name;
@@ -126,13 +127,13 @@ public final class MultipartFormFieldRequest {
     }
 
     public interface NameStage {
-        DataStage name(String name);
+        DataStage name(@NotNull String name);
 
         Builder from(MultipartFormFieldRequest other);
     }
 
     public interface DataStage {
-        _FinalStage data(String data);
+        _FinalStage data(@NotNull String data);
     }
 
     public interface _FinalStage {
@@ -184,7 +185,7 @@ public final class MultipartFormFieldRequest {
          */
         @java.lang.Override
         @JsonSetter("name")
-        public DataStage name(String name) {
+        public DataStage name(@NotNull String name) {
             this.name = name;
             return this;
         }
@@ -195,7 +196,7 @@ public final class MultipartFormFieldRequest {
          */
         @java.lang.Override
         @JsonSetter("data")
-        public _FinalStage data(String data) {
+        public _FinalStage data(@NotNull String data) {
             this.data = data;
             return this;
         }
@@ -206,7 +207,7 @@ public final class MultipartFormFieldRequest {
          */
         @java.lang.Override
         public _FinalStage contentType(String contentType) {
-            this.contentType = Optional.of(contentType);
+            this.contentType = Optional.ofNullable(contentType);
             return this;
         }
 
@@ -223,7 +224,7 @@ public final class MultipartFormFieldRequest {
          */
         @java.lang.Override
         public _FinalStage fileName(String fileName) {
-            this.fileName = Optional.of(fileName);
+            this.fileName = Optional.ofNullable(fileName);
             return this;
         }
 
@@ -245,7 +246,7 @@ public final class MultipartFormFieldRequest {
          */
         @java.lang.Override
         public _FinalStage encoding(MultipartFormFieldRequestEncoding encoding) {
-            this.encoding = Optional.of(encoding);
+            this.encoding = Optional.ofNullable(encoding);
             return this;
         }
 

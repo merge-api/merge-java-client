@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AsyncPostTask.Builder.class)
 public final class AsyncPostTask {
     private final AsyncPostTaskStatus status;
@@ -71,13 +72,13 @@ public final class AsyncPostTask {
     }
 
     public interface StatusStage {
-        ResultStage status(AsyncPostTaskStatus status);
+        ResultStage status(@NotNull AsyncPostTaskStatus status);
 
         Builder from(AsyncPostTask other);
     }
 
     public interface ResultStage {
-        _FinalStage result(AsyncPostTaskResult result);
+        _FinalStage result(@NotNull AsyncPostTaskResult result);
     }
 
     public interface _FinalStage {
@@ -104,14 +105,14 @@ public final class AsyncPostTask {
 
         @java.lang.Override
         @JsonSetter("status")
-        public ResultStage status(AsyncPostTaskStatus status) {
+        public ResultStage status(@NotNull AsyncPostTaskStatus status) {
             this.status = status;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("result")
-        public _FinalStage result(AsyncPostTaskResult result) {
+        public _FinalStage result(@NotNull AsyncPostTaskResult result) {
             this.result = result;
             return this;
         }

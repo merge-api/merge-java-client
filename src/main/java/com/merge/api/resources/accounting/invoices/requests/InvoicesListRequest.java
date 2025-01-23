@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InvoicesListRequest.Builder.class)
 public final class InvoicesListRequest {
     private final Optional<String> companyId;
@@ -446,7 +446,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder companyId(String companyId) {
-            this.companyId = Optional.of(companyId);
+            this.companyId = Optional.ofNullable(companyId);
             return this;
         }
 
@@ -457,7 +457,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder contactId(String contactId) {
-            this.contactId = Optional.of(contactId);
+            this.contactId = Optional.ofNullable(contactId);
             return this;
         }
 
@@ -468,7 +468,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder createdAfter(OffsetDateTime createdAfter) {
-            this.createdAfter = Optional.of(createdAfter);
+            this.createdAfter = Optional.ofNullable(createdAfter);
             return this;
         }
 
@@ -479,7 +479,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder createdBefore(OffsetDateTime createdBefore) {
-            this.createdBefore = Optional.of(createdBefore);
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -490,7 +490,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -501,7 +501,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder expand(InvoicesListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -512,7 +512,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -523,7 +523,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -534,7 +534,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
-            this.includeRemoteFields = Optional.of(includeRemoteFields);
+            this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
             return this;
         }
 
@@ -545,7 +545,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -556,7 +556,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder issueDateAfter(OffsetDateTime issueDateAfter) {
-            this.issueDateAfter = Optional.of(issueDateAfter);
+            this.issueDateAfter = Optional.ofNullable(issueDateAfter);
             return this;
         }
 
@@ -567,7 +567,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder issueDateBefore(OffsetDateTime issueDateBefore) {
-            this.issueDateBefore = Optional.of(issueDateBefore);
+            this.issueDateBefore = Optional.ofNullable(issueDateBefore);
             return this;
         }
 
@@ -578,7 +578,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
-            this.modifiedAfter = Optional.of(modifiedAfter);
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
             return this;
         }
 
@@ -589,7 +589,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
-            this.modifiedBefore = Optional.of(modifiedBefore);
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
             return this;
         }
 
@@ -600,7 +600,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder number(String number) {
-            this.number = Optional.of(number);
+            this.number = Optional.ofNullable(number);
             return this;
         }
 
@@ -611,7 +611,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -622,7 +622,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder remoteFields(String remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -633,7 +633,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -644,7 +644,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder showEnumOrigins(String showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 
@@ -655,7 +655,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder status(InvoicesListRequestStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -666,7 +666,7 @@ public final class InvoicesListRequest {
         }
 
         public Builder type(InvoicesListRequestType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 

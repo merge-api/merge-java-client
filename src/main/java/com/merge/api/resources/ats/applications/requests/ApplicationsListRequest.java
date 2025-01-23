@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ApplicationsListRequest.Builder.class)
 public final class ApplicationsListRequest {
     private final Optional<String> candidateId;
@@ -364,7 +364,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder candidateId(String candidateId) {
-            this.candidateId = Optional.of(candidateId);
+            this.candidateId = Optional.ofNullable(candidateId);
             return this;
         }
 
@@ -375,7 +375,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder createdAfter(OffsetDateTime createdAfter) {
-            this.createdAfter = Optional.of(createdAfter);
+            this.createdAfter = Optional.ofNullable(createdAfter);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder createdBefore(OffsetDateTime createdBefore) {
-            this.createdBefore = Optional.of(createdBefore);
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder creditedToId(String creditedToId) {
-            this.creditedToId = Optional.of(creditedToId);
+            this.creditedToId = Optional.ofNullable(creditedToId);
             return this;
         }
 
@@ -408,7 +408,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder currentStageId(String currentStageId) {
-            this.currentStageId = Optional.of(currentStageId);
+            this.currentStageId = Optional.ofNullable(currentStageId);
             return this;
         }
 
@@ -419,7 +419,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -430,7 +430,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder expand(ApplicationsListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -452,7 +452,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -463,7 +463,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -474,7 +474,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder jobId(String jobId) {
-            this.jobId = Optional.of(jobId);
+            this.jobId = Optional.ofNullable(jobId);
             return this;
         }
 
@@ -485,7 +485,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
-            this.modifiedAfter = Optional.of(modifiedAfter);
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
             return this;
         }
 
@@ -496,7 +496,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
-            this.modifiedBefore = Optional.of(modifiedBefore);
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
             return this;
         }
 
@@ -507,7 +507,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -518,7 +518,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder rejectReasonId(String rejectReasonId) {
-            this.rejectReasonId = Optional.of(rejectReasonId);
+            this.rejectReasonId = Optional.ofNullable(rejectReasonId);
             return this;
         }
 
@@ -529,7 +529,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -540,7 +540,7 @@ public final class ApplicationsListRequest {
         }
 
         public Builder source(String source) {
-            this.source = Optional.of(source);
+            this.source = Optional.ofNullable(source);
             return this;
         }
 

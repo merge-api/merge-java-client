@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingsRetrieveRequest.Builder.class)
 public final class FieldMappingsRetrieveRequest {
     private final Optional<Boolean> excludeRemoteFieldMetadata;
@@ -88,7 +88,7 @@ public final class FieldMappingsRetrieveRequest {
         }
 
         public Builder excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata) {
-            this.excludeRemoteFieldMetadata = Optional.of(excludeRemoteFieldMetadata);
+            this.excludeRemoteFieldMetadata = Optional.ofNullable(excludeRemoteFieldMetadata);
             return this;
         }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Application.Builder.class)
 public final class Application {
     private final Optional<String> id;
@@ -350,7 +350,7 @@ public final class Application {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class Application {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class Application {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class Application {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class Application {
         }
 
         public Builder candidate(ApplicationCandidate candidate) {
-            this.candidate = Optional.of(candidate);
+            this.candidate = Optional.ofNullable(candidate);
             return this;
         }
 
@@ -405,7 +405,7 @@ public final class Application {
         }
 
         public Builder job(ApplicationJob job) {
-            this.job = Optional.of(job);
+            this.job = Optional.ofNullable(job);
             return this;
         }
 
@@ -416,7 +416,7 @@ public final class Application {
         }
 
         public Builder appliedAt(OffsetDateTime appliedAt) {
-            this.appliedAt = Optional.of(appliedAt);
+            this.appliedAt = Optional.ofNullable(appliedAt);
             return this;
         }
 
@@ -427,7 +427,7 @@ public final class Application {
         }
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
-            this.rejectedAt = Optional.of(rejectedAt);
+            this.rejectedAt = Optional.ofNullable(rejectedAt);
             return this;
         }
 
@@ -438,7 +438,7 @@ public final class Application {
         }
 
         public Builder offers(List<Optional<ApplicationOffersItem>> offers) {
-            this.offers = Optional.of(offers);
+            this.offers = Optional.ofNullable(offers);
             return this;
         }
 
@@ -449,7 +449,7 @@ public final class Application {
         }
 
         public Builder source(String source) {
-            this.source = Optional.of(source);
+            this.source = Optional.ofNullable(source);
             return this;
         }
 
@@ -460,7 +460,7 @@ public final class Application {
         }
 
         public Builder creditedTo(ApplicationCreditedTo creditedTo) {
-            this.creditedTo = Optional.of(creditedTo);
+            this.creditedTo = Optional.ofNullable(creditedTo);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class Application {
 
         public Builder screeningQuestionAnswers(
                 List<ApplicationScreeningQuestionAnswersItem> screeningQuestionAnswers) {
-            this.screeningQuestionAnswers = Optional.of(screeningQuestionAnswers);
+            this.screeningQuestionAnswers = Optional.ofNullable(screeningQuestionAnswers);
             return this;
         }
 
@@ -484,7 +484,7 @@ public final class Application {
         }
 
         public Builder currentStage(ApplicationCurrentStage currentStage) {
-            this.currentStage = Optional.of(currentStage);
+            this.currentStage = Optional.ofNullable(currentStage);
             return this;
         }
 
@@ -495,7 +495,7 @@ public final class Application {
         }
 
         public Builder rejectReason(ApplicationRejectReason rejectReason) {
-            this.rejectReason = Optional.of(rejectReason);
+            this.rejectReason = Optional.ofNullable(rejectReason);
             return this;
         }
 
@@ -506,7 +506,7 @@ public final class Application {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -517,7 +517,7 @@ public final class Application {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -528,7 +528,7 @@ public final class Application {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

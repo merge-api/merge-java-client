@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Lead.Builder.class)
 public final class Lead {
     private final Optional<String> id;
@@ -429,7 +429,7 @@ public final class Lead {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -440,7 +440,7 @@ public final class Lead {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -451,7 +451,7 @@ public final class Lead {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -462,7 +462,7 @@ public final class Lead {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class Lead {
         }
 
         public Builder owner(LeadOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -484,7 +484,7 @@ public final class Lead {
         }
 
         public Builder leadSource(String leadSource) {
-            this.leadSource = Optional.of(leadSource);
+            this.leadSource = Optional.ofNullable(leadSource);
             return this;
         }
 
@@ -495,7 +495,7 @@ public final class Lead {
         }
 
         public Builder title(String title) {
-            this.title = Optional.of(title);
+            this.title = Optional.ofNullable(title);
             return this;
         }
 
@@ -506,7 +506,7 @@ public final class Lead {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -517,7 +517,7 @@ public final class Lead {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -528,7 +528,7 @@ public final class Lead {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -539,7 +539,7 @@ public final class Lead {
         }
 
         public Builder addresses(List<Address> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -550,7 +550,7 @@ public final class Lead {
         }
 
         public Builder emailAddresses(List<EmailAddress> emailAddresses) {
-            this.emailAddresses = Optional.of(emailAddresses);
+            this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
         }
 
@@ -561,7 +561,7 @@ public final class Lead {
         }
 
         public Builder phoneNumbers(List<PhoneNumber> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -572,7 +572,7 @@ public final class Lead {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -583,7 +583,7 @@ public final class Lead {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -594,7 +594,7 @@ public final class Lead {
         }
 
         public Builder convertedDate(OffsetDateTime convertedDate) {
-            this.convertedDate = Optional.of(convertedDate);
+            this.convertedDate = Optional.ofNullable(convertedDate);
             return this;
         }
 
@@ -605,7 +605,7 @@ public final class Lead {
         }
 
         public Builder convertedContact(LeadConvertedContact convertedContact) {
-            this.convertedContact = Optional.of(convertedContact);
+            this.convertedContact = Optional.ofNullable(convertedContact);
             return this;
         }
 
@@ -616,7 +616,7 @@ public final class Lead {
         }
 
         public Builder convertedAccount(LeadConvertedAccount convertedAccount) {
-            this.convertedAccount = Optional.of(convertedAccount);
+            this.convertedAccount = Optional.ofNullable(convertedAccount);
             return this;
         }
 
@@ -627,7 +627,7 @@ public final class Lead {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -638,7 +638,7 @@ public final class Lead {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -649,7 +649,7 @@ public final class Lead {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -660,7 +660,7 @@ public final class Lead {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

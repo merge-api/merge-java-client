@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AttachmentRequest.Builder.class)
 public final class AttachmentRequest {
     private final Optional<String> fileName;
@@ -187,7 +187,7 @@ public final class AttachmentRequest {
         }
 
         public Builder fileName(String fileName) {
-            this.fileName = Optional.of(fileName);
+            this.fileName = Optional.ofNullable(fileName);
             return this;
         }
 
@@ -198,7 +198,7 @@ public final class AttachmentRequest {
         }
 
         public Builder ticket(AttachmentRequestTicket ticket) {
-            this.ticket = Optional.of(ticket);
+            this.ticket = Optional.ofNullable(ticket);
             return this;
         }
 
@@ -209,7 +209,7 @@ public final class AttachmentRequest {
         }
 
         public Builder fileUrl(String fileUrl) {
-            this.fileUrl = Optional.of(fileUrl);
+            this.fileUrl = Optional.ofNullable(fileUrl);
             return this;
         }
 
@@ -220,7 +220,7 @@ public final class AttachmentRequest {
         }
 
         public Builder contentType(String contentType) {
-            this.contentType = Optional.of(contentType);
+            this.contentType = Optional.ofNullable(contentType);
             return this;
         }
 
@@ -231,7 +231,7 @@ public final class AttachmentRequest {
         }
 
         public Builder uploadedBy(String uploadedBy) {
-            this.uploadedBy = Optional.of(uploadedBy);
+            this.uploadedBy = Optional.ofNullable(uploadedBy);
             return this;
         }
 
@@ -242,7 +242,7 @@ public final class AttachmentRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -253,7 +253,7 @@ public final class AttachmentRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

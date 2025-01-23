@@ -18,11 +18,14 @@ public final class ClientOptions {
 
     private final OkHttpClient httpClient;
 
+    private final int timeout;
+
     private ClientOptions(
             Environment environment,
             Map<String, String> headers,
             Map<String, Supplier<String>> headerSuppliers,
-            OkHttpClient httpClient) {
+            OkHttpClient httpClient,
+            int timeout) {
         this.environment = environment;
         this.headers = new HashMap<>();
         this.headers.putAll(headers);
@@ -30,11 +33,12 @@ public final class ClientOptions {
             {
                 put("X-Fern-Language", "JAVA");
                 put("X-Fern-SDK-Name", "com.merge.fern:api-sdk");
-                put("X-Fern-SDK-Version", "1.0.18");
+                put("X-Fern-SDK-Version", "1.1.0");
             }
         });
         this.headerSuppliers = headerSuppliers;
         this.httpClient = httpClient;
+        this.timeout = timeout;
     }
 
     public Environment environment() {
@@ -80,6 +84,8 @@ public final class ClientOptions {
 
         private final Map<String, Supplier<String>> headerSuppliers = new HashMap<>();
 
+        private int timeout = 60;
+
         public Builder environment(Environment environment) {
             this.environment = environment;
             return this;
@@ -95,11 +101,20 @@ public final class ClientOptions {
             return this;
         }
 
+        /**
+         * Override the timeout in seconds. Defaults to 60 seconds.
+         */
+        public Builder timeout(int timeout) {
+            this.timeout = timeout;
+            return this;
+        }
+
         public ClientOptions build() {
             OkHttpClient okhttpClient = new OkHttpClient.Builder()
                     .addInterceptor(new RetryInterceptor(3))
+                    .callTimeout(this.timeout, TimeUnit.SECONDS)
                     .build();
-            return new ClientOptions(environment, headers, headerSuppliers, okhttpClient);
+            return new ClientOptions(environment, headers, headerSuppliers, okhttpClient, this.timeout);
         }
     }
 }

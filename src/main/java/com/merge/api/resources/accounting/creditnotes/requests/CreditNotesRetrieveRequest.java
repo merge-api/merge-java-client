@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNotesRetrieveRequest.Builder.class)
 public final class CreditNotesRetrieveRequest {
     private final Optional<CreditNotesRetrieveRequestExpand> expand;
@@ -140,7 +140,7 @@ public final class CreditNotesRetrieveRequest {
         }
 
         public Builder expand(CreditNotesRetrieveRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -151,7 +151,7 @@ public final class CreditNotesRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -162,7 +162,7 @@ public final class CreditNotesRetrieveRequest {
         }
 
         public Builder remoteFields(CreditNotesRetrieveRequestRemoteFields remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -173,7 +173,7 @@ public final class CreditNotesRetrieveRequest {
         }
 
         public Builder showEnumOrigins(CreditNotesRetrieveRequestShowEnumOrigins showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 

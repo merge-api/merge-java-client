@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Association.Builder.class)
 public final class Association {
     private final Optional<OffsetDateTime> createdAt;
@@ -149,7 +149,7 @@ public final class Association {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class Association {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class Association {
         }
 
         public Builder sourceObject(String sourceObject) {
-            this.sourceObject = Optional.of(sourceObject);
+            this.sourceObject = Optional.ofNullable(sourceObject);
             return this;
         }
 
@@ -182,7 +182,7 @@ public final class Association {
         }
 
         public Builder targetObject(String targetObject) {
-            this.targetObject = Optional.of(targetObject);
+            this.targetObject = Optional.ofNullable(targetObject);
             return this;
         }
 
@@ -193,7 +193,7 @@ public final class Association {
         }
 
         public Builder associationType(AssociationAssociationType associationType) {
-            this.associationType = Optional.of(associationType);
+            this.associationType = Optional.ofNullable(associationType);
             return this;
         }
 

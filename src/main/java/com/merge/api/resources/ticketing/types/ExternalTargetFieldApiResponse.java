@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ExternalTargetFieldApiResponse.Builder.class)
 public final class ExternalTargetFieldApiResponse {
     private final Optional<List<ExternalTargetFieldApi>> ticket;
@@ -228,7 +228,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder ticket(List<ExternalTargetFieldApi> ticket) {
-            this.ticket = Optional.of(ticket);
+            this.ticket = Optional.ofNullable(ticket);
             return this;
         }
 
@@ -239,7 +239,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder comment(List<ExternalTargetFieldApi> comment) {
-            this.comment = Optional.of(comment);
+            this.comment = Optional.ofNullable(comment);
             return this;
         }
 
@@ -250,7 +250,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder project(List<ExternalTargetFieldApi> project) {
-            this.project = Optional.of(project);
+            this.project = Optional.ofNullable(project);
             return this;
         }
 
@@ -261,7 +261,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder collection(List<ExternalTargetFieldApi> collection) {
-            this.collection = Optional.of(collection);
+            this.collection = Optional.ofNullable(collection);
             return this;
         }
 
@@ -272,7 +272,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder user(List<ExternalTargetFieldApi> user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -283,7 +283,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder role(List<ExternalTargetFieldApi> role) {
-            this.role = Optional.of(role);
+            this.role = Optional.ofNullable(role);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder account(List<ExternalTargetFieldApi> account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder team(List<ExternalTargetFieldApi> team) {
-            this.team = Optional.of(team);
+            this.team = Optional.ofNullable(team);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder attachment(List<ExternalTargetFieldApi> attachment) {
-            this.attachment = Optional.of(attachment);
+            this.attachment = Optional.ofNullable(attachment);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder tag(List<ExternalTargetFieldApi> tag) {
-            this.tag = Optional.of(tag);
+            this.tag = Optional.ofNullable(tag);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class ExternalTargetFieldApiResponse {
         }
 
         public Builder contact(List<ExternalTargetFieldApi> contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 

@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNoteLineItemRequest.Builder.class)
 public final class CreditNoteLineItemRequest {
     private final Optional<String> remoteId;
@@ -321,7 +321,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -332,7 +332,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder item(CreditNoteLineItemRequestItem item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -343,7 +343,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -354,7 +354,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -365,7 +365,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder quantity(String quantity) {
-            this.quantity = Optional.of(quantity);
+            this.quantity = Optional.ofNullable(quantity);
             return this;
         }
 
@@ -376,7 +376,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder memo(String memo) {
-            this.memo = Optional.of(memo);
+            this.memo = Optional.ofNullable(memo);
             return this;
         }
 
@@ -387,7 +387,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder unitPrice(String unitPrice) {
-            this.unitPrice = Optional.of(unitPrice);
+            this.unitPrice = Optional.ofNullable(unitPrice);
             return this;
         }
 
@@ -398,7 +398,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder taxRate(String taxRate) {
-            this.taxRate = Optional.of(taxRate);
+            this.taxRate = Optional.ofNullable(taxRate);
             return this;
         }
 
@@ -409,7 +409,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder totalLineAmount(String totalLineAmount) {
-            this.totalLineAmount = Optional.of(totalLineAmount);
+            this.totalLineAmount = Optional.ofNullable(totalLineAmount);
             return this;
         }
 
@@ -420,7 +420,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder trackingCategory(String trackingCategory) {
-            this.trackingCategory = Optional.of(trackingCategory);
+            this.trackingCategory = Optional.ofNullable(trackingCategory);
             return this;
         }
 
@@ -431,7 +431,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder trackingCategories(List<Optional<String>> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -442,7 +442,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder account(String account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -453,7 +453,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder company(CreditNoteLineItemRequestCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -464,7 +464,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -475,7 +475,7 @@ public final class CreditNoteLineItemRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

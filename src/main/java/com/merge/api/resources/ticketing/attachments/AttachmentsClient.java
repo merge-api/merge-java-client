@@ -9,6 +9,7 @@ import com.merge.api.core.MediaTypes;
 import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.ResponseBodyInputStream;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsDownloadRetrieveRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsListRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsRetrieveRequest;
@@ -110,7 +111,8 @@ public class AttachmentsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -166,7 +168,8 @@ public class AttachmentsClient {
                 .url(httpUrl.build())
                 .method("POST", body)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -220,7 +223,8 @@ public class AttachmentsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
@@ -278,10 +282,11 @@ public class AttachmentsClient {
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
+        try {
+            Response response = client.newCall(okhttpRequest).execute();
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return responseBody.byteStream();
+                return new ResponseBodyInputStream(response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(
@@ -313,6 +318,7 @@ public class AttachmentsClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

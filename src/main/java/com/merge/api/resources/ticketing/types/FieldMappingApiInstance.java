@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstance.Builder.class)
 public final class FieldMappingApiInstance {
     private final Optional<String> id;
@@ -125,7 +125,7 @@ public final class FieldMappingApiInstance {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -136,7 +136,7 @@ public final class FieldMappingApiInstance {
         }
 
         public Builder isIntegrationWide(Boolean isIntegrationWide) {
-            this.isIntegrationWide = Optional.of(isIntegrationWide);
+            this.isIntegrationWide = Optional.ofNullable(isIntegrationWide);
             return this;
         }
 
@@ -147,7 +147,7 @@ public final class FieldMappingApiInstance {
         }
 
         public Builder targetField(FieldMappingApiInstanceTargetField targetField) {
-            this.targetField = Optional.of(targetField);
+            this.targetField = Optional.ofNullable(targetField);
             return this;
         }
 
@@ -158,7 +158,7 @@ public final class FieldMappingApiInstance {
         }
 
         public Builder remoteField(FieldMappingApiInstanceRemoteField remoteField) {
-            this.remoteField = Optional.of(remoteField);
+            this.remoteField = Optional.ofNullable(remoteField);
             return this;
         }
 

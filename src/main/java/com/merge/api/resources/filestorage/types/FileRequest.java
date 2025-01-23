@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FileRequest.Builder.class)
 public final class FileRequest {
     private final Optional<String> name;
@@ -255,7 +255,7 @@ public final class FileRequest {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -266,7 +266,7 @@ public final class FileRequest {
         }
 
         public Builder fileUrl(String fileUrl) {
-            this.fileUrl = Optional.of(fileUrl);
+            this.fileUrl = Optional.ofNullable(fileUrl);
             return this;
         }
 
@@ -277,7 +277,7 @@ public final class FileRequest {
         }
 
         public Builder fileThumbnailUrl(String fileThumbnailUrl) {
-            this.fileThumbnailUrl = Optional.of(fileThumbnailUrl);
+            this.fileThumbnailUrl = Optional.ofNullable(fileThumbnailUrl);
             return this;
         }
 
@@ -288,7 +288,7 @@ public final class FileRequest {
         }
 
         public Builder size(Long size) {
-            this.size = Optional.of(size);
+            this.size = Optional.ofNullable(size);
             return this;
         }
 
@@ -299,7 +299,7 @@ public final class FileRequest {
         }
 
         public Builder mimeType(String mimeType) {
-            this.mimeType = Optional.of(mimeType);
+            this.mimeType = Optional.ofNullable(mimeType);
             return this;
         }
 
@@ -310,7 +310,7 @@ public final class FileRequest {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -321,7 +321,7 @@ public final class FileRequest {
         }
 
         public Builder folder(FileRequestFolder folder) {
-            this.folder = Optional.of(folder);
+            this.folder = Optional.ofNullable(folder);
             return this;
         }
 
@@ -332,7 +332,7 @@ public final class FileRequest {
         }
 
         public Builder permissions(FileRequestPermissions permissions) {
-            this.permissions = Optional.of(permissions);
+            this.permissions = Optional.ofNullable(permissions);
             return this;
         }
 
@@ -343,7 +343,7 @@ public final class FileRequest {
         }
 
         public Builder drive(FileRequestDrive drive) {
-            this.drive = Optional.of(drive);
+            this.drive = Optional.ofNullable(drive);
             return this;
         }
 
@@ -354,7 +354,7 @@ public final class FileRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -365,7 +365,7 @@ public final class FileRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

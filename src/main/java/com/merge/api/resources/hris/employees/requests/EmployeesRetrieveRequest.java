@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesRetrieveRequest.Builder.class)
 public final class EmployeesRetrieveRequest {
     private final Optional<EmployeesRetrieveRequestExpand> expand;
@@ -161,7 +161,7 @@ public final class EmployeesRetrieveRequest {
         }
 
         public Builder expand(EmployeesRetrieveRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -172,7 +172,7 @@ public final class EmployeesRetrieveRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -183,7 +183,7 @@ public final class EmployeesRetrieveRequest {
         }
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
-            this.includeSensitiveFields = Optional.of(includeSensitiveFields);
+            this.includeSensitiveFields = Optional.ofNullable(includeSensitiveFields);
             return this;
         }
 
@@ -194,7 +194,7 @@ public final class EmployeesRetrieveRequest {
         }
 
         public Builder remoteFields(EmployeesRetrieveRequestRemoteFields remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -205,7 +205,7 @@ public final class EmployeesRetrieveRequest {
         }
 
         public Builder showEnumOrigins(EmployeesRetrieveRequestShowEnumOrigins showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 

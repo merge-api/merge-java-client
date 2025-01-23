@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteUser.Builder.class)
 public final class RemoteUser {
     private final Optional<String> id;
@@ -295,7 +295,7 @@ public final class RemoteUser {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -306,7 +306,7 @@ public final class RemoteUser {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -317,7 +317,7 @@ public final class RemoteUser {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -328,7 +328,7 @@ public final class RemoteUser {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -339,7 +339,7 @@ public final class RemoteUser {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -350,7 +350,7 @@ public final class RemoteUser {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class RemoteUser {
         }
 
         public Builder email(String email) {
-            this.email = Optional.of(email);
+            this.email = Optional.ofNullable(email);
             return this;
         }
 
@@ -372,7 +372,7 @@ public final class RemoteUser {
         }
 
         public Builder disabled(Boolean disabled) {
-            this.disabled = Optional.of(disabled);
+            this.disabled = Optional.ofNullable(disabled);
             return this;
         }
 
@@ -383,7 +383,7 @@ public final class RemoteUser {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -394,7 +394,7 @@ public final class RemoteUser {
         }
 
         public Builder accessRole(RemoteUserAccessRole accessRole) {
-            this.accessRole = Optional.of(accessRole);
+            this.accessRole = Optional.ofNullable(accessRole);
             return this;
         }
 
@@ -405,7 +405,7 @@ public final class RemoteUser {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -416,7 +416,7 @@ public final class RemoteUser {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -427,7 +427,7 @@ public final class RemoteUser {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

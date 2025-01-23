@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JobPosting.Builder.class)
 public final class JobPosting {
     private final Optional<String> id;
@@ -329,7 +329,7 @@ public final class JobPosting {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -340,7 +340,7 @@ public final class JobPosting {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -351,7 +351,7 @@ public final class JobPosting {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -362,7 +362,7 @@ public final class JobPosting {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -373,7 +373,7 @@ public final class JobPosting {
         }
 
         public Builder title(String title) {
-            this.title = Optional.of(title);
+            this.title = Optional.ofNullable(title);
             return this;
         }
 
@@ -384,7 +384,7 @@ public final class JobPosting {
         }
 
         public Builder jobPostingUrls(List<JobPostingJobPostingUrlsItem> jobPostingUrls) {
-            this.jobPostingUrls = Optional.of(jobPostingUrls);
+            this.jobPostingUrls = Optional.ofNullable(jobPostingUrls);
             return this;
         }
 
@@ -395,7 +395,7 @@ public final class JobPosting {
         }
 
         public Builder job(JobPostingJob job) {
-            this.job = Optional.of(job);
+            this.job = Optional.ofNullable(job);
             return this;
         }
 
@@ -406,7 +406,7 @@ public final class JobPosting {
         }
 
         public Builder status(JobPostingStatusEnum status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -417,7 +417,7 @@ public final class JobPosting {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -428,7 +428,7 @@ public final class JobPosting {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -439,7 +439,7 @@ public final class JobPosting {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -450,7 +450,7 @@ public final class JobPosting {
         }
 
         public Builder isInternal(Boolean isInternal) {
-            this.isInternal = Optional.of(isInternal);
+            this.isInternal = Optional.ofNullable(isInternal);
             return this;
         }
 
@@ -461,7 +461,7 @@ public final class JobPosting {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -472,7 +472,7 @@ public final class JobPosting {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -483,7 +483,7 @@ public final class JobPosting {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

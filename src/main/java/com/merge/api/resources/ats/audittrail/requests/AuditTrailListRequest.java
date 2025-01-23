@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AuditTrailListRequest.Builder.class)
 public final class AuditTrailListRequest {
     private final Optional<String> cursor;
@@ -169,7 +169,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -180,7 +180,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder endDate(String endDate) {
-            this.endDate = Optional.of(endDate);
+            this.endDate = Optional.ofNullable(endDate);
             return this;
         }
 
@@ -191,7 +191,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder eventType(String eventType) {
-            this.eventType = Optional.of(eventType);
+            this.eventType = Optional.ofNullable(eventType);
             return this;
         }
 
@@ -202,7 +202,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -213,7 +213,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder startDate(String startDate) {
-            this.startDate = Optional.of(startDate);
+            this.startDate = Optional.ofNullable(startDate);
             return this;
         }
 
@@ -224,7 +224,7 @@ public final class AuditTrailListRequest {
         }
 
         public Builder userEmail(String userEmail) {
-            this.userEmail = Optional.of(userEmail);
+            this.userEmail = Optional.ofNullable(userEmail);
             return this;
         }
 

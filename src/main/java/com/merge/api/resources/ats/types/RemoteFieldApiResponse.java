@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldApiResponse.Builder.class)
 public final class RemoteFieldApiResponse {
     private final Optional<List<RemoteFieldApi>> activity;
@@ -298,7 +298,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder activity(List<RemoteFieldApi> activity) {
-            this.activity = Optional.of(activity);
+            this.activity = Optional.ofNullable(activity);
             return this;
         }
 
@@ -309,7 +309,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder application(List<RemoteFieldApi> application) {
-            this.application = Optional.of(application);
+            this.application = Optional.ofNullable(application);
             return this;
         }
 
@@ -320,7 +320,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder attachment(List<RemoteFieldApi> attachment) {
-            this.attachment = Optional.of(attachment);
+            this.attachment = Optional.ofNullable(attachment);
             return this;
         }
 
@@ -331,7 +331,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder candidate(List<RemoteFieldApi> candidate) {
-            this.candidate = Optional.of(candidate);
+            this.candidate = Optional.ofNullable(candidate);
             return this;
         }
 
@@ -342,7 +342,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder department(List<RemoteFieldApi> department) {
-            this.department = Optional.of(department);
+            this.department = Optional.ofNullable(department);
             return this;
         }
 
@@ -353,7 +353,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder eeoc(List<RemoteFieldApi> eeoc) {
-            this.eeoc = Optional.of(eeoc);
+            this.eeoc = Optional.ofNullable(eeoc);
             return this;
         }
 
@@ -364,7 +364,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder scheduledInterview(List<RemoteFieldApi> scheduledInterview) {
-            this.scheduledInterview = Optional.of(scheduledInterview);
+            this.scheduledInterview = Optional.ofNullable(scheduledInterview);
             return this;
         }
 
@@ -375,7 +375,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder job(List<RemoteFieldApi> job) {
-            this.job = Optional.of(job);
+            this.job = Optional.ofNullable(job);
             return this;
         }
 
@@ -386,7 +386,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder jobPosting(List<RemoteFieldApi> jobPosting) {
-            this.jobPosting = Optional.of(jobPosting);
+            this.jobPosting = Optional.ofNullable(jobPosting);
             return this;
         }
 
@@ -397,7 +397,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder jobInterviewStage(List<RemoteFieldApi> jobInterviewStage) {
-            this.jobInterviewStage = Optional.of(jobInterviewStage);
+            this.jobInterviewStage = Optional.ofNullable(jobInterviewStage);
             return this;
         }
 
@@ -408,7 +408,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder offer(List<RemoteFieldApi> offer) {
-            this.offer = Optional.of(offer);
+            this.offer = Optional.ofNullable(offer);
             return this;
         }
 
@@ -419,7 +419,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder office(List<RemoteFieldApi> office) {
-            this.office = Optional.of(office);
+            this.office = Optional.ofNullable(office);
             return this;
         }
 
@@ -430,7 +430,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder rejectReason(List<RemoteFieldApi> rejectReason) {
-            this.rejectReason = Optional.of(rejectReason);
+            this.rejectReason = Optional.ofNullable(rejectReason);
             return this;
         }
 
@@ -441,7 +441,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder scorecard(List<RemoteFieldApi> scorecard) {
-            this.scorecard = Optional.of(scorecard);
+            this.scorecard = Optional.ofNullable(scorecard);
             return this;
         }
 
@@ -452,7 +452,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder tag(List<RemoteFieldApi> tag) {
-            this.tag = Optional.of(tag);
+            this.tag = Optional.ofNullable(tag);
             return this;
         }
 
@@ -463,7 +463,7 @@ public final class RemoteFieldApiResponse {
         }
 
         public Builder remoteUser(List<RemoteFieldApi> remoteUser) {
-            this.remoteUser = Optional.of(remoteUser);
+            this.remoteUser = Optional.ofNullable(remoteUser);
             return this;
         }
 

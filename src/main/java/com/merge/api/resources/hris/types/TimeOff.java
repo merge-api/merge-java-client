@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOff.Builder.class)
 public final class TimeOff {
     private final Optional<String> id;
@@ -358,7 +358,7 @@ public final class TimeOff {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -369,7 +369,7 @@ public final class TimeOff {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -380,7 +380,7 @@ public final class TimeOff {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -391,7 +391,7 @@ public final class TimeOff {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -402,7 +402,7 @@ public final class TimeOff {
         }
 
         public Builder employee(TimeOffEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -413,7 +413,7 @@ public final class TimeOff {
         }
 
         public Builder approver(TimeOffApprover approver) {
-            this.approver = Optional.of(approver);
+            this.approver = Optional.ofNullable(approver);
             return this;
         }
 
@@ -424,7 +424,7 @@ public final class TimeOff {
         }
 
         public Builder status(TimeOffStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -435,7 +435,7 @@ public final class TimeOff {
         }
 
         public Builder employeeNote(String employeeNote) {
-            this.employeeNote = Optional.of(employeeNote);
+            this.employeeNote = Optional.ofNullable(employeeNote);
             return this;
         }
 
@@ -446,7 +446,7 @@ public final class TimeOff {
         }
 
         public Builder units(TimeOffUnits units) {
-            this.units = Optional.of(units);
+            this.units = Optional.ofNullable(units);
             return this;
         }
 
@@ -457,7 +457,7 @@ public final class TimeOff {
         }
 
         public Builder amount(Double amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -468,7 +468,7 @@ public final class TimeOff {
         }
 
         public Builder requestType(TimeOffRequestType requestType) {
-            this.requestType = Optional.of(requestType);
+            this.requestType = Optional.ofNullable(requestType);
             return this;
         }
 
@@ -479,7 +479,7 @@ public final class TimeOff {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -490,7 +490,7 @@ public final class TimeOff {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -501,7 +501,7 @@ public final class TimeOff {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -512,7 +512,7 @@ public final class TimeOff {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -523,7 +523,7 @@ public final class TimeOff {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
