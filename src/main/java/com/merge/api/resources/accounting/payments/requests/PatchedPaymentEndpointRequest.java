@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedPaymentEndpointRequest.Builder.class)
 public final class PatchedPaymentEndpointRequest {
     private final Optional<Boolean> isDebugMode;
@@ -91,7 +92,7 @@ public final class PatchedPaymentEndpointRequest {
     }
 
     public interface ModelStage {
-        _FinalStage model(PatchedPaymentRequest model);
+        _FinalStage model(@NotNull PatchedPaymentRequest model);
 
         Builder from(PatchedPaymentEndpointRequest other);
     }
@@ -131,7 +132,7 @@ public final class PatchedPaymentEndpointRequest {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(PatchedPaymentRequest model) {
+        public _FinalStage model(@NotNull PatchedPaymentRequest model) {
             this.model = model;
             return this;
         }
@@ -142,7 +143,7 @@ public final class PatchedPaymentEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage runAsync(Boolean runAsync) {
-            this.runAsync = Optional.of(runAsync);
+            this.runAsync = Optional.ofNullable(runAsync);
             return this;
         }
 
@@ -159,7 +160,7 @@ public final class PatchedPaymentEndpointRequest {
          */
         @java.lang.Override
         public _FinalStage isDebugMode(Boolean isDebugMode) {
-            this.isDebugMode = Optional.of(isDebugMode);
+            this.isDebugMode = Optional.ofNullable(isDebugMode);
             return this;
         }
 

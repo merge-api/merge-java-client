@@ -103,6 +103,7 @@ public class EeocsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -123,13 +124,6 @@ public class EeocsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns an <code>EEOC</code> object with the given <code>id</code>.
-     */
-    public Eeoc retrieve(String id) {
-        return retrieve(id, EeocsRetrieveRequest.builder().build());
     }
 
     /**
@@ -165,6 +159,7 @@ public class EeocsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

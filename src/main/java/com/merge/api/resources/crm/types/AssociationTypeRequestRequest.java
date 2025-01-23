@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AssociationTypeRequestRequest.Builder.class)
 public final class AssociationTypeRequestRequest {
     private final ObjectClassDescriptionRequest sourceObjectClass;
@@ -124,13 +125,13 @@ public final class AssociationTypeRequestRequest {
     }
 
     public interface SourceObjectClassStage {
-        RemoteKeyNameStage sourceObjectClass(ObjectClassDescriptionRequest sourceObjectClass);
+        RemoteKeyNameStage sourceObjectClass(@NotNull ObjectClassDescriptionRequest sourceObjectClass);
 
         Builder from(AssociationTypeRequestRequest other);
     }
 
     public interface RemoteKeyNameStage {
-        _FinalStage remoteKeyName(String remoteKeyName);
+        _FinalStage remoteKeyName(@NotNull String remoteKeyName);
     }
 
     public interface _FinalStage {
@@ -187,21 +188,21 @@ public final class AssociationTypeRequestRequest {
 
         @java.lang.Override
         @JsonSetter("source_object_class")
-        public RemoteKeyNameStage sourceObjectClass(ObjectClassDescriptionRequest sourceObjectClass) {
+        public RemoteKeyNameStage sourceObjectClass(@NotNull ObjectClassDescriptionRequest sourceObjectClass) {
             this.sourceObjectClass = sourceObjectClass;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("remote_key_name")
-        public _FinalStage remoteKeyName(String remoteKeyName) {
+        public _FinalStage remoteKeyName(@NotNull String remoteKeyName) {
             this.remoteKeyName = remoteKeyName;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage isRequired(Boolean isRequired) {
-            this.isRequired = Optional.of(isRequired);
+            this.isRequired = Optional.ofNullable(isRequired);
             return this;
         }
 
@@ -214,7 +215,7 @@ public final class AssociationTypeRequestRequest {
 
         @java.lang.Override
         public _FinalStage cardinality(CardinalityEnum cardinality) {
-            this.cardinality = Optional.of(cardinality);
+            this.cardinality = Optional.ofNullable(cardinality);
             return this;
         }
 
@@ -227,7 +228,7 @@ public final class AssociationTypeRequestRequest {
 
         @java.lang.Override
         public _FinalStage displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 

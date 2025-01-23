@@ -121,6 +121,7 @@ public class TimesheetEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -176,6 +177,7 @@ public class TimesheetEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", body)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -196,13 +198,6 @@ public class TimesheetEntriesClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>TimesheetEntry</code> object with the given <code>id</code>.
-     */
-    public TimesheetEntry retrieve(String id) {
-        return retrieve(id, TimesheetEntriesRetrieveRequest.builder().build());
     }
 
     /**
@@ -230,6 +225,7 @@ public class TimesheetEntriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -272,6 +268,7 @@ public class TimesheetEntriesClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AuditLogEvent.Builder.class)
 public final class AuditLogEvent {
     private final Optional<String> id;
@@ -208,21 +209,21 @@ public final class AuditLogEvent {
     }
 
     public interface RoleStage {
-        IpAddressStage role(AuditLogEventRole role);
+        IpAddressStage role(@NotNull AuditLogEventRole role);
 
         Builder from(AuditLogEvent other);
     }
 
     public interface IpAddressStage {
-        EventTypeStage ipAddress(String ipAddress);
+        EventTypeStage ipAddress(@NotNull String ipAddress);
     }
 
     public interface EventTypeStage {
-        EventDescriptionStage eventType(AuditLogEventEventType eventType);
+        EventDescriptionStage eventType(@NotNull AuditLogEventEventType eventType);
     }
 
     public interface EventDescriptionStage {
-        _FinalStage eventDescription(String eventDescription);
+        _FinalStage eventDescription(@NotNull String eventDescription);
     }
 
     public interface _FinalStage {
@@ -296,14 +297,14 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         @JsonSetter("role")
-        public IpAddressStage role(AuditLogEventRole role) {
+        public IpAddressStage role(@NotNull AuditLogEventRole role) {
             this.role = role;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("ip_address")
-        public EventTypeStage ipAddress(String ipAddress) {
+        public EventTypeStage ipAddress(@NotNull String ipAddress) {
             this.ipAddress = ipAddress;
             return this;
         }
@@ -357,21 +358,21 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         @JsonSetter("event_type")
-        public EventDescriptionStage eventType(AuditLogEventEventType eventType) {
+        public EventDescriptionStage eventType(@NotNull AuditLogEventEventType eventType) {
             this.eventType = eventType;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("event_description")
-        public _FinalStage eventDescription(String eventDescription) {
+        public _FinalStage eventDescription(@NotNull String eventDescription) {
             this.eventDescription = eventDescription;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -388,7 +389,7 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         public _FinalStage userEmail(String userEmail) {
-            this.userEmail = Optional.of(userEmail);
+            this.userEmail = Optional.ofNullable(userEmail);
             return this;
         }
 
@@ -405,7 +406,7 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         public _FinalStage userName(String userName) {
-            this.userName = Optional.of(userName);
+            this.userName = Optional.ofNullable(userName);
             return this;
         }
 
@@ -418,7 +419,7 @@ public final class AuditLogEvent {
 
         @java.lang.Override
         public _FinalStage id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 

@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldApi.Builder.class)
 public final class RemoteFieldApi {
     private final Map<String, JsonNode> schema;
@@ -125,13 +126,13 @@ public final class RemoteFieldApi {
     }
 
     public interface RemoteKeyNameStage {
-        RemoteEndpointInfoStage remoteKeyName(String remoteKeyName);
+        RemoteEndpointInfoStage remoteKeyName(@NotNull String remoteKeyName);
 
         Builder from(RemoteFieldApi other);
     }
 
     public interface RemoteEndpointInfoStage {
-        _FinalStage remoteEndpointInfo(RemoteEndpointInfo remoteEndpointInfo);
+        _FinalStage remoteEndpointInfo(@NotNull RemoteEndpointInfo remoteEndpointInfo);
     }
 
     public interface _FinalStage {
@@ -188,21 +189,21 @@ public final class RemoteFieldApi {
 
         @java.lang.Override
         @JsonSetter("remote_key_name")
-        public RemoteEndpointInfoStage remoteKeyName(String remoteKeyName) {
+        public RemoteEndpointInfoStage remoteKeyName(@NotNull String remoteKeyName) {
             this.remoteKeyName = remoteKeyName;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("remote_endpoint_info")
-        public _FinalStage remoteEndpointInfo(RemoteEndpointInfo remoteEndpointInfo) {
+        public _FinalStage remoteEndpointInfo(@NotNull RemoteEndpointInfo remoteEndpointInfo) {
             this.remoteEndpointInfo = remoteEndpointInfo;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage coverage(RemoteFieldApiCoverage coverage) {
-            this.coverage = Optional.of(coverage);
+            this.coverage = Optional.ofNullable(coverage);
             return this;
         }
 
@@ -215,7 +216,7 @@ public final class RemoteFieldApi {
 
         @java.lang.Override
         public _FinalStage advancedMetadata(AdvancedMetadata advancedMetadata) {
-            this.advancedMetadata = Optional.of(advancedMetadata);
+            this.advancedMetadata = Optional.ofNullable(advancedMetadata);
             return this;
         }
 
@@ -228,7 +229,7 @@ public final class RemoteFieldApi {
 
         @java.lang.Override
         public _FinalStage exampleValues(List<JsonNode> exampleValues) {
-            this.exampleValues = Optional.of(exampleValues);
+            this.exampleValues = Optional.ofNullable(exampleValues);
             return this;
         }
 

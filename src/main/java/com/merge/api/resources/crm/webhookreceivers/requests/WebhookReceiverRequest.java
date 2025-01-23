@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = WebhookReceiverRequest.Builder.class)
 public final class WebhookReceiverRequest {
     private final String event;
@@ -81,7 +82,7 @@ public final class WebhookReceiverRequest {
     }
 
     public interface EventStage {
-        IsActiveStage event(String event);
+        IsActiveStage event(@NotNull String event);
 
         Builder from(WebhookReceiverRequest other);
     }
@@ -121,7 +122,7 @@ public final class WebhookReceiverRequest {
 
         @java.lang.Override
         @JsonSetter("event")
-        public IsActiveStage event(String event) {
+        public IsActiveStage event(@NotNull String event) {
             this.event = event;
             return this;
         }
@@ -135,7 +136,7 @@ public final class WebhookReceiverRequest {
 
         @java.lang.Override
         public _FinalStage key(String key) {
-            this.key = Optional.of(key);
+            this.key = Optional.ofNullable(key);
             return this;
         }
 

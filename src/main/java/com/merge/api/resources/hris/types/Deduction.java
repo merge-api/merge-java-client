@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Deduction.Builder.class)
 public final class Deduction {
     private final Optional<String> id;
@@ -251,7 +251,7 @@ public final class Deduction {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -262,7 +262,7 @@ public final class Deduction {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -273,7 +273,7 @@ public final class Deduction {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -284,7 +284,7 @@ public final class Deduction {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -295,7 +295,7 @@ public final class Deduction {
         }
 
         public Builder employeePayrollRun(String employeePayrollRun) {
-            this.employeePayrollRun = Optional.of(employeePayrollRun);
+            this.employeePayrollRun = Optional.ofNullable(employeePayrollRun);
             return this;
         }
 
@@ -306,7 +306,7 @@ public final class Deduction {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -317,7 +317,7 @@ public final class Deduction {
         }
 
         public Builder employeeDeduction(Double employeeDeduction) {
-            this.employeeDeduction = Optional.of(employeeDeduction);
+            this.employeeDeduction = Optional.ofNullable(employeeDeduction);
             return this;
         }
 
@@ -328,7 +328,7 @@ public final class Deduction {
         }
 
         public Builder companyDeduction(Double companyDeduction) {
-            this.companyDeduction = Optional.of(companyDeduction);
+            this.companyDeduction = Optional.ofNullable(companyDeduction);
             return this;
         }
 
@@ -339,7 +339,7 @@ public final class Deduction {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -350,7 +350,7 @@ public final class Deduction {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -361,7 +361,7 @@ public final class Deduction {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

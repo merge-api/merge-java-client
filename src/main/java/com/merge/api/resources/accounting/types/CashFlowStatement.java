@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CashFlowStatement.Builder.class)
 public final class CashFlowStatement {
     private final Optional<String> id;
@@ -672,7 +672,7 @@ public final class CashFlowStatement {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -683,7 +683,7 @@ public final class CashFlowStatement {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -694,7 +694,7 @@ public final class CashFlowStatement {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -705,7 +705,7 @@ public final class CashFlowStatement {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -716,7 +716,7 @@ public final class CashFlowStatement {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -727,7 +727,7 @@ public final class CashFlowStatement {
         }
 
         public Builder currency(CashFlowStatementCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -738,7 +738,7 @@ public final class CashFlowStatement {
         }
 
         public Builder company(CashFlowStatementCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -749,7 +749,7 @@ public final class CashFlowStatement {
         }
 
         public Builder startPeriod(OffsetDateTime startPeriod) {
-            this.startPeriod = Optional.of(startPeriod);
+            this.startPeriod = Optional.ofNullable(startPeriod);
             return this;
         }
 
@@ -760,7 +760,7 @@ public final class CashFlowStatement {
         }
 
         public Builder endPeriod(OffsetDateTime endPeriod) {
-            this.endPeriod = Optional.of(endPeriod);
+            this.endPeriod = Optional.ofNullable(endPeriod);
             return this;
         }
 
@@ -771,7 +771,7 @@ public final class CashFlowStatement {
         }
 
         public Builder cashAtBeginningOfPeriod(Double cashAtBeginningOfPeriod) {
-            this.cashAtBeginningOfPeriod = Optional.of(cashAtBeginningOfPeriod);
+            this.cashAtBeginningOfPeriod = Optional.ofNullable(cashAtBeginningOfPeriod);
             return this;
         }
 
@@ -782,7 +782,7 @@ public final class CashFlowStatement {
         }
 
         public Builder cashAtEndOfPeriod(Double cashAtEndOfPeriod) {
-            this.cashAtEndOfPeriod = Optional.of(cashAtEndOfPeriod);
+            this.cashAtEndOfPeriod = Optional.ofNullable(cashAtEndOfPeriod);
             return this;
         }
 
@@ -793,7 +793,7 @@ public final class CashFlowStatement {
         }
 
         public Builder operatingActivities(List<ReportItem> operatingActivities) {
-            this.operatingActivities = Optional.of(operatingActivities);
+            this.operatingActivities = Optional.ofNullable(operatingActivities);
             return this;
         }
 
@@ -804,7 +804,7 @@ public final class CashFlowStatement {
         }
 
         public Builder investingActivities(List<ReportItem> investingActivities) {
-            this.investingActivities = Optional.of(investingActivities);
+            this.investingActivities = Optional.ofNullable(investingActivities);
             return this;
         }
 
@@ -815,7 +815,7 @@ public final class CashFlowStatement {
         }
 
         public Builder financingActivities(List<ReportItem> financingActivities) {
-            this.financingActivities = Optional.of(financingActivities);
+            this.financingActivities = Optional.ofNullable(financingActivities);
             return this;
         }
 
@@ -826,7 +826,7 @@ public final class CashFlowStatement {
         }
 
         public Builder remoteGeneratedAt(OffsetDateTime remoteGeneratedAt) {
-            this.remoteGeneratedAt = Optional.of(remoteGeneratedAt);
+            this.remoteGeneratedAt = Optional.ofNullable(remoteGeneratedAt);
             return this;
         }
 
@@ -837,7 +837,7 @@ public final class CashFlowStatement {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -848,7 +848,7 @@ public final class CashFlowStatement {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -859,7 +859,7 @@ public final class CashFlowStatement {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

@@ -22,7 +22,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesListRequest.Builder.class)
 public final class EmployeesListRequest {
     private final Optional<String> companyId;
@@ -644,7 +644,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder companyId(String companyId) {
-            this.companyId = Optional.of(companyId);
+            this.companyId = Optional.ofNullable(companyId);
             return this;
         }
 
@@ -655,7 +655,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder createdAfter(OffsetDateTime createdAfter) {
-            this.createdAfter = Optional.of(createdAfter);
+            this.createdAfter = Optional.ofNullable(createdAfter);
             return this;
         }
 
@@ -666,7 +666,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder createdBefore(OffsetDateTime createdBefore) {
-            this.createdBefore = Optional.of(createdBefore);
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -677,7 +677,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -688,7 +688,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder displayFullName(String displayFullName) {
-            this.displayFullName = Optional.of(displayFullName);
+            this.displayFullName = Optional.ofNullable(displayFullName);
             return this;
         }
 
@@ -699,7 +699,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder employmentStatus(EmployeesListRequestEmploymentStatus employmentStatus) {
-            this.employmentStatus = Optional.of(employmentStatus);
+            this.employmentStatus = Optional.ofNullable(employmentStatus);
             return this;
         }
 
@@ -710,7 +710,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder employmentType(String employmentType) {
-            this.employmentType = Optional.of(employmentType);
+            this.employmentType = Optional.ofNullable(employmentType);
             return this;
         }
 
@@ -721,7 +721,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder expand(EmployeesListRequestExpand expand) {
-            this.expand = Optional.of(expand);
+            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -732,7 +732,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -743,7 +743,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder groups(String groups) {
-            this.groups = Optional.of(groups);
+            this.groups = Optional.ofNullable(groups);
             return this;
         }
 
@@ -754,7 +754,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder homeLocationId(String homeLocationId) {
-            this.homeLocationId = Optional.of(homeLocationId);
+            this.homeLocationId = Optional.ofNullable(homeLocationId);
             return this;
         }
 
@@ -765,7 +765,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder includeDeletedData(Boolean includeDeletedData) {
-            this.includeDeletedData = Optional.of(includeDeletedData);
+            this.includeDeletedData = Optional.ofNullable(includeDeletedData);
             return this;
         }
 
@@ -776,7 +776,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
-            this.includeRemoteData = Optional.of(includeRemoteData);
+            this.includeRemoteData = Optional.ofNullable(includeRemoteData);
             return this;
         }
 
@@ -787,7 +787,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
-            this.includeSensitiveFields = Optional.of(includeSensitiveFields);
+            this.includeSensitiveFields = Optional.ofNullable(includeSensitiveFields);
             return this;
         }
 
@@ -798,7 +798,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder includeShellData(Boolean includeShellData) {
-            this.includeShellData = Optional.of(includeShellData);
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -809,7 +809,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder jobTitle(String jobTitle) {
-            this.jobTitle = Optional.of(jobTitle);
+            this.jobTitle = Optional.ofNullable(jobTitle);
             return this;
         }
 
@@ -820,7 +820,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -831,7 +831,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder managerId(String managerId) {
-            this.managerId = Optional.of(managerId);
+            this.managerId = Optional.ofNullable(managerId);
             return this;
         }
 
@@ -842,7 +842,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
-            this.modifiedAfter = Optional.of(modifiedAfter);
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
             return this;
         }
 
@@ -853,7 +853,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
-            this.modifiedBefore = Optional.of(modifiedBefore);
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
             return this;
         }
 
@@ -864,7 +864,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -875,7 +875,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder payGroupId(String payGroupId) {
-            this.payGroupId = Optional.of(payGroupId);
+            this.payGroupId = Optional.ofNullable(payGroupId);
             return this;
         }
 
@@ -886,7 +886,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder personalEmail(String personalEmail) {
-            this.personalEmail = Optional.of(personalEmail);
+            this.personalEmail = Optional.ofNullable(personalEmail);
             return this;
         }
 
@@ -897,7 +897,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder remoteFields(EmployeesListRequestRemoteFields remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 
@@ -908,7 +908,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -919,7 +919,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder showEnumOrigins(EmployeesListRequestShowEnumOrigins showEnumOrigins) {
-            this.showEnumOrigins = Optional.of(showEnumOrigins);
+            this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
 
@@ -930,7 +930,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder startedAfter(OffsetDateTime startedAfter) {
-            this.startedAfter = Optional.of(startedAfter);
+            this.startedAfter = Optional.ofNullable(startedAfter);
             return this;
         }
 
@@ -941,7 +941,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder startedBefore(OffsetDateTime startedBefore) {
-            this.startedBefore = Optional.of(startedBefore);
+            this.startedBefore = Optional.ofNullable(startedBefore);
             return this;
         }
 
@@ -952,7 +952,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder teamId(String teamId) {
-            this.teamId = Optional.of(teamId);
+            this.teamId = Optional.ofNullable(teamId);
             return this;
         }
 
@@ -963,7 +963,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder terminatedAfter(OffsetDateTime terminatedAfter) {
-            this.terminatedAfter = Optional.of(terminatedAfter);
+            this.terminatedAfter = Optional.ofNullable(terminatedAfter);
             return this;
         }
 
@@ -974,7 +974,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder terminatedBefore(OffsetDateTime terminatedBefore) {
-            this.terminatedBefore = Optional.of(terminatedBefore);
+            this.terminatedBefore = Optional.ofNullable(terminatedBefore);
             return this;
         }
 
@@ -985,7 +985,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder workEmail(String workEmail) {
-            this.workEmail = Optional.of(workEmail);
+            this.workEmail = Optional.ofNullable(workEmail);
             return this;
         }
 
@@ -996,7 +996,7 @@ public final class EmployeesListRequest {
         }
 
         public Builder workLocationId(String workLocationId) {
-            this.workLocationId = Optional.of(workLocationId);
+            this.workLocationId = Optional.ofNullable(workLocationId);
             return this;
         }
 

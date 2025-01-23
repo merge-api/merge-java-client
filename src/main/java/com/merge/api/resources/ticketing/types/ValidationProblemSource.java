@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ValidationProblemSource.Builder.class)
 public final class ValidationProblemSource {
     private final String pointer;
@@ -62,7 +63,7 @@ public final class ValidationProblemSource {
     }
 
     public interface PointerStage {
-        _FinalStage pointer(String pointer);
+        _FinalStage pointer(@NotNull String pointer);
 
         Builder from(ValidationProblemSource other);
     }
@@ -88,7 +89,7 @@ public final class ValidationProblemSource {
 
         @java.lang.Override
         @JsonSetter("pointer")
-        public _FinalStage pointer(String pointer) {
+        public _FinalStage pointer(@NotNull String pointer) {
             this.pointer = pointer;
             return this;
         }

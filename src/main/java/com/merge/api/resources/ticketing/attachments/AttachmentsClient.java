@@ -9,6 +9,7 @@ import com.merge.api.core.MediaTypes;
 import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.ResponseBodyInputStream;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsDownloadRetrieveRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsListRequest;
 import com.merge.api.resources.ticketing.attachments.requests.AttachmentsRetrieveRequest;
@@ -109,6 +110,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -165,6 +167,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", body)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -185,13 +188,6 @@ public class AttachmentsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns an <code>Attachment</code> object with the given <code>id</code>.
-     */
-    public Attachment retrieve(String id) {
-        return retrieve(id, AttachmentsRetrieveRequest.builder().build());
     }
 
     /**
@@ -219,6 +215,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -239,13 +236,6 @@ public class AttachmentsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
-     */
-    public InputStream downloadRetrieve(String id) {
-        return downloadRetrieve(id, AttachmentsDownloadRetrieveRequest.builder().build());
     }
 
     /**
@@ -278,10 +268,11 @@ public class AttachmentsClient {
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
+        try {
+            Response response = client.newCall(okhttpRequest).execute();
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
-                return responseBody.byteStream();
+                return new ResponseBodyInputStream(response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(
@@ -313,6 +304,7 @@ public class AttachmentsClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

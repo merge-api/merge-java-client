@@ -106,6 +106,7 @@ public class OffersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -126,13 +127,6 @@ public class OffersClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns an <code>Offer</code> object with the given <code>id</code>.
-     */
-    public Offer retrieve(String id) {
-        return retrieve(id, OffersRetrieveRequest.builder().build());
     }
 
     /**
@@ -167,6 +161,7 @@ public class OffersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

@@ -102,6 +102,7 @@ public class TrackingCategoriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -122,13 +123,6 @@ public class TrackingCategoriesClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>TrackingCategory</code> object with the given <code>id</code>.
-     */
-    public TrackingCategory retrieve(String id) {
-        return retrieve(id, TrackingCategoriesRetrieveRequest.builder().build());
     }
 
     /**
@@ -164,6 +158,7 @@ public class TrackingCategoriesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = LinkedAccountsListRequest.Builder.class)
 public final class LinkedAccountsListRequest {
     private final Optional<LinkedAccountsListRequestCategory> category;
@@ -301,7 +301,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder category(LinkedAccountsListRequestCategory category) {
-            this.category = Optional.of(category);
+            this.category = Optional.ofNullable(category);
             return this;
         }
 
@@ -312,7 +312,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder cursor(String cursor) {
-            this.cursor = Optional.of(cursor);
+            this.cursor = Optional.ofNullable(cursor);
             return this;
         }
 
@@ -323,7 +323,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder endUserEmailAddress(String endUserEmailAddress) {
-            this.endUserEmailAddress = Optional.of(endUserEmailAddress);
+            this.endUserEmailAddress = Optional.ofNullable(endUserEmailAddress);
             return this;
         }
 
@@ -334,7 +334,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder endUserOrganizationName(String endUserOrganizationName) {
-            this.endUserOrganizationName = Optional.of(endUserOrganizationName);
+            this.endUserOrganizationName = Optional.ofNullable(endUserOrganizationName);
             return this;
         }
 
@@ -345,7 +345,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder endUserOriginId(String endUserOriginId) {
-            this.endUserOriginId = Optional.of(endUserOriginId);
+            this.endUserOriginId = Optional.ofNullable(endUserOriginId);
             return this;
         }
 
@@ -356,7 +356,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder endUserOriginIds(String endUserOriginIds) {
-            this.endUserOriginIds = Optional.of(endUserOriginIds);
+            this.endUserOriginIds = Optional.ofNullable(endUserOriginIds);
             return this;
         }
 
@@ -367,7 +367,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -378,7 +378,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder ids(String ids) {
-            this.ids = Optional.of(ids);
+            this.ids = Optional.ofNullable(ids);
             return this;
         }
 
@@ -389,7 +389,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder includeDuplicates(Boolean includeDuplicates) {
-            this.includeDuplicates = Optional.of(includeDuplicates);
+            this.includeDuplicates = Optional.ofNullable(includeDuplicates);
             return this;
         }
 
@@ -400,7 +400,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder integrationName(String integrationName) {
-            this.integrationName = Optional.of(integrationName);
+            this.integrationName = Optional.ofNullable(integrationName);
             return this;
         }
 
@@ -411,7 +411,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder isTestAccount(String isTestAccount) {
-            this.isTestAccount = Optional.of(isTestAccount);
+            this.isTestAccount = Optional.ofNullable(isTestAccount);
             return this;
         }
 
@@ -422,7 +422,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder pageSize(Integer pageSize) {
-            this.pageSize = Optional.of(pageSize);
+            this.pageSize = Optional.ofNullable(pageSize);
             return this;
         }
 
@@ -433,7 +433,7 @@ public final class LinkedAccountsListRequest {
         }
 
         public Builder status(String status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 

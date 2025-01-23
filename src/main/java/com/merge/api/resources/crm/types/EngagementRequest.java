@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EngagementRequest.Builder.class)
 public final class EngagementRequest {
     private final Optional<EngagementRequestOwner> owner;
@@ -272,7 +272,7 @@ public final class EngagementRequest {
         }
 
         public Builder owner(EngagementRequestOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -283,7 +283,7 @@ public final class EngagementRequest {
         }
 
         public Builder content(String content) {
-            this.content = Optional.of(content);
+            this.content = Optional.ofNullable(content);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class EngagementRequest {
         }
 
         public Builder subject(String subject) {
-            this.subject = Optional.of(subject);
+            this.subject = Optional.ofNullable(subject);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class EngagementRequest {
         }
 
         public Builder direction(EngagementRequestDirection direction) {
-            this.direction = Optional.of(direction);
+            this.direction = Optional.ofNullable(direction);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class EngagementRequest {
         }
 
         public Builder engagementType(EngagementRequestEngagementType engagementType) {
-            this.engagementType = Optional.of(engagementType);
+            this.engagementType = Optional.ofNullable(engagementType);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class EngagementRequest {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class EngagementRequest {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class EngagementRequest {
         }
 
         public Builder account(EngagementRequestAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -360,7 +360,7 @@ public final class EngagementRequest {
         }
 
         public Builder contacts(List<Optional<EngagementRequestContactsItem>> contacts) {
-            this.contacts = Optional.of(contacts);
+            this.contacts = Optional.ofNullable(contacts);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class EngagementRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -382,7 +382,7 @@ public final class EngagementRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -393,7 +393,7 @@ public final class EngagementRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

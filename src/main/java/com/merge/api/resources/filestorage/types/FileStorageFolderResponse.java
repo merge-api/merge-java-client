@@ -18,8 +18,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FileStorageFolderResponse.Builder.class)
 public final class FileStorageFolderResponse {
     private final Folder model;
@@ -98,7 +99,7 @@ public final class FileStorageFolderResponse {
     }
 
     public interface ModelStage {
-        _FinalStage model(Folder model);
+        _FinalStage model(@NotNull Folder model);
 
         Builder from(FileStorageFolderResponse other);
     }
@@ -149,14 +150,14 @@ public final class FileStorageFolderResponse {
 
         @java.lang.Override
         @JsonSetter("model")
-        public _FinalStage model(Folder model) {
+        public _FinalStage model(@NotNull Folder model) {
             this.model = model;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage logs(List<DebugModeLog> logs) {
-            this.logs = Optional.of(logs);
+            this.logs = Optional.ofNullable(logs);
             return this;
         }
 

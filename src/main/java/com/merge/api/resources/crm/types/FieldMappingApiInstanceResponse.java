@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceResponse.Builder.class)
 public final class FieldMappingApiInstanceResponse {
     private final Optional<List<FieldMappingApiInstance>> account;
@@ -200,7 +200,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder account(List<FieldMappingApiInstance> account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -211,7 +211,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder contact(List<FieldMappingApiInstance> contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -222,7 +222,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder lead(List<FieldMappingApiInstance> lead) {
-            this.lead = Optional.of(lead);
+            this.lead = Optional.ofNullable(lead);
             return this;
         }
 
@@ -233,7 +233,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder note(List<FieldMappingApiInstance> note) {
-            this.note = Optional.of(note);
+            this.note = Optional.ofNullable(note);
             return this;
         }
 
@@ -244,7 +244,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder opportunity(List<FieldMappingApiInstance> opportunity) {
-            this.opportunity = Optional.of(opportunity);
+            this.opportunity = Optional.ofNullable(opportunity);
             return this;
         }
 
@@ -255,7 +255,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder stage(List<FieldMappingApiInstance> stage) {
-            this.stage = Optional.of(stage);
+            this.stage = Optional.ofNullable(stage);
             return this;
         }
 
@@ -266,7 +266,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder user(List<FieldMappingApiInstance> user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -277,7 +277,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder task(List<FieldMappingApiInstance> task) {
-            this.task = Optional.of(task);
+            this.task = Optional.ofNullable(task);
             return this;
         }
 
@@ -288,7 +288,7 @@ public final class FieldMappingApiInstanceResponse {
         }
 
         public Builder engagement(List<FieldMappingApiInstance> engagement) {
-            this.engagement = Optional.of(engagement);
+            this.engagement = Optional.ofNullable(engagement);
             return this;
         }
 

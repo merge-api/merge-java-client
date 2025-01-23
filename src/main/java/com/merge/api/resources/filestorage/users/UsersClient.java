@@ -92,6 +92,7 @@ public class UsersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -117,13 +118,6 @@ public class UsersClient {
     /**
      * Returns a <code>User</code> object with the given <code>id</code>.
      */
-    public User retrieve(String id) {
-        return retrieve(id, UsersRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns a <code>User</code> object with the given <code>id</code>.
-     */
     public User retrieve(String id, UsersRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -143,6 +137,7 @@ public class UsersClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

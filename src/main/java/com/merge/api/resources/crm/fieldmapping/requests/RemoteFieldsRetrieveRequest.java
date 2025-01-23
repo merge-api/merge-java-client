@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldsRetrieveRequest.Builder.class)
 public final class RemoteFieldsRetrieveRequest {
     private final Optional<String> commonModels;
@@ -104,7 +104,7 @@ public final class RemoteFieldsRetrieveRequest {
         }
 
         public Builder commonModels(String commonModels) {
-            this.commonModels = Optional.of(commonModels);
+            this.commonModels = Optional.ofNullable(commonModels);
             return this;
         }
 
@@ -115,7 +115,7 @@ public final class RemoteFieldsRetrieveRequest {
         }
 
         public Builder includeExampleValues(String includeExampleValues) {
-            this.includeExampleValues = Optional.of(includeExampleValues);
+            this.includeExampleValues = Optional.ofNullable(includeExampleValues);
             return this;
         }
 

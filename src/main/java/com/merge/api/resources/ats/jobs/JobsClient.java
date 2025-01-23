@@ -110,6 +110,7 @@ public class JobsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -130,13 +131,6 @@ public class JobsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>Job</code> object with the given <code>id</code>.
-     */
-    public Job retrieve(String id) {
-        return retrieve(id, JobsRetrieveRequest.builder().build());
     }
 
     /**
@@ -171,6 +165,7 @@ public class JobsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -191,14 +186,6 @@ public class JobsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a list of <code>ScreeningQuestion</code> objects.
-     */
-    public PaginatedScreeningQuestionList screeningQuestionsList(String jobId) {
-        return screeningQuestionsList(
-                jobId, JobsScreeningQuestionsListRequest.builder().build());
     }
 
     /**
@@ -244,6 +231,7 @@ public class JobsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

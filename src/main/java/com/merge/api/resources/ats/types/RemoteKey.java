@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteKey.Builder.class)
 public final class RemoteKey {
     private final String name;
@@ -70,13 +71,13 @@ public final class RemoteKey {
     }
 
     public interface NameStage {
-        KeyStage name(String name);
+        KeyStage name(@NotNull String name);
 
         Builder from(RemoteKey other);
     }
 
     public interface KeyStage {
-        _FinalStage key(String key);
+        _FinalStage key(@NotNull String key);
     }
 
     public interface _FinalStage {
@@ -103,14 +104,14 @@ public final class RemoteKey {
 
         @java.lang.Override
         @JsonSetter("name")
-        public KeyStage name(String name) {
+        public KeyStage name(@NotNull String name) {
             this.name = name;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("key")
-        public _FinalStage key(String key) {
+        public _FinalStage key(@NotNull String key) {
             this.key = key;
             return this;
         }

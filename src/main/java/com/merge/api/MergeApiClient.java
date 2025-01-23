@@ -20,9 +20,9 @@ public class MergeApiClient {
 
     protected final Supplier<CrmClient> crmClient;
 
-    protected final Supplier<HrisClient> hrisClient;
-
     protected final Supplier<FilestorageClient> filestorageClient;
+
+    protected final Supplier<HrisClient> hrisClient;
 
     protected final Supplier<TicketingClient> ticketingClient;
 
@@ -32,8 +32,8 @@ public class MergeApiClient {
         this.clientOptions = clientOptions;
         this.atsClient = Suppliers.memoize(() -> new AtsClient(clientOptions));
         this.crmClient = Suppliers.memoize(() -> new CrmClient(clientOptions));
-        this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
         this.filestorageClient = Suppliers.memoize(() -> new FilestorageClient(clientOptions));
+        this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
         this.ticketingClient = Suppliers.memoize(() -> new TicketingClient(clientOptions));
         this.accountingClient = Suppliers.memoize(() -> new AccountingClient(clientOptions));
     }
@@ -46,12 +46,12 @@ public class MergeApiClient {
         return this.crmClient.get();
     }
 
-    public HrisClient hris() {
-        return this.hrisClient.get();
-    }
-
     public FilestorageClient filestorage() {
         return this.filestorageClient.get();
+    }
+
+    public HrisClient hris() {
+        return this.hrisClient.get();
     }
 
     public TicketingClient ticketing() {

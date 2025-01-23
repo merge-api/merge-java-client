@@ -95,6 +95,7 @@ public class TaxRatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -115,13 +116,6 @@ public class TaxRatesClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>TaxRate</code> object with the given <code>id</code>.
-     */
-    public TaxRate retrieve(String id) {
-        return retrieve(id, TaxRatesRetrieveRequest.builder().build());
     }
 
     /**
@@ -149,6 +143,7 @@ public class TaxRatesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

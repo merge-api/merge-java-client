@@ -89,6 +89,7 @@ public class CompaniesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -114,13 +115,6 @@ public class CompaniesClient {
     /**
      * Returns a <code>Company</code> object with the given <code>id</code>.
      */
-    public Company retrieve(String id) {
-        return retrieve(id, CompaniesRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns a <code>Company</code> object with the given <code>id</code>.
-     */
     public Company retrieve(String id, CompaniesRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -140,6 +134,7 @@ public class CompaniesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

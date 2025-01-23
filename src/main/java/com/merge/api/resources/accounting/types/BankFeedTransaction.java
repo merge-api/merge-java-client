@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedTransaction.Builder.class)
 public final class BankFeedTransaction {
     private final Optional<String> id;
@@ -330,7 +330,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -341,7 +341,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -352,7 +352,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -363,7 +363,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -374,7 +374,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder bankFeedAccount(BankFeedTransactionBankFeedAccount bankFeedAccount) {
-            this.bankFeedAccount = Optional.of(bankFeedAccount);
+            this.bankFeedAccount = Optional.ofNullable(bankFeedAccount);
             return this;
         }
 
@@ -385,7 +385,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
-            this.transactionDate = Optional.of(transactionDate);
+            this.transactionDate = Optional.ofNullable(transactionDate);
             return this;
         }
 
@@ -396,7 +396,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder postedDate(OffsetDateTime postedDate) {
-            this.postedDate = Optional.of(postedDate);
+            this.postedDate = Optional.ofNullable(postedDate);
             return this;
         }
 
@@ -407,7 +407,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder amount(Double amount) {
-            this.amount = Optional.of(amount);
+            this.amount = Optional.ofNullable(amount);
             return this;
         }
 
@@ -418,7 +418,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -429,7 +429,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder transactionType(String transactionType) {
-            this.transactionType = Optional.of(transactionType);
+            this.transactionType = Optional.ofNullable(transactionType);
             return this;
         }
 
@@ -440,7 +440,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder payee(String payee) {
-            this.payee = Optional.of(payee);
+            this.payee = Optional.ofNullable(payee);
             return this;
         }
 
@@ -451,7 +451,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder creditOrDebit(BankFeedTransactionCreditOrDebit creditOrDebit) {
-            this.creditOrDebit = Optional.of(creditOrDebit);
+            this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }
 
@@ -462,7 +462,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder sourceTransactionId(String sourceTransactionId) {
-            this.sourceTransactionId = Optional.of(sourceTransactionId);
+            this.sourceTransactionId = Optional.ofNullable(sourceTransactionId);
             return this;
         }
 
@@ -473,7 +473,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -484,7 +484,7 @@ public final class BankFeedTransaction {
         }
 
         public Builder isProcessed(Boolean isProcessed) {
-            this.isProcessed = Optional.of(isProcessed);
+            this.isProcessed = Optional.ofNullable(isProcessed);
             return this;
         }
 

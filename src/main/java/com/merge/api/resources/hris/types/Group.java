@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Group.Builder.class)
 public final class Group {
     private final Optional<String> id;
@@ -261,7 +261,7 @@ public final class Group {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -272,7 +272,7 @@ public final class Group {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -283,7 +283,7 @@ public final class Group {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -294,7 +294,7 @@ public final class Group {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -305,7 +305,7 @@ public final class Group {
         }
 
         public Builder parentGroup(String parentGroup) {
-            this.parentGroup = Optional.of(parentGroup);
+            this.parentGroup = Optional.ofNullable(parentGroup);
             return this;
         }
 
@@ -316,7 +316,7 @@ public final class Group {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -327,7 +327,7 @@ public final class Group {
         }
 
         public Builder type(GroupType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -338,7 +338,7 @@ public final class Group {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -349,7 +349,7 @@ public final class Group {
         }
 
         public Builder isCommonlyUsedAsTeam(Boolean isCommonlyUsedAsTeam) {
-            this.isCommonlyUsedAsTeam = Optional.of(isCommonlyUsedAsTeam);
+            this.isCommonlyUsedAsTeam = Optional.ofNullable(isCommonlyUsedAsTeam);
             return this;
         }
 
@@ -360,7 +360,7 @@ public final class Group {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class Group {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

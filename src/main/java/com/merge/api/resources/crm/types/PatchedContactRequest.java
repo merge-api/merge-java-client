@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedContactRequest.Builder.class)
 public final class PatchedContactRequest {
     private final Optional<String> firstName;
@@ -245,7 +245,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder firstName(String firstName) {
-            this.firstName = Optional.of(firstName);
+            this.firstName = Optional.ofNullable(firstName);
             return this;
         }
 
@@ -256,7 +256,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder lastName(String lastName) {
-            this.lastName = Optional.of(lastName);
+            this.lastName = Optional.ofNullable(lastName);
             return this;
         }
 
@@ -267,7 +267,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder account(String account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -278,7 +278,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder owner(PatchedContactRequestOwner owner) {
-            this.owner = Optional.of(owner);
+            this.owner = Optional.ofNullable(owner);
             return this;
         }
 
@@ -289,7 +289,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder addresses(List<AddressRequest> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -300,7 +300,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder emailAddresses(List<EmailAddressRequest> emailAddresses) {
-            this.emailAddresses = Optional.of(emailAddresses);
+            this.emailAddresses = Optional.ofNullable(emailAddresses);
             return this;
         }
 
@@ -311,7 +311,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder phoneNumbers(List<PhoneNumberRequest> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -322,7 +322,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
-            this.lastActivityAt = Optional.of(lastActivityAt);
+            this.lastActivityAt = Optional.ofNullable(lastActivityAt);
             return this;
         }
 
@@ -333,7 +333,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -344,7 +344,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -355,7 +355,7 @@ public final class PatchedContactRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

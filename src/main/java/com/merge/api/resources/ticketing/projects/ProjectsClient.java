@@ -91,6 +91,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -116,13 +117,6 @@ public class ProjectsClient {
     /**
      * Returns a <code>Project</code> object with the given <code>id</code>.
      */
-    public Project retrieve(String id) {
-        return retrieve(id, ProjectsRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns a <code>Project</code> object with the given <code>id</code>.
-     */
     public Project retrieve(String id, ProjectsRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -142,6 +136,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -162,13 +157,6 @@ public class ProjectsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a list of <code>User</code> objects.
-     */
-    public PaginatedUserList usersList(String parentId) {
-        return usersList(parentId, ProjectsUsersListRequest.builder().build());
     }
 
     /**
@@ -213,6 +201,7 @@ public class ProjectsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

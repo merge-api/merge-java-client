@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimesheetEntry.Builder.class)
 public final class TimesheetEntry {
     private final Optional<String> id;
@@ -254,7 +254,7 @@ public final class TimesheetEntry {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -265,7 +265,7 @@ public final class TimesheetEntry {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -276,7 +276,7 @@ public final class TimesheetEntry {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -287,7 +287,7 @@ public final class TimesheetEntry {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -298,7 +298,7 @@ public final class TimesheetEntry {
         }
 
         public Builder employee(TimesheetEntryEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -309,7 +309,7 @@ public final class TimesheetEntry {
         }
 
         public Builder hoursWorked(Double hoursWorked) {
-            this.hoursWorked = Optional.of(hoursWorked);
+            this.hoursWorked = Optional.ofNullable(hoursWorked);
             return this;
         }
 
@@ -320,7 +320,7 @@ public final class TimesheetEntry {
         }
 
         public Builder startTime(OffsetDateTime startTime) {
-            this.startTime = Optional.of(startTime);
+            this.startTime = Optional.ofNullable(startTime);
             return this;
         }
 
@@ -331,7 +331,7 @@ public final class TimesheetEntry {
         }
 
         public Builder endTime(OffsetDateTime endTime) {
-            this.endTime = Optional.of(endTime);
+            this.endTime = Optional.ofNullable(endTime);
             return this;
         }
 
@@ -342,7 +342,7 @@ public final class TimesheetEntry {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -353,7 +353,7 @@ public final class TimesheetEntry {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -364,7 +364,7 @@ public final class TimesheetEntry {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

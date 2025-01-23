@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldClassFieldChoicesItem.Builder.class)
 public final class RemoteFieldClassFieldChoicesItem {
     private final Optional<JsonNode> value;
@@ -97,7 +97,7 @@ public final class RemoteFieldClassFieldChoicesItem {
         }
 
         public Builder value(JsonNode value) {
-            this.value = Optional.of(value);
+            this.value = Optional.ofNullable(value);
             return this;
         }
 
@@ -108,7 +108,7 @@ public final class RemoteFieldClassFieldChoicesItem {
         }
 
         public Builder displayName(String displayName) {
-            this.displayName = Optional.of(displayName);
+            this.displayName = Optional.ofNullable(displayName);
             return this;
         }
 

@@ -99,6 +99,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -156,6 +157,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", body)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -181,13 +183,6 @@ public class AttachmentsClient {
     /**
      * Returns an <code>AccountingAttachment</code> object with the given <code>id</code>.
      */
-    public AccountingAttachment retrieve(String id) {
-        return retrieve(id, AttachmentsRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns an <code>AccountingAttachment</code> object with the given <code>id</code>.
-     */
     public AccountingAttachment retrieve(String id, AttachmentsRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -207,6 +202,7 @@ public class AttachmentsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -249,6 +245,7 @@ public class AttachmentsClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

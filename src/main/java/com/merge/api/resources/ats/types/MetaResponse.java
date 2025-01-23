@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = MetaResponse.Builder.class)
 public final class MetaResponse {
     private final Map<String, JsonNode> requestSchema;
@@ -184,7 +184,7 @@ public final class MetaResponse {
 
         @java.lang.Override
         public _FinalStage status(LinkedAccountStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -197,7 +197,7 @@ public final class MetaResponse {
 
         @java.lang.Override
         public _FinalStage remoteFieldClasses(Map<String, JsonNode> remoteFieldClasses) {
-            this.remoteFieldClasses = Optional.of(remoteFieldClasses);
+            this.remoteFieldClasses = Optional.ofNullable(remoteFieldClasses);
             return this;
         }
 

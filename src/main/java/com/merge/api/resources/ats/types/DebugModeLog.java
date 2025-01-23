@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = DebugModeLog.Builder.class)
 public final class DebugModeLog {
     private final String logId;
@@ -84,17 +85,17 @@ public final class DebugModeLog {
     }
 
     public interface LogIdStage {
-        DashboardViewStage logId(String logId);
+        DashboardViewStage logId(@NotNull String logId);
 
         Builder from(DebugModeLog other);
     }
 
     public interface DashboardViewStage {
-        LogSummaryStage dashboardView(String dashboardView);
+        LogSummaryStage dashboardView(@NotNull String dashboardView);
     }
 
     public interface LogSummaryStage {
-        _FinalStage logSummary(DebugModelLogSummary logSummary);
+        _FinalStage logSummary(@NotNull DebugModelLogSummary logSummary);
     }
 
     public interface _FinalStage {
@@ -124,21 +125,21 @@ public final class DebugModeLog {
 
         @java.lang.Override
         @JsonSetter("log_id")
-        public DashboardViewStage logId(String logId) {
+        public DashboardViewStage logId(@NotNull String logId) {
             this.logId = logId;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("dashboard_view")
-        public LogSummaryStage dashboardView(String dashboardView) {
+        public LogSummaryStage dashboardView(@NotNull String dashboardView) {
             this.dashboardView = dashboardView;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("log_summary")
-        public _FinalStage logSummary(DebugModelLogSummary logSummary) {
+        public _FinalStage logSummary(@NotNull DebugModelLogSummary logSummary) {
             this.logSummary = logSummary;
             return this;
         }

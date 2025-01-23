@@ -92,6 +92,7 @@ public class DrivesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -117,13 +118,6 @@ public class DrivesClient {
     /**
      * Returns a <code>Drive</code> object with the given <code>id</code>.
      */
-    public Drive retrieve(String id) {
-        return retrieve(id, DrivesRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns a <code>Drive</code> object with the given <code>id</code>.
-     */
     public Drive retrieve(String id, DrivesRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -143,6 +137,7 @@ public class DrivesClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

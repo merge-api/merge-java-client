@@ -19,7 +19,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PermissionRequest.Builder.class)
 public final class PermissionRequest {
     private final Optional<String> remoteId;
@@ -194,7 +194,7 @@ public final class PermissionRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -205,7 +205,7 @@ public final class PermissionRequest {
         }
 
         public Builder user(PermissionRequestUser user) {
-            this.user = Optional.of(user);
+            this.user = Optional.ofNullable(user);
             return this;
         }
 
@@ -216,7 +216,7 @@ public final class PermissionRequest {
         }
 
         public Builder group(PermissionRequestGroup group) {
-            this.group = Optional.of(group);
+            this.group = Optional.ofNullable(group);
             return this;
         }
 
@@ -227,7 +227,7 @@ public final class PermissionRequest {
         }
 
         public Builder type(PermissionRequestType type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -238,7 +238,7 @@ public final class PermissionRequest {
         }
 
         public Builder roles(List<Optional<PermissionRequestRolesItem>> roles) {
-            this.roles = Optional.of(roles);
+            this.roles = Optional.ofNullable(roles);
             return this;
         }
 
@@ -249,7 +249,7 @@ public final class PermissionRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -260,7 +260,7 @@ public final class PermissionRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

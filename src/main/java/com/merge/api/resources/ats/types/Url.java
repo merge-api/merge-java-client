@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Url.Builder.class)
 public final class Url {
     private final Optional<OffsetDateTime> createdAt;
@@ -163,7 +163,7 @@ public final class Url {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -174,7 +174,7 @@ public final class Url {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -185,7 +185,7 @@ public final class Url {
         }
 
         public Builder value(String value) {
-            this.value = Optional.of(value);
+            this.value = Optional.ofNullable(value);
             return this;
         }
 
@@ -196,7 +196,7 @@ public final class Url {
         }
 
         public Builder urlType(UrlUrlType urlType) {
-            this.urlType = Optional.of(urlType);
+            this.urlType = Optional.ofNullable(urlType);
             return this;
         }
 
@@ -207,7 +207,7 @@ public final class Url {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 

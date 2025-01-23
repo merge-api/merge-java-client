@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Item.Builder.class)
 public final class Item {
     private final Optional<String> id;
@@ -360,7 +360,7 @@ public final class Item {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -371,7 +371,7 @@ public final class Item {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -382,7 +382,7 @@ public final class Item {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -393,7 +393,7 @@ public final class Item {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -404,7 +404,7 @@ public final class Item {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -415,7 +415,7 @@ public final class Item {
         }
 
         public Builder status(ItemStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -426,7 +426,7 @@ public final class Item {
         }
 
         public Builder unitPrice(Double unitPrice) {
-            this.unitPrice = Optional.of(unitPrice);
+            this.unitPrice = Optional.ofNullable(unitPrice);
             return this;
         }
 
@@ -437,7 +437,7 @@ public final class Item {
         }
 
         public Builder purchasePrice(Double purchasePrice) {
-            this.purchasePrice = Optional.of(purchasePrice);
+            this.purchasePrice = Optional.ofNullable(purchasePrice);
             return this;
         }
 
@@ -448,7 +448,7 @@ public final class Item {
         }
 
         public Builder purchaseAccount(ItemPurchaseAccount purchaseAccount) {
-            this.purchaseAccount = Optional.of(purchaseAccount);
+            this.purchaseAccount = Optional.ofNullable(purchaseAccount);
             return this;
         }
 
@@ -459,7 +459,7 @@ public final class Item {
         }
 
         public Builder salesAccount(ItemSalesAccount salesAccount) {
-            this.salesAccount = Optional.of(salesAccount);
+            this.salesAccount = Optional.ofNullable(salesAccount);
             return this;
         }
 
@@ -470,7 +470,7 @@ public final class Item {
         }
 
         public Builder company(ItemCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -481,7 +481,7 @@ public final class Item {
         }
 
         public Builder purchaseTaxRate(ItemPurchaseTaxRate purchaseTaxRate) {
-            this.purchaseTaxRate = Optional.of(purchaseTaxRate);
+            this.purchaseTaxRate = Optional.ofNullable(purchaseTaxRate);
             return this;
         }
 
@@ -492,7 +492,7 @@ public final class Item {
         }
 
         public Builder salesTaxRate(ItemSalesTaxRate salesTaxRate) {
-            this.salesTaxRate = Optional.of(salesTaxRate);
+            this.salesTaxRate = Optional.ofNullable(salesTaxRate);
             return this;
         }
 
@@ -503,7 +503,7 @@ public final class Item {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -514,7 +514,7 @@ public final class Item {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -525,7 +525,7 @@ public final class Item {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -536,7 +536,7 @@ public final class Item {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Address.Builder.class)
 public final class Address {
     private final Optional<OffsetDateTime> createdAt;
@@ -482,7 +482,7 @@ public final class Address {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -493,7 +493,7 @@ public final class Address {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -504,7 +504,7 @@ public final class Address {
         }
 
         public Builder street1(String street1) {
-            this.street1 = Optional.of(street1);
+            this.street1 = Optional.ofNullable(street1);
             return this;
         }
 
@@ -515,7 +515,7 @@ public final class Address {
         }
 
         public Builder street2(String street2) {
-            this.street2 = Optional.of(street2);
+            this.street2 = Optional.ofNullable(street2);
             return this;
         }
 
@@ -526,7 +526,7 @@ public final class Address {
         }
 
         public Builder city(String city) {
-            this.city = Optional.of(city);
+            this.city = Optional.ofNullable(city);
             return this;
         }
 
@@ -537,7 +537,7 @@ public final class Address {
         }
 
         public Builder state(String state) {
-            this.state = Optional.of(state);
+            this.state = Optional.ofNullable(state);
             return this;
         }
 
@@ -548,7 +548,7 @@ public final class Address {
         }
 
         public Builder postalCode(String postalCode) {
-            this.postalCode = Optional.of(postalCode);
+            this.postalCode = Optional.ofNullable(postalCode);
             return this;
         }
 
@@ -559,7 +559,7 @@ public final class Address {
         }
 
         public Builder country(AddressCountry country) {
-            this.country = Optional.of(country);
+            this.country = Optional.ofNullable(country);
             return this;
         }
 
@@ -570,7 +570,7 @@ public final class Address {
         }
 
         public Builder addressType(AddressAddressType addressType) {
-            this.addressType = Optional.of(addressType);
+            this.addressType = Optional.ofNullable(addressType);
             return this;
         }
 

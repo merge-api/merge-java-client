@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteResponse.Builder.class)
 public final class RemoteResponse {
     private final String method;
@@ -134,13 +135,13 @@ public final class RemoteResponse {
     }
 
     public interface MethodStage {
-        PathStage method(String method);
+        PathStage method(@NotNull String method);
 
         Builder from(RemoteResponse other);
     }
 
     public interface PathStage {
-        StatusStage path(String path);
+        StatusStage path(@NotNull String path);
     }
 
     public interface StatusStage {
@@ -148,7 +149,7 @@ public final class RemoteResponse {
     }
 
     public interface ResponseStage {
-        _FinalStage response(JsonNode response);
+        _FinalStage response(@NotNull JsonNode response);
     }
 
     public interface _FinalStage {
@@ -202,14 +203,14 @@ public final class RemoteResponse {
 
         @java.lang.Override
         @JsonSetter("method")
-        public PathStage method(String method) {
+        public PathStage method(@NotNull String method) {
             this.method = method;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("path")
-        public StatusStage path(String path) {
+        public StatusStage path(@NotNull String path) {
             this.path = path;
             return this;
         }
@@ -223,14 +224,14 @@ public final class RemoteResponse {
 
         @java.lang.Override
         @JsonSetter("response")
-        public _FinalStage response(JsonNode response) {
+        public _FinalStage response(@NotNull JsonNode response) {
             this.response = response;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage headers(Map<String, JsonNode> headers) {
-            this.headers = Optional.of(headers);
+            this.headers = Optional.ofNullable(headers);
             return this;
         }
 
@@ -243,7 +244,7 @@ public final class RemoteResponse {
 
         @java.lang.Override
         public _FinalStage responseType(ResponseTypeEnum responseType) {
-            this.responseType = Optional.of(responseType);
+            this.responseType = Optional.ofNullable(responseType);
             return this;
         }
 
@@ -256,7 +257,7 @@ public final class RemoteResponse {
 
         @java.lang.Override
         public _FinalStage responseHeaders(Map<String, JsonNode> responseHeaders) {
-            this.responseHeaders = Optional.of(responseHeaders);
+            this.responseHeaders = Optional.ofNullable(responseHeaders);
             return this;
         }
 

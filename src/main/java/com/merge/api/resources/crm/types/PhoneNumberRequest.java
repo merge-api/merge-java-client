@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PhoneNumberRequest.Builder.class)
 public final class PhoneNumberRequest {
     private final Optional<String> phoneNumber;
@@ -132,7 +132,7 @@ public final class PhoneNumberRequest {
         }
 
         public Builder phoneNumber(String phoneNumber) {
-            this.phoneNumber = Optional.of(phoneNumber);
+            this.phoneNumber = Optional.ofNullable(phoneNumber);
             return this;
         }
 
@@ -143,7 +143,7 @@ public final class PhoneNumberRequest {
         }
 
         public Builder phoneNumberType(String phoneNumberType) {
-            this.phoneNumberType = Optional.of(phoneNumberType);
+            this.phoneNumberType = Optional.ofNullable(phoneNumberType);
             return this;
         }
 
@@ -154,7 +154,7 @@ public final class PhoneNumberRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -165,7 +165,7 @@ public final class PhoneNumberRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 

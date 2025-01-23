@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ReportItem.Builder.class)
 public final class ReportItem {
     private final Optional<String> remoteId;
@@ -209,7 +209,7 @@ public final class ReportItem {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -220,7 +220,7 @@ public final class ReportItem {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -231,7 +231,7 @@ public final class ReportItem {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -242,7 +242,7 @@ public final class ReportItem {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -253,7 +253,7 @@ public final class ReportItem {
         }
 
         public Builder value(Double value) {
-            this.value = Optional.of(value);
+            this.value = Optional.ofNullable(value);
             return this;
         }
 
@@ -264,7 +264,7 @@ public final class ReportItem {
         }
 
         public Builder subItems(List<Map<String, JsonNode>> subItems) {
-            this.subItems = Optional.of(subItems);
+            this.subItems = Optional.ofNullable(subItems);
             return this;
         }
 
@@ -275,7 +275,7 @@ public final class ReportItem {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -286,7 +286,7 @@ public final class ReportItem {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 

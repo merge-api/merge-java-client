@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountingPhoneNumber.Builder.class)
 public final class AccountingPhoneNumber {
     private final Optional<OffsetDateTime> createdAt;
@@ -138,7 +138,7 @@ public final class AccountingPhoneNumber {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -149,7 +149,7 @@ public final class AccountingPhoneNumber {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -160,7 +160,7 @@ public final class AccountingPhoneNumber {
         }
 
         public Builder number(String number) {
-            this.number = Optional.of(number);
+            this.number = Optional.ofNullable(number);
             return this;
         }
 
@@ -171,7 +171,7 @@ public final class AccountingPhoneNumber {
         }
 
         public Builder type(String type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 

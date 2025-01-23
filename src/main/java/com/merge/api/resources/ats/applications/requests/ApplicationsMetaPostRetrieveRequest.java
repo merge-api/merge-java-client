@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ApplicationsMetaPostRetrieveRequest.Builder.class)
 public final class ApplicationsMetaPostRetrieveRequest {
     private final Optional<String> applicationRemoteTemplateId;
@@ -89,7 +89,7 @@ public final class ApplicationsMetaPostRetrieveRequest {
         }
 
         public Builder applicationRemoteTemplateId(String applicationRemoteTemplateId) {
-            this.applicationRemoteTemplateId = Optional.of(applicationRemoteTemplateId);
+            this.applicationRemoteTemplateId = Optional.ofNullable(applicationRemoteTemplateId);
             return this;
         }
 

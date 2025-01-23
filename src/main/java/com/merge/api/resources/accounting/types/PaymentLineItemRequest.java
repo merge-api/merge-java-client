@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaymentLineItemRequest.Builder.class)
 public final class PaymentLineItemRequest {
     private final Optional<String> remoteId;
@@ -203,7 +203,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -214,7 +214,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder appliedAmount(String appliedAmount) {
-            this.appliedAmount = Optional.of(appliedAmount);
+            this.appliedAmount = Optional.ofNullable(appliedAmount);
             return this;
         }
 
@@ -225,7 +225,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder appliedDate(OffsetDateTime appliedDate) {
-            this.appliedDate = Optional.of(appliedDate);
+            this.appliedDate = Optional.ofNullable(appliedDate);
             return this;
         }
 
@@ -236,7 +236,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder relatedObjectId(String relatedObjectId) {
-            this.relatedObjectId = Optional.of(relatedObjectId);
+            this.relatedObjectId = Optional.ofNullable(relatedObjectId);
             return this;
         }
 
@@ -247,7 +247,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder relatedObjectType(String relatedObjectType) {
-            this.relatedObjectType = Optional.of(relatedObjectType);
+            this.relatedObjectType = Optional.ofNullable(relatedObjectType);
             return this;
         }
 
@@ -258,7 +258,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder integrationParams(Map<String, JsonNode> integrationParams) {
-            this.integrationParams = Optional.of(integrationParams);
+            this.integrationParams = Optional.ofNullable(integrationParams);
             return this;
         }
 
@@ -269,7 +269,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
-            this.linkedAccountParams = Optional.of(linkedAccountParams);
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
             return this;
         }
 
@@ -280,7 +280,7 @@ public final class PaymentLineItemRequest {
         }
 
         public Builder remoteFields(List<RemoteFieldRequest> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

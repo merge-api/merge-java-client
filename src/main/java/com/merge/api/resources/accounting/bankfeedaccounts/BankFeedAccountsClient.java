@@ -77,6 +77,7 @@ public class BankFeedAccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -132,6 +133,7 @@ public class BankFeedAccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("POST", body)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -157,13 +159,6 @@ public class BankFeedAccountsClient {
     /**
      * Returns a <code>BankFeedAccount</code> object with the given <code>id</code>.
      */
-    public BankFeedAccount retrieve(String id) {
-        return retrieve(id, BankFeedAccountsRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns a <code>BankFeedAccount</code> object with the given <code>id</code>.
-     */
     public BankFeedAccount retrieve(String id, BankFeedAccountsRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -183,6 +178,7 @@ public class BankFeedAccountsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -225,6 +221,7 @@ public class BankFeedAccountsClient {
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {

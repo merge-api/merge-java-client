@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CompanyInfo.Builder.class)
 public final class CompanyInfo {
     private final Optional<String> id;
@@ -658,7 +658,7 @@ public final class CompanyInfo {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -669,7 +669,7 @@ public final class CompanyInfo {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -680,7 +680,7 @@ public final class CompanyInfo {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -691,7 +691,7 @@ public final class CompanyInfo {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -702,7 +702,7 @@ public final class CompanyInfo {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -713,7 +713,7 @@ public final class CompanyInfo {
         }
 
         public Builder legalName(String legalName) {
-            this.legalName = Optional.of(legalName);
+            this.legalName = Optional.ofNullable(legalName);
             return this;
         }
 
@@ -724,7 +724,7 @@ public final class CompanyInfo {
         }
 
         public Builder taxNumber(String taxNumber) {
-            this.taxNumber = Optional.of(taxNumber);
+            this.taxNumber = Optional.ofNullable(taxNumber);
             return this;
         }
 
@@ -735,7 +735,7 @@ public final class CompanyInfo {
         }
 
         public Builder fiscalYearEndMonth(Integer fiscalYearEndMonth) {
-            this.fiscalYearEndMonth = Optional.of(fiscalYearEndMonth);
+            this.fiscalYearEndMonth = Optional.ofNullable(fiscalYearEndMonth);
             return this;
         }
 
@@ -746,7 +746,7 @@ public final class CompanyInfo {
         }
 
         public Builder fiscalYearEndDay(Integer fiscalYearEndDay) {
-            this.fiscalYearEndDay = Optional.of(fiscalYearEndDay);
+            this.fiscalYearEndDay = Optional.ofNullable(fiscalYearEndDay);
             return this;
         }
 
@@ -757,7 +757,7 @@ public final class CompanyInfo {
         }
 
         public Builder currency(CompanyInfoCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -768,7 +768,7 @@ public final class CompanyInfo {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -779,7 +779,7 @@ public final class CompanyInfo {
         }
 
         public Builder urls(List<Optional<String>> urls) {
-            this.urls = Optional.of(urls);
+            this.urls = Optional.ofNullable(urls);
             return this;
         }
 
@@ -790,7 +790,7 @@ public final class CompanyInfo {
         }
 
         public Builder addresses(List<Address> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -801,7 +801,7 @@ public final class CompanyInfo {
         }
 
         public Builder phoneNumbers(List<AccountingPhoneNumber> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -812,7 +812,7 @@ public final class CompanyInfo {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -823,7 +823,7 @@ public final class CompanyInfo {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -834,7 +834,7 @@ public final class CompanyInfo {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

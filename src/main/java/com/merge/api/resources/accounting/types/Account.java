@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Account.Builder.class)
 public final class Account {
     private final Optional<String> id;
@@ -708,7 +708,7 @@ public final class Account {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -719,7 +719,7 @@ public final class Account {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -730,7 +730,7 @@ public final class Account {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -741,7 +741,7 @@ public final class Account {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -752,7 +752,7 @@ public final class Account {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -763,7 +763,7 @@ public final class Account {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -774,7 +774,7 @@ public final class Account {
         }
 
         public Builder classification(AccountClassification classification) {
-            this.classification = Optional.of(classification);
+            this.classification = Optional.ofNullable(classification);
             return this;
         }
 
@@ -785,7 +785,7 @@ public final class Account {
         }
 
         public Builder type(String type) {
-            this.type = Optional.of(type);
+            this.type = Optional.ofNullable(type);
             return this;
         }
 
@@ -796,7 +796,7 @@ public final class Account {
         }
 
         public Builder accountType(AccountAccountType accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -807,7 +807,7 @@ public final class Account {
         }
 
         public Builder status(AccountStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -818,7 +818,7 @@ public final class Account {
         }
 
         public Builder currentBalance(Double currentBalance) {
-            this.currentBalance = Optional.of(currentBalance);
+            this.currentBalance = Optional.ofNullable(currentBalance);
             return this;
         }
 
@@ -829,7 +829,7 @@ public final class Account {
         }
 
         public Builder currency(AccountCurrency currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -840,7 +840,7 @@ public final class Account {
         }
 
         public Builder accountNumber(String accountNumber) {
-            this.accountNumber = Optional.of(accountNumber);
+            this.accountNumber = Optional.ofNullable(accountNumber);
             return this;
         }
 
@@ -851,7 +851,7 @@ public final class Account {
         }
 
         public Builder parentAccount(String parentAccount) {
-            this.parentAccount = Optional.of(parentAccount);
+            this.parentAccount = Optional.ofNullable(parentAccount);
             return this;
         }
 
@@ -862,7 +862,7 @@ public final class Account {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -873,7 +873,7 @@ public final class Account {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -884,7 +884,7 @@ public final class Account {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -895,7 +895,7 @@ public final class Account {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

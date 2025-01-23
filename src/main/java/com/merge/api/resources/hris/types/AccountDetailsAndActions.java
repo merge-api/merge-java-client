@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountDetailsAndActions.Builder.class)
 public final class AccountDetailsAndActions {
     private final String id;
@@ -206,33 +207,33 @@ public final class AccountDetailsAndActions {
     }
 
     public interface IdStage {
-        StatusStage id(String id);
+        StatusStage id(@NotNull String id);
 
         Builder from(AccountDetailsAndActions other);
     }
 
     public interface StatusStage {
-        EndUserOrganizationNameStage status(AccountDetailsAndActionsStatusEnum status);
+        EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatusEnum status);
     }
 
     public interface EndUserOrganizationNameStage {
-        EndUserEmailAddressStage endUserOrganizationName(String endUserOrganizationName);
+        EndUserEmailAddressStage endUserOrganizationName(@NotNull String endUserOrganizationName);
     }
 
     public interface EndUserEmailAddressStage {
-        WebhookListenerUrlStage endUserEmailAddress(String endUserEmailAddress);
+        WebhookListenerUrlStage endUserEmailAddress(@NotNull String endUserEmailAddress);
     }
 
     public interface WebhookListenerUrlStage {
-        AccountTypeStage webhookListenerUrl(String webhookListenerUrl);
+        AccountTypeStage webhookListenerUrl(@NotNull String webhookListenerUrl);
     }
 
     public interface AccountTypeStage {
-        CompletedAtStage accountType(String accountType);
+        CompletedAtStage accountType(@NotNull String accountType);
     }
 
     public interface CompletedAtStage {
-        _FinalStage completedAt(OffsetDateTime completedAt);
+        _FinalStage completedAt(@NotNull OffsetDateTime completedAt);
     }
 
     public interface _FinalStage {
@@ -324,56 +325,56 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         @JsonSetter("id")
-        public StatusStage id(String id) {
+        public StatusStage id(@NotNull String id) {
             this.id = id;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("status")
-        public EndUserOrganizationNameStage status(AccountDetailsAndActionsStatusEnum status) {
+        public EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatusEnum status) {
             this.status = status;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("end_user_organization_name")
-        public EndUserEmailAddressStage endUserOrganizationName(String endUserOrganizationName) {
+        public EndUserEmailAddressStage endUserOrganizationName(@NotNull String endUserOrganizationName) {
             this.endUserOrganizationName = endUserOrganizationName;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("end_user_email_address")
-        public WebhookListenerUrlStage endUserEmailAddress(String endUserEmailAddress) {
+        public WebhookListenerUrlStage endUserEmailAddress(@NotNull String endUserEmailAddress) {
             this.endUserEmailAddress = endUserEmailAddress;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("webhook_listener_url")
-        public AccountTypeStage webhookListenerUrl(String webhookListenerUrl) {
+        public AccountTypeStage webhookListenerUrl(@NotNull String webhookListenerUrl) {
             this.webhookListenerUrl = webhookListenerUrl;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("account_type")
-        public CompletedAtStage accountType(String accountType) {
+        public CompletedAtStage accountType(@NotNull String accountType) {
             this.accountType = accountType;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("completed_at")
-        public _FinalStage completedAt(OffsetDateTime completedAt) {
+        public _FinalStage completedAt(@NotNull OffsetDateTime completedAt) {
             this.completedAt = completedAt;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage integration(AccountDetailsAndActionsIntegration integration) {
-            this.integration = Optional.of(integration);
+            this.integration = Optional.ofNullable(integration);
             return this;
         }
 
@@ -390,7 +391,7 @@ public final class AccountDetailsAndActions {
          */
         @java.lang.Override
         public _FinalStage isDuplicate(Boolean isDuplicate) {
-            this.isDuplicate = Optional.of(isDuplicate);
+            this.isDuplicate = Optional.ofNullable(isDuplicate);
             return this;
         }
 
@@ -407,7 +408,7 @@ public final class AccountDetailsAndActions {
          */
         @java.lang.Override
         public _FinalStage subdomain(String subdomain) {
-            this.subdomain = Optional.of(subdomain);
+            this.subdomain = Optional.ofNullable(subdomain);
             return this;
         }
 
@@ -420,7 +421,7 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         public _FinalStage endUserOriginId(String endUserOriginId) {
-            this.endUserOriginId = Optional.of(endUserOriginId);
+            this.endUserOriginId = Optional.ofNullable(endUserOriginId);
             return this;
         }
 
@@ -433,7 +434,7 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         public _FinalStage statusDetail(String statusDetail) {
-            this.statusDetail = Optional.of(statusDetail);
+            this.statusDetail = Optional.ofNullable(statusDetail);
             return this;
         }
 
@@ -446,7 +447,7 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         public _FinalStage category(CategoryEnum category) {
-            this.category = Optional.of(category);
+            this.category = Optional.ofNullable(category);
             return this;
         }
 

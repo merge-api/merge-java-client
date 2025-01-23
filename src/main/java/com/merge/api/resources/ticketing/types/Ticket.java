@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Ticket.Builder.class)
 public final class Ticket {
     private final Optional<String> id;
@@ -543,7 +543,7 @@ public final class Ticket {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -554,7 +554,7 @@ public final class Ticket {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -565,7 +565,7 @@ public final class Ticket {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -576,7 +576,7 @@ public final class Ticket {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -587,7 +587,7 @@ public final class Ticket {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -598,7 +598,7 @@ public final class Ticket {
         }
 
         public Builder assignees(List<Optional<TicketAssigneesItem>> assignees) {
-            this.assignees = Optional.of(assignees);
+            this.assignees = Optional.ofNullable(assignees);
             return this;
         }
 
@@ -609,7 +609,7 @@ public final class Ticket {
         }
 
         public Builder assignedTeams(List<Optional<TicketAssignedTeamsItem>> assignedTeams) {
-            this.assignedTeams = Optional.of(assignedTeams);
+            this.assignedTeams = Optional.ofNullable(assignedTeams);
             return this;
         }
 
@@ -620,7 +620,7 @@ public final class Ticket {
         }
 
         public Builder creator(TicketCreator creator) {
-            this.creator = Optional.of(creator);
+            this.creator = Optional.ofNullable(creator);
             return this;
         }
 
@@ -631,7 +631,7 @@ public final class Ticket {
         }
 
         public Builder dueDate(OffsetDateTime dueDate) {
-            this.dueDate = Optional.of(dueDate);
+            this.dueDate = Optional.ofNullable(dueDate);
             return this;
         }
 
@@ -642,7 +642,7 @@ public final class Ticket {
         }
 
         public Builder status(TicketStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -653,7 +653,7 @@ public final class Ticket {
         }
 
         public Builder description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -664,7 +664,7 @@ public final class Ticket {
         }
 
         public Builder collections(List<Optional<TicketCollectionsItem>> collections) {
-            this.collections = Optional.of(collections);
+            this.collections = Optional.ofNullable(collections);
             return this;
         }
 
@@ -675,7 +675,7 @@ public final class Ticket {
         }
 
         public Builder ticketType(String ticketType) {
-            this.ticketType = Optional.of(ticketType);
+            this.ticketType = Optional.ofNullable(ticketType);
             return this;
         }
 
@@ -686,7 +686,7 @@ public final class Ticket {
         }
 
         public Builder account(TicketAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -697,7 +697,7 @@ public final class Ticket {
         }
 
         public Builder contact(TicketContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -708,7 +708,7 @@ public final class Ticket {
         }
 
         public Builder parentTicket(TicketParentTicket parentTicket) {
-            this.parentTicket = Optional.of(parentTicket);
+            this.parentTicket = Optional.ofNullable(parentTicket);
             return this;
         }
 
@@ -719,7 +719,7 @@ public final class Ticket {
         }
 
         public Builder attachments(List<Optional<TicketAttachmentsItem>> attachments) {
-            this.attachments = Optional.of(attachments);
+            this.attachments = Optional.ofNullable(attachments);
             return this;
         }
 
@@ -730,7 +730,7 @@ public final class Ticket {
         }
 
         public Builder tags(List<Optional<String>> tags) {
-            this.tags = Optional.of(tags);
+            this.tags = Optional.ofNullable(tags);
             return this;
         }
 
@@ -741,7 +741,7 @@ public final class Ticket {
         }
 
         public Builder roles(List<Optional<String>> roles) {
-            this.roles = Optional.of(roles);
+            this.roles = Optional.ofNullable(roles);
             return this;
         }
 
@@ -752,7 +752,7 @@ public final class Ticket {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -763,7 +763,7 @@ public final class Ticket {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -774,7 +774,7 @@ public final class Ticket {
         }
 
         public Builder completedAt(OffsetDateTime completedAt) {
-            this.completedAt = Optional.of(completedAt);
+            this.completedAt = Optional.ofNullable(completedAt);
             return this;
         }
 
@@ -785,7 +785,7 @@ public final class Ticket {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -796,7 +796,7 @@ public final class Ticket {
         }
 
         public Builder ticketUrl(String ticketUrl) {
-            this.ticketUrl = Optional.of(ticketUrl);
+            this.ticketUrl = Optional.ofNullable(ticketUrl);
             return this;
         }
 
@@ -807,7 +807,7 @@ public final class Ticket {
         }
 
         public Builder priority(TicketPriority priority) {
-            this.priority = Optional.of(priority);
+            this.priority = Optional.ofNullable(priority);
             return this;
         }
 
@@ -818,7 +818,7 @@ public final class Ticket {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -829,7 +829,7 @@ public final class Ticket {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -840,7 +840,7 @@ public final class Ticket {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

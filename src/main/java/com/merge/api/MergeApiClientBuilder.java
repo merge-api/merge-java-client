@@ -41,6 +41,14 @@ public final class MergeApiClientBuilder {
         return this;
     }
 
+    /**
+     * Sets the timeout (in seconds) for the client
+     */
+    public MergeApiClientBuilder timeout(int timeout) {
+        this.clientOptionsBuilder.timeout(timeout);
+        return this;
+    }
+
     public MergeApiClient build() {
         if (apiKey == null) {
             throw new RuntimeException("Please provide apiKey");

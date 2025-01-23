@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankInfo.Builder.class)
 public final class BankInfo {
     private final Optional<String> id;
@@ -292,7 +292,7 @@ public final class BankInfo {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -303,7 +303,7 @@ public final class BankInfo {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -314,7 +314,7 @@ public final class BankInfo {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -325,7 +325,7 @@ public final class BankInfo {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -336,7 +336,7 @@ public final class BankInfo {
         }
 
         public Builder employee(BankInfoEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -347,7 +347,7 @@ public final class BankInfo {
         }
 
         public Builder accountNumber(String accountNumber) {
-            this.accountNumber = Optional.of(accountNumber);
+            this.accountNumber = Optional.ofNullable(accountNumber);
             return this;
         }
 
@@ -358,7 +358,7 @@ public final class BankInfo {
         }
 
         public Builder routingNumber(String routingNumber) {
-            this.routingNumber = Optional.of(routingNumber);
+            this.routingNumber = Optional.ofNullable(routingNumber);
             return this;
         }
 
@@ -369,7 +369,7 @@ public final class BankInfo {
         }
 
         public Builder bankName(String bankName) {
-            this.bankName = Optional.of(bankName);
+            this.bankName = Optional.ofNullable(bankName);
             return this;
         }
 
@@ -380,7 +380,7 @@ public final class BankInfo {
         }
 
         public Builder accountType(BankInfoAccountType accountType) {
-            this.accountType = Optional.of(accountType);
+            this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
@@ -391,7 +391,7 @@ public final class BankInfo {
         }
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.of(remoteCreatedAt);
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
             return this;
         }
 
@@ -402,7 +402,7 @@ public final class BankInfo {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -413,7 +413,7 @@ public final class BankInfo {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -424,7 +424,7 @@ public final class BankInfo {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 

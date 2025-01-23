@@ -14,8 +14,9 @@ import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ObjectClassDescriptionRequest.Builder.class)
 public final class ObjectClassDescriptionRequest {
     private final String id;
@@ -71,13 +72,13 @@ public final class ObjectClassDescriptionRequest {
     }
 
     public interface IdStage {
-        OriginTypeStage id(String id);
+        OriginTypeStage id(@NotNull String id);
 
         Builder from(ObjectClassDescriptionRequest other);
     }
 
     public interface OriginTypeStage {
-        _FinalStage originType(OriginTypeEnum originType);
+        _FinalStage originType(@NotNull OriginTypeEnum originType);
     }
 
     public interface _FinalStage {
@@ -104,14 +105,14 @@ public final class ObjectClassDescriptionRequest {
 
         @java.lang.Override
         @JsonSetter("id")
-        public OriginTypeStage id(String id) {
+        public OriginTypeStage id(@NotNull String id) {
             this.id = id;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("origin_type")
-        public _FinalStage originType(OriginTypeEnum originType) {
+        public _FinalStage originType(@NotNull OriginTypeEnum originType) {
             this.originType = originType;
             return this;
         }

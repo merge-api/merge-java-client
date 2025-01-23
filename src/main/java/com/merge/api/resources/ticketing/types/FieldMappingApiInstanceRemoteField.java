@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FieldMappingApiInstanceRemoteField.Builder.class)
 public final class FieldMappingApiInstanceRemoteField {
     private final Optional<String> remoteKeyName;
@@ -88,7 +89,8 @@ public final class FieldMappingApiInstanceRemoteField {
     }
 
     public interface RemoteEndpointInfoStage {
-        _FinalStage remoteEndpointInfo(FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo);
+        _FinalStage remoteEndpointInfo(
+                @NotNull FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo);
 
         Builder from(FieldMappingApiInstanceRemoteField other);
     }
@@ -128,14 +130,15 @@ public final class FieldMappingApiInstanceRemoteField {
 
         @java.lang.Override
         @JsonSetter("remote_endpoint_info")
-        public _FinalStage remoteEndpointInfo(FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo) {
+        public _FinalStage remoteEndpointInfo(
+                @NotNull FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo remoteEndpointInfo) {
             this.remoteEndpointInfo = remoteEndpointInfo;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage schema(Map<String, JsonNode> schema) {
-            this.schema = Optional.of(schema);
+            this.schema = Optional.ofNullable(schema);
             return this;
         }
 
@@ -148,7 +151,7 @@ public final class FieldMappingApiInstanceRemoteField {
 
         @java.lang.Override
         public _FinalStage remoteKeyName(String remoteKeyName) {
-            this.remoteKeyName = Optional.of(remoteKeyName);
+            this.remoteKeyName = Optional.ofNullable(remoteKeyName);
             return this;
         }
 

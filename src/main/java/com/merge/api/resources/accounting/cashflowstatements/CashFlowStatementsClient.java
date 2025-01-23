@@ -95,6 +95,7 @@ public class CashFlowStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -115,13 +116,6 @@ public class CashFlowStatementsClient {
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
-    }
-
-    /**
-     * Returns a <code>CashFlowStatement</code> object with the given <code>id</code>.
-     */
-    public CashFlowStatement retrieve(String id) {
-        return retrieve(id, CashFlowStatementsRetrieveRequest.builder().build());
     }
 
     /**
@@ -150,6 +144,7 @@ public class CashFlowStatementsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();

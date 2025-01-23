@@ -17,8 +17,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = SyncStatus.Builder.class)
 public final class SyncStatus {
     private final String modelName;
@@ -134,17 +135,17 @@ public final class SyncStatus {
     }
 
     public interface ModelNameStage {
-        ModelIdStage modelName(String modelName);
+        ModelIdStage modelName(@NotNull String modelName);
 
         Builder from(SyncStatus other);
     }
 
     public interface ModelIdStage {
-        StatusStage modelId(String modelId);
+        StatusStage modelId(@NotNull String modelId);
     }
 
     public interface StatusStage {
-        IsInitialSyncStage status(SyncStatusStatusEnum status);
+        IsInitialSyncStage status(@NotNull SyncStatusStatusEnum status);
     }
 
     public interface IsInitialSyncStage {
@@ -205,21 +206,21 @@ public final class SyncStatus {
 
         @java.lang.Override
         @JsonSetter("model_name")
-        public ModelIdStage modelName(String modelName) {
+        public ModelIdStage modelName(@NotNull String modelName) {
             this.modelName = modelName;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("model_id")
-        public StatusStage modelId(String modelId) {
+        public StatusStage modelId(@NotNull String modelId) {
             this.modelId = modelId;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("status")
-        public IsInitialSyncStage status(SyncStatusStatusEnum status) {
+        public IsInitialSyncStage status(@NotNull SyncStatusStatusEnum status) {
             this.status = status;
             return this;
         }
@@ -234,7 +235,7 @@ public final class SyncStatus {
         @java.lang.Override
         public _FinalStage selectiveSyncConfigurationsUsage(
                 SelectiveSyncConfigurationsUsageEnum selectiveSyncConfigurationsUsage) {
-            this.selectiveSyncConfigurationsUsage = Optional.of(selectiveSyncConfigurationsUsage);
+            this.selectiveSyncConfigurationsUsage = Optional.ofNullable(selectiveSyncConfigurationsUsage);
             return this;
         }
 
@@ -248,7 +249,7 @@ public final class SyncStatus {
 
         @java.lang.Override
         public _FinalStage nextSyncStart(OffsetDateTime nextSyncStart) {
-            this.nextSyncStart = Optional.of(nextSyncStart);
+            this.nextSyncStart = Optional.ofNullable(nextSyncStart);
             return this;
         }
 
@@ -261,7 +262,7 @@ public final class SyncStatus {
 
         @java.lang.Override
         public _FinalStage lastSyncStart(OffsetDateTime lastSyncStart) {
-            this.lastSyncStart = Optional.of(lastSyncStart);
+            this.lastSyncStart = Optional.ofNullable(lastSyncStart);
             return this;
         }
 

@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Contact.Builder.class)
 public final class Contact {
     private final Optional<String> id;
@@ -391,7 +391,7 @@ public final class Contact {
         }
 
         public Builder id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 
@@ -402,7 +402,7 @@ public final class Contact {
         }
 
         public Builder remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -413,7 +413,7 @@ public final class Contact {
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -424,7 +424,7 @@ public final class Contact {
         }
 
         public Builder modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -435,7 +435,7 @@ public final class Contact {
         }
 
         public Builder name(String name) {
-            this.name = Optional.of(name);
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -446,7 +446,7 @@ public final class Contact {
         }
 
         public Builder isSupplier(Boolean isSupplier) {
-            this.isSupplier = Optional.of(isSupplier);
+            this.isSupplier = Optional.ofNullable(isSupplier);
             return this;
         }
 
@@ -457,7 +457,7 @@ public final class Contact {
         }
 
         public Builder isCustomer(Boolean isCustomer) {
-            this.isCustomer = Optional.of(isCustomer);
+            this.isCustomer = Optional.ofNullable(isCustomer);
             return this;
         }
 
@@ -468,7 +468,7 @@ public final class Contact {
         }
 
         public Builder emailAddress(String emailAddress) {
-            this.emailAddress = Optional.of(emailAddress);
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -479,7 +479,7 @@ public final class Contact {
         }
 
         public Builder taxNumber(String taxNumber) {
-            this.taxNumber = Optional.of(taxNumber);
+            this.taxNumber = Optional.ofNullable(taxNumber);
             return this;
         }
 
@@ -490,7 +490,7 @@ public final class Contact {
         }
 
         public Builder status(ContactStatus status) {
-            this.status = Optional.of(status);
+            this.status = Optional.ofNullable(status);
             return this;
         }
 
@@ -501,7 +501,7 @@ public final class Contact {
         }
 
         public Builder currency(String currency) {
-            this.currency = Optional.of(currency);
+            this.currency = Optional.ofNullable(currency);
             return this;
         }
 
@@ -512,7 +512,7 @@ public final class Contact {
         }
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.of(remoteUpdatedAt);
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
             return this;
         }
 
@@ -523,7 +523,7 @@ public final class Contact {
         }
 
         public Builder company(String company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -534,7 +534,7 @@ public final class Contact {
         }
 
         public Builder addresses(List<Optional<ContactAddressesItem>> addresses) {
-            this.addresses = Optional.of(addresses);
+            this.addresses = Optional.ofNullable(addresses);
             return this;
         }
 
@@ -545,7 +545,7 @@ public final class Contact {
         }
 
         public Builder phoneNumbers(List<AccountingPhoneNumber> phoneNumbers) {
-            this.phoneNumbers = Optional.of(phoneNumbers);
+            this.phoneNumbers = Optional.ofNullable(phoneNumbers);
             return this;
         }
 
@@ -556,7 +556,7 @@ public final class Contact {
         }
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -567,7 +567,7 @@ public final class Contact {
         }
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -578,7 +578,7 @@ public final class Contact {
         }
 
         public Builder remoteData(List<RemoteData> remoteData) {
-            this.remoteData = Optional.of(remoteData);
+            this.remoteData = Optional.ofNullable(remoteData);
             return this;
         }
 
@@ -589,7 +589,7 @@ public final class Contact {
         }
 
         public Builder remoteFields(List<RemoteField> remoteFields) {
-            this.remoteFields = Optional.of(remoteFields);
+            this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
 

@@ -19,8 +19,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = GeneralLedgerTransactionLine.Builder.class)
 public final class GeneralLedgerTransactionLine {
     private final Optional<String> id;
@@ -922,21 +923,21 @@ public final class GeneralLedgerTransactionLine {
     }
 
     public interface DebitAmountStage {
-        CreditAmountStage debitAmount(String debitAmount);
+        CreditAmountStage debitAmount(@NotNull String debitAmount);
 
         Builder from(GeneralLedgerTransactionLine other);
     }
 
     public interface CreditAmountStage {
-        ForeignDebitAmountStage creditAmount(String creditAmount);
+        ForeignDebitAmountStage creditAmount(@NotNull String creditAmount);
     }
 
     public interface ForeignDebitAmountStage {
-        ForeignCreditAmountStage foreignDebitAmount(String foreignDebitAmount);
+        ForeignCreditAmountStage foreignDebitAmount(@NotNull String foreignDebitAmount);
     }
 
     public interface ForeignCreditAmountStage {
-        _FinalStage foreignCreditAmount(String foreignCreditAmount);
+        _FinalStage foreignCreditAmount(@NotNull String foreignCreditAmount);
     }
 
     public interface _FinalStage {
@@ -1086,35 +1087,35 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         @JsonSetter("debit_amount")
-        public CreditAmountStage debitAmount(String debitAmount) {
+        public CreditAmountStage debitAmount(@NotNull String debitAmount) {
             this.debitAmount = debitAmount;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("credit_amount")
-        public ForeignDebitAmountStage creditAmount(String creditAmount) {
+        public ForeignDebitAmountStage creditAmount(@NotNull String creditAmount) {
             this.creditAmount = creditAmount;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("foreign_debit_amount")
-        public ForeignCreditAmountStage foreignDebitAmount(String foreignDebitAmount) {
+        public ForeignCreditAmountStage foreignDebitAmount(@NotNull String foreignDebitAmount) {
             this.foreignDebitAmount = foreignDebitAmount;
             return this;
         }
 
         @java.lang.Override
         @JsonSetter("foreign_credit_amount")
-        public _FinalStage foreignCreditAmount(String foreignCreditAmount) {
+        public _FinalStage foreignCreditAmount(@NotNull String foreignCreditAmount) {
             this.foreignCreditAmount = foreignCreditAmount;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
-            this.fieldMappings = Optional.of(fieldMappings);
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
         }
 
@@ -1131,7 +1132,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.of(remoteWasDeleted);
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -1144,7 +1145,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage item(GeneralLedgerTransactionLineItem item) {
-            this.item = Optional.of(item);
+            this.item = Optional.ofNullable(item);
             return this;
         }
 
@@ -1157,7 +1158,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage trackingCategories(List<TrackingCategory> trackingCategories) {
-            this.trackingCategories = Optional.of(trackingCategories);
+            this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
@@ -1174,7 +1175,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage description(String description) {
-            this.description = Optional.of(description);
+            this.description = Optional.ofNullable(description);
             return this;
         }
 
@@ -1191,7 +1192,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage exchangeRate(String exchangeRate) {
-            this.exchangeRate = Optional.of(exchangeRate);
+            this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
         }
 
@@ -1516,7 +1517,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage transactionCurrency(GeneralLedgerTransactionLineTransactionCurrency transactionCurrency) {
-            this.transactionCurrency = Optional.of(transactionCurrency);
+            this.transactionCurrency = Optional.ofNullable(transactionCurrency);
             return this;
         }
 
@@ -1842,7 +1843,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage baseCurrency(GeneralLedgerTransactionLineBaseCurrency baseCurrency) {
-            this.baseCurrency = Optional.of(baseCurrency);
+            this.baseCurrency = Optional.ofNullable(baseCurrency);
             return this;
         }
 
@@ -1855,7 +1856,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage contact(GeneralLedgerTransactionLineContact contact) {
-            this.contact = Optional.of(contact);
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -1868,7 +1869,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage employee(GeneralLedgerTransactionLineEmployee employee) {
-            this.employee = Optional.of(employee);
+            this.employee = Optional.ofNullable(employee);
             return this;
         }
 
@@ -1885,7 +1886,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage company(GeneralLedgerTransactionLineCompany company) {
-            this.company = Optional.of(company);
+            this.company = Optional.ofNullable(company);
             return this;
         }
 
@@ -1898,7 +1899,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage account(GeneralLedgerTransactionLineAccount account) {
-            this.account = Optional.of(account);
+            this.account = Optional.ofNullable(account);
             return this;
         }
 
@@ -1915,7 +1916,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage modifiedAt(OffsetDateTime modifiedAt) {
-            this.modifiedAt = Optional.of(modifiedAt);
+            this.modifiedAt = Optional.ofNullable(modifiedAt);
             return this;
         }
 
@@ -1932,7 +1933,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage createdAt(OffsetDateTime createdAt) {
-            this.createdAt = Optional.of(createdAt);
+            this.createdAt = Optional.ofNullable(createdAt);
             return this;
         }
 
@@ -1949,7 +1950,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         public _FinalStage remoteId(String remoteId) {
-            this.remoteId = Optional.of(remoteId);
+            this.remoteId = Optional.ofNullable(remoteId);
             return this;
         }
 
@@ -1962,7 +1963,7 @@ public final class GeneralLedgerTransactionLine {
 
         @java.lang.Override
         public _FinalStage id(String id) {
-            this.id = Optional.of(id);
+            this.id = Optional.ofNullable(id);
             return this;
         }
 

@@ -16,8 +16,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import org.jetbrains.annotations.NotNull;
 
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = LinkToken.Builder.class)
 public final class LinkToken {
     private final String linkToken;
@@ -86,7 +87,7 @@ public final class LinkToken {
     }
 
     public interface LinkTokenStage {
-        _FinalStage linkToken(String linkToken);
+        _FinalStage linkToken(@NotNull String linkToken);
 
         Builder from(LinkToken other);
     }
@@ -126,14 +127,14 @@ public final class LinkToken {
 
         @java.lang.Override
         @JsonSetter("link_token")
-        public _FinalStage linkToken(String linkToken) {
+        public _FinalStage linkToken(@NotNull String linkToken) {
             this.linkToken = linkToken;
             return this;
         }
 
         @java.lang.Override
         public _FinalStage magicLinkUrl(String magicLinkUrl) {
-            this.magicLinkUrl = Optional.of(magicLinkUrl);
+            this.magicLinkUrl = Optional.ofNullable(magicLinkUrl);
             return this;
         }
 
@@ -146,7 +147,7 @@ public final class LinkToken {
 
         @java.lang.Override
         public _FinalStage integrationName(String integrationName) {
-            this.integrationName = Optional.of(integrationName);
+            this.integrationName = Optional.ofNullable(integrationName);
             return this;
         }
 

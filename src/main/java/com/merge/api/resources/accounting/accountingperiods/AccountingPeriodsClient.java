@@ -70,6 +70,7 @@ public class AccountingPeriodsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
@@ -95,13 +96,6 @@ public class AccountingPeriodsClient {
     /**
      * Returns an <code>AccountingPeriod</code> object with the given <code>id</code>.
      */
-    public AccountingPeriod retrieve(String id) {
-        return retrieve(id, AccountingPeriodsRetrieveRequest.builder().build());
-    }
-
-    /**
-     * Returns an <code>AccountingPeriod</code> object with the given <code>id</code>.
-     */
     public AccountingPeriod retrieve(String id, AccountingPeriodsRetrieveRequest request) {
         return retrieve(id, request, null);
     }
@@ -122,6 +116,7 @@ public class AccountingPeriodsClient {
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
+                .addHeader("Accept", "application/json")
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json");
         Request okhttpRequest = _requestBuilder.build();
