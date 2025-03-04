@@ -39,8 +39,6 @@ public final class Collection {
 
     private final Optional<CollectionParentCollection> parentCollection;
 
-    private final Optional<List<Optional<CollectionTeamsItem>>> teams;
-
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<CollectionAccessLevel> accessLevel;
@@ -60,7 +58,6 @@ public final class Collection {
             Optional<String> description,
             Optional<CollectionCollectionType> collectionType,
             Optional<CollectionParentCollection> parentCollection,
-            Optional<List<Optional<CollectionTeamsItem>>> teams,
             Optional<Boolean> remoteWasDeleted,
             Optional<CollectionAccessLevel> accessLevel,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -74,7 +71,6 @@ public final class Collection {
         this.description = description;
         this.collectionType = collectionType;
         this.parentCollection = parentCollection;
-        this.teams = teams;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accessLevel = accessLevel;
         this.fieldMappings = fieldMappings;
@@ -147,11 +143,6 @@ public final class Collection {
         return parentCollection;
     }
 
-    @JsonProperty("teams")
-    public Optional<List<Optional<CollectionTeamsItem>>> getTeams() {
-        return teams;
-    }
-
     /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
@@ -203,7 +194,6 @@ public final class Collection {
                 && description.equals(other.description)
                 && collectionType.equals(other.collectionType)
                 && parentCollection.equals(other.parentCollection)
-                && teams.equals(other.teams)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accessLevel.equals(other.accessLevel)
                 && fieldMappings.equals(other.fieldMappings)
@@ -221,7 +211,6 @@ public final class Collection {
                 this.description,
                 this.collectionType,
                 this.parentCollection,
-                this.teams,
                 this.remoteWasDeleted,
                 this.accessLevel,
                 this.fieldMappings,
@@ -255,8 +244,6 @@ public final class Collection {
 
         private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
-        private Optional<List<Optional<CollectionTeamsItem>>> teams = Optional.empty();
-
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<CollectionAccessLevel> accessLevel = Optional.empty();
@@ -279,7 +266,6 @@ public final class Collection {
             description(other.getDescription());
             collectionType(other.getCollectionType());
             parentCollection(other.getParentCollection());
-            teams(other.getTeams());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accessLevel(other.getAccessLevel());
             fieldMappings(other.getFieldMappings());
@@ -375,17 +361,6 @@ public final class Collection {
             return this;
         }
 
-        @JsonSetter(value = "teams", nulls = Nulls.SKIP)
-        public Builder teams(Optional<List<Optional<CollectionTeamsItem>>> teams) {
-            this.teams = teams;
-            return this;
-        }
-
-        public Builder teams(List<Optional<CollectionTeamsItem>> teams) {
-            this.teams = Optional.ofNullable(teams);
-            return this;
-        }
-
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -440,7 +415,6 @@ public final class Collection {
                     description,
                     collectionType,
                     parentCollection,
-                    teams,
                     remoteWasDeleted,
                     accessLevel,
                     fieldMappings,

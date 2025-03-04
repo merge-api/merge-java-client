@@ -24,12 +24,18 @@ public final class BankFeedTransactionsRetrieveRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Map<String, Object> additionalProperties;
 
     private BankFeedTransactionsRetrieveRequest(
-            Optional<String> expand, Optional<Boolean> includeRemoteData, Map<String, Object> additionalProperties) {
+            Optional<String> expand,
+            Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
+            Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -49,6 +55,14 @@ public final class BankFeedTransactionsRetrieveRequest {
         return includeRemoteData;
     }
 
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -62,12 +76,14 @@ public final class BankFeedTransactionsRetrieveRequest {
     }
 
     private boolean equalTo(BankFeedTransactionsRetrieveRequest other) {
-        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand)
+                && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeShellData);
     }
 
     @java.lang.Override
@@ -85,6 +101,8 @@ public final class BankFeedTransactionsRetrieveRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -93,6 +111,7 @@ public final class BankFeedTransactionsRetrieveRequest {
         public Builder from(BankFeedTransactionsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
@@ -118,8 +137,20 @@ public final class BankFeedTransactionsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public BankFeedTransactionsRetrieveRequest build() {
-            return new BankFeedTransactionsRetrieveRequest(expand, includeRemoteData, additionalProperties);
+            return new BankFeedTransactionsRetrieveRequest(
+                    expand, includeRemoteData, includeShellData, additionalProperties);
         }
     }
 }

@@ -22,6 +22,8 @@ import java.util.Optional;
 public final class TicketsRemoteFieldClassesListRequest {
     private final Optional<String> cursor;
 
+    private final Optional<String> ids;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
@@ -36,6 +38,7 @@ public final class TicketsRemoteFieldClassesListRequest {
 
     private TicketsRemoteFieldClassesListRequest(
             Optional<String> cursor,
+            Optional<String> ids,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -43,6 +46,7 @@ public final class TicketsRemoteFieldClassesListRequest {
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
+        this.ids = ids;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -57,6 +61,14 @@ public final class TicketsRemoteFieldClassesListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return remote field classes with the <code>ids</code> in this list
+     */
+    @JsonProperty("ids")
+    public Optional<String> getIds() {
+        return ids;
     }
 
     /**
@@ -113,6 +125,7 @@ public final class TicketsRemoteFieldClassesListRequest {
 
     private boolean equalTo(TicketsRemoteFieldClassesListRequest other) {
         return cursor.equals(other.cursor)
+                && ids.equals(other.ids)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -124,6 +137,7 @@ public final class TicketsRemoteFieldClassesListRequest {
     public int hashCode() {
         return Objects.hash(
                 this.cursor,
+                this.ids,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -144,6 +158,8 @@ public final class TicketsRemoteFieldClassesListRequest {
     public static final class Builder {
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> ids = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
@@ -161,6 +177,7 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         public Builder from(TicketsRemoteFieldClassesListRequest other) {
             cursor(other.getCursor());
+            ids(other.getIds());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -177,6 +194,17 @@ public final class TicketsRemoteFieldClassesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
+            return this;
+        }
+
+        @JsonSetter(value = "ids", nulls = Nulls.SKIP)
+        public Builder ids(Optional<String> ids) {
+            this.ids = ids;
+            return this;
+        }
+
+        public Builder ids(String ids) {
+            this.ids = Optional.ofNullable(ids);
             return this;
         }
 
@@ -238,6 +266,7 @@ public final class TicketsRemoteFieldClassesListRequest {
         public TicketsRemoteFieldClassesListRequest build() {
             return new TicketsRemoteFieldClassesListRequest(
                     cursor,
+                    ids,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

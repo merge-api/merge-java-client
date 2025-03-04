@@ -65,6 +65,10 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> employee;
 
+    private final Optional<List<FieldMappingApiInstance>> paymentMethod;
+
+    private final Optional<List<FieldMappingApiInstance>> paymentTerm;
+
     private final Map<String, Object> additionalProperties;
 
     private FieldMappingApiInstanceResponse(
@@ -90,6 +94,8 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> generalLedgerTransaction,
             Optional<List<FieldMappingApiInstance>> bankFeedAccount,
             Optional<List<FieldMappingApiInstance>> employee,
+            Optional<List<FieldMappingApiInstance>> paymentMethod,
+            Optional<List<FieldMappingApiInstance>> paymentTerm,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -113,6 +119,8 @@ public final class FieldMappingApiInstanceResponse {
         this.generalLedgerTransaction = generalLedgerTransaction;
         this.bankFeedAccount = bankFeedAccount;
         this.employee = employee;
+        this.paymentMethod = paymentMethod;
+        this.paymentTerm = paymentTerm;
         this.additionalProperties = additionalProperties;
     }
 
@@ -226,6 +234,16 @@ public final class FieldMappingApiInstanceResponse {
         return employee;
     }
 
+    @JsonProperty("PaymentMethod")
+    public Optional<List<FieldMappingApiInstance>> getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    @JsonProperty("PaymentTerm")
+    public Optional<List<FieldMappingApiInstance>> getPaymentTerm() {
+        return paymentTerm;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -259,7 +277,9 @@ public final class FieldMappingApiInstanceResponse {
                 && accountingPeriod.equals(other.accountingPeriod)
                 && generalLedgerTransaction.equals(other.generalLedgerTransaction)
                 && bankFeedAccount.equals(other.bankFeedAccount)
-                && employee.equals(other.employee);
+                && employee.equals(other.employee)
+                && paymentMethod.equals(other.paymentMethod)
+                && paymentTerm.equals(other.paymentTerm);
     }
 
     @java.lang.Override
@@ -286,7 +306,9 @@ public final class FieldMappingApiInstanceResponse {
                 this.accountingPeriod,
                 this.generalLedgerTransaction,
                 this.bankFeedAccount,
-                this.employee);
+                this.employee,
+                this.paymentMethod,
+                this.paymentTerm);
     }
 
     @java.lang.Override
@@ -344,6 +366,10 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> employee = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> paymentMethod = Optional.empty();
+
+        private Optional<List<FieldMappingApiInstance>> paymentTerm = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -372,6 +398,8 @@ public final class FieldMappingApiInstanceResponse {
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
             bankFeedAccount(other.getBankFeedAccount());
             employee(other.getEmployee());
+            paymentMethod(other.getPaymentMethod());
+            paymentTerm(other.getPaymentTerm());
             return this;
         }
 
@@ -617,6 +645,28 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "PaymentMethod", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<List<FieldMappingApiInstance>> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(List<FieldMappingApiInstance> paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
+            return this;
+        }
+
+        @JsonSetter(value = "PaymentTerm", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<List<FieldMappingApiInstance>> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(List<FieldMappingApiInstance> paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
         public FieldMappingApiInstanceResponse build() {
             return new FieldMappingApiInstanceResponse(
                     account,
@@ -641,6 +691,8 @@ public final class FieldMappingApiInstanceResponse {
                     generalLedgerTransaction,
                     bankFeedAccount,
                     employee,
+                    paymentMethod,
+                    paymentTerm,
                     additionalProperties);
         }
     }

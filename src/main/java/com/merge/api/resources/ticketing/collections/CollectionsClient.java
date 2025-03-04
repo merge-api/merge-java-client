@@ -10,8 +10,10 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsListRequest;
 import com.merge.api.resources.ticketing.collections.requests.CollectionsRetrieveRequest;
+import com.merge.api.resources.ticketing.collections.requests.CollectionsViewersListRequest;
 import com.merge.api.resources.ticketing.types.Collection;
 import com.merge.api.resources.ticketing.types.PaginatedCollectionList;
+import com.merge.api.resources.ticketing.types.PaginatedViewerList;
 import java.io.IOException;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
@@ -64,7 +66,7 @@ public class CollectionsClient {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
         }
         if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
         }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(
@@ -131,6 +133,78 @@ public class CollectionsClient {
     }
 
     /**
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Collection</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
+     */
+    public PaginatedViewerList viewersList(String collectionId) {
+        return viewersList(collectionId, CollectionsViewersListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Collection</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
+     */
+    public PaginatedViewerList viewersList(String collectionId, CollectionsViewersListRequest request) {
+        return viewersList(collectionId, request, null);
+    }
+
+    /**
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Collection</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
+     */
+    public PaginatedViewerList viewersList(
+            String collectionId, CollectionsViewersListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("ticketing/v1/collections")
+                .addPathSegment(collectionId)
+                .addPathSegments("viewers");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getExpand().isPresent()) {
+            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getIncludeRemoteData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedViewerList.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
      * Returns a <code>Collection</code> object with the given <code>id</code>.
      */
     public Collection retrieve(String id) {
@@ -153,11 +227,15 @@ public class CollectionsClient {
                 .addPathSegments("ticketing/v1/collections")
                 .addPathSegment(id);
         if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
+            httpUrl.addQueryParameter("expand", request.getExpand().get());
         }
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());

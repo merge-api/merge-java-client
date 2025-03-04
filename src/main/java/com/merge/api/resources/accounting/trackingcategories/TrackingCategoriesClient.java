@@ -86,6 +86,9 @@ public class TrackingCategoriesClient {
             httpUrl.addQueryParameter(
                     "modified_before", request.getModifiedBefore().get().toString());
         }
+        if (request.getName().isPresent()) {
+            httpUrl.addQueryParameter("name", request.getName().get());
+        }
         if (request.getPageSize().isPresent()) {
             httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
         }
@@ -154,6 +157,10 @@ public class TrackingCategoriesClient {
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());

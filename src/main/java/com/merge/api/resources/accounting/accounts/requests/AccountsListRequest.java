@@ -45,6 +45,8 @@ public final class AccountsListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> name;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<AccountsListRequestRemoteFields> remoteFields;
@@ -67,6 +69,7 @@ public final class AccountsListRequest {
             Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<Integer> pageSize,
             Optional<AccountsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
@@ -83,6 +86,7 @@ public final class AccountsListRequest {
         this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.pageSize = pageSize;
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
@@ -179,6 +183,14 @@ public final class AccountsListRequest {
     }
 
     /**
+     * @return If provided, will only return Accounts with this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -233,6 +245,7 @@ public final class AccountsListRequest {
                 && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
@@ -253,6 +266,7 @@ public final class AccountsListRequest {
                 this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
@@ -292,6 +306,8 @@ public final class AccountsListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> name = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<AccountsListRequestRemoteFields> remoteFields = Optional.empty();
@@ -317,6 +333,7 @@ public final class AccountsListRequest {
             includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             pageSize(other.getPageSize());
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
@@ -445,6 +462,17 @@ public final class AccountsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -502,6 +530,7 @@ public final class AccountsListRequest {
                     includeShellData,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     pageSize,
                     remoteFields,
                     remoteId,

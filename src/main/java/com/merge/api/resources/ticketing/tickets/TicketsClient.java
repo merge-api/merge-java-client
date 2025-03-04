@@ -296,6 +296,10 @@ public class TicketsClient {
                     "include_remote_fields",
                     request.getIncludeRemoteFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter(
                     "remote_fields", request.getRemoteFields().get().toString());
@@ -389,21 +393,21 @@ public class TicketsClient {
     }
 
     /**
-     * Returns a list of <code>Viewer</code> objects.
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Ticket</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
      */
     public PaginatedViewerList viewersList(String ticketId) {
         return viewersList(ticketId, TicketsViewersListRequest.builder().build());
     }
 
     /**
-     * Returns a list of <code>Viewer</code> objects.
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Ticket</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
      */
     public PaginatedViewerList viewersList(String ticketId, TicketsViewersListRequest request) {
         return viewersList(ticketId, request, null);
     }
 
     /**
-     * Returns a list of <code>Viewer</code> objects.
+     * Returns a list of <code>Viewer</code> objects that point to a User id or Team id that is either an assignee or viewer on a <code>Ticket</code> with the given id. <a href="https://help.merge.dev/en/articles/10333658-ticketing-access-control-list-acls">Learn more.</a>
      */
     public PaginatedViewerList viewersList(
             String ticketId, TicketsViewersListRequest request, RequestOptions requestOptions) {
@@ -568,6 +572,9 @@ public class TicketsClient {
                 .addPathSegments("ticketing/v1/tickets/remote-field-classes");
         if (request.getCursor().isPresent()) {
             httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIds().isPresent()) {
+            httpUrl.addQueryParameter("ids", request.getIds().get());
         }
         if (request.getIncludeDeletedData().isPresent()) {
             httpUrl.addQueryParameter(

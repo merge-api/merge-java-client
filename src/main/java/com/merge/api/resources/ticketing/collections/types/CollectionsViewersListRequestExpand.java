@@ -5,16 +5,16 @@ package com.merge.api.resources.ticketing.collections.types;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CollectionsListRequestExpand {
-    PARENT_COLLECTION("parent_collection"),
+public enum CollectionsViewersListRequestExpand {
+    TEAM("team"),
 
-    TEAMS("teams"),
+    USER("user"),
 
-    TEAMS_PARENT_COLLECTION("teams,parent_collection");
+    USER_TEAM("user,team");
 
     private final String value;
 
-    CollectionsListRequestExpand(String value) {
+    CollectionsViewersListRequestExpand(String value) {
         this.value = value;
     }
 

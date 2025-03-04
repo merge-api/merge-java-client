@@ -294,6 +294,10 @@ public class EmployeesClient {
                     "include_sensitive_fields",
                     request.getIncludeSensitiveFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter(
                     "remote_fields", request.getRemoteFields().get().toString());

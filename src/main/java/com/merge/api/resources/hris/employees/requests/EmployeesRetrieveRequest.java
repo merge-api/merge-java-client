@@ -29,6 +29,8 @@ public final class EmployeesRetrieveRequest {
 
     private final Optional<Boolean> includeSensitiveFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<EmployeesRetrieveRequestRemoteFields> remoteFields;
 
     private final Optional<EmployeesRetrieveRequestShowEnumOrigins> showEnumOrigins;
@@ -39,12 +41,14 @@ public final class EmployeesRetrieveRequest {
             Optional<EmployeesRetrieveRequestExpand> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<Boolean> includeShellData,
             Optional<EmployeesRetrieveRequestRemoteFields> remoteFields,
             Optional<EmployeesRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -72,6 +76,14 @@ public final class EmployeesRetrieveRequest {
     @JsonProperty("include_sensitive_fields")
     public Optional<Boolean> getIncludeSensitiveFields() {
         return includeSensitiveFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -105,6 +117,7 @@ public final class EmployeesRetrieveRequest {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
@@ -115,6 +128,7 @@ public final class EmployeesRetrieveRequest {
                 this.expand,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
+                this.includeShellData,
                 this.remoteFields,
                 this.showEnumOrigins);
     }
@@ -136,6 +150,8 @@ public final class EmployeesRetrieveRequest {
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<EmployeesRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<EmployeesRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
@@ -149,6 +165,7 @@ public final class EmployeesRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -187,6 +204,17 @@ public final class EmployeesRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<EmployeesRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -214,6 +242,7 @@ public final class EmployeesRetrieveRequest {
                     expand,
                     includeRemoteData,
                     includeSensitiveFields,
+                    includeShellData,
                     remoteFields,
                     showEnumOrigins,
                     additionalProperties);

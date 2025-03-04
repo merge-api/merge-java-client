@@ -5,7 +5,7 @@ package com.merge.api.resources.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum SyncStatusStatusEnum {
+public enum StatusFd5Enum {
     SYNCING("SYNCING"),
 
     DONE("DONE"),
@@ -20,7 +20,7 @@ public enum SyncStatusStatusEnum {
 
     private final String value;
 
-    SyncStatusStatusEnum(String value) {
+    StatusFd5Enum(String value) {
         this.value = value;
     }
 

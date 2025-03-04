@@ -29,6 +29,8 @@ public final class PaymentRequest {
 
     private final Optional<PaymentRequestAccount> account;
 
+    private final Optional<PaymentRequestPaymentMethod> paymentMethod;
+
     private final Optional<PaymentRequestCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -57,6 +59,7 @@ public final class PaymentRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<PaymentRequestContact> contact,
             Optional<PaymentRequestAccount> account,
+            Optional<PaymentRequestPaymentMethod> paymentMethod,
             Optional<PaymentRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<PaymentRequestCompany> company,
@@ -72,6 +75,7 @@ public final class PaymentRequest {
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
+        this.paymentMethod = paymentMethod;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
@@ -108,6 +112,14 @@ public final class PaymentRequest {
     @JsonProperty("account")
     public Optional<PaymentRequestAccount> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The method which this payment was made by.
+     */
+    @JsonProperty("payment_method")
+    public Optional<PaymentRequestPaymentMethod> getPaymentMethod() {
+        return paymentMethod;
     }
 
     /**
@@ -513,6 +525,7 @@ public final class PaymentRequest {
         return transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
+                && paymentMethod.equals(other.paymentMethod)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
@@ -532,6 +545,7 @@ public final class PaymentRequest {
                 this.transactionDate,
                 this.contact,
                 this.account,
+                this.paymentMethod,
                 this.currency,
                 this.exchangeRate,
                 this.company,
@@ -561,6 +575,8 @@ public final class PaymentRequest {
         private Optional<PaymentRequestContact> contact = Optional.empty();
 
         private Optional<PaymentRequestAccount> account = Optional.empty();
+
+        private Optional<PaymentRequestPaymentMethod> paymentMethod = Optional.empty();
 
         private Optional<PaymentRequestCurrency> currency = Optional.empty();
 
@@ -593,6 +609,7 @@ public final class PaymentRequest {
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
+            paymentMethod(other.getPaymentMethod());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
@@ -637,6 +654,17 @@ public final class PaymentRequest {
 
         public Builder account(PaymentRequestAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_method", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<PaymentRequestPaymentMethod> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(PaymentRequestPaymentMethod paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
             return this;
         }
 
@@ -767,6 +795,7 @@ public final class PaymentRequest {
                     transactionDate,
                     contact,
                     account,
+                    paymentMethod,
                     currency,
                     exchangeRate,
                     company,

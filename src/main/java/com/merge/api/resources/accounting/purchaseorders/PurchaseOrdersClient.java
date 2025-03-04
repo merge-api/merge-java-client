@@ -238,6 +238,10 @@ public class PurchaseOrdersClient {
                     "include_remote_fields",
                     request.getIncludeRemoteFields().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getRemoteFields().isPresent()) {
             httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
         }

@@ -219,6 +219,10 @@ public class AttachmentsClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -269,6 +273,10 @@ public class AttachmentsClient {
                 .addPathSegments("ticketing/v1/attachments")
                 .addPathSegment(id)
                 .addPathSegments("download");
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getMimeType().isPresent()) {
             httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
         }

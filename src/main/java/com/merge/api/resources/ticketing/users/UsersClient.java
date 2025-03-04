@@ -92,6 +92,9 @@ public class UsersClient {
         if (request.getRemoteId().isPresent()) {
             httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
         }
+        if (request.getTeam().isPresent()) {
+            httpUrl.addQueryParameter("team", request.getTeam().get());
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -146,6 +149,10 @@ public class UsersClient {
         if (request.getIncludeRemoteData().isPresent()) {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
+        }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())

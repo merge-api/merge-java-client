@@ -11,12 +11,16 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.ResponseBodyInputStream;
 import com.merge.api.resources.filestorage.files.requests.FileStorageFileEndpointRequest;
+import com.merge.api.resources.filestorage.files.requests.FilesDownloadRequestMetaListRequest;
+import com.merge.api.resources.filestorage.files.requests.FilesDownloadRequestMetaRetrieveRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesDownloadRetrieveRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesListRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesRetrieveRequest;
+import com.merge.api.resources.filestorage.types.DownloadRequestMeta;
 import com.merge.api.resources.filestorage.types.File;
 import com.merge.api.resources.filestorage.types.FileStorageFileResponse;
 import com.merge.api.resources.filestorage.types.MetaResponse;
+import com.merge.api.resources.filestorage.types.PaginatedDownloadRequestMetaList;
 import com.merge.api.resources.filestorage.types.PaginatedFileList;
 import java.io.IOException;
 import java.io.InputStream;
@@ -222,6 +226,10 @@ public class FilesClient {
             httpUrl.addQueryParameter(
                     "include_remote_data", request.getIncludeRemoteData().get().toString());
         }
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
@@ -272,6 +280,10 @@ public class FilesClient {
                 .addPathSegments("filestorage/v1/files")
                 .addPathSegment(id)
                 .addPathSegments("download");
+        if (request.getIncludeShellData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_shell_data", request.getIncludeShellData().get().toString());
+        }
         if (request.getMimeType().isPresent()) {
             httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
         }
@@ -290,6 +302,124 @@ public class FilesClient {
             ResponseBody responseBody = response.body();
             if (response.isSuccessful()) {
                 return new ResponseBodyInputStream(response);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(String id) {
+        return downloadRequestMetaRetrieve(
+                id, FilesDownloadRequestMetaRetrieveRequest.builder().build());
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(String id, FilesDownloadRequestMetaRetrieveRequest request) {
+        return downloadRequestMetaRetrieve(id, request, null);
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(
+            String id, FilesDownloadRequestMetaRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("filestorage/v1/files")
+                .addPathSegment(id)
+                .addPathSegments("download/request-meta");
+        if (request.getMimeType().isPresent()) {
+            httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), DownloadRequestMeta.class);
+            }
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+            throw new ApiError(
+                    "Error with status code " + response.code(),
+                    response.code(),
+                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
+        } catch (IOException e) {
+            throw new MergeException("Network error executing HTTP request", e);
+        }
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList() {
+        return downloadRequestMetaList(
+                FilesDownloadRequestMetaListRequest.builder().build());
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList(FilesDownloadRequestMetaListRequest request) {
+        return downloadRequestMetaList(request, null);
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList(
+            FilesDownloadRequestMetaListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("filestorage/v1/files/download/request-meta");
+        if (request.getCursor().isPresent()) {
+            httpUrl.addQueryParameter("cursor", request.getCursor().get());
+        }
+        if (request.getIncludeDeletedData().isPresent()) {
+            httpUrl.addQueryParameter(
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get().toString());
+        }
+        if (request.getMimeType().isPresent()) {
+            httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
+        }
+        if (request.getPageSize().isPresent()) {
+            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        try (Response response = client.newCall(okhttpRequest).execute()) {
+            ResponseBody responseBody = response.body();
+            if (response.isSuccessful()) {
+                return ObjectMappers.JSON_MAPPER.readValue(
+                        responseBody.string(), PaginatedDownloadRequestMetaList.class);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             throw new ApiError(

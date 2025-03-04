@@ -46,6 +46,8 @@ public final class UsersListRequest {
 
     private final Optional<String> remoteId;
 
+    private final Optional<String> team;
+
     private final Map<String, Object> additionalProperties;
 
     private UsersListRequest(
@@ -61,6 +63,7 @@ public final class UsersListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
             Optional<String> remoteId,
+            Optional<String> team,
             Map<String, Object> additionalProperties) {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -74,6 +77,7 @@ public final class UsersListRequest {
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
         this.remoteId = remoteId;
+        this.team = team;
         this.additionalProperties = additionalProperties;
     }
 
@@ -173,6 +177,14 @@ public final class UsersListRequest {
         return remoteId;
     }
 
+    /**
+     * @return If provided, will only return users matching in this team.
+     */
+    @JsonProperty("team")
+    public Optional<String> getTeam() {
+        return team;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -196,7 +208,8 @@ public final class UsersListRequest {
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
-                && remoteId.equals(other.remoteId);
+                && remoteId.equals(other.remoteId)
+                && team.equals(other.team);
     }
 
     @java.lang.Override
@@ -213,7 +226,8 @@ public final class UsersListRequest {
                 this.modifiedAfter,
                 this.modifiedBefore,
                 this.pageSize,
-                this.remoteId);
+                this.remoteId,
+                this.team);
     }
 
     @java.lang.Override
@@ -251,6 +265,8 @@ public final class UsersListRequest {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> team = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -269,6 +285,7 @@ public final class UsersListRequest {
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            team(other.getTeam());
             return this;
         }
 
@@ -404,6 +421,17 @@ public final class UsersListRequest {
             return this;
         }
 
+        @JsonSetter(value = "team", nulls = Nulls.SKIP)
+        public Builder team(Optional<String> team) {
+            this.team = team;
+            return this;
+        }
+
+        public Builder team(String team) {
+            this.team = Optional.ofNullable(team);
+            return this;
+        }
+
         public UsersListRequest build() {
             return new UsersListRequest(
                     createdAfter,
@@ -418,6 +446,7 @@ public final class UsersListRequest {
                     modifiedBefore,
                     pageSize,
                     remoteId,
+                    team,
                     additionalProperties);
         }
     }

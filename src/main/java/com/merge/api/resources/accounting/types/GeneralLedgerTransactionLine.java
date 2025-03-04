@@ -48,7 +48,7 @@ public final class GeneralLedgerTransactionLine {
 
     private final Optional<String> description;
 
-    private final Optional<List<TrackingCategory>> trackingCategories;
+    private final Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories;
 
     private final String debitAmount;
 
@@ -79,7 +79,7 @@ public final class GeneralLedgerTransactionLine {
             Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency,
             Optional<String> exchangeRate,
             Optional<String> description,
-            Optional<List<TrackingCategory>> trackingCategories,
+            Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories,
             String debitAmount,
             String creditAmount,
             Optional<GeneralLedgerTransactionLineItem> item,
@@ -812,7 +812,7 @@ public final class GeneralLedgerTransactionLine {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<TrackingCategory>> getTrackingCategories() {
+    public Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -991,9 +991,10 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage description(String description);
 
-        _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories);
+        _FinalStage trackingCategories(
+                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories);
 
-        _FinalStage trackingCategories(List<TrackingCategory> trackingCategories);
+        _FinalStage trackingCategories(List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories);
 
         _FinalStage item(Optional<GeneralLedgerTransactionLineItem> item);
 
@@ -1029,7 +1030,8 @@ public final class GeneralLedgerTransactionLine {
 
         private Optional<GeneralLedgerTransactionLineItem> item = Optional.empty();
 
-        private Optional<List<TrackingCategory>> trackingCategories = Optional.empty();
+        private Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories =
+                Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -1157,14 +1159,16 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
-        public _FinalStage trackingCategories(List<TrackingCategory> trackingCategories) {
+        public _FinalStage trackingCategories(
+                List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories) {
             this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories) {
+        public _FinalStage trackingCategories(
+                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
