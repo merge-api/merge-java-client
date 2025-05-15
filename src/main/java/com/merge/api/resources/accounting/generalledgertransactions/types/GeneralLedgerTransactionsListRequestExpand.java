@@ -3,52 +3,249 @@
  */
 package com.merge.api.resources.accounting.generalledgertransactions.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum GeneralLedgerTransactionsListRequestExpand {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class GeneralLedgerTransactionsListRequestExpand {
+    public static final GeneralLedgerTransactionsListRequestExpand
+            GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD = new GeneralLedgerTransactionsListRequestExpand(
+                    Value.GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD,
+                    "general_ledger_transaction_lines,company,accounting_period");
 
-    COMPANY("company"),
+    public static final GeneralLedgerTransactionsListRequestExpand GENERAL_LEDGER_TRANSACTION_LINES =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.GENERAL_LEDGER_TRANSACTION_LINES, "general_ledger_transaction_lines");
 
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    GENERAL_LEDGER_TRANSACTION_LINES("general_ledger_transaction_lines"),
+    public static final GeneralLedgerTransactionsListRequestExpand TRACKING_CATEGORIES =
+            new GeneralLedgerTransactionsListRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD("general_ledger_transaction_lines,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand
+            TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD =
+                    new GeneralLedgerTransactionsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD,
+                            "tracking_categories,general_ledger_transaction_lines,accounting_period");
 
-    GENERAL_LEDGER_TRANSACTION_LINES_COMPANY("general_ledger_transaction_lines,company"),
+    public static final GeneralLedgerTransactionsListRequestExpand
+            TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD =
+                    new GeneralLedgerTransactionsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD,
+                            "tracking_categories,general_ledger_transaction_lines,company,accounting_period");
 
-    GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD(
-            "general_ledger_transaction_lines,company,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final GeneralLedgerTransactionsListRequestExpand GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD,
+                    "general_ledger_transaction_lines,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand GENERAL_LEDGER_TRANSACTION_LINES_COMPANY =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.GENERAL_LEDGER_TRANSACTION_LINES_COMPANY, "general_ledger_transaction_lines,company");
 
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
+    public static final GeneralLedgerTransactionsListRequestExpand
+            TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY =
+                    new GeneralLedgerTransactionsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY,
+                            "tracking_categories,general_ledger_transaction_lines,company");
 
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand COMPANY =
+            new GeneralLedgerTransactionsListRequestExpand(Value.COMPANY, "company");
 
-    TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES("tracking_categories,general_ledger_transaction_lines"),
+    public static final GeneralLedgerTransactionsListRequestExpand
+            TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES = new GeneralLedgerTransactionsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES,
+                    "tracking_categories,general_ledger_transaction_lines");
 
-    TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD(
-            "tracking_categories,general_ledger_transaction_lines,accounting_period"),
+    public static final GeneralLedgerTransactionsListRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
 
-    TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY(
-            "tracking_categories,general_ledger_transaction_lines,company"),
+    public static final GeneralLedgerTransactionsListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
 
-    TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,general_ledger_transaction_lines,company,accounting_period");
+    public static final GeneralLedgerTransactionsListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
 
-    private final String value;
+    private final Value value;
 
-    GeneralLedgerTransactionsListRequestExpand(String value) {
+    private final String string;
+
+    GeneralLedgerTransactionsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof GeneralLedgerTransactionsListRequestExpand
+                        && this.string.equals(((GeneralLedgerTransactionsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitGeneralLedgerTransactionLinesCompanyAccountingPeriod();
+            case GENERAL_LEDGER_TRANSACTION_LINES:
+                return visitor.visitGeneralLedgerTransactionLines();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesGeneralLedgerTransactionLinesAccountingPeriod();
+            case TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesGeneralLedgerTransactionLinesCompanyAccountingPeriod();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD:
+                return visitor.visitGeneralLedgerTransactionLinesAccountingPeriod();
+            case GENERAL_LEDGER_TRANSACTION_LINES_COMPANY:
+                return visitor.visitGeneralLedgerTransactionLinesCompany();
+            case TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY:
+                return visitor.visitTrackingCategoriesGeneralLedgerTransactionLinesCompany();
+            case COMPANY:
+                return visitor.visitCompany();
+            case TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES:
+                return visitor.visitTrackingCategoriesGeneralLedgerTransactionLines();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static GeneralLedgerTransactionsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "general_ledger_transaction_lines,company,accounting_period":
+                return GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "general_ledger_transaction_lines":
+                return GENERAL_LEDGER_TRANSACTION_LINES;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "tracking_categories,general_ledger_transaction_lines,accounting_period":
+                return TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD;
+            case "tracking_categories,general_ledger_transaction_lines,company,accounting_period":
+                return TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "general_ledger_transaction_lines,accounting_period":
+                return GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD;
+            case "general_ledger_transaction_lines,company":
+                return GENERAL_LEDGER_TRANSACTION_LINES_COMPANY;
+            case "tracking_categories,general_ledger_transaction_lines,company":
+                return TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY;
+            case "company":
+                return COMPANY;
+            case "tracking_categories,general_ledger_transaction_lines":
+                return TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            default:
+                return new GeneralLedgerTransactionsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        GENERAL_LEDGER_TRANSACTION_LINES,
+
+        GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD,
+
+        GENERAL_LEDGER_TRANSACTION_LINES_COMPANY,
+
+        GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES,
+
+        TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY,
+
+        TRACKING_CATEGORIES_GENERAL_LEDGER_TRANSACTION_LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitGeneralLedgerTransactionLines();
+
+        T visitGeneralLedgerTransactionLinesAccountingPeriod();
+
+        T visitGeneralLedgerTransactionLinesCompany();
+
+        T visitGeneralLedgerTransactionLinesCompanyAccountingPeriod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesGeneralLedgerTransactionLines();
+
+        T visitTrackingCategoriesGeneralLedgerTransactionLinesAccountingPeriod();
+
+        T visitTrackingCategoriesGeneralLedgerTransactionLinesCompany();
+
+        T visitTrackingCategoriesGeneralLedgerTransactionLinesCompanyAccountingPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

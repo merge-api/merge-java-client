@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.hris.timeoff.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TimeOffRetrieveRequestExpand {
-    APPROVER("approver"),
+public final class TimeOffRetrieveRequestExpand {
+    public static final TimeOffRetrieveRequestExpand EMPLOYEE =
+            new TimeOffRetrieveRequestExpand(Value.EMPLOYEE, "employee");
 
-    EMPLOYEE("employee"),
+    public static final TimeOffRetrieveRequestExpand EMPLOYEE_APPROVER =
+            new TimeOffRetrieveRequestExpand(Value.EMPLOYEE_APPROVER, "employee,approver");
 
-    EMPLOYEE_APPROVER("employee,approver");
+    public static final TimeOffRetrieveRequestExpand APPROVER =
+            new TimeOffRetrieveRequestExpand(Value.APPROVER, "approver");
 
-    private final String value;
+    private final Value value;
 
-    TimeOffRetrieveRequestExpand(String value) {
+    private final String string;
+
+    TimeOffRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TimeOffRetrieveRequestExpand
+                        && this.string.equals(((TimeOffRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case EMPLOYEE_APPROVER:
+                return visitor.visitEmployeeApprover();
+            case APPROVER:
+                return visitor.visitApprover();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TimeOffRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "employee":
+                return EMPLOYEE;
+            case "employee,approver":
+                return EMPLOYEE_APPROVER;
+            case "approver":
+                return APPROVER;
+            default:
+                return new TimeOffRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPROVER,
+
+        EMPLOYEE,
+
+        EMPLOYEE_APPROVER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApprover();
+
+        T visitEmployee();
+
+        T visitEmployeeApprover();
+
+        T visitUnknown(String unknownType);
     }
 }

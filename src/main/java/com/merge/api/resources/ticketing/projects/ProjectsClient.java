@@ -3,10 +3,7 @@
  */
 package com.merge.api.resources.ticketing.projects;
 
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ticketing.projects.requests.ProjectsListRequest;
 import com.merge.api.resources.ticketing.projects.requests.ProjectsRetrieveRequest;
@@ -14,170 +11,78 @@ import com.merge.api.resources.ticketing.projects.requests.ProjectsUsersListRequ
 import com.merge.api.resources.ticketing.types.PaginatedProjectList;
 import com.merge.api.resources.ticketing.types.PaginatedUserList;
 import com.merge.api.resources.ticketing.types.Project;
-import java.io.IOException;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class ProjectsClient {
     protected final ClientOptions clientOptions;
 
+    private final RawProjectsClient rawClient;
+
     public ProjectsClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawProjectsClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawProjectsClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
     public PaginatedProjectList list() {
-        return list(ProjectsListRequest.builder().build());
+        return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
     public PaginatedProjectList list(ProjectsListRequest request) {
-        return list(request, null);
+        return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
     public PaginatedProjectList list(ProjectsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ticketing/v1/projects");
-        if (request.getCreatedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_after", request.getCreatedAfter().get().toString());
-        }
-        if (request.getCreatedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_before", request.getCreatedBefore().get().toString());
-        }
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getModifiedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_after", request.getModifiedAfter().get().toString());
-        }
-        if (request.getModifiedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_before", request.getModifiedBefore().get().toString());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        if (request.getRemoteId().isPresent()) {
-            httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedProjectList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.list(request, requestOptions).body();
     }
 
     /**
      * Returns a <code>Project</code> object with the given <code>id</code>.
      */
     public Project retrieve(String id) {
-        return retrieve(id, ProjectsRetrieveRequest.builder().build());
+        return this.rawClient.retrieve(id).body();
     }
 
     /**
      * Returns a <code>Project</code> object with the given <code>id</code>.
      */
     public Project retrieve(String id, ProjectsRetrieveRequest request) {
-        return retrieve(id, request, null);
+        return this.rawClient.retrieve(id, request).body();
     }
 
     /**
      * Returns a <code>Project</code> object with the given <code>id</code>.
      */
     public Project retrieve(String id, ProjectsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ticketing/v1/projects")
-                .addPathSegment(id);
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Project.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 
     /**
      * Returns a list of <code>User</code> objects.
      */
     public PaginatedUserList usersList(String parentId) {
-        return usersList(parentId, ProjectsUsersListRequest.builder().build());
+        return this.rawClient.usersList(parentId).body();
     }
 
     /**
      * Returns a list of <code>User</code> objects.
      */
     public PaginatedUserList usersList(String parentId, ProjectsUsersListRequest request) {
-        return usersList(parentId, request, null);
+        return this.rawClient.usersList(parentId, request).body();
     }
 
     /**
@@ -185,56 +90,6 @@ public class ProjectsClient {
      */
     public PaginatedUserList usersList(
             String parentId, ProjectsUsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ticketing/v1/projects")
-                .addPathSegment(parentId)
-                .addPathSegments("users");
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedUserList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.usersList(parentId, request, requestOptions).body();
     }
 }

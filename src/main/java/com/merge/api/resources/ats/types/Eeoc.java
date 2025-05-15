@@ -35,13 +35,13 @@ public final class Eeoc {
 
     private final Optional<OffsetDateTime> submittedAt;
 
-    private final Optional<EeocRace> race;
+    private final Optional<RaceEnum> race;
 
-    private final Optional<EeocGender> gender;
+    private final Optional<GenderEnum> gender;
 
-    private final Optional<EeocVeteranStatus> veteranStatus;
+    private final Optional<VeteranStatusEnum> veteranStatus;
 
-    private final Optional<EeocDisabilityStatus> disabilityStatus;
+    private final Optional<DisabilityStatusEnum> disabilityStatus;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -58,10 +58,10 @@ public final class Eeoc {
             Optional<OffsetDateTime> modifiedAt,
             Optional<EeocCandidate> candidate,
             Optional<OffsetDateTime> submittedAt,
-            Optional<EeocRace> race,
-            Optional<EeocGender> gender,
-            Optional<EeocVeteranStatus> veteranStatus,
-            Optional<EeocDisabilityStatus> disabilityStatus,
+            Optional<RaceEnum> race,
+            Optional<GenderEnum> gender,
+            Optional<VeteranStatusEnum> veteranStatus,
+            Optional<DisabilityStatusEnum> disabilityStatus,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -141,7 +141,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("race")
-    public Optional<EeocRace> getRace() {
+    public Optional<RaceEnum> getRace() {
         return race;
     }
 
@@ -156,7 +156,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("gender")
-    public Optional<EeocGender> getGender() {
+    public Optional<GenderEnum> getGender() {
         return gender;
     }
 
@@ -169,7 +169,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("veteran_status")
-    public Optional<EeocVeteranStatus> getVeteranStatus() {
+    public Optional<VeteranStatusEnum> getVeteranStatus() {
         return veteranStatus;
     }
 
@@ -182,7 +182,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("disability_status")
-    public Optional<EeocDisabilityStatus> getDisabilityStatus() {
+    public Optional<DisabilityStatusEnum> getDisabilityStatus() {
         return disabilityStatus;
     }
 
@@ -272,13 +272,13 @@ public final class Eeoc {
 
         private Optional<OffsetDateTime> submittedAt = Optional.empty();
 
-        private Optional<EeocRace> race = Optional.empty();
+        private Optional<RaceEnum> race = Optional.empty();
 
-        private Optional<EeocGender> gender = Optional.empty();
+        private Optional<GenderEnum> gender = Optional.empty();
 
-        private Optional<EeocVeteranStatus> veteranStatus = Optional.empty();
+        private Optional<VeteranStatusEnum> veteranStatus = Optional.empty();
 
-        private Optional<EeocDisabilityStatus> disabilityStatus = Optional.empty();
+        private Optional<DisabilityStatusEnum> disabilityStatus = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -375,45 +375,45 @@ public final class Eeoc {
         }
 
         @JsonSetter(value = "race", nulls = Nulls.SKIP)
-        public Builder race(Optional<EeocRace> race) {
+        public Builder race(Optional<RaceEnum> race) {
             this.race = race;
             return this;
         }
 
-        public Builder race(EeocRace race) {
+        public Builder race(RaceEnum race) {
             this.race = Optional.ofNullable(race);
             return this;
         }
 
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
-        public Builder gender(Optional<EeocGender> gender) {
+        public Builder gender(Optional<GenderEnum> gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder gender(EeocGender gender) {
+        public Builder gender(GenderEnum gender) {
             this.gender = Optional.ofNullable(gender);
             return this;
         }
 
         @JsonSetter(value = "veteran_status", nulls = Nulls.SKIP)
-        public Builder veteranStatus(Optional<EeocVeteranStatus> veteranStatus) {
+        public Builder veteranStatus(Optional<VeteranStatusEnum> veteranStatus) {
             this.veteranStatus = veteranStatus;
             return this;
         }
 
-        public Builder veteranStatus(EeocVeteranStatus veteranStatus) {
+        public Builder veteranStatus(VeteranStatusEnum veteranStatus) {
             this.veteranStatus = Optional.ofNullable(veteranStatus);
             return this;
         }
 
         @JsonSetter(value = "disability_status", nulls = Nulls.SKIP)
-        public Builder disabilityStatus(Optional<EeocDisabilityStatus> disabilityStatus) {
+        public Builder disabilityStatus(Optional<DisabilityStatusEnum> disabilityStatus) {
             this.disabilityStatus = disabilityStatus;
             return this;
         }
 
-        public Builder disabilityStatus(EeocDisabilityStatus disabilityStatus) {
+        public Builder disabilityStatus(DisabilityStatusEnum disabilityStatus) {
             this.disabilityStatus = Optional.ofNullable(disabilityStatus);
             return this;
         }

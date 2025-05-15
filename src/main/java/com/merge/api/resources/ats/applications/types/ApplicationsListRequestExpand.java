@@ -3,678 +3,3446 @@
  */
 package com.merge.api.resources.ats.applications.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ApplicationsListRequestExpand {
-    CANDIDATE("candidate"),
-
-    CANDIDATE_CREDITED_TO("candidate,credited_to"),
-
-    CANDIDATE_CREDITED_TO_CURRENT_STAGE("candidate,credited_to,current_stage"),
-
-    CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("candidate,credited_to,current_stage,reject_reason"),
-
-    CANDIDATE_CREDITED_TO_REJECT_REASON("candidate,credited_to,reject_reason"),
-
-    CANDIDATE_CURRENT_STAGE("candidate,current_stage"),
-
-    CANDIDATE_CURRENT_STAGE_REJECT_REASON("candidate,current_stage,reject_reason"),
-
-    CANDIDATE_JOB("candidate,job"),
-
-    CANDIDATE_JOB_CREDITED_TO("candidate,job,credited_to"),
-
-    CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE("candidate,job,credited_to,current_stage"),
-
-    CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("candidate,job,credited_to,current_stage,reject_reason"),
-
-    CANDIDATE_JOB_CREDITED_TO_REJECT_REASON("candidate,job,credited_to,reject_reason"),
-
-    CANDIDATE_JOB_CURRENT_STAGE("candidate,job,current_stage"),
-
-    CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON("candidate,job,current_stage,reject_reason"),
-
-    CANDIDATE_JOB_REJECT_REASON("candidate,job,reject_reason"),
-
-    CANDIDATE_REJECT_REASON("candidate,reject_reason"),
-
-    CREDITED_TO("credited_to"),
-
-    CREDITED_TO_CURRENT_STAGE("credited_to,current_stage"),
-
-    CREDITED_TO_CURRENT_STAGE_REJECT_REASON("credited_to,current_stage,reject_reason"),
-
-    CREDITED_TO_REJECT_REASON("credited_to,reject_reason"),
-
-    CURRENT_STAGE("current_stage"),
-
-    CURRENT_STAGE_REJECT_REASON("current_stage,reject_reason"),
-
-    JOB("job"),
-
-    JOB_CREDITED_TO("job,credited_to"),
-
-    JOB_CREDITED_TO_CURRENT_STAGE("job,credited_to,current_stage"),
-
-    JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("job,credited_to,current_stage,reject_reason"),
-
-    JOB_CREDITED_TO_REJECT_REASON("job,credited_to,reject_reason"),
-
-    JOB_CURRENT_STAGE("job,current_stage"),
-
-    JOB_CURRENT_STAGE_REJECT_REASON("job,current_stage,reject_reason"),
-
-    JOB_REJECT_REASON("job,reject_reason"),
-
-    OFFERS("offers"),
-
-    OFFERS_CANDIDATE("offers,candidate"),
-
-    OFFERS_CANDIDATE_CREDITED_TO("offers,candidate,credited_to"),
-
-    OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE("offers,candidate,credited_to,current_stage"),
-
-    OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,candidate,credited_to,current_stage,reject_reason"),
-
-    OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON("offers,candidate,credited_to,reject_reason"),
-
-    OFFERS_CANDIDATE_CURRENT_STAGE("offers,candidate,current_stage"),
-
-    OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON("offers,candidate,current_stage,reject_reason"),
-
-    OFFERS_CANDIDATE_JOB("offers,candidate,job"),
-
-    OFFERS_CANDIDATE_JOB_CREDITED_TO("offers,candidate,job,credited_to"),
-
-    OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE("offers,candidate,job,credited_to,current_stage"),
-
-    OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,candidate,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON("offers,candidate,job,credited_to,reject_reason"),
-
-    OFFERS_CANDIDATE_JOB_CURRENT_STAGE("offers,candidate,job,current_stage"),
-
-    OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON("offers,candidate,job,current_stage,reject_reason"),
-
-    OFFERS_CANDIDATE_JOB_REJECT_REASON("offers,candidate,job,reject_reason"),
-
-    OFFERS_CANDIDATE_REJECT_REASON("offers,candidate,reject_reason"),
-
-    OFFERS_CREDITED_TO("offers,credited_to"),
-
-    OFFERS_CREDITED_TO_CURRENT_STAGE("offers,credited_to,current_stage"),
-
-    OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("offers,credited_to,current_stage,reject_reason"),
-
-    OFFERS_CREDITED_TO_REJECT_REASON("offers,credited_to,reject_reason"),
-
-    OFFERS_CURRENT_STAGE("offers,current_stage"),
-
-    OFFERS_CURRENT_STAGE_REJECT_REASON("offers,current_stage,reject_reason"),
-
-    OFFERS_JOB("offers,job"),
-
-    OFFERS_JOB_CREDITED_TO("offers,job,credited_to"),
-
-    OFFERS_JOB_CREDITED_TO_CURRENT_STAGE("offers,job,credited_to,current_stage"),
-
-    OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON("offers,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_JOB_CREDITED_TO_REJECT_REASON("offers,job,credited_to,reject_reason"),
-
-    OFFERS_JOB_CURRENT_STAGE("offers,job,current_stage"),
-
-    OFFERS_JOB_CURRENT_STAGE_REJECT_REASON("offers,job,current_stage,reject_reason"),
-
-    OFFERS_JOB_REJECT_REASON("offers,job,reject_reason"),
-
-    OFFERS_REJECT_REASON("offers,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS("offers,screening_question_answers"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE("offers,screening_question_answers,candidate"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO("offers,screening_question_answers,candidate,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,candidate,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,candidate,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE(
-            "offers,screening_question_answers,candidate,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,candidate,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB("offers,screening_question_answers,candidate,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO(
-            "offers,screening_question_answers,candidate,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,candidate,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,candidate,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE(
-            "offers,screening_question_answers,candidate,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,candidate,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON(
-            "offers,screening_question_answers,candidate,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON(
-            "offers,screening_question_answers,candidate,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO("offers,screening_question_answers,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE("offers,screening_question_answers,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB("offers,screening_question_answers,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO("offers,screening_question_answers,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE("offers,screening_question_answers,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON("offers,screening_question_answers,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON("offers,screening_question_answers,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION(
-            "offers,screening_question_answers,screening_question_answers.question"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE(
-            "offers,screening_question_answers,screening_question_answers.question,candidate"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO(
-            "offers,screening_question_answers,screening_question_answers.question,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB(
-            "offers,screening_question_answers,screening_question_answers.question,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO(
-            "offers,screening_question_answers,screening_question_answers.question,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE(
-            "offers,screening_question_answers,screening_question_answers.question,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON(
-            "offers,screening_question_answers,screening_question_answers.question,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION("offers,screening_question_answers.question"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE("offers,screening_question_answers.question,candidate"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO(
-            "offers,screening_question_answers.question,candidate,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers.question,candidate,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE(
-            "offers,screening_question_answers.question,candidate,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB(
-            "offers,screening_question_answers.question,candidate,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO(
-            "offers,screening_question_answers.question,candidate,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers.question,candidate,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE(
-            "offers,screening_question_answers.question,candidate,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON(
-            "offers,screening_question_answers.question,candidate,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO("offers,screening_question_answers.question,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers.question,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers.question,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE(
-            "offers,screening_question_answers.question,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB("offers,screening_question_answers.question,job"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO(
-            "offers,screening_question_answers.question,job,credited_to"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE(
-            "offers,screening_question_answers.question,job,credited_to,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON(
-            "offers,screening_question_answers.question,job,credited_to,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE(
-            "offers,screening_question_answers.question,job,current_stage"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON(
-            "offers,screening_question_answers.question,job,current_stage,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON(
-            "offers,screening_question_answers.question,job,reject_reason"),
-
-    OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON(
-            "offers,screening_question_answers.question,reject_reason"),
-
-    REJECT_REASON("reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS("screening_question_answers"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE("screening_question_answers,candidate"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO("screening_question_answers,candidate,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,candidate,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,candidate,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,candidate,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE("screening_question_answers,candidate,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,candidate,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB("screening_question_answers,candidate,job"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO("screening_question_answers,candidate,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,candidate,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,candidate,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE("screening_question_answers,candidate,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,candidate,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON("screening_question_answers,candidate,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON("screening_question_answers,candidate,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CREDITED_TO("screening_question_answers,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE("screening_question_answers,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON("screening_question_answers,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_CURRENT_STAGE("screening_question_answers,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON("screening_question_answers,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_JOB("screening_question_answers,job"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO("screening_question_answers,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE("screening_question_answers,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON("screening_question_answers,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_REJECT_REASON("screening_question_answers,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION(
-            "screening_question_answers,screening_question_answers.question"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE(
-            "screening_question_answers,screening_question_answers.question,candidate"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO(
-            "screening_question_answers,screening_question_answers.question,candidate,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,candidate,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB(
-            "screening_question_answers,screening_question_answers.question,candidate,job"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO(
-            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,candidate,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,candidate,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO(
-            "screening_question_answers,screening_question_answers.question,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB(
-            "screening_question_answers,screening_question_answers.question,job"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO(
-            "screening_question_answers,screening_question_answers.question,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE(
-            "screening_question_answers,screening_question_answers.question,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON(
-            "screening_question_answers,screening_question_answers.question,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION("screening_question_answers.question"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE("screening_question_answers.question,candidate"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO(
-            "screening_question_answers.question,candidate,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers.question,candidate,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers.question,candidate,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE(
-            "screening_question_answers.question,candidate,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,candidate,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB("screening_question_answers.question,candidate,job"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO(
-            "screening_question_answers.question,candidate,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers.question,candidate,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers.question,candidate,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE(
-            "screening_question_answers.question,candidate,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,candidate,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON(
-            "screening_question_answers.question,candidate,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON(
-            "screening_question_answers.question,candidate,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO("screening_question_answers.question,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers.question,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers.question,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE("screening_question_answers.question,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB("screening_question_answers.question,job"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO("screening_question_answers.question,job,credited_to"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE(
-            "screening_question_answers.question,job,credited_to,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,job,credited_to,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON(
-            "screening_question_answers.question,job,credited_to,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE("screening_question_answers.question,job,current_stage"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON(
-            "screening_question_answers.question,job,current_stage,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON("screening_question_answers.question,job,reject_reason"),
-
-    SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON("screening_question_answers.question,reject_reason");
-
-    private final String value;
-
-    ApplicationsListRequestExpand(String value) {
+public final class ApplicationsListRequestExpand {
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB, "screening_question_answers,candidate,job");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+                    "screening_question_answers.question,credited_to");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+                    "screening_question_answers.question,job,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB, "offers,screening_question_answers,job");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+                    "offers,screening_question_answers.question,candidate");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON,
+                    "offers,screening_question_answers,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE, "offers,screening_question_answers,candidate");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+                    "offers,screening_question_answers.question,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.JOB_REJECT_REASON, "job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+                    "screening_question_answers.question,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+                    "offers,screening_question_answers.question,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "offers,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                    "offers,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "screening_question_answers.question,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "offers,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+                            "screening_question_answers,screening_question_answers.question,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON,
+                    "offers,screening_question_answers,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                    "offers,screening_question_answers,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+                    "screening_question_answers.question,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+                    "offers,screening_question_answers.question,candidate,job");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON, "screening_question_answers,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON,
+                    "screening_question_answers,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE =
+            new ApplicationsListRequestExpand(Value.CANDIDATE, "candidate");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                    "offers,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE,
+                    "offers,screening_question_answers,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION,
+                    "screening_question_answers,screening_question_answers.question");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.CREDITED_TO, "credited_to");
+
+    public static final ApplicationsListRequestExpand JOB = new ApplicationsListRequestExpand(Value.JOB, "job");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.OFFERS_JOB_CURRENT_STAGE, "offers,job,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                    "offers,screening_question_answers,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO,
+                    "screening_question_answers,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON, "offers,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers.question,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+                    "offers,screening_question_answers.question,job");
+
+    public static final ApplicationsListRequestExpand JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.JOB_CREDITED_TO_CURRENT_STAGE, "job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CURRENT_STAGE, "offers,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+                    "screening_question_answers.question,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers.question,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION, "screening_question_answers.question");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers.question,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CREDITED_TO_CURRENT_STAGE_REJECT_REASON, "credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+                            "offers,screening_question_answers,screening_question_answers.question,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+                    "offers,screening_question_answers.question,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO,
+                    "offers,screening_question_answers,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS =
+            new ApplicationsListRequestExpand(Value.SCREENING_QUESTION_ANSWERS, "screening_question_answers");
+
+    public static final ApplicationsListRequestExpand REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.REJECT_REASON, "reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "offers,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO,
+                    "screening_question_answers,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+                    "screening_question_answers.question,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers.question,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE, "screening_question_answers,candidate");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB =
+            new ApplicationsListRequestExpand(Value.SCREENING_QUESTION_ANSWERS_JOB, "screening_question_answers,job");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO, "screening_question_answers,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+                    "offers,screening_question_answers.question,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                    "offers,screening_question_answers,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+                    "offers,screening_question_answers.question,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE,
+                    "offers,screening_question_answers,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON, "offers,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CREDITED_TO, "screening_question_answers,credited_to");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_JOB, "candidate,job");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE =
+            new ApplicationsListRequestExpand(Value.OFFERS_CANDIDATE, "offers,candidate");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+                    "screening_question_answers.question,job,current_stage");
+
+    public static final ApplicationsListRequestExpand JOB_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.JOB_CURRENT_STAGE_REJECT_REASON, "job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.OFFERS_REJECT_REASON, "offers,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_CURRENT_STAGE, "candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE, "offers,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+                    "screening_question_answers.question,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE,
+                    "screening_question_answers,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_REJECT_REASON, "screening_question_answers,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+                            "screening_question_answers,screening_question_answers.question,candidate,job");
+
+    public static final ApplicationsListRequestExpand OFFERS_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.OFFERS_CREDITED_TO, "offers,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+                            "screening_question_answers,screening_question_answers.question,job,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION, "offers,screening_question_answers.question");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON,
+                    "offers,screening_question_answers,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS =
+            new ApplicationsListRequestExpand(Value.OFFERS, "offers");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.OFFERS_CANDIDATE_REJECT_REASON, "offers,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION,
+                    "offers,screening_question_answers,screening_question_answers.question");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_CREDITED_TO_CURRENT_STAGE, "candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+                    "offers,screening_question_answers.question,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers.question,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE,
+                    "screening_question_answers,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB,
+                    "offers,screening_question_answers,candidate,job");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers.question,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.CURRENT_STAGE_REJECT_REASON, "current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.JOB_CREDITED_TO_REJECT_REASON, "job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+                    "offers,screening_question_answers.question,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.OFFERS_JOB_REJECT_REASON, "offers,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE,
+                    "offers,screening_question_answers,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers.question,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_JOB_CREDITED_TO_REJECT_REASON, "offers,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE,
+                    "offers,screening_question_answers,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON,
+                    "offers,screening_question_answers,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_REJECT_REASON, "candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.OFFERS_CURRENT_STAGE, "offers,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_JOB_CURRENT_STAGE_REJECT_REASON, "offers,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CREDITED_TO_REJECT_REASON, "offers,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.OFFERS_CANDIDATE_CREDITED_TO, "offers,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_CREDITED_TO_REJECT_REASON, "candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON,
+                    "offers,screening_question_answers,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.JOB_CURRENT_STAGE, "job,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+                    "offers,screening_question_answers.question,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+                    "offers,screening_question_answers.question,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                            "screening_question_answers.question,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+                            "offers,screening_question_answers,screening_question_answers.question,job");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE, "candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO,
+                    "offers,screening_question_answers,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,job,current_stage");
+
+    public static final ApplicationsListRequestExpand CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.CREDITED_TO_REJECT_REASON, "credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+                    "screening_question_answers,screening_question_answers.question,job");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_JOB_CURRENT_STAGE, "candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_CURRENT_STAGE_REJECT_REASON, "candidate,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+                            "offers,screening_question_answers,screening_question_answers.question,job,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+                    "offers,screening_question_answers.question,job,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+                    "offers,screening_question_answers.question,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers.question,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers.question,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.OFFERS_CANDIDATE_CURRENT_STAGE, "offers,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "offers,screening_question_answers,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+                    "screening_question_answers.question,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+                    "screening_question_answers.question,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CREDITED_TO, "offers,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON,
+                    "screening_question_answers,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CURRENT_STAGE_REJECT_REASON, "offers,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+                    "screening_question_answers.question,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                    "screening_question_answers,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers.question,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers,candidate,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_JOB_CREDITED_TO_REJECT_REASON, "candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO,
+                    "offers,screening_question_answers,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_JOB_CREDITED_TO, "candidate,job,credited_to");
+
+    public static final ApplicationsListRequestExpand JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON, "job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CREDITED_TO_CURRENT_STAGE, "offers,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON,
+                    "offers,screening_question_answers,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE,
+                    "offers,screening_question_answers,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers.question,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS, "offers,screening_question_answers");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+                            "screening_question_answers,screening_question_answers.question,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB =
+            new ApplicationsListRequestExpand(Value.OFFERS_JOB, "offers,job");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE, "screening_question_answers,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CURRENT_STAGE, "screening_question_answers,current_stage");
+
+    public static final ApplicationsListRequestExpand JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.JOB_CREDITED_TO, "job,credited_to");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+                    "offers,screening_question_answers.question,candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON, "candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_JOB_CREDITED_TO_CURRENT_STAGE, "offers,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers.question,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON,
+                    "offers,screening_question_answers,candidate,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+                    "offers,screening_question_answers.question,job,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE =
+                    new ApplicationsListRequestExpand(
+                            Value.SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+                            "screening_question_answers,screening_question_answers.question,candidate");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_REJECT_REASON, "offers,candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB =
+                    new ApplicationsListRequestExpand(
+                            Value.OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_JOB_REJECT_REASON, "candidate,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO,
+                    "offers,screening_question_answers,credited_to");
+
+    public static final ApplicationsListRequestExpand CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.CREDITED_TO_CURRENT_STAGE, "credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+                            "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(Value.OFFERS_CANDIDATE_JOB, "offers,candidate,job");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "offers,job,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB, "screening_question_answers.question,job");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+                    "offers,screening_question_answers.question,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+                    "screening_question_answers.question,candidate,job,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+                    "screening_question_answers,credited_to,current_stage,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+                            "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON,
+                    "offers,screening_question_answers,job,reject_reason");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+                            "offers,screening_question_answers,screening_question_answers.question,job,current_stage");
+
+    public static final ApplicationsListRequestExpand CURRENT_STAGE =
+            new ApplicationsListRequestExpand(Value.CURRENT_STAGE, "current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+                    "offers,candidate,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand
+            OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON =
+                    new ApplicationsListRequestExpand(
+                            Value
+                                    .OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+                            "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+                    "offers,screening_question_answers.question,credited_to");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+                    "screening_question_answers.question,candidate");
+
+    public static final ApplicationsListRequestExpand OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE =
+            new ApplicationsListRequestExpand(
+                    Value.OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE,
+                    "offers,screening_question_answers,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB =
+            new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+                    "screening_question_answers.question,candidate,job");
+
+    public static final ApplicationsListRequestExpand CANDIDATE_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.CANDIDATE_CREDITED_TO, "candidate,credited_to");
+
+    public static final ApplicationsListRequestExpand
+            SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE = new ApplicationsListRequestExpand(
+                    Value.SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+                    "screening_question_answers.question,job,credited_to,current_stage");
+
+    public static final ApplicationsListRequestExpand OFFERS_JOB_CREDITED_TO =
+            new ApplicationsListRequestExpand(Value.OFFERS_JOB_CREDITED_TO, "offers,job,credited_to");
+
+    private final Value value;
+
+    private final String string;
+
+    ApplicationsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ApplicationsListRequestExpand
+                        && this.string.equals(((ApplicationsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB:
+                return visitor.visitScreeningQuestionAnswersCandidateJob();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersQuestionCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersJob();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidate();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE:
+                return visitor.visitOffersScreeningQuestionAnswersCandidate();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCurrentStageRejectReason();
+            case JOB_REJECT_REASON:
+                return visitor.visitJobRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+            case OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCandidateCreditedToCurrentStageRejectReason();
+            case OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCandidateJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+            case OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCandidateJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJob();
+            case SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersJobRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+            case CANDIDATE:
+                return visitor.visitCandidate();
+            case CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCandidateJobCreditedToCurrentStageRejectReason();
+            case OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersCandidateJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestion();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersJobCreditedToRejectReason();
+            case CREDITED_TO:
+                return visitor.visitCreditedTo();
+            case JOB:
+                return visitor.visitJob();
+            case OFFERS_JOB_CURRENT_STAGE:
+                return visitor.visitOffersJobCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+            case OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCandidateCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJob();
+            case JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitJobCreditedToCurrentStage();
+            case OFFERS_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitOffersCandidateJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION:
+                return visitor.visitScreeningQuestionAnswersQuestion();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+            case CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCreditedTo();
+            case SCREENING_QUESTION_ANSWERS:
+                return visitor.visitScreeningQuestionAnswers();
+            case REJECT_REASON:
+                return visitor.visitRejectReason();
+            case SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+            case CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCandidateCreditedToCurrentStageRejectReason();
+            case OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersCandidateCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE:
+                return visitor.visitScreeningQuestionAnswersCandidate();
+            case SCREENING_QUESTION_ANSWERS_JOB:
+                return visitor.visitScreeningQuestionAnswersJob();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersJobCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCurrentStage();
+            case OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersCandidateCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersCreditedTo();
+            case CANDIDATE_JOB:
+                return visitor.visitCandidateJob();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason();
+            case OFFERS_CANDIDATE:
+                return visitor.visitOffersCandidate();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCurrentStage();
+            case JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitJobCurrentStageRejectReason();
+            case OFFERS_REJECT_REASON:
+                return visitor.visitOffersRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+            case CANDIDATE_CURRENT_STAGE:
+                return visitor.visitCandidateCurrentStage();
+            case OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersCandidateCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob();
+            case OFFERS_CREDITED_TO:
+                return visitor.visitOffersCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION:
+                return visitor.visitOffersScreeningQuestionAnswersQuestion();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersJobCurrentStageRejectReason();
+            case OFFERS:
+                return visitor.visitOffers();
+            case OFFERS_CANDIDATE_REJECT_REASON:
+                return visitor.visitOffersCandidateRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestion();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCreditedToCurrentStageRejectReason();
+            case CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitCandidateCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCandidateCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJob();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateCurrentStageRejectReason();
+            case CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+            case JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+            case OFFERS_JOB_REJECT_REASON:
+                return visitor.visitOffersJobRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+            case OFFERS_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+            case CANDIDATE_REJECT_REASON:
+                return visitor.visitCandidateRejectReason();
+            case OFFERS_CURRENT_STAGE:
+                return visitor.visitOffersCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+            case OFFERS_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersJobCurrentStageRejectReason();
+            case OFFERS_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason();
+            case OFFERS_CANDIDATE_CREDITED_TO:
+                return visitor.visitOffersCandidateCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+            case CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor.visitCandidateCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCreditedToRejectReason();
+            case JOB_CURRENT_STAGE:
+                return visitor.visitJobCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob();
+            case CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitCandidateJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage();
+            case CREDITED_TO_REJECT_REASON:
+                return visitor.visitCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob();
+            case CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitCandidateJobCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+            case CANDIDATE_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCandidateCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+            case OFFERS_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitOffersCandidateCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+            case OFFERS_CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitOffersCandidateJobCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateJobRejectReason();
+            case OFFERS_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCandidateJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCandidateCreditedToCurrentStage();
+            case CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitCandidateJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+            case CANDIDATE_JOB_CREDITED_TO:
+                return visitor.visitCandidateJobCreditedTo();
+            case JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitJobCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+            case OFFERS_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS:
+                return visitor.visitOffersScreeningQuestionAnswers();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo();
+            case OFFERS_JOB:
+                return visitor.visitOffersJob();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersCurrentStage();
+            case JOB_CREDITED_TO:
+                return visitor.visitJobCreditedTo();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+            case CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitCandidateJobCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+            case OFFERS_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersJobCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersCandidateRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionJobCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate();
+            case OFFERS_CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitOffersCandidateJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob();
+            case CANDIDATE_JOB_REJECT_REASON:
+                return visitor.visitCandidateJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersCreditedTo();
+            case CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON:
+                return visitor
+                        .visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+            case OFFERS_CANDIDATE_JOB:
+                return visitor.visitOffersCandidateJob();
+            case OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitOffersJobCreditedToCurrentStageRejectReason();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB:
+                return visitor.visitScreeningQuestionAnswersQuestionJob();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON:
+                return visitor.visitScreeningQuestionAnswersCreditedToCurrentStageRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+            case SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON:
+                return visitor.visitOffersScreeningQuestionAnswersJobRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage();
+            case CURRENT_STAGE:
+                return visitor.visitCurrentStage();
+            case OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersCandidateJobCreditedToCurrentStage();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON:
+                return visitor
+                        .visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO:
+                return visitor.visitOffersScreeningQuestionAnswersQuestionCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidate();
+            case OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitOffersScreeningQuestionAnswersCreditedToCurrentStage();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB:
+                return visitor.visitScreeningQuestionAnswersQuestionCandidateJob();
+            case CANDIDATE_CREDITED_TO:
+                return visitor.visitCandidateCreditedTo();
+            case SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE:
+                return visitor.visitScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+            case OFFERS_JOB_CREDITED_TO:
+                return visitor.visitOffersJobCreditedTo();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ApplicationsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "screening_question_answers,candidate,job":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB;
+            case "screening_question_answers.question,credited_to":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO;
+            case "screening_question_answers.question,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO;
+            case "offers,screening_question_answers,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB;
+            case "offers,screening_question_answers.question,candidate":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE;
+            case "offers,screening_question_answers,candidate,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON;
+            case "offers,screening_question_answers,candidate":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE;
+            case "offers,screening_question_answers.question,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON;
+            case "screening_question_answers,candidate,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "job,reject_reason":
+                return JOB_REJECT_REASON;
+            case "screening_question_answers.question,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "offers,candidate,credited_to,current_stage,reject_reason":
+                return OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,candidate,job,current_stage,reject_reason":
+                return OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,candidate,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,candidate,job,credited_to,current_stage,reject_reason":
+                return OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,credited_to":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO;
+            case "offers,screening_question_answers,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON;
+            case "screening_question_answers,candidate,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB;
+            case "screening_question_answers,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON;
+            case "screening_question_answers.question,candidate,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "candidate":
+                return CANDIDATE;
+            case "candidate,job,credited_to,current_stage,reject_reason":
+                return CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,candidate,job,credited_to,reject_reason":
+                return OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION;
+            case "offers,screening_question_answers,candidate,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON;
+            case "credited_to":
+                return CREDITED_TO;
+            case "job":
+                return JOB;
+            case "offers,job,current_stage":
+                return OFFERS_JOB_CURRENT_STAGE;
+            case "offers,screening_question_answers,candidate,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO;
+            case "offers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "offers,candidate,current_stage,reject_reason":
+                return OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB;
+            case "job,credited_to,current_stage":
+                return JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,candidate,job,current_stage":
+                return OFFERS_CANDIDATE_JOB_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO;
+            case "offers,screening_question_answers.question,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question":
+                return SCREENING_QUESTION_ANSWERS_QUESTION;
+            case "screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,candidate,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "credited_to,current_stage,reject_reason":
+                return CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO;
+            case "offers,screening_question_answers,screening_question_answers.question,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO;
+            case "screening_question_answers":
+                return SCREENING_QUESTION_ANSWERS;
+            case "reject_reason":
+                return REJECT_REASON;
+            case "screening_question_answers,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "candidate,credited_to,current_stage,reject_reason":
+                return CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,credited_to,current_stage,reject_reason":
+                return OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,credited_to":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO;
+            case "offers,screening_question_answers.question,candidate,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers.question,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers.question,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,candidate,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON;
+            case "offers,screening_question_answers.question,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE;
+            case "screening_question_answers,job":
+                return SCREENING_QUESTION_ANSWERS_JOB;
+            case "offers,screening_question_answers,candidate,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,candidate,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO;
+            case "offers,screening_question_answers,candidate,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON;
+            case "offers,screening_question_answers,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE;
+            case "offers,candidate,credited_to,reject_reason":
+                return OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,credited_to":
+                return SCREENING_QUESTION_ANSWERS_CREDITED_TO;
+            case "candidate,job":
+                return CANDIDATE_JOB;
+            case "screening_question_answers,screening_question_answers.question,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON;
+            case "offers,candidate":
+                return OFFERS_CANDIDATE;
+            case "screening_question_answers.question,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE;
+            case "job,current_stage,reject_reason":
+                return JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers,reject_reason":
+                return OFFERS_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON;
+            case "candidate,current_stage":
+                return CANDIDATE_CURRENT_STAGE;
+            case "offers,candidate,credited_to,current_stage":
+                return OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,candidate,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON;
+            case "screening_question_answers,candidate,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE;
+            case "screening_question_answers,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_REJECT_REASON;
+            case "offers,screening_question_answers.question,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,job":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB;
+            case "offers,credited_to":
+                return OFFERS_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,job,credited_to":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO;
+            case "offers,screening_question_answers.question":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION;
+            case "offers,screening_question_answers,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers":
+                return OFFERS;
+            case "offers,candidate,reject_reason":
+                return OFFERS_CANDIDATE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION;
+            case "offers,screening_question_answers,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "candidate,credited_to,current_stage":
+                return CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,candidate,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB;
+            case "screening_question_answers.question,candidate,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,candidate,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "current_stage,reject_reason":
+                return CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "job,credited_to,reject_reason":
+                return JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON;
+            case "offers,job,reject_reason":
+                return OFFERS_JOB_REJECT_REASON;
+            case "screening_question_answers,candidate,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,candidate,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,job,credited_to,reject_reason":
+                return OFFERS_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,candidate,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE;
+            case "offers,screening_question_answers,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE;
+            case "candidate,reject_reason":
+                return CANDIDATE_REJECT_REASON;
+            case "offers,current_stage":
+                return OFFERS_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,job,current_stage,reject_reason":
+                return OFFERS_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers,credited_to,reject_reason":
+                return OFFERS_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON;
+            case "offers,candidate,credited_to":
+                return OFFERS_CANDIDATE_CREDITED_TO;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "candidate,credited_to,reject_reason":
+                return CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON;
+            case "job,current_stage":
+                return JOB_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,candidate,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB;
+            case "candidate,job,credited_to,current_stage":
+                return CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE;
+            case "credited_to,reject_reason":
+                return CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,job":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB;
+            case "candidate,job,current_stage":
+                return CANDIDATE_JOB_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "candidate,current_stage,reject_reason":
+                return CANDIDATE_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO;
+            case "offers,screening_question_answers.question,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE;
+            case "offers,screening_question_answers.question,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON;
+            case "screening_question_answers.question,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers.question,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,candidate,current_stage":
+                return OFFERS_CANDIDATE_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,job,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,credited_to":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO;
+            case "offers,screening_question_answers,candidate,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,candidate,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON;
+            case "offers,candidate,job,credited_to":
+                return OFFERS_CANDIDATE_JOB_CREDITED_TO;
+            case "screening_question_answers.question,candidate,job,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON;
+            case "offers,current_stage,reject_reason":
+                return OFFERS_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,candidate,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE;
+            case "screening_question_answers,candidate,job,credited_to,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,candidate,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE;
+            case "candidate,job,credited_to,reject_reason":
+                return CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE;
+            case "offers,screening_question_answers,candidate,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON;
+            case "candidate,job,credited_to":
+                return CANDIDATE_JOB_CREDITED_TO;
+            case "job,credited_to,current_stage,reject_reason":
+                return JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,credited_to,current_stage":
+                return OFFERS_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE;
+            case "screening_question_answers.question,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers":
+                return OFFERS_SCREENING_QUESTION_ANSWERS;
+            case "screening_question_answers,screening_question_answers.question,credited_to":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO;
+            case "offers,job":
+                return OFFERS_JOB;
+            case "offers,screening_question_answers.question,job,credited_to,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE;
+            case "screening_question_answers,current_stage":
+                return SCREENING_QUESTION_ANSWERS_CURRENT_STAGE;
+            case "job,credited_to":
+                return JOB_CREDITED_TO;
+            case "offers,screening_question_answers.question,candidate,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO;
+            case "candidate,job,current_stage,reject_reason":
+                return CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE;
+            case "offers,job,credited_to,current_stage":
+                return OFFERS_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,candidate,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON;
+            case "offers,screening_question_answers.question,job,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO;
+            case "screening_question_answers,screening_question_answers.question,candidate":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE;
+            case "offers,candidate,job,reject_reason":
+                return OFFERS_CANDIDATE_JOB_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB;
+            case "candidate,job,reject_reason":
+                return CANDIDATE_JOB_REJECT_REASON;
+            case "offers,screening_question_answers,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO;
+            case "credited_to,current_stage":
+                return CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,job,current_stage,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,candidate,job,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON;
+            case "offers,candidate,job":
+                return OFFERS_CANDIDATE_JOB;
+            case "offers,job,credited_to,current_stage,reject_reason":
+                return OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "screening_question_answers.question,job":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB;
+            case "offers,screening_question_answers.question,candidate,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,job,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE;
+            case "screening_question_answers,credited_to,current_stage,reject_reason":
+                return SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON;
+            case "screening_question_answers,screening_question_answers.question,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,job,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,job,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE;
+            case "current_stage":
+                return CURRENT_STAGE;
+            case "offers,candidate,job,credited_to,current_stage":
+                return OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,screening_question_answers,screening_question_answers.question,candidate,job,credited_to,reject_reason":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON;
+            case "offers,screening_question_answers.question,credited_to":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO;
+            case "screening_question_answers.question,candidate":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE;
+            case "offers,screening_question_answers,credited_to,current_stage":
+                return OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE;
+            case "screening_question_answers.question,candidate,job":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB;
+            case "candidate,credited_to":
+                return CANDIDATE_CREDITED_TO;
+            case "screening_question_answers.question,job,credited_to,current_stage":
+                return SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE;
+            case "offers,job,credited_to":
+                return OFFERS_JOB_CREDITED_TO;
+            default:
+                return new ApplicationsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CANDIDATE,
+
+        CANDIDATE_CREDITED_TO,
+
+        CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        CANDIDATE_CURRENT_STAGE,
+
+        CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        CANDIDATE_JOB,
+
+        CANDIDATE_JOB_CREDITED_TO,
+
+        CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        CANDIDATE_JOB_CURRENT_STAGE,
+
+        CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        CANDIDATE_JOB_REJECT_REASON,
+
+        CANDIDATE_REJECT_REASON,
+
+        CREDITED_TO,
+
+        CREDITED_TO_CURRENT_STAGE,
+
+        CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        CREDITED_TO_REJECT_REASON,
+
+        CURRENT_STAGE,
+
+        CURRENT_STAGE_REJECT_REASON,
+
+        JOB,
+
+        JOB_CREDITED_TO,
+
+        JOB_CREDITED_TO_CURRENT_STAGE,
+
+        JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        JOB_CREDITED_TO_REJECT_REASON,
+
+        JOB_CURRENT_STAGE,
+
+        JOB_CURRENT_STAGE_REJECT_REASON,
+
+        JOB_REJECT_REASON,
+
+        OFFERS,
+
+        OFFERS_CANDIDATE,
+
+        OFFERS_CANDIDATE_CREDITED_TO,
+
+        OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_CANDIDATE_CURRENT_STAGE,
+
+        OFFERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_CANDIDATE_JOB,
+
+        OFFERS_CANDIDATE_JOB_CREDITED_TO,
+
+        OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_CANDIDATE_JOB_CURRENT_STAGE,
+
+        OFFERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_CANDIDATE_JOB_REJECT_REASON,
+
+        OFFERS_CANDIDATE_REJECT_REASON,
+
+        OFFERS_CREDITED_TO,
+
+        OFFERS_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_CURRENT_STAGE,
+
+        OFFERS_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_JOB,
+
+        OFFERS_JOB_CREDITED_TO,
+
+        OFFERS_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_JOB_CURRENT_STAGE,
+
+        OFFERS_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_JOB_REJECT_REASON,
+
+        OFFERS_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+
+        OFFERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+
+        REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CANDIDATE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_JOB,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CANDIDATE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CREDITED_TO_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_CURRENT_STAGE_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_JOB_REJECT_REASON,
+
+        SCREENING_QUESTION_ANSWERS_QUESTION_REJECT_REASON,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCandidate();
+
+        T visitCandidateCreditedTo();
+
+        T visitCandidateCreditedToCurrentStage();
+
+        T visitCandidateCreditedToCurrentStageRejectReason();
+
+        T visitCandidateCreditedToRejectReason();
+
+        T visitCandidateCurrentStage();
+
+        T visitCandidateCurrentStageRejectReason();
+
+        T visitCandidateJob();
+
+        T visitCandidateJobCreditedTo();
+
+        T visitCandidateJobCreditedToCurrentStage();
+
+        T visitCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitCandidateJobCreditedToRejectReason();
+
+        T visitCandidateJobCurrentStage();
+
+        T visitCandidateJobCurrentStageRejectReason();
+
+        T visitCandidateJobRejectReason();
+
+        T visitCandidateRejectReason();
+
+        T visitCreditedTo();
+
+        T visitCreditedToCurrentStage();
+
+        T visitCreditedToCurrentStageRejectReason();
+
+        T visitCreditedToRejectReason();
+
+        T visitCurrentStage();
+
+        T visitCurrentStageRejectReason();
+
+        T visitJob();
+
+        T visitJobCreditedTo();
+
+        T visitJobCreditedToCurrentStage();
+
+        T visitJobCreditedToCurrentStageRejectReason();
+
+        T visitJobCreditedToRejectReason();
+
+        T visitJobCurrentStage();
+
+        T visitJobCurrentStageRejectReason();
+
+        T visitJobRejectReason();
+
+        T visitOffers();
+
+        T visitOffersCandidate();
+
+        T visitOffersCandidateCreditedTo();
+
+        T visitOffersCandidateCreditedToCurrentStage();
+
+        T visitOffersCandidateCreditedToCurrentStageRejectReason();
+
+        T visitOffersCandidateCreditedToRejectReason();
+
+        T visitOffersCandidateCurrentStage();
+
+        T visitOffersCandidateCurrentStageRejectReason();
+
+        T visitOffersCandidateJob();
+
+        T visitOffersCandidateJobCreditedTo();
+
+        T visitOffersCandidateJobCreditedToCurrentStage();
+
+        T visitOffersCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersCandidateJobCreditedToRejectReason();
+
+        T visitOffersCandidateJobCurrentStage();
+
+        T visitOffersCandidateJobCurrentStageRejectReason();
+
+        T visitOffersCandidateJobRejectReason();
+
+        T visitOffersCandidateRejectReason();
+
+        T visitOffersCreditedTo();
+
+        T visitOffersCreditedToCurrentStage();
+
+        T visitOffersCreditedToCurrentStageRejectReason();
+
+        T visitOffersCreditedToRejectReason();
+
+        T visitOffersCurrentStage();
+
+        T visitOffersCurrentStageRejectReason();
+
+        T visitOffersJob();
+
+        T visitOffersJobCreditedTo();
+
+        T visitOffersJobCreditedToCurrentStage();
+
+        T visitOffersJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersJobCreditedToRejectReason();
+
+        T visitOffersJobCurrentStage();
+
+        T visitOffersJobCurrentStageRejectReason();
+
+        T visitOffersJobRejectReason();
+
+        T visitOffersRejectReason();
+
+        T visitOffersScreeningQuestionAnswers();
+
+        T visitOffersScreeningQuestionAnswersCandidate();
+
+        T visitOffersScreeningQuestionAnswersCandidateCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersCandidateCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCandidateCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateJob();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCandidateRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersJob();
+
+        T visitOffersScreeningQuestionAnswersJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersJobCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestion();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+
+        T
+                visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+
+        T
+                visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestion();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidate();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJob();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCandidateRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionJob();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCreditedTo();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCurrentStage();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionJobRejectReason();
+
+        T visitOffersScreeningQuestionAnswersQuestionRejectReason();
+
+        T visitRejectReason();
+
+        T visitScreeningQuestionAnswers();
+
+        T visitScreeningQuestionAnswersCandidate();
+
+        T visitScreeningQuestionAnswersCandidateCreditedTo();
+
+        T visitScreeningQuestionAnswersCandidateCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersCandidateCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateCurrentStage();
+
+        T visitScreeningQuestionAnswersCandidateCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateJob();
+
+        T visitScreeningQuestionAnswersCandidateJobCreditedTo();
+
+        T visitScreeningQuestionAnswersCandidateJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateJobCurrentStage();
+
+        T visitScreeningQuestionAnswersCandidateJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateJobRejectReason();
+
+        T visitScreeningQuestionAnswersCandidateRejectReason();
+
+        T visitScreeningQuestionAnswersCreditedTo();
+
+        T visitScreeningQuestionAnswersCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersCurrentStage();
+
+        T visitScreeningQuestionAnswersCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersJob();
+
+        T visitScreeningQuestionAnswersJobCreditedTo();
+
+        T visitScreeningQuestionAnswersJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersJobCurrentStage();
+
+        T visitScreeningQuestionAnswersJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersJobRejectReason();
+
+        T visitScreeningQuestionAnswersRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestion();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidate();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedTo();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJob();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCandidateRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedTo();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJob();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedTo();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStage();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionJobRejectReason();
+
+        T visitScreeningQuestionAnswersScreeningQuestionAnswersQuestionRejectReason();
+
+        T visitScreeningQuestionAnswersQuestion();
+
+        T visitScreeningQuestionAnswersQuestionCandidate();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCreditedTo();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCandidateCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJob();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCreditedTo();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateJobRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCandidateRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCreditedTo();
+
+        T visitScreeningQuestionAnswersQuestionCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionJob();
+
+        T visitScreeningQuestionAnswersQuestionJobCreditedTo();
+
+        T visitScreeningQuestionAnswersQuestionJobCreditedToCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionJobCreditedToCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionJobCreditedToRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionJobCurrentStage();
+
+        T visitScreeningQuestionAnswersQuestionJobCurrentStageRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionJobRejectReason();
+
+        T visitScreeningQuestionAnswersQuestionRejectReason();
+
+        T visitUnknown(String unknownType);
     }
 }

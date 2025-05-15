@@ -32,7 +32,7 @@ public final class RemoteResponse {
 
     private final Optional<Map<String, JsonNode>> responseHeaders;
 
-    private final Optional<RemoteResponseResponseType> responseType;
+    private final Optional<ResponseTypeEnum> responseType;
 
     private final Optional<Map<String, JsonNode>> headers;
 
@@ -44,7 +44,7 @@ public final class RemoteResponse {
             int status,
             JsonNode response,
             Optional<Map<String, JsonNode>> responseHeaders,
-            Optional<RemoteResponseResponseType> responseType,
+            Optional<ResponseTypeEnum> responseType,
             Optional<Map<String, JsonNode>> headers,
             Map<String, Object> additionalProperties) {
         this.method = method;
@@ -83,7 +83,7 @@ public final class RemoteResponse {
     }
 
     @JsonProperty("response_type")
-    public Optional<RemoteResponseResponseType> getResponseType() {
+    public Optional<ResponseTypeEnum> getResponseType() {
         return responseType;
     }
 
@@ -159,9 +159,9 @@ public final class RemoteResponse {
 
         _FinalStage responseHeaders(Map<String, JsonNode> responseHeaders);
 
-        _FinalStage responseType(Optional<RemoteResponseResponseType> responseType);
+        _FinalStage responseType(Optional<ResponseTypeEnum> responseType);
 
-        _FinalStage responseType(RemoteResponseResponseType responseType);
+        _FinalStage responseType(ResponseTypeEnum responseType);
 
         _FinalStage headers(Optional<Map<String, JsonNode>> headers);
 
@@ -180,7 +180,7 @@ public final class RemoteResponse {
 
         private Optional<Map<String, JsonNode>> headers = Optional.empty();
 
-        private Optional<RemoteResponseResponseType> responseType = Optional.empty();
+        private Optional<ResponseTypeEnum> responseType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> responseHeaders = Optional.empty();
 
@@ -243,14 +243,14 @@ public final class RemoteResponse {
         }
 
         @java.lang.Override
-        public _FinalStage responseType(RemoteResponseResponseType responseType) {
+        public _FinalStage responseType(ResponseTypeEnum responseType) {
             this.responseType = Optional.ofNullable(responseType);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "response_type", nulls = Nulls.SKIP)
-        public _FinalStage responseType(Optional<RemoteResponseResponseType> responseType) {
+        public _FinalStage responseType(Optional<ResponseTypeEnum> responseType) {
             this.responseType = responseType;
             return this;
         }

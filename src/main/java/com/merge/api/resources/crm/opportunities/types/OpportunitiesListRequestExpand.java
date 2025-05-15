@@ -3,32 +3,137 @@
  */
 package com.merge.api.resources.crm.opportunities.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OpportunitiesListRequestExpand {
-    ACCOUNT("account"),
+public final class OpportunitiesListRequestExpand {
+    public static final OpportunitiesListRequestExpand OWNER = new OpportunitiesListRequestExpand(Value.OWNER, "owner");
 
-    OWNER("owner"),
+    public static final OpportunitiesListRequestExpand OWNER_STAGE =
+            new OpportunitiesListRequestExpand(Value.OWNER_STAGE, "owner,stage");
 
-    OWNER_ACCOUNT("owner,account"),
+    public static final OpportunitiesListRequestExpand OWNER_ACCOUNT =
+            new OpportunitiesListRequestExpand(Value.OWNER_ACCOUNT, "owner,account");
 
-    OWNER_STAGE("owner,stage"),
+    public static final OpportunitiesListRequestExpand ACCOUNT =
+            new OpportunitiesListRequestExpand(Value.ACCOUNT, "account");
 
-    OWNER_STAGE_ACCOUNT("owner,stage,account"),
+    public static final OpportunitiesListRequestExpand STAGE = new OpportunitiesListRequestExpand(Value.STAGE, "stage");
 
-    STAGE("stage"),
+    public static final OpportunitiesListRequestExpand STAGE_ACCOUNT =
+            new OpportunitiesListRequestExpand(Value.STAGE_ACCOUNT, "stage,account");
 
-    STAGE_ACCOUNT("stage,account");
+    public static final OpportunitiesListRequestExpand OWNER_STAGE_ACCOUNT =
+            new OpportunitiesListRequestExpand(Value.OWNER_STAGE_ACCOUNT, "owner,stage,account");
 
-    private final String value;
+    private final Value value;
 
-    OpportunitiesListRequestExpand(String value) {
+    private final String string;
+
+    OpportunitiesListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OpportunitiesListRequestExpand
+                        && this.string.equals(((OpportunitiesListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case OWNER_STAGE:
+                return visitor.visitOwnerStage();
+            case OWNER_ACCOUNT:
+                return visitor.visitOwnerAccount();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case STAGE:
+                return visitor.visitStage();
+            case STAGE_ACCOUNT:
+                return visitor.visitStageAccount();
+            case OWNER_STAGE_ACCOUNT:
+                return visitor.visitOwnerStageAccount();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OpportunitiesListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "owner,stage":
+                return OWNER_STAGE;
+            case "owner,account":
+                return OWNER_ACCOUNT;
+            case "account":
+                return ACCOUNT;
+            case "stage":
+                return STAGE;
+            case "stage,account":
+                return STAGE_ACCOUNT;
+            case "owner,stage,account":
+                return OWNER_STAGE_ACCOUNT;
+            default:
+                return new OpportunitiesListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        OWNER,
+
+        OWNER_ACCOUNT,
+
+        OWNER_STAGE,
+
+        OWNER_STAGE_ACCOUNT,
+
+        STAGE,
+
+        STAGE_ACCOUNT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitOwner();
+
+        T visitOwnerAccount();
+
+        T visitOwnerStage();
+
+        T visitOwnerStageAccount();
+
+        T visitStage();
+
+        T visitStageAccount();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,22 +3,80 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum LanguageEnum {
-    EN("en"),
+public final class LanguageEnum {
+    public static final LanguageEnum DE = new LanguageEnum(Value.DE, "de");
 
-    DE("de");
+    public static final LanguageEnum EN = new LanguageEnum(Value.EN, "en");
 
-    private final String value;
+    private final Value value;
 
-    LanguageEnum(String value) {
+    private final String string;
+
+    LanguageEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof LanguageEnum && this.string.equals(((LanguageEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DE:
+                return visitor.visitDe();
+            case EN:
+                return visitor.visitEn();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static LanguageEnum valueOf(String value) {
+        switch (value) {
+            case "de":
+                return DE;
+            case "en":
+                return EN;
+            default:
+                return new LanguageEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EN,
+
+        DE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEn();
+
+        T visitDe();
+
+        T visitUnknown(String unknownType);
     }
 }

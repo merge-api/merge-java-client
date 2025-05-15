@@ -3,24 +3,92 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OriginTypeEnum {
-    CUSTOM_OBJECT("CUSTOM_OBJECT"),
+public final class OriginTypeEnum {
+    public static final OriginTypeEnum COMMON_MODEL = new OriginTypeEnum(Value.COMMON_MODEL, "COMMON_MODEL");
 
-    COMMON_MODEL("COMMON_MODEL"),
+    public static final OriginTypeEnum CUSTOM_OBJECT = new OriginTypeEnum(Value.CUSTOM_OBJECT, "CUSTOM_OBJECT");
 
-    REMOTE_ONLY_MODEL("REMOTE_ONLY_MODEL");
+    public static final OriginTypeEnum REMOTE_ONLY_MODEL =
+            new OriginTypeEnum(Value.REMOTE_ONLY_MODEL, "REMOTE_ONLY_MODEL");
 
-    private final String value;
+    private final Value value;
 
-    OriginTypeEnum(String value) {
+    private final String string;
+
+    OriginTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OriginTypeEnum && this.string.equals(((OriginTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case COMMON_MODEL:
+                return visitor.visitCommonModel();
+            case CUSTOM_OBJECT:
+                return visitor.visitCustomObject();
+            case REMOTE_ONLY_MODEL:
+                return visitor.visitRemoteOnlyModel();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OriginTypeEnum valueOf(String value) {
+        switch (value) {
+            case "COMMON_MODEL":
+                return COMMON_MODEL;
+            case "CUSTOM_OBJECT":
+                return CUSTOM_OBJECT;
+            case "REMOTE_ONLY_MODEL":
+                return REMOTE_ONLY_MODEL;
+            default:
+                return new OriginTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CUSTOM_OBJECT,
+
+        COMMON_MODEL,
+
+        REMOTE_ONLY_MODEL,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCustomObject();
+
+        T visitCommonModel();
+
+        T visitRemoteOnlyModel();
+
+        T visitUnknown(String unknownType);
     }
 }

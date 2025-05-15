@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.accounting.companyinfo.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CompanyInfoRetrieveRequestExpand {
-    ADDRESSES("addresses"),
+public final class CompanyInfoRetrieveRequestExpand {
+    public static final CompanyInfoRetrieveRequestExpand ADDRESSES =
+            new CompanyInfoRetrieveRequestExpand(Value.ADDRESSES, "addresses");
 
-    ADDRESSES_PHONE_NUMBERS("addresses,phone_numbers"),
+    public static final CompanyInfoRetrieveRequestExpand ADDRESSES_PHONE_NUMBERS =
+            new CompanyInfoRetrieveRequestExpand(Value.ADDRESSES_PHONE_NUMBERS, "addresses,phone_numbers");
 
-    PHONE_NUMBERS("phone_numbers");
+    public static final CompanyInfoRetrieveRequestExpand PHONE_NUMBERS =
+            new CompanyInfoRetrieveRequestExpand(Value.PHONE_NUMBERS, "phone_numbers");
 
-    private final String value;
+    private final Value value;
 
-    CompanyInfoRetrieveRequestExpand(String value) {
+    private final String string;
+
+    CompanyInfoRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CompanyInfoRetrieveRequestExpand
+                        && this.string.equals(((CompanyInfoRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ADDRESSES:
+                return visitor.visitAddresses();
+            case ADDRESSES_PHONE_NUMBERS:
+                return visitor.visitAddressesPhoneNumbers();
+            case PHONE_NUMBERS:
+                return visitor.visitPhoneNumbers();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CompanyInfoRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "addresses":
+                return ADDRESSES;
+            case "addresses,phone_numbers":
+                return ADDRESSES_PHONE_NUMBERS;
+            case "phone_numbers":
+                return PHONE_NUMBERS;
+            default:
+                return new CompanyInfoRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ADDRESSES,
+
+        ADDRESSES_PHONE_NUMBERS,
+
+        PHONE_NUMBERS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAddresses();
+
+        T visitAddressesPhoneNumbers();
+
+        T visitPhoneNumbers();
+
+        T visitUnknown(String unknownType);
     }
 }

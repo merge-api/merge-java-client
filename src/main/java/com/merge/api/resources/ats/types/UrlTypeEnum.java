@@ -3,32 +3,130 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UrlTypeEnum {
-    PERSONAL("PERSONAL"),
+public final class UrlTypeEnum {
+    public static final UrlTypeEnum SOCIAL_MEDIA = new UrlTypeEnum(Value.SOCIAL_MEDIA, "SOCIAL_MEDIA");
 
-    COMPANY("COMPANY"),
+    public static final UrlTypeEnum JOB_POSTING = new UrlTypeEnum(Value.JOB_POSTING, "JOB_POSTING");
 
-    PORTFOLIO("PORTFOLIO"),
+    public static final UrlTypeEnum OTHER = new UrlTypeEnum(Value.OTHER, "OTHER");
 
-    BLOG("BLOG"),
+    public static final UrlTypeEnum COMPANY = new UrlTypeEnum(Value.COMPANY, "COMPANY");
 
-    SOCIAL_MEDIA("SOCIAL_MEDIA"),
+    public static final UrlTypeEnum PORTFOLIO = new UrlTypeEnum(Value.PORTFOLIO, "PORTFOLIO");
 
-    OTHER("OTHER"),
+    public static final UrlTypeEnum BLOG = new UrlTypeEnum(Value.BLOG, "BLOG");
 
-    JOB_POSTING("JOB_POSTING");
+    public static final UrlTypeEnum PERSONAL = new UrlTypeEnum(Value.PERSONAL, "PERSONAL");
 
-    private final String value;
+    private final Value value;
 
-    UrlTypeEnum(String value) {
+    private final String string;
+
+    UrlTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof UrlTypeEnum && this.string.equals(((UrlTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SOCIAL_MEDIA:
+                return visitor.visitSocialMedia();
+            case JOB_POSTING:
+                return visitor.visitJobPosting();
+            case OTHER:
+                return visitor.visitOther();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PORTFOLIO:
+                return visitor.visitPortfolio();
+            case BLOG:
+                return visitor.visitBlog();
+            case PERSONAL:
+                return visitor.visitPersonal();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static UrlTypeEnum valueOf(String value) {
+        switch (value) {
+            case "SOCIAL_MEDIA":
+                return SOCIAL_MEDIA;
+            case "JOB_POSTING":
+                return JOB_POSTING;
+            case "OTHER":
+                return OTHER;
+            case "COMPANY":
+                return COMPANY;
+            case "PORTFOLIO":
+                return PORTFOLIO;
+            case "BLOG":
+                return BLOG;
+            case "PERSONAL":
+                return PERSONAL;
+            default:
+                return new UrlTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PERSONAL,
+
+        COMPANY,
+
+        PORTFOLIO,
+
+        BLOG,
+
+        SOCIAL_MEDIA,
+
+        OTHER,
+
+        JOB_POSTING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPersonal();
+
+        T visitCompany();
+
+        T visitPortfolio();
+
+        T visitBlog();
+
+        T visitSocialMedia();
+
+        T visitOther();
+
+        T visitJobPosting();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,173 +3,69 @@
  */
 package com.merge.api.resources.ats.jobpostings;
 
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.jobpostings.requests.JobPostingsListRequest;
 import com.merge.api.resources.ats.jobpostings.requests.JobPostingsRetrieveRequest;
 import com.merge.api.resources.ats.types.JobPosting;
 import com.merge.api.resources.ats.types.PaginatedJobPostingList;
-import java.io.IOException;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class JobPostingsClient {
     protected final ClientOptions clientOptions;
 
+    private final RawJobPostingsClient rawClient;
+
     public JobPostingsClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawJobPostingsClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawJobPostingsClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Returns a list of <code>JobPosting</code> objects.
      */
     public PaginatedJobPostingList list() {
-        return list(JobPostingsListRequest.builder().build());
+        return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>JobPosting</code> objects.
      */
     public PaginatedJobPostingList list(JobPostingsListRequest request) {
-        return list(request, null);
+        return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>JobPosting</code> objects.
      */
     public PaginatedJobPostingList list(JobPostingsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/job-postings");
-        if (request.getCreatedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_after", request.getCreatedAfter().get().toString());
-        }
-        if (request.getCreatedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_before", request.getCreatedBefore().get().toString());
-        }
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getModifiedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_after", request.getModifiedAfter().get().toString());
-        }
-        if (request.getModifiedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_before", request.getModifiedBefore().get().toString());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        if (request.getRemoteId().isPresent()) {
-            httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
-        }
-        if (request.getStatus().isPresent()) {
-            httpUrl.addQueryParameter("status", request.getStatus().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedJobPostingList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.list(request, requestOptions).body();
     }
 
     /**
      * Returns a <code>JobPosting</code> object with the given <code>id</code>.
      */
     public JobPosting retrieve(String id) {
-        return retrieve(id, JobPostingsRetrieveRequest.builder().build());
+        return this.rawClient.retrieve(id).body();
     }
 
     /**
      * Returns a <code>JobPosting</code> object with the given <code>id</code>.
      */
     public JobPosting retrieve(String id, JobPostingsRetrieveRequest request) {
-        return retrieve(id, request, null);
+        return this.rawClient.retrieve(id, request).body();
     }
 
     /**
      * Returns a <code>JobPosting</code> object with the given <code>id</code>.
      */
     public JobPosting retrieve(String id, JobPostingsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/job-postings")
-                .addPathSegment(id);
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), JobPosting.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 }

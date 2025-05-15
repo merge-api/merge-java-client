@@ -39,7 +39,7 @@ public final class AssociationType {
 
     private final Optional<String> displayName;
 
-    private final Optional<AssociationTypeCardinality> cardinality;
+    private final Optional<CardinalityEnum> cardinality;
 
     private final Optional<Boolean> isRequired;
 
@@ -54,7 +54,7 @@ public final class AssociationType {
             Optional<List<AssociationSubType>> targetObjectClasses,
             Optional<String> remoteKeyName,
             Optional<String> displayName,
-            Optional<AssociationTypeCardinality> cardinality,
+            Optional<CardinalityEnum> cardinality,
             Optional<Boolean> isRequired,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -123,7 +123,7 @@ public final class AssociationType {
     }
 
     @JsonProperty("cardinality")
-    public Optional<AssociationTypeCardinality> getCardinality() {
+    public Optional<CardinalityEnum> getCardinality() {
         return cardinality;
     }
 
@@ -198,7 +198,7 @@ public final class AssociationType {
 
         private Optional<String> displayName = Optional.empty();
 
-        private Optional<AssociationTypeCardinality> cardinality = Optional.empty();
+        private Optional<CardinalityEnum> cardinality = Optional.empty();
 
         private Optional<Boolean> isRequired = Optional.empty();
 
@@ -310,12 +310,12 @@ public final class AssociationType {
         }
 
         @JsonSetter(value = "cardinality", nulls = Nulls.SKIP)
-        public Builder cardinality(Optional<AssociationTypeCardinality> cardinality) {
+        public Builder cardinality(Optional<CardinalityEnum> cardinality) {
             this.cardinality = cardinality;
             return this;
         }
 
-        public Builder cardinality(AssociationTypeCardinality cardinality) {
+        public Builder cardinality(CardinalityEnum cardinality) {
             this.cardinality = Optional.ofNullable(cardinality);
             return this;
         }

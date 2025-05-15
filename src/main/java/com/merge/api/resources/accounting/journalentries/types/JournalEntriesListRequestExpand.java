@@ -3,154 +3,823 @@
  */
 package com.merge.api.resources.accounting.journalentries.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JournalEntriesListRequestExpand {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class JournalEntriesListRequestExpand {
+    public static final JournalEntriesListRequestExpand PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "payments,tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD, "lines,payments,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "lines,tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY, "lines,payments,applied_payments,company");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD, "payments,applied_payments,accounting_period");
+
+    public static final JournalEntriesListRequestExpand
+            PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+                    new JournalEntriesListRequestExpand(
+                            Value.PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                            "payments,applied_payments,tracking_categories,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "applied_payments,tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(Value.LINES_PAYMENTS_COMPANY, "lines,payments,company");
+
+    public static final JournalEntriesListRequestExpand LINES =
+            new JournalEntriesListRequestExpand(Value.LINES, "lines");
+
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(Value.LINES_APPLIED_PAYMENTS_COMPANY, "lines,applied_payments,company");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,payments,tracking_categories,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_COMPANY, "lines,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,tracking_categories,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand
+            PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD = new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "payments,applied_payments,tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY, "applied_payments,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+                    "payments,applied_payments,tracking_categories");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(Value.APPLIED_PAYMENTS_COMPANY, "applied_payments,company");
+
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+                    "lines,applied_payments,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand COMPANY =
+            new JournalEntriesListRequestExpand(Value.COMPANY, "company");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "lines,payments,tracking_categories,accounting_period");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_TRACKING_CATEGORIES_COMPANY, "payments,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS =
+            new JournalEntriesListRequestExpand(Value.LINES_PAYMENTS, "lines,payments");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+                    "payments,applied_payments,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS =
+            new JournalEntriesListRequestExpand(Value.PAYMENTS, "payments");
+
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,applied_payments,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY, "lines,payments,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES, "lines,applied_payments,tracking_categories");
+
+    public static final JournalEntriesListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD, "applied_payments,company,accounting_period");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+                    "payments,applied_payments,tracking_categories,company");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS =
+            new JournalEntriesListRequestExpand(Value.APPLIED_PAYMENTS, "applied_payments");
+
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_TRACKING_CATEGORIES, "applied_payments,tracking_categories");
+
+    public static final JournalEntriesListRequestExpand LINES_COMPANY =
+            new JournalEntriesListRequestExpand(Value.LINES_COMPANY, "lines,company");
+
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD,
+                    "lines,payments,applied_payments,accounting_period");
+
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD, "lines,applied_payments,accounting_period");
+
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS =
+            new JournalEntriesListRequestExpand(Value.PAYMENTS_APPLIED_PAYMENTS, "payments,applied_payments");
+
+    public static final JournalEntriesListRequestExpand
+            LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+                    new JournalEntriesListRequestExpand(
+                            Value.LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                            "lines,payments,applied_payments,tracking_categories,company,accounting_period");
 
-    APPLIED_PAYMENTS("applied_payments"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(Value.PAYMENTS_COMPANY, "payments,company");
 
-    APPLIED_PAYMENTS_ACCOUNTING_PERIOD("applied_payments,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS =
+            new JournalEntriesListRequestExpand(Value.LINES_APPLIED_PAYMENTS, "lines,applied_payments");
 
-    APPLIED_PAYMENTS_COMPANY("applied_payments,company"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_COMPANY_ACCOUNTING_PERIOD, "payments,company,accounting_period");
 
-    APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("applied_payments,company,accounting_period"),
+    public static final JournalEntriesListRequestExpand ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    APPLIED_PAYMENTS_TRACKING_CATEGORIES("applied_payments,tracking_categories"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_ACCOUNTING_PERIOD, "lines,payments,accounting_period");
 
-    APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("applied_payments,tracking_categories,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "lines,applied_payments,tracking_categories,accounting_period");
 
-    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("applied_payments,tracking_categories,company"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS, "lines,payments,applied_payments");
 
-    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "applied_payments,tracking_categories,company,accounting_period"),
+    public static final JournalEntriesListRequestExpand
+            LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD = new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "lines,payments,applied_payments,tracking_categories,accounting_period");
 
-    COMPANY("company"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,payments,applied_payments,company,accounting_period");
 
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
+    public static final JournalEntriesListRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
 
-    LINES("lines"),
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_ACCOUNTING_PERIOD, "applied_payments,accounting_period");
 
-    LINES_ACCOUNTING_PERIOD("lines,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+                    "lines,payments,applied_payments,tracking_categories");
 
-    LINES_APPLIED_PAYMENTS("lines,applied_payments"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_TRACKING_CATEGORIES, "lines,payments,tracking_categories");
 
-    LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD("lines,applied_payments,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+                    "lines,payments,applied_payments,tracking_categories,company");
 
-    LINES_APPLIED_PAYMENTS_COMPANY("lines,applied_payments,company"),
+    public static final JournalEntriesListRequestExpand APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "applied_payments,tracking_categories,company,accounting_period");
 
-    LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("lines,applied_payments,company,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.LINES_COMPANY_ACCOUNTING_PERIOD, "lines,company,accounting_period");
 
-    LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES("lines,applied_payments,tracking_categories"),
+    public static final JournalEntriesListRequestExpand
+            LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD = new JournalEntriesListRequestExpand(
+                    Value.LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,applied_payments,tracking_categories,company,accounting_period");
 
-    LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
-            "lines,applied_payments,tracking_categories,accounting_period"),
+    public static final JournalEntriesListRequestExpand LINES_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(Value.LINES_TRACKING_CATEGORIES, "lines,tracking_categories");
 
-    LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("lines,applied_payments,tracking_categories,company"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "payments,tracking_categories,company,accounting_period");
 
-    LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "lines,applied_payments,tracking_categories,company,accounting_period"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpand(Value.PAYMENTS_TRACKING_CATEGORIES, "payments,tracking_categories");
 
-    LINES_COMPANY("lines,company"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(Value.PAYMENTS_ACCOUNTING_PERIOD, "payments,accounting_period");
 
-    LINES_COMPANY_ACCOUNTING_PERIOD("lines,company,accounting_period"),
+    public static final JournalEntriesListRequestExpand PAYMENTS_APPLIED_PAYMENTS_COMPANY =
+            new JournalEntriesListRequestExpand(
+                    Value.PAYMENTS_APPLIED_PAYMENTS_COMPANY, "payments,applied_payments,company");
 
-    LINES_PAYMENTS("lines,payments"),
+    public static final JournalEntriesListRequestExpand LINES_ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpand(Value.LINES_ACCOUNTING_PERIOD, "lines,accounting_period");
 
-    LINES_PAYMENTS_ACCOUNTING_PERIOD("lines,payments,accounting_period"),
+    private final Value value;
 
-    LINES_PAYMENTS_APPLIED_PAYMENTS("lines,payments,applied_payments"),
+    private final String string;
 
-    LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD("lines,payments,applied_payments,accounting_period"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY("lines,payments,applied_payments,company"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD(
-            "lines,payments,applied_payments,company,accounting_period"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES("lines,payments,applied_payments,tracking_categories"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
-            "lines,payments,applied_payments,tracking_categories,accounting_period"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY(
-            "lines,payments,applied_payments,tracking_categories,company"),
-
-    LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "lines,payments,applied_payments,tracking_categories,company,accounting_period"),
-
-    LINES_PAYMENTS_COMPANY("lines,payments,company"),
-
-    LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("lines,payments,company,accounting_period"),
-
-    LINES_PAYMENTS_TRACKING_CATEGORIES("lines,payments,tracking_categories"),
-
-    LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("lines,payments,tracking_categories,accounting_period"),
-
-    LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY("lines,payments,tracking_categories,company"),
-
-    LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "lines,payments,tracking_categories,company,accounting_period"),
-
-    LINES_TRACKING_CATEGORIES("lines,tracking_categories"),
-
-    LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("lines,tracking_categories,accounting_period"),
-
-    LINES_TRACKING_CATEGORIES_COMPANY("lines,tracking_categories,company"),
-
-    LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("lines,tracking_categories,company,accounting_period"),
-
-    PAYMENTS("payments"),
-
-    PAYMENTS_ACCOUNTING_PERIOD("payments,accounting_period"),
-
-    PAYMENTS_APPLIED_PAYMENTS("payments,applied_payments"),
-
-    PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD("payments,applied_payments,accounting_period"),
-
-    PAYMENTS_APPLIED_PAYMENTS_COMPANY("payments,applied_payments,company"),
-
-    PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("payments,applied_payments,company,accounting_period"),
-
-    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES("payments,applied_payments,tracking_categories"),
-
-    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
-            "payments,applied_payments,tracking_categories,accounting_period"),
-
-    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("payments,applied_payments,tracking_categories,company"),
-
-    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "payments,applied_payments,tracking_categories,company,accounting_period"),
-
-    PAYMENTS_COMPANY("payments,company"),
-
-    PAYMENTS_COMPANY_ACCOUNTING_PERIOD("payments,company,accounting_period"),
-
-    PAYMENTS_TRACKING_CATEGORIES("payments,tracking_categories"),
-
-    PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("payments,tracking_categories,accounting_period"),
-
-    PAYMENTS_TRACKING_CATEGORIES_COMPANY("payments,tracking_categories,company"),
-
-    PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("payments,tracking_categories,company,accounting_period"),
-
-    TRACKING_CATEGORIES("tracking_categories"),
-
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
-
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
-
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period");
-
-    private final String value;
-
-    JournalEntriesListRequestExpand(String value) {
+    JournalEntriesListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JournalEntriesListRequestExpand
+                        && this.string.equals(((JournalEntriesListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsTrackingCategoriesAccountingPeriod();
+            case LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsCompanyAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY:
+                return visitor.visitLinesPaymentsAppliedPaymentsCompany();
+            case PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsAppliedPaymentsAccountingPeriod();
+            case PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedPaymentsTrackingCategoriesAccountingPeriod();
+            case LINES_PAYMENTS_COMPANY:
+                return visitor.visitLinesPaymentsCompany();
+            case LINES:
+                return visitor.visitLines();
+            case LINES_APPLIED_PAYMENTS_COMPANY:
+                return visitor.visitLinesAppliedPaymentsCompany();
+            case LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLinesTrackingCategoriesCompany();
+            case LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod();
+            case APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitAppliedPaymentsTrackingCategoriesCompany();
+            case PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitPaymentsAppliedPaymentsTrackingCategories();
+            case APPLIED_PAYMENTS_COMPANY:
+                return visitor.visitAppliedPaymentsCompany();
+            case LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLinesAppliedPaymentsTrackingCategoriesCompany();
+            case COMPANY:
+                return visitor.visitCompany();
+            case LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsTrackingCategoriesAccountingPeriod();
+            case PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitPaymentsTrackingCategoriesCompany();
+            case LINES_PAYMENTS:
+                return visitor.visitLinesPayments();
+            case PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsAppliedPaymentsCompanyAccountingPeriod();
+            case PAYMENTS:
+                return visitor.visitPayments();
+            case LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAppliedPaymentsCompanyAccountingPeriod();
+            case LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLinesPaymentsTrackingCategoriesCompany();
+            case LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitLinesAppliedPaymentsTrackingCategories();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedPaymentsCompanyAccountingPeriod();
+            case PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitPaymentsAppliedPaymentsTrackingCategoriesCompany();
+            case APPLIED_PAYMENTS:
+                return visitor.visitAppliedPayments();
+            case APPLIED_PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitAppliedPaymentsTrackingCategories();
+            case LINES_COMPANY:
+                return visitor.visitLinesCompany();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsAppliedPaymentsAccountingPeriod();
+            case LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAppliedPaymentsAccountingPeriod();
+            case PAYMENTS_APPLIED_PAYMENTS:
+                return visitor.visitPaymentsAppliedPayments();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case PAYMENTS_COMPANY:
+                return visitor.visitPaymentsCompany();
+            case LINES_APPLIED_PAYMENTS:
+                return visitor.visitLinesAppliedPayments();
+            case PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsCompanyAccountingPeriod();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINES_PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsAccountingPeriod();
+            case LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAppliedPaymentsTrackingCategoriesAccountingPeriod();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS:
+                return visitor.visitLinesPaymentsAppliedPayments();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesPaymentsAppliedPaymentsCompanyAccountingPeriod();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case APPLIED_PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedPaymentsAccountingPeriod();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitLinesPaymentsAppliedPaymentsTrackingCategories();
+            case LINES_PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitLinesPaymentsTrackingCategories();
+            case LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLinesPaymentsAppliedPaymentsTrackingCategoriesCompany();
+            case APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesCompanyAccountingPeriod();
+            case LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES:
+                return visitor.visitLinesTrackingCategories();
+            case PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsTrackingCategoriesCompanyAccountingPeriod();
+            case PAYMENTS_TRACKING_CATEGORIES:
+                return visitor.visitPaymentsTrackingCategories();
+            case PAYMENTS_ACCOUNTING_PERIOD:
+                return visitor.visitPaymentsAccountingPeriod();
+            case PAYMENTS_APPLIED_PAYMENTS_COMPANY:
+                return visitor.visitPaymentsAppliedPaymentsCompany();
+            case LINES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAccountingPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JournalEntriesListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "payments,tracking_categories,accounting_period":
+                return PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "lines,payments,company,accounting_period":
+                return LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories,accounting_period":
+                return LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "lines,payments,applied_payments,company":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY;
+            case "payments,applied_payments,accounting_period":
+                return PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD;
+            case "payments,applied_payments,tracking_categories,company,accounting_period":
+                return PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_payments,tracking_categories,accounting_period":
+                return APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "lines,payments,company":
+                return LINES_PAYMENTS_COMPANY;
+            case "lines":
+                return LINES;
+            case "lines,applied_payments,company":
+                return LINES_APPLIED_PAYMENTS_COMPANY;
+            case "lines,payments,tracking_categories,company,accounting_period":
+                return LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories,company":
+                return LINES_TRACKING_CATEGORIES_COMPANY;
+            case "lines,tracking_categories,company,accounting_period":
+                return LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "payments,applied_payments,tracking_categories,accounting_period":
+                return PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "applied_payments,tracking_categories,company":
+                return APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "payments,applied_payments,tracking_categories":
+                return PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES;
+            case "applied_payments,company":
+                return APPLIED_PAYMENTS_COMPANY;
+            case "lines,applied_payments,tracking_categories,company":
+                return LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "company":
+                return COMPANY;
+            case "lines,payments,tracking_categories,accounting_period":
+                return LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "payments,tracking_categories,company":
+                return PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "lines,payments":
+                return LINES_PAYMENTS;
+            case "payments,applied_payments,company,accounting_period":
+                return PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "payments":
+                return PAYMENTS;
+            case "lines,applied_payments,company,accounting_period":
+                return LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,payments,tracking_categories,company":
+                return LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "lines,applied_payments,tracking_categories":
+                return LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_payments,company,accounting_period":
+                return APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "payments,applied_payments,tracking_categories,company":
+                return PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "applied_payments":
+                return APPLIED_PAYMENTS;
+            case "applied_payments,tracking_categories":
+                return APPLIED_PAYMENTS_TRACKING_CATEGORIES;
+            case "lines,company":
+                return LINES_COMPANY;
+            case "lines,payments,applied_payments,accounting_period":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD;
+            case "lines,applied_payments,accounting_period":
+                return LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD;
+            case "payments,applied_payments":
+                return PAYMENTS_APPLIED_PAYMENTS;
+            case "lines,payments,applied_payments,tracking_categories,company,accounting_period":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "payments,company":
+                return PAYMENTS_COMPANY;
+            case "lines,applied_payments":
+                return LINES_APPLIED_PAYMENTS;
+            case "payments,company,accounting_period":
+                return PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "lines,payments,accounting_period":
+                return LINES_PAYMENTS_ACCOUNTING_PERIOD;
+            case "lines,applied_payments,tracking_categories,accounting_period":
+                return LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "lines,payments,applied_payments":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS;
+            case "lines,payments,applied_payments,tracking_categories,accounting_period":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "lines,payments,applied_payments,company,accounting_period":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "applied_payments,accounting_period":
+                return APPLIED_PAYMENTS_ACCOUNTING_PERIOD;
+            case "lines,payments,applied_payments,tracking_categories":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES;
+            case "lines,payments,tracking_categories":
+                return LINES_PAYMENTS_TRACKING_CATEGORIES;
+            case "lines,payments,applied_payments,tracking_categories,company":
+                return LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY;
+            case "applied_payments,tracking_categories,company,accounting_period":
+                return APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,company,accounting_period":
+                return LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,applied_payments,tracking_categories,company,accounting_period":
+                return LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories":
+                return LINES_TRACKING_CATEGORIES;
+            case "payments,tracking_categories,company,accounting_period":
+                return PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "payments,tracking_categories":
+                return PAYMENTS_TRACKING_CATEGORIES;
+            case "payments,accounting_period":
+                return PAYMENTS_ACCOUNTING_PERIOD;
+            case "payments,applied_payments,company":
+                return PAYMENTS_APPLIED_PAYMENTS_COMPANY;
+            case "lines,accounting_period":
+                return LINES_ACCOUNTING_PERIOD;
+            default:
+                return new JournalEntriesListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS,
+
+        APPLIED_PAYMENTS_ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS_COMPANY,
+
+        APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+
+        APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        LINES,
+
+        LINES_ACCOUNTING_PERIOD,
+
+        LINES_APPLIED_PAYMENTS,
+
+        LINES_APPLIED_PAYMENTS_ACCOUNTING_PERIOD,
+
+        LINES_APPLIED_PAYMENTS_COMPANY,
+
+        LINES_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+
+        LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        LINES_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_COMPANY,
+
+        LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS,
+
+        LINES_PAYMENTS_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        LINES_PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_COMPANY,
+
+        LINES_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_TRACKING_CATEGORIES,
+
+        LINES_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        LINES_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES,
+
+        LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES_COMPANY,
+
+        LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        PAYMENTS,
+
+        PAYMENTS_ACCOUNTING_PERIOD,
+
+        PAYMENTS_APPLIED_PAYMENTS,
+
+        PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD,
+
+        PAYMENTS_APPLIED_PAYMENTS_COMPANY,
+
+        PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES,
+
+        PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        PAYMENTS_COMPANY,
+
+        PAYMENTS_COMPANY_ACCOUNTING_PERIOD,
+
+        PAYMENTS_TRACKING_CATEGORIES,
+
+        PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        PAYMENTS_TRACKING_CATEGORIES_COMPANY,
+
+        PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitAppliedPayments();
+
+        T visitAppliedPaymentsAccountingPeriod();
+
+        T visitAppliedPaymentsCompany();
+
+        T visitAppliedPaymentsCompanyAccountingPeriod();
+
+        T visitAppliedPaymentsTrackingCategories();
+
+        T visitAppliedPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitAppliedPaymentsTrackingCategoriesCompany();
+
+        T visitAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitLines();
+
+        T visitLinesAccountingPeriod();
+
+        T visitLinesAppliedPayments();
+
+        T visitLinesAppliedPaymentsAccountingPeriod();
+
+        T visitLinesAppliedPaymentsCompany();
+
+        T visitLinesAppliedPaymentsCompanyAccountingPeriod();
+
+        T visitLinesAppliedPaymentsTrackingCategories();
+
+        T visitLinesAppliedPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitLinesAppliedPaymentsTrackingCategoriesCompany();
+
+        T visitLinesAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitLinesCompany();
+
+        T visitLinesCompanyAccountingPeriod();
+
+        T visitLinesPayments();
+
+        T visitLinesPaymentsAccountingPeriod();
+
+        T visitLinesPaymentsAppliedPayments();
+
+        T visitLinesPaymentsAppliedPaymentsAccountingPeriod();
+
+        T visitLinesPaymentsAppliedPaymentsCompany();
+
+        T visitLinesPaymentsAppliedPaymentsCompanyAccountingPeriod();
+
+        T visitLinesPaymentsAppliedPaymentsTrackingCategories();
+
+        T visitLinesPaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitLinesPaymentsAppliedPaymentsTrackingCategoriesCompany();
+
+        T visitLinesPaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitLinesPaymentsCompany();
+
+        T visitLinesPaymentsCompanyAccountingPeriod();
+
+        T visitLinesPaymentsTrackingCategories();
+
+        T visitLinesPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitLinesPaymentsTrackingCategoriesCompany();
+
+        T visitLinesPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitLinesTrackingCategories();
+
+        T visitLinesTrackingCategoriesAccountingPeriod();
+
+        T visitLinesTrackingCategoriesCompany();
+
+        T visitLinesTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitPayments();
+
+        T visitPaymentsAccountingPeriod();
+
+        T visitPaymentsAppliedPayments();
+
+        T visitPaymentsAppliedPaymentsAccountingPeriod();
+
+        T visitPaymentsAppliedPaymentsCompany();
+
+        T visitPaymentsAppliedPaymentsCompanyAccountingPeriod();
+
+        T visitPaymentsAppliedPaymentsTrackingCategories();
+
+        T visitPaymentsAppliedPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitPaymentsAppliedPaymentsTrackingCategoriesCompany();
+
+        T visitPaymentsAppliedPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitPaymentsCompany();
+
+        T visitPaymentsCompanyAccountingPeriod();
+
+        T visitPaymentsTrackingCategories();
+
+        T visitPaymentsTrackingCategoriesAccountingPeriod();
+
+        T visitPaymentsTrackingCategoriesCompany();
+
+        T visitPaymentsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

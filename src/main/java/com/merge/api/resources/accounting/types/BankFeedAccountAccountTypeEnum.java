@@ -3,22 +3,83 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BankFeedAccountAccountTypeEnum {
-    BANK("BANK"),
+public final class BankFeedAccountAccountTypeEnum {
+    public static final BankFeedAccountAccountTypeEnum BANK = new BankFeedAccountAccountTypeEnum(Value.BANK, "BANK");
 
-    CREDIT_CARD("CREDIT_CARD");
+    public static final BankFeedAccountAccountTypeEnum CREDIT_CARD =
+            new BankFeedAccountAccountTypeEnum(Value.CREDIT_CARD, "CREDIT_CARD");
 
-    private final String value;
+    private final Value value;
 
-    BankFeedAccountAccountTypeEnum(String value) {
+    private final String string;
+
+    BankFeedAccountAccountTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof BankFeedAccountAccountTypeEnum
+                        && this.string.equals(((BankFeedAccountAccountTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case BANK:
+                return visitor.visitBank();
+            case CREDIT_CARD:
+                return visitor.visitCreditCard();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static BankFeedAccountAccountTypeEnum valueOf(String value) {
+        switch (value) {
+            case "BANK":
+                return BANK;
+            case "CREDIT_CARD":
+                return CREDIT_CARD;
+            default:
+                return new BankFeedAccountAccountTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        BANK,
+
+        CREDIT_CARD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitBank();
+
+        T visitCreditCard();
+
+        T visitUnknown(String unknownType);
     }
 }

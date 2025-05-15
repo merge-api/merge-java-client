@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.crm.opportunities.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OpportunitiesRetrieveRequestExpand {
-    ACCOUNT("account"),
+public final class OpportunitiesRetrieveRequestExpand {
+    public static final OpportunitiesRetrieveRequestExpand OWNER =
+            new OpportunitiesRetrieveRequestExpand(Value.OWNER, "owner");
 
-    OWNER("owner"),
+    public static final OpportunitiesRetrieveRequestExpand OWNER_STAGE =
+            new OpportunitiesRetrieveRequestExpand(Value.OWNER_STAGE, "owner,stage");
 
-    OWNER_ACCOUNT("owner,account"),
+    public static final OpportunitiesRetrieveRequestExpand OWNER_ACCOUNT =
+            new OpportunitiesRetrieveRequestExpand(Value.OWNER_ACCOUNT, "owner,account");
 
-    OWNER_STAGE("owner,stage"),
+    public static final OpportunitiesRetrieveRequestExpand ACCOUNT =
+            new OpportunitiesRetrieveRequestExpand(Value.ACCOUNT, "account");
 
-    OWNER_STAGE_ACCOUNT("owner,stage,account"),
+    public static final OpportunitiesRetrieveRequestExpand STAGE =
+            new OpportunitiesRetrieveRequestExpand(Value.STAGE, "stage");
 
-    STAGE("stage"),
+    public static final OpportunitiesRetrieveRequestExpand STAGE_ACCOUNT =
+            new OpportunitiesRetrieveRequestExpand(Value.STAGE_ACCOUNT, "stage,account");
 
-    STAGE_ACCOUNT("stage,account");
+    public static final OpportunitiesRetrieveRequestExpand OWNER_STAGE_ACCOUNT =
+            new OpportunitiesRetrieveRequestExpand(Value.OWNER_STAGE_ACCOUNT, "owner,stage,account");
 
-    private final String value;
+    private final Value value;
 
-    OpportunitiesRetrieveRequestExpand(String value) {
+    private final String string;
+
+    OpportunitiesRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OpportunitiesRetrieveRequestExpand
+                        && this.string.equals(((OpportunitiesRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case OWNER_STAGE:
+                return visitor.visitOwnerStage();
+            case OWNER_ACCOUNT:
+                return visitor.visitOwnerAccount();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case STAGE:
+                return visitor.visitStage();
+            case STAGE_ACCOUNT:
+                return visitor.visitStageAccount();
+            case OWNER_STAGE_ACCOUNT:
+                return visitor.visitOwnerStageAccount();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OpportunitiesRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "owner,stage":
+                return OWNER_STAGE;
+            case "owner,account":
+                return OWNER_ACCOUNT;
+            case "account":
+                return ACCOUNT;
+            case "stage":
+                return STAGE;
+            case "stage,account":
+                return STAGE_ACCOUNT;
+            case "owner,stage,account":
+                return OWNER_STAGE_ACCOUNT;
+            default:
+                return new OpportunitiesRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        OWNER,
+
+        OWNER_ACCOUNT,
+
+        OWNER_STAGE,
+
+        OWNER_STAGE_ACCOUNT,
+
+        STAGE,
+
+        STAGE_ACCOUNT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitOwner();
+
+        T visitOwnerAccount();
+
+        T visitOwnerStage();
+
+        T visitOwnerStageAccount();
+
+        T visitStage();
+
+        T visitStageAccount();
+
+        T visitUnknown(String unknownType);
     }
 }

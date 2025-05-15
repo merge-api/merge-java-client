@@ -25,7 +25,7 @@ import java.util.Optional;
 public final class CreditNoteRequest {
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<CreditNoteRequestStatus> status;
+    private final Optional<CreditNoteStatusEnum> status;
 
     private final Optional<String> number;
 
@@ -45,7 +45,7 @@ public final class CreditNoteRequest {
 
     private final Optional<List<Optional<CreditNoteRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<CreditNoteRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<List<Optional<CreditNoteRequestPaymentsItem>>> payments;
 
@@ -63,7 +63,7 @@ public final class CreditNoteRequest {
 
     private CreditNoteRequest(
             Optional<OffsetDateTime> transactionDate,
-            Optional<CreditNoteRequestStatus> status,
+            Optional<CreditNoteStatusEnum> status,
             Optional<String> number,
             Optional<CreditNoteRequestContact> contact,
             Optional<CreditNoteRequestCompany> company,
@@ -73,7 +73,7 @@ public final class CreditNoteRequest {
             Optional<Boolean> inclusiveOfTax,
             Optional<List<CreditNoteRequestLineItemsItem>> lineItems,
             Optional<List<Optional<CreditNoteRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<CreditNoteRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<List<Optional<CreditNoteRequestPaymentsItem>>> payments,
             Optional<List<Optional<CreditNoteRequestAppliedPaymentsItem>>> appliedPayments,
             Optional<CreditNoteRequestAccountingPeriod> accountingPeriod,
@@ -119,7 +119,7 @@ public final class CreditNoteRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<CreditNoteRequestStatus> getStatus() {
+    public Optional<CreditNoteStatusEnum> getStatus() {
         return status;
     }
 
@@ -501,7 +501,7 @@ public final class CreditNoteRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<CreditNoteRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -615,7 +615,7 @@ public final class CreditNoteRequest {
     public static final class Builder {
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<CreditNoteRequestStatus> status = Optional.empty();
+        private Optional<CreditNoteStatusEnum> status = Optional.empty();
 
         private Optional<String> number = Optional.empty();
 
@@ -635,7 +635,7 @@ public final class CreditNoteRequest {
 
         private Optional<List<Optional<CreditNoteRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<CreditNoteRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<List<Optional<CreditNoteRequestPaymentsItem>>> payments = Optional.empty();
 
@@ -688,12 +688,12 @@ public final class CreditNoteRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<CreditNoteRequestStatus> status) {
+        public Builder status(Optional<CreditNoteStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(CreditNoteRequestStatus status) {
+        public Builder status(CreditNoteStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -799,12 +799,12 @@ public final class CreditNoteRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<CreditNoteRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(CreditNoteRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

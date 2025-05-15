@@ -3,28 +3,111 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ClassificationEnum {
-    ASSET("ASSET"),
+public final class ClassificationEnum {
+    public static final ClassificationEnum EXPENSE = new ClassificationEnum(Value.EXPENSE, "EXPENSE");
 
-    EQUITY("EQUITY"),
+    public static final ClassificationEnum ASSET = new ClassificationEnum(Value.ASSET, "ASSET");
 
-    EXPENSE("EXPENSE"),
+    public static final ClassificationEnum REVENUE = new ClassificationEnum(Value.REVENUE, "REVENUE");
 
-    LIABILITY("LIABILITY"),
+    public static final ClassificationEnum EQUITY = new ClassificationEnum(Value.EQUITY, "EQUITY");
 
-    REVENUE("REVENUE");
+    public static final ClassificationEnum LIABILITY = new ClassificationEnum(Value.LIABILITY, "LIABILITY");
 
-    private final String value;
+    private final Value value;
 
-    ClassificationEnum(String value) {
+    private final String string;
+
+    ClassificationEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ClassificationEnum && this.string.equals(((ClassificationEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case EXPENSE:
+                return visitor.visitExpense();
+            case ASSET:
+                return visitor.visitAsset();
+            case REVENUE:
+                return visitor.visitRevenue();
+            case EQUITY:
+                return visitor.visitEquity();
+            case LIABILITY:
+                return visitor.visitLiability();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ClassificationEnum valueOf(String value) {
+        switch (value) {
+            case "EXPENSE":
+                return EXPENSE;
+            case "ASSET":
+                return ASSET;
+            case "REVENUE":
+                return REVENUE;
+            case "EQUITY":
+                return EQUITY;
+            case "LIABILITY":
+                return LIABILITY;
+            default:
+                return new ClassificationEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ASSET,
+
+        EQUITY,
+
+        EXPENSE,
+
+        LIABILITY,
+
+        REVENUE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAsset();
+
+        T visitEquity();
+
+        T visitExpense();
+
+        T visitLiability();
+
+        T visitRevenue();
+
+        T visitUnknown(String unknownType);
     }
 }

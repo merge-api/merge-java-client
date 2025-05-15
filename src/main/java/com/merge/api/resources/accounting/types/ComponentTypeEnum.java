@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ComponentTypeEnum {
-    SALES("SALES"),
+public final class ComponentTypeEnum {
+    public static final ComponentTypeEnum SALES = new ComponentTypeEnum(Value.SALES, "SALES");
 
-    PURCHASE("PURCHASE");
+    public static final ComponentTypeEnum PURCHASE = new ComponentTypeEnum(Value.PURCHASE, "PURCHASE");
 
-    private final String value;
+    private final Value value;
 
-    ComponentTypeEnum(String value) {
+    private final String string;
+
+    ComponentTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ComponentTypeEnum && this.string.equals(((ComponentTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SALES:
+                return visitor.visitSales();
+            case PURCHASE:
+                return visitor.visitPurchase();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ComponentTypeEnum valueOf(String value) {
+        switch (value) {
+            case "SALES":
+                return SALES;
+            case "PURCHASE":
+                return PURCHASE;
+            default:
+                return new ComponentTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        SALES,
+
+        PURCHASE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitSales();
+
+        T visitPurchase();
+
+        T visitUnknown(String unknownType);
     }
 }

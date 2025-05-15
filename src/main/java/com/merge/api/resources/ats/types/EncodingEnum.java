@@ -3,24 +3,90 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EncodingEnum {
-    RAW("RAW"),
+public final class EncodingEnum {
+    public static final EncodingEnum RAW = new EncodingEnum(Value.RAW, "RAW");
 
-    BASE_64("BASE64"),
+    public static final EncodingEnum GZIP_BASE_64 = new EncodingEnum(Value.GZIP_BASE_64, "GZIP_BASE64");
 
-    GZIP_BASE_64("GZIP_BASE64");
+    public static final EncodingEnum BASE_64 = new EncodingEnum(Value.BASE_64, "BASE64");
 
-    private final String value;
+    private final Value value;
 
-    EncodingEnum(String value) {
+    private final String string;
+
+    EncodingEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof EncodingEnum && this.string.equals(((EncodingEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case RAW:
+                return visitor.visitRaw();
+            case GZIP_BASE_64:
+                return visitor.visitGzipBase64();
+            case BASE_64:
+                return visitor.visitBase64();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EncodingEnum valueOf(String value) {
+        switch (value) {
+            case "RAW":
+                return RAW;
+            case "GZIP_BASE64":
+                return GZIP_BASE_64;
+            case "BASE64":
+                return BASE_64;
+            default:
+                return new EncodingEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        RAW,
+
+        BASE_64,
+
+        GZIP_BASE_64,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRaw();
+
+        T visitBase64();
+
+        T visitGzipBase64();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,32 +3,137 @@
  */
 package com.merge.api.resources.filestorage.files.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FilesRetrieveRequestExpand {
-    DRIVE("drive"),
+public final class FilesRetrieveRequestExpand {
+    public static final FilesRetrieveRequestExpand FOLDER_DRIVE =
+            new FilesRetrieveRequestExpand(Value.FOLDER_DRIVE, "folder,drive");
 
-    FOLDER("folder"),
+    public static final FilesRetrieveRequestExpand PERMISSIONS_DRIVE =
+            new FilesRetrieveRequestExpand(Value.PERMISSIONS_DRIVE, "permissions,drive");
 
-    FOLDER_DRIVE("folder,drive"),
+    public static final FilesRetrieveRequestExpand FOLDER = new FilesRetrieveRequestExpand(Value.FOLDER, "folder");
 
-    PERMISSIONS("permissions"),
+    public static final FilesRetrieveRequestExpand PERMISSIONS_FOLDER_DRIVE =
+            new FilesRetrieveRequestExpand(Value.PERMISSIONS_FOLDER_DRIVE, "permissions,folder,drive");
 
-    PERMISSIONS_DRIVE("permissions,drive"),
+    public static final FilesRetrieveRequestExpand PERMISSIONS =
+            new FilesRetrieveRequestExpand(Value.PERMISSIONS, "permissions");
 
-    PERMISSIONS_FOLDER("permissions,folder"),
+    public static final FilesRetrieveRequestExpand PERMISSIONS_FOLDER =
+            new FilesRetrieveRequestExpand(Value.PERMISSIONS_FOLDER, "permissions,folder");
 
-    PERMISSIONS_FOLDER_DRIVE("permissions,folder,drive");
+    public static final FilesRetrieveRequestExpand DRIVE = new FilesRetrieveRequestExpand(Value.DRIVE, "drive");
 
-    private final String value;
+    private final Value value;
 
-    FilesRetrieveRequestExpand(String value) {
+    private final String string;
+
+    FilesRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FilesRetrieveRequestExpand
+                        && this.string.equals(((FilesRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case FOLDER_DRIVE:
+                return visitor.visitFolderDrive();
+            case PERMISSIONS_DRIVE:
+                return visitor.visitPermissionsDrive();
+            case FOLDER:
+                return visitor.visitFolder();
+            case PERMISSIONS_FOLDER_DRIVE:
+                return visitor.visitPermissionsFolderDrive();
+            case PERMISSIONS:
+                return visitor.visitPermissions();
+            case PERMISSIONS_FOLDER:
+                return visitor.visitPermissionsFolder();
+            case DRIVE:
+                return visitor.visitDrive();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FilesRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "folder,drive":
+                return FOLDER_DRIVE;
+            case "permissions,drive":
+                return PERMISSIONS_DRIVE;
+            case "folder":
+                return FOLDER;
+            case "permissions,folder,drive":
+                return PERMISSIONS_FOLDER_DRIVE;
+            case "permissions":
+                return PERMISSIONS;
+            case "permissions,folder":
+                return PERMISSIONS_FOLDER;
+            case "drive":
+                return DRIVE;
+            default:
+                return new FilesRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRIVE,
+
+        FOLDER,
+
+        FOLDER_DRIVE,
+
+        PERMISSIONS,
+
+        PERMISSIONS_DRIVE,
+
+        PERMISSIONS_FOLDER,
+
+        PERMISSIONS_FOLDER_DRIVE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDrive();
+
+        T visitFolder();
+
+        T visitFolderDrive();
+
+        T visitPermissions();
+
+        T visitPermissionsDrive();
+
+        T visitPermissionsFolder();
+
+        T visitPermissionsFolderDrive();
+
+        T visitUnknown(String unknownType);
     }
 }

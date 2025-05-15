@@ -3,30 +3,121 @@
  */
 package com.merge.api.resources.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketActionsEnum {
-    VIEW("VIEW"),
+public final class TicketActionsEnum {
+    public static final TicketActionsEnum DELETE = new TicketActionsEnum(Value.DELETE, "DELETE");
 
-    CREATE("CREATE"),
+    public static final TicketActionsEnum CLOSE = new TicketActionsEnum(Value.CLOSE, "CLOSE");
 
-    EDIT("EDIT"),
+    public static final TicketActionsEnum ASSIGN = new TicketActionsEnum(Value.ASSIGN, "ASSIGN");
 
-    DELETE("DELETE"),
+    public static final TicketActionsEnum VIEW = new TicketActionsEnum(Value.VIEW, "VIEW");
 
-    CLOSE("CLOSE"),
+    public static final TicketActionsEnum CREATE = new TicketActionsEnum(Value.CREATE, "CREATE");
 
-    ASSIGN("ASSIGN");
+    public static final TicketActionsEnum EDIT = new TicketActionsEnum(Value.EDIT, "EDIT");
 
-    private final String value;
+    private final Value value;
 
-    TicketActionsEnum(String value) {
+    private final String string;
+
+    TicketActionsEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketActionsEnum && this.string.equals(((TicketActionsEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DELETE:
+                return visitor.visitDelete();
+            case CLOSE:
+                return visitor.visitClose();
+            case ASSIGN:
+                return visitor.visitAssign();
+            case VIEW:
+                return visitor.visitView();
+            case CREATE:
+                return visitor.visitCreate();
+            case EDIT:
+                return visitor.visitEdit();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketActionsEnum valueOf(String value) {
+        switch (value) {
+            case "DELETE":
+                return DELETE;
+            case "CLOSE":
+                return CLOSE;
+            case "ASSIGN":
+                return ASSIGN;
+            case "VIEW":
+                return VIEW;
+            case "CREATE":
+                return CREATE;
+            case "EDIT":
+                return EDIT;
+            default:
+                return new TicketActionsEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        VIEW,
+
+        CREATE,
+
+        EDIT,
+
+        DELETE,
+
+        CLOSE,
+
+        ASSIGN,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitView();
+
+        T visitCreate();
+
+        T visitEdit();
+
+        T visitDelete();
+
+        T visitClose();
+
+        T visitAssign();
+
+        T visitUnknown(String unknownType);
     }
 }

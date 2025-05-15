@@ -41,7 +41,7 @@ public final class Contact {
 
     private final Optional<String> taxNumber;
 
-    private final Optional<ContactStatus> status;
+    private final Optional<Status7D1Enum> status;
 
     private final Optional<String> currency;
 
@@ -73,7 +73,7 @@ public final class Contact {
             Optional<Boolean> isCustomer,
             Optional<String> emailAddress,
             Optional<String> taxNumber,
-            Optional<ContactStatus> status,
+            Optional<Status7D1Enum> status,
             Optional<String> currency,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<String> company,
@@ -183,7 +183,7 @@ public final class Contact {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ContactStatus> getStatus() {
+    public Optional<Status7D1Enum> getStatus() {
         return status;
     }
 
@@ -336,7 +336,7 @@ public final class Contact {
 
         private Optional<String> taxNumber = Optional.empty();
 
-        private Optional<ContactStatus> status = Optional.empty();
+        private Optional<Status7D1Enum> status = Optional.empty();
 
         private Optional<String> currency = Optional.empty();
 
@@ -484,12 +484,12 @@ public final class Contact {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ContactStatus> status) {
+        public Builder status(Optional<Status7D1Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ContactStatus status) {
+        public Builder status(Status7D1Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

@@ -3,36 +3,151 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PayPeriodEnum {
-    HOUR("HOUR"),
+public final class PayPeriodEnum {
+    public static final PayPeriodEnum WEEK = new PayPeriodEnum(Value.WEEK, "WEEK");
 
-    DAY("DAY"),
+    public static final PayPeriodEnum HOUR = new PayPeriodEnum(Value.HOUR, "HOUR");
 
-    WEEK("WEEK"),
+    public static final PayPeriodEnum QUARTER = new PayPeriodEnum(Value.QUARTER, "QUARTER");
 
-    EVERY_TWO_WEEKS("EVERY_TWO_WEEKS"),
+    public static final PayPeriodEnum MONTH = new PayPeriodEnum(Value.MONTH, "MONTH");
 
-    SEMIMONTHLY("SEMIMONTHLY"),
+    public static final PayPeriodEnum SEMIMONTHLY = new PayPeriodEnum(Value.SEMIMONTHLY, "SEMIMONTHLY");
 
-    MONTH("MONTH"),
+    public static final PayPeriodEnum YEAR = new PayPeriodEnum(Value.YEAR, "YEAR");
 
-    QUARTER("QUARTER"),
+    public static final PayPeriodEnum DAY = new PayPeriodEnum(Value.DAY, "DAY");
 
-    EVERY_SIX_MONTHS("EVERY_SIX_MONTHS"),
+    public static final PayPeriodEnum EVERY_SIX_MONTHS = new PayPeriodEnum(Value.EVERY_SIX_MONTHS, "EVERY_SIX_MONTHS");
 
-    YEAR("YEAR");
+    public static final PayPeriodEnum EVERY_TWO_WEEKS = new PayPeriodEnum(Value.EVERY_TWO_WEEKS, "EVERY_TWO_WEEKS");
 
-    private final String value;
+    private final Value value;
 
-    PayPeriodEnum(String value) {
+    private final String string;
+
+    PayPeriodEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PayPeriodEnum && this.string.equals(((PayPeriodEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case WEEK:
+                return visitor.visitWeek();
+            case HOUR:
+                return visitor.visitHour();
+            case QUARTER:
+                return visitor.visitQuarter();
+            case MONTH:
+                return visitor.visitMonth();
+            case SEMIMONTHLY:
+                return visitor.visitSemimonthly();
+            case YEAR:
+                return visitor.visitYear();
+            case DAY:
+                return visitor.visitDay();
+            case EVERY_SIX_MONTHS:
+                return visitor.visitEverySixMonths();
+            case EVERY_TWO_WEEKS:
+                return visitor.visitEveryTwoWeeks();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PayPeriodEnum valueOf(String value) {
+        switch (value) {
+            case "WEEK":
+                return WEEK;
+            case "HOUR":
+                return HOUR;
+            case "QUARTER":
+                return QUARTER;
+            case "MONTH":
+                return MONTH;
+            case "SEMIMONTHLY":
+                return SEMIMONTHLY;
+            case "YEAR":
+                return YEAR;
+            case "DAY":
+                return DAY;
+            case "EVERY_SIX_MONTHS":
+                return EVERY_SIX_MONTHS;
+            case "EVERY_TWO_WEEKS":
+                return EVERY_TWO_WEEKS;
+            default:
+                return new PayPeriodEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        HOUR,
+
+        DAY,
+
+        WEEK,
+
+        EVERY_TWO_WEEKS,
+
+        SEMIMONTHLY,
+
+        MONTH,
+
+        QUARTER,
+
+        EVERY_SIX_MONTHS,
+
+        YEAR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitHour();
+
+        T visitDay();
+
+        T visitWeek();
+
+        T visitEveryTwoWeeks();
+
+        T visitSemimonthly();
+
+        T visitMonth();
+
+        T visitQuarter();
+
+        T visitEverySixMonths();
+
+        T visitYear();
+
+        T visitUnknown(String unknownType);
     }
 }

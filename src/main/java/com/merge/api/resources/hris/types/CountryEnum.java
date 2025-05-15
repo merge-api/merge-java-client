@@ -3,516 +3,2550 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CountryEnum {
-    AF("AF"),
+public final class CountryEnum {
+    public static final CountryEnum IL = new CountryEnum(Value.IL, "IL");
 
-    AX("AX"),
+    public static final CountryEnum LI = new CountryEnum(Value.LI, "LI");
 
-    AL("AL"),
+    public static final CountryEnum BH = new CountryEnum(Value.BH, "BH");
 
-    DZ("DZ"),
+    public static final CountryEnum MW = new CountryEnum(Value.MW, "MW");
 
-    AS("AS"),
+    public static final CountryEnum CV = new CountryEnum(Value.CV, "CV");
 
-    AD("AD"),
+    public static final CountryEnum EE = new CountryEnum(Value.EE, "EE");
 
-    AO("AO"),
+    public static final CountryEnum PT = new CountryEnum(Value.PT, "PT");
 
-    AI("AI"),
+    public static final CountryEnum VN = new CountryEnum(Value.VN, "VN");
 
-    AQ("AQ"),
+    public static final CountryEnum BL = new CountryEnum(Value.BL, "BL");
 
-    AG("AG"),
+    public static final CountryEnum CZ = new CountryEnum(Value.CZ, "CZ");
 
-    AR("AR"),
+    public static final CountryEnum IT = new CountryEnum(Value.IT, "IT");
 
-    AM("AM"),
+    public static final CountryEnum SY = new CountryEnum(Value.SY, "SY");
 
-    AW("AW"),
+    public static final CountryEnum KG = new CountryEnum(Value.KG, "KG");
 
-    AU("AU"),
+    public static final CountryEnum BT = new CountryEnum(Value.BT, "BT");
 
-    AT("AT"),
+    public static final CountryEnum ID = new CountryEnum(Value.ID, "ID");
 
-    AZ("AZ"),
+    public static final CountryEnum QA = new CountryEnum(Value.QA, "QA");
 
-    BS("BS"),
+    public static final CountryEnum HN = new CountryEnum(Value.HN, "HN");
 
-    BH("BH"),
+    public static final CountryEnum LA = new CountryEnum(Value.LA, "LA");
 
-    BD("BD"),
+    public static final CountryEnum CN = new CountryEnum(Value.CN, "CN");
 
-    BB("BB"),
+    public static final CountryEnum ZM = new CountryEnum(Value.ZM, "ZM");
 
-    BY("BY"),
+    public static final CountryEnum FK = new CountryEnum(Value.FK, "FK");
 
-    BE("BE"),
+    public static final CountryEnum TW = new CountryEnum(Value.TW, "TW");
 
-    BZ("BZ"),
+    public static final CountryEnum HR = new CountryEnum(Value.HR, "HR");
 
-    BJ("BJ"),
+    public static final CountryEnum CR = new CountryEnum(Value.CR, "CR");
 
-    BM("BM"),
+    public static final CountryEnum FO = new CountryEnum(Value.FO, "FO");
 
-    BT("BT"),
+    public static final CountryEnum NL = new CountryEnum(Value.NL, "NL");
 
-    BO("BO"),
+    public static final CountryEnum AO = new CountryEnum(Value.AO, "AO");
 
-    BQ("BQ"),
+    public static final CountryEnum DK = new CountryEnum(Value.DK, "DK");
 
-    BA("BA"),
+    public static final CountryEnum GI = new CountryEnum(Value.GI, "GI");
 
-    BW("BW"),
+    public static final CountryEnum JE = new CountryEnum(Value.JE, "JE");
 
-    BV("BV"),
+    public static final CountryEnum AS = new CountryEnum(Value.AS, "AS");
 
-    BR("BR"),
+    public static final CountryEnum MC = new CountryEnum(Value.MC, "MC");
 
-    IO("IO"),
+    public static final CountryEnum GM = new CountryEnum(Value.GM, "GM");
 
-    BN("BN"),
+    public static final CountryEnum KW = new CountryEnum(Value.KW, "KW");
 
-    BG("BG"),
+    public static final CountryEnum AW = new CountryEnum(Value.AW, "AW");
 
-    BF("BF"),
+    public static final CountryEnum MG = new CountryEnum(Value.MG, "MG");
 
-    BI("BI"),
+    public static final CountryEnum GQ = new CountryEnum(Value.GQ, "GQ");
 
-    CV("CV"),
+    public static final CountryEnum JM = new CountryEnum(Value.JM, "JM");
 
-    KH("KH"),
+    public static final CountryEnum SA = new CountryEnum(Value.SA, "SA");
 
-    CM("CM"),
+    public static final CountryEnum MK = new CountryEnum(Value.MK, "MK");
 
-    CA("CA"),
+    public static final CountryEnum KH = new CountryEnum(Value.KH, "KH");
 
-    KY("KY"),
+    public static final CountryEnum GU = new CountryEnum(Value.GU, "GU");
 
-    CF("CF"),
+    public static final CountryEnum SE = new CountryEnum(Value.SE, "SE");
 
-    TD("TD"),
+    public static final CountryEnum ER = new CountryEnum(Value.ER, "ER");
 
-    CL("CL"),
+    public static final CountryEnum MO = new CountryEnum(Value.MO, "MO");
 
-    CN("CN"),
+    public static final CountryEnum FJ = new CountryEnum(Value.FJ, "FJ");
 
-    CX("CX"),
+    public static final CountryEnum GY = new CountryEnum(Value.GY, "GY");
 
-    CC("CC"),
+    public static final CountryEnum SI = new CountryEnum(Value.SI, "SI");
 
-    CO("CO"),
+    public static final CountryEnum WS = new CountryEnum(Value.WS, "WS");
 
-    KM("KM"),
+    public static final CountryEnum BD = new CountryEnum(Value.BD, "BD");
 
-    CG("CG"),
+    public static final CountryEnum MS = new CountryEnum(Value.MS, "MS");
 
-    CD("CD"),
+    public static final CountryEnum KP = new CountryEnum(Value.KP, "KP");
 
-    CK("CK"),
+    public static final CountryEnum SM = new CountryEnum(Value.SM, "SM");
 
-    CR("CR"),
+    public static final CountryEnum MV = new CountryEnum(Value.MV, "MV");
 
-    CI("CI"),
+    public static final CountryEnum IM = new CountryEnum(Value.IM, "IM");
 
-    HR("HR"),
+    public static final CountryEnum PS = new CountryEnum(Value.PS, "PS");
 
-    CU("CU"),
+    public static final CountryEnum BI = new CountryEnum(Value.BI, "BI");
 
-    CW("CW"),
+    public static final CountryEnum IO = new CountryEnum(Value.IO, "IO");
 
-    CY("CY"),
+    public static final CountryEnum CW = new CountryEnum(Value.CW, "CW");
 
-    CZ("CZ"),
+    public static final CountryEnum SR = new CountryEnum(Value.SR, "SR");
 
-    DK("DK"),
+    public static final CountryEnum CY = new CountryEnum(Value.CY, "CY");
 
-    DJ("DJ"),
+    public static final CountryEnum UA = new CountryEnum(Value.UA, "UA");
 
-    DM("DM"),
+    public static final CountryEnum EH = new CountryEnum(Value.EH, "EH");
 
-    DO("DO"),
+    public static final CountryEnum ST = new CountryEnum(Value.ST, "ST");
 
-    EC("EC"),
+    public static final CountryEnum OM = new CountryEnum(Value.OM, "OM");
 
-    EG("EG"),
+    public static final CountryEnum BQ = new CountryEnum(Value.BQ, "BQ");
 
-    SV("SV"),
+    public static final CountryEnum AZ = new CountryEnum(Value.AZ, "AZ");
 
-    GQ("GQ"),
+    public static final CountryEnum SB = new CountryEnum(Value.SB, "SB");
 
-    ER("ER"),
+    public static final CountryEnum JO = new CountryEnum(Value.JO, "JO");
 
-    EE("EE"),
+    public static final CountryEnum LT = new CountryEnum(Value.LT, "LT");
 
-    SZ("SZ"),
+    public static final CountryEnum ML = new CountryEnum(Value.ML, "ML");
 
-    ET("ET"),
+    public static final CountryEnum SD = new CountryEnum(Value.SD, "SD");
 
-    FK("FK"),
+    public static final CountryEnum VA = new CountryEnum(Value.VA, "VA");
 
-    FO("FO"),
+    public static final CountryEnum LV = new CountryEnum(Value.LV, "LV");
 
-    FJ("FJ"),
+    public static final CountryEnum MN = new CountryEnum(Value.MN, "MN");
 
-    FI("FI"),
+    public static final CountryEnum PK = new CountryEnum(Value.PK, "PK");
 
-    FR("FR"),
+    public static final CountryEnum VC = new CountryEnum(Value.VC, "VC");
 
-    GF("GF"),
+    public static final CountryEnum AI = new CountryEnum(Value.AI, "AI");
 
-    PF("PF"),
+    public static final CountryEnum GA = new CountryEnum(Value.GA, "GA");
 
-    TF("TF"),
+    public static final CountryEnum BA = new CountryEnum(Value.BA, "BA");
 
-    GA("GA"),
+    public static final CountryEnum PM = new CountryEnum(Value.PM, "PM");
 
-    GM("GM"),
+    public static final CountryEnum SJ = new CountryEnum(Value.SJ, "SJ");
 
-    GE("GE"),
+    public static final CountryEnum DJ = new CountryEnum(Value.DJ, "DJ");
 
-    DE("DE"),
+    public static final CountryEnum MT = new CountryEnum(Value.MT, "MT");
 
-    GH("GH"),
+    public static final CountryEnum SL = new CountryEnum(Value.SL, "SL");
 
-    GI("GI"),
+    public static final CountryEnum VI = new CountryEnum(Value.VI, "VI");
 
-    GR("GR"),
+    public static final CountryEnum GG = new CountryEnum(Value.GG, "GG");
 
-    GL("GL"),
+    public static final CountryEnum GH = new CountryEnum(Value.GH, "GH");
 
-    GD("GD"),
+    public static final CountryEnum AQ = new CountryEnum(Value.AQ, "AQ");
 
-    GP("GP"),
+    public static final CountryEnum AR = new CountryEnum(Value.AR, "AR");
 
-    GU("GU"),
+    public static final CountryEnum CA = new CountryEnum(Value.CA, "CA");
 
-    GT("GT"),
+    public static final CountryEnum ZA = new CountryEnum(Value.ZA, "ZA");
 
-    GG("GG"),
+    public static final CountryEnum TJ = new CountryEnum(Value.TJ, "TJ");
 
-    GN("GN"),
+    public static final CountryEnum ME = new CountryEnum(Value.ME, "ME");
 
-    GW("GW"),
+    public static final CountryEnum TK = new CountryEnum(Value.TK, "TK");
 
-    GY("GY"),
+    public static final CountryEnum MF = new CountryEnum(Value.MF, "MF");
 
-    HT("HT"),
+    public static final CountryEnum UY = new CountryEnum(Value.UY, "UY");
 
-    HM("HM"),
+    public static final CountryEnum UZ = new CountryEnum(Value.UZ, "UZ");
 
-    VA("VA"),
+    public static final CountryEnum NU = new CountryEnum(Value.NU, "NU");
 
-    HN("HN"),
+    public static final CountryEnum GP = new CountryEnum(Value.GP, "GP");
 
-    HK("HK"),
+    public static final CountryEnum PE = new CountryEnum(Value.PE, "PE");
 
-    HU("HU"),
+    public static final CountryEnum CI = new CountryEnum(Value.CI, "CI");
 
-    IS("IS"),
+    public static final CountryEnum SC = new CountryEnum(Value.SC, "SC");
 
-    IN("IN"),
+    public static final CountryEnum SZ = new CountryEnum(Value.SZ, "SZ");
 
-    ID("ID"),
+    public static final CountryEnum LU = new CountryEnum(Value.LU, "LU");
 
-    IR("IR"),
+    public static final CountryEnum TR = new CountryEnum(Value.TR, "TR");
 
-    IQ("IQ"),
+    public static final CountryEnum MM = new CountryEnum(Value.MM, "MM");
 
-    IE("IE"),
+    public static final CountryEnum NE = new CountryEnum(Value.NE, "NE");
 
-    IM("IM"),
+    public static final CountryEnum GW = new CountryEnum(Value.GW, "GW");
 
-    IL("IL"),
+    public static final CountryEnum PL = new CountryEnum(Value.PL, "PL");
 
-    IT("IT"),
+    public static final CountryEnum BB = new CountryEnum(Value.BB, "BB");
 
-    JM("JM"),
+    public static final CountryEnum BY = new CountryEnum(Value.BY, "BY");
 
-    JP("JP"),
+    public static final CountryEnum RS = new CountryEnum(Value.RS, "RS");
 
-    JE("JE"),
+    public static final CountryEnum KN = new CountryEnum(Value.KN, "KN");
 
-    JO("JO"),
+    public static final CountryEnum SK = new CountryEnum(Value.SK, "SK");
 
-    KZ("KZ"),
+    public static final CountryEnum TC = new CountryEnum(Value.TC, "TC");
 
-    KE("KE"),
+    public static final CountryEnum TZ = new CountryEnum(Value.TZ, "TZ");
 
-    KI("KI"),
+    public static final CountryEnum MU = new CountryEnum(Value.MU, "MU");
 
-    KW("KW"),
+    public static final CountryEnum EC = new CountryEnum(Value.EC, "EC");
 
-    KG("KG"),
+    public static final CountryEnum PR = new CountryEnum(Value.PR, "PR");
 
-    LA("LA"),
+    public static final CountryEnum SO = new CountryEnum(Value.SO, "SO");
 
-    LV("LV"),
+    public static final CountryEnum IN = new CountryEnum(Value.IN, "IN");
 
-    LB("LB"),
+    public static final CountryEnum LK = new CountryEnum(Value.LK, "LK");
 
-    LS("LS"),
+    public static final CountryEnum BJ = new CountryEnum(Value.BJ, "BJ");
 
-    LR("LR"),
+    public static final CountryEnum MY = new CountryEnum(Value.MY, "MY");
 
-    LY("LY"),
+    public static final CountryEnum CX = new CountryEnum(Value.CX, "CX");
 
-    LI("LI"),
+    public static final CountryEnum ZW = new CountryEnum(Value.ZW, "ZW");
 
-    LT("LT"),
+    public static final CountryEnum EG = new CountryEnum(Value.EG, "EG");
 
-    LU("LU"),
+    public static final CountryEnum RE = new CountryEnum(Value.RE, "RE");
 
-    MO("MO"),
+    public static final CountryEnum SS = new CountryEnum(Value.SS, "SS");
 
-    MG("MG"),
+    public static final CountryEnum IR = new CountryEnum(Value.IR, "IR");
 
-    MW("MW"),
+    public static final CountryEnum BN = new CountryEnum(Value.BN, "BN");
 
-    MY("MY"),
+    public static final CountryEnum KE = new CountryEnum(Value.KE, "KE");
 
-    MV("MV"),
+    public static final CountryEnum BR = new CountryEnum(Value.BR, "BR");
 
-    ML("ML"),
+    public static final CountryEnum CL = new CountryEnum(Value.CL, "CL");
 
-    MT("MT"),
+    public static final CountryEnum KI = new CountryEnum(Value.KI, "KI");
 
-    MH("MH"),
+    public static final CountryEnum BV = new CountryEnum(Value.BV, "BV");
 
-    MQ("MQ"),
+    public static final CountryEnum FI = new CountryEnum(Value.FI, "FI");
 
-    MR("MR"),
+    public static final CountryEnum NF = new CountryEnum(Value.NF, "NF");
 
-    MU("MU"),
+    public static final CountryEnum ES = new CountryEnum(Value.ES, "ES");
 
-    YT("YT"),
+    public static final CountryEnum LC = new CountryEnum(Value.LC, "LC");
 
-    MX("MX"),
+    public static final CountryEnum KM = new CountryEnum(Value.KM, "KM");
 
-    FM("FM"),
+    public static final CountryEnum FM = new CountryEnum(Value.FM, "FM");
 
-    MD("MD"),
+    public static final CountryEnum BZ = new CountryEnum(Value.BZ, "BZ");
 
-    MC("MC"),
+    public static final CountryEnum TD = new CountryEnum(Value.TD, "TD");
 
-    MN("MN"),
+    public static final CountryEnum HT = new CountryEnum(Value.HT, "HT");
 
-    ME("ME"),
+    public static final CountryEnum HU = new CountryEnum(Value.HU, "HU");
 
-    MS("MS"),
+    public static final CountryEnum US = new CountryEnum(Value.US, "US");
 
-    MA("MA"),
+    public static final CountryEnum NO = new CountryEnum(Value.NO, "NO");
 
-    MZ("MZ"),
+    public static final CountryEnum TH = new CountryEnum(Value.TH, "TH");
 
-    MM("MM"),
+    public static final CountryEnum AT = new CountryEnum(Value.AT, "AT");
 
-    NA("NA"),
+    public static final CountryEnum MD = new CountryEnum(Value.MD, "MD");
 
-    NR("NR"),
+    public static final CountryEnum CC = new CountryEnum(Value.CC, "CC");
 
-    NP("NP"),
+    public static final CountryEnum NR = new CountryEnum(Value.NR, "NR");
 
-    NL("NL"),
+    public static final CountryEnum CD = new CountryEnum(Value.CD, "CD");
 
-    NC("NC"),
+    public static final CountryEnum GN = new CountryEnum(Value.GN, "GN");
 
-    NZ("NZ"),
+    public static final CountryEnum TL = new CountryEnum(Value.TL, "TL");
 
-    NI("NI"),
+    public static final CountryEnum TM = new CountryEnum(Value.TM, "TM");
 
-    NE("NE"),
+    public static final CountryEnum AX = new CountryEnum(Value.AX, "AX");
 
-    NG("NG"),
+    public static final CountryEnum MH = new CountryEnum(Value.MH, "MH");
 
-    NU("NU"),
+    public static final CountryEnum CG = new CountryEnum(Value.CG, "CG");
 
-    NF("NF"),
+    public static final CountryEnum CH = new CountryEnum(Value.CH, "CH");
 
-    KP("KP"),
+    public static final CountryEnum AD = new CountryEnum(Value.AD, "AD");
 
-    MK("MK"),
+    public static final CountryEnum PF = new CountryEnum(Value.PF, "PF");
 
-    MP("MP"),
+    public static final CountryEnum LS = new CountryEnum(Value.LS, "LS");
 
-    NO("NO"),
+    public static final CountryEnum BS = new CountryEnum(Value.BS, "BS");
 
-    OM("OM"),
+    public static final CountryEnum JP = new CountryEnum(Value.JP, "JP");
 
-    PK("PK"),
+    public static final CountryEnum NC = new CountryEnum(Value.NC, "NC");
 
-    PW("PW"),
+    public static final CountryEnum CK = new CountryEnum(Value.CK, "CK");
 
-    PS("PS"),
+    public static final CountryEnum NZ = new CountryEnum(Value.NZ, "NZ");
 
-    PA("PA"),
+    public static final CountryEnum DZ = new CountryEnum(Value.DZ, "DZ");
 
-    PG("PG"),
+    public static final CountryEnum HM = new CountryEnum(Value.HM, "HM");
 
-    PY("PY"),
+    public static final CountryEnum IE = new CountryEnum(Value.IE, "IE");
 
-    PE("PE"),
+    public static final CountryEnum TT = new CountryEnum(Value.TT, "TT");
 
-    PH("PH"),
+    public static final CountryEnum BW = new CountryEnum(Value.BW, "BW");
 
-    PN("PN"),
+    public static final CountryEnum NG = new CountryEnum(Value.NG, "NG");
 
-    PL("PL"),
+    public static final CountryEnum CO = new CountryEnum(Value.CO, "CO");
 
-    PT("PT"),
+    public static final CountryEnum GB = new CountryEnum(Value.GB, "GB");
 
-    PR("PR"),
+    public static final CountryEnum AL = new CountryEnum(Value.AL, "AL");
 
-    QA("QA"),
+    public static final CountryEnum PN = new CountryEnum(Value.PN, "PN");
 
-    RE("RE"),
+    public static final CountryEnum GF = new CountryEnum(Value.GF, "GF");
 
-    RO("RO"),
+    public static final CountryEnum RU = new CountryEnum(Value.RU, "RU");
 
-    RU("RU"),
+    public static final CountryEnum BG = new CountryEnum(Value.BG, "BG");
 
-    RW("RW"),
+    public static final CountryEnum SN = new CountryEnum(Value.SN, "SN");
 
-    BL("BL"),
+    public static final CountryEnum CU = new CountryEnum(Value.CU, "CU");
 
-    SH("SH"),
+    public static final CountryEnum FR = new CountryEnum(Value.FR, "FR");
 
-    KN("KN"),
+    public static final CountryEnum MX = new CountryEnum(Value.MX, "MX");
 
-    LC("LC"),
+    public static final CountryEnum MZ = new CountryEnum(Value.MZ, "MZ");
 
-    MF("MF"),
+    public static final CountryEnum IQ = new CountryEnum(Value.IQ, "IQ");
 
-    PM("PM"),
+    public static final CountryEnum PW = new CountryEnum(Value.PW, "PW");
 
-    VC("VC"),
+    public static final CountryEnum BM = new CountryEnum(Value.BM, "BM");
 
-    WS("WS"),
+    public static final CountryEnum IS = new CountryEnum(Value.IS, "IS");
 
-    SM("SM"),
+    public static final CountryEnum PY = new CountryEnum(Value.PY, "PY");
 
-    ST("ST"),
+    public static final CountryEnum BO = new CountryEnum(Value.BO, "BO");
 
-    SA("SA"),
+    public static final CountryEnum SV = new CountryEnum(Value.SV, "SV");
 
-    SN("SN"),
+    public static final CountryEnum LR = new CountryEnum(Value.LR, "LR");
 
-    RS("RS"),
+    public static final CountryEnum NA = new CountryEnum(Value.NA, "NA");
 
-    SC("SC"),
+    public static final CountryEnum SX = new CountryEnum(Value.SX, "SX");
 
-    SL("SL"),
+    public static final CountryEnum GR = new CountryEnum(Value.GR, "GR");
 
-    SG("SG"),
+    public static final CountryEnum UG = new CountryEnum(Value.UG, "UG");
 
-    SX("SX"),
+    public static final CountryEnum PG = new CountryEnum(Value.PG, "PG");
 
-    SK("SK"),
+    public static final CountryEnum AE = new CountryEnum(Value.AE, "AE");
 
-    SI("SI"),
+    public static final CountryEnum GT = new CountryEnum(Value.GT, "GT");
 
-    SB("SB"),
+    public static final CountryEnum AG = new CountryEnum(Value.AG, "AG");
 
-    SO("SO"),
+    public static final CountryEnum MP = new CountryEnum(Value.MP, "MP");
 
-    ZA("ZA"),
+    public static final CountryEnum SH = new CountryEnum(Value.SH, "SH");
 
-    GS("GS"),
+    public static final CountryEnum UM = new CountryEnum(Value.UM, "UM");
 
-    KR("KR"),
+    public static final CountryEnum VE = new CountryEnum(Value.VE, "VE");
 
-    SS("SS"),
+    public static final CountryEnum MR = new CountryEnum(Value.MR, "MR");
 
-    ES("ES"),
+    public static final CountryEnum AM = new CountryEnum(Value.AM, "AM");
 
-    LK("LK"),
+    public static final CountryEnum GE = new CountryEnum(Value.GE, "GE");
 
-    SD("SD"),
+    public static final CountryEnum VG = new CountryEnum(Value.VG, "VG");
 
-    SR("SR"),
+    public static final CountryEnum BE = new CountryEnum(Value.BE, "BE");
 
-    SJ("SJ"),
+    public static final CountryEnum RW = new CountryEnum(Value.RW, "RW");
 
-    SE("SE"),
+    public static final CountryEnum TF = new CountryEnum(Value.TF, "TF");
 
-    CH("CH"),
+    public static final CountryEnum KR = new CountryEnum(Value.KR, "KR");
 
-    SY("SY"),
+    public static final CountryEnum DM = new CountryEnum(Value.DM, "DM");
 
-    TW("TW"),
+    public static final CountryEnum MA = new CountryEnum(Value.MA, "MA");
 
-    TJ("TJ"),
+    public static final CountryEnum TG = new CountryEnum(Value.TG, "TG");
 
-    TZ("TZ"),
+    public static final CountryEnum NP = new CountryEnum(Value.NP, "NP");
 
-    TH("TH"),
+    public static final CountryEnum GL = new CountryEnum(Value.GL, "GL");
 
-    TL("TL"),
+    public static final CountryEnum WF = new CountryEnum(Value.WF, "WF");
 
-    TG("TG"),
+    public static final CountryEnum AU = new CountryEnum(Value.AU, "AU");
 
-    TK("TK"),
+    public static final CountryEnum PA = new CountryEnum(Value.PA, "PA");
 
-    TO("TO"),
+    public static final CountryEnum KY = new CountryEnum(Value.KY, "KY");
 
-    TT("TT"),
+    public static final CountryEnum CF = new CountryEnum(Value.CF, "CF");
 
-    TN("TN"),
+    public static final CountryEnum KZ = new CountryEnum(Value.KZ, "KZ");
 
-    TR("TR"),
+    public static final CountryEnum TN = new CountryEnum(Value.TN, "TN");
 
-    TM("TM"),
+    public static final CountryEnum TO = new CountryEnum(Value.TO, "TO");
 
-    TC("TC"),
+    public static final CountryEnum VU = new CountryEnum(Value.VU, "VU");
 
-    TV("TV"),
+    public static final CountryEnum GS = new CountryEnum(Value.GS, "GS");
 
-    UG("UG"),
+    public static final CountryEnum HK = new CountryEnum(Value.HK, "HK");
 
-    UA("UA"),
+    public static final CountryEnum AF = new CountryEnum(Value.AF, "AF");
 
-    AE("AE"),
+    public static final CountryEnum PH = new CountryEnum(Value.PH, "PH");
 
-    GB("GB"),
+    public static final CountryEnum YT = new CountryEnum(Value.YT, "YT");
 
-    UM("UM"),
+    public static final CountryEnum RO = new CountryEnum(Value.RO, "RO");
 
-    US("US"),
+    public static final CountryEnum CM = new CountryEnum(Value.CM, "CM");
 
-    UY("UY"),
+    public static final CountryEnum SG = new CountryEnum(Value.SG, "SG");
 
-    UZ("UZ"),
+    public static final CountryEnum DE = new CountryEnum(Value.DE, "DE");
 
-    VU("VU"),
+    public static final CountryEnum LB = new CountryEnum(Value.LB, "LB");
 
-    VE("VE"),
+    public static final CountryEnum LY = new CountryEnum(Value.LY, "LY");
 
-    VN("VN"),
+    public static final CountryEnum TV = new CountryEnum(Value.TV, "TV");
 
-    VG("VG"),
+    public static final CountryEnum ET = new CountryEnum(Value.ET, "ET");
 
-    VI("VI"),
+    public static final CountryEnum DO = new CountryEnum(Value.DO, "DO");
 
-    WF("WF"),
+    public static final CountryEnum MQ = new CountryEnum(Value.MQ, "MQ");
 
-    EH("EH"),
+    public static final CountryEnum NI = new CountryEnum(Value.NI, "NI");
 
-    YE("YE"),
+    public static final CountryEnum GD = new CountryEnum(Value.GD, "GD");
 
-    ZM("ZM"),
+    public static final CountryEnum BF = new CountryEnum(Value.BF, "BF");
 
-    ZW("ZW");
+    public static final CountryEnum YE = new CountryEnum(Value.YE, "YE");
 
-    private final String value;
+    private final Value value;
 
-    CountryEnum(String value) {
+    private final String string;
+
+    CountryEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof CountryEnum && this.string.equals(((CountryEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case IL:
+                return visitor.visitIl();
+            case LI:
+                return visitor.visitLi();
+            case BH:
+                return visitor.visitBh();
+            case MW:
+                return visitor.visitMw();
+            case CV:
+                return visitor.visitCv();
+            case EE:
+                return visitor.visitEe();
+            case PT:
+                return visitor.visitPt();
+            case VN:
+                return visitor.visitVn();
+            case BL:
+                return visitor.visitBl();
+            case CZ:
+                return visitor.visitCz();
+            case IT:
+                return visitor.visitIt();
+            case SY:
+                return visitor.visitSy();
+            case KG:
+                return visitor.visitKg();
+            case BT:
+                return visitor.visitBt();
+            case ID:
+                return visitor.visitId();
+            case QA:
+                return visitor.visitQa();
+            case HN:
+                return visitor.visitHn();
+            case LA:
+                return visitor.visitLa();
+            case CN:
+                return visitor.visitCn();
+            case ZM:
+                return visitor.visitZm();
+            case FK:
+                return visitor.visitFk();
+            case TW:
+                return visitor.visitTw();
+            case HR:
+                return visitor.visitHr();
+            case CR:
+                return visitor.visitCr();
+            case FO:
+                return visitor.visitFo();
+            case NL:
+                return visitor.visitNl();
+            case AO:
+                return visitor.visitAo();
+            case DK:
+                return visitor.visitDk();
+            case GI:
+                return visitor.visitGi();
+            case JE:
+                return visitor.visitJe();
+            case AS:
+                return visitor.visitAs();
+            case MC:
+                return visitor.visitMc();
+            case GM:
+                return visitor.visitGm();
+            case KW:
+                return visitor.visitKw();
+            case AW:
+                return visitor.visitAw();
+            case MG:
+                return visitor.visitMg();
+            case GQ:
+                return visitor.visitGq();
+            case JM:
+                return visitor.visitJm();
+            case SA:
+                return visitor.visitSa();
+            case MK:
+                return visitor.visitMk();
+            case KH:
+                return visitor.visitKh();
+            case GU:
+                return visitor.visitGu();
+            case SE:
+                return visitor.visitSe();
+            case ER:
+                return visitor.visitEr();
+            case MO:
+                return visitor.visitMo();
+            case FJ:
+                return visitor.visitFj();
+            case GY:
+                return visitor.visitGy();
+            case SI:
+                return visitor.visitSi();
+            case WS:
+                return visitor.visitWs();
+            case BD:
+                return visitor.visitBd();
+            case MS:
+                return visitor.visitMs();
+            case KP:
+                return visitor.visitKp();
+            case SM:
+                return visitor.visitSm();
+            case MV:
+                return visitor.visitMv();
+            case IM:
+                return visitor.visitIm();
+            case PS:
+                return visitor.visitPs();
+            case BI:
+                return visitor.visitBi();
+            case IO:
+                return visitor.visitIo();
+            case CW:
+                return visitor.visitCw();
+            case SR:
+                return visitor.visitSr();
+            case CY:
+                return visitor.visitCy();
+            case UA:
+                return visitor.visitUa();
+            case EH:
+                return visitor.visitEh();
+            case ST:
+                return visitor.visitSt();
+            case OM:
+                return visitor.visitOm();
+            case BQ:
+                return visitor.visitBq();
+            case AZ:
+                return visitor.visitAz();
+            case SB:
+                return visitor.visitSb();
+            case JO:
+                return visitor.visitJo();
+            case LT:
+                return visitor.visitLt();
+            case ML:
+                return visitor.visitMl();
+            case SD:
+                return visitor.visitSd();
+            case VA:
+                return visitor.visitVa();
+            case LV:
+                return visitor.visitLv();
+            case MN:
+                return visitor.visitMn();
+            case PK:
+                return visitor.visitPk();
+            case VC:
+                return visitor.visitVc();
+            case AI:
+                return visitor.visitAi();
+            case GA:
+                return visitor.visitGa();
+            case BA:
+                return visitor.visitBa();
+            case PM:
+                return visitor.visitPm();
+            case SJ:
+                return visitor.visitSj();
+            case DJ:
+                return visitor.visitDj();
+            case MT:
+                return visitor.visitMt();
+            case SL:
+                return visitor.visitSl();
+            case VI:
+                return visitor.visitVi();
+            case GG:
+                return visitor.visitGg();
+            case GH:
+                return visitor.visitGh();
+            case AQ:
+                return visitor.visitAq();
+            case AR:
+                return visitor.visitAr();
+            case CA:
+                return visitor.visitCa();
+            case ZA:
+                return visitor.visitZa();
+            case TJ:
+                return visitor.visitTj();
+            case ME:
+                return visitor.visitMe();
+            case TK:
+                return visitor.visitTk();
+            case MF:
+                return visitor.visitMf();
+            case UY:
+                return visitor.visitUy();
+            case UZ:
+                return visitor.visitUz();
+            case NU:
+                return visitor.visitNu();
+            case GP:
+                return visitor.visitGp();
+            case PE:
+                return visitor.visitPe();
+            case CI:
+                return visitor.visitCi();
+            case SC:
+                return visitor.visitSc();
+            case SZ:
+                return visitor.visitSz();
+            case LU:
+                return visitor.visitLu();
+            case TR:
+                return visitor.visitTr();
+            case MM:
+                return visitor.visitMm();
+            case NE:
+                return visitor.visitNe();
+            case GW:
+                return visitor.visitGw();
+            case PL:
+                return visitor.visitPl();
+            case BB:
+                return visitor.visitBb();
+            case BY:
+                return visitor.visitBy();
+            case RS:
+                return visitor.visitRs();
+            case KN:
+                return visitor.visitKn();
+            case SK:
+                return visitor.visitSk();
+            case TC:
+                return visitor.visitTc();
+            case TZ:
+                return visitor.visitTz();
+            case MU:
+                return visitor.visitMu();
+            case EC:
+                return visitor.visitEc();
+            case PR:
+                return visitor.visitPr();
+            case SO:
+                return visitor.visitSo();
+            case IN:
+                return visitor.visitIn();
+            case LK:
+                return visitor.visitLk();
+            case BJ:
+                return visitor.visitBj();
+            case MY:
+                return visitor.visitMy();
+            case CX:
+                return visitor.visitCx();
+            case ZW:
+                return visitor.visitZw();
+            case EG:
+                return visitor.visitEg();
+            case RE:
+                return visitor.visitRe();
+            case SS:
+                return visitor.visitSs();
+            case IR:
+                return visitor.visitIr();
+            case BN:
+                return visitor.visitBn();
+            case KE:
+                return visitor.visitKe();
+            case BR:
+                return visitor.visitBr();
+            case CL:
+                return visitor.visitCl();
+            case KI:
+                return visitor.visitKi();
+            case BV:
+                return visitor.visitBv();
+            case FI:
+                return visitor.visitFi();
+            case NF:
+                return visitor.visitNf();
+            case ES:
+                return visitor.visitEs();
+            case LC:
+                return visitor.visitLc();
+            case KM:
+                return visitor.visitKm();
+            case FM:
+                return visitor.visitFm();
+            case BZ:
+                return visitor.visitBz();
+            case TD:
+                return visitor.visitTd();
+            case HT:
+                return visitor.visitHt();
+            case HU:
+                return visitor.visitHu();
+            case US:
+                return visitor.visitUs();
+            case NO:
+                return visitor.visitNo();
+            case TH:
+                return visitor.visitTh();
+            case AT:
+                return visitor.visitAt();
+            case MD:
+                return visitor.visitMd();
+            case CC:
+                return visitor.visitCc();
+            case NR:
+                return visitor.visitNr();
+            case CD:
+                return visitor.visitCd();
+            case GN:
+                return visitor.visitGn();
+            case TL:
+                return visitor.visitTl();
+            case TM:
+                return visitor.visitTm();
+            case AX:
+                return visitor.visitAx();
+            case MH:
+                return visitor.visitMh();
+            case CG:
+                return visitor.visitCg();
+            case CH:
+                return visitor.visitCh();
+            case AD:
+                return visitor.visitAd();
+            case PF:
+                return visitor.visitPf();
+            case LS:
+                return visitor.visitLs();
+            case BS:
+                return visitor.visitBs();
+            case JP:
+                return visitor.visitJp();
+            case NC:
+                return visitor.visitNc();
+            case CK:
+                return visitor.visitCk();
+            case NZ:
+                return visitor.visitNz();
+            case DZ:
+                return visitor.visitDz();
+            case HM:
+                return visitor.visitHm();
+            case IE:
+                return visitor.visitIe();
+            case TT:
+                return visitor.visitTt();
+            case BW:
+                return visitor.visitBw();
+            case NG:
+                return visitor.visitNg();
+            case CO:
+                return visitor.visitCo();
+            case GB:
+                return visitor.visitGb();
+            case AL:
+                return visitor.visitAl();
+            case PN:
+                return visitor.visitPn();
+            case GF:
+                return visitor.visitGf();
+            case RU:
+                return visitor.visitRu();
+            case BG:
+                return visitor.visitBg();
+            case SN:
+                return visitor.visitSn();
+            case CU:
+                return visitor.visitCu();
+            case FR:
+                return visitor.visitFr();
+            case MX:
+                return visitor.visitMx();
+            case MZ:
+                return visitor.visitMz();
+            case IQ:
+                return visitor.visitIq();
+            case PW:
+                return visitor.visitPw();
+            case BM:
+                return visitor.visitBm();
+            case IS:
+                return visitor.visitIs();
+            case PY:
+                return visitor.visitPy();
+            case BO:
+                return visitor.visitBo();
+            case SV:
+                return visitor.visitSv();
+            case LR:
+                return visitor.visitLr();
+            case NA:
+                return visitor.visitNa();
+            case SX:
+                return visitor.visitSx();
+            case GR:
+                return visitor.visitGr();
+            case UG:
+                return visitor.visitUg();
+            case PG:
+                return visitor.visitPg();
+            case AE:
+                return visitor.visitAe();
+            case GT:
+                return visitor.visitGt();
+            case AG:
+                return visitor.visitAg();
+            case MP:
+                return visitor.visitMp();
+            case SH:
+                return visitor.visitSh();
+            case UM:
+                return visitor.visitUm();
+            case VE:
+                return visitor.visitVe();
+            case MR:
+                return visitor.visitMr();
+            case AM:
+                return visitor.visitAm();
+            case GE:
+                return visitor.visitGe();
+            case VG:
+                return visitor.visitVg();
+            case BE:
+                return visitor.visitBe();
+            case RW:
+                return visitor.visitRw();
+            case TF:
+                return visitor.visitTf();
+            case KR:
+                return visitor.visitKr();
+            case DM:
+                return visitor.visitDm();
+            case MA:
+                return visitor.visitMa();
+            case TG:
+                return visitor.visitTg();
+            case NP:
+                return visitor.visitNp();
+            case GL:
+                return visitor.visitGl();
+            case WF:
+                return visitor.visitWf();
+            case AU:
+                return visitor.visitAu();
+            case PA:
+                return visitor.visitPa();
+            case KY:
+                return visitor.visitKy();
+            case CF:
+                return visitor.visitCf();
+            case KZ:
+                return visitor.visitKz();
+            case TN:
+                return visitor.visitTn();
+            case TO:
+                return visitor.visitTo();
+            case VU:
+                return visitor.visitVu();
+            case GS:
+                return visitor.visitGs();
+            case HK:
+                return visitor.visitHk();
+            case AF:
+                return visitor.visitAf();
+            case PH:
+                return visitor.visitPh();
+            case YT:
+                return visitor.visitYt();
+            case RO:
+                return visitor.visitRo();
+            case CM:
+                return visitor.visitCm();
+            case SG:
+                return visitor.visitSg();
+            case DE:
+                return visitor.visitDe();
+            case LB:
+                return visitor.visitLb();
+            case LY:
+                return visitor.visitLy();
+            case TV:
+                return visitor.visitTv();
+            case ET:
+                return visitor.visitEt();
+            case DO:
+                return visitor.visitDo();
+            case MQ:
+                return visitor.visitMq();
+            case NI:
+                return visitor.visitNi();
+            case GD:
+                return visitor.visitGd();
+            case BF:
+                return visitor.visitBf();
+            case YE:
+                return visitor.visitYe();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CountryEnum valueOf(String value) {
+        switch (value) {
+            case "IL":
+                return IL;
+            case "LI":
+                return LI;
+            case "BH":
+                return BH;
+            case "MW":
+                return MW;
+            case "CV":
+                return CV;
+            case "EE":
+                return EE;
+            case "PT":
+                return PT;
+            case "VN":
+                return VN;
+            case "BL":
+                return BL;
+            case "CZ":
+                return CZ;
+            case "IT":
+                return IT;
+            case "SY":
+                return SY;
+            case "KG":
+                return KG;
+            case "BT":
+                return BT;
+            case "ID":
+                return ID;
+            case "QA":
+                return QA;
+            case "HN":
+                return HN;
+            case "LA":
+                return LA;
+            case "CN":
+                return CN;
+            case "ZM":
+                return ZM;
+            case "FK":
+                return FK;
+            case "TW":
+                return TW;
+            case "HR":
+                return HR;
+            case "CR":
+                return CR;
+            case "FO":
+                return FO;
+            case "NL":
+                return NL;
+            case "AO":
+                return AO;
+            case "DK":
+                return DK;
+            case "GI":
+                return GI;
+            case "JE":
+                return JE;
+            case "AS":
+                return AS;
+            case "MC":
+                return MC;
+            case "GM":
+                return GM;
+            case "KW":
+                return KW;
+            case "AW":
+                return AW;
+            case "MG":
+                return MG;
+            case "GQ":
+                return GQ;
+            case "JM":
+                return JM;
+            case "SA":
+                return SA;
+            case "MK":
+                return MK;
+            case "KH":
+                return KH;
+            case "GU":
+                return GU;
+            case "SE":
+                return SE;
+            case "ER":
+                return ER;
+            case "MO":
+                return MO;
+            case "FJ":
+                return FJ;
+            case "GY":
+                return GY;
+            case "SI":
+                return SI;
+            case "WS":
+                return WS;
+            case "BD":
+                return BD;
+            case "MS":
+                return MS;
+            case "KP":
+                return KP;
+            case "SM":
+                return SM;
+            case "MV":
+                return MV;
+            case "IM":
+                return IM;
+            case "PS":
+                return PS;
+            case "BI":
+                return BI;
+            case "IO":
+                return IO;
+            case "CW":
+                return CW;
+            case "SR":
+                return SR;
+            case "CY":
+                return CY;
+            case "UA":
+                return UA;
+            case "EH":
+                return EH;
+            case "ST":
+                return ST;
+            case "OM":
+                return OM;
+            case "BQ":
+                return BQ;
+            case "AZ":
+                return AZ;
+            case "SB":
+                return SB;
+            case "JO":
+                return JO;
+            case "LT":
+                return LT;
+            case "ML":
+                return ML;
+            case "SD":
+                return SD;
+            case "VA":
+                return VA;
+            case "LV":
+                return LV;
+            case "MN":
+                return MN;
+            case "PK":
+                return PK;
+            case "VC":
+                return VC;
+            case "AI":
+                return AI;
+            case "GA":
+                return GA;
+            case "BA":
+                return BA;
+            case "PM":
+                return PM;
+            case "SJ":
+                return SJ;
+            case "DJ":
+                return DJ;
+            case "MT":
+                return MT;
+            case "SL":
+                return SL;
+            case "VI":
+                return VI;
+            case "GG":
+                return GG;
+            case "GH":
+                return GH;
+            case "AQ":
+                return AQ;
+            case "AR":
+                return AR;
+            case "CA":
+                return CA;
+            case "ZA":
+                return ZA;
+            case "TJ":
+                return TJ;
+            case "ME":
+                return ME;
+            case "TK":
+                return TK;
+            case "MF":
+                return MF;
+            case "UY":
+                return UY;
+            case "UZ":
+                return UZ;
+            case "NU":
+                return NU;
+            case "GP":
+                return GP;
+            case "PE":
+                return PE;
+            case "CI":
+                return CI;
+            case "SC":
+                return SC;
+            case "SZ":
+                return SZ;
+            case "LU":
+                return LU;
+            case "TR":
+                return TR;
+            case "MM":
+                return MM;
+            case "NE":
+                return NE;
+            case "GW":
+                return GW;
+            case "PL":
+                return PL;
+            case "BB":
+                return BB;
+            case "BY":
+                return BY;
+            case "RS":
+                return RS;
+            case "KN":
+                return KN;
+            case "SK":
+                return SK;
+            case "TC":
+                return TC;
+            case "TZ":
+                return TZ;
+            case "MU":
+                return MU;
+            case "EC":
+                return EC;
+            case "PR":
+                return PR;
+            case "SO":
+                return SO;
+            case "IN":
+                return IN;
+            case "LK":
+                return LK;
+            case "BJ":
+                return BJ;
+            case "MY":
+                return MY;
+            case "CX":
+                return CX;
+            case "ZW":
+                return ZW;
+            case "EG":
+                return EG;
+            case "RE":
+                return RE;
+            case "SS":
+                return SS;
+            case "IR":
+                return IR;
+            case "BN":
+                return BN;
+            case "KE":
+                return KE;
+            case "BR":
+                return BR;
+            case "CL":
+                return CL;
+            case "KI":
+                return KI;
+            case "BV":
+                return BV;
+            case "FI":
+                return FI;
+            case "NF":
+                return NF;
+            case "ES":
+                return ES;
+            case "LC":
+                return LC;
+            case "KM":
+                return KM;
+            case "FM":
+                return FM;
+            case "BZ":
+                return BZ;
+            case "TD":
+                return TD;
+            case "HT":
+                return HT;
+            case "HU":
+                return HU;
+            case "US":
+                return US;
+            case "NO":
+                return NO;
+            case "TH":
+                return TH;
+            case "AT":
+                return AT;
+            case "MD":
+                return MD;
+            case "CC":
+                return CC;
+            case "NR":
+                return NR;
+            case "CD":
+                return CD;
+            case "GN":
+                return GN;
+            case "TL":
+                return TL;
+            case "TM":
+                return TM;
+            case "AX":
+                return AX;
+            case "MH":
+                return MH;
+            case "CG":
+                return CG;
+            case "CH":
+                return CH;
+            case "AD":
+                return AD;
+            case "PF":
+                return PF;
+            case "LS":
+                return LS;
+            case "BS":
+                return BS;
+            case "JP":
+                return JP;
+            case "NC":
+                return NC;
+            case "CK":
+                return CK;
+            case "NZ":
+                return NZ;
+            case "DZ":
+                return DZ;
+            case "HM":
+                return HM;
+            case "IE":
+                return IE;
+            case "TT":
+                return TT;
+            case "BW":
+                return BW;
+            case "NG":
+                return NG;
+            case "CO":
+                return CO;
+            case "GB":
+                return GB;
+            case "AL":
+                return AL;
+            case "PN":
+                return PN;
+            case "GF":
+                return GF;
+            case "RU":
+                return RU;
+            case "BG":
+                return BG;
+            case "SN":
+                return SN;
+            case "CU":
+                return CU;
+            case "FR":
+                return FR;
+            case "MX":
+                return MX;
+            case "MZ":
+                return MZ;
+            case "IQ":
+                return IQ;
+            case "PW":
+                return PW;
+            case "BM":
+                return BM;
+            case "IS":
+                return IS;
+            case "PY":
+                return PY;
+            case "BO":
+                return BO;
+            case "SV":
+                return SV;
+            case "LR":
+                return LR;
+            case "NA":
+                return NA;
+            case "SX":
+                return SX;
+            case "GR":
+                return GR;
+            case "UG":
+                return UG;
+            case "PG":
+                return PG;
+            case "AE":
+                return AE;
+            case "GT":
+                return GT;
+            case "AG":
+                return AG;
+            case "MP":
+                return MP;
+            case "SH":
+                return SH;
+            case "UM":
+                return UM;
+            case "VE":
+                return VE;
+            case "MR":
+                return MR;
+            case "AM":
+                return AM;
+            case "GE":
+                return GE;
+            case "VG":
+                return VG;
+            case "BE":
+                return BE;
+            case "RW":
+                return RW;
+            case "TF":
+                return TF;
+            case "KR":
+                return KR;
+            case "DM":
+                return DM;
+            case "MA":
+                return MA;
+            case "TG":
+                return TG;
+            case "NP":
+                return NP;
+            case "GL":
+                return GL;
+            case "WF":
+                return WF;
+            case "AU":
+                return AU;
+            case "PA":
+                return PA;
+            case "KY":
+                return KY;
+            case "CF":
+                return CF;
+            case "KZ":
+                return KZ;
+            case "TN":
+                return TN;
+            case "TO":
+                return TO;
+            case "VU":
+                return VU;
+            case "GS":
+                return GS;
+            case "HK":
+                return HK;
+            case "AF":
+                return AF;
+            case "PH":
+                return PH;
+            case "YT":
+                return YT;
+            case "RO":
+                return RO;
+            case "CM":
+                return CM;
+            case "SG":
+                return SG;
+            case "DE":
+                return DE;
+            case "LB":
+                return LB;
+            case "LY":
+                return LY;
+            case "TV":
+                return TV;
+            case "ET":
+                return ET;
+            case "DO":
+                return DO;
+            case "MQ":
+                return MQ;
+            case "NI":
+                return NI;
+            case "GD":
+                return GD;
+            case "BF":
+                return BF;
+            case "YE":
+                return YE;
+            default:
+                return new CountryEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        AF,
+
+        AX,
+
+        AL,
+
+        DZ,
+
+        AS,
+
+        AD,
+
+        AO,
+
+        AI,
+
+        AQ,
+
+        AG,
+
+        AR,
+
+        AM,
+
+        AW,
+
+        AU,
+
+        AT,
+
+        AZ,
+
+        BS,
+
+        BH,
+
+        BD,
+
+        BB,
+
+        BY,
+
+        BE,
+
+        BZ,
+
+        BJ,
+
+        BM,
+
+        BT,
+
+        BO,
+
+        BQ,
+
+        BA,
+
+        BW,
+
+        BV,
+
+        BR,
+
+        IO,
+
+        BN,
+
+        BG,
+
+        BF,
+
+        BI,
+
+        CV,
+
+        KH,
+
+        CM,
+
+        CA,
+
+        KY,
+
+        CF,
+
+        TD,
+
+        CL,
+
+        CN,
+
+        CX,
+
+        CC,
+
+        CO,
+
+        KM,
+
+        CG,
+
+        CD,
+
+        CK,
+
+        CR,
+
+        CI,
+
+        HR,
+
+        CU,
+
+        CW,
+
+        CY,
+
+        CZ,
+
+        DK,
+
+        DJ,
+
+        DM,
+
+        DO,
+
+        EC,
+
+        EG,
+
+        SV,
+
+        GQ,
+
+        ER,
+
+        EE,
+
+        SZ,
+
+        ET,
+
+        FK,
+
+        FO,
+
+        FJ,
+
+        FI,
+
+        FR,
+
+        GF,
+
+        PF,
+
+        TF,
+
+        GA,
+
+        GM,
+
+        GE,
+
+        DE,
+
+        GH,
+
+        GI,
+
+        GR,
+
+        GL,
+
+        GD,
+
+        GP,
+
+        GU,
+
+        GT,
+
+        GG,
+
+        GN,
+
+        GW,
+
+        GY,
+
+        HT,
+
+        HM,
+
+        VA,
+
+        HN,
+
+        HK,
+
+        HU,
+
+        IS,
+
+        IN,
+
+        ID,
+
+        IR,
+
+        IQ,
+
+        IE,
+
+        IM,
+
+        IL,
+
+        IT,
+
+        JM,
+
+        JP,
+
+        JE,
+
+        JO,
+
+        KZ,
+
+        KE,
+
+        KI,
+
+        KW,
+
+        KG,
+
+        LA,
+
+        LV,
+
+        LB,
+
+        LS,
+
+        LR,
+
+        LY,
+
+        LI,
+
+        LT,
+
+        LU,
+
+        MO,
+
+        MG,
+
+        MW,
+
+        MY,
+
+        MV,
+
+        ML,
+
+        MT,
+
+        MH,
+
+        MQ,
+
+        MR,
+
+        MU,
+
+        YT,
+
+        MX,
+
+        FM,
+
+        MD,
+
+        MC,
+
+        MN,
+
+        ME,
+
+        MS,
+
+        MA,
+
+        MZ,
+
+        MM,
+
+        NA,
+
+        NR,
+
+        NP,
+
+        NL,
+
+        NC,
+
+        NZ,
+
+        NI,
+
+        NE,
+
+        NG,
+
+        NU,
+
+        NF,
+
+        KP,
+
+        MK,
+
+        MP,
+
+        NO,
+
+        OM,
+
+        PK,
+
+        PW,
+
+        PS,
+
+        PA,
+
+        PG,
+
+        PY,
+
+        PE,
+
+        PH,
+
+        PN,
+
+        PL,
+
+        PT,
+
+        PR,
+
+        QA,
+
+        RE,
+
+        RO,
+
+        RU,
+
+        RW,
+
+        BL,
+
+        SH,
+
+        KN,
+
+        LC,
+
+        MF,
+
+        PM,
+
+        VC,
+
+        WS,
+
+        SM,
+
+        ST,
+
+        SA,
+
+        SN,
+
+        RS,
+
+        SC,
+
+        SL,
+
+        SG,
+
+        SX,
+
+        SK,
+
+        SI,
+
+        SB,
+
+        SO,
+
+        ZA,
+
+        GS,
+
+        KR,
+
+        SS,
+
+        ES,
+
+        LK,
+
+        SD,
+
+        SR,
+
+        SJ,
+
+        SE,
+
+        CH,
+
+        SY,
+
+        TW,
+
+        TJ,
+
+        TZ,
+
+        TH,
+
+        TL,
+
+        TG,
+
+        TK,
+
+        TO,
+
+        TT,
+
+        TN,
+
+        TR,
+
+        TM,
+
+        TC,
+
+        TV,
+
+        UG,
+
+        UA,
+
+        AE,
+
+        GB,
+
+        UM,
+
+        US,
+
+        UY,
+
+        UZ,
+
+        VU,
+
+        VE,
+
+        VN,
+
+        VG,
+
+        VI,
+
+        WF,
+
+        EH,
+
+        YE,
+
+        ZM,
+
+        ZW,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAf();
+
+        T visitAx();
+
+        T visitAl();
+
+        T visitDz();
+
+        T visitAs();
+
+        T visitAd();
+
+        T visitAo();
+
+        T visitAi();
+
+        T visitAq();
+
+        T visitAg();
+
+        T visitAr();
+
+        T visitAm();
+
+        T visitAw();
+
+        T visitAu();
+
+        T visitAt();
+
+        T visitAz();
+
+        T visitBs();
+
+        T visitBh();
+
+        T visitBd();
+
+        T visitBb();
+
+        T visitBy();
+
+        T visitBe();
+
+        T visitBz();
+
+        T visitBj();
+
+        T visitBm();
+
+        T visitBt();
+
+        T visitBo();
+
+        T visitBq();
+
+        T visitBa();
+
+        T visitBw();
+
+        T visitBv();
+
+        T visitBr();
+
+        T visitIo();
+
+        T visitBn();
+
+        T visitBg();
+
+        T visitBf();
+
+        T visitBi();
+
+        T visitCv();
+
+        T visitKh();
+
+        T visitCm();
+
+        T visitCa();
+
+        T visitKy();
+
+        T visitCf();
+
+        T visitTd();
+
+        T visitCl();
+
+        T visitCn();
+
+        T visitCx();
+
+        T visitCc();
+
+        T visitCo();
+
+        T visitKm();
+
+        T visitCg();
+
+        T visitCd();
+
+        T visitCk();
+
+        T visitCr();
+
+        T visitCi();
+
+        T visitHr();
+
+        T visitCu();
+
+        T visitCw();
+
+        T visitCy();
+
+        T visitCz();
+
+        T visitDk();
+
+        T visitDj();
+
+        T visitDm();
+
+        T visitDo();
+
+        T visitEc();
+
+        T visitEg();
+
+        T visitSv();
+
+        T visitGq();
+
+        T visitEr();
+
+        T visitEe();
+
+        T visitSz();
+
+        T visitEt();
+
+        T visitFk();
+
+        T visitFo();
+
+        T visitFj();
+
+        T visitFi();
+
+        T visitFr();
+
+        T visitGf();
+
+        T visitPf();
+
+        T visitTf();
+
+        T visitGa();
+
+        T visitGm();
+
+        T visitGe();
+
+        T visitDe();
+
+        T visitGh();
+
+        T visitGi();
+
+        T visitGr();
+
+        T visitGl();
+
+        T visitGd();
+
+        T visitGp();
+
+        T visitGu();
+
+        T visitGt();
+
+        T visitGg();
+
+        T visitGn();
+
+        T visitGw();
+
+        T visitGy();
+
+        T visitHt();
+
+        T visitHm();
+
+        T visitVa();
+
+        T visitHn();
+
+        T visitHk();
+
+        T visitHu();
+
+        T visitIs();
+
+        T visitIn();
+
+        T visitId();
+
+        T visitIr();
+
+        T visitIq();
+
+        T visitIe();
+
+        T visitIm();
+
+        T visitIl();
+
+        T visitIt();
+
+        T visitJm();
+
+        T visitJp();
+
+        T visitJe();
+
+        T visitJo();
+
+        T visitKz();
+
+        T visitKe();
+
+        T visitKi();
+
+        T visitKw();
+
+        T visitKg();
+
+        T visitLa();
+
+        T visitLv();
+
+        T visitLb();
+
+        T visitLs();
+
+        T visitLr();
+
+        T visitLy();
+
+        T visitLi();
+
+        T visitLt();
+
+        T visitLu();
+
+        T visitMo();
+
+        T visitMg();
+
+        T visitMw();
+
+        T visitMy();
+
+        T visitMv();
+
+        T visitMl();
+
+        T visitMt();
+
+        T visitMh();
+
+        T visitMq();
+
+        T visitMr();
+
+        T visitMu();
+
+        T visitYt();
+
+        T visitMx();
+
+        T visitFm();
+
+        T visitMd();
+
+        T visitMc();
+
+        T visitMn();
+
+        T visitMe();
+
+        T visitMs();
+
+        T visitMa();
+
+        T visitMz();
+
+        T visitMm();
+
+        T visitNa();
+
+        T visitNr();
+
+        T visitNp();
+
+        T visitNl();
+
+        T visitNc();
+
+        T visitNz();
+
+        T visitNi();
+
+        T visitNe();
+
+        T visitNg();
+
+        T visitNu();
+
+        T visitNf();
+
+        T visitKp();
+
+        T visitMk();
+
+        T visitMp();
+
+        T visitNo();
+
+        T visitOm();
+
+        T visitPk();
+
+        T visitPw();
+
+        T visitPs();
+
+        T visitPa();
+
+        T visitPg();
+
+        T visitPy();
+
+        T visitPe();
+
+        T visitPh();
+
+        T visitPn();
+
+        T visitPl();
+
+        T visitPt();
+
+        T visitPr();
+
+        T visitQa();
+
+        T visitRe();
+
+        T visitRo();
+
+        T visitRu();
+
+        T visitRw();
+
+        T visitBl();
+
+        T visitSh();
+
+        T visitKn();
+
+        T visitLc();
+
+        T visitMf();
+
+        T visitPm();
+
+        T visitVc();
+
+        T visitWs();
+
+        T visitSm();
+
+        T visitSt();
+
+        T visitSa();
+
+        T visitSn();
+
+        T visitRs();
+
+        T visitSc();
+
+        T visitSl();
+
+        T visitSg();
+
+        T visitSx();
+
+        T visitSk();
+
+        T visitSi();
+
+        T visitSb();
+
+        T visitSo();
+
+        T visitZa();
+
+        T visitGs();
+
+        T visitKr();
+
+        T visitSs();
+
+        T visitEs();
+
+        T visitLk();
+
+        T visitSd();
+
+        T visitSr();
+
+        T visitSj();
+
+        T visitSe();
+
+        T visitCh();
+
+        T visitSy();
+
+        T visitTw();
+
+        T visitTj();
+
+        T visitTz();
+
+        T visitTh();
+
+        T visitTl();
+
+        T visitTg();
+
+        T visitTk();
+
+        T visitTo();
+
+        T visitTt();
+
+        T visitTn();
+
+        T visitTr();
+
+        T visitTm();
+
+        T visitTc();
+
+        T visitTv();
+
+        T visitUg();
+
+        T visitUa();
+
+        T visitAe();
+
+        T visitGb();
+
+        T visitUm();
+
+        T visitUs();
+
+        T visitUy();
+
+        T visitUz();
+
+        T visitVu();
+
+        T visitVe();
+
+        T visitVn();
+
+        T visitVg();
+
+        T visitVi();
+
+        T visitWf();
+
+        T visitEh();
+
+        T visitYe();
+
+        T visitZm();
+
+        T visitZw();
+
+        T visitUnknown(String unknownType);
     }
 }

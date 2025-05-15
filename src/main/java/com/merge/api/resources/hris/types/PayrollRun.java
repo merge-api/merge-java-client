@@ -31,9 +31,9 @@ public final class PayrollRun {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<PayrollRunRunState> runState;
+    private final Optional<RunStateEnum> runState;
 
-    private final Optional<PayrollRunRunType> runType;
+    private final Optional<RunTypeEnum> runType;
 
     private final Optional<OffsetDateTime> startDate;
 
@@ -54,8 +54,8 @@ public final class PayrollRun {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<PayrollRunRunState> runState,
-            Optional<PayrollRunRunType> runType,
+            Optional<RunStateEnum> runState,
+            Optional<RunTypeEnum> runType,
             Optional<OffsetDateTime> startDate,
             Optional<OffsetDateTime> endDate,
             Optional<OffsetDateTime> checkDate,
@@ -118,7 +118,7 @@ public final class PayrollRun {
      * </ul>
      */
     @JsonProperty("run_state")
-    public Optional<PayrollRunRunState> getRunState() {
+    public Optional<RunStateEnum> getRunState() {
         return runState;
     }
 
@@ -133,7 +133,7 @@ public final class PayrollRun {
      * </ul>
      */
     @JsonProperty("run_type")
-    public Optional<PayrollRunRunType> getRunType() {
+    public Optional<RunTypeEnum> getRunType() {
         return runType;
     }
 
@@ -241,9 +241,9 @@ public final class PayrollRun {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<PayrollRunRunState> runState = Optional.empty();
+        private Optional<RunStateEnum> runState = Optional.empty();
 
-        private Optional<PayrollRunRunType> runType = Optional.empty();
+        private Optional<RunTypeEnum> runType = Optional.empty();
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
@@ -323,23 +323,23 @@ public final class PayrollRun {
         }
 
         @JsonSetter(value = "run_state", nulls = Nulls.SKIP)
-        public Builder runState(Optional<PayrollRunRunState> runState) {
+        public Builder runState(Optional<RunStateEnum> runState) {
             this.runState = runState;
             return this;
         }
 
-        public Builder runState(PayrollRunRunState runState) {
+        public Builder runState(RunStateEnum runState) {
             this.runState = Optional.ofNullable(runState);
             return this;
         }
 
         @JsonSetter(value = "run_type", nulls = Nulls.SKIP)
-        public Builder runType(Optional<PayrollRunRunType> runType) {
+        public Builder runType(Optional<RunTypeEnum> runType) {
             this.runType = runType;
             return this;
         }
 
-        public Builder runType(PayrollRunRunType runType) {
+        public Builder runType(RunTypeEnum runType) {
             this.runType = Optional.ofNullable(runType);
             return this;
         }

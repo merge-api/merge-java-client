@@ -43,7 +43,7 @@ public final class Opportunity {
 
     private final Optional<OpportunityStage> stage;
 
-    private final Optional<OpportunityStatus> status;
+    private final Optional<OpportunityStatusEnum> status;
 
     private final Optional<OffsetDateTime> lastActivityAt;
 
@@ -72,7 +72,7 @@ public final class Opportunity {
             Optional<OpportunityOwner> owner,
             Optional<OpportunityAccount> account,
             Optional<OpportunityStage> stage,
-            Optional<OpportunityStatus> status,
+            Optional<OpportunityStatusEnum> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
             Optional<OffsetDateTime> remoteCreatedAt,
@@ -188,7 +188,7 @@ public final class Opportunity {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OpportunityStatus> getStatus() {
+    public Optional<OpportunityStatusEnum> getStatus() {
         return status;
     }
 
@@ -325,7 +325,7 @@ public final class Opportunity {
 
         private Optional<OpportunityStage> stage = Optional.empty();
 
-        private Optional<OpportunityStatus> status = Optional.empty();
+        private Optional<OpportunityStatusEnum> status = Optional.empty();
 
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
@@ -479,12 +479,12 @@ public final class Opportunity {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OpportunityStatus> status) {
+        public Builder status(Optional<OpportunityStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OpportunityStatus status) {
+        public Builder status(OpportunityStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

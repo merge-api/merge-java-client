@@ -3,48 +3,235 @@
  */
 package com.merge.api.resources.ats.interviews.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum InterviewsRetrieveRequestExpand {
-    APPLICATION("application"),
+public final class InterviewsRetrieveRequestExpand {
+    public static final InterviewsRetrieveRequestExpand JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(Value.JOB_INTERVIEW_STAGE, "job_interview_stage");
 
-    APPLICATION_JOB_INTERVIEW_STAGE("application,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_ORGANIZER =
+            new InterviewsRetrieveRequestExpand(Value.INTERVIEWERS_ORGANIZER, "interviewers,organizer");
 
-    INTERVIEWERS("interviewers"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE, "interviewers,application,job_interview_stage");
 
-    INTERVIEWERS_APPLICATION("interviewers,application"),
+    public static final InterviewsRetrieveRequestExpand ORGANIZER_APPLICATION =
+            new InterviewsRetrieveRequestExpand(Value.ORGANIZER_APPLICATION, "organizer,application");
 
-    INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE("interviewers,application,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE, "interviewers,organizer,job_interview_stage");
 
-    INTERVIEWERS_JOB_INTERVIEW_STAGE("interviewers,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_ORGANIZER_APPLICATION =
+            new InterviewsRetrieveRequestExpand(
+                    Value.INTERVIEWERS_ORGANIZER_APPLICATION, "interviewers,organizer,application");
 
-    INTERVIEWERS_ORGANIZER("interviewers,organizer"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_APPLICATION =
+            new InterviewsRetrieveRequestExpand(Value.INTERVIEWERS_APPLICATION, "interviewers,application");
 
-    INTERVIEWERS_ORGANIZER_APPLICATION("interviewers,organizer,application"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.INTERVIEWERS_JOB_INTERVIEW_STAGE, "interviewers,job_interview_stage");
 
-    INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE("interviewers,organizer,application,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand ORGANIZER_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(Value.ORGANIZER_JOB_INTERVIEW_STAGE, "organizer,job_interview_stage");
 
-    INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE("interviewers,organizer,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand APPLICATION =
+            new InterviewsRetrieveRequestExpand(Value.APPLICATION, "application");
 
-    JOB_INTERVIEW_STAGE("job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand APPLICATION_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.APPLICATION_JOB_INTERVIEW_STAGE, "application,job_interview_stage");
 
-    ORGANIZER("organizer"),
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE,
+                    "interviewers,organizer,application,job_interview_stage");
 
-    ORGANIZER_APPLICATION("organizer,application"),
+    public static final InterviewsRetrieveRequestExpand ORGANIZER =
+            new InterviewsRetrieveRequestExpand(Value.ORGANIZER, "organizer");
 
-    ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE("organizer,application,job_interview_stage"),
+    public static final InterviewsRetrieveRequestExpand ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE =
+            new InterviewsRetrieveRequestExpand(
+                    Value.ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE, "organizer,application,job_interview_stage");
 
-    ORGANIZER_JOB_INTERVIEW_STAGE("organizer,job_interview_stage");
+    public static final InterviewsRetrieveRequestExpand INTERVIEWERS =
+            new InterviewsRetrieveRequestExpand(Value.INTERVIEWERS, "interviewers");
 
-    private final String value;
+    private final Value value;
 
-    InterviewsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    InterviewsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof InterviewsRetrieveRequestExpand
+                        && this.string.equals(((InterviewsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case JOB_INTERVIEW_STAGE:
+                return visitor.visitJobInterviewStage();
+            case INTERVIEWERS_ORGANIZER:
+                return visitor.visitInterviewersOrganizer();
+            case INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE:
+                return visitor.visitInterviewersApplicationJobInterviewStage();
+            case ORGANIZER_APPLICATION:
+                return visitor.visitOrganizerApplication();
+            case INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE:
+                return visitor.visitInterviewersOrganizerJobInterviewStage();
+            case INTERVIEWERS_ORGANIZER_APPLICATION:
+                return visitor.visitInterviewersOrganizerApplication();
+            case INTERVIEWERS_APPLICATION:
+                return visitor.visitInterviewersApplication();
+            case INTERVIEWERS_JOB_INTERVIEW_STAGE:
+                return visitor.visitInterviewersJobInterviewStage();
+            case ORGANIZER_JOB_INTERVIEW_STAGE:
+                return visitor.visitOrganizerJobInterviewStage();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case APPLICATION_JOB_INTERVIEW_STAGE:
+                return visitor.visitApplicationJobInterviewStage();
+            case INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE:
+                return visitor.visitInterviewersOrganizerApplicationJobInterviewStage();
+            case ORGANIZER:
+                return visitor.visitOrganizer();
+            case ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE:
+                return visitor.visitOrganizerApplicationJobInterviewStage();
+            case INTERVIEWERS:
+                return visitor.visitInterviewers();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static InterviewsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "job_interview_stage":
+                return JOB_INTERVIEW_STAGE;
+            case "interviewers,organizer":
+                return INTERVIEWERS_ORGANIZER;
+            case "interviewers,application,job_interview_stage":
+                return INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE;
+            case "organizer,application":
+                return ORGANIZER_APPLICATION;
+            case "interviewers,organizer,job_interview_stage":
+                return INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE;
+            case "interviewers,organizer,application":
+                return INTERVIEWERS_ORGANIZER_APPLICATION;
+            case "interviewers,application":
+                return INTERVIEWERS_APPLICATION;
+            case "interviewers,job_interview_stage":
+                return INTERVIEWERS_JOB_INTERVIEW_STAGE;
+            case "organizer,job_interview_stage":
+                return ORGANIZER_JOB_INTERVIEW_STAGE;
+            case "application":
+                return APPLICATION;
+            case "application,job_interview_stage":
+                return APPLICATION_JOB_INTERVIEW_STAGE;
+            case "interviewers,organizer,application,job_interview_stage":
+                return INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE;
+            case "organizer":
+                return ORGANIZER;
+            case "organizer,application,job_interview_stage":
+                return ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE;
+            case "interviewers":
+                return INTERVIEWERS;
+            default:
+                return new InterviewsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        APPLICATION_JOB_INTERVIEW_STAGE,
+
+        INTERVIEWERS,
+
+        INTERVIEWERS_APPLICATION,
+
+        INTERVIEWERS_APPLICATION_JOB_INTERVIEW_STAGE,
+
+        INTERVIEWERS_JOB_INTERVIEW_STAGE,
+
+        INTERVIEWERS_ORGANIZER,
+
+        INTERVIEWERS_ORGANIZER_APPLICATION,
+
+        INTERVIEWERS_ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE,
+
+        INTERVIEWERS_ORGANIZER_JOB_INTERVIEW_STAGE,
+
+        JOB_INTERVIEW_STAGE,
+
+        ORGANIZER,
+
+        ORGANIZER_APPLICATION,
+
+        ORGANIZER_APPLICATION_JOB_INTERVIEW_STAGE,
+
+        ORGANIZER_JOB_INTERVIEW_STAGE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitApplicationJobInterviewStage();
+
+        T visitInterviewers();
+
+        T visitInterviewersApplication();
+
+        T visitInterviewersApplicationJobInterviewStage();
+
+        T visitInterviewersJobInterviewStage();
+
+        T visitInterviewersOrganizer();
+
+        T visitInterviewersOrganizerApplication();
+
+        T visitInterviewersOrganizerApplicationJobInterviewStage();
+
+        T visitInterviewersOrganizerJobInterviewStage();
+
+        T visitJobInterviewStage();
+
+        T visitOrganizer();
+
+        T visitOrganizerApplication();
+
+        T visitOrganizerApplicationJobInterviewStage();
+
+        T visitOrganizerJobInterviewStage();
+
+        T visitUnknown(String unknownType);
     }
 }

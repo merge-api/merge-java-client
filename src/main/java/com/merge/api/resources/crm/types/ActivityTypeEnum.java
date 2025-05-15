@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ActivityTypeEnum {
-    CALL("CALL"),
+public final class ActivityTypeEnum {
+    public static final ActivityTypeEnum CALL = new ActivityTypeEnum(Value.CALL, "CALL");
 
-    MEETING("MEETING"),
+    public static final ActivityTypeEnum EMAIL = new ActivityTypeEnum(Value.EMAIL, "EMAIL");
 
-    EMAIL("EMAIL");
+    public static final ActivityTypeEnum MEETING = new ActivityTypeEnum(Value.MEETING, "MEETING");
 
-    private final String value;
+    private final Value value;
 
-    ActivityTypeEnum(String value) {
+    private final String string;
+
+    ActivityTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ActivityTypeEnum && this.string.equals(((ActivityTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CALL:
+                return visitor.visitCall();
+            case EMAIL:
+                return visitor.visitEmail();
+            case MEETING:
+                return visitor.visitMeeting();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ActivityTypeEnum valueOf(String value) {
+        switch (value) {
+            case "CALL":
+                return CALL;
+            case "EMAIL":
+                return EMAIL;
+            case "MEETING":
+                return MEETING;
+            default:
+                return new ActivityTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CALL,
+
+        MEETING,
+
+        EMAIL,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCall();
+
+        T visitMeeting();
+
+        T visitEmail();
+
+        T visitUnknown(String unknownType);
     }
 }

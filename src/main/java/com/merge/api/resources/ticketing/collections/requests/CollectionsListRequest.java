@@ -12,7 +12,6 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.collections.types.CollectionsListRequestExpand;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +29,7 @@ public final class CollectionsListRequest {
 
     private final Optional<String> cursor;
 
-    private final Optional<CollectionsListRequestExpand> expand;
+    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,7 +58,7 @@ public final class CollectionsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<CollectionsListRequestExpand> expand,
+            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -125,7 +124,7 @@ public final class CollectionsListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<CollectionsListRequestExpand> getExpand() {
+    public Optional<String> getExpand() {
         return expand;
     }
 
@@ -277,7 +276,7 @@ public final class CollectionsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
-        private Optional<CollectionsListRequestExpand> expand = Optional.empty();
+        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -368,12 +367,12 @@ public final class CollectionsListRequest {
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CollectionsListRequestExpand> expand) {
+        public Builder expand(Optional<String> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(CollectionsListRequestExpand expand) {
+        public Builder expand(String expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }

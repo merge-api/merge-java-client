@@ -3,24 +3,94 @@
  */
 package com.merge.api.resources.ats.offers.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OffersRetrieveRequestExpand {
-    APPLICATION("application"),
+public final class OffersRetrieveRequestExpand {
+    public static final OffersRetrieveRequestExpand CREATOR = new OffersRetrieveRequestExpand(Value.CREATOR, "creator");
 
-    APPLICATION_CREATOR("application,creator"),
+    public static final OffersRetrieveRequestExpand APPLICATION =
+            new OffersRetrieveRequestExpand(Value.APPLICATION, "application");
 
-    CREATOR("creator");
+    public static final OffersRetrieveRequestExpand APPLICATION_CREATOR =
+            new OffersRetrieveRequestExpand(Value.APPLICATION_CREATOR, "application,creator");
 
-    private final String value;
+    private final Value value;
 
-    OffersRetrieveRequestExpand(String value) {
+    private final String string;
+
+    OffersRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OffersRetrieveRequestExpand
+                        && this.string.equals(((OffersRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CREATOR:
+                return visitor.visitCreator();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case APPLICATION_CREATOR:
+                return visitor.visitApplicationCreator();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OffersRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "creator":
+                return CREATOR;
+            case "application":
+                return APPLICATION;
+            case "application,creator":
+                return APPLICATION_CREATOR;
+            default:
+                return new OffersRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        APPLICATION_CREATOR,
+
+        CREATOR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitApplicationCreator();
+
+        T visitCreator();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,83 +3,428 @@
  */
 package com.merge.api.resources.accounting.transactions.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TransactionsRetrieveRequestExpand {
-    ACCOUNT("account"),
+public final class TransactionsRetrieveRequestExpand {
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(Value.LINE_ITEMS_ACCOUNTING_PERIOD, "line_items,accounting_period");
 
-    ACCOUNT_ACCOUNTING_PERIOD("account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(Value.TRACKING_CATEGORIES_ACCOUNT, "tracking_categories,account");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS =
+            new TransactionsRetrieveRequestExpand(Value.LINE_ITEMS, "line_items");
 
-    CONTACT("contact"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES =
+            new TransactionsRetrieveRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    CONTACT_ACCOUNT("contact,account"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(Value.LINE_ITEMS_ACCOUNT, "line_items,account");
 
-    CONTACT_ACCOUNT_ACCOUNTING_PERIOD("contact,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.CONTACT_ACCOUNT_ACCOUNTING_PERIOD, "contact,account,accounting_period");
 
-    CONTACT_ACCOUNTING_PERIOD("contact,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_CONTACT =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_CONTACT, "line_items,tracking_categories,contact");
 
-    LINE_ITEMS("line_items"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_CONTACT =
+            new TransactionsRetrieveRequestExpand(Value.LINE_ITEMS_CONTACT, "line_items,contact");
 
-    LINE_ITEMS_ACCOUNT("line_items,account"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT, "tracking_categories,contact,account");
 
-    LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD("line_items,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT, "line_items,tracking_categories,account");
 
-    LINE_ITEMS_ACCOUNTING_PERIOD("line_items,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD = new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,contact,account,accounting_period");
 
-    LINE_ITEMS_CONTACT("line_items,contact"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
 
-    LINE_ITEMS_CONTACT_ACCOUNT("line_items,contact,account"),
+    public static final TransactionsRetrieveRequestExpand CONTACT =
+            new TransactionsRetrieveRequestExpand(Value.CONTACT, "contact");
 
-    LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD("line_items,contact,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD("line_items,contact,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,contact,accounting_period");
 
-    LINE_ITEMS_TRACKING_CATEGORIES("line_items,tracking_categories"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,account,accounting_period");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT("line_items,tracking_categories,account"),
+    public static final TransactionsRetrieveRequestExpand ACCOUNT =
+            new TransactionsRetrieveRequestExpand(Value.ACCOUNT, "account");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD, "line_items,contact,account,accounting_period");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("line_items,tracking_categories,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand CONTACT_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(Value.CONTACT_ACCOUNT, "contact,account");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT("line_items,tracking_categories,contact"),
+    public static final TransactionsRetrieveRequestExpand CONTACT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(Value.CONTACT_ACCOUNTING_PERIOD, "contact,accounting_period");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT("line_items,tracking_categories,contact,account"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_CONTACT_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(Value.LINE_ITEMS_CONTACT_ACCOUNT, "line_items,contact,account");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,contact,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(Value.ACCOUNT_ACCOUNTING_PERIOD, "account,accounting_period");
 
-    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,contact,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT,
+                    "line_items,tracking_categories,contact,account");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,account,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT("tracking_categories,account"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD("tracking_categories,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_CONTACT =
+            new TransactionsRetrieveRequestExpand(Value.TRACKING_CATEGORIES_CONTACT, "tracking_categories,contact");
 
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT("tracking_categories,contact"),
+    public static final TransactionsRetrieveRequestExpand TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT("tracking_categories,contact,account"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD, "line_items,account,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD("tracking_categories,contact,account,accounting_period"),
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_TRACKING_CATEGORIES =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES, "line_items,tracking_categories");
 
-    TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD("tracking_categories,contact,accounting_period");
+    public static final TransactionsRetrieveRequestExpand LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpand(
+                    Value.LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD, "line_items,contact,accounting_period");
 
-    private final String value;
+    private final Value value;
 
-    TransactionsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    TransactionsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TransactionsRetrieveRequestExpand
+                        && this.string.equals(((TransactionsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case LINE_ITEMS_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT:
+                return visitor.visitTrackingCategoriesAccount();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case LINE_ITEMS_ACCOUNT:
+                return visitor.visitLineItemsAccount();
+            case CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_CONTACT:
+                return visitor.visitLineItemsTrackingCategoriesContact();
+            case LINE_ITEMS_CONTACT:
+                return visitor.visitLineItemsContact();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT:
+                return visitor.visitTrackingCategoriesContactAccount();
+            case LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT:
+                return visitor.visitLineItemsTrackingCategoriesAccount();
+            case LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesContactAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case CONTACT:
+                return visitor.visitContact();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesContactAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesAccountAccountingPeriod();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsContactAccountAccountingPeriod();
+            case CONTACT_ACCOUNT:
+                return visitor.visitContactAccount();
+            case CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountingPeriod();
+            case LINE_ITEMS_CONTACT_ACCOUNT:
+                return visitor.visitLineItemsContactAccount();
+            case ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitAccountAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT:
+                return visitor.visitLineItemsTrackingCategoriesContactAccount();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT:
+                return visitor.visitTrackingCategoriesContact();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountAccountingPeriod();
+            case LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsAccountAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES:
+                return visitor.visitLineItemsTrackingCategories();
+            case LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsContactAccountingPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TransactionsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "line_items,accounting_period":
+                return LINE_ITEMS_ACCOUNTING_PERIOD;
+            case "tracking_categories,account":
+                return TRACKING_CATEGORIES_ACCOUNT;
+            case "line_items":
+                return LINE_ITEMS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "line_items,account":
+                return LINE_ITEMS_ACCOUNT;
+            case "contact,account,accounting_period":
+                return CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,contact":
+                return LINE_ITEMS_TRACKING_CATEGORIES_CONTACT;
+            case "line_items,contact":
+                return LINE_ITEMS_CONTACT;
+            case "tracking_categories,contact,account":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT;
+            case "line_items,tracking_categories,account":
+                return LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT;
+            case "line_items,tracking_categories,contact,account,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "contact":
+                return CONTACT;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,contact,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,account,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "account":
+                return ACCOUNT;
+            case "line_items,contact,account,accounting_period":
+                return LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "contact,account":
+                return CONTACT_ACCOUNT;
+            case "contact,accounting_period":
+                return CONTACT_ACCOUNTING_PERIOD;
+            case "line_items,contact,account":
+                return LINE_ITEMS_CONTACT_ACCOUNT;
+            case "account,accounting_period":
+                return ACCOUNT_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,contact,account":
+                return LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT;
+            case "tracking_categories,contact,account,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact":
+                return TRACKING_CATEGORIES_CONTACT;
+            case "tracking_categories,contact,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "line_items,account,accounting_period":
+                return LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories":
+                return LINE_ITEMS_TRACKING_CATEGORIES;
+            case "line_items,contact,accounting_period":
+                return LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD;
+            default:
+                return new TransactionsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_ACCOUNTING_PERIOD,
+
+        ACCOUNTING_PERIOD,
+
+        CONTACT,
+
+        CONTACT_ACCOUNT,
+
+        CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        CONTACT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS,
+
+        LINE_ITEMS_ACCOUNT,
+
+        LINE_ITEMS_ACCOUNT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_CONTACT,
+
+        LINE_ITEMS_CONTACT_ACCOUNT,
+
+        LINE_ITEMS_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_CONTACT,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNT,
+
+        TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountAccountingPeriod();
+
+        T visitAccountingPeriod();
+
+        T visitContact();
+
+        T visitContactAccount();
+
+        T visitContactAccountAccountingPeriod();
+
+        T visitContactAccountingPeriod();
+
+        T visitLineItems();
+
+        T visitLineItemsAccount();
+
+        T visitLineItemsAccountAccountingPeriod();
+
+        T visitLineItemsAccountingPeriod();
+
+        T visitLineItemsContact();
+
+        T visitLineItemsContactAccount();
+
+        T visitLineItemsContactAccountAccountingPeriod();
+
+        T visitLineItemsContactAccountingPeriod();
+
+        T visitLineItemsTrackingCategories();
+
+        T visitLineItemsTrackingCategoriesAccount();
+
+        T visitLineItemsTrackingCategoriesAccountAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesContact();
+
+        T visitLineItemsTrackingCategoriesContactAccount();
+
+        T visitLineItemsTrackingCategoriesContactAccountAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesContactAccountingPeriod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccount();
+
+        T visitTrackingCategoriesAccountAccountingPeriod();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesContact();
+
+        T visitTrackingCategoriesContactAccount();
+
+        T visitTrackingCategoriesContactAccountAccountingPeriod();
+
+        T visitTrackingCategoriesContactAccountingPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

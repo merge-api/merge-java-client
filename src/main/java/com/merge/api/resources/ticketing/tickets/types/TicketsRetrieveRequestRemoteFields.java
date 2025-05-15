@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.ticketing.tickets.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketsRetrieveRequestRemoteFields {
-    PRIORITY("priority"),
+public final class TicketsRetrieveRequestRemoteFields {
+    public static final TicketsRetrieveRequestRemoteFields PRIORITY_TICKET_TYPE =
+            new TicketsRetrieveRequestRemoteFields(Value.PRIORITY_TICKET_TYPE, "priority,ticket_type");
 
-    PRIORITY_STATUS("priority,status"),
+    public static final TicketsRetrieveRequestRemoteFields TICKET_TYPE =
+            new TicketsRetrieveRequestRemoteFields(Value.TICKET_TYPE, "ticket_type");
 
-    PRIORITY_STATUS_TICKET_TYPE("priority,status,ticket_type"),
+    public static final TicketsRetrieveRequestRemoteFields PRIORITY_STATUS_TICKET_TYPE =
+            new TicketsRetrieveRequestRemoteFields(Value.PRIORITY_STATUS_TICKET_TYPE, "priority,status,ticket_type");
 
-    PRIORITY_TICKET_TYPE("priority,ticket_type"),
+    public static final TicketsRetrieveRequestRemoteFields STATUS =
+            new TicketsRetrieveRequestRemoteFields(Value.STATUS, "status");
 
-    STATUS("status"),
+    public static final TicketsRetrieveRequestRemoteFields PRIORITY =
+            new TicketsRetrieveRequestRemoteFields(Value.PRIORITY, "priority");
 
-    STATUS_TICKET_TYPE("status,ticket_type"),
+    public static final TicketsRetrieveRequestRemoteFields STATUS_TICKET_TYPE =
+            new TicketsRetrieveRequestRemoteFields(Value.STATUS_TICKET_TYPE, "status,ticket_type");
 
-    TICKET_TYPE("ticket_type");
+    public static final TicketsRetrieveRequestRemoteFields PRIORITY_STATUS =
+            new TicketsRetrieveRequestRemoteFields(Value.PRIORITY_STATUS, "priority,status");
 
-    private final String value;
+    private final Value value;
 
-    TicketsRetrieveRequestRemoteFields(String value) {
+    private final String string;
+
+    TicketsRetrieveRequestRemoteFields(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketsRetrieveRequestRemoteFields
+                        && this.string.equals(((TicketsRetrieveRequestRemoteFields) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PRIORITY_TICKET_TYPE:
+                return visitor.visitPriorityTicketType();
+            case TICKET_TYPE:
+                return visitor.visitTicketType();
+            case PRIORITY_STATUS_TICKET_TYPE:
+                return visitor.visitPriorityStatusTicketType();
+            case STATUS:
+                return visitor.visitStatus();
+            case PRIORITY:
+                return visitor.visitPriority();
+            case STATUS_TICKET_TYPE:
+                return visitor.visitStatusTicketType();
+            case PRIORITY_STATUS:
+                return visitor.visitPriorityStatus();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketsRetrieveRequestRemoteFields valueOf(String value) {
+        switch (value) {
+            case "priority,ticket_type":
+                return PRIORITY_TICKET_TYPE;
+            case "ticket_type":
+                return TICKET_TYPE;
+            case "priority,status,ticket_type":
+                return PRIORITY_STATUS_TICKET_TYPE;
+            case "status":
+                return STATUS;
+            case "priority":
+                return PRIORITY;
+            case "status,ticket_type":
+                return STATUS_TICKET_TYPE;
+            case "priority,status":
+                return PRIORITY_STATUS;
+            default:
+                return new TicketsRetrieveRequestRemoteFields(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PRIORITY,
+
+        PRIORITY_STATUS,
+
+        PRIORITY_STATUS_TICKET_TYPE,
+
+        PRIORITY_TICKET_TYPE,
+
+        STATUS,
+
+        STATUS_TICKET_TYPE,
+
+        TICKET_TYPE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPriority();
+
+        T visitPriorityStatus();
+
+        T visitPriorityStatusTicketType();
+
+        T visitPriorityTicketType();
+
+        T visitStatus();
+
+        T visitStatusTicketType();
+
+        T visitTicketType();
+
+        T visitUnknown(String unknownType);
     }
 }

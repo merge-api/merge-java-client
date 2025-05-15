@@ -3,24 +3,92 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OpportunityStatusEnum {
-    OPEN("OPEN"),
+public final class OpportunityStatusEnum {
+    public static final OpportunityStatusEnum WON = new OpportunityStatusEnum(Value.WON, "WON");
 
-    WON("WON"),
+    public static final OpportunityStatusEnum LOST = new OpportunityStatusEnum(Value.LOST, "LOST");
 
-    LOST("LOST");
+    public static final OpportunityStatusEnum OPEN = new OpportunityStatusEnum(Value.OPEN, "OPEN");
 
-    private final String value;
+    private final Value value;
 
-    OpportunityStatusEnum(String value) {
+    private final String string;
+
+    OpportunityStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OpportunityStatusEnum
+                        && this.string.equals(((OpportunityStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case WON:
+                return visitor.visitWon();
+            case LOST:
+                return visitor.visitLost();
+            case OPEN:
+                return visitor.visitOpen();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OpportunityStatusEnum valueOf(String value) {
+        switch (value) {
+            case "WON":
+                return WON;
+            case "LOST":
+                return LOST;
+            case "OPEN":
+                return OPEN;
+            default:
+                return new OpportunityStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        OPEN,
+
+        WON,
+
+        LOST,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOpen();
+
+        T visitWon();
+
+        T visitLost();
+
+        T visitUnknown(String unknownType);
     }
 }

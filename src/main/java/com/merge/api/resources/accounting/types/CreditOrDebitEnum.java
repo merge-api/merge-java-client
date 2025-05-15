@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CreditOrDebitEnum {
-    CREDIT("CREDIT"),
+public final class CreditOrDebitEnum {
+    public static final CreditOrDebitEnum CREDIT = new CreditOrDebitEnum(Value.CREDIT, "CREDIT");
 
-    DEBIT("DEBIT");
+    public static final CreditOrDebitEnum DEBIT = new CreditOrDebitEnum(Value.DEBIT, "DEBIT");
 
-    private final String value;
+    private final Value value;
 
-    CreditOrDebitEnum(String value) {
+    private final String string;
+
+    CreditOrDebitEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CreditOrDebitEnum && this.string.equals(((CreditOrDebitEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CREDIT:
+                return visitor.visitCredit();
+            case DEBIT:
+                return visitor.visitDebit();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CreditOrDebitEnum valueOf(String value) {
+        switch (value) {
+            case "CREDIT":
+                return CREDIT;
+            case "DEBIT":
+                return DEBIT;
+            default:
+                return new CreditOrDebitEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CREDIT,
+
+        DEBIT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCredit();
+
+        T visitDebit();
+
+        T visitUnknown(String unknownType);
     }
 }

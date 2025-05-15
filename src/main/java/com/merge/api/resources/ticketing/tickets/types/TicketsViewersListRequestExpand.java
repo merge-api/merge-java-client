@@ -3,24 +3,93 @@
  */
 package com.merge.api.resources.ticketing.tickets.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketsViewersListRequestExpand {
-    TEAM("team"),
+public final class TicketsViewersListRequestExpand {
+    public static final TicketsViewersListRequestExpand USER = new TicketsViewersListRequestExpand(Value.USER, "user");
 
-    USER("user"),
+    public static final TicketsViewersListRequestExpand USER_TEAM =
+            new TicketsViewersListRequestExpand(Value.USER_TEAM, "user,team");
 
-    USER_TEAM("user,team");
+    public static final TicketsViewersListRequestExpand TEAM = new TicketsViewersListRequestExpand(Value.TEAM, "team");
 
-    private final String value;
+    private final Value value;
 
-    TicketsViewersListRequestExpand(String value) {
+    private final String string;
+
+    TicketsViewersListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketsViewersListRequestExpand
+                        && this.string.equals(((TicketsViewersListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case USER:
+                return visitor.visitUser();
+            case USER_TEAM:
+                return visitor.visitUserTeam();
+            case TEAM:
+                return visitor.visitTeam();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketsViewersListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "user":
+                return USER;
+            case "user,team":
+                return USER_TEAM;
+            case "team":
+                return TEAM;
+            default:
+                return new TicketsViewersListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        TEAM,
+
+        USER,
+
+        USER_TEAM,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitTeam();
+
+        T visitUser();
+
+        T visitUserTeam();
+
+        T visitUnknown(String unknownType);
     }
 }

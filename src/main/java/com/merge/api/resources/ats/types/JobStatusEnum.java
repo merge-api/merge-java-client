@@ -3,28 +3,111 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobStatusEnum {
-    OPEN("OPEN"),
+public final class JobStatusEnum {
+    public static final JobStatusEnum CLOSED = new JobStatusEnum(Value.CLOSED, "CLOSED");
 
-    CLOSED("CLOSED"),
+    public static final JobStatusEnum DRAFT = new JobStatusEnum(Value.DRAFT, "DRAFT");
 
-    DRAFT("DRAFT"),
+    public static final JobStatusEnum ARCHIVED = new JobStatusEnum(Value.ARCHIVED, "ARCHIVED");
 
-    ARCHIVED("ARCHIVED"),
+    public static final JobStatusEnum OPEN = new JobStatusEnum(Value.OPEN, "OPEN");
 
-    PENDING("PENDING");
+    public static final JobStatusEnum PENDING = new JobStatusEnum(Value.PENDING, "PENDING");
 
-    private final String value;
+    private final Value value;
 
-    JobStatusEnum(String value) {
+    private final String string;
+
+    JobStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobStatusEnum && this.string.equals(((JobStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLOSED:
+                return visitor.visitClosed();
+            case DRAFT:
+                return visitor.visitDraft();
+            case ARCHIVED:
+                return visitor.visitArchived();
+            case OPEN:
+                return visitor.visitOpen();
+            case PENDING:
+                return visitor.visitPending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobStatusEnum valueOf(String value) {
+        switch (value) {
+            case "CLOSED":
+                return CLOSED;
+            case "DRAFT":
+                return DRAFT;
+            case "ARCHIVED":
+                return ARCHIVED;
+            case "OPEN":
+                return OPEN;
+            case "PENDING":
+                return PENDING;
+            default:
+                return new JobStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        OPEN,
+
+        CLOSED,
+
+        DRAFT,
+
+        ARCHIVED,
+
+        PENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOpen();
+
+        T visitClosed();
+
+        T visitDraft();
+
+        T visitArchived();
+
+        T visitPending();
+
+        T visitUnknown(String unknownType);
     }
 }

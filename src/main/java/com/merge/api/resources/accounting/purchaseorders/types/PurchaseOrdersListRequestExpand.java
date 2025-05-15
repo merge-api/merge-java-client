@@ -3,155 +3,1643 @@
  */
 package com.merge.api.resources.accounting.purchaseorders.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PurchaseOrdersListRequestExpand {
-    ACCOUNTING_PERIOD("accounting_period"),
-
-    COMPANY("company"),
-
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
-
-    DELIVERY_ADDRESS("delivery_address"),
-
-    DELIVERY_ADDRESS_ACCOUNTING_PERIOD("delivery_address,accounting_period"),
-
-    DELIVERY_ADDRESS_COMPANY("delivery_address,company"),
-
-    DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD("delivery_address,company,accounting_period"),
-
-    DELIVERY_ADDRESS_VENDOR("delivery_address,vendor"),
-
-    DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD("delivery_address,vendor,accounting_period"),
-
-    DELIVERY_ADDRESS_VENDOR_COMPANY("delivery_address,vendor,company"),
-
-    DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD("delivery_address,vendor,company,accounting_period"),
-
-    LINE_ITEMS("line_items"),
-
-    LINE_ITEMS_ACCOUNTING_PERIOD("line_items,accounting_period"),
-
-    LINE_ITEMS_COMPANY("line_items,company"),
-
-    LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD("line_items,company,accounting_period"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS("line_items,delivery_address"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD("line_items,delivery_address,accounting_period"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_COMPANY("line_items,delivery_address,company"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD("line_items,delivery_address,company,accounting_period"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_VENDOR("line_items,delivery_address,vendor"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD("line_items,delivery_address,vendor,accounting_period"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY("line_items,delivery_address,vendor,company"),
-
-    LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD(
-            "line_items,delivery_address,vendor,company,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES("line_items,tracking_categories"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("line_items,tracking_categories,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY("line_items,tracking_categories,company"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,company,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS("line_items,tracking_categories,delivery_address"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,delivery_address,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY("line_items,tracking_categories,delivery_address,company"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,delivery_address,company,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR("line_items,tracking_categories,delivery_address,vendor"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,delivery_address,vendor,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY(
-            "line_items,tracking_categories,delivery_address,vendor,company"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,delivery_address,vendor,company,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_VENDOR("line_items,tracking_categories,vendor"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD("line_items,tracking_categories,vendor,accounting_period"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY("line_items,tracking_categories,vendor,company"),
-
-    LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD(
-            "line_items,tracking_categories,vendor,company,accounting_period"),
-
-    LINE_ITEMS_VENDOR("line_items,vendor"),
-
-    LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD("line_items,vendor,accounting_period"),
-
-    LINE_ITEMS_VENDOR_COMPANY("line_items,vendor,company"),
-
-    LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD("line_items,vendor,company,accounting_period"),
-
-    TRACKING_CATEGORIES("tracking_categories"),
-
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
-
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
-
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS("tracking_categories,delivery_address"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD("tracking_categories,delivery_address,accounting_period"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY("tracking_categories,delivery_address,company"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,delivery_address,company,accounting_period"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR("tracking_categories,delivery_address,vendor"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD(
-            "tracking_categories,delivery_address,vendor,accounting_period"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY("tracking_categories,delivery_address,vendor,company"),
-
-    TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,delivery_address,vendor,company,accounting_period"),
-
-    TRACKING_CATEGORIES_VENDOR("tracking_categories,vendor"),
-
-    TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD("tracking_categories,vendor,accounting_period"),
-
-    TRACKING_CATEGORIES_VENDOR_COMPANY("tracking_categories,vendor,company"),
-
-    TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD("tracking_categories,vendor,company,accounting_period"),
-
-    VENDOR("vendor"),
-
-    VENDOR_ACCOUNTING_PERIOD("vendor,accounting_period"),
-
-    VENDOR_COMPANY("vendor,company"),
-
-    VENDOR_COMPANY_ACCOUNTING_PERIOD("vendor,company,accounting_period");
-
-    private final String value;
-
-    PurchaseOrdersListRequestExpand(String value) {
+public final class PurchaseOrdersListRequestExpand {
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+                    "line_items,delivery_address,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "tracking_categories,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_VENDOR_COMPANY_PAYMENT_TERM, "line_items,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY,
+                    "line_items,tracking_categories,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM, "tracking_categories,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "tracking_categories,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS, "tracking_categories,delivery_address");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,tracking_categories,delivery_address,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM, "line_items,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_VENDOR_COMPANY, "line_items,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY, "tracking_categories,delivery_address,company");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM,
+                    "tracking_categories,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_VENDOR, "line_items,vendor");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_COMPANY, "line_items,delivery_address,company");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.VENDOR_COMPANY_ACCOUNTING_PERIOD, "vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+                    "line_items,delivery_address,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "tracking_categories,delivery_address,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM, "company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_COMPANY, "line_items,tracking_categories,company");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR =
+            new PurchaseOrdersListRequestExpand(Value.TRACKING_CATEGORIES_VENDOR, "tracking_categories,vendor");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "delivery_address,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD, "line_items,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.DELIVERY_ADDRESS_PAYMENT_TERM, "delivery_address,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.COMPANY, "company");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD, "tracking_categories,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.ACCOUNTING_PERIOD_PAYMENT_TERM, "accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "delivery_address,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value
+                                    .LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,tracking_categories,delivery_address,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM, "vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY, "line_items,delivery_address,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_ACCOUNTING_PERIOD, "line_items,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+                    "line_items,delivery_address,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "tracking_categories,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY,
+                    "tracking_categories,delivery_address,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "tracking_categories,delivery_address,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_COMPANY, "line_items,company");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "tracking_categories,delivery_address,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_COMPANY_PAYMENT_TERM, "line_items,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR,
+                    "line_items,tracking_categories,delivery_address,vendor");
+
+    public static final PurchaseOrdersListRequestExpand PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.PAYMENT_TERM, "payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM, "delivery_address,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM,
+                    "tracking_categories,delivery_address,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.VENDOR_PAYMENT_TERM, "vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_VENDOR_PAYMENT_TERM, "line_items,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_ACCOUNTING_PERIOD, "delivery_address,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value
+                                    .LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM, "tracking_categories,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD, "line_items,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "tracking_categories,delivery_address,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "delivery_address,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_COMPANY, "delivery_address,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+                            "line_items,tracking_categories,delivery_address,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,delivery_address,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,delivery_address,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD, "delivery_address,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS, "line_items");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES =
+            new PurchaseOrdersListRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,tracking_categories,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_VENDOR =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR, "line_items,tracking_categories,vendor");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+                    "tracking_categories,delivery_address,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR =
+            new PurchaseOrdersListRequestExpand(Value.VENDOR, "vendor");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,delivery_address,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+                    "line_items,tracking_categories,delivery_address,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "delivery_address,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+                    "line_items,delivery_address,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_PAYMENT_TERM, "line_items,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                            "line_items,tracking_categories,delivery_address,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.COMPANY_PAYMENT_TERM, "company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS,
+                    "line_items,tracking_categories,delivery_address");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD, "line_items,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+                    "tracking_categories,delivery_address,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD, "delivery_address,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+                    "line_items,tracking_categories,delivery_address,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.DELIVERY_ADDRESS_COMPANY, "delivery_address,company");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM, "delivery_address,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM, "line_items,tracking_categories,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+                    "line_items,delivery_address,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_PAYMENT_TERM, "line_items,delivery_address,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+                    "tracking_categories,delivery_address,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,delivery_address,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY, "tracking_categories,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,tracking_categories,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR, "tracking_categories,delivery_address,vendor");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_DELIVERY_ADDRESS, "line_items,delivery_address");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "tracking_categories,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(Value.VENDOR_COMPANY_PAYMENT_TERM, "vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(Value.VENDOR_COMPANY, "vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM, "delivery_address,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR, "line_items,delivery_address,vendor");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,tracking_categories,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+                            "line_items,tracking_categories,delivery_address,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR =
+            new PurchaseOrdersListRequestExpand(Value.DELIVERY_ADDRESS_VENDOR, "delivery_address,vendor");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "line_items,delivery_address,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_PAYMENT_TERM, "tracking_categories,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,tracking_categories,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,delivery_address,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+                    "tracking_categories,delivery_address,vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+                    "line_items,delivery_address,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS =
+            new PurchaseOrdersListRequestExpand(Value.DELIVERY_ADDRESS, "delivery_address");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM = new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "line_items,delivery_address,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY,
+                    "line_items,tracking_categories,delivery_address,company");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM,
+                    "line_items,tracking_categories,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+                    "tracking_categories,delivery_address,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                    "delivery_address,vendor,company,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+                            "line_items,tracking_categories,delivery_address,vendor,accounting_period,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY,
+                    "line_items,tracking_categories,delivery_address,vendor,company");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM,
+                    "line_items,tracking_categories,vendor,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM,
+                    "line_items,tracking_categories,vendor,company,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand
+            TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD = new PurchaseOrdersListRequestExpand(
+                    Value.TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,delivery_address,vendor,company,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand VENDOR_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(Value.VENDOR_ACCOUNTING_PERIOD, "vendor,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+                    "line_items,tracking_categories,accounting_period");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpand(
+                    Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM,
+                    "line_items,tracking_categories,delivery_address,payment_term");
+
+    public static final PurchaseOrdersListRequestExpand LINE_ITEMS_TRACKING_CATEGORIES =
+            new PurchaseOrdersListRequestExpand(Value.LINE_ITEMS_TRACKING_CATEGORIES, "line_items,tracking_categories");
+
+    public static final PurchaseOrdersListRequestExpand
+            LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD =
+                    new PurchaseOrdersListRequestExpand(
+                            Value.LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+                            "line_items,tracking_categories,delivery_address,vendor,accounting_period");
+
+    private final Value value;
+
+    private final String string;
+
+    PurchaseOrdersListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PurchaseOrdersListRequestExpand
+                        && this.string.equals(((PurchaseOrdersListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressVendorCompanyPaymentTerm();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsVendorCompanyPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY:
+                return visitor.visitLineItemsTrackingCategoriesVendorCompany();
+            case TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesCompanyPaymentTerm();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS:
+                return visitor.visitTrackingCategoriesDeliveryAddress();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_VENDOR_COMPANY:
+                return visitor.visitLineItemsVendorCompany();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY:
+                return visitor.visitTrackingCategoriesDeliveryAddressCompany();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesVendorCompanyPaymentTerm();
+            case LINE_ITEMS_VENDOR:
+                return visitor.visitLineItemsVendor();
+            case LINE_ITEMS_DELIVERY_ADDRESS_COMPANY:
+                return visitor.visitLineItemsDeliveryAddressCompany();
+            case VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitVendorCompanyAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsDeliveryAddressVendorAccountingPeriod();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm();
+            case COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLineItemsTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_VENDOR:
+                return visitor.visitTrackingCategoriesVendor();
+            case DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressVendorAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsVendorAccountingPeriod();
+            case DELIVERY_ADDRESS_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressPaymentTerm();
+            case COMPANY:
+                return visitor.visitCompany();
+            case LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesVendorAccountingPeriod();
+            case ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitAccountingPeriodPaymentTerm();
+            case DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+            case VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitVendorAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY:
+                return visitor.visitLineItemsDeliveryAddressVendorCompany();
+            case LINE_ITEMS_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressCompanyPaymentTerm();
+            case TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesVendorAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorCompany();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesVendorAccountingPeriod();
+            case LINE_ITEMS_COMPANY:
+                return visitor.visitLineItemsCompany();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsCompanyPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendor();
+            case PAYMENT_TERM:
+                return visitor.visitPaymentTerm();
+            case DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressVendorPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressPaymentTerm();
+            case VENDOR_PAYMENT_TERM:
+                return visitor.visitVendorPaymentTerm();
+            case LINE_ITEMS_VENDOR_PAYMENT_TERM:
+                return visitor.visitLineItemsVendorPaymentTerm();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case DELIVERY_ADDRESS_ACCOUNTING_PERIOD:
+                return visitor.visitDeliveryAddressAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor
+                        .visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesVendorPaymentTerm();
+            case LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+            case DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+            case DELIVERY_ADDRESS_VENDOR_COMPANY:
+                return visitor.visitDeliveryAddressVendorCompany();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriod();
+            case LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsVendorCompanyAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesDeliveryAddressCompanyAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsVendorAccountingPeriodPaymentTerm();
+            case DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitDeliveryAddressCompanyAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR:
+                return visitor.visitLineItemsTrackingCategoriesVendor();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm();
+            case VENDOR:
+                return visitor.visitVendor();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorPaymentTerm();
+            case VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitVendorCompanyAccountingPeriodPaymentTerm();
+            case DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitDeliveryAddressVendorCompanyAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressVendorPaymentTerm();
+            case LINE_ITEMS_PAYMENT_TERM:
+                return visitor.visitLineItemsPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod();
+            case COMPANY_PAYMENT_TERM:
+                return visitor.visitCompanyPaymentTerm();
+            case LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddress();
+            case LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsVendorCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorPaymentTerm();
+            case DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitDeliveryAddressVendorAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressCompanyPaymentTerm();
+            case DELIVERY_ADDRESS_COMPANY:
+                return visitor.visitDeliveryAddressCompany();
+            case DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressCompanyPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesPaymentTerm();
+            case LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsDeliveryAddressAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesDeliveryAddressCompanyPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesVendorCompanyAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY:
+                return visitor.visitTrackingCategoriesVendorCompany();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesVendorAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendor();
+            case LINE_ITEMS_DELIVERY_ADDRESS:
+                return visitor.visitLineItemsDeliveryAddress();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriodPaymentTerm();
+            case VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitVendorCompanyPaymentTerm();
+            case VENDOR_COMPANY:
+                return visitor.visitVendorCompany();
+            case DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressVendorCompanyPaymentTerm();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR:
+                return visitor.visitLineItemsDeliveryAddressVendor();
+            case LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm();
+            case DELIVERY_ADDRESS_VENDOR:
+                return visitor.visitDeliveryAddressVendor();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsDeliveryAddressVendorCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_PAYMENT_TERM:
+                return visitor.visitTrackingCategoriesPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressVendorAccountingPeriodPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesVendorCompanyAccountingPeriod();
+            case LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsDeliveryAddressCompanyAccountingPeriod();
+            case DELIVERY_ADDRESS:
+                return visitor.visitDeliveryAddress();
+            case LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressCompany();
+            case LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesCompanyPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesDeliveryAddressAccountingPeriod();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorCompany();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesVendorPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesVendorCompanyPaymentTerm();
+            case TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod();
+            case VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitVendorAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesAccountingPeriod();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressPaymentTerm();
+            case LINE_ITEMS_TRACKING_CATEGORIES:
+                return visitor.visitLineItemsTrackingCategories();
+            case LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PurchaseOrdersListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "line_items,delivery_address,vendor,company,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM;
+            case "tracking_categories,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,vendor,company,payment_term":
+                return LINE_ITEMS_VENDOR_COMPANY_PAYMENT_TERM;
+            case "line_items,tracking_categories,vendor,company":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY;
+            case "tracking_categories,company,payment_term":
+                return TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM;
+            case "tracking_categories,vendor,company,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,delivery_address":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS;
+            case "line_items,tracking_categories,delivery_address,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,accounting_period,payment_term":
+                return LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,vendor,company":
+                return LINE_ITEMS_VENDOR_COMPANY;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories,delivery_address,company":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY;
+            case "tracking_categories,vendor,company,payment_term":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM;
+            case "line_items,vendor":
+                return LINE_ITEMS_VENDOR;
+            case "line_items,delivery_address,company":
+                return LINE_ITEMS_DELIVERY_ADDRESS_COMPANY;
+            case "vendor,company,accounting_period":
+                return VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,vendor,accounting_period":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD;
+            case "tracking_categories,delivery_address,vendor,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "company,accounting_period,payment_term":
+                return COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,company":
+                return LINE_ITEMS_TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,vendor":
+                return TRACKING_CATEGORIES_VENDOR;
+            case "delivery_address,vendor,accounting_period,payment_term":
+                return DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,vendor,accounting_period":
+                return LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD;
+            case "delivery_address,payment_term":
+                return DELIVERY_ADDRESS_PAYMENT_TERM;
+            case "company":
+                return COMPANY;
+            case "line_items,tracking_categories,company,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,accounting_period":
+                return TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD;
+            case "accounting_period,payment_term":
+                return ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "delivery_address,accounting_period,payment_term":
+                return DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,company,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "vendor,accounting_period,payment_term":
+                return VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,delivery_address,vendor,company":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY;
+            case "line_items,accounting_period":
+                return LINE_ITEMS_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,company,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM;
+            case "tracking_categories,vendor,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,vendor,company":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY;
+            case "tracking_categories,delivery_address,vendor,company,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,vendor,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD;
+            case "line_items,company":
+                return LINE_ITEMS_COMPANY;
+            case "tracking_categories,delivery_address,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,company,payment_term":
+                return LINE_ITEMS_COMPANY_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,vendor":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR;
+            case "payment_term":
+                return PAYMENT_TERM;
+            case "delivery_address,vendor,payment_term":
+                return DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM;
+            case "vendor,payment_term":
+                return VENDOR_PAYMENT_TERM;
+            case "line_items,vendor,payment_term":
+                return LINE_ITEMS_VENDOR_PAYMENT_TERM;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "delivery_address,accounting_period":
+                return DELIVERY_ADDRESS_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,delivery_address,vendor,company,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,vendor,payment_term":
+                return TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM;
+            case "line_items,company,accounting_period":
+                return LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,delivery_address,company,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "delivery_address,company,accounting_period,payment_term":
+                return DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "delivery_address,vendor,company":
+                return DELIVERY_ADDRESS_VENDOR_COMPANY;
+            case "line_items,tracking_categories,delivery_address,company,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,vendor,company,accounting_period,payment_term":
+                return LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,company,accounting_period":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,vendor,company,accounting_period,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,vendor,accounting_period,payment_term":
+                return LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "delivery_address,company,accounting_period":
+                return DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "line_items,tracking_categories,vendor,company,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,vendor":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR;
+            case "tracking_categories,delivery_address,vendor,company,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM;
+            case "vendor":
+                return VENDOR;
+            case "line_items,tracking_categories,delivery_address,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,delivery_address,vendor,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM;
+            case "vendor,company,accounting_period,payment_term":
+                return VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "delivery_address,vendor,company,accounting_period":
+                return DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,vendor,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM;
+            case "line_items,payment_term":
+                return LINE_ITEMS_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,vendor,company,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "company,payment_term":
+                return COMPANY_PAYMENT_TERM;
+            case "line_items,company,accounting_period,payment_term":
+                return LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS;
+            case "line_items,vendor,company,accounting_period":
+                return LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,delivery_address,vendor,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM;
+            case "delivery_address,vendor,accounting_period":
+                return DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,delivery_address,company,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM;
+            case "delivery_address,company":
+                return DELIVERY_ADDRESS_COMPANY;
+            case "delivery_address,company,payment_term":
+                return DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM;
+            case "line_items,tracking_categories,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM;
+            case "line_items,delivery_address,accounting_period":
+                return LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,company,payment_term":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM;
+            case "line_items,tracking_categories,vendor,company,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,accounting_period,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,company":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY;
+            case "line_items,tracking_categories,vendor,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,vendor":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR;
+            case "line_items,delivery_address":
+                return LINE_ITEMS_DELIVERY_ADDRESS;
+            case "tracking_categories,company,accounting_period,payment_term":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "vendor,company,payment_term":
+                return VENDOR_COMPANY_PAYMENT_TERM;
+            case "vendor,company":
+                return VENDOR_COMPANY;
+            case "delivery_address,vendor,company,payment_term":
+                return DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM;
+            case "line_items,delivery_address,vendor":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR;
+            case "line_items,tracking_categories,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,vendor,company,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM;
+            case "delivery_address,vendor":
+                return DELIVERY_ADDRESS_VENDOR;
+            case "line_items,delivery_address,vendor,company,accounting_period":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,payment_term":
+                return TRACKING_CATEGORIES_PAYMENT_TERM;
+            case "line_items,tracking_categories,company,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,delivery_address,vendor,accounting_period,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,vendor,accounting_period":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,company,accounting_period":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "line_items,delivery_address,company,accounting_period":
+                return LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD;
+            case "delivery_address":
+                return DELIVERY_ADDRESS;
+            case "line_items,delivery_address,company,accounting_period,payment_term":
+                return LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,company":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY;
+            case "line_items,tracking_categories,company,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,accounting_period":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "delivery_address,vendor,company,accounting_period,payment_term":
+                return DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,vendor,accounting_period,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM;
+            case "line_items,tracking_categories,delivery_address,vendor,company":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY;
+            case "line_items,tracking_categories,vendor,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM;
+            case "line_items,tracking_categories,vendor,company,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM;
+            case "tracking_categories,delivery_address,vendor,company,accounting_period":
+                return TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "vendor,accounting_period":
+                return VENDOR_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "line_items,tracking_categories,delivery_address,payment_term":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM;
+            case "line_items,tracking_categories":
+                return LINE_ITEMS_TRACKING_CATEGORIES;
+            case "line_items,tracking_categories,delivery_address,vendor,accounting_period":
+                return LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD;
+            default:
+                return new PurchaseOrdersListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        COMPANY_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS,
+
+        DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+
+        DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_COMPANY,
+
+        DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+
+        DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_VENDOR,
+
+        DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+
+        DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_VENDOR_COMPANY,
+
+        DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+
+        DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+
+        LINE_ITEMS,
+
+        LINE_ITEMS_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_COMPANY,
+
+        LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_COMPANY,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+
+        LINE_ITEMS_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_COMPANY,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM,
+
+        LINE_ITEMS_VENDOR,
+
+        LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_VENDOR_COMPANY,
+
+        LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        LINE_ITEMS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        LINE_ITEMS_VENDOR_COMPANY_PAYMENT_TERM,
+
+        LINE_ITEMS_VENDOR_PAYMENT_TERM,
+
+        PAYMENT_TERM,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_COMPANY_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_COMPANY_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_DELIVERY_ADDRESS_VENDOR_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_VENDOR,
+
+        TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY_PAYMENT_TERM,
+
+        TRACKING_CATEGORIES_VENDOR_PAYMENT_TERM,
+
+        VENDOR,
+
+        VENDOR_ACCOUNTING_PERIOD,
+
+        VENDOR_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        VENDOR_COMPANY,
+
+        VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        VENDOR_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM,
+
+        VENDOR_COMPANY_PAYMENT_TERM,
+
+        VENDOR_PAYMENT_TERM,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitAccountingPeriodPaymentTerm();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitCompanyAccountingPeriodPaymentTerm();
+
+        T visitCompanyPaymentTerm();
+
+        T visitDeliveryAddress();
+
+        T visitDeliveryAddressAccountingPeriod();
+
+        T visitDeliveryAddressAccountingPeriodPaymentTerm();
+
+        T visitDeliveryAddressCompany();
+
+        T visitDeliveryAddressCompanyAccountingPeriod();
+
+        T visitDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+
+        T visitDeliveryAddressCompanyPaymentTerm();
+
+        T visitDeliveryAddressPaymentTerm();
+
+        T visitDeliveryAddressVendor();
+
+        T visitDeliveryAddressVendorAccountingPeriod();
+
+        T visitDeliveryAddressVendorAccountingPeriodPaymentTerm();
+
+        T visitDeliveryAddressVendorCompany();
+
+        T visitDeliveryAddressVendorCompanyAccountingPeriod();
+
+        T visitDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitDeliveryAddressVendorCompanyPaymentTerm();
+
+        T visitDeliveryAddressVendorPaymentTerm();
+
+        T visitLineItems();
+
+        T visitLineItemsAccountingPeriod();
+
+        T visitLineItemsAccountingPeriodPaymentTerm();
+
+        T visitLineItemsCompany();
+
+        T visitLineItemsCompanyAccountingPeriod();
+
+        T visitLineItemsCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsCompanyPaymentTerm();
+
+        T visitLineItemsDeliveryAddress();
+
+        T visitLineItemsDeliveryAddressAccountingPeriod();
+
+        T visitLineItemsDeliveryAddressAccountingPeriodPaymentTerm();
+
+        T visitLineItemsDeliveryAddressCompany();
+
+        T visitLineItemsDeliveryAddressCompanyAccountingPeriod();
+
+        T visitLineItemsDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsDeliveryAddressCompanyPaymentTerm();
+
+        T visitLineItemsDeliveryAddressPaymentTerm();
+
+        T visitLineItemsDeliveryAddressVendor();
+
+        T visitLineItemsDeliveryAddressVendorAccountingPeriod();
+
+        T visitLineItemsDeliveryAddressVendorAccountingPeriodPaymentTerm();
+
+        T visitLineItemsDeliveryAddressVendorCompany();
+
+        T visitLineItemsDeliveryAddressVendorCompanyAccountingPeriod();
+
+        T visitLineItemsDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsDeliveryAddressVendorCompanyPaymentTerm();
+
+        T visitLineItemsDeliveryAddressVendorPaymentTerm();
+
+        T visitLineItemsPaymentTerm();
+
+        T visitLineItemsTrackingCategories();
+
+        T visitLineItemsTrackingCategoriesAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesCompany();
+
+        T visitLineItemsTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesCompanyPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddress();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressCompany();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressCompanyPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendor();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorCompany();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesDeliveryAddressVendorPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesVendor();
+
+        T visitLineItemsTrackingCategoriesVendorAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesVendorAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesVendorCompany();
+
+        T visitLineItemsTrackingCategoriesVendorCompanyAccountingPeriod();
+
+        T visitLineItemsTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesVendorCompanyPaymentTerm();
+
+        T visitLineItemsTrackingCategoriesVendorPaymentTerm();
+
+        T visitLineItemsVendor();
+
+        T visitLineItemsVendorAccountingPeriod();
+
+        T visitLineItemsVendorAccountingPeriodPaymentTerm();
+
+        T visitLineItemsVendorCompany();
+
+        T visitLineItemsVendorCompanyAccountingPeriod();
+
+        T visitLineItemsVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitLineItemsVendorCompanyPaymentTerm();
+
+        T visitLineItemsVendorPaymentTerm();
+
+        T visitPaymentTerm();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesCompanyAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesCompanyPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddress();
+
+        T visitTrackingCategoriesDeliveryAddressAccountingPeriod();
+
+        T visitTrackingCategoriesDeliveryAddressAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressCompany();
+
+        T visitTrackingCategoriesDeliveryAddressCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesDeliveryAddressCompanyAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressCompanyPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressVendor();
+
+        T visitTrackingCategoriesDeliveryAddressVendorAccountingPeriod();
+
+        T visitTrackingCategoriesDeliveryAddressVendorAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressVendorCompany();
+
+        T visitTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesDeliveryAddressVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressVendorCompanyPaymentTerm();
+
+        T visitTrackingCategoriesDeliveryAddressVendorPaymentTerm();
+
+        T visitTrackingCategoriesPaymentTerm();
+
+        T visitTrackingCategoriesVendor();
+
+        T visitTrackingCategoriesVendorAccountingPeriod();
+
+        T visitTrackingCategoriesVendorAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesVendorCompany();
+
+        T visitTrackingCategoriesVendorCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitTrackingCategoriesVendorCompanyPaymentTerm();
+
+        T visitTrackingCategoriesVendorPaymentTerm();
+
+        T visitVendor();
+
+        T visitVendorAccountingPeriod();
+
+        T visitVendorAccountingPeriodPaymentTerm();
+
+        T visitVendorCompany();
+
+        T visitVendorCompanyAccountingPeriod();
+
+        T visitVendorCompanyAccountingPeriodPaymentTerm();
+
+        T visitVendorCompanyPaymentTerm();
+
+        T visitVendorPaymentTerm();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,48 +3,224 @@
  */
 package com.merge.api.resources.crm.notes.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum NotesRetrieveRequestExpand {
-    ACCOUNT("account"),
+public final class NotesRetrieveRequestExpand {
+    public static final NotesRetrieveRequestExpand OWNER_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.OWNER_OPPORTUNITY, "owner,opportunity");
 
-    ACCOUNT_OPPORTUNITY("account,opportunity"),
+    public static final NotesRetrieveRequestExpand OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.OPPORTUNITY, "opportunity");
 
-    CONTACT("contact"),
+    public static final NotesRetrieveRequestExpand OWNER_ACCOUNT =
+            new NotesRetrieveRequestExpand(Value.OWNER_ACCOUNT, "owner,account");
 
-    CONTACT_ACCOUNT("contact,account"),
+    public static final NotesRetrieveRequestExpand OWNER_ACCOUNT_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.OWNER_ACCOUNT_OPPORTUNITY, "owner,account,opportunity");
 
-    CONTACT_ACCOUNT_OPPORTUNITY("contact,account,opportunity"),
+    public static final NotesRetrieveRequestExpand ACCOUNT = new NotesRetrieveRequestExpand(Value.ACCOUNT, "account");
 
-    CONTACT_OPPORTUNITY("contact,opportunity"),
+    public static final NotesRetrieveRequestExpand CONTACT_ACCOUNT =
+            new NotesRetrieveRequestExpand(Value.CONTACT_ACCOUNT, "contact,account");
 
-    OPPORTUNITY("opportunity"),
+    public static final NotesRetrieveRequestExpand OWNER_CONTACT_ACCOUNT =
+            new NotesRetrieveRequestExpand(Value.OWNER_CONTACT_ACCOUNT, "owner,contact,account");
 
-    OWNER("owner"),
+    public static final NotesRetrieveRequestExpand OWNER_CONTACT_ACCOUNT_OPPORTUNITY = new NotesRetrieveRequestExpand(
+            Value.OWNER_CONTACT_ACCOUNT_OPPORTUNITY, "owner,contact,account,opportunity");
 
-    OWNER_ACCOUNT("owner,account"),
+    public static final NotesRetrieveRequestExpand OWNER = new NotesRetrieveRequestExpand(Value.OWNER, "owner");
 
-    OWNER_ACCOUNT_OPPORTUNITY("owner,account,opportunity"),
+    public static final NotesRetrieveRequestExpand OWNER_CONTACT_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.OWNER_CONTACT_OPPORTUNITY, "owner,contact,opportunity");
 
-    OWNER_CONTACT("owner,contact"),
+    public static final NotesRetrieveRequestExpand ACCOUNT_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.ACCOUNT_OPPORTUNITY, "account,opportunity");
 
-    OWNER_CONTACT_ACCOUNT("owner,contact,account"),
+    public static final NotesRetrieveRequestExpand OWNER_CONTACT =
+            new NotesRetrieveRequestExpand(Value.OWNER_CONTACT, "owner,contact");
 
-    OWNER_CONTACT_ACCOUNT_OPPORTUNITY("owner,contact,account,opportunity"),
+    public static final NotesRetrieveRequestExpand CONTACT_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.CONTACT_OPPORTUNITY, "contact,opportunity");
 
-    OWNER_CONTACT_OPPORTUNITY("owner,contact,opportunity"),
+    public static final NotesRetrieveRequestExpand CONTACT = new NotesRetrieveRequestExpand(Value.CONTACT, "contact");
 
-    OWNER_OPPORTUNITY("owner,opportunity");
+    public static final NotesRetrieveRequestExpand CONTACT_ACCOUNT_OPPORTUNITY =
+            new NotesRetrieveRequestExpand(Value.CONTACT_ACCOUNT_OPPORTUNITY, "contact,account,opportunity");
 
-    private final String value;
+    private final Value value;
 
-    NotesRetrieveRequestExpand(String value) {
+    private final String string;
+
+    NotesRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof NotesRetrieveRequestExpand
+                        && this.string.equals(((NotesRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER_OPPORTUNITY:
+                return visitor.visitOwnerOpportunity();
+            case OPPORTUNITY:
+                return visitor.visitOpportunity();
+            case OWNER_ACCOUNT:
+                return visitor.visitOwnerAccount();
+            case OWNER_ACCOUNT_OPPORTUNITY:
+                return visitor.visitOwnerAccountOpportunity();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case CONTACT_ACCOUNT:
+                return visitor.visitContactAccount();
+            case OWNER_CONTACT_ACCOUNT:
+                return visitor.visitOwnerContactAccount();
+            case OWNER_CONTACT_ACCOUNT_OPPORTUNITY:
+                return visitor.visitOwnerContactAccountOpportunity();
+            case OWNER:
+                return visitor.visitOwner();
+            case OWNER_CONTACT_OPPORTUNITY:
+                return visitor.visitOwnerContactOpportunity();
+            case ACCOUNT_OPPORTUNITY:
+                return visitor.visitAccountOpportunity();
+            case OWNER_CONTACT:
+                return visitor.visitOwnerContact();
+            case CONTACT_OPPORTUNITY:
+                return visitor.visitContactOpportunity();
+            case CONTACT:
+                return visitor.visitContact();
+            case CONTACT_ACCOUNT_OPPORTUNITY:
+                return visitor.visitContactAccountOpportunity();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static NotesRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "owner,opportunity":
+                return OWNER_OPPORTUNITY;
+            case "opportunity":
+                return OPPORTUNITY;
+            case "owner,account":
+                return OWNER_ACCOUNT;
+            case "owner,account,opportunity":
+                return OWNER_ACCOUNT_OPPORTUNITY;
+            case "account":
+                return ACCOUNT;
+            case "contact,account":
+                return CONTACT_ACCOUNT;
+            case "owner,contact,account":
+                return OWNER_CONTACT_ACCOUNT;
+            case "owner,contact,account,opportunity":
+                return OWNER_CONTACT_ACCOUNT_OPPORTUNITY;
+            case "owner":
+                return OWNER;
+            case "owner,contact,opportunity":
+                return OWNER_CONTACT_OPPORTUNITY;
+            case "account,opportunity":
+                return ACCOUNT_OPPORTUNITY;
+            case "owner,contact":
+                return OWNER_CONTACT;
+            case "contact,opportunity":
+                return CONTACT_OPPORTUNITY;
+            case "contact":
+                return CONTACT;
+            case "contact,account,opportunity":
+                return CONTACT_ACCOUNT_OPPORTUNITY;
+            default:
+                return new NotesRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_OPPORTUNITY,
+
+        CONTACT,
+
+        CONTACT_ACCOUNT,
+
+        CONTACT_ACCOUNT_OPPORTUNITY,
+
+        CONTACT_OPPORTUNITY,
+
+        OPPORTUNITY,
+
+        OWNER,
+
+        OWNER_ACCOUNT,
+
+        OWNER_ACCOUNT_OPPORTUNITY,
+
+        OWNER_CONTACT,
+
+        OWNER_CONTACT_ACCOUNT,
+
+        OWNER_CONTACT_ACCOUNT_OPPORTUNITY,
+
+        OWNER_CONTACT_OPPORTUNITY,
+
+        OWNER_OPPORTUNITY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountOpportunity();
+
+        T visitContact();
+
+        T visitContactAccount();
+
+        T visitContactAccountOpportunity();
+
+        T visitContactOpportunity();
+
+        T visitOpportunity();
+
+        T visitOwner();
+
+        T visitOwnerAccount();
+
+        T visitOwnerAccountOpportunity();
+
+        T visitOwnerContact();
+
+        T visitOwnerContactAccount();
+
+        T visitOwnerContactAccountOpportunity();
+
+        T visitOwnerContactOpportunity();
+
+        T visitOwnerOpportunity();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -26,6 +26,8 @@ public final class EeocsRetrieveRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<EeocsRetrieveRequestRemoteFields> remoteFields;
 
     private final Optional<EeocsRetrieveRequestShowEnumOrigins> showEnumOrigins;
@@ -35,11 +37,13 @@ public final class EeocsRetrieveRequest {
     private EeocsRetrieveRequest(
             Optional<String> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<EeocsRetrieveRequestRemoteFields> remoteFields,
             Optional<EeocsRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -59,6 +63,14 @@ public final class EeocsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -91,13 +103,15 @@ public final class EeocsRetrieveRequest {
     private boolean equalTo(EeocsRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(
+                this.expand, this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -115,6 +129,8 @@ public final class EeocsRetrieveRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<EeocsRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<EeocsRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
@@ -127,6 +143,7 @@ public final class EeocsRetrieveRequest {
         public Builder from(EeocsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -154,6 +171,17 @@ public final class EeocsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<EeocsRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -178,7 +206,7 @@ public final class EeocsRetrieveRequest {
 
         public EeocsRetrieveRequest build() {
             return new EeocsRetrieveRequest(
-                    expand, includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

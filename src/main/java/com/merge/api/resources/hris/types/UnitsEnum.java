@@ -3,22 +3,80 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UnitsEnum {
-    HOURS("HOURS"),
+public final class UnitsEnum {
+    public static final UnitsEnum DAYS = new UnitsEnum(Value.DAYS, "DAYS");
 
-    DAYS("DAYS");
+    public static final UnitsEnum HOURS = new UnitsEnum(Value.HOURS, "HOURS");
 
-    private final String value;
+    private final Value value;
 
-    UnitsEnum(String value) {
+    private final String string;
+
+    UnitsEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof UnitsEnum && this.string.equals(((UnitsEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DAYS:
+                return visitor.visitDays();
+            case HOURS:
+                return visitor.visitHours();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static UnitsEnum valueOf(String value) {
+        switch (value) {
+            case "DAYS":
+                return DAYS;
+            case "HOURS":
+                return HOURS;
+            default:
+                return new UnitsEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        HOURS,
+
+        DAYS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitHours();
+
+        T visitDays();
+
+        T visitUnknown(String unknownType);
     }
 }

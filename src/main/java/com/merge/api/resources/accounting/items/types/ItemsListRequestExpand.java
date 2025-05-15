@@ -3,84 +3,422 @@
  */
 package com.merge.api.resources.accounting.items.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ItemsListRequestExpand {
-    COMPANY("company"),
+public final class ItemsListRequestExpand {
+    public static final ItemsListRequestExpand SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE = new ItemsListRequestExpand(
+            Value.SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE, "sales_account,company,purchase_tax_rate");
 
-    COMPANY_PURCHASE_TAX_RATE("company,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_TAX_RATE =
+            new ItemsListRequestExpand(Value.PURCHASE_ACCOUNT_SALES_TAX_RATE, "purchase_account,sales_tax_rate");
 
-    COMPANY_SALES_TAX_RATE("company,sales_tax_rate"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(Value.SALES_ACCOUNT_PURCHASE_TAX_RATE, "sales_account,purchase_tax_rate");
 
-    COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE("company,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(Value.PURCHASE_TAX_RATE, "purchase_tax_rate");
 
-    PURCHASE_ACCOUNT("purchase_account"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT =
+            new ItemsListRequestExpand(Value.SALES_ACCOUNT, "sales_account");
 
-    PURCHASE_ACCOUNT_COMPANY("purchase_account,company"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE,
+                    "purchase_account,sales_account,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE("purchase_account,company,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE,
+                    "purchase_account,sales_account,sales_tax_rate");
 
-    PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE("purchase_account,company,sales_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE = new ItemsListRequestExpand(
+            Value.PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE, "purchase_account,company,sales_tax_rate");
 
-    PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE(
-            "purchase_account,company,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "purchase_account,company,sales_tax_rate,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_PURCHASE_TAX_RATE("purchase_account,purchase_tax_rate"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_COMPANY_SALES_TAX_RATE = new ItemsListRequestExpand(
+            Value.SALES_ACCOUNT_COMPANY_SALES_TAX_RATE, "sales_account,company,sales_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT("purchase_account,sales_account"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "sales_account,company,sales_tax_rate,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY("purchase_account,sales_account,company"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE,
+                    "purchase_account,sales_account,company,sales_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE(
-            "purchase_account,sales_account,company,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY = new ItemsListRequestExpand(
+            Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY, "purchase_account,sales_account,company");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE("purchase_account,sales_account,company,sales_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE,
+                    "purchase_account,sales_account,company,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE(
-            "purchase_account,sales_account,company,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_COMPANY =
+            new ItemsListRequestExpand(Value.PURCHASE_ACCOUNT_COMPANY, "purchase_account,company");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE("purchase_account,sales_account,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "purchase_account,sales_tax_rate,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE("purchase_account,sales_account,sales_tax_rate"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_SALES_TAX_RATE =
+            new ItemsListRequestExpand(Value.SALES_ACCOUNT_SALES_TAX_RATE, "sales_account,sales_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE(
-            "purchase_account,sales_account,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(Value.PURCHASE_ACCOUNT_PURCHASE_TAX_RATE, "purchase_account,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_TAX_RATE("purchase_account,sales_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "purchase_account,sales_account,sales_tax_rate,purchase_tax_rate");
 
-    PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE("purchase_account,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand COMPANY = new ItemsListRequestExpand(Value.COMPANY, "company");
 
-    PURCHASE_TAX_RATE("purchase_tax_rate"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "sales_account,sales_tax_rate,purchase_tax_rate");
 
-    SALES_ACCOUNT("sales_account"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT =
+            new ItemsListRequestExpand(Value.PURCHASE_ACCOUNT, "purchase_account");
 
-    SALES_ACCOUNT_COMPANY("sales_account,company"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE = new ItemsListRequestExpand(
+            Value.PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE, "purchase_account,company,purchase_tax_rate");
 
-    SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE("sales_account,company,purchase_tax_rate"),
+    public static final ItemsListRequestExpand COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE = new ItemsListRequestExpand(
+            Value.COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE, "company,sales_tax_rate,purchase_tax_rate");
 
-    SALES_ACCOUNT_COMPANY_SALES_TAX_RATE("sales_account,company,sales_tax_rate"),
+    public static final ItemsListRequestExpand SALES_TAX_RATE =
+            new ItemsListRequestExpand(Value.SALES_TAX_RATE, "sales_tax_rate");
 
-    SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE("sales_account,company,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand SALES_ACCOUNT_COMPANY =
+            new ItemsListRequestExpand(Value.SALES_ACCOUNT_COMPANY, "sales_account,company");
 
-    SALES_ACCOUNT_PURCHASE_TAX_RATE("sales_account,purchase_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(
+                    Value.PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+                    "purchase_account,sales_account,company,sales_tax_rate,purchase_tax_rate");
 
-    SALES_ACCOUNT_SALES_TAX_RATE("sales_account,sales_tax_rate"),
+    public static final ItemsListRequestExpand SALES_TAX_RATE_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(Value.SALES_TAX_RATE_PURCHASE_TAX_RATE, "sales_tax_rate,purchase_tax_rate");
 
-    SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE("sales_account,sales_tax_rate,purchase_tax_rate"),
+    public static final ItemsListRequestExpand COMPANY_PURCHASE_TAX_RATE =
+            new ItemsListRequestExpand(Value.COMPANY_PURCHASE_TAX_RATE, "company,purchase_tax_rate");
 
-    SALES_TAX_RATE("sales_tax_rate"),
+    public static final ItemsListRequestExpand PURCHASE_ACCOUNT_SALES_ACCOUNT =
+            new ItemsListRequestExpand(Value.PURCHASE_ACCOUNT_SALES_ACCOUNT, "purchase_account,sales_account");
 
-    SALES_TAX_RATE_PURCHASE_TAX_RATE("sales_tax_rate,purchase_tax_rate");
+    public static final ItemsListRequestExpand COMPANY_SALES_TAX_RATE =
+            new ItemsListRequestExpand(Value.COMPANY_SALES_TAX_RATE, "company,sales_tax_rate");
 
-    private final String value;
+    private final Value value;
 
-    ItemsListRequestExpand(String value) {
+    private final String string;
+
+    ItemsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ItemsListRequestExpand
+                        && this.string.equals(((ItemsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE:
+                return visitor.visitSalesAccountCompanyPurchaseTaxRate();
+            case PURCHASE_ACCOUNT_SALES_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesTaxRate();
+            case SALES_ACCOUNT_PURCHASE_TAX_RATE:
+                return visitor.visitSalesAccountPurchaseTaxRate();
+            case PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseTaxRate();
+            case SALES_ACCOUNT:
+                return visitor.visitSalesAccount();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountPurchaseTaxRate();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountSalesTaxRate();
+            case PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE:
+                return visitor.visitPurchaseAccountCompanySalesTaxRate();
+            case PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountCompanySalesTaxRatePurchaseTaxRate();
+            case SALES_ACCOUNT_COMPANY_SALES_TAX_RATE:
+                return visitor.visitSalesAccountCompanySalesTaxRate();
+            case SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitSalesAccountCompanySalesTaxRatePurchaseTaxRate();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountCompanySalesTaxRate();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY:
+                return visitor.visitPurchaseAccountSalesAccountCompany();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountCompanyPurchaseTaxRate();
+            case PURCHASE_ACCOUNT_COMPANY:
+                return visitor.visitPurchaseAccountCompany();
+            case PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesTaxRatePurchaseTaxRate();
+            case SALES_ACCOUNT_SALES_TAX_RATE:
+                return visitor.visitSalesAccountSalesTaxRate();
+            case PURCHASE_ACCOUNT_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountPurchaseTaxRate();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountSalesTaxRatePurchaseTaxRate();
+            case COMPANY:
+                return visitor.visitCompany();
+            case SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitSalesAccountSalesTaxRatePurchaseTaxRate();
+            case PURCHASE_ACCOUNT:
+                return visitor.visitPurchaseAccount();
+            case PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountCompanyPurchaseTaxRate();
+            case COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitCompanySalesTaxRatePurchaseTaxRate();
+            case SALES_TAX_RATE:
+                return visitor.visitSalesTaxRate();
+            case SALES_ACCOUNT_COMPANY:
+                return visitor.visitSalesAccountCompany();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseAccountSalesAccountCompanySalesTaxRatePurchaseTaxRate();
+            case SALES_TAX_RATE_PURCHASE_TAX_RATE:
+                return visitor.visitSalesTaxRatePurchaseTaxRate();
+            case COMPANY_PURCHASE_TAX_RATE:
+                return visitor.visitCompanyPurchaseTaxRate();
+            case PURCHASE_ACCOUNT_SALES_ACCOUNT:
+                return visitor.visitPurchaseAccountSalesAccount();
+            case COMPANY_SALES_TAX_RATE:
+                return visitor.visitCompanySalesTaxRate();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ItemsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "sales_account,company,purchase_tax_rate":
+                return SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE;
+            case "purchase_account,sales_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_TAX_RATE;
+            case "sales_account,purchase_tax_rate":
+                return SALES_ACCOUNT_PURCHASE_TAX_RATE;
+            case "purchase_tax_rate":
+                return PURCHASE_TAX_RATE;
+            case "sales_account":
+                return SALES_ACCOUNT;
+            case "purchase_account,sales_account,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE;
+            case "purchase_account,sales_account,sales_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE;
+            case "purchase_account,company,sales_tax_rate":
+                return PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE;
+            case "purchase_account,company,sales_tax_rate,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "sales_account,company,sales_tax_rate":
+                return SALES_ACCOUNT_COMPANY_SALES_TAX_RATE;
+            case "sales_account,company,sales_tax_rate,purchase_tax_rate":
+                return SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "purchase_account,sales_account,company,sales_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE;
+            case "purchase_account,sales_account,company":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY;
+            case "purchase_account,sales_account,company,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE;
+            case "purchase_account,company":
+                return PURCHASE_ACCOUNT_COMPANY;
+            case "purchase_account,sales_tax_rate,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "sales_account,sales_tax_rate":
+                return SALES_ACCOUNT_SALES_TAX_RATE;
+            case "purchase_account,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_PURCHASE_TAX_RATE;
+            case "purchase_account,sales_account,sales_tax_rate,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "company":
+                return COMPANY;
+            case "sales_account,sales_tax_rate,purchase_tax_rate":
+                return SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "purchase_account":
+                return PURCHASE_ACCOUNT;
+            case "purchase_account,company,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE;
+            case "company,sales_tax_rate,purchase_tax_rate":
+                return COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "sales_tax_rate":
+                return SALES_TAX_RATE;
+            case "sales_account,company":
+                return SALES_ACCOUNT_COMPANY;
+            case "purchase_account,sales_account,company,sales_tax_rate,purchase_tax_rate":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "sales_tax_rate,purchase_tax_rate":
+                return SALES_TAX_RATE_PURCHASE_TAX_RATE;
+            case "company,purchase_tax_rate":
+                return COMPANY_PURCHASE_TAX_RATE;
+            case "purchase_account,sales_account":
+                return PURCHASE_ACCOUNT_SALES_ACCOUNT;
+            case "company,sales_tax_rate":
+                return COMPANY_SALES_TAX_RATE;
+            default:
+                return new ItemsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COMPANY,
+
+        COMPANY_PURCHASE_TAX_RATE,
+
+        COMPANY_SALES_TAX_RATE,
+
+        COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT,
+
+        PURCHASE_ACCOUNT_COMPANY,
+
+        PURCHASE_ACCOUNT_COMPANY_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE,
+
+        PURCHASE_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_TAX_RATE,
+
+        PURCHASE_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        PURCHASE_TAX_RATE,
+
+        SALES_ACCOUNT,
+
+        SALES_ACCOUNT_COMPANY,
+
+        SALES_ACCOUNT_COMPANY_PURCHASE_TAX_RATE,
+
+        SALES_ACCOUNT_COMPANY_SALES_TAX_RATE,
+
+        SALES_ACCOUNT_COMPANY_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        SALES_ACCOUNT_PURCHASE_TAX_RATE,
+
+        SALES_ACCOUNT_SALES_TAX_RATE,
+
+        SALES_ACCOUNT_SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        SALES_TAX_RATE,
+
+        SALES_TAX_RATE_PURCHASE_TAX_RATE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCompany();
+
+        T visitCompanyPurchaseTaxRate();
+
+        T visitCompanySalesTaxRate();
+
+        T visitCompanySalesTaxRatePurchaseTaxRate();
+
+        T visitPurchaseAccount();
+
+        T visitPurchaseAccountCompany();
+
+        T visitPurchaseAccountCompanyPurchaseTaxRate();
+
+        T visitPurchaseAccountCompanySalesTaxRate();
+
+        T visitPurchaseAccountCompanySalesTaxRatePurchaseTaxRate();
+
+        T visitPurchaseAccountPurchaseTaxRate();
+
+        T visitPurchaseAccountSalesAccount();
+
+        T visitPurchaseAccountSalesAccountCompany();
+
+        T visitPurchaseAccountSalesAccountCompanyPurchaseTaxRate();
+
+        T visitPurchaseAccountSalesAccountCompanySalesTaxRate();
+
+        T visitPurchaseAccountSalesAccountCompanySalesTaxRatePurchaseTaxRate();
+
+        T visitPurchaseAccountSalesAccountPurchaseTaxRate();
+
+        T visitPurchaseAccountSalesAccountSalesTaxRate();
+
+        T visitPurchaseAccountSalesAccountSalesTaxRatePurchaseTaxRate();
+
+        T visitPurchaseAccountSalesTaxRate();
+
+        T visitPurchaseAccountSalesTaxRatePurchaseTaxRate();
+
+        T visitPurchaseTaxRate();
+
+        T visitSalesAccount();
+
+        T visitSalesAccountCompany();
+
+        T visitSalesAccountCompanyPurchaseTaxRate();
+
+        T visitSalesAccountCompanySalesTaxRate();
+
+        T visitSalesAccountCompanySalesTaxRatePurchaseTaxRate();
+
+        T visitSalesAccountPurchaseTaxRate();
+
+        T visitSalesAccountSalesTaxRate();
+
+        T visitSalesAccountSalesTaxRatePurchaseTaxRate();
+
+        T visitSalesTaxRate();
+
+        T visitSalesTaxRatePurchaseTaxRate();
+
+        T visitUnknown(String unknownType);
     }
 }

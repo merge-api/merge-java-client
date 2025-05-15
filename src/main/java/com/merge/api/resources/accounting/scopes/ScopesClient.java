@@ -3,118 +3,61 @@
  */
 package com.merge.api.resources.accounting.scopes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.accounting.scopes.requests.LinkedAccountCommonModelScopeDeserializerRequest;
 import com.merge.api.resources.accounting.types.CommonModelScopeApi;
-import java.io.IOException;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class ScopesClient {
     protected final ClientOptions clientOptions;
 
+    private final RawScopesClient rawClient;
+
     public ScopesClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawScopesClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawScopesClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi defaultScopesRetrieve() {
-        return defaultScopesRetrieve(null);
+        return this.rawClient.defaultScopesRetrieve().body();
     }
 
     /**
      * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi defaultScopesRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("accounting/v1/default-scopes")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.defaultScopesRetrieve(requestOptions).body();
     }
 
     /**
      * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi linkedAccountScopesRetrieve() {
-        return linkedAccountScopesRetrieve(null);
+        return this.rawClient.linkedAccountScopesRetrieve().body();
     }
 
     /**
      * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public CommonModelScopeApi linkedAccountScopesRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("accounting/v1/linked-account-scopes")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.linkedAccountScopesRetrieve(requestOptions).body();
     }
 
     /**
      * Update permissions for any Common Model or field for a single Linked Account. Any Scopes not set in this POST request will inherit the default Scopes. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>
      */
     public CommonModelScopeApi linkedAccountScopesCreate(LinkedAccountCommonModelScopeDeserializerRequest request) {
-        return linkedAccountScopesCreate(request, null);
+        return this.rawClient.linkedAccountScopesCreate(request).body();
     }
 
     /**
@@ -122,40 +65,6 @@ public class ScopesClient {
      */
     public CommonModelScopeApi linkedAccountScopesCreate(
             LinkedAccountCommonModelScopeDeserializerRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("accounting/v1/linked-account-scopes")
-                .build();
-        RequestBody body;
-        try {
-            body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
-        } catch (JsonProcessingException e) {
-            throw new MergeException("Failed to serialize request", e);
-        }
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("POST", body)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CommonModelScopeApi.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.linkedAccountScopesCreate(request, requestOptions).body();
     }
 }

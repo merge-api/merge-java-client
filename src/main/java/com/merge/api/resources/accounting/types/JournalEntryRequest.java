@@ -29,7 +29,7 @@ public final class JournalEntryRequest {
 
     private final Optional<String> memo;
 
-    private final Optional<JournalEntryRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -43,7 +43,7 @@ public final class JournalEntryRequest {
 
     private final Optional<String> journalNumber;
 
-    private final Optional<JournalEntryRequestPostingStatus> postingStatus;
+    private final Optional<PostingStatusEnum> postingStatus;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -57,14 +57,14 @@ public final class JournalEntryRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<List<Optional<JournalEntryRequestPaymentsItem>>> payments,
             Optional<String> memo,
-            Optional<JournalEntryRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<JournalEntryRequestCompany> company,
             Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> inclusiveOfTax,
             Optional<List<JournalLineRequest>> lines,
             Optional<String> journalNumber,
-            Optional<JournalEntryRequestPostingStatus> postingStatus,
+            Optional<PostingStatusEnum> postingStatus,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
@@ -422,7 +422,7 @@ public final class JournalEntryRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<JournalEntryRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -476,7 +476,7 @@ public final class JournalEntryRequest {
      * </ul>
      */
     @JsonProperty("posting_status")
-    public Optional<JournalEntryRequestPostingStatus> getPostingStatus() {
+    public Optional<PostingStatusEnum> getPostingStatus() {
         return postingStatus;
     }
 
@@ -559,7 +559,7 @@ public final class JournalEntryRequest {
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<JournalEntryRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -574,7 +574,7 @@ public final class JournalEntryRequest {
 
         private Optional<String> journalNumber = Optional.empty();
 
-        private Optional<JournalEntryRequestPostingStatus> postingStatus = Optional.empty();
+        private Optional<PostingStatusEnum> postingStatus = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -639,12 +639,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<JournalEntryRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(JournalEntryRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -718,12 +718,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "posting_status", nulls = Nulls.SKIP)
-        public Builder postingStatus(Optional<JournalEntryRequestPostingStatus> postingStatus) {
+        public Builder postingStatus(Optional<PostingStatusEnum> postingStatus) {
             this.postingStatus = postingStatus;
             return this;
         }
 
-        public Builder postingStatus(JournalEntryRequestPostingStatus postingStatus) {
+        public Builder postingStatus(PostingStatusEnum postingStatus) {
             this.postingStatus = Optional.ofNullable(postingStatus);
             return this;
         }

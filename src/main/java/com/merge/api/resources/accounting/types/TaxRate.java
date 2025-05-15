@@ -39,7 +39,7 @@ public final class TaxRate {
 
     private final Optional<String> description;
 
-    private final Optional<TaxRateStatus> status;
+    private final Optional<Status7D1Enum> status;
 
     private final Optional<String> country;
 
@@ -66,7 +66,7 @@ public final class TaxRate {
             Optional<String> code,
             Optional<String> name,
             Optional<String> description,
-            Optional<TaxRateStatus> status,
+            Optional<Status7D1Enum> status,
             Optional<String> country,
             Optional<Double> totalTaxRate,
             Optional<Double> effectiveTaxRate,
@@ -163,7 +163,7 @@ public final class TaxRate {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TaxRateStatus> getStatus() {
+    public Optional<Status7D1Enum> getStatus() {
         return status;
     }
 
@@ -295,7 +295,7 @@ public final class TaxRate {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<TaxRateStatus> status = Optional.empty();
+        private Optional<Status7D1Enum> status = Optional.empty();
 
         private Optional<String> country = Optional.empty();
 
@@ -425,12 +425,12 @@ public final class TaxRate {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TaxRateStatus> status) {
+        public Builder status(Optional<Status7D1Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TaxRateStatus status) {
+        public Builder status(Status7D1Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

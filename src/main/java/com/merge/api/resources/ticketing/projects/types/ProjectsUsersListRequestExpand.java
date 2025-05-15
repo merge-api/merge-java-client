@@ -3,24 +3,93 @@
  */
 package com.merge.api.resources.ticketing.projects.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ProjectsUsersListRequestExpand {
-    ROLES("roles"),
+public final class ProjectsUsersListRequestExpand {
+    public static final ProjectsUsersListRequestExpand TEAMS = new ProjectsUsersListRequestExpand(Value.TEAMS, "teams");
 
-    TEAMS("teams"),
+    public static final ProjectsUsersListRequestExpand TEAMS_ROLES =
+            new ProjectsUsersListRequestExpand(Value.TEAMS_ROLES, "teams,roles");
 
-    TEAMS_ROLES("teams,roles");
+    public static final ProjectsUsersListRequestExpand ROLES = new ProjectsUsersListRequestExpand(Value.ROLES, "roles");
 
-    private final String value;
+    private final Value value;
 
-    ProjectsUsersListRequestExpand(String value) {
+    private final String string;
+
+    ProjectsUsersListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ProjectsUsersListRequestExpand
+                        && this.string.equals(((ProjectsUsersListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case TEAMS:
+                return visitor.visitTeams();
+            case TEAMS_ROLES:
+                return visitor.visitTeamsRoles();
+            case ROLES:
+                return visitor.visitRoles();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ProjectsUsersListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "teams":
+                return TEAMS;
+            case "teams,roles":
+                return TEAMS_ROLES;
+            case "roles":
+                return ROLES;
+            default:
+                return new ProjectsUsersListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ROLES,
+
+        TEAMS,
+
+        TEAMS_ROLES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRoles();
+
+        T visitTeams();
+
+        T visitTeamsRoles();
+
+        T visitUnknown(String unknownType);
     }
 }

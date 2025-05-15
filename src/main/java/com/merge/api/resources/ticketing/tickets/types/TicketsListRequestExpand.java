@@ -3,584 +3,3129 @@
  */
 package com.merge.api.resources.ticketing.tickets.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketsListRequestExpand {
-    ACCOUNT("account"),
+public final class TicketsListRequestExpand {
+    public static final TicketsListRequestExpand ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.ACCOUNT_CONTACT_CREATOR, "account,contact,creator");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,account,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.COLLECTIONS_ACCOUNT_CONTACT_CREATOR, "collections,account,contact,creator");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS =
+            new TicketsListRequestExpand(Value.ASSIGNEES_COLLECTIONS, "assignees,collections");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+                    "attachments,assignees,assigned_teams,account,contact");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "assignees,assigned_teams,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_COLLECTIONS, "attachments,collections");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNEES, "attachments,assignees");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "collections,assigned_teams,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,assignees,account,contact,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assigned_teams,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ACCOUNT = new TicketsListRequestExpand(Value.ACCOUNT, "account");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+                    "attachments,assignees,collections,assigned_teams,creator");
+
+    public static final TicketsListRequestExpand ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(Value.ACCOUNT_CREATOR, "account,creator");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "assignees,assigned_teams,account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET, "assigned_teams,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET, "attachments,assignees,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+                    "attachments,assignees,collections,assigned_teams,account,creator");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.COLLECTIONS_ACCOUNT_PARENT_TICKET, "collections,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ACCOUNT_CREATOR, "assignees,account,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS =
+            new TicketsListRequestExpand(Value.ATTACHMENTS, "attachments");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,collections,account,contact,parent_ticket");
 
-    ACCOUNT_CONTACT("account,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,creator,parent_ticket");
 
-    ACCOUNT_CONTACT_CREATOR("account,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "attachments,assigned_teams,account,parent_ticket");
 
-    ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR,
+                    "attachments,assignees,assigned_teams,contact,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT, "attachments,assigned_teams,account");
 
-    ACCOUNT_CONTACT_PARENT_TICKET("account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT, "assignees,assigned_teams,account,contact");
 
-    ACCOUNT_CREATOR("account,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CREATOR =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_COLLECTIONS_CREATOR, "attachments,collections,creator");
 
-    ACCOUNT_CREATOR_PARENT_TICKET("account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_CONTACT, "assignees,contact");
 
-    ACCOUNT_PARENT_TICKET("account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET, "attachments,assignees,contact,parent_ticket");
 
-    ASSIGNED_TEAMS("assigned_teams"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,assigned_teams,contact,creator,parent_ticket");
 
-    ASSIGNED_TEAMS_ACCOUNT("assigned_teams,account"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET, "assigned_teams,account,creator,parent_ticket");
 
-    ASSIGNED_TEAMS_ACCOUNT_CONTACT("assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET, "collections,contact,creator,parent_ticket");
 
-    ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ACCOUNT_CONTACT_CREATOR, "assignees,account,contact,creator");
 
-    ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS, "attachments,assignees,collections");
 
-    ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET("assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+                    "attachments,collections,assigned_teams,contact,creator");
 
-    ASSIGNED_TEAMS_ACCOUNT_CREATOR("assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand CONTACT = new TicketsListRequestExpand(Value.CONTACT, "contact");
 
-    ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET("assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR,
+                    "attachments,assignees,collections,contact,creator");
 
-    ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand PARENT_TICKET =
+            new TicketsListRequestExpand(Value.PARENT_TICKET, "parent_ticket");
 
-    ASSIGNED_TEAMS_CONTACT("assigned_teams,contact"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR, "collections,assigned_teams,account,creator");
 
-    ASSIGNED_TEAMS_CONTACT_CREATOR("assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "collections,assigned_teams,account,creator,parent_ticket");
 
-    ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET("assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET, "attachments,account,creator,parent_ticket");
 
-    ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT,
+                    "attachments,assignees,collections,account,contact");
 
-    ASSIGNED_TEAMS_CREATOR("assigned_teams,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_COLLECTIONS_ACCOUNT, "attachments,collections,account");
 
-    ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNED_TEAMS_CREATOR, "attachments,assigned_teams,creator");
 
-    ASSIGNED_TEAMS_PARENT_TICKET("assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES = new TicketsListRequestExpand(Value.ASSIGNEES, "assignees");
 
-    ASSIGNEES("assignees"),
+    public static final TicketsListRequestExpand ATTACHMENTS_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_PARENT_TICKET, "attachments,parent_ticket");
 
-    ASSIGNEES_ACCOUNT("assignees,account"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,collections,assigned_teams,creator,parent_ticket");
 
-    ASSIGNEES_ACCOUNT_CONTACT("assignees,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,collections,assigned_teams,account,contact,creator");
 
-    ASSIGNEES_ACCOUNT_CONTACT_CREATOR("assignees,account,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,account,contact,parent_ticket");
 
-    ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("assignees,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,creator,parent_ticket");
 
-    ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET("assignees,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_CONTACT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_CONTACT, "attachments,contact");
 
-    ASSIGNEES_ACCOUNT_CREATOR("assignees,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.ASSIGNEES_COLLECTIONS_CONTACT_CREATOR, "assignees,collections,contact,creator");
 
-    ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET("assignees,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_CREATOR =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_CREATOR, "attachments,creator");
 
-    ASSIGNEES_ACCOUNT_PARENT_TICKET("assignees,account,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT = new TicketsListRequestExpand(
+            Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT, "assignees,collections,account,contact");
 
-    ASSIGNEES_ASSIGNED_TEAMS("assignees,assigned_teams"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+                    "attachments,collections,assigned_teams,contact");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT("assignees,assigned_teams,account"),
+    public static final TicketsListRequestExpand ATTACHMENTS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_CONTACT_CREATOR, "attachments,contact,creator");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT("assignees,assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ACCOUNT_CONTACT, "assignees,account,contact");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("assignees,assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET, "collections,assigned_teams,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "assignees,assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ASSIGNED_TEAMS_CONTACT, "assignees,assigned_teams,contact");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET("assignees,assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CREATOR =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNEES_CREATOR, "attachments,assignees,creator");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR("assignees,assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,collections,assigned_teams,contact,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET("assignees,assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET, "assigned_teams,account,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("assignees,assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_COLLECTIONS_CREATOR, "assignees,collections,creator");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CONTACT("assignees,assigned_teams,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_CONTACT_CREATOR, "assignees,contact,creator");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR("assignees,assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET, "assigned_teams,account,contact,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET("assignees,assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,account,contact,creator,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("assignees,assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ASSIGNEES_CREATOR_PARENT_TICKET, "assignees,creator,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CREATOR("assignees,assigned_teams,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET, "collections,account,creator,parent_ticket");
 
-    ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("assignees,assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_CREATOR, "assigned_teams,creator");
 
-    ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET("assignees,assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET, "attachments,assignees,account,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS("assignees,collections"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT("assignees,collections,account"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,collections,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT("assignees,collections,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR, "attachments,assigned_teams,contact,creator");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR("assignees,collections,account,contact,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT =
+            new TicketsListRequestExpand(Value.COLLECTIONS_ACCOUNT, "collections,account");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "assignees,collections,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS =
+            new TicketsListRequestExpand(Value.COLLECTIONS_ASSIGNED_TEAMS, "collections,assigned_teams");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET("assignees,collections,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "collections,assigned_teams,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR("assignees,collections,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ACCOUNT, "assignees,account");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET("assignees,collections,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ACCOUNT_CONTACT, "attachments,account,contact");
 
-    ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET("assignees,collections,account,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,assignees,collections,assigned_teams,account,contact,creator");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS("assignees,collections,assigned_teams"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "collections,assigned_teams,account,contact,creator");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("assignees,collections,assigned_teams,account"),
+    public static final TicketsListRequestExpand COLLECTIONS_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.COLLECTIONS_PARENT_TICKET, "collections,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("assignees,collections,assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CONTACT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_COLLECTIONS_CONTACT, "attachments,collections,contact");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
-            "assignees,collections,assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR, "assignees,assigned_teams,contact,creator");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "assignees,collections,assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand CREATOR = new TicketsListRequestExpand(Value.CREATOR, "creator");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "assignees,collections,assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET, "attachments,assigned_teams,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("assignees,collections,assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "assignees,collections,assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,account,contact,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
-            "assignees,collections,assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,account,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT("assignees,collections,assigned_teams,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CONTACT = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNED_TEAMS_CONTACT, "attachments,assigned_teams,contact");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("assignees,collections,assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR, "assigned_teams,account,contact,creator");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "assignees,collections,assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+                    new TicketsListRequestExpand(
+                            Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                            "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
-            "assignees,collections,assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ACCOUNT_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ACCOUNT_CONTACT_CREATOR_PARENT_TICKET, "account,contact,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR("assignees,collections,assigned_teams,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET, "attachments,account,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
-            "assignees,collections,assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET,
+                    "attachments,assignees,collections,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("assignees,collections,assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_CONTACT("assignees,collections,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,account,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_CONTACT_CREATOR("assignees,collections,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ACCOUNT_CREATOR, "attachments,account,creator");
 
-    ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET("assignees,collections,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET,
+                    "attachments,collections,account,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET("assignees,collections,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ASSIGNED_TEAMS, "assignees,assigned_teams");
 
-    ASSIGNEES_COLLECTIONS_CREATOR("assignees,collections,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "assignees,assigned_teams,contact,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET("assignees,collections,creator,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "collections,assigned_teams,contact,creator,parent_ticket");
 
-    ASSIGNEES_COLLECTIONS_PARENT_TICKET("assignees,collections,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_COLLECTIONS_CONTACT, "assignees,collections,contact");
 
-    ASSIGNEES_CONTACT("assignees,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET, "assignees,collections,contact,parent_ticket");
 
-    ASSIGNEES_CONTACT_CREATOR("assignees,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,assignees,collections,account,contact,creator");
 
-    ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET("assignees,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ASSIGNED_TEAMS_CREATOR, "assignees,assigned_teams,creator");
 
-    ASSIGNEES_CONTACT_PARENT_TICKET("assignees,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,collections,account,contact,parent_ticket");
 
-    ASSIGNEES_CREATOR("assignees,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT, "attachments,assignees,account,contact");
 
-    ASSIGNEES_CREATOR_PARENT_TICKET("assignees,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR, "attachments,assignees,contact,creator");
 
-    ASSIGNEES_PARENT_TICKET("assignees,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS("attachments"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ACCOUNT("attachments,account"),
+    public static final TicketsListRequestExpand ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ACCOUNT_CONTACT_PARENT_TICKET, "account,contact,parent_ticket");
 
-    ATTACHMENTS_ACCOUNT_CONTACT("attachments,account,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET, "assignees,account,creator,parent_ticket");
 
-    ATTACHMENTS_ACCOUNT_CONTACT_CREATOR("attachments,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "assignees,collections,account,contact,parent_ticket");
 
-    ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("attachments,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_CONTACT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNEES_CONTACT, "attachments,assignees,contact");
 
-    ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET("attachments,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+                    "assignees,collections,account,contact,creator");
 
-    ATTACHMENTS_ACCOUNT_CREATOR("attachments,account,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR,
+                    "attachments,assignees,collections,account,creator");
 
-    ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET("attachments,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ACCOUNT_PARENT_TICKET, "account,parent_ticket");
 
-    ATTACHMENTS_ACCOUNT_PARENT_TICKET("attachments,account,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT, "assignees,assigned_teams,account");
 
-    ATTACHMENTS_ASSIGNED_TEAMS("attachments,assigned_teams"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+                    "attachments,collections,assigned_teams,account");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT("attachments,assigned_teams,account"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ASSIGNEES_ACCOUNT_PARENT_TICKET, "assignees,account,parent_ticket");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR = new TicketsListRequestExpand(
+            Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR, "assignees,collections,account,creator");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("attachments,assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNEES_CREATOR, "assignees,creator");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+                    "attachments,collections,assigned_teams,creator");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "attachments,assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "attachments,assigned_teams,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS, "assigned_teams");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "attachments,assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+                    new TicketsListRequestExpand(
+                            Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                            "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("attachments,assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT, "attachments,collections,account,contact");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT("attachments,assigned_teams,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET, "assignees,collections,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT, "assignees,collections,assigned_teams,account");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT, "attachments,assignees,assigned_teams,account");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("attachments,assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,account,parent_ticket");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CREATOR("attachments,assigned_teams,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+                    "attachments,collections,assigned_teams,account,creator");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("attachments,assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR, "assignees,collections,assigned_teams,creator");
 
-    ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET("attachments,assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS, "attachments,collections,assigned_teams");
 
-    ATTACHMENTS_ASSIGNEES("attachments,assignees"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET, "assignees,assigned_teams,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT("attachments,assignees,account"),
+    public static final TicketsListRequestExpand COLLECTIONS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.COLLECTIONS_CREATOR_PARENT_TICKET, "collections,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT("attachments,assignees,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR("attachments,assignees,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET, "assignees,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET,
+                    "attachments,assignees,collections,account,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET("attachments,assignees,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_CONTACT, "assigned_teams,contact");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR("attachments,assignees,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_ACCOUNT_CONTACT, "assigned_teams,account,contact");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET("attachments,assignees,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+                    "attachments,assignees,collections,assigned_teams,contact");
 
-    ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET("attachments,assignees,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT, "attachments,assignees,collections,contact");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS("attachments,assignees,assigned_teams"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CREATOR = new TicketsListRequestExpand(
+            Value.COLLECTIONS_ASSIGNED_TEAMS_CREATOR, "collections,assigned_teams,creator");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT("attachments,assignees,assigned_teams,account"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ACCOUNT_PARENT_TICKET, "attachments,account,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,assignees,assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT, "attachments,assignees,collections,account");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
-            "attachments,assignees,assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS =
+            new TicketsListRequestExpand(Value.COLLECTIONS, "collections");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_CONTACT_CREATOR, "assigned_teams,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "collections,assigned_teams,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,assignees,assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNED_TEAMS_CREATOR_PARENT_TICKET, "assigned_teams,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+                    "assignees,assigned_teams,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_COLLECTIONS_PARENT_TICKET, "attachments,collections,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT("attachments,assignees,assigned_teams,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,collections,account,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,assignees,assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR, "attachments,collections,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT, "attachments,assignees,assigned_teams,contact");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR("attachments,assignees,assigned_teams,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,account,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
-            "attachments,assignees,assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,assigned_teams,account,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET("attachments,assignees,assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,account,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS("attachments,assignees,collections"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNEES_PARENT_TICKET, "attachments,assignees,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT("attachments,assignees,collections,account"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+                    "assignees,collections,assigned_teams,account,creator");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT("attachments,assignees,collections,account,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_CONTACT_PARENT_TICKET, "attachments,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR(
-            "attachments,assignees,collections,account,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "attachments,assignees,collections,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS, "attachments,assignees,assigned_teams");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR("attachments,assignees,collections,account,creator"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT = new TicketsListRequestExpand(
+            Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT, "collections,assigned_teams,account");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET, "assignees,account,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET("attachments,assignees,collections,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,assignees,assigned_teams,account,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS("attachments,assignees,collections,assigned_teams"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+                    new TicketsListRequestExpand(
+                            Value
+                                    .ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                            "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT(
-            "attachments,assignees,collections,assigned_teams,account"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,account,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT(
-            "attachments,assignees,collections,assigned_teams,account,contact"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS = new TicketsListRequestExpand(
+            Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS, "assignees,collections,assigned_teams");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
-            "attachments,assignees,collections,assigned_teams,account,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET,
+                    "attachments,collections,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.CONTACT_PARENT_TICKET, "contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR(
-            "attachments,assignees,collections,assigned_teams,account,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT, "attachments,assigned_teams,account,contact");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,account,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS,
+                    "attachments,assignees,collections,assigned_teams");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT(
-            "attachments,assignees,collections,assigned_teams,contact"),
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "collections,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR(
-            "attachments,assignees,collections,assigned_teams,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "assignees,collections,assigned_teams,account,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,account,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,contact,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "assignees,assigned_teams,account,contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR(
-            "attachments,assignees,collections,assigned_teams,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,collections,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(Value.ACCOUNT_CONTACT, "account,contact");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET(
-            "attachments,assignees,collections,assigned_teams,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.COLLECTIONS_CONTACT_PARENT_TICKET, "collections,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT("attachments,assignees,collections,contact"),
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_PARENT_TICKET, "assigned_teams,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR("attachments,assignees,collections,contact,creator"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,contact,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,assignees,collections,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand COLLECTIONS_CREATOR =
+            new TicketsListRequestExpand(Value.COLLECTIONS_CREATOR, "collections,creator");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET("attachments,assignees,collections,contact,parent_ticket"),
+    public static final TicketsListRequestExpand
+            ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,account,contact,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR("attachments,assignees,collections,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,collections,account,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET("attachments,assignees,collections,creator,parent_ticket"),
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT, "assignees,collections,assigned_teams,contact");
 
-    ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET("attachments,assignees,collections,parent_ticket"),
+    public static final TicketsListRequestExpand CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.CONTACT_CREATOR, "contact,creator");
 
-    ATTACHMENTS_ASSIGNEES_CONTACT("attachments,assignees,contact"),
+    public static final TicketsListRequestExpand ATTACHMENTS_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_CREATOR_PARENT_TICKET, "attachments,creator,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR("attachments,assignees,contact,creator"),
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNED_TEAMS, "attachments,assigned_teams");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+                    "attachments,assignees,collections,assigned_teams,parent_ticket");
 
-    ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET("attachments,assignees,contact,creator,parent_ticket"),
+    public static final TicketsListRequestExpand CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.CONTACT_CREATOR_PARENT_TICKET, "contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "attachments,assigned_teams,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+                    "attachments,assignees,collections,assigned_teams,account,contact");
 
-    ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET("attachments,assignees,contact,parent_ticket"),
-
-    ATTACHMENTS_ASSIGNEES_CREATOR("attachments,assignees,creator"),
-
-    ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET("attachments,assignees,creator,parent_ticket"),
-
-    ATTACHMENTS_ASSIGNEES_PARENT_TICKET("attachments,assignees,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS("attachments,collections"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT("attachments,collections,account"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT("attachments,collections,account,contact"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR("attachments,collections,account,contact,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,collections,account,contact,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET("attachments,collections,account,contact,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR("attachments,collections,account,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET("attachments,collections,account,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET("attachments,collections,account,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS("attachments,collections,assigned_teams"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("attachments,collections,assigned_teams,account"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("attachments,collections,assigned_teams,account,contact"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR(
-            "attachments,collections,assigned_teams,account,contact,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,collections,assigned_teams,account,contact,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "attachments,collections,assigned_teams,account,contact,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("attachments,collections,assigned_teams,account,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "attachments,collections,assigned_teams,account,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET(
-            "attachments,collections,assigned_teams,account,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT("attachments,collections,assigned_teams,contact"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("attachments,collections,assigned_teams,contact,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "attachments,collections,assigned_teams,contact,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET(
-            "attachments,collections,assigned_teams,contact,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR("attachments,collections,assigned_teams,creator"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET(
-            "attachments,collections,assigned_teams,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("attachments,collections,assigned_teams,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_CONTACT("attachments,collections,contact"),
-
-    ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR("attachments,collections,contact,creator"),
-
-    ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET("attachments,collections,contact,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET("attachments,collections,contact,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_CREATOR("attachments,collections,creator"),
-
-    ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET("attachments,collections,creator,parent_ticket"),
-
-    ATTACHMENTS_COLLECTIONS_PARENT_TICKET("attachments,collections,parent_ticket"),
-
-    ATTACHMENTS_CONTACT("attachments,contact"),
-
-    ATTACHMENTS_CONTACT_CREATOR("attachments,contact,creator"),
-
-    ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET("attachments,contact,creator,parent_ticket"),
-
-    ATTACHMENTS_CONTACT_PARENT_TICKET("attachments,contact,parent_ticket"),
-
-    ATTACHMENTS_CREATOR("attachments,creator"),
-
-    ATTACHMENTS_CREATOR_PARENT_TICKET("attachments,creator,parent_ticket"),
-
-    ATTACHMENTS_PARENT_TICKET("attachments,parent_ticket"),
-
-    COLLECTIONS("collections"),
-
-    COLLECTIONS_ACCOUNT("collections,account"),
-
-    COLLECTIONS_ACCOUNT_CONTACT("collections,account,contact"),
-
-    COLLECTIONS_ACCOUNT_CONTACT_CREATOR("collections,account,contact,creator"),
-
-    COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET("collections,account,contact,creator,parent_ticket"),
-
-    COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET("collections,account,contact,parent_ticket"),
-
-    COLLECTIONS_ACCOUNT_CREATOR("collections,account,creator"),
-
-    COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET("collections,account,creator,parent_ticket"),
-
-    COLLECTIONS_ACCOUNT_PARENT_TICKET("collections,account,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS("collections,assigned_teams"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT("collections,assigned_teams,account"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT("collections,assigned_teams,account,contact"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR("collections,assigned_teams,account,contact,creator"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET(
-            "collections,assigned_teams,account,contact,creator,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET(
-            "collections,assigned_teams,account,contact,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR("collections,assigned_teams,account,creator"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET(
-            "collections,assigned_teams,account,creator,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET("collections,assigned_teams,account,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CONTACT("collections,assigned_teams,contact"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR("collections,assigned_teams,contact,creator"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET(
-            "collections,assigned_teams,contact,creator,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET("collections,assigned_teams,contact,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CREATOR("collections,assigned_teams,creator"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET("collections,assigned_teams,creator,parent_ticket"),
-
-    COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET("collections,assigned_teams,parent_ticket"),
-
-    COLLECTIONS_CONTACT("collections,contact"),
-
-    COLLECTIONS_CONTACT_CREATOR("collections,contact,creator"),
-
-    COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET("collections,contact,creator,parent_ticket"),
-
-    COLLECTIONS_CONTACT_PARENT_TICKET("collections,contact,parent_ticket"),
-
-    COLLECTIONS_CREATOR("collections,creator"),
-
-    COLLECTIONS_CREATOR_PARENT_TICKET("collections,creator,parent_ticket"),
-
-    COLLECTIONS_PARENT_TICKET("collections,parent_ticket"),
-
-    CONTACT("contact"),
-
-    CONTACT_CREATOR("contact,creator"),
-
-    CONTACT_CREATOR_PARENT_TICKET("contact,creator,parent_ticket"),
-
-    CONTACT_PARENT_TICKET("contact,parent_ticket"),
-
-    CREATOR("creator"),
-
-    CREATOR_PARENT_TICKET("creator,parent_ticket"),
-
-    PARENT_TICKET("parent_ticket");
-
-    private final String value;
-
-    TicketsListRequestExpand(String value) {
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR, "attachments,assignees,collections,creator");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CONTACT = new TicketsListRequestExpand(
+            Value.COLLECTIONS_ASSIGNED_TEAMS_CONTACT, "collections,assigned_teams,contact");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ACCOUNT, "attachments,account");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR, "attachments,assignees,account,creator");
+
+    public static final TicketsListRequestExpand CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.CREATOR_PARENT_TICKET, "creator,parent_ticket");
+
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+                    new TicketsListRequestExpand(
+                            Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                            "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR, "assignees,assigned_teams,account,creator");
+
+    public static final TicketsListRequestExpand COLLECTIONS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(Value.COLLECTIONS_CONTACT_CREATOR, "collections,contact,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+                    "attachments,assignees,assigned_teams,account,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+                    "attachments,assignees,collections,assigned_teams,contact,creator");
+
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "assigned_teams,account,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ACCOUNT_CONTACT_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_ACCOUNT_CONTACT_CREATOR, "attachments,account,contact,creator");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assigned_teams,account,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,collections,account,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+                    "collections,account,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR = new TicketsListRequestExpand(
+            Value.ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR, "attachments,collections,account,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+                    "attachments,assignees,collections,assigned_teams,account");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT =
+            new TicketsListRequestExpand(Value.ASSIGNEES_COLLECTIONS_ACCOUNT, "assignees,collections,account");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,collections,account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(Value.COLLECTIONS_ACCOUNT_CREATOR, "collections,account,creator");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR, "collections,assigned_teams,contact,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT, "collections,assigned_teams,account,contact");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET,
+                    "attachments,collections,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "assignees,assigned_teams,account,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR, "attachments,assignees,assigned_teams,creator");
+
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_ACCOUNT, "assigned_teams,account");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+                    "assignees,collections,assigned_teams,account,contact");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+                    "attachments,assigned_teams,account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET, "collections,account,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR, "attachments,assigned_teams,account,creator");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,collections,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(Value.COLLECTIONS_ACCOUNT_CONTACT, "collections,account,contact");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+                    "attachments,collections,assigned_teams,account,contact");
+
+    public static final TicketsListRequestExpand ACCOUNT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ACCOUNT_CREATOR_PARENT_TICKET, "account,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET, "assignees,collections,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_ACCOUNT_CREATOR =
+            new TicketsListRequestExpand(Value.ASSIGNED_TEAMS_ACCOUNT_CREATOR, "assigned_teams,account,creator");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+                    "assignees,collections,assigned_teams,contact,creator");
+
+    public static final TicketsListRequestExpand COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+                    "collections,assigned_teams,account,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET, "attachments,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNEES_COLLECTIONS_PARENT_TICKET, "assignees,collections,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+                    "attachments,assigned_teams,account,contact,creator");
+
+    public static final TicketsListRequestExpand
+            ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET = new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "attachments,assignees,collections,assigned_teams,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+                    "attachments,collections,assigned_teams,account,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ASSIGNEES_PARENT_TICKET, "assignees,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "attachments,assignees,assigned_teams,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNED_TEAMS_CONTACT_PARENT_TICKET = new TicketsListRequestExpand(
+            Value.ASSIGNED_TEAMS_CONTACT_PARENT_TICKET, "assigned_teams,contact,parent_ticket");
+
+    public static final TicketsListRequestExpand ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET =
+            new TicketsListRequestExpand(
+                    Value.ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+                    "assignees,collections,assigned_teams,contact,creator,parent_ticket");
+
+    public static final TicketsListRequestExpand ATTACHMENTS_ASSIGNEES_ACCOUNT =
+            new TicketsListRequestExpand(Value.ATTACHMENTS_ASSIGNEES_ACCOUNT, "attachments,assignees,account");
+
+    public static final TicketsListRequestExpand COLLECTIONS_CONTACT =
+            new TicketsListRequestExpand(Value.COLLECTIONS_CONTACT, "collections,contact");
+
+    public static final TicketsListRequestExpand ASSIGNEES_CONTACT_PARENT_TICKET =
+            new TicketsListRequestExpand(Value.ASSIGNEES_CONTACT_PARENT_TICKET, "assignees,contact,parent_ticket");
+
+    private final Value value;
+
+    private final String string;
+
+    TicketsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketsListRequestExpand
+                        && this.string.equals(((TicketsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAccountContactCreator();
+            case ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAccountContactCreatorParentTicket();
+            case COLLECTIONS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitCollectionsAccountContactCreator();
+            case ASSIGNEES_COLLECTIONS:
+                return visitor.visitAssigneesCollections();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountContact();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_COLLECTIONS:
+                return visitor.visitAttachmentsCollections();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES:
+                return visitor.visitAttachmentsAssignees();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesAccountContactCreator();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsContactCreatorParentTicket();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsCreator();
+            case ACCOUNT_CREATOR:
+                return visitor.visitAccountCreator();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesContactCreatorParentTicket();
+            case ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssignedTeamsContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountCreator();
+            case COLLECTIONS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitCollectionsAccountParentTicket();
+            case ASSIGNEES_ACCOUNT_CREATOR:
+                return visitor.visitAssigneesAccountCreator();
+            case ATTACHMENTS:
+                return visitor.visitAttachments();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAccountContactParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsContactCreator();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAttachmentsAssignedTeamsAccount();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAssigneesAssignedTeamsAccountContact();
+            case ATTACHMENTS_COLLECTIONS_CREATOR:
+                return visitor.visitAttachmentsCollectionsCreator();
+            case ASSIGNEES_CONTACT:
+                return visitor.visitAssigneesContact();
+            case ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesContactParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsContactCreatorParentTicket();
+            case ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssignedTeamsAccountCreatorParentTicket();
+            case COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsContactCreatorParentTicket();
+            case ASSIGNEES_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAssigneesAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS:
+                return visitor.visitAttachmentsAssigneesCollections();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsContactCreator();
+            case CONTACT:
+                return visitor.visitContact();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsContactCreator();
+            case PARENT_TICKET:
+                return visitor.visitParentTicket();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitCollectionsAssignedTeamsAccountCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsAccountCreatorParentTicket();
+            case ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountContact();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT:
+                return visitor.visitAttachmentsCollectionsAccount();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAttachmentsAssignedTeamsCreator();
+            case ASSIGNEES:
+                return visitor.visitAssignees();
+            case ATTACHMENTS_PARENT_TICKET:
+                return visitor.visitAttachmentsParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAccountContactParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsCreatorParentTicket();
+            case ATTACHMENTS_CONTACT:
+                return visitor.visitAttachmentsContact();
+            case ASSIGNEES_COLLECTIONS_CONTACT_CREATOR:
+                return visitor.visitAssigneesCollectionsContactCreator();
+            case ATTACHMENTS_CREATOR:
+                return visitor.visitAttachmentsCreator();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT:
+                return visitor.visitAssigneesCollectionsAccountContact();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsContact();
+            case ATTACHMENTS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsContactCreator();
+            case ASSIGNEES_ACCOUNT_CONTACT:
+                return visitor.visitAssigneesAccountContact();
+            case COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAssigneesAssignedTeamsContact();
+            case ATTACHMENTS_ASSIGNEES_CREATOR:
+                return visitor.visitAttachmentsAssigneesCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsContactParentTicket();
+            case ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAssignedTeamsAccountParentTicket();
+            case ASSIGNEES_COLLECTIONS_CREATOR:
+                return visitor.visitAssigneesCollectionsCreator();
+            case ASSIGNEES_CONTACT_CREATOR:
+                return visitor.visitAssigneesContactCreator();
+            case ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAccountContactCreatorParentTicket();
+            case ASSIGNEES_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCreatorParentTicket();
+            case COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAccountCreatorParentTicket();
+            case ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAssignedTeamsCreator();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssignedTeamsContactCreator();
+            case COLLECTIONS_ACCOUNT:
+                return visitor.visitCollectionsAccount();
+            case COLLECTIONS_ASSIGNED_TEAMS:
+                return visitor.visitCollectionsAssignedTeams();
+            case COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsContactParentTicket();
+            case ASSIGNEES_ACCOUNT:
+                return visitor.visitAssigneesAccount();
+            case ATTACHMENTS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAccountContact();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitCollectionsAssignedTeamsAccountContactCreator();
+            case COLLECTIONS_PARENT_TICKET:
+                return visitor.visitCollectionsParentTicket();
+            case ATTACHMENTS_COLLECTIONS_CONTACT:
+                return visitor.visitAttachmentsCollectionsContact();
+            case ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAssigneesAssignedTeamsContactCreator();
+            case CREATOR:
+                return visitor.visitCreator();
+            case ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsParentTicket();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAttachmentsAssignedTeamsContact();
+            case ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket();
+            case ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsContactParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAccountCreator();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAccountParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS:
+                return visitor.visitAssigneesAssignedTeams();
+            case ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsContactParentTicket();
+            case COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsContactCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_CONTACT:
+                return visitor.visitAssigneesCollectionsContact();
+            case ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountContactCreator();
+            case ASSIGNEES_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAssigneesAssignedTeamsCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAssigneesAccountContact();
+            case ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesContactCreator();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsContactCreatorParentTicket();
+            case ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAccountContactParentTicket();
+            case ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAccountCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_CONTACT:
+                return visitor.visitAttachmentsAssigneesContact();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAssigneesCollectionsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountCreator();
+            case ACCOUNT_PARENT_TICKET:
+                return visitor.visitAccountParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAssigneesAssignedTeamsAccount();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccount();
+            case ASSIGNEES_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAssigneesAccountParentTicket();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR:
+                return visitor.visitAssigneesCollectionsAccountCreator();
+            case ASSIGNEES_CREATOR:
+                return visitor.visitAssigneesCreator();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsCreator();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsCreatorParentTicket();
+            case ASSIGNED_TEAMS:
+                return visitor.visitAssignedTeams();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsCollectionsAccountContact();
+            case ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccount();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccount();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountCreator();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAssigneesCollectionsAssignedTeamsCreator();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS:
+                return visitor.visitAttachmentsCollectionsAssignedTeams();
+            case ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsParentTicket();
+            case COLLECTIONS_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAccountContactCreatorParentTicket();
+            case ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountParentTicket();
+            case ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAssignedTeamsContact();
+            case ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAssignedTeamsAccountContact();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsContact();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT:
+                return visitor.visitAttachmentsAssigneesCollectionsContact();
+            case COLLECTIONS_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitCollectionsAssignedTeamsCreator();
+            case ATTACHMENTS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT:
+                return visitor.visitAttachmentsAssigneesCollectionsAccount();
+            case COLLECTIONS:
+                return visitor.visitCollections();
+            case ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAssignedTeamsContactCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsCreatorParentTicket();
+            case ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAssignedTeamsCreatorParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsCollectionsAccountContactCreator();
+            case ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsCollectionsContactCreator();
+            case ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsContact();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountCreator();
+            case ATTACHMENTS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsContactParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS:
+                return visitor.visitAttachmentsAssigneesAssignedTeams();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitCollectionsAssignedTeamsAccount();
+            case ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS:
+                return visitor.visitAssigneesCollectionsAssignedTeams();
+            case ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsCreatorParentTicket();
+            case CONTACT_PARENT_TICKET:
+                return visitor.visitContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAssignedTeamsAccountContact();
+            case ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeams();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountContactParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAssigneesAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsContactCreatorParentTicket();
+            case ACCOUNT_CONTACT:
+                return visitor.visitAccountContact();
+            case COLLECTIONS_CONTACT_PARENT_TICKET:
+                return visitor.visitCollectionsContactParentTicket();
+            case ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAssignedTeamsParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsContactParentTicket();
+            case COLLECTIONS_CREATOR:
+                return visitor.visitCollectionsCreator();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAccountCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitAssigneesCollectionsAssignedTeamsContact();
+            case CONTACT_CREATOR:
+                return visitor.visitContactCreator();
+            case ATTACHMENTS_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS:
+                return visitor.visitAttachmentsAssignedTeams();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsParentTicket();
+            case CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContact();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_CONTACT:
+                return visitor.visitCollectionsAssignedTeamsContact();
+            case ATTACHMENTS_ACCOUNT:
+                return visitor.visitAttachmentsAccount();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAssigneesAccountCreator();
+            case CREATOR_PARENT_TICKET:
+                return visitor.visitCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAssigneesAssignedTeamsAccountCreator();
+            case COLLECTIONS_CONTACT_CREATOR:
+                return visitor.visitCollectionsContactCreator();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsAccountCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsContactCreator();
+            case ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAccountContactCreator();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAccountCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountContactCreatorParentTicket();
+            case COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitCollectionsAccountContactCreatorParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsCollectionsAccountCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccount();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT:
+                return visitor.visitAssigneesCollectionsAccount();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAccountCreatorParentTicket();
+            case COLLECTIONS_ACCOUNT_CREATOR:
+                return visitor.visitCollectionsAccountCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitCollectionsAssignedTeamsContactCreator();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsParentTicket();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitCollectionsAssignedTeamsAccountContact();
+            case ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsContactParentTicket();
+            case ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsCreator();
+            case ASSIGNED_TEAMS_ACCOUNT:
+                return visitor.visitAssignedTeamsAccount();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAssigneesCollectionsAssignedTeamsAccountContact();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssignedTeamsAccountCreatorParentTicket();
+            case COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitCollectionsAccountContactParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAttachmentsAssignedTeamsAccountCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsContactParentTicket();
+            case COLLECTIONS_ACCOUNT_CONTACT:
+                return visitor.visitCollectionsAccountContact();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountContact();
+            case ACCOUNT_CREATOR_PARENT_TICKET:
+                return visitor.visitAccountCreatorParentTicket();
+            case ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAccountParentTicket();
+            case ASSIGNED_TEAMS_ACCOUNT_CREATOR:
+                return visitor.visitAssignedTeamsAccountCreator();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR:
+                return visitor.visitAssigneesCollectionsAssignedTeamsContactCreator();
+            case COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET:
+                return visitor.visitCollectionsAssignedTeamsAccountContactParentTicket();
+            case ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsParentTicket();
+            case ASSIGNEES_COLLECTIONS_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsParentTicket();
+            case ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR:
+                return visitor.visitAttachmentsAssignedTeamsAccountContactCreator();
+            case ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesCollectionsAssignedTeamsAccountParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsContactParentTicket();
+            case ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET:
+                return visitor.visitAttachmentsCollectionsAssignedTeamsAccountParentTicket();
+            case ASSIGNEES_PARENT_TICKET:
+                return visitor.visitAssigneesParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAttachmentsAssigneesAssignedTeamsContactCreatorParentTicket();
+            case ASSIGNED_TEAMS_CONTACT_PARENT_TICKET:
+                return visitor.visitAssignedTeamsContactParentTicket();
+            case ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET:
+                return visitor.visitAssigneesCollectionsAssignedTeamsContactCreatorParentTicket();
+            case ATTACHMENTS_ASSIGNEES_ACCOUNT:
+                return visitor.visitAttachmentsAssigneesAccount();
+            case COLLECTIONS_CONTACT:
+                return visitor.visitCollectionsContact();
+            case ASSIGNEES_CONTACT_PARENT_TICKET:
+                return visitor.visitAssigneesContactParentTicket();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "account,contact,creator":
+                return ACCOUNT_CONTACT_CREATOR;
+            case "assignees,account,contact,creator,parent_ticket":
+                return ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "collections,account,contact,creator":
+                return COLLECTIONS_ACCOUNT_CONTACT_CREATOR;
+            case "assignees,collections":
+                return ASSIGNEES_COLLECTIONS;
+            case "attachments,assignees,assigned_teams,account,contact":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "assignees,assigned_teams,account,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,collections":
+                return ATTACHMENTS_COLLECTIONS;
+            case "attachments,assignees,account,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,account,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees":
+                return ATTACHMENTS_ASSIGNEES;
+            case "collections,assigned_teams,account,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees,account,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assigned_teams,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "account":
+                return ACCOUNT;
+            case "attachments,assignees,collections,assigned_teams,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR;
+            case "account,creator":
+                return ACCOUNT_CREATOR;
+            case "assignees,assigned_teams,account,creator,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET;
+            case "assigned_teams,contact,creator,parent_ticket":
+                return ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,assigned_teams,account,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "collections,account,parent_ticket":
+                return COLLECTIONS_ACCOUNT_PARENT_TICKET;
+            case "assignees,account,creator":
+                return ASSIGNEES_ACCOUNT_CREATOR;
+            case "attachments":
+                return ATTACHMENTS;
+            case "attachments,collections,account,contact,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,account,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "attachments,assigned_teams,account":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,assigned_teams,account,contact":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "attachments,collections,creator":
+                return ATTACHMENTS_COLLECTIONS_CREATOR;
+            case "assignees,contact":
+                return ASSIGNEES_CONTACT;
+            case "attachments,assignees,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET;
+            case "assignees,assigned_teams,contact,creator,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "assigned_teams,account,creator,parent_ticket":
+                return ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "collections,contact,creator,parent_ticket":
+                return COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET;
+            case "assignees,account,contact,creator":
+                return ASSIGNEES_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS;
+            case "attachments,collections,assigned_teams,contact,creator":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "contact":
+                return CONTACT;
+            case "attachments,assignees,collections,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR;
+            case "parent_ticket":
+                return PARENT_TICKET;
+            case "collections,assigned_teams,account,creator":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "collections,assigned_teams,account,creator,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,account,creator,parent_ticket":
+                return ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,account,contact":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT;
+            case "attachments,collections,account":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT;
+            case "attachments,assigned_teams,creator":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CREATOR;
+            case "assignees":
+                return ASSIGNEES;
+            case "attachments,parent_ticket":
+                return ATTACHMENTS_PARENT_TICKET;
+            case "attachments,assignees,collections,assigned_teams,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,account,contact,creator":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,account,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "attachments,contact":
+                return ATTACHMENTS_CONTACT;
+            case "assignees,collections,contact,creator":
+                return ASSIGNEES_COLLECTIONS_CONTACT_CREATOR;
+            case "attachments,creator":
+                return ATTACHMENTS_CREATOR;
+            case "assignees,collections,account,contact":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT;
+            case "attachments,collections,assigned_teams,contact":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT;
+            case "attachments,contact,creator":
+                return ATTACHMENTS_CONTACT_CREATOR;
+            case "assignees,account,contact":
+                return ASSIGNEES_ACCOUNT_CONTACT;
+            case "collections,assigned_teams,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "assignees,assigned_teams,contact":
+                return ASSIGNEES_ASSIGNED_TEAMS_CONTACT;
+            case "attachments,assignees,creator":
+                return ATTACHMENTS_ASSIGNEES_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "assigned_teams,account,parent_ticket":
+                return ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "assignees,collections,creator":
+                return ASSIGNEES_COLLECTIONS_CREATOR;
+            case "assignees,contact,creator":
+                return ASSIGNEES_CONTACT_CREATOR;
+            case "assigned_teams,account,contact,parent_ticket":
+                return ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "assignees,creator,parent_ticket":
+                return ASSIGNEES_CREATOR_PARENT_TICKET;
+            case "collections,account,creator,parent_ticket":
+                return COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "assigned_teams,creator":
+                return ASSIGNED_TEAMS_CREATOR;
+            case "attachments,assignees,account,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,contact,creator":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "collections,account":
+                return COLLECTIONS_ACCOUNT;
+            case "collections,assigned_teams":
+                return COLLECTIONS_ASSIGNED_TEAMS;
+            case "collections,assigned_teams,contact,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "assignees,account":
+                return ASSIGNEES_ACCOUNT;
+            case "attachments,account,contact":
+                return ATTACHMENTS_ACCOUNT_CONTACT;
+            case "attachments,assignees,collections,assigned_teams,account,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "collections,assigned_teams,account,contact,creator":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "collections,parent_ticket":
+                return COLLECTIONS_PARENT_TICKET;
+            case "attachments,collections,contact":
+                return ATTACHMENTS_COLLECTIONS_CONTACT;
+            case "assignees,assigned_teams,contact,creator":
+                return ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "creator":
+                return CREATOR;
+            case "attachments,assigned_teams,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "assignees,collections,account,contact,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,account,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assigned_teams,contact":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CONTACT;
+            case "assigned_teams,account,contact,creator":
+                return ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,account,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "account,contact,creator,parent_ticket":
+                return ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,account,contact,parent_ticket":
+                return ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,collections,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,contact,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,account,contact,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,account,creator":
+                return ATTACHMENTS_ACCOUNT_CREATOR;
+            case "attachments,collections,account,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET;
+            case "assignees,assigned_teams":
+                return ASSIGNEES_ASSIGNED_TEAMS;
+            case "assignees,assigned_teams,contact,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "collections,assigned_teams,contact,creator,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,contact":
+                return ASSIGNEES_COLLECTIONS_CONTACT;
+            case "assignees,collections,contact,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,collections,account,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR;
+            case "assignees,assigned_teams,creator":
+                return ASSIGNEES_ASSIGNED_TEAMS_CREATOR;
+            case "attachments,assignees,collections,account,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,account,contact":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT;
+            case "attachments,assignees,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR;
+            case "attachments,collections,assigned_teams,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,contact,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "account,contact,parent_ticket":
+                return ACCOUNT_CONTACT_PARENT_TICKET;
+            case "assignees,account,creator,parent_ticket":
+                return ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,account,contact,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,contact":
+                return ATTACHMENTS_ASSIGNEES_CONTACT;
+            case "assignees,collections,account,contact,creator":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections,account,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR;
+            case "account,parent_ticket":
+                return ACCOUNT_PARENT_TICKET;
+            case "assignees,assigned_teams,account":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT;
+            case "attachments,collections,assigned_teams,account":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,account,parent_ticket":
+                return ASSIGNEES_ACCOUNT_PARENT_TICKET;
+            case "assignees,collections,account,creator":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR;
+            case "assignees,creator":
+                return ASSIGNEES_CREATOR;
+            case "attachments,collections,assigned_teams,creator":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR;
+            case "attachments,assigned_teams,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "assigned_teams":
+                return ASSIGNED_TEAMS;
+            case "attachments,assignees,collections,assigned_teams,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,account,contact":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT;
+            case "assignees,collections,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,account":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT;
+            case "attachments,assignees,assigned_teams,account":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,collections,assigned_teams,account,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,account,creator":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "assignees,collections,assigned_teams,creator":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR;
+            case "attachments,collections,assigned_teams":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS;
+            case "assignees,assigned_teams,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "collections,creator,parent_ticket":
+                return COLLECTIONS_CREATOR_PARENT_TICKET;
+            case "attachments,collections,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "assignees,contact,creator,parent_ticket":
+                return ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,account,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET;
+            case "assigned_teams,contact":
+                return ASSIGNED_TEAMS_CONTACT;
+            case "assigned_teams,account,contact":
+                return ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "attachments,assignees,collections,assigned_teams,contact":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT;
+            case "attachments,assignees,collections,contact":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT;
+            case "collections,assigned_teams,creator":
+                return COLLECTIONS_ASSIGNED_TEAMS_CREATOR;
+            case "attachments,account,parent_ticket":
+                return ATTACHMENTS_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees,collections,account":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT;
+            case "collections":
+                return COLLECTIONS;
+            case "assigned_teams,contact,creator":
+                return ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "collections,assigned_teams,creator,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "assigned_teams,creator,parent_ticket":
+                return ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "assignees,assigned_teams,creator,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET;
+            case "attachments,collections,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_PARENT_TICKET;
+            case "attachments,collections,account,contact,creator":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,collections,contact,creator":
+                return ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR;
+            case "attachments,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,contact":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT;
+            case "assignees,collections,assigned_teams,account,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,account,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,account,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,account,creator":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "attachments,contact,parent_ticket":
+                return ATTACHMENTS_CONTACT_PARENT_TICKET;
+            case "assignees,assigned_teams,account,contact,creator,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,contact,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS;
+            case "collections,assigned_teams,account":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,account,contact,parent_ticket":
+                return ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,account,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,account,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,assigned_teams":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS;
+            case "attachments,collections,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET;
+            case "contact,parent_ticket":
+                return CONTACT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,account,contact":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "assignees,collections,contact,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,assigned_teams":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS;
+            case "collections,assigned_teams,account,contact,creator,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,account,contact,creator":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,collections,assigned_teams,account,contact,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "assignees,assigned_teams,account,contact,creator":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET;
+            case "account,contact":
+                return ACCOUNT_CONTACT;
+            case "collections,contact,parent_ticket":
+                return COLLECTIONS_CONTACT_PARENT_TICKET;
+            case "assigned_teams,parent_ticket":
+                return ASSIGNED_TEAMS_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,contact,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "collections,creator":
+                return COLLECTIONS_CREATOR;
+            case "assignees,collections,assigned_teams,account,contact,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,account,creator,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,contact":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT;
+            case "contact,creator":
+                return CONTACT_CREATOR;
+            case "attachments,creator,parent_ticket":
+                return ATTACHMENTS_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams":
+                return ATTACHMENTS_ASSIGNED_TEAMS;
+            case "attachments,assignees,collections,assigned_teams,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "contact,creator,parent_ticket":
+                return CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,collections,assigned_teams,account,contact":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "attachments,assignees,collections,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR;
+            case "collections,assigned_teams,contact":
+                return COLLECTIONS_ASSIGNED_TEAMS_CONTACT;
+            case "attachments,account":
+                return ATTACHMENTS_ACCOUNT;
+            case "attachments,assignees,account,creator":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR;
+            case "creator,parent_ticket":
+                return CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,assigned_teams,account,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "assignees,assigned_teams,account,creator":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "collections,contact,creator":
+                return COLLECTIONS_CONTACT_CREATOR;
+            case "attachments,assignees,assigned_teams,account,creator":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,contact,creator":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "assigned_teams,account,contact,creator,parent_ticket":
+                return ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,account,contact,creator":
+                return ATTACHMENTS_ACCOUNT_CONTACT_CREATOR;
+            case "assignees,collections,account,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "attachments,assigned_teams,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,collections,account,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "collections,account,contact,creator,parent_ticket":
+                return COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,collections,account,creator":
+                return ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,account":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,collections,account":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT;
+            case "attachments,assignees,collections,account,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "collections,account,creator":
+                return COLLECTIONS_ACCOUNT_CREATOR;
+            case "collections,assigned_teams,contact,creator":
+                return COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "attachments,collections,assigned_teams,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "collections,assigned_teams,account,contact":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "attachments,collections,contact,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET;
+            case "assignees,assigned_teams,account,contact,parent_ticket":
+                return ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,creator":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR;
+            case "assigned_teams,account":
+                return ASSIGNED_TEAMS_ACCOUNT;
+            case "assignees,collections,assigned_teams,account,contact":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "attachments,assigned_teams,account,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET;
+            case "collections,account,contact,parent_ticket":
+                return COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,assigned_teams,account,creator":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "attachments,assignees,collections,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET;
+            case "collections,account,contact":
+                return COLLECTIONS_ACCOUNT_CONTACT;
+            case "attachments,collections,assigned_teams,account,contact":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT;
+            case "account,creator,parent_ticket":
+                return ACCOUNT_CREATOR_PARENT_TICKET;
+            case "assignees,collections,account,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET;
+            case "assigned_teams,account,creator":
+                return ASSIGNED_TEAMS_ACCOUNT_CREATOR;
+            case "assignees,collections,assigned_teams,contact,creator":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR;
+            case "collections,assigned_teams,account,contact,parent_ticket":
+                return COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET;
+            case "attachments,contact,creator,parent_ticket":
+                return ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET;
+            case "assignees,collections,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_PARENT_TICKET;
+            case "attachments,assigned_teams,account,contact,creator":
+                return ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR;
+            case "attachments,assignees,collections,assigned_teams,account,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,contact,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "attachments,collections,assigned_teams,account,parent_ticket":
+                return ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET;
+            case "assignees,parent_ticket":
+                return ASSIGNEES_PARENT_TICKET;
+            case "attachments,assignees,assigned_teams,contact,creator,parent_ticket":
+                return ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "assigned_teams,contact,parent_ticket":
+                return ASSIGNED_TEAMS_CONTACT_PARENT_TICKET;
+            case "assignees,collections,assigned_teams,contact,creator,parent_ticket":
+                return ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET;
+            case "attachments,assignees,account":
+                return ATTACHMENTS_ASSIGNEES_ACCOUNT;
+            case "collections,contact":
+                return COLLECTIONS_CONTACT;
+            case "assignees,contact,parent_ticket":
+                return ASSIGNEES_CONTACT_PARENT_TICKET;
+            default:
+                return new TicketsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_CONTACT,
+
+        ACCOUNT_CONTACT_CREATOR,
+
+        ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ACCOUNT_CREATOR,
+
+        ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ACCOUNT_PARENT_TICKET,
+
+        ASSIGNED_TEAMS,
+
+        ASSIGNED_TEAMS_ACCOUNT,
+
+        ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_CONTACT,
+
+        ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_CREATOR,
+
+        ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ASSIGNEES,
+
+        ASSIGNEES_ACCOUNT,
+
+        ASSIGNEES_ACCOUNT_CONTACT,
+
+        ASSIGNEES_ACCOUNT_CONTACT_CREATOR,
+
+        ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_ACCOUNT_CREATOR,
+
+        ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ACCOUNT_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CONTACT,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CREATOR,
+
+        ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_CONTACT,
+
+        ASSIGNEES_COLLECTIONS_CONTACT_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_CREATOR,
+
+        ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_COLLECTIONS_PARENT_TICKET,
+
+        ASSIGNEES_CONTACT,
+
+        ASSIGNEES_CONTACT_CREATOR,
+
+        ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_CONTACT_PARENT_TICKET,
+
+        ASSIGNEES_CREATOR,
+
+        ASSIGNEES_CREATOR_PARENT_TICKET,
+
+        ASSIGNEES_PARENT_TICKET,
+
+        ATTACHMENTS,
+
+        ATTACHMENTS_ACCOUNT,
+
+        ATTACHMENTS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CONTACT,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CREATOR,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_COLLECTIONS_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_CONTACT,
+
+        ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_CREATOR,
+
+        ATTACHMENTS_ASSIGNEES_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_ASSIGNEES_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_CONTACT,
+
+        ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_CREATOR,
+
+        ATTACHMENTS_COLLECTIONS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_COLLECTIONS_PARENT_TICKET,
+
+        ATTACHMENTS_CONTACT,
+
+        ATTACHMENTS_CONTACT_CREATOR,
+
+        ATTACHMENTS_CONTACT_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_CONTACT_PARENT_TICKET,
+
+        ATTACHMENTS_CREATOR,
+
+        ATTACHMENTS_CREATOR_PARENT_TICKET,
+
+        ATTACHMENTS_PARENT_TICKET,
+
+        COLLECTIONS,
+
+        COLLECTIONS_ACCOUNT,
+
+        COLLECTIONS_ACCOUNT_CONTACT,
+
+        COLLECTIONS_ACCOUNT_CONTACT_CREATOR,
+
+        COLLECTIONS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        COLLECTIONS_ACCOUNT_CREATOR,
+
+        COLLECTIONS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ACCOUNT_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CONTACT_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_ACCOUNT_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CONTACT,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CONTACT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CONTACT_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CREATOR,
+
+        COLLECTIONS_ASSIGNED_TEAMS_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_ASSIGNED_TEAMS_PARENT_TICKET,
+
+        COLLECTIONS_CONTACT,
+
+        COLLECTIONS_CONTACT_CREATOR,
+
+        COLLECTIONS_CONTACT_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_CONTACT_PARENT_TICKET,
+
+        COLLECTIONS_CREATOR,
+
+        COLLECTIONS_CREATOR_PARENT_TICKET,
+
+        COLLECTIONS_PARENT_TICKET,
+
+        CONTACT,
+
+        CONTACT_CREATOR,
+
+        CONTACT_CREATOR_PARENT_TICKET,
+
+        CONTACT_PARENT_TICKET,
+
+        CREATOR,
+
+        CREATOR_PARENT_TICKET,
+
+        PARENT_TICKET,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountContact();
+
+        T visitAccountContactCreator();
+
+        T visitAccountContactCreatorParentTicket();
+
+        T visitAccountContactParentTicket();
+
+        T visitAccountCreator();
+
+        T visitAccountCreatorParentTicket();
+
+        T visitAccountParentTicket();
+
+        T visitAssignedTeams();
+
+        T visitAssignedTeamsAccount();
+
+        T visitAssignedTeamsAccountContact();
+
+        T visitAssignedTeamsAccountContactCreator();
+
+        T visitAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAssignedTeamsAccountContactParentTicket();
+
+        T visitAssignedTeamsAccountCreator();
+
+        T visitAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAssignedTeamsAccountParentTicket();
+
+        T visitAssignedTeamsContact();
+
+        T visitAssignedTeamsContactCreator();
+
+        T visitAssignedTeamsContactCreatorParentTicket();
+
+        T visitAssignedTeamsContactParentTicket();
+
+        T visitAssignedTeamsCreator();
+
+        T visitAssignedTeamsCreatorParentTicket();
+
+        T visitAssignedTeamsParentTicket();
+
+        T visitAssignees();
+
+        T visitAssigneesAccount();
+
+        T visitAssigneesAccountContact();
+
+        T visitAssigneesAccountContactCreator();
+
+        T visitAssigneesAccountContactCreatorParentTicket();
+
+        T visitAssigneesAccountContactParentTicket();
+
+        T visitAssigneesAccountCreator();
+
+        T visitAssigneesAccountCreatorParentTicket();
+
+        T visitAssigneesAccountParentTicket();
+
+        T visitAssigneesAssignedTeams();
+
+        T visitAssigneesAssignedTeamsAccount();
+
+        T visitAssigneesAssignedTeamsAccountContact();
+
+        T visitAssigneesAssignedTeamsAccountContactCreator();
+
+        T visitAssigneesAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAssigneesAssignedTeamsAccountContactParentTicket();
+
+        T visitAssigneesAssignedTeamsAccountCreator();
+
+        T visitAssigneesAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAssigneesAssignedTeamsAccountParentTicket();
+
+        T visitAssigneesAssignedTeamsContact();
+
+        T visitAssigneesAssignedTeamsContactCreator();
+
+        T visitAssigneesAssignedTeamsContactCreatorParentTicket();
+
+        T visitAssigneesAssignedTeamsContactParentTicket();
+
+        T visitAssigneesAssignedTeamsCreator();
+
+        T visitAssigneesAssignedTeamsCreatorParentTicket();
+
+        T visitAssigneesAssignedTeamsParentTicket();
+
+        T visitAssigneesCollections();
+
+        T visitAssigneesCollectionsAccount();
+
+        T visitAssigneesCollectionsAccountContact();
+
+        T visitAssigneesCollectionsAccountContactCreator();
+
+        T visitAssigneesCollectionsAccountContactCreatorParentTicket();
+
+        T visitAssigneesCollectionsAccountContactParentTicket();
+
+        T visitAssigneesCollectionsAccountCreator();
+
+        T visitAssigneesCollectionsAccountCreatorParentTicket();
+
+        T visitAssigneesCollectionsAccountParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeams();
+
+        T visitAssigneesCollectionsAssignedTeamsAccount();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountContact();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountContactCreator();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountContactParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountCreator();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsAccountParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsContact();
+
+        T visitAssigneesCollectionsAssignedTeamsContactCreator();
+
+        T visitAssigneesCollectionsAssignedTeamsContactCreatorParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsContactParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsCreator();
+
+        T visitAssigneesCollectionsAssignedTeamsCreatorParentTicket();
+
+        T visitAssigneesCollectionsAssignedTeamsParentTicket();
+
+        T visitAssigneesCollectionsContact();
+
+        T visitAssigneesCollectionsContactCreator();
+
+        T visitAssigneesCollectionsContactCreatorParentTicket();
+
+        T visitAssigneesCollectionsContactParentTicket();
+
+        T visitAssigneesCollectionsCreator();
+
+        T visitAssigneesCollectionsCreatorParentTicket();
+
+        T visitAssigneesCollectionsParentTicket();
+
+        T visitAssigneesContact();
+
+        T visitAssigneesContactCreator();
+
+        T visitAssigneesContactCreatorParentTicket();
+
+        T visitAssigneesContactParentTicket();
+
+        T visitAssigneesCreator();
+
+        T visitAssigneesCreatorParentTicket();
+
+        T visitAssigneesParentTicket();
+
+        T visitAttachments();
+
+        T visitAttachmentsAccount();
+
+        T visitAttachmentsAccountContact();
+
+        T visitAttachmentsAccountContactCreator();
+
+        T visitAttachmentsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAccountContactParentTicket();
+
+        T visitAttachmentsAccountCreator();
+
+        T visitAttachmentsAccountCreatorParentTicket();
+
+        T visitAttachmentsAccountParentTicket();
+
+        T visitAttachmentsAssignedTeams();
+
+        T visitAttachmentsAssignedTeamsAccount();
+
+        T visitAttachmentsAssignedTeamsAccountContact();
+
+        T visitAttachmentsAssignedTeamsAccountContactCreator();
+
+        T visitAttachmentsAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAssignedTeamsAccountContactParentTicket();
+
+        T visitAttachmentsAssignedTeamsAccountCreator();
+
+        T visitAttachmentsAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAttachmentsAssignedTeamsAccountParentTicket();
+
+        T visitAttachmentsAssignedTeamsContact();
+
+        T visitAttachmentsAssignedTeamsContactCreator();
+
+        T visitAttachmentsAssignedTeamsContactCreatorParentTicket();
+
+        T visitAttachmentsAssignedTeamsContactParentTicket();
+
+        T visitAttachmentsAssignedTeamsCreator();
+
+        T visitAttachmentsAssignedTeamsCreatorParentTicket();
+
+        T visitAttachmentsAssignedTeamsParentTicket();
+
+        T visitAttachmentsAssignees();
+
+        T visitAttachmentsAssigneesAccount();
+
+        T visitAttachmentsAssigneesAccountContact();
+
+        T visitAttachmentsAssigneesAccountContactCreator();
+
+        T visitAttachmentsAssigneesAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAccountContactParentTicket();
+
+        T visitAttachmentsAssigneesAccountCreator();
+
+        T visitAttachmentsAssigneesAccountCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAccountParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeams();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccount();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountContact();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountContactCreator();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountContactParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountCreator();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsAccountParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsContact();
+
+        T visitAttachmentsAssigneesAssignedTeamsContactCreator();
+
+        T visitAttachmentsAssigneesAssignedTeamsContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsContactParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsCreator();
+
+        T visitAttachmentsAssigneesAssignedTeamsCreatorParentTicket();
+
+        T visitAttachmentsAssigneesAssignedTeamsParentTicket();
+
+        T visitAttachmentsAssigneesCollections();
+
+        T visitAttachmentsAssigneesCollectionsAccount();
+
+        T visitAttachmentsAssigneesCollectionsAccountContact();
+
+        T visitAttachmentsAssigneesCollectionsAccountContactCreator();
+
+        T visitAttachmentsAssigneesCollectionsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAccountContactParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAccountCreator();
+
+        T visitAttachmentsAssigneesCollectionsAccountCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAccountParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeams();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccount();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContact();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreator();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountContactParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountCreator();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsAccountParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsContact();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsContactCreator();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsContactParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsCreator();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsAssignedTeamsParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsContact();
+
+        T visitAttachmentsAssigneesCollectionsContactCreator();
+
+        T visitAttachmentsAssigneesCollectionsContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsContactParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsCreator();
+
+        T visitAttachmentsAssigneesCollectionsCreatorParentTicket();
+
+        T visitAttachmentsAssigneesCollectionsParentTicket();
+
+        T visitAttachmentsAssigneesContact();
+
+        T visitAttachmentsAssigneesContactCreator();
+
+        T visitAttachmentsAssigneesContactCreatorParentTicket();
+
+        T visitAttachmentsAssigneesContactParentTicket();
+
+        T visitAttachmentsAssigneesCreator();
+
+        T visitAttachmentsAssigneesCreatorParentTicket();
+
+        T visitAttachmentsAssigneesParentTicket();
+
+        T visitAttachmentsCollections();
+
+        T visitAttachmentsCollectionsAccount();
+
+        T visitAttachmentsCollectionsAccountContact();
+
+        T visitAttachmentsCollectionsAccountContactCreator();
+
+        T visitAttachmentsCollectionsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAccountContactParentTicket();
+
+        T visitAttachmentsCollectionsAccountCreator();
+
+        T visitAttachmentsCollectionsAccountCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAccountParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeams();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccount();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountContact();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountContactCreator();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountContactParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountCreator();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsAccountParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsContact();
+
+        T visitAttachmentsCollectionsAssignedTeamsContactCreator();
+
+        T visitAttachmentsCollectionsAssignedTeamsContactCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsContactParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsCreator();
+
+        T visitAttachmentsCollectionsAssignedTeamsCreatorParentTicket();
+
+        T visitAttachmentsCollectionsAssignedTeamsParentTicket();
+
+        T visitAttachmentsCollectionsContact();
+
+        T visitAttachmentsCollectionsContactCreator();
+
+        T visitAttachmentsCollectionsContactCreatorParentTicket();
+
+        T visitAttachmentsCollectionsContactParentTicket();
+
+        T visitAttachmentsCollectionsCreator();
+
+        T visitAttachmentsCollectionsCreatorParentTicket();
+
+        T visitAttachmentsCollectionsParentTicket();
+
+        T visitAttachmentsContact();
+
+        T visitAttachmentsContactCreator();
+
+        T visitAttachmentsContactCreatorParentTicket();
+
+        T visitAttachmentsContactParentTicket();
+
+        T visitAttachmentsCreator();
+
+        T visitAttachmentsCreatorParentTicket();
+
+        T visitAttachmentsParentTicket();
+
+        T visitCollections();
+
+        T visitCollectionsAccount();
+
+        T visitCollectionsAccountContact();
+
+        T visitCollectionsAccountContactCreator();
+
+        T visitCollectionsAccountContactCreatorParentTicket();
+
+        T visitCollectionsAccountContactParentTicket();
+
+        T visitCollectionsAccountCreator();
+
+        T visitCollectionsAccountCreatorParentTicket();
+
+        T visitCollectionsAccountParentTicket();
+
+        T visitCollectionsAssignedTeams();
+
+        T visitCollectionsAssignedTeamsAccount();
+
+        T visitCollectionsAssignedTeamsAccountContact();
+
+        T visitCollectionsAssignedTeamsAccountContactCreator();
+
+        T visitCollectionsAssignedTeamsAccountContactCreatorParentTicket();
+
+        T visitCollectionsAssignedTeamsAccountContactParentTicket();
+
+        T visitCollectionsAssignedTeamsAccountCreator();
+
+        T visitCollectionsAssignedTeamsAccountCreatorParentTicket();
+
+        T visitCollectionsAssignedTeamsAccountParentTicket();
+
+        T visitCollectionsAssignedTeamsContact();
+
+        T visitCollectionsAssignedTeamsContactCreator();
+
+        T visitCollectionsAssignedTeamsContactCreatorParentTicket();
+
+        T visitCollectionsAssignedTeamsContactParentTicket();
+
+        T visitCollectionsAssignedTeamsCreator();
+
+        T visitCollectionsAssignedTeamsCreatorParentTicket();
+
+        T visitCollectionsAssignedTeamsParentTicket();
+
+        T visitCollectionsContact();
+
+        T visitCollectionsContactCreator();
+
+        T visitCollectionsContactCreatorParentTicket();
+
+        T visitCollectionsContactParentTicket();
+
+        T visitCollectionsCreator();
+
+        T visitCollectionsCreatorParentTicket();
+
+        T visitCollectionsParentTicket();
+
+        T visitContact();
+
+        T visitContactCreator();
+
+        T visitContactCreatorParentTicket();
+
+        T visitContactParentTicket();
+
+        T visitCreator();
+
+        T visitCreatorParentTicket();
+
+        T visitParentTicket();
+
+        T visitUnknown(String unknownType);
     }
 }

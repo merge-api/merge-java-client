@@ -3,26 +3,100 @@
  */
 package com.merge.api.resources.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TypeEnum {
-    USER("USER"),
+public final class TypeEnum {
+    public static final TypeEnum GROUP = new TypeEnum(Value.GROUP, "GROUP");
 
-    GROUP("GROUP"),
+    public static final TypeEnum USER = new TypeEnum(Value.USER, "USER");
 
-    COMPANY("COMPANY"),
+    public static final TypeEnum COMPANY = new TypeEnum(Value.COMPANY, "COMPANY");
 
-    ANYONE("ANYONE");
+    public static final TypeEnum ANYONE = new TypeEnum(Value.ANYONE, "ANYONE");
 
-    private final String value;
+    private final Value value;
 
-    TypeEnum(String value) {
+    private final String string;
+
+    TypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof TypeEnum && this.string.equals(((TypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case GROUP:
+                return visitor.visitGroup();
+            case USER:
+                return visitor.visitUser();
+            case COMPANY:
+                return visitor.visitCompany();
+            case ANYONE:
+                return visitor.visitAnyone();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TypeEnum valueOf(String value) {
+        switch (value) {
+            case "GROUP":
+                return GROUP;
+            case "USER":
+                return USER;
+            case "COMPANY":
+                return COMPANY;
+            case "ANYONE":
+                return ANYONE;
+            default:
+                return new TypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        USER,
+
+        GROUP,
+
+        COMPANY,
+
+        ANYONE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitUser();
+
+        T visitGroup();
+
+        T visitCompany();
+
+        T visitAnyone();
+
+        T visitUnknown(String unknownType);
     }
 }

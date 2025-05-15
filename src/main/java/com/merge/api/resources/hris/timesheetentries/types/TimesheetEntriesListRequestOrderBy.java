@@ -3,22 +3,84 @@
  */
 package com.merge.api.resources.hris.timesheetentries.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TimesheetEntriesListRequestOrderBy {
-    START_TIME_DESCENDING("-start_time"),
+public final class TimesheetEntriesListRequestOrderBy {
+    public static final TimesheetEntriesListRequestOrderBy START_TIME_DESCENDING =
+            new TimesheetEntriesListRequestOrderBy(Value.START_TIME_DESCENDING, "-start_time");
 
-    START_TIME_ASCENDING("start_time");
+    public static final TimesheetEntriesListRequestOrderBy START_TIME_ASCENDING =
+            new TimesheetEntriesListRequestOrderBy(Value.START_TIME_ASCENDING, "start_time");
 
-    private final String value;
+    private final Value value;
 
-    TimesheetEntriesListRequestOrderBy(String value) {
+    private final String string;
+
+    TimesheetEntriesListRequestOrderBy(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TimesheetEntriesListRequestOrderBy
+                        && this.string.equals(((TimesheetEntriesListRequestOrderBy) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case START_TIME_DESCENDING:
+                return visitor.visitStartTimeDescending();
+            case START_TIME_ASCENDING:
+                return visitor.visitStartTimeAscending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TimesheetEntriesListRequestOrderBy valueOf(String value) {
+        switch (value) {
+            case "-start_time":
+                return START_TIME_DESCENDING;
+            case "start_time":
+                return START_TIME_ASCENDING;
+            default:
+                return new TimesheetEntriesListRequestOrderBy(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        START_TIME_DESCENDING,
+
+        START_TIME_ASCENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitStartTimeDescending();
+
+        T visitStartTimeAscending();
+
+        T visitUnknown(String unknownType);
     }
 }

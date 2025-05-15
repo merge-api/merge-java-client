@@ -3,36 +3,151 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OfferStatusEnum {
-    DRAFT("DRAFT"),
+public final class OfferStatusEnum {
+    public static final OfferStatusEnum OPENED = new OfferStatusEnum(Value.OPENED, "OPENED");
 
-    APPROVAL_SENT("APPROVAL-SENT"),
+    public static final OfferStatusEnum DEPRECATED = new OfferStatusEnum(Value.DEPRECATED, "DEPRECATED");
 
-    APPROVED("APPROVED"),
+    public static final OfferStatusEnum SIGNED = new OfferStatusEnum(Value.SIGNED, "SIGNED");
 
-    SENT("SENT"),
+    public static final OfferStatusEnum DENIED = new OfferStatusEnum(Value.DENIED, "DENIED");
 
-    SENT_MANUALLY("SENT-MANUALLY"),
+    public static final OfferStatusEnum DRAFT = new OfferStatusEnum(Value.DRAFT, "DRAFT");
 
-    OPENED("OPENED"),
+    public static final OfferStatusEnum SENT_MANUALLY = new OfferStatusEnum(Value.SENT_MANUALLY, "SENT-MANUALLY");
 
-    DENIED("DENIED"),
+    public static final OfferStatusEnum SENT = new OfferStatusEnum(Value.SENT, "SENT");
 
-    SIGNED("SIGNED"),
+    public static final OfferStatusEnum APPROVED = new OfferStatusEnum(Value.APPROVED, "APPROVED");
 
-    DEPRECATED("DEPRECATED");
+    public static final OfferStatusEnum APPROVAL_SENT = new OfferStatusEnum(Value.APPROVAL_SENT, "APPROVAL-SENT");
 
-    private final String value;
+    private final Value value;
 
-    OfferStatusEnum(String value) {
+    private final String string;
+
+    OfferStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OfferStatusEnum && this.string.equals(((OfferStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OPENED:
+                return visitor.visitOpened();
+            case DEPRECATED:
+                return visitor.visitDeprecated();
+            case SIGNED:
+                return visitor.visitSigned();
+            case DENIED:
+                return visitor.visitDenied();
+            case DRAFT:
+                return visitor.visitDraft();
+            case SENT_MANUALLY:
+                return visitor.visitSentManually();
+            case SENT:
+                return visitor.visitSent();
+            case APPROVED:
+                return visitor.visitApproved();
+            case APPROVAL_SENT:
+                return visitor.visitApprovalSent();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OfferStatusEnum valueOf(String value) {
+        switch (value) {
+            case "OPENED":
+                return OPENED;
+            case "DEPRECATED":
+                return DEPRECATED;
+            case "SIGNED":
+                return SIGNED;
+            case "DENIED":
+                return DENIED;
+            case "DRAFT":
+                return DRAFT;
+            case "SENT-MANUALLY":
+                return SENT_MANUALLY;
+            case "SENT":
+                return SENT;
+            case "APPROVED":
+                return APPROVED;
+            case "APPROVAL-SENT":
+                return APPROVAL_SENT;
+            default:
+                return new OfferStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRAFT,
+
+        APPROVAL_SENT,
+
+        APPROVED,
+
+        SENT,
+
+        SENT_MANUALLY,
+
+        OPENED,
+
+        DENIED,
+
+        SIGNED,
+
+        DEPRECATED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDraft();
+
+        T visitApprovalSent();
+
+        T visitApproved();
+
+        T visitSent();
+
+        T visitSentManually();
+
+        T visitOpened();
+
+        T visitDenied();
+
+        T visitSigned();
+
+        T visitDeprecated();
+
+        T visitUnknown(String unknownType);
     }
 }

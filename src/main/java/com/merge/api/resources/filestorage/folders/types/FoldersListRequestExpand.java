@@ -3,32 +3,138 @@
  */
 package com.merge.api.resources.filestorage.folders.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FoldersListRequestExpand {
-    DRIVE("drive"),
+public final class FoldersListRequestExpand {
+    public static final FoldersListRequestExpand PERMISSIONS_DRIVE =
+            new FoldersListRequestExpand(Value.PERMISSIONS_DRIVE, "permissions,drive");
 
-    PARENT_FOLDER("parent_folder"),
+    public static final FoldersListRequestExpand PERMISSIONS_PARENT_FOLDER_DRIVE =
+            new FoldersListRequestExpand(Value.PERMISSIONS_PARENT_FOLDER_DRIVE, "permissions,parent_folder,drive");
 
-    PARENT_FOLDER_DRIVE("parent_folder,drive"),
+    public static final FoldersListRequestExpand PERMISSIONS =
+            new FoldersListRequestExpand(Value.PERMISSIONS, "permissions");
 
-    PERMISSIONS("permissions"),
+    public static final FoldersListRequestExpand PERMISSIONS_PARENT_FOLDER =
+            new FoldersListRequestExpand(Value.PERMISSIONS_PARENT_FOLDER, "permissions,parent_folder");
 
-    PERMISSIONS_DRIVE("permissions,drive"),
+    public static final FoldersListRequestExpand DRIVE = new FoldersListRequestExpand(Value.DRIVE, "drive");
 
-    PERMISSIONS_PARENT_FOLDER("permissions,parent_folder"),
+    public static final FoldersListRequestExpand PARENT_FOLDER_DRIVE =
+            new FoldersListRequestExpand(Value.PARENT_FOLDER_DRIVE, "parent_folder,drive");
 
-    PERMISSIONS_PARENT_FOLDER_DRIVE("permissions,parent_folder,drive");
+    public static final FoldersListRequestExpand PARENT_FOLDER =
+            new FoldersListRequestExpand(Value.PARENT_FOLDER, "parent_folder");
 
-    private final String value;
+    private final Value value;
 
-    FoldersListRequestExpand(String value) {
+    private final String string;
+
+    FoldersListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FoldersListRequestExpand
+                        && this.string.equals(((FoldersListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PERMISSIONS_DRIVE:
+                return visitor.visitPermissionsDrive();
+            case PERMISSIONS_PARENT_FOLDER_DRIVE:
+                return visitor.visitPermissionsParentFolderDrive();
+            case PERMISSIONS:
+                return visitor.visitPermissions();
+            case PERMISSIONS_PARENT_FOLDER:
+                return visitor.visitPermissionsParentFolder();
+            case DRIVE:
+                return visitor.visitDrive();
+            case PARENT_FOLDER_DRIVE:
+                return visitor.visitParentFolderDrive();
+            case PARENT_FOLDER:
+                return visitor.visitParentFolder();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FoldersListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "permissions,drive":
+                return PERMISSIONS_DRIVE;
+            case "permissions,parent_folder,drive":
+                return PERMISSIONS_PARENT_FOLDER_DRIVE;
+            case "permissions":
+                return PERMISSIONS;
+            case "permissions,parent_folder":
+                return PERMISSIONS_PARENT_FOLDER;
+            case "drive":
+                return DRIVE;
+            case "parent_folder,drive":
+                return PARENT_FOLDER_DRIVE;
+            case "parent_folder":
+                return PARENT_FOLDER;
+            default:
+                return new FoldersListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRIVE,
+
+        PARENT_FOLDER,
+
+        PARENT_FOLDER_DRIVE,
+
+        PERMISSIONS,
+
+        PERMISSIONS_DRIVE,
+
+        PERMISSIONS_PARENT_FOLDER,
+
+        PERMISSIONS_PARENT_FOLDER_DRIVE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDrive();
+
+        T visitParentFolder();
+
+        T visitParentFolderDrive();
+
+        T visitPermissions();
+
+        T visitPermissionsDrive();
+
+        T visitPermissionsParentFolder();
+
+        T visitPermissionsParentFolderDrive();
+
+        T visitUnknown(String unknownType);
     }
 }

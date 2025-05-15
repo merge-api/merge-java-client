@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TaskStatusEnum {
-    OPEN("OPEN"),
+public final class TaskStatusEnum {
+    public static final TaskStatusEnum CLOSED = new TaskStatusEnum(Value.CLOSED, "CLOSED");
 
-    CLOSED("CLOSED");
+    public static final TaskStatusEnum OPEN = new TaskStatusEnum(Value.OPEN, "OPEN");
 
-    private final String value;
+    private final Value value;
 
-    TaskStatusEnum(String value) {
+    private final String string;
+
+    TaskStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TaskStatusEnum && this.string.equals(((TaskStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLOSED:
+                return visitor.visitClosed();
+            case OPEN:
+                return visitor.visitOpen();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TaskStatusEnum valueOf(String value) {
+        switch (value) {
+            case "CLOSED":
+                return CLOSED;
+            case "OPEN":
+                return OPEN;
+            default:
+                return new TaskStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        OPEN,
+
+        CLOSED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOpen();
+
+        T visitClosed();
+
+        T visitUnknown(String unknownType);
     }
 }

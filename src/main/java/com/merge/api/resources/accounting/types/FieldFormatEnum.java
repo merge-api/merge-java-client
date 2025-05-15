@@ -3,30 +3,121 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FieldFormatEnum {
-    STRING("string"),
+public final class FieldFormatEnum {
+    public static final FieldFormatEnum NUMBER = new FieldFormatEnum(Value.NUMBER, "number");
 
-    NUMBER("number"),
+    public static final FieldFormatEnum STRING = new FieldFormatEnum(Value.STRING, "string");
 
-    DATE("date"),
+    public static final FieldFormatEnum BOOL = new FieldFormatEnum(Value.BOOL, "bool");
 
-    DATETIME("datetime"),
+    public static final FieldFormatEnum LIST = new FieldFormatEnum(Value.LIST, "list");
 
-    BOOL("bool"),
+    public static final FieldFormatEnum DATETIME = new FieldFormatEnum(Value.DATETIME, "datetime");
 
-    LIST("list");
+    public static final FieldFormatEnum DATE = new FieldFormatEnum(Value.DATE, "date");
 
-    private final String value;
+    private final Value value;
 
-    FieldFormatEnum(String value) {
+    private final String string;
+
+    FieldFormatEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FieldFormatEnum && this.string.equals(((FieldFormatEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case NUMBER:
+                return visitor.visitNumber();
+            case STRING:
+                return visitor.visitString();
+            case BOOL:
+                return visitor.visitBool();
+            case LIST:
+                return visitor.visitList();
+            case DATETIME:
+                return visitor.visitDatetime();
+            case DATE:
+                return visitor.visitDate();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FieldFormatEnum valueOf(String value) {
+        switch (value) {
+            case "number":
+                return NUMBER;
+            case "string":
+                return STRING;
+            case "bool":
+                return BOOL;
+            case "list":
+                return LIST;
+            case "datetime":
+                return DATETIME;
+            case "date":
+                return DATE;
+            default:
+                return new FieldFormatEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        STRING,
+
+        NUMBER,
+
+        DATE,
+
+        DATETIME,
+
+        BOOL,
+
+        LIST,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitString();
+
+        T visitNumber();
+
+        T visitDate();
+
+        T visitDatetime();
+
+        T visitBool();
+
+        T visitList();
+
+        T visitUnknown(String unknownType);
     }
 }

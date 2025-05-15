@@ -26,6 +26,8 @@ public final class AccountsRetrieveRequest {
 
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<AccountsRetrieveRequestRemoteFields> remoteFields;
 
     private final Optional<AccountsRetrieveRequestShowEnumOrigins> showEnumOrigins;
@@ -35,11 +37,13 @@ public final class AccountsRetrieveRequest {
     private AccountsRetrieveRequest(
             Optional<String> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<AccountsRetrieveRequestRemoteFields> remoteFields,
             Optional<AccountsRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -59,6 +63,14 @@ public final class AccountsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -91,13 +103,15 @@ public final class AccountsRetrieveRequest {
     private boolean equalTo(AccountsRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(
+                this.expand, this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -115,6 +129,8 @@ public final class AccountsRetrieveRequest {
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<AccountsRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<AccountsRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
@@ -127,6 +143,7 @@ public final class AccountsRetrieveRequest {
         public Builder from(AccountsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -154,6 +171,17 @@ public final class AccountsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<AccountsRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -178,7 +206,7 @@ public final class AccountsRetrieveRequest {
 
         public AccountsRetrieveRequest build() {
             return new AccountsRetrieveRequest(
-                    expand, includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

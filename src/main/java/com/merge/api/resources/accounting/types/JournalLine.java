@@ -38,7 +38,7 @@ public final class JournalLine {
 
     private final Optional<List<Optional<JournalLineTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<JournalLineCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> company;
 
@@ -67,7 +67,7 @@ public final class JournalLine {
             Optional<Double> netAmount,
             Optional<JournalLineTrackingCategory> trackingCategory,
             Optional<List<Optional<JournalLineTrackingCategoriesItem>>> trackingCategories,
-            Optional<JournalLineCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> company,
             Optional<String> employee,
             Optional<String> contact,
@@ -464,7 +464,7 @@ public final class JournalLine {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<JournalLineCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -603,7 +603,7 @@ public final class JournalLine {
 
         private Optional<List<Optional<JournalLineTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<JournalLineCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
@@ -737,12 +737,12 @@ public final class JournalLine {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<JournalLineCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(JournalLineCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

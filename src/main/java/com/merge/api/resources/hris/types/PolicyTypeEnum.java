@@ -3,30 +3,121 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PolicyTypeEnum {
-    VACATION("VACATION"),
+public final class PolicyTypeEnum {
+    public static final PolicyTypeEnum VACATION = new PolicyTypeEnum(Value.VACATION, "VACATION");
 
-    SICK("SICK"),
+    public static final PolicyTypeEnum VOLUNTEER = new PolicyTypeEnum(Value.VOLUNTEER, "VOLUNTEER");
 
-    PERSONAL("PERSONAL"),
+    public static final PolicyTypeEnum JURY_DUTY = new PolicyTypeEnum(Value.JURY_DUTY, "JURY_DUTY");
 
-    JURY_DUTY("JURY_DUTY"),
+    public static final PolicyTypeEnum BEREAVEMENT = new PolicyTypeEnum(Value.BEREAVEMENT, "BEREAVEMENT");
 
-    VOLUNTEER("VOLUNTEER"),
+    public static final PolicyTypeEnum SICK = new PolicyTypeEnum(Value.SICK, "SICK");
 
-    BEREAVEMENT("BEREAVEMENT");
+    public static final PolicyTypeEnum PERSONAL = new PolicyTypeEnum(Value.PERSONAL, "PERSONAL");
 
-    private final String value;
+    private final Value value;
 
-    PolicyTypeEnum(String value) {
+    private final String string;
+
+    PolicyTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PolicyTypeEnum && this.string.equals(((PolicyTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case VACATION:
+                return visitor.visitVacation();
+            case VOLUNTEER:
+                return visitor.visitVolunteer();
+            case JURY_DUTY:
+                return visitor.visitJuryDuty();
+            case BEREAVEMENT:
+                return visitor.visitBereavement();
+            case SICK:
+                return visitor.visitSick();
+            case PERSONAL:
+                return visitor.visitPersonal();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PolicyTypeEnum valueOf(String value) {
+        switch (value) {
+            case "VACATION":
+                return VACATION;
+            case "VOLUNTEER":
+                return VOLUNTEER;
+            case "JURY_DUTY":
+                return JURY_DUTY;
+            case "BEREAVEMENT":
+                return BEREAVEMENT;
+            case "SICK":
+                return SICK;
+            case "PERSONAL":
+                return PERSONAL;
+            default:
+                return new PolicyTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        VACATION,
+
+        SICK,
+
+        PERSONAL,
+
+        JURY_DUTY,
+
+        VOLUNTEER,
+
+        BEREAVEMENT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitVacation();
+
+        T visitSick();
+
+        T visitPersonal();
+
+        T visitJuryDuty();
+
+        T visitVolunteer();
+
+        T visitBereavement();
+
+        T visitUnknown(String unknownType);
     }
 }

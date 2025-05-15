@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AddressTypeEnum {
-    BILLING("BILLING"),
+public final class AddressTypeEnum {
+    public static final AddressTypeEnum BILLING = new AddressTypeEnum(Value.BILLING, "BILLING");
 
-    SHIPPING("SHIPPING");
+    public static final AddressTypeEnum SHIPPING = new AddressTypeEnum(Value.SHIPPING, "SHIPPING");
 
-    private final String value;
+    private final Value value;
 
-    AddressTypeEnum(String value) {
+    private final String string;
+
+    AddressTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AddressTypeEnum && this.string.equals(((AddressTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case BILLING:
+                return visitor.visitBilling();
+            case SHIPPING:
+                return visitor.visitShipping();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AddressTypeEnum valueOf(String value) {
+        switch (value) {
+            case "BILLING":
+                return BILLING;
+            case "SHIPPING":
+                return SHIPPING;
+            default:
+                return new AddressTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        BILLING,
+
+        SHIPPING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitBilling();
+
+        T visitShipping();
+
+        T visitUnknown(String unknownType);
     }
 }

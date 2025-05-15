@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ReasonEnum {
-    GENERAL_CUSTOMER_REQUEST("GENERAL_CUSTOMER_REQUEST"),
+public final class ReasonEnum {
+    public static final ReasonEnum GDPR = new ReasonEnum(Value.GDPR, "GDPR");
 
-    GDPR("GDPR"),
+    public static final ReasonEnum GENERAL_CUSTOMER_REQUEST =
+            new ReasonEnum(Value.GENERAL_CUSTOMER_REQUEST, "GENERAL_CUSTOMER_REQUEST");
 
-    OTHER("OTHER");
+    public static final ReasonEnum OTHER = new ReasonEnum(Value.OTHER, "OTHER");
 
-    private final String value;
+    private final Value value;
 
-    ReasonEnum(String value) {
+    private final String string;
+
+    ReasonEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof ReasonEnum && this.string.equals(((ReasonEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case GDPR:
+                return visitor.visitGdpr();
+            case GENERAL_CUSTOMER_REQUEST:
+                return visitor.visitGeneralCustomerRequest();
+            case OTHER:
+                return visitor.visitOther();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ReasonEnum valueOf(String value) {
+        switch (value) {
+            case "GDPR":
+                return GDPR;
+            case "GENERAL_CUSTOMER_REQUEST":
+                return GENERAL_CUSTOMER_REQUEST;
+            case "OTHER":
+                return OTHER;
+            default:
+                return new ReasonEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        GENERAL_CUSTOMER_REQUEST,
+
+        GDPR,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitGeneralCustomerRequest();
+
+        T visitGdpr();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,32 +3,137 @@
  */
 package com.merge.api.resources.crm.tasks.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TasksRetrieveRequestExpand {
-    ACCOUNT("account"),
+public final class TasksRetrieveRequestExpand {
+    public static final TasksRetrieveRequestExpand OWNER = new TasksRetrieveRequestExpand(Value.OWNER, "owner");
 
-    ACCOUNT_OPPORTUNITY("account,opportunity"),
+    public static final TasksRetrieveRequestExpand OWNER_OPPORTUNITY =
+            new TasksRetrieveRequestExpand(Value.OWNER_OPPORTUNITY, "owner,opportunity");
 
-    OPPORTUNITY("opportunity"),
+    public static final TasksRetrieveRequestExpand OPPORTUNITY =
+            new TasksRetrieveRequestExpand(Value.OPPORTUNITY, "opportunity");
 
-    OWNER("owner"),
+    public static final TasksRetrieveRequestExpand OWNER_ACCOUNT =
+            new TasksRetrieveRequestExpand(Value.OWNER_ACCOUNT, "owner,account");
 
-    OWNER_ACCOUNT("owner,account"),
+    public static final TasksRetrieveRequestExpand OWNER_ACCOUNT_OPPORTUNITY =
+            new TasksRetrieveRequestExpand(Value.OWNER_ACCOUNT_OPPORTUNITY, "owner,account,opportunity");
 
-    OWNER_ACCOUNT_OPPORTUNITY("owner,account,opportunity"),
+    public static final TasksRetrieveRequestExpand ACCOUNT = new TasksRetrieveRequestExpand(Value.ACCOUNT, "account");
 
-    OWNER_OPPORTUNITY("owner,opportunity");
+    public static final TasksRetrieveRequestExpand ACCOUNT_OPPORTUNITY =
+            new TasksRetrieveRequestExpand(Value.ACCOUNT_OPPORTUNITY, "account,opportunity");
 
-    private final String value;
+    private final Value value;
 
-    TasksRetrieveRequestExpand(String value) {
+    private final String string;
+
+    TasksRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TasksRetrieveRequestExpand
+                        && this.string.equals(((TasksRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case OWNER_OPPORTUNITY:
+                return visitor.visitOwnerOpportunity();
+            case OPPORTUNITY:
+                return visitor.visitOpportunity();
+            case OWNER_ACCOUNT:
+                return visitor.visitOwnerAccount();
+            case OWNER_ACCOUNT_OPPORTUNITY:
+                return visitor.visitOwnerAccountOpportunity();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case ACCOUNT_OPPORTUNITY:
+                return visitor.visitAccountOpportunity();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TasksRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "owner,opportunity":
+                return OWNER_OPPORTUNITY;
+            case "opportunity":
+                return OPPORTUNITY;
+            case "owner,account":
+                return OWNER_ACCOUNT;
+            case "owner,account,opportunity":
+                return OWNER_ACCOUNT_OPPORTUNITY;
+            case "account":
+                return ACCOUNT;
+            case "account,opportunity":
+                return ACCOUNT_OPPORTUNITY;
+            default:
+                return new TasksRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_OPPORTUNITY,
+
+        OPPORTUNITY,
+
+        OWNER,
+
+        OWNER_ACCOUNT,
+
+        OWNER_ACCOUNT_OPPORTUNITY,
+
+        OWNER_OPPORTUNITY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountOpportunity();
+
+        T visitOpportunity();
+
+        T visitOwner();
+
+        T visitOwnerAccount();
+
+        T visitOwnerAccountOpportunity();
+
+        T visitOwnerOpportunity();
+
+        T visitUnknown(String unknownType);
     }
 }

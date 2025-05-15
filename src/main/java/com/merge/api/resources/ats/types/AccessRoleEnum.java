@@ -3,28 +3,112 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccessRoleEnum {
-    SUPER_ADMIN("SUPER_ADMIN"),
+public final class AccessRoleEnum {
+    public static final AccessRoleEnum LIMITED_TEAM_MEMBER =
+            new AccessRoleEnum(Value.LIMITED_TEAM_MEMBER, "LIMITED_TEAM_MEMBER");
 
-    ADMIN("ADMIN"),
+    public static final AccessRoleEnum INTERVIEWER = new AccessRoleEnum(Value.INTERVIEWER, "INTERVIEWER");
 
-    TEAM_MEMBER("TEAM_MEMBER"),
+    public static final AccessRoleEnum ADMIN = new AccessRoleEnum(Value.ADMIN, "ADMIN");
 
-    LIMITED_TEAM_MEMBER("LIMITED_TEAM_MEMBER"),
+    public static final AccessRoleEnum SUPER_ADMIN = new AccessRoleEnum(Value.SUPER_ADMIN, "SUPER_ADMIN");
 
-    INTERVIEWER("INTERVIEWER");
+    public static final AccessRoleEnum TEAM_MEMBER = new AccessRoleEnum(Value.TEAM_MEMBER, "TEAM_MEMBER");
 
-    private final String value;
+    private final Value value;
 
-    AccessRoleEnum(String value) {
+    private final String string;
+
+    AccessRoleEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccessRoleEnum && this.string.equals(((AccessRoleEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case LIMITED_TEAM_MEMBER:
+                return visitor.visitLimitedTeamMember();
+            case INTERVIEWER:
+                return visitor.visitInterviewer();
+            case ADMIN:
+                return visitor.visitAdmin();
+            case SUPER_ADMIN:
+                return visitor.visitSuperAdmin();
+            case TEAM_MEMBER:
+                return visitor.visitTeamMember();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccessRoleEnum valueOf(String value) {
+        switch (value) {
+            case "LIMITED_TEAM_MEMBER":
+                return LIMITED_TEAM_MEMBER;
+            case "INTERVIEWER":
+                return INTERVIEWER;
+            case "ADMIN":
+                return ADMIN;
+            case "SUPER_ADMIN":
+                return SUPER_ADMIN;
+            case "TEAM_MEMBER":
+                return TEAM_MEMBER;
+            default:
+                return new AccessRoleEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        SUPER_ADMIN,
+
+        ADMIN,
+
+        TEAM_MEMBER,
+
+        LIMITED_TEAM_MEMBER,
+
+        INTERVIEWER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitSuperAdmin();
+
+        T visitAdmin();
+
+        T visitTeamMember();
+
+        T visitLimitedTeamMember();
+
+        T visitInterviewer();
+
+        T visitUnknown(String unknownType);
     }
 }

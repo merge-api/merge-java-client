@@ -3,36 +3,152 @@
  */
 package com.merge.api.resources.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PayFrequencyEnum {
-    WEEKLY("WEEKLY"),
+public final class PayFrequencyEnum {
+    public static final PayFrequencyEnum QUARTERLY = new PayFrequencyEnum(Value.QUARTERLY, "QUARTERLY");
 
-    BIWEEKLY("BIWEEKLY"),
+    public static final PayFrequencyEnum MONTHLY = new PayFrequencyEnum(Value.MONTHLY, "MONTHLY");
 
-    MONTHLY("MONTHLY"),
+    public static final PayFrequencyEnum SEMIANNUALLY = new PayFrequencyEnum(Value.SEMIANNUALLY, "SEMIANNUALLY");
 
-    QUARTERLY("QUARTERLY"),
+    public static final PayFrequencyEnum ANNUALLY = new PayFrequencyEnum(Value.ANNUALLY, "ANNUALLY");
 
-    SEMIANNUALLY("SEMIANNUALLY"),
+    public static final PayFrequencyEnum SEMIMONTHLY = new PayFrequencyEnum(Value.SEMIMONTHLY, "SEMIMONTHLY");
 
-    ANNUALLY("ANNUALLY"),
+    public static final PayFrequencyEnum WEEKLY = new PayFrequencyEnum(Value.WEEKLY, "WEEKLY");
 
-    THIRTEEN_MONTHLY("THIRTEEN-MONTHLY"),
+    public static final PayFrequencyEnum THIRTEEN_MONTHLY =
+            new PayFrequencyEnum(Value.THIRTEEN_MONTHLY, "THIRTEEN-MONTHLY");
 
-    PRO_RATA("PRO_RATA"),
+    public static final PayFrequencyEnum PRO_RATA = new PayFrequencyEnum(Value.PRO_RATA, "PRO_RATA");
 
-    SEMIMONTHLY("SEMIMONTHLY");
+    public static final PayFrequencyEnum BIWEEKLY = new PayFrequencyEnum(Value.BIWEEKLY, "BIWEEKLY");
 
-    private final String value;
+    private final Value value;
 
-    PayFrequencyEnum(String value) {
+    private final String string;
+
+    PayFrequencyEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PayFrequencyEnum && this.string.equals(((PayFrequencyEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case QUARTERLY:
+                return visitor.visitQuarterly();
+            case MONTHLY:
+                return visitor.visitMonthly();
+            case SEMIANNUALLY:
+                return visitor.visitSemiannually();
+            case ANNUALLY:
+                return visitor.visitAnnually();
+            case SEMIMONTHLY:
+                return visitor.visitSemimonthly();
+            case WEEKLY:
+                return visitor.visitWeekly();
+            case THIRTEEN_MONTHLY:
+                return visitor.visitThirteenMonthly();
+            case PRO_RATA:
+                return visitor.visitProRata();
+            case BIWEEKLY:
+                return visitor.visitBiweekly();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PayFrequencyEnum valueOf(String value) {
+        switch (value) {
+            case "QUARTERLY":
+                return QUARTERLY;
+            case "MONTHLY":
+                return MONTHLY;
+            case "SEMIANNUALLY":
+                return SEMIANNUALLY;
+            case "ANNUALLY":
+                return ANNUALLY;
+            case "SEMIMONTHLY":
+                return SEMIMONTHLY;
+            case "WEEKLY":
+                return WEEKLY;
+            case "THIRTEEN-MONTHLY":
+                return THIRTEEN_MONTHLY;
+            case "PRO_RATA":
+                return PRO_RATA;
+            case "BIWEEKLY":
+                return BIWEEKLY;
+            default:
+                return new PayFrequencyEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        WEEKLY,
+
+        BIWEEKLY,
+
+        MONTHLY,
+
+        QUARTERLY,
+
+        SEMIANNUALLY,
+
+        ANNUALLY,
+
+        THIRTEEN_MONTHLY,
+
+        PRO_RATA,
+
+        SEMIMONTHLY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitWeekly();
+
+        T visitBiweekly();
+
+        T visitMonthly();
+
+        T visitQuarterly();
+
+        T visitSemiannually();
+
+        T visitAnnually();
+
+        T visitThirteenMonthly();
+
+        T visitProRata();
+
+        T visitSemimonthly();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,154 +3,1620 @@
  */
 package com.merge.api.resources.accounting.payments.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PaymentsListRequestExpand {
-    ACCOUNT("account"),
+public final class PaymentsListRequestExpand {
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "applied_to_lines,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,contact,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT =
+            new PaymentsListRequestExpand(Value.TRACKING_CATEGORIES_ACCOUNT, "tracking_categories,account");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD = new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_PAYMENT_METHOD, "tracking_categories,company,payment_method");
+
+    public static final PaymentsListRequestExpand ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.ACCOUNT_COMPANY_ACCOUNTING_PERIOD, "account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT, "tracking_categories,applied_to_lines,contact");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY,
+                    "tracking_categories,applied_to_lines,contact,account,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY, "tracking_categories,contact,account,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD, "applied_to_lines,account,accounting_period");
+
+    public static final PaymentsListRequestExpand ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.ACCOUNT_PAYMENT_METHOD, "account,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.CONTACT_COMPANY_PAYMENT_METHOD, "contact,company,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,account,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                            "tracking_categories,applied_to_lines,contact,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(Value.ACCOUNT_COMPANY, "account,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new PaymentsListRequestExpand(Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_COMPANY =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_CONTACT_COMPANY, "applied_to_lines,contact,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,contact,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,company,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(Value.CONTACT_ACCOUNT_COMPANY, "contact,account,company");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_CONTACT_ACCOUNT, "applied_to_lines,contact,account");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,contact,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand ACCOUNT = new PaymentsListRequestExpand(Value.ACCOUNT, "account");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,contact,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.CONTACT_ACCOUNTING_PERIOD, "contact,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_PAYMENT_METHOD, "tracking_categories,contact,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "contact,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand COMPANY = new PaymentsListRequestExpand(Value.COMPANY, "company");
+
+    public static final PaymentsListRequestExpand COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD, "company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,contact,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD,
+                    "applied_to_lines,contact,company,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,contact,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD, "contact,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD, "applied_to_lines,account,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD = new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,contact,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES, "tracking_categories,applied_to_lines");
 
-    ACCOUNT_ACCOUNTING_PERIOD("account,accounting_period"),
-
-    ACCOUNT_COMPANY("account,company"),
-
-    ACCOUNT_COMPANY_ACCOUNTING_PERIOD("account,company,accounting_period"),
-
-    ACCOUNTING_PERIOD("accounting_period"),
-
-    APPLIED_TO_LINES("applied_to_lines"),
-
-    APPLIED_TO_LINES_ACCOUNT("applied_to_lines,account"),
-
-    APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD("applied_to_lines,account,accounting_period"),
-
-    APPLIED_TO_LINES_ACCOUNT_COMPANY("applied_to_lines,account,company"),
-
-    APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD("applied_to_lines,account,company,accounting_period"),
-
-    APPLIED_TO_LINES_ACCOUNTING_PERIOD("applied_to_lines,accounting_period"),
-
-    APPLIED_TO_LINES_COMPANY("applied_to_lines,company"),
-
-    APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD("applied_to_lines,company,accounting_period"),
-
-    APPLIED_TO_LINES_CONTACT("applied_to_lines,contact"),
-
-    APPLIED_TO_LINES_CONTACT_ACCOUNT("applied_to_lines,contact,account"),
-
-    APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD("applied_to_lines,contact,account,accounting_period"),
-
-    APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY("applied_to_lines,contact,account,company"),
-
-    APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD(
-            "applied_to_lines,contact,account,company,accounting_period"),
-
-    APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD("applied_to_lines,contact,accounting_period"),
-
-    APPLIED_TO_LINES_CONTACT_COMPANY("applied_to_lines,contact,company"),
-
-    APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD("applied_to_lines,contact,company,accounting_period"),
-
-    COMPANY("company"),
-
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
-
-    CONTACT("contact"),
-
-    CONTACT_ACCOUNT("contact,account"),
-
-    CONTACT_ACCOUNT_ACCOUNTING_PERIOD("contact,account,accounting_period"),
-
-    CONTACT_ACCOUNT_COMPANY("contact,account,company"),
-
-    CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD("contact,account,company,accounting_period"),
-
-    CONTACT_ACCOUNTING_PERIOD("contact,accounting_period"),
-
-    CONTACT_COMPANY("contact,company"),
-
-    CONTACT_COMPANY_ACCOUNTING_PERIOD("contact,company,accounting_period"),
-
-    TRACKING_CATEGORIES("tracking_categories"),
-
-    TRACKING_CATEGORIES_ACCOUNT("tracking_categories,account"),
-
-    TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD("tracking_categories,account,accounting_period"),
-
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY("tracking_categories,account,company"),
-
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,account,company,accounting_period"),
-
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES("tracking_categories,applied_to_lines"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT("tracking_categories,applied_to_lines,account"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,account,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY("tracking_categories,applied_to_lines,account,company"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,account,company,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD("tracking_categories,applied_to_lines,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY("tracking_categories,applied_to_lines,company"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,company,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT("tracking_categories,applied_to_lines,contact"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT("tracking_categories,applied_to_lines,contact,account"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,contact,account,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY(
-            "tracking_categories,applied_to_lines,contact,account,company"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,contact,account,company,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,contact,accounting_period"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY("tracking_categories,applied_to_lines,contact,company"),
-
-    TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,applied_to_lines,contact,company,accounting_period"),
-
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
-
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
-
-    TRACKING_CATEGORIES_CONTACT("tracking_categories,contact"),
-
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT("tracking_categories,contact,account"),
-
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD("tracking_categories,contact,account,accounting_period"),
-
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY("tracking_categories,contact,account,company"),
-
-    TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,contact,account,company,accounting_period"),
-
-    TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD("tracking_categories,contact,accounting_period"),
-
-    TRACKING_CATEGORIES_CONTACT_COMPANY("tracking_categories,contact,company"),
-
-    TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,contact,company,accounting_period");
-
-    private final String value;
-
-    PaymentsListRequestExpand(String value) {
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_COMPANY =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_COMPANY, "applied_to_lines,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY,
+                    "tracking_categories,applied_to_lines,account,company");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,contact,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_ACCOUNT_COMPANY, "applied_to_lines,account,company");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_ACCOUNT, "applied_to_lines,account");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_CONTACT_COMPANY, "tracking_categories,contact,company");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD, "applied_to_lines,contact,accounting_period");
+
+    public static final PaymentsListRequestExpand ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT, "tracking_categories,contact,account");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "applied_to_lines,contact,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "contact,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT = new PaymentsListRequestExpand(Value.CONTACT, "contact");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,contact,accounting_period");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_CONTACT, "applied_to_lines,contact");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY, "applied_to_lines,contact,account,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,contact,company,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD, "applied_to_lines,contact,payment_method");
+
+    public static final PaymentsListRequestExpand ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT =
+            new PaymentsListRequestExpand(Value.CONTACT_ACCOUNT, "contact,account");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "applied_to_lines,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_COMPANY =
+            new PaymentsListRequestExpand(Value.CONTACT_COMPANY, "contact,company");
+
+    public static final PaymentsListRequestExpand CONTACT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.CONTACT_PAYMENT_METHOD, "contact,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT, "tracking_categories,applied_to_lines,account");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY, "tracking_categories,applied_to_lines,company");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "applied_to_lines,contact,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,company,accounting_period");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,contact,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.CONTACT_COMPANY_ACCOUNTING_PERIOD, "contact,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES =
+            new PaymentsListRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD = new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,contact,account,accounting_period");
+
+    public static final PaymentsListRequestExpand ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.ACCOUNT_COMPANY_PAYMENT_METHOD, "account,company,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+                    "applied_to_lines,contact,company,accounting_period");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,contact,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD, "contact,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES_PAYMENT_METHOD, "applied_to_lines,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY,
+                    "tracking_categories,applied_to_lines,contact,company");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+                    "tracking_categories,contact,account,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,accounting_period");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD, "contact,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,contact,company,payment_method");
+
+    public static final PaymentsListRequestExpand ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.ACCOUNT_ACCOUNTING_PERIOD, "account,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_PAYMENT_METHOD = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_PAYMENT_METHOD, "tracking_categories,payment_method");
+
+    public static final PaymentsListRequestExpand PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.PAYMENT_METHOD, "payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "contact,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD = new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,contact,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,account,accounting_period");
+
+    public static final PaymentsListRequestExpand ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD, "account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT,
+                    "tracking_categories,applied_to_lines,contact,account");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "tracking_categories,contact,account,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_PAYMENT_METHOD, "tracking_categories,account,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+                    "applied_to_lines,contact,account,accounting_period");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.CONTACT_ACCOUNT_ACCOUNTING_PERIOD, "contact,account,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD = new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,applied_to_lines,account,company,accounting_period");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.COMPANY_PAYMENT_METHOD, "company,payment_method");
+
+    public static final PaymentsListRequestExpand CONTACT_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.CONTACT_ACCOUNT_PAYMENT_METHOD, "contact,account,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,account,payment_method");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,contact,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD, "applied_to_lines,company,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD = new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                    "applied_to_lines,contact,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand ACCOUNTING_PERIOD_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(Value.ACCOUNTING_PERIOD_PAYMENT_METHOD, "accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY = new PaymentsListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY, "tracking_categories,account,company");
+
+    public static final PaymentsListRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpand(Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,contact,account,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES =
+            new PaymentsListRequestExpand(Value.APPLIED_TO_LINES, "applied_to_lines");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+                    "tracking_categories,contact,account,company,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_ACCOUNTING_PERIOD = new PaymentsListRequestExpand(
+            Value.APPLIED_TO_LINES_ACCOUNTING_PERIOD, "applied_to_lines,accounting_period");
+
+    public static final PaymentsListRequestExpand
+            TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD =
+                    new PaymentsListRequestExpand(
+                            Value
+                                    .TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+                            "tracking_categories,applied_to_lines,contact,account,company,accounting_period,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+                    "applied_to_lines,contact,account,payment_method");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_CONTACT =
+            new PaymentsListRequestExpand(Value.TRACKING_CATEGORIES_CONTACT, "tracking_categories,contact");
+
+    public static final PaymentsListRequestExpand TRACKING_CATEGORIES_APPLIED_TO_LINES_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.TRACKING_CATEGORIES_APPLIED_TO_LINES_PAYMENT_METHOD,
+                    "tracking_categories,applied_to_lines,payment_method");
+
+    public static final PaymentsListRequestExpand APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD =
+            new PaymentsListRequestExpand(
+                    Value.APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD, "applied_to_lines,company,payment_method");
+
+    private final Value value;
+
+    private final String string;
+
+    PaymentsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PaymentsListRequestExpand
+                        && this.string.equals(((PaymentsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactAccountCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_ACCOUNT:
+                return visitor.visitTrackingCategoriesAccount();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesCompanyPaymentMethod();
+            case ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAccountCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT:
+                return visitor.visitTrackingCategoriesAppliedToLinesContact();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountCompany();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY:
+                return visitor.visitTrackingCategoriesContactAccountCompany();
+            case TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAccountAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesAccountAccountingPeriod();
+            case ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitAccountPaymentMethod();
+            case CONTACT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitContactCompanyPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriod();
+            case ACCOUNT_COMPANY:
+                return visitor.visitAccountCompany();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case APPLIED_TO_LINES_CONTACT_COMPANY:
+                return visitor.visitAppliedToLinesContactCompany();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactAccountAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesCompanyPaymentMethod();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountCompanyAccountingPeriod();
+            case CONTACT_ACCOUNT_COMPANY:
+                return visitor.visitContactAccountCompany();
+            case APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesCompanyAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT:
+                return visitor.visitAppliedToLinesContactAccount();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactAccountingPeriodPaymentMethod();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactCompanyAccountingPeriodPaymentMethod();
+            case CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactPaymentMethod();
+            case CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitContactAccountCompanyAccountingPeriodPaymentMethod();
+            case COMPANY:
+                return visitor.visitCompany();
+            case COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactCompanyPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountingPeriodPaymentMethod();
+            case CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitContactAccountCompanyPaymentMethod();
+            case APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesAccountPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES:
+                return visitor.visitTrackingCategoriesAppliedToLines();
+            case APPLIED_TO_LINES_COMPANY:
+                return visitor.visitAppliedToLinesCompany();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountCompany();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_ACCOUNT_COMPANY:
+                return visitor.visitAppliedToLinesAccountCompany();
+            case APPLIED_TO_LINES_ACCOUNT:
+                return visitor.visitAppliedToLinesAccount();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY:
+                return visitor.visitTrackingCategoriesContactCompany();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesContactAccountingPeriod();
+            case ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAccountCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT:
+                return visitor.visitTrackingCategoriesContactAccount();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactAccountCompanyPaymentMethod();
+            case CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitContactAccountAccountingPeriodPaymentMethod();
+            case CONTACT:
+                return visitor.visitContact();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountingPeriod();
+            case APPLIED_TO_LINES_CONTACT:
+                return visitor.visitAppliedToLinesContact();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY:
+                return visitor.visitAppliedToLinesContactAccountCompany();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactCompanyPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactPaymentMethod();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case CONTACT_ACCOUNT:
+                return visitor.visitContactAccount();
+            case APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesAccountCompanyPaymentMethod();
+            case CONTACT_COMPANY:
+                return visitor.visitContactCompany();
+            case CONTACT_PAYMENT_METHOD:
+                return visitor.visitContactPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccount();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY:
+                return visitor.visitTrackingCategoriesAppliedToLinesCompany();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesContactAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountCompanyPaymentMethod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactCompanyAccountingPeriod();
+            case APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactCompanyAccountingPeriodPaymentMethod();
+            case CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitContactCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountAccountingPeriod();
+            case ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitAccountCompanyPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesContactCompanyAccountingPeriod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod();
+            case CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitContactAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactCompany();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactAccountPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountingPeriod();
+            case CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactCompanyPaymentMethod();
+            case ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesPaymentMethod();
+            case PAYMENT_METHOD:
+                return visitor.visitPaymentMethod();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAccountCompanyPaymentMethod();
+            case CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitContactCompanyAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountCompanyPaymentMethod();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountAccountingPeriod();
+            case ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAccountAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccount();
+            case APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesAccountAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactAccountAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAccountPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesContactAccountAccountingPeriod();
+            case CONTACT_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriod();
+            case APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesAccountingPeriodPaymentMethod();
+            case COMPANY_PAYMENT_METHOD:
+                return visitor.visitCompanyPaymentMethod();
+            case CONTACT_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitContactAccountPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesAccountPaymentMethod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactCompanyAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesCompanyAccountingPeriod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod();
+            case ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor.visitAccountingPeriodPaymentMethod();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY:
+                return visitor.visitTrackingCategoriesAccountCompany();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesContactAccountPaymentMethod();
+            case APPLIED_TO_LINES:
+                return visitor.visitAppliedToLines();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesContactAccountCompanyPaymentMethod();
+            case APPLIED_TO_LINES_ACCOUNTING_PERIOD:
+                return visitor.visitAppliedToLinesAccountingPeriod();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD:
+                return visitor
+                        .visitTrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod();
+            case APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesContactAccountPaymentMethod();
+            case TRACKING_CATEGORIES_CONTACT:
+                return visitor.visitTrackingCategoriesContact();
+            case TRACKING_CATEGORIES_APPLIED_TO_LINES_PAYMENT_METHOD:
+                return visitor.visitTrackingCategoriesAppliedToLinesPaymentMethod();
+            case APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD:
+                return visitor.visitAppliedToLinesCompanyPaymentMethod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PaymentsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "applied_to_lines,account,company,accounting_period":
+                return APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,account,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,account":
+                return TRACKING_CATEGORIES_ACCOUNT;
+            case "tracking_categories,applied_to_lines,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,company,payment_method":
+                return TRACKING_CATEGORIES_COMPANY_PAYMENT_METHOD;
+            case "account,company,accounting_period":
+                return ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT;
+            case "tracking_categories,applied_to_lines,contact,account,company":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY;
+            case "tracking_categories,contact,account,company":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY;
+            case "tracking_categories,account,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,account,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,account,accounting_period":
+                return APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "account,payment_method":
+                return ACCOUNT_PAYMENT_METHOD;
+            case "contact,company,payment_method":
+                return CONTACT_COMPANY_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,account,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,contact,account,company,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "account,company":
+                return ACCOUNT_COMPANY;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "applied_to_lines,contact,company":
+                return APPLIED_TO_LINES_CONTACT_COMPANY;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "applied_to_lines,contact,account,accounting_period,payment_method":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,company,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD;
+            case "tracking_categories,contact,account,company,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "contact,account,company":
+                return CONTACT_ACCOUNT_COMPANY;
+            case "applied_to_lines,company,accounting_period,payment_method":
+                return APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,contact,account":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT;
+            case "tracking_categories,contact,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "account":
+                return ACCOUNT;
+            case "tracking_categories,contact,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "contact,accounting_period":
+                return CONTACT_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_PAYMENT_METHOD;
+            case "contact,account,company,accounting_period,payment_method":
+                return CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "company":
+                return COMPANY;
+            case "company,accounting_period,payment_method":
+                return COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD;
+            case "applied_to_lines,contact,company,payment_method":
+                return APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "contact,account,company,payment_method":
+                return CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "applied_to_lines,account,payment_method":
+                return APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,company,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES;
+            case "applied_to_lines,company":
+                return APPLIED_TO_LINES_COMPANY;
+            case "tracking_categories,applied_to_lines,account,company":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY;
+            case "tracking_categories,applied_to_lines,contact,account,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,account,company":
+                return APPLIED_TO_LINES_ACCOUNT_COMPANY;
+            case "applied_to_lines,account":
+                return APPLIED_TO_LINES_ACCOUNT;
+            case "tracking_categories,applied_to_lines,company,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,company,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,company":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY;
+            case "applied_to_lines,contact,accounting_period":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD;
+            case "account,company,accounting_period,payment_method":
+                return ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,contact,account":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT;
+            case "applied_to_lines,contact,account,company,payment_method":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "contact,account,accounting_period,payment_method":
+                return CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "contact":
+                return CONTACT;
+            case "tracking_categories,applied_to_lines,contact,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD;
+            case "applied_to_lines,contact":
+                return APPLIED_TO_LINES_CONTACT;
+            case "applied_to_lines,contact,account,company":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY;
+            case "tracking_categories,contact,company,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_METHOD;
+            case "applied_to_lines,contact,payment_method":
+                return APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "contact,account":
+                return CONTACT_ACCOUNT;
+            case "applied_to_lines,account,company,payment_method":
+                return APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "contact,company":
+                return CONTACT_COMPANY;
+            case "contact,payment_method":
+                return CONTACT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,account":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT;
+            case "tracking_categories,contact,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,company":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY;
+            case "applied_to_lines,contact,account,company,accounting_period":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,account,company,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "tracking_categories,contact,company,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_to_lines,contact,company,accounting_period,payment_method":
+                return APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "contact,company,accounting_period":
+                return CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "tracking_categories,applied_to_lines,contact,account,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "account,company,payment_method":
+                return ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "applied_to_lines,contact,company,accounting_period":
+                return APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_to_lines,contact,accounting_period,payment_method":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,account,company,accounting_period,payment_method":
+                return APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "contact,accounting_period,payment_method":
+                return CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,payment_method":
+                return APPLIED_TO_LINES_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,company":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY;
+            case "tracking_categories,contact,account,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD;
+            case "contact,account,company,accounting_period":
+                return CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,company,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD;
+            case "account,accounting_period":
+                return ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,payment_method":
+                return TRACKING_CATEGORIES_PAYMENT_METHOD;
+            case "payment_method":
+                return PAYMENT_METHOD;
+            case "tracking_categories,account,company,payment_method":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "contact,company,accounting_period,payment_method":
+                return CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,account,company,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "tracking_categories,contact,account,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "account,accounting_period,payment_method":
+                return ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,account":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT;
+            case "applied_to_lines,account,accounting_period,payment_method":
+                return APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,account,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,account,payment_method":
+                return TRACKING_CATEGORIES_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,account,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,contact,account,accounting_period":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "contact,account,accounting_period":
+                return CONTACT_ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,account,company,accounting_period":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_to_lines,accounting_period,payment_method":
+                return APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "company,payment_method":
+                return COMPANY_PAYMENT_METHOD;
+            case "contact,account,payment_method":
+                return CONTACT_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,account,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,applied_to_lines,contact,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,company,accounting_period":
+                return APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "applied_to_lines,contact,account,company,accounting_period,payment_method":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "accounting_period,payment_method":
+                return ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "tracking_categories,account,company":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,contact,account,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD;
+            case "applied_to_lines":
+                return APPLIED_TO_LINES;
+            case "tracking_categories,contact,account,company,payment_method":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD;
+            case "applied_to_lines,accounting_period":
+                return APPLIED_TO_LINES_ACCOUNTING_PERIOD;
+            case "tracking_categories,applied_to_lines,contact,account,company,accounting_period,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD;
+            case "applied_to_lines,contact,account,payment_method":
+                return APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD;
+            case "tracking_categories,contact":
+                return TRACKING_CATEGORIES_CONTACT;
+            case "tracking_categories,applied_to_lines,payment_method":
+                return TRACKING_CATEGORIES_APPLIED_TO_LINES_PAYMENT_METHOD;
+            case "applied_to_lines,company,payment_method":
+                return APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD;
+            default:
+                return new PaymentsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_ACCOUNTING_PERIOD,
+
+        ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        ACCOUNT_COMPANY,
+
+        ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        ACCOUNT_PAYMENT_METHOD,
+
+        ACCOUNTING_PERIOD,
+
+        ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES,
+
+        APPLIED_TO_LINES_ACCOUNT,
+
+        APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_ACCOUNT_COMPANY,
+
+        APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_COMPANY,
+
+        APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_COMPANY,
+
+        APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD,
+
+        APPLIED_TO_LINES_PAYMENT_METHOD,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        COMPANY_PAYMENT_METHOD,
+
+        CONTACT,
+
+        CONTACT_ACCOUNT,
+
+        CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        CONTACT_ACCOUNT_COMPANY,
+
+        CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        CONTACT_ACCOUNT_PAYMENT_METHOD,
+
+        CONTACT_ACCOUNTING_PERIOD,
+
+        CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        CONTACT_COMPANY,
+
+        CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        CONTACT_COMPANY_PAYMENT_METHOD,
+
+        CONTACT_PAYMENT_METHOD,
+
+        PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNT,
+
+        TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_CONTACT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_APPLIED_TO_LINES_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_CONTACT_PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES_PAYMENT_METHOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountAccountingPeriod();
+
+        T visitAccountAccountingPeriodPaymentMethod();
+
+        T visitAccountCompany();
+
+        T visitAccountCompanyAccountingPeriod();
+
+        T visitAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitAccountCompanyPaymentMethod();
+
+        T visitAccountPaymentMethod();
+
+        T visitAccountingPeriod();
+
+        T visitAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLines();
+
+        T visitAppliedToLinesAccount();
+
+        T visitAppliedToLinesAccountAccountingPeriod();
+
+        T visitAppliedToLinesAccountAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesAccountCompany();
+
+        T visitAppliedToLinesAccountCompanyAccountingPeriod();
+
+        T visitAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesAccountCompanyPaymentMethod();
+
+        T visitAppliedToLinesAccountPaymentMethod();
+
+        T visitAppliedToLinesAccountingPeriod();
+
+        T visitAppliedToLinesAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesCompany();
+
+        T visitAppliedToLinesCompanyAccountingPeriod();
+
+        T visitAppliedToLinesCompanyAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesCompanyPaymentMethod();
+
+        T visitAppliedToLinesContact();
+
+        T visitAppliedToLinesContactAccount();
+
+        T visitAppliedToLinesContactAccountAccountingPeriod();
+
+        T visitAppliedToLinesContactAccountAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesContactAccountCompany();
+
+        T visitAppliedToLinesContactAccountCompanyAccountingPeriod();
+
+        T visitAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesContactAccountCompanyPaymentMethod();
+
+        T visitAppliedToLinesContactAccountPaymentMethod();
+
+        T visitAppliedToLinesContactAccountingPeriod();
+
+        T visitAppliedToLinesContactAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesContactCompany();
+
+        T visitAppliedToLinesContactCompanyAccountingPeriod();
+
+        T visitAppliedToLinesContactCompanyAccountingPeriodPaymentMethod();
+
+        T visitAppliedToLinesContactCompanyPaymentMethod();
+
+        T visitAppliedToLinesContactPaymentMethod();
+
+        T visitAppliedToLinesPaymentMethod();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitCompanyAccountingPeriodPaymentMethod();
+
+        T visitCompanyPaymentMethod();
+
+        T visitContact();
+
+        T visitContactAccount();
+
+        T visitContactAccountAccountingPeriod();
+
+        T visitContactAccountAccountingPeriodPaymentMethod();
+
+        T visitContactAccountCompany();
+
+        T visitContactAccountCompanyAccountingPeriod();
+
+        T visitContactAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitContactAccountCompanyPaymentMethod();
+
+        T visitContactAccountPaymentMethod();
+
+        T visitContactAccountingPeriod();
+
+        T visitContactAccountingPeriodPaymentMethod();
+
+        T visitContactCompany();
+
+        T visitContactCompanyAccountingPeriod();
+
+        T visitContactCompanyAccountingPeriodPaymentMethod();
+
+        T visitContactCompanyPaymentMethod();
+
+        T visitContactPaymentMethod();
+
+        T visitPaymentMethod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccount();
+
+        T visitTrackingCategoriesAccountAccountingPeriod();
+
+        T visitTrackingCategoriesAccountAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAccountCompany();
+
+        T visitTrackingCategoriesAccountCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAccountCompanyPaymentMethod();
+
+        T visitTrackingCategoriesAccountPaymentMethod();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLines();
+
+        T visitTrackingCategoriesAppliedToLinesAccount();
+
+        T visitTrackingCategoriesAppliedToLinesAccountAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountCompany();
+
+        T visitTrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountCompanyPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesCompany();
+
+        T visitTrackingCategoriesAppliedToLinesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesCompanyPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContact();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccount();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountCompany();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountCompanyPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesContactAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactCompany();
+
+        T visitTrackingCategoriesAppliedToLinesContactCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAppliedToLinesContactCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactCompanyPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesContactPaymentMethod();
+
+        T visitTrackingCategoriesAppliedToLinesPaymentMethod();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesCompanyPaymentMethod();
+
+        T visitTrackingCategoriesContact();
+
+        T visitTrackingCategoriesContactAccount();
+
+        T visitTrackingCategoriesContactAccountAccountingPeriod();
+
+        T visitTrackingCategoriesContactAccountAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesContactAccountCompany();
+
+        T visitTrackingCategoriesContactAccountCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesContactAccountCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesContactAccountCompanyPaymentMethod();
+
+        T visitTrackingCategoriesContactAccountPaymentMethod();
+
+        T visitTrackingCategoriesContactAccountingPeriod();
+
+        T visitTrackingCategoriesContactAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesContactCompany();
+
+        T visitTrackingCategoriesContactCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesContactCompanyAccountingPeriodPaymentMethod();
+
+        T visitTrackingCategoriesContactCompanyPaymentMethod();
+
+        T visitTrackingCategoriesContactPaymentMethod();
+
+        T visitTrackingCategoriesPaymentMethod();
+
+        T visitUnknown(String unknownType);
     }
 }

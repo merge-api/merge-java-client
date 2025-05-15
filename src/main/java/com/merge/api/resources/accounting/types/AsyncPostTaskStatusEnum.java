@@ -3,26 +3,103 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AsyncPostTaskStatusEnum {
-    QUEUED("QUEUED"),
+public final class AsyncPostTaskStatusEnum {
+    public static final AsyncPostTaskStatusEnum IN_PROGRESS =
+            new AsyncPostTaskStatusEnum(Value.IN_PROGRESS, "IN_PROGRESS");
 
-    IN_PROGRESS("IN_PROGRESS"),
+    public static final AsyncPostTaskStatusEnum QUEUED = new AsyncPostTaskStatusEnum(Value.QUEUED, "QUEUED");
 
-    COMPLETED("COMPLETED"),
+    public static final AsyncPostTaskStatusEnum FAILURE = new AsyncPostTaskStatusEnum(Value.FAILURE, "FAILURE");
 
-    FAILURE("FAILURE");
+    public static final AsyncPostTaskStatusEnum COMPLETED = new AsyncPostTaskStatusEnum(Value.COMPLETED, "COMPLETED");
 
-    private final String value;
+    private final Value value;
 
-    AsyncPostTaskStatusEnum(String value) {
+    private final String string;
+
+    AsyncPostTaskStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AsyncPostTaskStatusEnum
+                        && this.string.equals(((AsyncPostTaskStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case IN_PROGRESS:
+                return visitor.visitInProgress();
+            case QUEUED:
+                return visitor.visitQueued();
+            case FAILURE:
+                return visitor.visitFailure();
+            case COMPLETED:
+                return visitor.visitCompleted();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AsyncPostTaskStatusEnum valueOf(String value) {
+        switch (value) {
+            case "IN_PROGRESS":
+                return IN_PROGRESS;
+            case "QUEUED":
+                return QUEUED;
+            case "FAILURE":
+                return FAILURE;
+            case "COMPLETED":
+                return COMPLETED;
+            default:
+                return new AsyncPostTaskStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        QUEUED,
+
+        IN_PROGRESS,
+
+        COMPLETED,
+
+        FAILURE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitQueued();
+
+        T visitInProgress();
+
+        T visitCompleted();
+
+        T visitFailure();
+
+        T visitUnknown(String unknownType);
     }
 }

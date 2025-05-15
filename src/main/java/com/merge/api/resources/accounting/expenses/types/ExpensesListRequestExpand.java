@@ -3,149 +3,793 @@
  */
 package com.merge.api.resources.accounting.expenses.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ExpensesListRequestExpand {
-    ACCOUNT("account"),
+public final class ExpensesListRequestExpand {
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT =
+            new ExpensesListRequestExpand(Value.TRACKING_CATEGORIES_ACCOUNT, "tracking_categories,account");
 
-    ACCOUNT_ACCOUNTING_PERIOD("account,accounting_period"),
+    public static final ExpensesListRequestExpand CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.CONTACT_COMPANY_ACCOUNTING_PERIOD, "contact,company,accounting_period");
 
-    ACCOUNT_COMPANY("account,company"),
+    public static final ExpensesListRequestExpand ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.ACCOUNT_COMPANY_ACCOUNTING_PERIOD, "account,company,accounting_period");
 
-    ACCOUNT_COMPANY_ACCOUNTING_PERIOD("account,company,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES =
+            new ExpensesListRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    ACCOUNT_COMPANY_EMPLOYEE("account,company,employee"),
+    public static final ExpensesListRequestExpand ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD, "account,company,employee,accounting_period");
 
-    ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("account,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT =
+            new ExpensesListRequestExpand(Value.ACCOUNT_CONTACT, "account,contact");
 
-    ACCOUNT_CONTACT("account,contact"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT, "tracking_categories,account,contact");
 
-    ACCOUNT_CONTACT_ACCOUNTING_PERIOD("account,contact,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.ACCOUNT_CONTACT_ACCOUNTING_PERIOD, "account,contact,accounting_period");
 
-    ACCOUNT_CONTACT_COMPANY("account,contact,company"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD, "account,contact,employee,accounting_period");
 
-    ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD("account,contact,company,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.ACCOUNT_EMPLOYEE, "account,employee");
 
-    ACCOUNT_CONTACT_COMPANY_EMPLOYEE("account,contact,company,employee"),
+    public static final ExpensesListRequestExpand ACCOUNT_COMPANY =
+            new ExpensesListRequestExpand(Value.ACCOUNT_COMPANY, "account,company");
 
-    ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("account,contact,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new ExpensesListRequestExpand(Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
 
-    ACCOUNT_CONTACT_EMPLOYEE("account,contact,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE, "tracking_categories,account,company,employee");
 
-    ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("account,contact,employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE, "tracking_categories,account,contact,employee");
 
-    ACCOUNT_EMPLOYEE("account,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
 
-    ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD("account,employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_COMPANY_EMPLOYEE = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_COMPANY_EMPLOYEE, "tracking_categories,company,employee");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY, "tracking_categories,account,contact,company");
 
-    COMPANY("company"),
+    public static final ExpensesListRequestExpand CONTACT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.CONTACT_COMPANY_EMPLOYEE, "contact,company,employee");
 
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,employee,accounting_period");
 
-    COMPANY_EMPLOYEE("company,employee"),
+    public static final ExpensesListRequestExpand ACCOUNT = new ExpensesListRequestExpand(Value.ACCOUNT, "account");
 
-    COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand CONTACT_EMPLOYEE_ACCOUNTING_PERIOD = new ExpensesListRequestExpand(
+            Value.CONTACT_EMPLOYEE_ACCOUNTING_PERIOD, "contact,employee,accounting_period");
 
-    CONTACT("contact"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "account,contact,company,employee,accounting_period");
 
-    CONTACT_ACCOUNTING_PERIOD("contact,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.ACCOUNT_COMPANY_EMPLOYEE, "account,company,employee");
 
-    CONTACT_COMPANY("contact,company"),
+    public static final ExpensesListRequestExpand CONTACT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.CONTACT_ACCOUNTING_PERIOD, "contact,accounting_period");
 
-    CONTACT_COMPANY_ACCOUNTING_PERIOD("contact,company,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.ACCOUNT_ACCOUNTING_PERIOD, "account,accounting_period");
 
-    CONTACT_COMPANY_EMPLOYEE("contact,company,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,contact,employee,accounting_period");
 
-    CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("contact,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand COMPANY = new ExpensesListRequestExpand(Value.COMPANY, "company");
 
-    CONTACT_EMPLOYEE("contact,employee"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.ACCOUNT_CONTACT_COMPANY_EMPLOYEE, "account,contact,company,employee");
 
-    CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("contact,employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,company,employee,accounting_period");
 
-    EMPLOYEE("employee"),
+    public static final ExpensesListRequestExpand CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD, "contact,company,employee,accounting_period");
 
-    EMPLOYEE_ACCOUNTING_PERIOD("employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,employee,accounting_period");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_COMPANY =
+            new ExpensesListRequestExpand(Value.ACCOUNT_CONTACT_COMPANY, "account,contact,company");
 
-    TRACKING_CATEGORIES_ACCOUNT("tracking_categories,account"),
+    public static final ExpensesListRequestExpand COMPANY_EMPLOYEE_ACCOUNTING_PERIOD = new ExpensesListRequestExpand(
+            Value.COMPANY_EMPLOYEE_ACCOUNTING_PERIOD, "company,employee,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD("tracking_categories,account,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY("tracking_categories,account,company"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE, "tracking_categories,contact,company,employee");
 
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,account,company,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,employee,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE("tracking_categories,account,company,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,company,employee,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
-            "tracking_categories,account,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,company,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT("tracking_categories,account,contact"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_CONTACT_COMPANY, "tracking_categories,contact,company");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD("tracking_categories,account,contact,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.TRACKING_CATEGORIES_EMPLOYEE, "tracking_categories,employee");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY("tracking_categories,account,contact,company"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,contact,company,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD(
-            "tracking_categories,account,contact,company,accounting_period"),
+    public static final ExpensesListRequestExpand
+            TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD = new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,contact,company,employee,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE("tracking_categories,account,contact,company,employee"),
+    public static final ExpensesListRequestExpand EMPLOYEE = new ExpensesListRequestExpand(Value.EMPLOYEE, "employee");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
-            "tracking_categories,account,contact,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD = new ExpensesListRequestExpand(
+            Value.ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD, "account,employee,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE("tracking_categories,account,contact,employee"),
+    public static final ExpensesListRequestExpand CONTACT = new ExpensesListRequestExpand(Value.CONTACT, "contact");
 
-    TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
-            "tracking_categories,account,contact,employee,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.ACCOUNT_CONTACT_EMPLOYEE, "account,contact,employee");
 
-    TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE("tracking_categories,account,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,contact,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,account,employee,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD, "account,contact,company,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
+    public static final ExpensesListRequestExpand ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE, "tracking_categories,account,employee");
 
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_EMPLOYEE = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_CONTACT_EMPLOYEE, "tracking_categories,contact,employee");
 
-    TRACKING_CATEGORIES_COMPANY_EMPLOYEE("tracking_categories,company,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_COMPANY = new ExpensesListRequestExpand(
+            Value.TRACKING_CATEGORIES_ACCOUNT_COMPANY, "tracking_categories,account,company");
 
-    TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT("tracking_categories,contact"),
+    public static final ExpensesListRequestExpand CONTACT_COMPANY =
+            new ExpensesListRequestExpand(Value.CONTACT_COMPANY, "contact,company");
 
-    TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD("tracking_categories,contact,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE,
+                    "tracking_categories,account,contact,company,employee");
 
-    TRACKING_CATEGORIES_CONTACT_COMPANY("tracking_categories,contact,company"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD,
+                    "tracking_categories,employee,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,contact,company,accounting_period"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT =
+            new ExpensesListRequestExpand(Value.TRACKING_CATEGORIES_CONTACT, "tracking_categories,contact");
 
-    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE("tracking_categories,contact,company,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
-            "tracking_categories,contact,company,employee,accounting_period"),
+    public static final ExpensesListRequestExpand CONTACT_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.CONTACT_EMPLOYEE, "contact,employee");
 
-    TRACKING_CATEGORIES_CONTACT_EMPLOYEE("tracking_categories,contact,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+                    "tracking_categories,account,accounting_period");
 
-    TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,contact,employee,accounting_period"),
+    public static final ExpensesListRequestExpand EMPLOYEE_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(Value.EMPLOYEE_ACCOUNTING_PERIOD, "employee,accounting_period");
 
-    TRACKING_CATEGORIES_EMPLOYEE("tracking_categories,employee"),
+    public static final ExpensesListRequestExpand TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD =
+            new ExpensesListRequestExpand(
+                    Value.TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,contact,company,accounting_period");
 
-    TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,employee,accounting_period");
+    public static final ExpensesListRequestExpand COMPANY_EMPLOYEE =
+            new ExpensesListRequestExpand(Value.COMPANY_EMPLOYEE, "company,employee");
 
-    private final String value;
+    private final Value value;
 
-    ExpensesListRequestExpand(String value) {
+    private final String string;
+
+    ExpensesListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ExpensesListRequestExpand
+                        && this.string.equals(((ExpensesListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case TRACKING_CATEGORIES_ACCOUNT:
+                return visitor.visitTrackingCategoriesAccount();
+            case CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitContactCompanyAccountingPeriod();
+            case ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitAccountCompanyEmployeeAccountingPeriod();
+            case ACCOUNT_CONTACT:
+                return visitor.visitAccountContact();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT:
+                return visitor.visitTrackingCategoriesAccountContact();
+            case ACCOUNT_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitAccountContactAccountingPeriod();
+            case ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitAccountContactEmployeeAccountingPeriod();
+            case ACCOUNT_EMPLOYEE:
+                return visitor.visitAccountEmployee();
+            case ACCOUNT_COMPANY:
+                return visitor.visitAccountCompany();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE:
+                return visitor.visitTrackingCategoriesAccountCompanyEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE:
+                return visitor.visitTrackingCategoriesAccountContactEmployee();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES_COMPANY_EMPLOYEE:
+                return visitor.visitTrackingCategoriesCompanyEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY:
+                return visitor.visitTrackingCategoriesAccountContactCompany();
+            case CONTACT_COMPANY_EMPLOYEE:
+                return visitor.visitContactCompanyEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountEmployeeAccountingPeriod();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case CONTACT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitContactEmployeeAccountingPeriod();
+            case ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitAccountContactCompanyEmployeeAccountingPeriod();
+            case ACCOUNT_COMPANY_EMPLOYEE:
+                return visitor.visitAccountCompanyEmployee();
+            case CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitContactAccountingPeriod();
+            case ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitAccountAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountContactEmployeeAccountingPeriod();
+            case COMPANY:
+                return visitor.visitCompany();
+            case ACCOUNT_CONTACT_COMPANY_EMPLOYEE:
+                return visitor.visitAccountContactCompanyEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountCompanyEmployeeAccountingPeriod();
+            case CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitContactCompanyEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactEmployeeAccountingPeriod();
+            case ACCOUNT_CONTACT_COMPANY:
+                return visitor.visitAccountContactCompany();
+            case COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE:
+                return visitor.visitTrackingCategoriesContactCompanyEmployee();
+            case TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactCompanyEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY:
+                return visitor.visitTrackingCategoriesContactCompany();
+            case TRACKING_CATEGORIES_EMPLOYEE:
+                return visitor.visitTrackingCategoriesEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountContactCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountContactCompanyEmployeeAccountingPeriod();
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitAccountEmployeeAccountingPeriod();
+            case CONTACT:
+                return visitor.visitContact();
+            case ACCOUNT_CONTACT_EMPLOYEE:
+                return visitor.visitAccountContactEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountContactAccountingPeriod();
+            case ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitAccountContactCompanyAccountingPeriod();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE:
+                return visitor.visitTrackingCategoriesAccountEmployee();
+            case TRACKING_CATEGORIES_CONTACT_EMPLOYEE:
+                return visitor.visitTrackingCategoriesContactEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_COMPANY:
+                return visitor.visitTrackingCategoriesAccountCompany();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case CONTACT_COMPANY:
+                return visitor.visitContactCompany();
+            case TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE:
+                return visitor.visitTrackingCategoriesAccountContactCompanyEmployee();
+            case TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT:
+                return visitor.visitTrackingCategoriesContact();
+            case TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactAccountingPeriod();
+            case CONTACT_EMPLOYEE:
+                return visitor.visitContactEmployee();
+            case TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountAccountingPeriod();
+            case EMPLOYEE_ACCOUNTING_PERIOD:
+                return visitor.visitEmployeeAccountingPeriod();
+            case TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesContactCompanyAccountingPeriod();
+            case COMPANY_EMPLOYEE:
+                return visitor.visitCompanyEmployee();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ExpensesListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "tracking_categories,account":
+                return TRACKING_CATEGORIES_ACCOUNT;
+            case "contact,company,accounting_period":
+                return CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "account,company,accounting_period":
+                return ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "account,company,employee,accounting_period":
+                return ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account,contact":
+                return ACCOUNT_CONTACT;
+            case "tracking_categories,account,contact":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT;
+            case "account,contact,accounting_period":
+                return ACCOUNT_CONTACT_ACCOUNTING_PERIOD;
+            case "account,contact,employee,accounting_period":
+                return ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account,employee":
+                return ACCOUNT_EMPLOYEE;
+            case "account,company":
+                return ACCOUNT_COMPANY;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,account,company,employee":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE;
+            case "tracking_categories,account,contact,employee":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories,company,employee":
+                return TRACKING_CATEGORIES_COMPANY_EMPLOYEE;
+            case "tracking_categories,account,contact,company":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY;
+            case "contact,company,employee":
+                return CONTACT_COMPANY_EMPLOYEE;
+            case "tracking_categories,account,employee,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account":
+                return ACCOUNT;
+            case "contact,employee,accounting_period":
+                return CONTACT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account,contact,company,employee,accounting_period":
+                return ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account,company,employee":
+                return ACCOUNT_COMPANY_EMPLOYEE;
+            case "contact,accounting_period":
+                return CONTACT_ACCOUNTING_PERIOD;
+            case "account,accounting_period":
+                return ACCOUNT_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,contact,employee,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "company":
+                return COMPANY;
+            case "account,contact,company,employee":
+                return ACCOUNT_CONTACT_COMPANY_EMPLOYEE;
+            case "tracking_categories,account,company,employee,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "contact,company,employee,accounting_period":
+                return CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,employee,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "account,contact,company":
+                return ACCOUNT_CONTACT_COMPANY;
+            case "company,employee,accounting_period":
+                return COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,company,employee":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE;
+            case "tracking_categories,company,employee,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,company,employee,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,company,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,company":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY;
+            case "tracking_categories,employee":
+                return TRACKING_CATEGORIES_EMPLOYEE;
+            case "tracking_categories,account,contact,company,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,account,contact,company,employee,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "employee":
+                return EMPLOYEE;
+            case "account,employee,accounting_period":
+                return ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "contact":
+                return CONTACT;
+            case "account,contact,employee":
+                return ACCOUNT_CONTACT_EMPLOYEE;
+            case "tracking_categories,account,contact,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD;
+            case "account,contact,company,accounting_period":
+                return ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories,account,employee":
+                return TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE;
+            case "tracking_categories,contact,employee":
+                return TRACKING_CATEGORIES_CONTACT_EMPLOYEE;
+            case "tracking_categories,account,company":
+                return TRACKING_CATEGORIES_ACCOUNT_COMPANY;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "contact,company":
+                return CONTACT_COMPANY;
+            case "tracking_categories,account,contact,company,employee":
+                return TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE;
+            case "tracking_categories,employee,accounting_period":
+                return TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact":
+                return TRACKING_CATEGORIES_CONTACT;
+            case "tracking_categories,contact,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD;
+            case "contact,employee":
+                return CONTACT_EMPLOYEE;
+            case "tracking_categories,account,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD;
+            case "employee,accounting_period":
+                return EMPLOYEE_ACCOUNTING_PERIOD;
+            case "tracking_categories,contact,company,accounting_period":
+                return TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD;
+            case "company,employee":
+                return COMPANY_EMPLOYEE;
+            default:
+                return new ExpensesListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_ACCOUNTING_PERIOD,
+
+        ACCOUNT_COMPANY,
+
+        ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        ACCOUNT_COMPANY_EMPLOYEE,
+
+        ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        ACCOUNT_CONTACT,
+
+        ACCOUNT_CONTACT_ACCOUNTING_PERIOD,
+
+        ACCOUNT_CONTACT_COMPANY,
+
+        ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        ACCOUNT_CONTACT_COMPANY_EMPLOYEE,
+
+        ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        ACCOUNT_CONTACT_EMPLOYEE,
+
+        ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        ACCOUNT_EMPLOYEE,
+
+        ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        COMPANY_EMPLOYEE,
+
+        COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        CONTACT,
+
+        CONTACT_ACCOUNTING_PERIOD,
+
+        CONTACT_COMPANY,
+
+        CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        CONTACT_COMPANY_EMPLOYEE,
+
+        CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        CONTACT_EMPLOYEE,
+
+        CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        EMPLOYEE,
+
+        EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNT,
+
+        TRACKING_CATEGORIES_ACCOUNT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE,
+
+        TRACKING_CATEGORIES_ACCOUNT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE,
+
+        TRACKING_CATEGORIES_ACCOUNT_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE,
+
+        TRACKING_CATEGORIES_ACCOUNT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY_EMPLOYEE,
+
+        TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT,
+
+        TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE,
+
+        TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_CONTACT_EMPLOYEE,
+
+        TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_EMPLOYEE,
+
+        TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountAccountingPeriod();
+
+        T visitAccountCompany();
+
+        T visitAccountCompanyAccountingPeriod();
+
+        T visitAccountCompanyEmployee();
+
+        T visitAccountCompanyEmployeeAccountingPeriod();
+
+        T visitAccountContact();
+
+        T visitAccountContactAccountingPeriod();
+
+        T visitAccountContactCompany();
+
+        T visitAccountContactCompanyAccountingPeriod();
+
+        T visitAccountContactCompanyEmployee();
+
+        T visitAccountContactCompanyEmployeeAccountingPeriod();
+
+        T visitAccountContactEmployee();
+
+        T visitAccountContactEmployeeAccountingPeriod();
+
+        T visitAccountEmployee();
+
+        T visitAccountEmployeeAccountingPeriod();
+
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitCompanyEmployee();
+
+        T visitCompanyEmployeeAccountingPeriod();
+
+        T visitContact();
+
+        T visitContactAccountingPeriod();
+
+        T visitContactCompany();
+
+        T visitContactCompanyAccountingPeriod();
+
+        T visitContactCompanyEmployee();
+
+        T visitContactCompanyEmployeeAccountingPeriod();
+
+        T visitContactEmployee();
+
+        T visitContactEmployeeAccountingPeriod();
+
+        T visitEmployee();
+
+        T visitEmployeeAccountingPeriod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccount();
+
+        T visitTrackingCategoriesAccountAccountingPeriod();
+
+        T visitTrackingCategoriesAccountCompany();
+
+        T visitTrackingCategoriesAccountCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAccountCompanyEmployee();
+
+        T visitTrackingCategoriesAccountCompanyEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesAccountContact();
+
+        T visitTrackingCategoriesAccountContactAccountingPeriod();
+
+        T visitTrackingCategoriesAccountContactCompany();
+
+        T visitTrackingCategoriesAccountContactCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesAccountContactCompanyEmployee();
+
+        T visitTrackingCategoriesAccountContactCompanyEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesAccountContactEmployee();
+
+        T visitTrackingCategoriesAccountContactEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesAccountEmployee();
+
+        T visitTrackingCategoriesAccountEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesCompanyEmployee();
+
+        T visitTrackingCategoriesCompanyEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesContact();
+
+        T visitTrackingCategoriesContactAccountingPeriod();
+
+        T visitTrackingCategoriesContactCompany();
+
+        T visitTrackingCategoriesContactCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesContactCompanyEmployee();
+
+        T visitTrackingCategoriesContactCompanyEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesContactEmployee();
+
+        T visitTrackingCategoriesContactEmployeeAccountingPeriod();
+
+        T visitTrackingCategoriesEmployee();
+
+        T visitTrackingCategoriesEmployeeAccountingPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

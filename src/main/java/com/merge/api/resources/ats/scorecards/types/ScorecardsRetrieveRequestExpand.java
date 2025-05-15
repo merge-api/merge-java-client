@@ -3,32 +3,140 @@
  */
 package com.merge.api.resources.ats.scorecards.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ScorecardsRetrieveRequestExpand {
-    APPLICATION("application"),
+public final class ScorecardsRetrieveRequestExpand {
+    public static final ScorecardsRetrieveRequestExpand APPLICATION_INTERVIEWER =
+            new ScorecardsRetrieveRequestExpand(Value.APPLICATION_INTERVIEWER, "application,interviewer");
 
-    APPLICATION_INTERVIEW("application,interview"),
+    public static final ScorecardsRetrieveRequestExpand INTERVIEW =
+            new ScorecardsRetrieveRequestExpand(Value.INTERVIEW, "interview");
 
-    APPLICATION_INTERVIEW_INTERVIEWER("application,interview,interviewer"),
+    public static final ScorecardsRetrieveRequestExpand APPLICATION_INTERVIEW =
+            new ScorecardsRetrieveRequestExpand(Value.APPLICATION_INTERVIEW, "application,interview");
 
-    APPLICATION_INTERVIEWER("application,interviewer"),
+    public static final ScorecardsRetrieveRequestExpand APPLICATION =
+            new ScorecardsRetrieveRequestExpand(Value.APPLICATION, "application");
 
-    INTERVIEW("interview"),
+    public static final ScorecardsRetrieveRequestExpand INTERVIEW_INTERVIEWER =
+            new ScorecardsRetrieveRequestExpand(Value.INTERVIEW_INTERVIEWER, "interview,interviewer");
 
-    INTERVIEW_INTERVIEWER("interview,interviewer"),
+    public static final ScorecardsRetrieveRequestExpand INTERVIEWER =
+            new ScorecardsRetrieveRequestExpand(Value.INTERVIEWER, "interviewer");
 
-    INTERVIEWER("interviewer");
+    public static final ScorecardsRetrieveRequestExpand APPLICATION_INTERVIEW_INTERVIEWER =
+            new ScorecardsRetrieveRequestExpand(
+                    Value.APPLICATION_INTERVIEW_INTERVIEWER, "application,interview,interviewer");
 
-    private final String value;
+    private final Value value;
 
-    ScorecardsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    ScorecardsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ScorecardsRetrieveRequestExpand
+                        && this.string.equals(((ScorecardsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case APPLICATION_INTERVIEWER:
+                return visitor.visitApplicationInterviewer();
+            case INTERVIEW:
+                return visitor.visitInterview();
+            case APPLICATION_INTERVIEW:
+                return visitor.visitApplicationInterview();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case INTERVIEW_INTERVIEWER:
+                return visitor.visitInterviewInterviewer();
+            case INTERVIEWER:
+                return visitor.visitInterviewer();
+            case APPLICATION_INTERVIEW_INTERVIEWER:
+                return visitor.visitApplicationInterviewInterviewer();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ScorecardsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "application,interviewer":
+                return APPLICATION_INTERVIEWER;
+            case "interview":
+                return INTERVIEW;
+            case "application,interview":
+                return APPLICATION_INTERVIEW;
+            case "application":
+                return APPLICATION;
+            case "interview,interviewer":
+                return INTERVIEW_INTERVIEWER;
+            case "interviewer":
+                return INTERVIEWER;
+            case "application,interview,interviewer":
+                return APPLICATION_INTERVIEW_INTERVIEWER;
+            default:
+                return new ScorecardsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        APPLICATION_INTERVIEW,
+
+        APPLICATION_INTERVIEW_INTERVIEWER,
+
+        APPLICATION_INTERVIEWER,
+
+        INTERVIEW,
+
+        INTERVIEW_INTERVIEWER,
+
+        INTERVIEWER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitApplicationInterview();
+
+        T visitApplicationInterviewInterviewer();
+
+        T visitApplicationInterviewer();
+
+        T visitInterview();
+
+        T visitInterviewInterviewer();
+
+        T visitInterviewer();
+
+        T visitUnknown(String unknownType);
     }
 }

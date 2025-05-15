@@ -43,7 +43,7 @@ public final class BankFeedTransaction {
 
     private final Optional<String> payee;
 
-    private final Optional<BankFeedTransactionCreditOrDebit> creditOrDebit;
+    private final Optional<CreditOrDebitEnum> creditOrDebit;
 
     private final Optional<String> sourceTransactionId;
 
@@ -65,7 +65,7 @@ public final class BankFeedTransaction {
             Optional<String> description,
             Optional<String> transactionType,
             Optional<String> payee,
-            Optional<BankFeedTransactionCreditOrDebit> creditOrDebit,
+            Optional<CreditOrDebitEnum> creditOrDebit,
             Optional<String> sourceTransactionId,
             Optional<Boolean> remoteWasDeleted,
             Optional<Boolean> isProcessed,
@@ -181,7 +181,7 @@ public final class BankFeedTransaction {
      * </ul>
      */
     @JsonProperty("credit_or_debit")
-    public Optional<BankFeedTransactionCreditOrDebit> getCreditOrDebit() {
+    public Optional<CreditOrDebitEnum> getCreditOrDebit() {
         return creditOrDebit;
     }
 
@@ -291,7 +291,7 @@ public final class BankFeedTransaction {
 
         private Optional<String> payee = Optional.empty();
 
-        private Optional<BankFeedTransactionCreditOrDebit> creditOrDebit = Optional.empty();
+        private Optional<CreditOrDebitEnum> creditOrDebit = Optional.empty();
 
         private Optional<String> sourceTransactionId = Optional.empty();
 
@@ -445,12 +445,12 @@ public final class BankFeedTransaction {
         }
 
         @JsonSetter(value = "credit_or_debit", nulls = Nulls.SKIP)
-        public Builder creditOrDebit(Optional<BankFeedTransactionCreditOrDebit> creditOrDebit) {
+        public Builder creditOrDebit(Optional<CreditOrDebitEnum> creditOrDebit) {
             this.creditOrDebit = creditOrDebit;
             return this;
         }
 
-        public Builder creditOrDebit(BankFeedTransactionCreditOrDebit creditOrDebit) {
+        public Builder creditOrDebit(CreditOrDebitEnum creditOrDebit) {
             this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }

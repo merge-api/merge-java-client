@@ -3,28 +3,115 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OverallRecommendationEnum {
-    DEFINITELY_NO("DEFINITELY_NO"),
+public final class OverallRecommendationEnum {
+    public static final OverallRecommendationEnum YES = new OverallRecommendationEnum(Value.YES, "YES");
 
-    NO("NO"),
+    public static final OverallRecommendationEnum NO = new OverallRecommendationEnum(Value.NO, "NO");
 
-    YES("YES"),
+    public static final OverallRecommendationEnum DEFINITELY_NO =
+            new OverallRecommendationEnum(Value.DEFINITELY_NO, "DEFINITELY_NO");
 
-    STRONG_YES("STRONG_YES"),
+    public static final OverallRecommendationEnum STRONG_YES =
+            new OverallRecommendationEnum(Value.STRONG_YES, "STRONG_YES");
 
-    NO_DECISION("NO_DECISION");
+    public static final OverallRecommendationEnum NO_DECISION =
+            new OverallRecommendationEnum(Value.NO_DECISION, "NO_DECISION");
 
-    private final String value;
+    private final Value value;
 
-    OverallRecommendationEnum(String value) {
+    private final String string;
+
+    OverallRecommendationEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OverallRecommendationEnum
+                        && this.string.equals(((OverallRecommendationEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case YES:
+                return visitor.visitYes();
+            case NO:
+                return visitor.visitNo();
+            case DEFINITELY_NO:
+                return visitor.visitDefinitelyNo();
+            case STRONG_YES:
+                return visitor.visitStrongYes();
+            case NO_DECISION:
+                return visitor.visitNoDecision();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OverallRecommendationEnum valueOf(String value) {
+        switch (value) {
+            case "YES":
+                return YES;
+            case "NO":
+                return NO;
+            case "DEFINITELY_NO":
+                return DEFINITELY_NO;
+            case "STRONG_YES":
+                return STRONG_YES;
+            case "NO_DECISION":
+                return NO_DECISION;
+            default:
+                return new OverallRecommendationEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DEFINITELY_NO,
+
+        NO,
+
+        YES,
+
+        STRONG_YES,
+
+        NO_DECISION,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDefinitelyNo();
+
+        T visitNo();
+
+        T visitYes();
+
+        T visitStrongYes();
+
+        T visitNoDecision();
+
+        T visitUnknown(String unknownType);
     }
 }

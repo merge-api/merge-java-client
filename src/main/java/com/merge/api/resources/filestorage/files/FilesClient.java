@@ -3,263 +3,107 @@
  */
 package com.merge.api.resources.filestorage.files;
 
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
-import com.merge.api.core.ResponseBodyInputStream;
 import com.merge.api.resources.filestorage.files.requests.FileStorageFileEndpointRequest;
+import com.merge.api.resources.filestorage.files.requests.FilesDownloadRequestMetaListRequest;
+import com.merge.api.resources.filestorage.files.requests.FilesDownloadRequestMetaRetrieveRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesDownloadRetrieveRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesListRequest;
 import com.merge.api.resources.filestorage.files.requests.FilesRetrieveRequest;
+import com.merge.api.resources.filestorage.types.DownloadRequestMeta;
 import com.merge.api.resources.filestorage.types.File;
 import com.merge.api.resources.filestorage.types.FileStorageFileResponse;
 import com.merge.api.resources.filestorage.types.MetaResponse;
+import com.merge.api.resources.filestorage.types.PaginatedDownloadRequestMetaList;
 import com.merge.api.resources.filestorage.types.PaginatedFileList;
-import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class FilesClient {
     protected final ClientOptions clientOptions;
 
+    private final RawFilesClient rawClient;
+
     public FilesClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawFilesClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawFilesClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Returns a list of <code>File</code> objects.
      */
     public PaginatedFileList list() {
-        return list(FilesListRequest.builder().build());
+        return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>File</code> objects.
      */
     public PaginatedFileList list(FilesListRequest request) {
-        return list(request, null);
+        return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>File</code> objects.
      */
     public PaginatedFileList list(FilesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("filestorage/v1/files");
-        if (request.getCreatedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_after", request.getCreatedAfter().get().toString());
-        }
-        if (request.getCreatedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_before", request.getCreatedBefore().get().toString());
-        }
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getDriveId().isPresent()) {
-            httpUrl.addQueryParameter("drive_id", request.getDriveId().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getFolderId().isPresent()) {
-            httpUrl.addQueryParameter("folder_id", request.getFolderId().get());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getMimeType().isPresent()) {
-            httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
-        }
-        if (request.getModifiedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_after", request.getModifiedAfter().get().toString());
-        }
-        if (request.getModifiedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_before", request.getModifiedBefore().get().toString());
-        }
-        if (request.getName().isPresent()) {
-            httpUrl.addQueryParameter("name", request.getName().get());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        if (request.getRemoteId().isPresent()) {
-            httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedFileList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.list(request, requestOptions).body();
     }
 
     /**
      * Creates a <code>File</code> object with the given values.
      */
     public FileStorageFileResponse create(FileStorageFileEndpointRequest request) {
-        return create(request, null);
+        return this.rawClient.create(request).body();
     }
 
     /**
      * Creates a <code>File</code> object with the given values.
      */
     public FileStorageFileResponse create(FileStorageFileEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("filestorage/v1/files");
-        if (request.getIsDebugMode().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "is_debug_mode", request.getIsDebugMode().get().toString());
-        }
-        if (request.getRunAsync().isPresent()) {
-            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
-        }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
-        RequestBody body;
-        try {
-            body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("POST", body)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), FileStorageFileResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.create(request, requestOptions).body();
     }
 
     /**
      * Returns a <code>File</code> object with the given <code>id</code>.
      */
     public File retrieve(String id) {
-        return retrieve(id, FilesRetrieveRequest.builder().build());
+        return this.rawClient.retrieve(id).body();
     }
 
     /**
      * Returns a <code>File</code> object with the given <code>id</code>.
      */
     public File retrieve(String id, FilesRetrieveRequest request) {
-        return retrieve(id, request, null);
+        return this.rawClient.retrieve(id, request).body();
     }
 
     /**
      * Returns a <code>File</code> object with the given <code>id</code>.
      */
     public File retrieve(String id, FilesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("filestorage/v1/files")
-                .addPathSegment(id);
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), File.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 
     /**
      * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
      */
     public InputStream downloadRetrieve(String id) {
-        return downloadRetrieve(id, FilesDownloadRetrieveRequest.builder().build());
+        return this.rawClient.downloadRetrieve(id).body();
     }
 
     /**
      * Returns the <code>File</code> content with the given <code>id</code> as a stream of bytes.
      */
     public InputStream downloadRetrieve(String id, FilesDownloadRetrieveRequest request) {
-        return downloadRetrieve(id, request, null);
+        return this.rawClient.downloadRetrieve(id, request).body();
     }
 
     /**
@@ -267,78 +111,66 @@ public class FilesClient {
      */
     public InputStream downloadRetrieve(
             String id, FilesDownloadRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("filestorage/v1/files")
-                .addPathSegment(id)
-                .addPathSegments("download");
-        if (request.getMimeType().isPresent()) {
-            httpUrl.addQueryParameter("mime_type", request.getMimeType().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try {
-            Response response = client.newCall(okhttpRequest).execute();
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return new ResponseBodyInputStream(response);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.downloadRetrieve(id, request, requestOptions).body();
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(String id) {
+        return this.rawClient.downloadRequestMetaRetrieve(id).body();
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(String id, FilesDownloadRequestMetaRetrieveRequest request) {
+        return this.rawClient.downloadRequestMetaRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata to construct an authenticated file download request for a singular file, allowing you to download file directly from the third-party.
+     */
+    public DownloadRequestMeta downloadRequestMetaRetrieve(
+            String id, FilesDownloadRequestMetaRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient
+                .downloadRequestMetaRetrieve(id, request, requestOptions)
+                .body();
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList() {
+        return this.rawClient.downloadRequestMetaList().body();
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList(FilesDownloadRequestMetaListRequest request) {
+        return this.rawClient.downloadRequestMetaList(request).body();
+    }
+
+    /**
+     * Returns metadata to construct authenticated file download requests, allowing you to download files directly from the third-party.
+     */
+    public PaginatedDownloadRequestMetaList downloadRequestMetaList(
+            FilesDownloadRequestMetaListRequest request, RequestOptions requestOptions) {
+        return this.rawClient.downloadRequestMetaList(request, requestOptions).body();
     }
 
     /**
      * Returns metadata for <code>FileStorageFile</code> POSTs.
      */
     public MetaResponse metaPostRetrieve() {
-        return metaPostRetrieve(null);
+        return this.rawClient.metaPostRetrieve().body();
     }
 
     /**
      * Returns metadata for <code>FileStorageFile</code> POSTs.
      */
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("filestorage/v1/files/meta/post")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.metaPostRetrieve(requestOptions).body();
     }
 }

@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UnderlyingTransactionTypeEnum {
-    INVOICE("INVOICE"),
+public final class UnderlyingTransactionTypeEnum {
+    public static final UnderlyingTransactionTypeEnum JOURNAL_ENTRY =
+            new UnderlyingTransactionTypeEnum(Value.JOURNAL_ENTRY, "JOURNAL_ENTRY");
 
-    EXPENSE("EXPENSE"),
+    public static final UnderlyingTransactionTypeEnum EXPENSE =
+            new UnderlyingTransactionTypeEnum(Value.EXPENSE, "EXPENSE");
 
-    TRANSACTION("TRANSACTION"),
+    public static final UnderlyingTransactionTypeEnum INVOICE =
+            new UnderlyingTransactionTypeEnum(Value.INVOICE, "INVOICE");
 
-    JOURNAL_ENTRY("JOURNAL_ENTRY"),
+    public static final UnderlyingTransactionTypeEnum VENDOR_CREDIT =
+            new UnderlyingTransactionTypeEnum(Value.VENDOR_CREDIT, "VENDOR_CREDIT");
 
-    PAYMENT("PAYMENT"),
+    public static final UnderlyingTransactionTypeEnum TRANSACTION =
+            new UnderlyingTransactionTypeEnum(Value.TRANSACTION, "TRANSACTION");
 
-    VENDOR_CREDIT("VENDOR_CREDIT"),
+    public static final UnderlyingTransactionTypeEnum CREDIT_NOTE =
+            new UnderlyingTransactionTypeEnum(Value.CREDIT_NOTE, "CREDIT_NOTE");
 
-    CREDIT_NOTE("CREDIT_NOTE");
+    public static final UnderlyingTransactionTypeEnum PAYMENT =
+            new UnderlyingTransactionTypeEnum(Value.PAYMENT, "PAYMENT");
 
-    private final String value;
+    private final Value value;
 
-    UnderlyingTransactionTypeEnum(String value) {
+    private final String string;
+
+    UnderlyingTransactionTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof UnderlyingTransactionTypeEnum
+                        && this.string.equals(((UnderlyingTransactionTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case JOURNAL_ENTRY:
+                return visitor.visitJournalEntry();
+            case EXPENSE:
+                return visitor.visitExpense();
+            case INVOICE:
+                return visitor.visitInvoice();
+            case VENDOR_CREDIT:
+                return visitor.visitVendorCredit();
+            case TRANSACTION:
+                return visitor.visitTransaction();
+            case CREDIT_NOTE:
+                return visitor.visitCreditNote();
+            case PAYMENT:
+                return visitor.visitPayment();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static UnderlyingTransactionTypeEnum valueOf(String value) {
+        switch (value) {
+            case "JOURNAL_ENTRY":
+                return JOURNAL_ENTRY;
+            case "EXPENSE":
+                return EXPENSE;
+            case "INVOICE":
+                return INVOICE;
+            case "VENDOR_CREDIT":
+                return VENDOR_CREDIT;
+            case "TRANSACTION":
+                return TRANSACTION;
+            case "CREDIT_NOTE":
+                return CREDIT_NOTE;
+            case "PAYMENT":
+                return PAYMENT;
+            default:
+                return new UnderlyingTransactionTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        INVOICE,
+
+        EXPENSE,
+
+        TRANSACTION,
+
+        JOURNAL_ENTRY,
+
+        PAYMENT,
+
+        VENDOR_CREDIT,
+
+        CREDIT_NOTE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitInvoice();
+
+        T visitExpense();
+
+        T visitTransaction();
+
+        T visitJournalEntry();
+
+        T visitPayment();
+
+        T visitVendorCredit();
+
+        T visitCreditNote();
+
+        T visitUnknown(String unknownType);
     }
 }

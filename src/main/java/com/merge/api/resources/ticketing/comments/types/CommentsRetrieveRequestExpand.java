@@ -3,32 +3,138 @@
  */
 package com.merge.api.resources.ticketing.comments.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CommentsRetrieveRequestExpand {
-    CONTACT("contact"),
+public final class CommentsRetrieveRequestExpand {
+    public static final CommentsRetrieveRequestExpand USER_TICKET =
+            new CommentsRetrieveRequestExpand(Value.USER_TICKET, "user,ticket");
 
-    CONTACT_TICKET("contact,ticket"),
+    public static final CommentsRetrieveRequestExpand USER_CONTACT_TICKET =
+            new CommentsRetrieveRequestExpand(Value.USER_CONTACT_TICKET, "user,contact,ticket");
 
-    TICKET("ticket"),
+    public static final CommentsRetrieveRequestExpand TICKET =
+            new CommentsRetrieveRequestExpand(Value.TICKET, "ticket");
 
-    USER("user"),
+    public static final CommentsRetrieveRequestExpand USER = new CommentsRetrieveRequestExpand(Value.USER, "user");
 
-    USER_CONTACT("user,contact"),
+    public static final CommentsRetrieveRequestExpand CONTACT =
+            new CommentsRetrieveRequestExpand(Value.CONTACT, "contact");
 
-    USER_CONTACT_TICKET("user,contact,ticket"),
+    public static final CommentsRetrieveRequestExpand USER_CONTACT =
+            new CommentsRetrieveRequestExpand(Value.USER_CONTACT, "user,contact");
 
-    USER_TICKET("user,ticket");
+    public static final CommentsRetrieveRequestExpand CONTACT_TICKET =
+            new CommentsRetrieveRequestExpand(Value.CONTACT_TICKET, "contact,ticket");
 
-    private final String value;
+    private final Value value;
 
-    CommentsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    CommentsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CommentsRetrieveRequestExpand
+                        && this.string.equals(((CommentsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case USER_TICKET:
+                return visitor.visitUserTicket();
+            case USER_CONTACT_TICKET:
+                return visitor.visitUserContactTicket();
+            case TICKET:
+                return visitor.visitTicket();
+            case USER:
+                return visitor.visitUser();
+            case CONTACT:
+                return visitor.visitContact();
+            case USER_CONTACT:
+                return visitor.visitUserContact();
+            case CONTACT_TICKET:
+                return visitor.visitContactTicket();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CommentsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "user,ticket":
+                return USER_TICKET;
+            case "user,contact,ticket":
+                return USER_CONTACT_TICKET;
+            case "ticket":
+                return TICKET;
+            case "user":
+                return USER;
+            case "contact":
+                return CONTACT;
+            case "user,contact":
+                return USER_CONTACT;
+            case "contact,ticket":
+                return CONTACT_TICKET;
+            default:
+                return new CommentsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CONTACT,
+
+        CONTACT_TICKET,
+
+        TICKET,
+
+        USER,
+
+        USER_CONTACT,
+
+        USER_CONTACT_TICKET,
+
+        USER_TICKET,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitContact();
+
+        T visitContactTicket();
+
+        T visitTicket();
+
+        T visitUser();
+
+        T visitUserContact();
+
+        T visitUserContactTicket();
+
+        T visitUserTicket();
+
+        T visitUnknown(String unknownType);
     }
 }

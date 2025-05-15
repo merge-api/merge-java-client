@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ActivityTypeEnum {
-    NOTE("NOTE"),
+public final class ActivityTypeEnum {
+    public static final ActivityTypeEnum NOTE = new ActivityTypeEnum(Value.NOTE, "NOTE");
 
-    EMAIL("EMAIL"),
+    public static final ActivityTypeEnum EMAIL = new ActivityTypeEnum(Value.EMAIL, "EMAIL");
 
-    OTHER("OTHER");
+    public static final ActivityTypeEnum OTHER = new ActivityTypeEnum(Value.OTHER, "OTHER");
 
-    private final String value;
+    private final Value value;
 
-    ActivityTypeEnum(String value) {
+    private final String string;
+
+    ActivityTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ActivityTypeEnum && this.string.equals(((ActivityTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case NOTE:
+                return visitor.visitNote();
+            case EMAIL:
+                return visitor.visitEmail();
+            case OTHER:
+                return visitor.visitOther();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ActivityTypeEnum valueOf(String value) {
+        switch (value) {
+            case "NOTE":
+                return NOTE;
+            case "EMAIL":
+                return EMAIL;
+            case "OTHER":
+                return OTHER;
+            default:
+                return new ActivityTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        NOTE,
+
+        EMAIL,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitNote();
+
+        T visitEmail();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,28 +3,115 @@
  */
 package com.merge.api.resources.ats.jobpostings.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobPostingsListRequestStatus {
-    CLOSED("CLOSED"),
+public final class JobPostingsListRequestStatus {
+    public static final JobPostingsListRequestStatus INTERNAL =
+            new JobPostingsListRequestStatus(Value.INTERNAL, "INTERNAL");
 
-    DRAFT("DRAFT"),
+    public static final JobPostingsListRequestStatus CLOSED = new JobPostingsListRequestStatus(Value.CLOSED, "CLOSED");
 
-    INTERNAL("INTERNAL"),
+    public static final JobPostingsListRequestStatus PUBLISHED =
+            new JobPostingsListRequestStatus(Value.PUBLISHED, "PUBLISHED");
 
-    PENDING("PENDING"),
+    public static final JobPostingsListRequestStatus DRAFT = new JobPostingsListRequestStatus(Value.DRAFT, "DRAFT");
 
-    PUBLISHED("PUBLISHED");
+    public static final JobPostingsListRequestStatus PENDING =
+            new JobPostingsListRequestStatus(Value.PENDING, "PENDING");
 
-    private final String value;
+    private final Value value;
 
-    JobPostingsListRequestStatus(String value) {
+    private final String string;
+
+    JobPostingsListRequestStatus(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobPostingsListRequestStatus
+                        && this.string.equals(((JobPostingsListRequestStatus) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case INTERNAL:
+                return visitor.visitInternal();
+            case CLOSED:
+                return visitor.visitClosed();
+            case PUBLISHED:
+                return visitor.visitPublished();
+            case DRAFT:
+                return visitor.visitDraft();
+            case PENDING:
+                return visitor.visitPending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobPostingsListRequestStatus valueOf(String value) {
+        switch (value) {
+            case "INTERNAL":
+                return INTERNAL;
+            case "CLOSED":
+                return CLOSED;
+            case "PUBLISHED":
+                return PUBLISHED;
+            case "DRAFT":
+                return DRAFT;
+            case "PENDING":
+                return PENDING;
+            default:
+                return new JobPostingsListRequestStatus(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CLOSED,
+
+        DRAFT,
+
+        INTERNAL,
+
+        PENDING,
+
+        PUBLISHED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitClosed();
+
+        T visitDraft();
+
+        T visitInternal();
+
+        T visitPending();
+
+        T visitPublished();
+
+        T visitUnknown(String unknownType);
     }
 }

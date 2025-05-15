@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CategoryTypeEnum {
-    CLASS("CLASS"),
+public final class CategoryTypeEnum {
+    public static final CategoryTypeEnum CLASS = new CategoryTypeEnum(Value.CLASS, "CLASS");
 
-    DEPARTMENT("DEPARTMENT");
+    public static final CategoryTypeEnum DEPARTMENT = new CategoryTypeEnum(Value.DEPARTMENT, "DEPARTMENT");
 
-    private final String value;
+    private final Value value;
 
-    CategoryTypeEnum(String value) {
+    private final String string;
+
+    CategoryTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CategoryTypeEnum && this.string.equals(((CategoryTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLASS:
+                return visitor.visitClass();
+            case DEPARTMENT:
+                return visitor.visitDepartment();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CategoryTypeEnum valueOf(String value) {
+        switch (value) {
+            case "CLASS":
+                return CLASS;
+            case "DEPARTMENT":
+                return DEPARTMENT;
+            default:
+                return new CategoryTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CLASS,
+
+        DEPARTMENT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitClass();
+
+        T visitDepartment();
+
+        T visitUnknown(String unknownType);
     }
 }

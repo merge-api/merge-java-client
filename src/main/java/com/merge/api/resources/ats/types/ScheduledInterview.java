@@ -49,7 +49,7 @@ public final class ScheduledInterview {
 
     private final Optional<OffsetDateTime> remoteUpdatedAt;
 
-    private final Optional<ScheduledInterviewStatus> status;
+    private final Optional<ScheduledInterviewStatusEnum> status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -73,7 +73,7 @@ public final class ScheduledInterview {
             Optional<OffsetDateTime> endAt,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
-            Optional<ScheduledInterviewStatus> status,
+            Optional<ScheduledInterviewStatusEnum> status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -208,7 +208,7 @@ public final class ScheduledInterview {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ScheduledInterviewStatus> getStatus() {
+    public Optional<ScheduledInterviewStatusEnum> getStatus() {
         return status;
     }
 
@@ -320,7 +320,7 @@ public final class ScheduledInterview {
 
         private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
 
-        private Optional<ScheduledInterviewStatus> status = Optional.empty();
+        private Optional<ScheduledInterviewStatusEnum> status = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -498,12 +498,12 @@ public final class ScheduledInterview {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ScheduledInterviewStatus> status) {
+        public Builder status(Optional<ScheduledInterviewStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ScheduledInterviewStatus status) {
+        public Builder status(ScheduledInterviewStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

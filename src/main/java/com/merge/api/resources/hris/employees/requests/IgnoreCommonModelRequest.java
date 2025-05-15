@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.employees.types.IgnoreCommonModelRequestReason;
+import com.merge.api.resources.hris.types.ReasonEnum;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -22,21 +22,21 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = IgnoreCommonModelRequest.Builder.class)
 public final class IgnoreCommonModelRequest {
-    private final IgnoreCommonModelRequestReason reason;
+    private final ReasonEnum reason;
 
     private final Optional<String> message;
 
     private final Map<String, Object> additionalProperties;
 
     private IgnoreCommonModelRequest(
-            IgnoreCommonModelRequestReason reason, Optional<String> message, Map<String, Object> additionalProperties) {
+            ReasonEnum reason, Optional<String> message, Map<String, Object> additionalProperties) {
         this.reason = reason;
         this.message = message;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("reason")
-    public IgnoreCommonModelRequestReason getReason() {
+    public ReasonEnum getReason() {
         return reason;
     }
 
@@ -75,7 +75,7 @@ public final class IgnoreCommonModelRequest {
     }
 
     public interface ReasonStage {
-        _FinalStage reason(@NotNull IgnoreCommonModelRequestReason reason);
+        _FinalStage reason(@NotNull ReasonEnum reason);
 
         Builder from(IgnoreCommonModelRequest other);
     }
@@ -90,7 +90,7 @@ public final class IgnoreCommonModelRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements ReasonStage, _FinalStage {
-        private IgnoreCommonModelRequestReason reason;
+        private ReasonEnum reason;
 
         private Optional<String> message = Optional.empty();
 
@@ -108,7 +108,7 @@ public final class IgnoreCommonModelRequest {
 
         @java.lang.Override
         @JsonSetter("reason")
-        public _FinalStage reason(@NotNull IgnoreCommonModelRequestReason reason) {
+        public _FinalStage reason(@NotNull ReasonEnum reason) {
             this.reason = reason;
             return this;
         }

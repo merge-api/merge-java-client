@@ -35,7 +35,7 @@ public final class Earning {
 
     private final Optional<Double> amount;
 
-    private final Optional<EarningType> type;
+    private final Optional<EarningTypeEnum> type;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -52,7 +52,7 @@ public final class Earning {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> employeePayrollRun,
             Optional<Double> amount,
-            Optional<EarningType> type,
+            Optional<EarningTypeEnum> type,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -122,7 +122,7 @@ public final class Earning {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<EarningType> getType() {
+    public Optional<EarningTypeEnum> getType() {
         return type;
     }
 
@@ -206,7 +206,7 @@ public final class Earning {
 
         private Optional<Double> amount = Optional.empty();
 
-        private Optional<EarningType> type = Optional.empty();
+        private Optional<EarningTypeEnum> type = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -300,12 +300,12 @@ public final class Earning {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<EarningType> type) {
+        public Builder type(Optional<EarningTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(EarningType type) {
+        public Builder type(EarningTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }

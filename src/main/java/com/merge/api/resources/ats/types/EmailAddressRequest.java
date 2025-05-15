@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class EmailAddressRequest {
     private final Optional<String> value;
 
-    private final Optional<EmailAddressRequestEmailAddressType> emailAddressType;
+    private final Optional<EmailAddressTypeEnum> emailAddressType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class EmailAddressRequest {
 
     private EmailAddressRequest(
             Optional<String> value,
-            Optional<EmailAddressRequestEmailAddressType> emailAddressType,
+            Optional<EmailAddressTypeEnum> emailAddressType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -61,7 +61,7 @@ public final class EmailAddressRequest {
      * </ul>
      */
     @JsonProperty("email_address_type")
-    public Optional<EmailAddressRequestEmailAddressType> getEmailAddressType() {
+    public Optional<EmailAddressTypeEnum> getEmailAddressType() {
         return emailAddressType;
     }
 
@@ -111,7 +111,7 @@ public final class EmailAddressRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<EmailAddressRequestEmailAddressType> emailAddressType = Optional.empty();
+        private Optional<EmailAddressTypeEnum> emailAddressType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -142,12 +142,12 @@ public final class EmailAddressRequest {
         }
 
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
-        public Builder emailAddressType(Optional<EmailAddressRequestEmailAddressType> emailAddressType) {
+        public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
             this.emailAddressType = emailAddressType;
             return this;
         }
 
-        public Builder emailAddressType(EmailAddressRequestEmailAddressType emailAddressType) {
+        public Builder emailAddressType(EmailAddressTypeEnum emailAddressType) {
             this.emailAddressType = Optional.ofNullable(emailAddressType);
             return this;
         }

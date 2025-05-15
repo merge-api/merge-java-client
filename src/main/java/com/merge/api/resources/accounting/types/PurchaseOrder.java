@@ -31,7 +31,7 @@ public final class PurchaseOrder {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<PurchaseOrderStatus> status;
+    private final Optional<PurchaseOrderStatusEnum> status;
 
     private final Optional<OffsetDateTime> issueDate;
 
@@ -51,9 +51,11 @@ public final class PurchaseOrder {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<PurchaseOrderCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
+
+    private final Optional<PurchaseOrderPaymentTerm> paymentTerm;
 
     private final Optional<List<PurchaseOrderLineItem>> lineItems;
 
@@ -82,7 +84,7 @@ public final class PurchaseOrder {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<PurchaseOrderStatus> status,
+            Optional<PurchaseOrderStatusEnum> status,
             Optional<OffsetDateTime> issueDate,
             Optional<String> purchaseOrderNumber,
             Optional<OffsetDateTime> deliveryDate,
@@ -92,8 +94,9 @@ public final class PurchaseOrder {
             Optional<String> memo,
             Optional<PurchaseOrderCompany> company,
             Optional<Double> totalAmount,
-            Optional<PurchaseOrderCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
+            Optional<PurchaseOrderPaymentTerm> paymentTerm,
             Optional<List<PurchaseOrderLineItem>> lineItems,
             Optional<Boolean> inclusiveOfTax,
             Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories,
@@ -121,6 +124,7 @@ public final class PurchaseOrder {
         this.totalAmount = totalAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.paymentTerm = paymentTerm;
         this.lineItems = lineItems;
         this.inclusiveOfTax = inclusiveOfTax;
         this.trackingCategories = trackingCategories;
@@ -174,7 +178,7 @@ public final class PurchaseOrder {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<PurchaseOrderStatus> getStatus() {
+    public Optional<PurchaseOrderStatusEnum> getStatus() {
         return status;
     }
 
@@ -562,7 +566,7 @@ public final class PurchaseOrder {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<PurchaseOrderCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -572,6 +576,14 @@ public final class PurchaseOrder {
     @JsonProperty("exchange_rate")
     public Optional<String> getExchangeRate() {
         return exchangeRate;
+    }
+
+    /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<PurchaseOrderPaymentTerm> getPaymentTerm() {
+        return paymentTerm;
     }
 
     @JsonProperty("line_items")
@@ -667,6 +679,7 @@ public final class PurchaseOrder {
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && paymentTerm.equals(other.paymentTerm)
                 && lineItems.equals(other.lineItems)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && trackingCategories.equals(other.trackingCategories)
@@ -698,6 +711,7 @@ public final class PurchaseOrder {
                 this.totalAmount,
                 this.currency,
                 this.exchangeRate,
+                this.paymentTerm,
                 this.lineItems,
                 this.inclusiveOfTax,
                 this.trackingCategories,
@@ -729,7 +743,7 @@ public final class PurchaseOrder {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<PurchaseOrderStatus> status = Optional.empty();
+        private Optional<PurchaseOrderStatusEnum> status = Optional.empty();
 
         private Optional<OffsetDateTime> issueDate = Optional.empty();
 
@@ -749,9 +763,11 @@ public final class PurchaseOrder {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<PurchaseOrderCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
+
+        private Optional<PurchaseOrderPaymentTerm> paymentTerm = Optional.empty();
 
         private Optional<List<PurchaseOrderLineItem>> lineItems = Optional.empty();
 
@@ -795,6 +811,7 @@ public final class PurchaseOrder {
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            paymentTerm(other.getPaymentTerm());
             lineItems(other.getLineItems());
             inclusiveOfTax(other.getInclusiveOfTax());
             trackingCategories(other.getTrackingCategories());
@@ -853,12 +870,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<PurchaseOrderStatus> status) {
+        public Builder status(Optional<PurchaseOrderStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(PurchaseOrderStatus status) {
+        public Builder status(PurchaseOrderStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -963,12 +980,12 @@ public final class PurchaseOrder {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<PurchaseOrderCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(PurchaseOrderCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -981,6 +998,17 @@ public final class PurchaseOrder {
 
         public Builder exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<PurchaseOrderPaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(PurchaseOrderPaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
             return this;
         }
 
@@ -1113,6 +1141,7 @@ public final class PurchaseOrder {
                     totalAmount,
                     currency,
                     exchangeRate,
+                    paymentTerm,
                     lineItems,
                     inclusiveOfTax,
                     trackingCategories,

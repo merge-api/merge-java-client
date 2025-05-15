@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.ats.activities.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ActivitiesRetrieveRequestShowEnumOrigins {
-    ACTIVITY_TYPE("activity_type"),
+public final class ActivitiesRetrieveRequestShowEnumOrigins {
+    public static final ActivitiesRetrieveRequestShowEnumOrigins ACTIVITY_TYPE =
+            new ActivitiesRetrieveRequestShowEnumOrigins(Value.ACTIVITY_TYPE, "activity_type");
 
-    ACTIVITY_TYPE_VISIBILITY("activity_type,visibility"),
+    public static final ActivitiesRetrieveRequestShowEnumOrigins ACTIVITY_TYPE_VISIBILITY =
+            new ActivitiesRetrieveRequestShowEnumOrigins(Value.ACTIVITY_TYPE_VISIBILITY, "activity_type,visibility");
 
-    VISIBILITY("visibility");
+    public static final ActivitiesRetrieveRequestShowEnumOrigins VISIBILITY =
+            new ActivitiesRetrieveRequestShowEnumOrigins(Value.VISIBILITY, "visibility");
 
-    private final String value;
+    private final Value value;
 
-    ActivitiesRetrieveRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    ActivitiesRetrieveRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ActivitiesRetrieveRequestShowEnumOrigins
+                        && this.string.equals(((ActivitiesRetrieveRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACTIVITY_TYPE:
+                return visitor.visitActivityType();
+            case ACTIVITY_TYPE_VISIBILITY:
+                return visitor.visitActivityTypeVisibility();
+            case VISIBILITY:
+                return visitor.visitVisibility();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ActivitiesRetrieveRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "activity_type":
+                return ACTIVITY_TYPE;
+            case "activity_type,visibility":
+                return ACTIVITY_TYPE_VISIBILITY;
+            case "visibility":
+                return VISIBILITY;
+            default:
+                return new ActivitiesRetrieveRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACTIVITY_TYPE,
+
+        ACTIVITY_TYPE_VISIBILITY,
+
+        VISIBILITY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitActivityType();
+
+        T visitActivityTypeVisibility();
+
+        T visitVisibility();
+
+        T visitUnknown(String unknownType);
     }
 }

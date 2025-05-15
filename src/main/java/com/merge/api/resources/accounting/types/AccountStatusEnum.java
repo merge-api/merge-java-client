@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccountStatusEnum {
-    ACTIVE("ACTIVE"),
+public final class AccountStatusEnum {
+    public static final AccountStatusEnum ACTIVE = new AccountStatusEnum(Value.ACTIVE, "ACTIVE");
 
-    PENDING("PENDING"),
+    public static final AccountStatusEnum PENDING = new AccountStatusEnum(Value.PENDING, "PENDING");
 
-    INACTIVE("INACTIVE");
+    public static final AccountStatusEnum INACTIVE = new AccountStatusEnum(Value.INACTIVE, "INACTIVE");
 
-    private final String value;
+    private final Value value;
 
-    AccountStatusEnum(String value) {
+    private final String string;
+
+    AccountStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccountStatusEnum && this.string.equals(((AccountStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACTIVE:
+                return visitor.visitActive();
+            case PENDING:
+                return visitor.visitPending();
+            case INACTIVE:
+                return visitor.visitInactive();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccountStatusEnum valueOf(String value) {
+        switch (value) {
+            case "ACTIVE":
+                return ACTIVE;
+            case "PENDING":
+                return PENDING;
+            case "INACTIVE":
+                return INACTIVE;
+            default:
+                return new AccountStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACTIVE,
+
+        PENDING,
+
+        INACTIVE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitActive();
+
+        T visitPending();
+
+        T visitInactive();
+
+        T visitUnknown(String unknownType);
     }
 }

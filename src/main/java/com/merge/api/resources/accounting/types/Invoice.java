@@ -31,7 +31,7 @@ public final class Invoice {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<InvoiceType> type;
+    private final Optional<InvoiceTypeEnum> type;
 
     private final Optional<InvoiceContact> contact;
 
@@ -49,15 +49,17 @@ public final class Invoice {
 
     private final Optional<InvoiceEmployee> employee;
 
-    private final Optional<InvoiceCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
+
+    private final Optional<InvoicePaymentTerm> paymentTerm;
 
     private final Optional<Double> totalDiscount;
 
     private final Optional<Double> subTotal;
 
-    private final Optional<InvoiceStatus> status;
+    private final Optional<InvoiceStatusEnum> status;
 
     private final Optional<Double> totalTaxAmount;
 
@@ -100,7 +102,7 @@ public final class Invoice {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<InvoiceType> type,
+            Optional<InvoiceTypeEnum> type,
             Optional<InvoiceContact> contact,
             Optional<String> number,
             Optional<OffsetDateTime> issueDate,
@@ -109,11 +111,12 @@ public final class Invoice {
             Optional<String> memo,
             Optional<InvoiceCompany> company,
             Optional<InvoiceEmployee> employee,
-            Optional<InvoiceCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
+            Optional<InvoicePaymentTerm> paymentTerm,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
-            Optional<InvoiceStatus> status,
+            Optional<InvoiceStatusEnum> status,
             Optional<Double> totalTaxAmount,
             Optional<Double> totalAmount,
             Optional<Double> balance,
@@ -147,6 +150,7 @@ public final class Invoice {
         this.employee = employee;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.paymentTerm = paymentTerm;
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
         this.status = status;
@@ -207,7 +211,7 @@ public final class Invoice {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<InvoiceType> getType() {
+    public Optional<InvoiceTypeEnum> getType() {
         return type;
     }
 
@@ -587,7 +591,7 @@ public final class Invoice {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<InvoiceCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -597,6 +601,14 @@ public final class Invoice {
     @JsonProperty("exchange_rate")
     public Optional<String> getExchangeRate() {
         return exchangeRate;
+    }
+
+    /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<InvoicePaymentTerm> getPaymentTerm() {
+        return paymentTerm;
     }
 
     /**
@@ -627,7 +639,7 @@ public final class Invoice {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<InvoiceStatus> getStatus() {
+    public Optional<InvoiceStatusEnum> getStatus() {
         return status;
     }
 
@@ -776,6 +788,7 @@ public final class Invoice {
                 && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && paymentTerm.equals(other.paymentTerm)
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
                 && status.equals(other.status)
@@ -816,6 +829,7 @@ public final class Invoice {
                 this.employee,
                 this.currency,
                 this.exchangeRate,
+                this.paymentTerm,
                 this.totalDiscount,
                 this.subTotal,
                 this.status,
@@ -857,7 +871,7 @@ public final class Invoice {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<InvoiceType> type = Optional.empty();
+        private Optional<InvoiceTypeEnum> type = Optional.empty();
 
         private Optional<InvoiceContact> contact = Optional.empty();
 
@@ -875,15 +889,17 @@ public final class Invoice {
 
         private Optional<InvoiceEmployee> employee = Optional.empty();
 
-        private Optional<InvoiceCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
+
+        private Optional<InvoicePaymentTerm> paymentTerm = Optional.empty();
 
         private Optional<Double> totalDiscount = Optional.empty();
 
         private Optional<Double> subTotal = Optional.empty();
 
-        private Optional<InvoiceStatus> status = Optional.empty();
+        private Optional<InvoiceStatusEnum> status = Optional.empty();
 
         private Optional<Double> totalTaxAmount = Optional.empty();
 
@@ -940,6 +956,7 @@ public final class Invoice {
             employee(other.getEmployee());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            paymentTerm(other.getPaymentTerm());
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
             status(other.getStatus());
@@ -1008,12 +1025,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<InvoiceType> type) {
+        public Builder type(Optional<InvoiceTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(InvoiceType type) {
+        public Builder type(InvoiceTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -1107,12 +1124,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<InvoiceCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(InvoiceCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -1125,6 +1142,17 @@ public final class Invoice {
 
         public Builder exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<InvoicePaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(InvoicePaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
             return this;
         }
 
@@ -1151,12 +1179,12 @@ public final class Invoice {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<InvoiceStatus> status) {
+        public Builder status(Optional<InvoiceStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(InvoiceStatus status) {
+        public Builder status(InvoiceStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -1365,6 +1393,7 @@ public final class Invoice {
                     employee,
                     currency,
                     exchangeRate,
+                    paymentTerm,
                     totalDiscount,
                     subTotal,
                     status,

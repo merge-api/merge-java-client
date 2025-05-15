@@ -34,7 +34,7 @@ public final class InvoiceLineItemRequest {
 
     private final Optional<InvoiceLineItemRequestEmployee> employee;
 
-    private final Optional<InvoiceLineItemRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -65,7 +65,7 @@ public final class InvoiceLineItemRequest {
             Optional<Double> quantity,
             Optional<Double> totalAmount,
             Optional<InvoiceLineItemRequestEmployee> employee,
-            Optional<InvoiceLineItemRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemRequestItem> item,
             Optional<InvoiceLineItemRequestAccount> account,
@@ -457,7 +457,7 @@ public final class InvoiceLineItemRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<InvoiceLineItemRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -599,7 +599,7 @@ public final class InvoiceLineItemRequest {
 
         private Optional<InvoiceLineItemRequestEmployee> employee = Optional.empty();
 
-        private Optional<InvoiceLineItemRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -715,12 +715,12 @@ public final class InvoiceLineItemRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<InvoiceLineItemRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(InvoiceLineItemRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

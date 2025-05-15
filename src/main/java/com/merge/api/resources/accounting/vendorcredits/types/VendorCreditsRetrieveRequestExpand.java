@@ -3,81 +3,424 @@
  */
 package com.merge.api.resources.accounting.vendorcredits.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum VendorCreditsRetrieveRequestExpand {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class VendorCreditsRetrieveRequestExpand {
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "lines,tracking_categories,accounting_period");
 
-    COMPANY("company"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES =
+            new VendorCreditsRetrieveRequestExpand(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES_COMPANY, "lines,company");
 
-    LINES("lines"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,tracking_categories,vendor,company,accounting_period");
 
-    LINES_ACCOUNTING_PERIOD("lines,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand VENDOR =
+            new VendorCreditsRetrieveRequestExpand(Value.VENDOR, "vendor");
 
-    LINES_COMPANY("lines,company"),
+    public static final VendorCreditsRetrieveRequestExpand VENDOR_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(Value.VENDOR_COMPANY, "vendor,company");
 
-    LINES_COMPANY_ACCOUNTING_PERIOD("lines,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES, "lines");
 
-    LINES_TRACKING_CATEGORIES("lines,tracking_categories"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_COMPANY, "lines,tracking_categories,company");
 
-    LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("lines,tracking_categories,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+                    "lines,tracking_categories,vendor,accounting_period");
 
-    LINES_TRACKING_CATEGORIES_COMPANY("lines,tracking_categories,company"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "lines,tracking_categories,company,accounting_period");
 
-    LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("lines,tracking_categories,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_VENDOR =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_VENDOR, "lines,tracking_categories,vendor");
 
-    LINES_TRACKING_CATEGORIES_VENDOR("lines,tracking_categories,vendor"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(Value.TRACKING_CATEGORIES_COMPANY, "tracking_categories,company");
 
-    LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD("lines,tracking_categories,vendor,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_ACCOUNTING_PERIOD, "tracking_categories,accounting_period");
 
-    LINES_TRACKING_CATEGORIES_VENDOR_COMPANY("lines,tracking_categories,vendor,company"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,vendor,company,accounting_period");
 
-    LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD(
-            "lines,tracking_categories,vendor,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.VENDOR_COMPANY_ACCOUNTING_PERIOD, "vendor,company,accounting_period");
 
-    LINES_VENDOR("lines,vendor"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_VENDOR =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES_VENDOR, "lines,vendor");
 
-    LINES_VENDOR_ACCOUNTING_PERIOD("lines,vendor,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    LINES_VENDOR_COMPANY("lines,vendor,company"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES_VENDOR_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_TRACKING_CATEGORIES_VENDOR_COMPANY, "lines,tracking_categories,vendor,company");
 
-    LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD("lines,vendor,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD, "lines,vendor,company,accounting_period");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final VendorCreditsRetrieveRequestExpand COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(Value.COMPANY_ACCOUNTING_PERIOD, "company,accounting_period");
 
-    TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_VENDOR =
+            new VendorCreditsRetrieveRequestExpand(Value.TRACKING_CATEGORIES_VENDOR, "tracking_categories,vendor");
 
-    TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_VENDOR_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES_VENDOR_COMPANY, "lines,vendor,company");
 
-    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand COMPANY =
+            new VendorCreditsRetrieveRequestExpand(Value.COMPANY, "company");
 
-    TRACKING_CATEGORIES_VENDOR("tracking_categories,vendor"),
+    public static final VendorCreditsRetrieveRequestExpand VENDOR_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(Value.VENDOR_ACCOUNTING_PERIOD, "vendor,accounting_period");
 
-    TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD("tracking_categories,vendor,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD, "tracking_categories,vendor,accounting_period");
 
-    TRACKING_CATEGORIES_VENDOR_COMPANY("tracking_categories,vendor,company"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_COMPANY_ACCOUNTING_PERIOD, "lines,company,accounting_period");
 
-    TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD("tracking_categories,vendor,company,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_VENDOR_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.LINES_VENDOR_ACCOUNTING_PERIOD, "lines,vendor,accounting_period");
 
-    VENDOR("vendor"),
+    public static final VendorCreditsRetrieveRequestExpand LINES_TRACKING_CATEGORIES =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES_TRACKING_CATEGORIES, "lines,tracking_categories");
 
-    VENDOR_ACCOUNTING_PERIOD("vendor,accounting_period"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+                    "tracking_categories,company,accounting_period");
 
-    VENDOR_COMPANY("vendor,company"),
+    public static final VendorCreditsRetrieveRequestExpand TRACKING_CATEGORIES_VENDOR_COMPANY =
+            new VendorCreditsRetrieveRequestExpand(
+                    Value.TRACKING_CATEGORIES_VENDOR_COMPANY, "tracking_categories,vendor,company");
 
-    VENDOR_COMPANY_ACCOUNTING_PERIOD("vendor,company,accounting_period");
+    public static final VendorCreditsRetrieveRequestExpand LINES_ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpand(Value.LINES_ACCOUNTING_PERIOD, "lines,accounting_period");
 
-    private final String value;
+    private final Value value;
 
-    VendorCreditsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    VendorCreditsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof VendorCreditsRetrieveRequestExpand
+                        && this.string.equals(((VendorCreditsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case LINES_COMPANY:
+                return visitor.visitLinesCompany();
+            case LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesVendorCompanyAccountingPeriod();
+            case VENDOR:
+                return visitor.visitVendor();
+            case VENDOR_COMPANY:
+                return visitor.visitVendorCompany();
+            case LINES:
+                return visitor.visitLines();
+            case LINES_TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitLinesTrackingCategoriesCompany();
+            case LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesVendorAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesTrackingCategoriesCompanyAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES_VENDOR:
+                return visitor.visitLinesTrackingCategoriesVendor();
+            case TRACKING_CATEGORIES_COMPANY:
+                return visitor.visitTrackingCategoriesCompany();
+            case TRACKING_CATEGORIES_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesVendorCompanyAccountingPeriod();
+            case VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitVendorCompanyAccountingPeriod();
+            case LINES_VENDOR:
+                return visitor.visitLinesVendor();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES_VENDOR_COMPANY:
+                return visitor.visitLinesTrackingCategoriesVendorCompany();
+            case LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesVendorCompanyAccountingPeriod();
+            case COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR:
+                return visitor.visitTrackingCategoriesVendor();
+            case LINES_VENDOR_COMPANY:
+                return visitor.visitLinesVendorCompany();
+            case COMPANY:
+                return visitor.visitCompany();
+            case VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitVendorAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesVendorAccountingPeriod();
+            case LINES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitLinesCompanyAccountingPeriod();
+            case LINES_VENDOR_ACCOUNTING_PERIOD:
+                return visitor.visitLinesVendorAccountingPeriod();
+            case LINES_TRACKING_CATEGORIES:
+                return visitor.visitLinesTrackingCategories();
+            case TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD:
+                return visitor.visitTrackingCategoriesCompanyAccountingPeriod();
+            case TRACKING_CATEGORIES_VENDOR_COMPANY:
+                return visitor.visitTrackingCategoriesVendorCompany();
+            case LINES_ACCOUNTING_PERIOD:
+                return visitor.visitLinesAccountingPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static VendorCreditsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "lines,tracking_categories,accounting_period":
+                return LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "lines,company":
+                return LINES_COMPANY;
+            case "lines,tracking_categories,vendor,company,accounting_period":
+                return LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "vendor":
+                return VENDOR;
+            case "vendor,company":
+                return VENDOR_COMPANY;
+            case "lines":
+                return LINES;
+            case "lines,tracking_categories,company":
+                return LINES_TRACKING_CATEGORIES_COMPANY;
+            case "lines,tracking_categories,vendor,accounting_period":
+                return LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories,company,accounting_period":
+                return LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories,vendor":
+                return LINES_TRACKING_CATEGORIES_VENDOR;
+            case "tracking_categories,company":
+                return TRACKING_CATEGORIES_COMPANY;
+            case "tracking_categories,accounting_period":
+                return TRACKING_CATEGORIES_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,company,accounting_period":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "vendor,company,accounting_period":
+                return VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,vendor":
+                return LINES_VENDOR;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "lines,tracking_categories,vendor,company":
+                return LINES_TRACKING_CATEGORIES_VENDOR_COMPANY;
+            case "lines,vendor,company,accounting_period":
+                return LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD;
+            case "company,accounting_period":
+                return COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor":
+                return TRACKING_CATEGORIES_VENDOR;
+            case "lines,vendor,company":
+                return LINES_VENDOR_COMPANY;
+            case "company":
+                return COMPANY;
+            case "vendor,accounting_period":
+                return VENDOR_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,accounting_period":
+                return TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD;
+            case "lines,company,accounting_period":
+                return LINES_COMPANY_ACCOUNTING_PERIOD;
+            case "lines,vendor,accounting_period":
+                return LINES_VENDOR_ACCOUNTING_PERIOD;
+            case "lines,tracking_categories":
+                return LINES_TRACKING_CATEGORIES;
+            case "tracking_categories,company,accounting_period":
+                return TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD;
+            case "tracking_categories,vendor,company":
+                return TRACKING_CATEGORIES_VENDOR_COMPANY;
+            case "lines,accounting_period":
+                return LINES_ACCOUNTING_PERIOD;
+            default:
+                return new VendorCreditsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        COMPANY_ACCOUNTING_PERIOD,
+
+        LINES,
+
+        LINES_ACCOUNTING_PERIOD,
+
+        LINES_COMPANY,
+
+        LINES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES,
+
+        LINES_TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES_COMPANY,
+
+        LINES_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES_VENDOR,
+
+        LINES_TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+
+        LINES_TRACKING_CATEGORIES_VENDOR_COMPANY,
+
+        LINES_TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        LINES_VENDOR,
+
+        LINES_VENDOR_ACCOUNTING_PERIOD,
+
+        LINES_VENDOR_COMPANY,
+
+        LINES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES,
+
+        TRACKING_CATEGORIES_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_COMPANY,
+
+        TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_VENDOR,
+
+        TRACKING_CATEGORIES_VENDOR_ACCOUNTING_PERIOD,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY,
+
+        TRACKING_CATEGORIES_VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        VENDOR,
+
+        VENDOR_ACCOUNTING_PERIOD,
+
+        VENDOR_COMPANY,
+
+        VENDOR_COMPANY_ACCOUNTING_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitCompanyAccountingPeriod();
+
+        T visitLines();
+
+        T visitLinesAccountingPeriod();
+
+        T visitLinesCompany();
+
+        T visitLinesCompanyAccountingPeriod();
+
+        T visitLinesTrackingCategories();
+
+        T visitLinesTrackingCategoriesAccountingPeriod();
+
+        T visitLinesTrackingCategoriesCompany();
+
+        T visitLinesTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitLinesTrackingCategoriesVendor();
+
+        T visitLinesTrackingCategoriesVendorAccountingPeriod();
+
+        T visitLinesTrackingCategoriesVendorCompany();
+
+        T visitLinesTrackingCategoriesVendorCompanyAccountingPeriod();
+
+        T visitLinesVendor();
+
+        T visitLinesVendorAccountingPeriod();
+
+        T visitLinesVendorCompany();
+
+        T visitLinesVendorCompanyAccountingPeriod();
+
+        T visitTrackingCategories();
+
+        T visitTrackingCategoriesAccountingPeriod();
+
+        T visitTrackingCategoriesCompany();
+
+        T visitTrackingCategoriesCompanyAccountingPeriod();
+
+        T visitTrackingCategoriesVendor();
+
+        T visitTrackingCategoriesVendorAccountingPeriod();
+
+        T visitTrackingCategoriesVendorCompany();
+
+        T visitTrackingCategoriesVendorCompanyAccountingPeriod();
+
+        T visitVendor();
+
+        T visitVendorAccountingPeriod();
+
+        T visitVendorCompany();
+
+        T visitVendorCompanyAccountingPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

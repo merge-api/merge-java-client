@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum VisibilityEnum {
-    ADMIN_ONLY("ADMIN_ONLY"),
+public final class VisibilityEnum {
+    public static final VisibilityEnum PUBLIC = new VisibilityEnum(Value.PUBLIC, "PUBLIC");
 
-    PUBLIC("PUBLIC"),
+    public static final VisibilityEnum ADMIN_ONLY = new VisibilityEnum(Value.ADMIN_ONLY, "ADMIN_ONLY");
 
-    PRIVATE("PRIVATE");
+    public static final VisibilityEnum PRIVATE = new VisibilityEnum(Value.PRIVATE, "PRIVATE");
 
-    private final String value;
+    private final Value value;
 
-    VisibilityEnum(String value) {
+    private final String string;
+
+    VisibilityEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof VisibilityEnum && this.string.equals(((VisibilityEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PUBLIC:
+                return visitor.visitPublic();
+            case ADMIN_ONLY:
+                return visitor.visitAdminOnly();
+            case PRIVATE:
+                return visitor.visitPrivate();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static VisibilityEnum valueOf(String value) {
+        switch (value) {
+            case "PUBLIC":
+                return PUBLIC;
+            case "ADMIN_ONLY":
+                return ADMIN_ONLY;
+            case "PRIVATE":
+                return PRIVATE;
+            default:
+                return new VisibilityEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ADMIN_ONLY,
+
+        PUBLIC,
+
+        PRIVATE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAdminOnly();
+
+        T visitPublic();
+
+        T visitPrivate();
+
+        T visitUnknown(String unknownType);
     }
 }

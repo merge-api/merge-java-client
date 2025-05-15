@@ -29,6 +29,7 @@ public final class BankFeedTransactionRequestRequestBankFeedAccount {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -79,8 +80,8 @@ public final class BankFeedTransactionRequestRequestBankFeedAccount {
         }
 
         @java.lang.Override
-        public BankFeedTransactionRequestRequestBankFeedAccount deserialize(JsonParser p, DeserializationContext ctxt)
-                throws IOException {
+        public BankFeedTransactionRequestRequestBankFeedAccount deserialize(
+                JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

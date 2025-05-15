@@ -37,7 +37,7 @@ public final class ScreeningQuestion {
 
     private final Optional<String> title;
 
-    private final Optional<ScreeningQuestionType> type;
+    private final Optional<ScreeningQuestionTypeEnum> type;
 
     private final Optional<Boolean> required;
 
@@ -55,7 +55,7 @@ public final class ScreeningQuestion {
             Optional<ScreeningQuestionJob> job,
             Optional<String> description,
             Optional<String> title,
-            Optional<ScreeningQuestionType> type,
+            Optional<ScreeningQuestionTypeEnum> type,
             Optional<Boolean> required,
             Optional<List<JsonNode>> options,
             Optional<Boolean> remoteWasDeleted,
@@ -141,7 +141,7 @@ public final class ScreeningQuestion {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<ScreeningQuestionType> getType() {
+    public Optional<ScreeningQuestionTypeEnum> getType() {
         return type;
     }
 
@@ -232,7 +232,7 @@ public final class ScreeningQuestion {
 
         private Optional<String> title = Optional.empty();
 
-        private Optional<ScreeningQuestionType> type = Optional.empty();
+        private Optional<ScreeningQuestionTypeEnum> type = Optional.empty();
 
         private Optional<Boolean> required = Optional.empty();
 
@@ -338,12 +338,12 @@ public final class ScreeningQuestion {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<ScreeningQuestionType> type) {
+        public Builder type(Optional<ScreeningQuestionTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(ScreeningQuestionType type) {
+        public Builder type(ScreeningQuestionTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }

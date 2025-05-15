@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.ats.candidates.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CandidatesRetrieveRequestExpand {
-    APPLICATIONS("applications"),
+public final class CandidatesRetrieveRequestExpand {
+    public static final CandidatesRetrieveRequestExpand APPLICATIONS =
+            new CandidatesRetrieveRequestExpand(Value.APPLICATIONS, "applications");
 
-    APPLICATIONS_ATTACHMENTS("applications,attachments"),
+    public static final CandidatesRetrieveRequestExpand ATTACHMENTS =
+            new CandidatesRetrieveRequestExpand(Value.ATTACHMENTS, "attachments");
 
-    ATTACHMENTS("attachments");
+    public static final CandidatesRetrieveRequestExpand APPLICATIONS_ATTACHMENTS =
+            new CandidatesRetrieveRequestExpand(Value.APPLICATIONS_ATTACHMENTS, "applications,attachments");
 
-    private final String value;
+    private final Value value;
 
-    CandidatesRetrieveRequestExpand(String value) {
+    private final String string;
+
+    CandidatesRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CandidatesRetrieveRequestExpand
+                        && this.string.equals(((CandidatesRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case APPLICATIONS:
+                return visitor.visitApplications();
+            case ATTACHMENTS:
+                return visitor.visitAttachments();
+            case APPLICATIONS_ATTACHMENTS:
+                return visitor.visitApplicationsAttachments();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CandidatesRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "applications":
+                return APPLICATIONS;
+            case "attachments":
+                return ATTACHMENTS;
+            case "applications,attachments":
+                return APPLICATIONS_ATTACHMENTS;
+            default:
+                return new CandidatesRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATIONS,
+
+        APPLICATIONS_ATTACHMENTS,
+
+        ATTACHMENTS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplications();
+
+        T visitApplicationsAttachments();
+
+        T visitAttachments();
+
+        T visitUnknown(String unknownType);
     }
 }

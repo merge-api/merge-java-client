@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.accounting.accounts.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccountsListRequestShowEnumOrigins {
-    CLASSIFICATION("classification"),
+public final class AccountsListRequestShowEnumOrigins {
+    public static final AccountsListRequestShowEnumOrigins STATUS =
+            new AccountsListRequestShowEnumOrigins(Value.STATUS, "status");
 
-    CLASSIFICATION_STATUS("classification,status"),
+    public static final AccountsListRequestShowEnumOrigins CLASSIFICATION =
+            new AccountsListRequestShowEnumOrigins(Value.CLASSIFICATION, "classification");
 
-    STATUS("status");
+    public static final AccountsListRequestShowEnumOrigins CLASSIFICATION_STATUS =
+            new AccountsListRequestShowEnumOrigins(Value.CLASSIFICATION_STATUS, "classification,status");
 
-    private final String value;
+    private final Value value;
 
-    AccountsListRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    AccountsListRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccountsListRequestShowEnumOrigins
+                        && this.string.equals(((AccountsListRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case STATUS:
+                return visitor.visitStatus();
+            case CLASSIFICATION:
+                return visitor.visitClassification();
+            case CLASSIFICATION_STATUS:
+                return visitor.visitClassificationStatus();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccountsListRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "status":
+                return STATUS;
+            case "classification":
+                return CLASSIFICATION;
+            case "classification,status":
+                return CLASSIFICATION_STATUS;
+            default:
+                return new AccountsListRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CLASSIFICATION,
+
+        CLASSIFICATION_STATUS,
+
+        STATUS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitClassification();
+
+        T visitClassificationStatus();
+
+        T visitStatus();
+
+        T visitUnknown(String unknownType);
     }
 }

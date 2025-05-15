@@ -37,7 +37,7 @@ public final class Job {
 
     private final Optional<String> code;
 
-    private final Optional<JobStatus> status;
+    private final Optional<JobStatusEnum> status;
 
     private final Optional<JobTypeEnum> type;
 
@@ -75,7 +75,7 @@ public final class Job {
             Optional<String> name,
             Optional<String> description,
             Optional<String> code,
-            Optional<JobStatus> status,
+            Optional<JobStatusEnum> status,
             Optional<JobTypeEnum> type,
             Optional<List<Optional<String>>> jobPostings,
             Optional<List<Url>> jobPostingUrls,
@@ -178,7 +178,7 @@ public final class Job {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<JobStatus> getStatus() {
+    public Optional<JobStatusEnum> getStatus() {
         return status;
     }
 
@@ -368,7 +368,7 @@ public final class Job {
 
         private Optional<String> code = Optional.empty();
 
-        private Optional<JobStatus> status = Optional.empty();
+        private Optional<JobStatusEnum> status = Optional.empty();
 
         private Optional<JobTypeEnum> type = Optional.empty();
 
@@ -504,12 +504,12 @@ public final class Job {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<JobStatus> status) {
+        public Builder status(Optional<JobStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(JobStatus status) {
+        public Builder status(JobStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

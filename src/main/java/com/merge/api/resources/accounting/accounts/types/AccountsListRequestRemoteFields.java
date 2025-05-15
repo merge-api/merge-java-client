@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.accounting.accounts.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccountsListRequestRemoteFields {
-    CLASSIFICATION("classification"),
+public final class AccountsListRequestRemoteFields {
+    public static final AccountsListRequestRemoteFields STATUS =
+            new AccountsListRequestRemoteFields(Value.STATUS, "status");
 
-    CLASSIFICATION_STATUS("classification,status"),
+    public static final AccountsListRequestRemoteFields CLASSIFICATION =
+            new AccountsListRequestRemoteFields(Value.CLASSIFICATION, "classification");
 
-    STATUS("status");
+    public static final AccountsListRequestRemoteFields CLASSIFICATION_STATUS =
+            new AccountsListRequestRemoteFields(Value.CLASSIFICATION_STATUS, "classification,status");
 
-    private final String value;
+    private final Value value;
 
-    AccountsListRequestRemoteFields(String value) {
+    private final String string;
+
+    AccountsListRequestRemoteFields(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccountsListRequestRemoteFields
+                        && this.string.equals(((AccountsListRequestRemoteFields) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case STATUS:
+                return visitor.visitStatus();
+            case CLASSIFICATION:
+                return visitor.visitClassification();
+            case CLASSIFICATION_STATUS:
+                return visitor.visitClassificationStatus();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccountsListRequestRemoteFields valueOf(String value) {
+        switch (value) {
+            case "status":
+                return STATUS;
+            case "classification":
+                return CLASSIFICATION;
+            case "classification,status":
+                return CLASSIFICATION_STATUS;
+            default:
+                return new AccountsListRequestRemoteFields(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CLASSIFICATION,
+
+        CLASSIFICATION_STATUS,
+
+        STATUS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitClassification();
+
+        T visitClassificationStatus();
+
+        T visitStatus();
+
+        T visitUnknown(String unknownType);
     }
 }

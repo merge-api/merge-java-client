@@ -37,13 +37,13 @@ public final class Dependent {
 
     private final Optional<String> lastName;
 
-    private final Optional<DependentRelationship> relationship;
+    private final Optional<RelationshipEnum> relationship;
 
     private final Optional<String> employee;
 
     private final Optional<OffsetDateTime> dateOfBirth;
 
-    private final Optional<DependentGender> gender;
+    private final Optional<GenderEnum> gender;
 
     private final Optional<String> phoneNumber;
 
@@ -69,10 +69,10 @@ public final class Dependent {
             Optional<String> firstName,
             Optional<String> middleName,
             Optional<String> lastName,
-            Optional<DependentRelationship> relationship,
+            Optional<RelationshipEnum> relationship,
             Optional<String> employee,
             Optional<OffsetDateTime> dateOfBirth,
-            Optional<DependentGender> gender,
+            Optional<GenderEnum> gender,
             Optional<String> phoneNumber,
             Optional<String> homeLocation,
             Optional<Boolean> isStudent,
@@ -164,7 +164,7 @@ public final class Dependent {
      * </ul>
      */
     @JsonProperty("relationship")
-    public Optional<DependentRelationship> getRelationship() {
+    public Optional<RelationshipEnum> getRelationship() {
         return relationship;
     }
 
@@ -195,7 +195,7 @@ public final class Dependent {
      * </ul>
      */
     @JsonProperty("gender")
-    public Optional<DependentGender> getGender() {
+    public Optional<GenderEnum> getGender() {
         return gender;
     }
 
@@ -329,13 +329,13 @@ public final class Dependent {
 
         private Optional<String> lastName = Optional.empty();
 
-        private Optional<DependentRelationship> relationship = Optional.empty();
+        private Optional<RelationshipEnum> relationship = Optional.empty();
 
         private Optional<String> employee = Optional.empty();
 
         private Optional<OffsetDateTime> dateOfBirth = Optional.empty();
 
-        private Optional<DependentGender> gender = Optional.empty();
+        private Optional<GenderEnum> gender = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -456,12 +456,12 @@ public final class Dependent {
         }
 
         @JsonSetter(value = "relationship", nulls = Nulls.SKIP)
-        public Builder relationship(Optional<DependentRelationship> relationship) {
+        public Builder relationship(Optional<RelationshipEnum> relationship) {
             this.relationship = relationship;
             return this;
         }
 
-        public Builder relationship(DependentRelationship relationship) {
+        public Builder relationship(RelationshipEnum relationship) {
             this.relationship = Optional.ofNullable(relationship);
             return this;
         }
@@ -489,12 +489,12 @@ public final class Dependent {
         }
 
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
-        public Builder gender(Optional<DependentGender> gender) {
+        public Builder gender(Optional<GenderEnum> gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder gender(DependentGender gender) {
+        public Builder gender(GenderEnum gender) {
             this.gender = Optional.ofNullable(gender);
             return this;
         }

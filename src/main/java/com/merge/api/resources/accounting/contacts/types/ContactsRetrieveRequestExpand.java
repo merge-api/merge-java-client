@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.accounting.contacts.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ContactsRetrieveRequestExpand {
-    ADDRESSES("addresses"),
+public final class ContactsRetrieveRequestExpand {
+    public static final ContactsRetrieveRequestExpand ADDRESSES =
+            new ContactsRetrieveRequestExpand(Value.ADDRESSES, "addresses");
 
-    ADDRESSES_COMPANY("addresses,company"),
+    public static final ContactsRetrieveRequestExpand ADDRESSES_PHONE_NUMBERS =
+            new ContactsRetrieveRequestExpand(Value.ADDRESSES_PHONE_NUMBERS, "addresses,phone_numbers");
 
-    ADDRESSES_PHONE_NUMBERS("addresses,phone_numbers"),
+    public static final ContactsRetrieveRequestExpand PHONE_NUMBERS =
+            new ContactsRetrieveRequestExpand(Value.PHONE_NUMBERS, "phone_numbers");
 
-    ADDRESSES_PHONE_NUMBERS_COMPANY("addresses,phone_numbers,company"),
+    public static final ContactsRetrieveRequestExpand ADDRESSES_PHONE_NUMBERS_COMPANY =
+            new ContactsRetrieveRequestExpand(Value.ADDRESSES_PHONE_NUMBERS_COMPANY, "addresses,phone_numbers,company");
 
-    COMPANY("company"),
+    public static final ContactsRetrieveRequestExpand ADDRESSES_COMPANY =
+            new ContactsRetrieveRequestExpand(Value.ADDRESSES_COMPANY, "addresses,company");
 
-    PHONE_NUMBERS("phone_numbers"),
+    public static final ContactsRetrieveRequestExpand COMPANY =
+            new ContactsRetrieveRequestExpand(Value.COMPANY, "company");
 
-    PHONE_NUMBERS_COMPANY("phone_numbers,company");
+    public static final ContactsRetrieveRequestExpand PHONE_NUMBERS_COMPANY =
+            new ContactsRetrieveRequestExpand(Value.PHONE_NUMBERS_COMPANY, "phone_numbers,company");
 
-    private final String value;
+    private final Value value;
 
-    ContactsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    ContactsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ContactsRetrieveRequestExpand
+                        && this.string.equals(((ContactsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ADDRESSES:
+                return visitor.visitAddresses();
+            case ADDRESSES_PHONE_NUMBERS:
+                return visitor.visitAddressesPhoneNumbers();
+            case PHONE_NUMBERS:
+                return visitor.visitPhoneNumbers();
+            case ADDRESSES_PHONE_NUMBERS_COMPANY:
+                return visitor.visitAddressesPhoneNumbersCompany();
+            case ADDRESSES_COMPANY:
+                return visitor.visitAddressesCompany();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PHONE_NUMBERS_COMPANY:
+                return visitor.visitPhoneNumbersCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ContactsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "addresses":
+                return ADDRESSES;
+            case "addresses,phone_numbers":
+                return ADDRESSES_PHONE_NUMBERS;
+            case "phone_numbers":
+                return PHONE_NUMBERS;
+            case "addresses,phone_numbers,company":
+                return ADDRESSES_PHONE_NUMBERS_COMPANY;
+            case "addresses,company":
+                return ADDRESSES_COMPANY;
+            case "company":
+                return COMPANY;
+            case "phone_numbers,company":
+                return PHONE_NUMBERS_COMPANY;
+            default:
+                return new ContactsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ADDRESSES,
+
+        ADDRESSES_COMPANY,
+
+        ADDRESSES_PHONE_NUMBERS,
+
+        ADDRESSES_PHONE_NUMBERS_COMPANY,
+
+        COMPANY,
+
+        PHONE_NUMBERS,
+
+        PHONE_NUMBERS_COMPANY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAddresses();
+
+        T visitAddressesCompany();
+
+        T visitAddressesPhoneNumbers();
+
+        T visitAddressesPhoneNumbersCompany();
+
+        T visitCompany();
+
+        T visitPhoneNumbers();
+
+        T visitPhoneNumbersCompany();
+
+        T visitUnknown(String unknownType);
     }
 }

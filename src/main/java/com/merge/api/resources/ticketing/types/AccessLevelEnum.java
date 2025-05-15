@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccessLevelEnum {
-    PRIVATE("PRIVATE"),
+public final class AccessLevelEnum {
+    public static final AccessLevelEnum PUBLIC = new AccessLevelEnum(Value.PUBLIC, "PUBLIC");
 
-    COMPANY("COMPANY"),
+    public static final AccessLevelEnum COMPANY = new AccessLevelEnum(Value.COMPANY, "COMPANY");
 
-    PUBLIC("PUBLIC");
+    public static final AccessLevelEnum PRIVATE = new AccessLevelEnum(Value.PRIVATE, "PRIVATE");
 
-    private final String value;
+    private final Value value;
 
-    AccessLevelEnum(String value) {
+    private final String string;
+
+    AccessLevelEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccessLevelEnum && this.string.equals(((AccessLevelEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PUBLIC:
+                return visitor.visitPublic();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PRIVATE:
+                return visitor.visitPrivate();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccessLevelEnum valueOf(String value) {
+        switch (value) {
+            case "PUBLIC":
+                return PUBLIC;
+            case "COMPANY":
+                return COMPANY;
+            case "PRIVATE":
+                return PRIVATE;
+            default:
+                return new AccessLevelEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PRIVATE,
+
+        COMPANY,
+
+        PUBLIC,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPrivate();
+
+        T visitCompany();
+
+        T visitPublic();
+
+        T visitUnknown(String unknownType);
     }
 }

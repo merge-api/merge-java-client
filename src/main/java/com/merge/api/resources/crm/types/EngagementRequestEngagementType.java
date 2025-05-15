@@ -29,6 +29,7 @@ public final class EngagementRequestEngagementType {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -78,7 +79,7 @@ public final class EngagementRequestEngagementType {
         }
 
         @java.lang.Override
-        public EngagementRequestEngagementType deserialize(JsonParser p, DeserializationContext ctxt)
+        public EngagementRequestEngagementType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

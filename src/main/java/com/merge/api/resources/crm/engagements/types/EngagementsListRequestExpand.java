@@ -3,48 +3,228 @@
  */
 package com.merge.api.resources.crm.engagements.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EngagementsListRequestExpand {
-    ACCOUNT("account"),
+public final class EngagementsListRequestExpand {
+    public static final EngagementsListRequestExpand CONTACTS =
+            new EngagementsListRequestExpand(Value.CONTACTS, "contacts");
 
-    ACCOUNT_ENGAGEMENT_TYPE("account,engagement_type"),
+    public static final EngagementsListRequestExpand CONTACTS_OWNER =
+            new EngagementsListRequestExpand(Value.CONTACTS_OWNER, "contacts,owner");
 
-    CONTACTS("contacts"),
+    public static final EngagementsListRequestExpand OWNER_ACCOUNT =
+            new EngagementsListRequestExpand(Value.OWNER_ACCOUNT, "owner,account");
 
-    CONTACTS_ACCOUNT("contacts,account"),
+    public static final EngagementsListRequestExpand ACCOUNT =
+            new EngagementsListRequestExpand(Value.ACCOUNT, "account");
 
-    CONTACTS_ACCOUNT_ENGAGEMENT_TYPE("contacts,account,engagement_type"),
+    public static final EngagementsListRequestExpand CONTACTS_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.CONTACTS_ENGAGEMENT_TYPE, "contacts,engagement_type");
 
-    CONTACTS_ENGAGEMENT_TYPE("contacts,engagement_type"),
+    public static final EngagementsListRequestExpand ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.ENGAGEMENT_TYPE, "engagement_type");
 
-    CONTACTS_OWNER("contacts,owner"),
+    public static final EngagementsListRequestExpand CONTACTS_ACCOUNT_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(
+                    Value.CONTACTS_ACCOUNT_ENGAGEMENT_TYPE, "contacts,account,engagement_type");
 
-    CONTACTS_OWNER_ACCOUNT("contacts,owner,account"),
+    public static final EngagementsListRequestExpand CONTACTS_OWNER_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.CONTACTS_OWNER_ENGAGEMENT_TYPE, "contacts,owner,engagement_type");
 
-    CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE("contacts,owner,account,engagement_type"),
+    public static final EngagementsListRequestExpand OWNER = new EngagementsListRequestExpand(Value.OWNER, "owner");
 
-    CONTACTS_OWNER_ENGAGEMENT_TYPE("contacts,owner,engagement_type"),
+    public static final EngagementsListRequestExpand OWNER_ACCOUNT_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.OWNER_ACCOUNT_ENGAGEMENT_TYPE, "owner,account,engagement_type");
 
-    ENGAGEMENT_TYPE("engagement_type"),
+    public static final EngagementsListRequestExpand CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(
+                    Value.CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE, "contacts,owner,account,engagement_type");
 
-    OWNER("owner"),
+    public static final EngagementsListRequestExpand ACCOUNT_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.ACCOUNT_ENGAGEMENT_TYPE, "account,engagement_type");
 
-    OWNER_ACCOUNT("owner,account"),
+    public static final EngagementsListRequestExpand CONTACTS_OWNER_ACCOUNT =
+            new EngagementsListRequestExpand(Value.CONTACTS_OWNER_ACCOUNT, "contacts,owner,account");
 
-    OWNER_ACCOUNT_ENGAGEMENT_TYPE("owner,account,engagement_type"),
+    public static final EngagementsListRequestExpand CONTACTS_ACCOUNT =
+            new EngagementsListRequestExpand(Value.CONTACTS_ACCOUNT, "contacts,account");
 
-    OWNER_ENGAGEMENT_TYPE("owner,engagement_type");
+    public static final EngagementsListRequestExpand OWNER_ENGAGEMENT_TYPE =
+            new EngagementsListRequestExpand(Value.OWNER_ENGAGEMENT_TYPE, "owner,engagement_type");
 
-    private final String value;
+    private final Value value;
 
-    EngagementsListRequestExpand(String value) {
+    private final String string;
+
+    EngagementsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EngagementsListRequestExpand
+                        && this.string.equals(((EngagementsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CONTACTS:
+                return visitor.visitContacts();
+            case CONTACTS_OWNER:
+                return visitor.visitContactsOwner();
+            case OWNER_ACCOUNT:
+                return visitor.visitOwnerAccount();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case CONTACTS_ENGAGEMENT_TYPE:
+                return visitor.visitContactsEngagementType();
+            case ENGAGEMENT_TYPE:
+                return visitor.visitEngagementType();
+            case CONTACTS_ACCOUNT_ENGAGEMENT_TYPE:
+                return visitor.visitContactsAccountEngagementType();
+            case CONTACTS_OWNER_ENGAGEMENT_TYPE:
+                return visitor.visitContactsOwnerEngagementType();
+            case OWNER:
+                return visitor.visitOwner();
+            case OWNER_ACCOUNT_ENGAGEMENT_TYPE:
+                return visitor.visitOwnerAccountEngagementType();
+            case CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE:
+                return visitor.visitContactsOwnerAccountEngagementType();
+            case ACCOUNT_ENGAGEMENT_TYPE:
+                return visitor.visitAccountEngagementType();
+            case CONTACTS_OWNER_ACCOUNT:
+                return visitor.visitContactsOwnerAccount();
+            case CONTACTS_ACCOUNT:
+                return visitor.visitContactsAccount();
+            case OWNER_ENGAGEMENT_TYPE:
+                return visitor.visitOwnerEngagementType();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EngagementsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "contacts":
+                return CONTACTS;
+            case "contacts,owner":
+                return CONTACTS_OWNER;
+            case "owner,account":
+                return OWNER_ACCOUNT;
+            case "account":
+                return ACCOUNT;
+            case "contacts,engagement_type":
+                return CONTACTS_ENGAGEMENT_TYPE;
+            case "engagement_type":
+                return ENGAGEMENT_TYPE;
+            case "contacts,account,engagement_type":
+                return CONTACTS_ACCOUNT_ENGAGEMENT_TYPE;
+            case "contacts,owner,engagement_type":
+                return CONTACTS_OWNER_ENGAGEMENT_TYPE;
+            case "owner":
+                return OWNER;
+            case "owner,account,engagement_type":
+                return OWNER_ACCOUNT_ENGAGEMENT_TYPE;
+            case "contacts,owner,account,engagement_type":
+                return CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE;
+            case "account,engagement_type":
+                return ACCOUNT_ENGAGEMENT_TYPE;
+            case "contacts,owner,account":
+                return CONTACTS_OWNER_ACCOUNT;
+            case "contacts,account":
+                return CONTACTS_ACCOUNT;
+            case "owner,engagement_type":
+                return OWNER_ENGAGEMENT_TYPE;
+            default:
+                return new EngagementsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNT_ENGAGEMENT_TYPE,
+
+        CONTACTS,
+
+        CONTACTS_ACCOUNT,
+
+        CONTACTS_ACCOUNT_ENGAGEMENT_TYPE,
+
+        CONTACTS_ENGAGEMENT_TYPE,
+
+        CONTACTS_OWNER,
+
+        CONTACTS_OWNER_ACCOUNT,
+
+        CONTACTS_OWNER_ACCOUNT_ENGAGEMENT_TYPE,
+
+        CONTACTS_OWNER_ENGAGEMENT_TYPE,
+
+        ENGAGEMENT_TYPE,
+
+        OWNER,
+
+        OWNER_ACCOUNT,
+
+        OWNER_ACCOUNT_ENGAGEMENT_TYPE,
+
+        OWNER_ENGAGEMENT_TYPE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountEngagementType();
+
+        T visitContacts();
+
+        T visitContactsAccount();
+
+        T visitContactsAccountEngagementType();
+
+        T visitContactsEngagementType();
+
+        T visitContactsOwner();
+
+        T visitContactsOwnerAccount();
+
+        T visitContactsOwnerAccountEngagementType();
+
+        T visitContactsOwnerEngagementType();
+
+        T visitEngagementType();
+
+        T visitOwner();
+
+        T visitOwnerAccount();
+
+        T visitOwnerAccountEngagementType();
+
+        T visitOwnerEngagementType();
+
+        T visitUnknown(String unknownType);
     }
 }

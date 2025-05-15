@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.hris.timeoff.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TimeOffListRequestShowEnumOrigins {
-    REQUEST_TYPE("request_type"),
+public final class TimeOffListRequestShowEnumOrigins {
+    public static final TimeOffListRequestShowEnumOrigins REQUEST_TYPE =
+            new TimeOffListRequestShowEnumOrigins(Value.REQUEST_TYPE, "request_type");
 
-    REQUEST_TYPE_STATUS("request_type,status"),
+    public static final TimeOffListRequestShowEnumOrigins REQUEST_TYPE_STATUS_UNITS =
+            new TimeOffListRequestShowEnumOrigins(Value.REQUEST_TYPE_STATUS_UNITS, "request_type,status,units");
 
-    REQUEST_TYPE_STATUS_UNITS("request_type,status,units"),
+    public static final TimeOffListRequestShowEnumOrigins STATUS =
+            new TimeOffListRequestShowEnumOrigins(Value.STATUS, "status");
 
-    REQUEST_TYPE_UNITS("request_type,units"),
+    public static final TimeOffListRequestShowEnumOrigins UNITS =
+            new TimeOffListRequestShowEnumOrigins(Value.UNITS, "units");
 
-    STATUS("status"),
+    public static final TimeOffListRequestShowEnumOrigins REQUEST_TYPE_UNITS =
+            new TimeOffListRequestShowEnumOrigins(Value.REQUEST_TYPE_UNITS, "request_type,units");
 
-    STATUS_UNITS("status,units"),
+    public static final TimeOffListRequestShowEnumOrigins REQUEST_TYPE_STATUS =
+            new TimeOffListRequestShowEnumOrigins(Value.REQUEST_TYPE_STATUS, "request_type,status");
 
-    UNITS("units");
+    public static final TimeOffListRequestShowEnumOrigins STATUS_UNITS =
+            new TimeOffListRequestShowEnumOrigins(Value.STATUS_UNITS, "status,units");
 
-    private final String value;
+    private final Value value;
 
-    TimeOffListRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    TimeOffListRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TimeOffListRequestShowEnumOrigins
+                        && this.string.equals(((TimeOffListRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case REQUEST_TYPE:
+                return visitor.visitRequestType();
+            case REQUEST_TYPE_STATUS_UNITS:
+                return visitor.visitRequestTypeStatusUnits();
+            case STATUS:
+                return visitor.visitStatus();
+            case UNITS:
+                return visitor.visitUnits();
+            case REQUEST_TYPE_UNITS:
+                return visitor.visitRequestTypeUnits();
+            case REQUEST_TYPE_STATUS:
+                return visitor.visitRequestTypeStatus();
+            case STATUS_UNITS:
+                return visitor.visitStatusUnits();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TimeOffListRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "request_type":
+                return REQUEST_TYPE;
+            case "request_type,status,units":
+                return REQUEST_TYPE_STATUS_UNITS;
+            case "status":
+                return STATUS;
+            case "units":
+                return UNITS;
+            case "request_type,units":
+                return REQUEST_TYPE_UNITS;
+            case "request_type,status":
+                return REQUEST_TYPE_STATUS;
+            case "status,units":
+                return STATUS_UNITS;
+            default:
+                return new TimeOffListRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        REQUEST_TYPE,
+
+        REQUEST_TYPE_STATUS,
+
+        REQUEST_TYPE_STATUS_UNITS,
+
+        REQUEST_TYPE_UNITS,
+
+        STATUS,
+
+        STATUS_UNITS,
+
+        UNITS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRequestType();
+
+        T visitRequestTypeStatus();
+
+        T visitRequestTypeStatusUnits();
+
+        T visitRequestTypeUnits();
+
+        T visitStatus();
+
+        T visitStatusUnits();
+
+        T visitUnits();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,26 +3,106 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccountDetailsAndActionsStatusEnum {
-    COMPLETE("COMPLETE"),
+public final class AccountDetailsAndActionsStatusEnum {
+    public static final AccountDetailsAndActionsStatusEnum RELINK_NEEDED =
+            new AccountDetailsAndActionsStatusEnum(Value.RELINK_NEEDED, "RELINK_NEEDED");
 
-    INCOMPLETE("INCOMPLETE"),
+    public static final AccountDetailsAndActionsStatusEnum INCOMPLETE =
+            new AccountDetailsAndActionsStatusEnum(Value.INCOMPLETE, "INCOMPLETE");
 
-    RELINK_NEEDED("RELINK_NEEDED"),
+    public static final AccountDetailsAndActionsStatusEnum IDLE =
+            new AccountDetailsAndActionsStatusEnum(Value.IDLE, "IDLE");
 
-    IDLE("IDLE");
+    public static final AccountDetailsAndActionsStatusEnum COMPLETE =
+            new AccountDetailsAndActionsStatusEnum(Value.COMPLETE, "COMPLETE");
 
-    private final String value;
+    private final Value value;
 
-    AccountDetailsAndActionsStatusEnum(String value) {
+    private final String string;
+
+    AccountDetailsAndActionsStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccountDetailsAndActionsStatusEnum
+                        && this.string.equals(((AccountDetailsAndActionsStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case RELINK_NEEDED:
+                return visitor.visitRelinkNeeded();
+            case INCOMPLETE:
+                return visitor.visitIncomplete();
+            case IDLE:
+                return visitor.visitIdle();
+            case COMPLETE:
+                return visitor.visitComplete();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccountDetailsAndActionsStatusEnum valueOf(String value) {
+        switch (value) {
+            case "RELINK_NEEDED":
+                return RELINK_NEEDED;
+            case "INCOMPLETE":
+                return INCOMPLETE;
+            case "IDLE":
+                return IDLE;
+            case "COMPLETE":
+                return COMPLETE;
+            default:
+                return new AccountDetailsAndActionsStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COMPLETE,
+
+        INCOMPLETE,
+
+        RELINK_NEEDED,
+
+        IDLE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitComplete();
+
+        T visitIncomplete();
+
+        T visitRelinkNeeded();
+
+        T visitIdle();
+
+        T visitUnknown(String unknownType);
     }
 }

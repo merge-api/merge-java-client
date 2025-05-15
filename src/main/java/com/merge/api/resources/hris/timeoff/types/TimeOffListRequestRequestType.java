@@ -3,30 +3,127 @@
  */
 package com.merge.api.resources.hris.timeoff.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TimeOffListRequestRequestType {
-    BEREAVEMENT("BEREAVEMENT"),
+public final class TimeOffListRequestRequestType {
+    public static final TimeOffListRequestRequestType VACATION =
+            new TimeOffListRequestRequestType(Value.VACATION, "VACATION");
 
-    JURY_DUTY("JURY_DUTY"),
+    public static final TimeOffListRequestRequestType VOLUNTEER =
+            new TimeOffListRequestRequestType(Value.VOLUNTEER, "VOLUNTEER");
 
-    PERSONAL("PERSONAL"),
+    public static final TimeOffListRequestRequestType JURY_DUTY =
+            new TimeOffListRequestRequestType(Value.JURY_DUTY, "JURY_DUTY");
 
-    SICK("SICK"),
+    public static final TimeOffListRequestRequestType BEREAVEMENT =
+            new TimeOffListRequestRequestType(Value.BEREAVEMENT, "BEREAVEMENT");
 
-    VACATION("VACATION"),
+    public static final TimeOffListRequestRequestType SICK = new TimeOffListRequestRequestType(Value.SICK, "SICK");
 
-    VOLUNTEER("VOLUNTEER");
+    public static final TimeOffListRequestRequestType PERSONAL =
+            new TimeOffListRequestRequestType(Value.PERSONAL, "PERSONAL");
 
-    private final String value;
+    private final Value value;
 
-    TimeOffListRequestRequestType(String value) {
+    private final String string;
+
+    TimeOffListRequestRequestType(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TimeOffListRequestRequestType
+                        && this.string.equals(((TimeOffListRequestRequestType) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case VACATION:
+                return visitor.visitVacation();
+            case VOLUNTEER:
+                return visitor.visitVolunteer();
+            case JURY_DUTY:
+                return visitor.visitJuryDuty();
+            case BEREAVEMENT:
+                return visitor.visitBereavement();
+            case SICK:
+                return visitor.visitSick();
+            case PERSONAL:
+                return visitor.visitPersonal();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TimeOffListRequestRequestType valueOf(String value) {
+        switch (value) {
+            case "VACATION":
+                return VACATION;
+            case "VOLUNTEER":
+                return VOLUNTEER;
+            case "JURY_DUTY":
+                return JURY_DUTY;
+            case "BEREAVEMENT":
+                return BEREAVEMENT;
+            case "SICK":
+                return SICK;
+            case "PERSONAL":
+                return PERSONAL;
+            default:
+                return new TimeOffListRequestRequestType(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        BEREAVEMENT,
+
+        JURY_DUTY,
+
+        PERSONAL,
+
+        SICK,
+
+        VACATION,
+
+        VOLUNTEER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitBereavement();
+
+        T visitJuryDuty();
+
+        T visitPersonal();
+
+        T visitSick();
+
+        T visitVacation();
+
+        T visitVolunteer();
+
+        T visitUnknown(String unknownType);
     }
 }

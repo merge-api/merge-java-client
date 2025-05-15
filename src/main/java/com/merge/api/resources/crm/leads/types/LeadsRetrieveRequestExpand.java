@@ -3,32 +3,139 @@
  */
 package com.merge.api.resources.crm.leads.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum LeadsRetrieveRequestExpand {
-    CONVERTED_ACCOUNT("converted_account"),
+public final class LeadsRetrieveRequestExpand {
+    public static final LeadsRetrieveRequestExpand OWNER = new LeadsRetrieveRequestExpand(Value.OWNER, "owner");
 
-    CONVERTED_CONTACT("converted_contact"),
+    public static final LeadsRetrieveRequestExpand CONVERTED_CONTACT_CONVERTED_ACCOUNT = new LeadsRetrieveRequestExpand(
+            Value.CONVERTED_CONTACT_CONVERTED_ACCOUNT, "converted_contact,converted_account");
 
-    CONVERTED_CONTACT_CONVERTED_ACCOUNT("converted_contact,converted_account"),
+    public static final LeadsRetrieveRequestExpand CONVERTED_ACCOUNT =
+            new LeadsRetrieveRequestExpand(Value.CONVERTED_ACCOUNT, "converted_account");
 
-    OWNER("owner"),
+    public static final LeadsRetrieveRequestExpand OWNER_CONVERTED_ACCOUNT =
+            new LeadsRetrieveRequestExpand(Value.OWNER_CONVERTED_ACCOUNT, "owner,converted_account");
 
-    OWNER_CONVERTED_ACCOUNT("owner,converted_account"),
+    public static final LeadsRetrieveRequestExpand CONVERTED_CONTACT =
+            new LeadsRetrieveRequestExpand(Value.CONVERTED_CONTACT, "converted_contact");
 
-    OWNER_CONVERTED_CONTACT("owner,converted_contact"),
+    public static final LeadsRetrieveRequestExpand OWNER_CONVERTED_CONTACT =
+            new LeadsRetrieveRequestExpand(Value.OWNER_CONVERTED_CONTACT, "owner,converted_contact");
 
-    OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT("owner,converted_contact,converted_account");
+    public static final LeadsRetrieveRequestExpand OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT =
+            new LeadsRetrieveRequestExpand(
+                    Value.OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT, "owner,converted_contact,converted_account");
 
-    private final String value;
+    private final Value value;
 
-    LeadsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    LeadsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof LeadsRetrieveRequestExpand
+                        && this.string.equals(((LeadsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case CONVERTED_CONTACT_CONVERTED_ACCOUNT:
+                return visitor.visitConvertedContactConvertedAccount();
+            case CONVERTED_ACCOUNT:
+                return visitor.visitConvertedAccount();
+            case OWNER_CONVERTED_ACCOUNT:
+                return visitor.visitOwnerConvertedAccount();
+            case CONVERTED_CONTACT:
+                return visitor.visitConvertedContact();
+            case OWNER_CONVERTED_CONTACT:
+                return visitor.visitOwnerConvertedContact();
+            case OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT:
+                return visitor.visitOwnerConvertedContactConvertedAccount();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static LeadsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "converted_contact,converted_account":
+                return CONVERTED_CONTACT_CONVERTED_ACCOUNT;
+            case "converted_account":
+                return CONVERTED_ACCOUNT;
+            case "owner,converted_account":
+                return OWNER_CONVERTED_ACCOUNT;
+            case "converted_contact":
+                return CONVERTED_CONTACT;
+            case "owner,converted_contact":
+                return OWNER_CONVERTED_CONTACT;
+            case "owner,converted_contact,converted_account":
+                return OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT;
+            default:
+                return new LeadsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CONVERTED_ACCOUNT,
+
+        CONVERTED_CONTACT,
+
+        CONVERTED_CONTACT_CONVERTED_ACCOUNT,
+
+        OWNER,
+
+        OWNER_CONVERTED_ACCOUNT,
+
+        OWNER_CONVERTED_CONTACT,
+
+        OWNER_CONVERTED_CONTACT_CONVERTED_ACCOUNT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitConvertedAccount();
+
+        T visitConvertedContact();
+
+        T visitConvertedContactConvertedAccount();
+
+        T visitOwner();
+
+        T visitOwnerConvertedAccount();
+
+        T visitOwnerConvertedContact();
+
+        T visitOwnerConvertedContactConvertedAccount();
+
+        T visitUnknown(String unknownType);
     }
 }

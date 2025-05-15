@@ -3,34 +3,146 @@
  */
 package com.merge.api.resources.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ScreeningQuestionTypeEnum {
-    DATE("DATE"),
+public final class ScreeningQuestionTypeEnum {
+    public static final ScreeningQuestionTypeEnum SINGLE_LINE_TEXT =
+            new ScreeningQuestionTypeEnum(Value.SINGLE_LINE_TEXT, "SINGLE_LINE_TEXT");
 
-    FILE("FILE"),
+    public static final ScreeningQuestionTypeEnum DATE = new ScreeningQuestionTypeEnum(Value.DATE, "DATE");
 
-    SINGLE_SELECT("SINGLE_SELECT"),
+    public static final ScreeningQuestionTypeEnum MULTI_SELECT =
+            new ScreeningQuestionTypeEnum(Value.MULTI_SELECT, "MULTI_SELECT");
 
-    MULTI_SELECT("MULTI_SELECT"),
+    public static final ScreeningQuestionTypeEnum FILE = new ScreeningQuestionTypeEnum(Value.FILE, "FILE");
 
-    SINGLE_LINE_TEXT("SINGLE_LINE_TEXT"),
+    public static final ScreeningQuestionTypeEnum NUMERIC = new ScreeningQuestionTypeEnum(Value.NUMERIC, "NUMERIC");
 
-    MULTI_LINE_TEXT("MULTI_LINE_TEXT"),
+    public static final ScreeningQuestionTypeEnum MULTI_LINE_TEXT =
+            new ScreeningQuestionTypeEnum(Value.MULTI_LINE_TEXT, "MULTI_LINE_TEXT");
 
-    NUMERIC("NUMERIC"),
+    public static final ScreeningQuestionTypeEnum BOOLEAN = new ScreeningQuestionTypeEnum(Value.BOOLEAN, "BOOLEAN");
 
-    BOOLEAN("BOOLEAN");
+    public static final ScreeningQuestionTypeEnum SINGLE_SELECT =
+            new ScreeningQuestionTypeEnum(Value.SINGLE_SELECT, "SINGLE_SELECT");
 
-    private final String value;
+    private final Value value;
 
-    ScreeningQuestionTypeEnum(String value) {
+    private final String string;
+
+    ScreeningQuestionTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ScreeningQuestionTypeEnum
+                        && this.string.equals(((ScreeningQuestionTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SINGLE_LINE_TEXT:
+                return visitor.visitSingleLineText();
+            case DATE:
+                return visitor.visitDate();
+            case MULTI_SELECT:
+                return visitor.visitMultiSelect();
+            case FILE:
+                return visitor.visitFile();
+            case NUMERIC:
+                return visitor.visitNumeric();
+            case MULTI_LINE_TEXT:
+                return visitor.visitMultiLineText();
+            case BOOLEAN:
+                return visitor.visitBoolean();
+            case SINGLE_SELECT:
+                return visitor.visitSingleSelect();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ScreeningQuestionTypeEnum valueOf(String value) {
+        switch (value) {
+            case "SINGLE_LINE_TEXT":
+                return SINGLE_LINE_TEXT;
+            case "DATE":
+                return DATE;
+            case "MULTI_SELECT":
+                return MULTI_SELECT;
+            case "FILE":
+                return FILE;
+            case "NUMERIC":
+                return NUMERIC;
+            case "MULTI_LINE_TEXT":
+                return MULTI_LINE_TEXT;
+            case "BOOLEAN":
+                return BOOLEAN;
+            case "SINGLE_SELECT":
+                return SINGLE_SELECT;
+            default:
+                return new ScreeningQuestionTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DATE,
+
+        FILE,
+
+        SINGLE_SELECT,
+
+        MULTI_SELECT,
+
+        SINGLE_LINE_TEXT,
+
+        MULTI_LINE_TEXT,
+
+        NUMERIC,
+
+        BOOLEAN,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDate();
+
+        T visitFile();
+
+        T visitSingleSelect();
+
+        T visitMultiSelect();
+
+        T visitSingleLineText();
+
+        T visitMultiLineText();
+
+        T visitNumeric();
+
+        T visitBoolean();
+
+        T visitUnknown(String unknownType);
     }
 }

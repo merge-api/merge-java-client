@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ResponseTypeEnum {
-    JSON("JSON"),
+public final class ResponseTypeEnum {
+    public static final ResponseTypeEnum BASE_64_GZIP = new ResponseTypeEnum(Value.BASE_64_GZIP, "BASE64_GZIP");
 
-    BASE_64_GZIP("BASE64_GZIP");
+    public static final ResponseTypeEnum JSON = new ResponseTypeEnum(Value.JSON, "JSON");
 
-    private final String value;
+    private final Value value;
 
-    ResponseTypeEnum(String value) {
+    private final String string;
+
+    ResponseTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ResponseTypeEnum && this.string.equals(((ResponseTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case BASE_64_GZIP:
+                return visitor.visitBase64Gzip();
+            case JSON:
+                return visitor.visitJson();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ResponseTypeEnum valueOf(String value) {
+        switch (value) {
+            case "BASE64_GZIP":
+                return BASE_64_GZIP;
+            case "JSON":
+                return JSON;
+            default:
+                return new ResponseTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        JSON,
+
+        BASE_64_GZIP,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitJson();
+
+        T visitBase64Gzip();
+
+        T visitUnknown(String unknownType);
     }
 }

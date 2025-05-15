@@ -3,558 +3,3130 @@
  */
 package com.merge.api.resources.hris.employees.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmployeesRetrieveRequestExpand {
-    COMPANY("company"),
+public final class EmployeesRetrieveRequestExpand {
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_PAY_GROUP, "work_location,pay_group");
 
-    COMPANY_PAY_GROUP("company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,work_location,team,company,pay_group");
 
-    EMPLOYMENTS("employments"),
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY, "groups,home_location,work_location,company");
 
-    EMPLOYMENTS_COMPANY("employments,company"),
+    public static final EmployeesRetrieveRequestExpand MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_TEAM, "manager,team");
 
-    EMPLOYMENTS_COMPANY_PAY_GROUP("employments,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_MANAGER_TEAM_COMPANY, "employments,manager,team,company");
 
-    EMPLOYMENTS_GROUPS("employments,groups"),
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,work_location,company,pay_group");
 
-    EMPLOYMENTS_GROUPS_COMPANY("employments,groups,company"),
+    public static final EmployeesRetrieveRequestExpand GROUPS_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_COMPANY_PAY_GROUP, "groups,company,pay_group");
 
-    EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP("employments,groups,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,groups,home_location,work_location,manager,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION("employments,groups,home_location"),
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION, "work_location");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY("employments,groups,home_location,company"),
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_COMPANY, "home_location,work_location,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP("employments,groups,home_location,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.TEAM_COMPANY_PAY_GROUP, "team,company,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER("employments,groups,home_location,manager"),
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER, "groups,manager");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY("employments,groups,home_location,manager,company"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_HOME_LOCATION_TEAM, "employments,home_location,team");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,manager,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_TEAM_COMPANY, "home_location,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP("employments,groups,home_location,manager,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+                    "employments,home_location,work_location,manager,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM("employments,groups,home_location,manager,team"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_PAY_GROUP, "employments,home_location,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY("employments,groups,home_location,manager,team,company"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY, "employments,groups,manager,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,manager,team,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_HOME_LOCATION_PAY_GROUP, "groups,home_location,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP("employments,groups,home_location,manager,team,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP, "employments,home_location,manager,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP("employments,groups,home_location,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,home_location,work_location,manager,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM("employments,groups,home_location,team"),
+    public static final EmployeesRetrieveRequestExpand COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.COMPANY, "company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY("employments,groups,home_location,team,company"),
+    public static final EmployeesRetrieveRequestExpand GROUPS_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_TEAM_COMPANY_PAY_GROUP, "groups,team,company,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP("employments,groups,home_location,team,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY, "employments,home_location,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP("employments,groups,home_location,team,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,work_location,manager,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION("employments,groups,home_location,work_location"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY,
+                    "employments,groups,home_location,manager,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY("employments,groups,home_location,work_location,company"),
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+                    "employments,groups,home_location,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_TEAM_PAY_GROUP, "work_location,team,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,work_location,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_GROUPS, "employments,groups");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,home_location,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER, "home_location,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY, "home_location,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP, "employments,groups,home_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_GROUPS_TEAM, "employments,groups,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_WORK_LOCATION_TEAM, "groups,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP, "employments,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER_TEAM_PAY_GROUP, "groups,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER, "manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_WORK_LOCATION, "employments,work_location");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_TEAM, "groups,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP, "employments,home_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY, "home_location,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+                    "groups,home_location,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "groups,home_location,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "groups,home_location,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_TEAM_COMPANY, "employments,groups,team,company");
+
+    public static final EmployeesRetrieveRequestExpand
+            GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "groups,home_location,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,groups,home_location,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "groups,home_location,work_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM, "employments,groups,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER, "groups,home_location,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "groups,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "groups,home_location,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,home_location,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_TEAM_COMPANY_PAY_GROUP, "home_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+                    new EmployeesRetrieveRequestExpand(
+                            Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                            "employments,groups,home_location,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+                    "groups,home_location,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_COMPANY, "groups,home_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,groups,home_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+                    "groups,home_location,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_TEAM_COMPANY, "groups,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP,
+                    "employments,groups,home_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_COMPANY, "groups,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY,
+                    "employments,groups,home_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+                    "employments,home_location,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP, "employments,groups,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP, "groups,home_location,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_MANAGER_COMPANY, "employments,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+                    "groups,home_location,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP, "employments,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_COMPANY, "manager,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+                    "home_location,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,groups,work_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_MANAGER, "employments,manager");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_MANAGER, "home_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "employments,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER, "employments,groups,home_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_MANAGER_TEAM, "home_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_TEAM_COMPANY_PAY_GROUP, "manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP, "employments,groups,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP, "groups,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM, "groups,home_location,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER_TEAM, "groups,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_TEAM_PAY_GROUP, "manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP, "employments,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "groups,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP, "groups,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_COMPANY, "home_location,company");
+
+    public static final EmployeesRetrieveRequestExpand TEAM = new EmployeesRetrieveRequestExpand(Value.TEAM, "team");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER("employments,groups,home_location,work_location,manager"),
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_TEAM, "home_location,work_location,team");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY(
-            "employments,groups,home_location,work_location,manager,company"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_COMPANY_PAY_GROUP, "employments,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP, "employments,home_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_COMPANY, "employments,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_GROUPS_PAY_GROUP, "employments,groups,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION, "employments,groups,home_location");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+                    "employments,groups,home_location,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY, "employments,groups,home_location,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_MANAGER_COMPANY, "home_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.TEAM_COMPANY, "team,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP, "home_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_WORK_LOCATION_TEAM, "employments,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP, "work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.TEAM_PAY_GROUP, "team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION, "groups,home_location,work_location");
+
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,home_location,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP, "groups,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_MANAGER_TEAM_PAY_GROUP, "home_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_MANAGER_PAY_GROUP, "home_location,manager,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,work_location,manager,company,pay_group"),
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "employments,home_location,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP, "home_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_TEAM_COMPANY, "employments,team,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP(
-            "employments,groups,home_location,work_location,manager,pay_group"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP,
+                    "employments,groups,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_HOME_LOCATION_COMPANY, "groups,home_location,company");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM(
-            "employments,groups,home_location,work_location,manager,team"),
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_MANAGER_PAY_GROUP, "employments,manager,pay_group");
 
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY(
-            "employments,groups,home_location,work_location,manager,team,company"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,work_location,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP(
-            "employments,groups,home_location,work_location,manager,team,pay_group"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP(
-            "employments,groups,home_location,work_location,pay_group"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM("employments,groups,home_location,work_location,team"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY(
-            "employments,groups,home_location,work_location,team,company"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP(
-            "employments,groups,home_location,work_location,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP(
-            "employments,groups,home_location,work_location,team,pay_group"),
-
-    EMPLOYMENTS_GROUPS_MANAGER("employments,groups,manager"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_COMPANY("employments,groups,manager,company"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP("employments,groups,manager,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP("employments,groups,manager,pay_group"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_TEAM("employments,groups,manager,team"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY("employments,groups,manager,team,company"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP("employments,groups,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP("employments,groups,manager,team,pay_group"),
-
-    EMPLOYMENTS_GROUPS_PAY_GROUP("employments,groups,pay_group"),
-
-    EMPLOYMENTS_GROUPS_TEAM("employments,groups,team"),
-
-    EMPLOYMENTS_GROUPS_TEAM_COMPANY("employments,groups,team,company"),
-
-    EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP("employments,groups,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP("employments,groups,team,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION("employments,groups,work_location"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY("employments,groups,work_location,company"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP("employments,groups,work_location,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER("employments,groups,work_location,manager"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY("employments,groups,work_location,manager,company"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP(
-            "employments,groups,work_location,manager,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP("employments,groups,work_location,manager,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM("employments,groups,work_location,manager,team"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY("employments,groups,work_location,manager,team,company"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,groups,work_location,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP("employments,groups,work_location,manager,team,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP("employments,groups,work_location,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM("employments,groups,work_location,team"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY("employments,groups,work_location,team,company"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP("employments,groups,work_location,team,company,pay_group"),
-
-    EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP("employments,groups,work_location,team,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION("employments,home_location"),
-
-    EMPLOYMENTS_HOME_LOCATION_COMPANY("employments,home_location,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP("employments,home_location,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER("employments,home_location,manager"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY("employments,home_location,manager,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP("employments,home_location,manager,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP("employments,home_location,manager,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM("employments,home_location,manager,team"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY("employments,home_location,manager,team,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,home_location,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP("employments,home_location,manager,team,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_PAY_GROUP("employments,home_location,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_TEAM("employments,home_location,team"),
-
-    EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY("employments,home_location,team,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP("employments,home_location,team,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP("employments,home_location,team,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION("employments,home_location,work_location"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY("employments,home_location,work_location,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP(
-            "employments,home_location,work_location,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER("employments,home_location,work_location,manager"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY("employments,home_location,work_location,manager,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP(
-            "employments,home_location,work_location,manager,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP(
-            "employments,home_location,work_location,manager,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM("employments,home_location,work_location,manager,team"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY(
-            "employments,home_location,work_location,manager,team,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,home_location,work_location,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP(
-            "employments,home_location,work_location,manager,team,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP("employments,home_location,work_location,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM("employments,home_location,work_location,team"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY("employments,home_location,work_location,team,company"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP(
-            "employments,home_location,work_location,team,company,pay_group"),
-
-    EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP("employments,home_location,work_location,team,pay_group"),
-
-    EMPLOYMENTS_MANAGER("employments,manager"),
-
-    EMPLOYMENTS_MANAGER_COMPANY("employments,manager,company"),
-
-    EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP("employments,manager,company,pay_group"),
-
-    EMPLOYMENTS_MANAGER_PAY_GROUP("employments,manager,pay_group"),
-
-    EMPLOYMENTS_MANAGER_TEAM("employments,manager,team"),
-
-    EMPLOYMENTS_MANAGER_TEAM_COMPANY("employments,manager,team,company"),
-
-    EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP("employments,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP("employments,manager,team,pay_group"),
-
-    EMPLOYMENTS_PAY_GROUP("employments,pay_group"),
-
-    EMPLOYMENTS_TEAM("employments,team"),
-
-    EMPLOYMENTS_TEAM_COMPANY("employments,team,company"),
-
-    EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP("employments,team,company,pay_group"),
-
-    EMPLOYMENTS_TEAM_PAY_GROUP("employments,team,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION("employments,work_location"),
-
-    EMPLOYMENTS_WORK_LOCATION_COMPANY("employments,work_location,company"),
-
-    EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP("employments,work_location,company,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER("employments,work_location,manager"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY("employments,work_location,manager,company"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP("employments,work_location,manager,company,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP("employments,work_location,manager,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM("employments,work_location,manager,team"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY("employments,work_location,manager,team,company"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "employments,work_location,manager,team,company,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP("employments,work_location,manager,team,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_PAY_GROUP("employments,work_location,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_TEAM("employments,work_location,team"),
-
-    EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY("employments,work_location,team,company"),
-
-    EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP("employments,work_location,team,company,pay_group"),
-
-    EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP("employments,work_location,team,pay_group"),
-
-    GROUPS("groups"),
-
-    GROUPS_COMPANY("groups,company"),
-
-    GROUPS_COMPANY_PAY_GROUP("groups,company,pay_group"),
-
-    GROUPS_HOME_LOCATION("groups,home_location"),
-
-    GROUPS_HOME_LOCATION_COMPANY("groups,home_location,company"),
-
-    GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP("groups,home_location,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_MANAGER("groups,home_location,manager"),
-
-    GROUPS_HOME_LOCATION_MANAGER_COMPANY("groups,home_location,manager,company"),
-
-    GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP("groups,home_location,manager,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP("groups,home_location,manager,pay_group"),
-
-    GROUPS_HOME_LOCATION_MANAGER_TEAM("groups,home_location,manager,team"),
-
-    GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY("groups,home_location,manager,team,company"),
-
-    GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP("groups,home_location,manager,team,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP("groups,home_location,manager,team,pay_group"),
-
-    GROUPS_HOME_LOCATION_PAY_GROUP("groups,home_location,pay_group"),
-
-    GROUPS_HOME_LOCATION_TEAM("groups,home_location,team"),
-
-    GROUPS_HOME_LOCATION_TEAM_COMPANY("groups,home_location,team,company"),
-
-    GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP("groups,home_location,team,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_TEAM_PAY_GROUP("groups,home_location,team,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION("groups,home_location,work_location"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY("groups,home_location,work_location,company"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP("groups,home_location,work_location,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER("groups,home_location,work_location,manager"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY("groups,home_location,work_location,manager,company"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP(
-            "groups,home_location,work_location,manager,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP("groups,home_location,work_location,manager,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM("groups,home_location,work_location,manager,team"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY("groups,home_location,work_location,manager,team,company"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "groups,home_location,work_location,manager,team,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP(
-            "groups,home_location,work_location,manager,team,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP("groups,home_location,work_location,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM("groups,home_location,work_location,team"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY("groups,home_location,work_location,team,company"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP(
-            "groups,home_location,work_location,team,company,pay_group"),
-
-    GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP("groups,home_location,work_location,team,pay_group"),
-
-    GROUPS_MANAGER("groups,manager"),
-
-    GROUPS_MANAGER_COMPANY("groups,manager,company"),
-
-    GROUPS_MANAGER_COMPANY_PAY_GROUP("groups,manager,company,pay_group"),
-
-    GROUPS_MANAGER_PAY_GROUP("groups,manager,pay_group"),
-
-    GROUPS_MANAGER_TEAM("groups,manager,team"),
-
-    GROUPS_MANAGER_TEAM_COMPANY("groups,manager,team,company"),
-
-    GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP("groups,manager,team,company,pay_group"),
-
-    GROUPS_MANAGER_TEAM_PAY_GROUP("groups,manager,team,pay_group"),
-
-    GROUPS_PAY_GROUP("groups,pay_group"),
-
-    GROUPS_TEAM("groups,team"),
-
-    GROUPS_TEAM_COMPANY("groups,team,company"),
-
-    GROUPS_TEAM_COMPANY_PAY_GROUP("groups,team,company,pay_group"),
-
-    GROUPS_TEAM_PAY_GROUP("groups,team,pay_group"),
-
-    GROUPS_WORK_LOCATION("groups,work_location"),
-
-    GROUPS_WORK_LOCATION_COMPANY("groups,work_location,company"),
-
-    GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP("groups,work_location,company,pay_group"),
-
-    GROUPS_WORK_LOCATION_MANAGER("groups,work_location,manager"),
-
-    GROUPS_WORK_LOCATION_MANAGER_COMPANY("groups,work_location,manager,company"),
-
-    GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP("groups,work_location,manager,company,pay_group"),
-
-    GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP("groups,work_location,manager,pay_group"),
-
-    GROUPS_WORK_LOCATION_MANAGER_TEAM("groups,work_location,manager,team"),
-
-    GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY("groups,work_location,manager,team,company"),
-
-    GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP("groups,work_location,manager,team,company,pay_group"),
-
-    GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP("groups,work_location,manager,team,pay_group"),
-
-    GROUPS_WORK_LOCATION_PAY_GROUP("groups,work_location,pay_group"),
-
-    GROUPS_WORK_LOCATION_TEAM("groups,work_location,team"),
-
-    GROUPS_WORK_LOCATION_TEAM_COMPANY("groups,work_location,team,company"),
-
-    GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP("groups,work_location,team,company,pay_group"),
-
-    GROUPS_WORK_LOCATION_TEAM_PAY_GROUP("groups,work_location,team,pay_group"),
-
-    HOME_LOCATION("home_location"),
-
-    HOME_LOCATION_COMPANY("home_location,company"),
-
-    HOME_LOCATION_COMPANY_PAY_GROUP("home_location,company,pay_group"),
-
-    HOME_LOCATION_MANAGER("home_location,manager"),
-
-    HOME_LOCATION_MANAGER_COMPANY("home_location,manager,company"),
-
-    HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP("home_location,manager,company,pay_group"),
-
-    HOME_LOCATION_MANAGER_PAY_GROUP("home_location,manager,pay_group"),
-
-    HOME_LOCATION_MANAGER_TEAM("home_location,manager,team"),
-
-    HOME_LOCATION_MANAGER_TEAM_COMPANY("home_location,manager,team,company"),
-
-    HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP("home_location,manager,team,company,pay_group"),
-
-    HOME_LOCATION_MANAGER_TEAM_PAY_GROUP("home_location,manager,team,pay_group"),
-
-    HOME_LOCATION_PAY_GROUP("home_location,pay_group"),
-
-    HOME_LOCATION_TEAM("home_location,team"),
-
-    HOME_LOCATION_TEAM_COMPANY("home_location,team,company"),
-
-    HOME_LOCATION_TEAM_COMPANY_PAY_GROUP("home_location,team,company,pay_group"),
-
-    HOME_LOCATION_TEAM_PAY_GROUP("home_location,team,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION("home_location,work_location"),
-
-    HOME_LOCATION_WORK_LOCATION_COMPANY("home_location,work_location,company"),
-
-    HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP("home_location,work_location,company,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER("home_location,work_location,manager"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY("home_location,work_location,manager,company"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP("home_location,work_location,manager,company,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP("home_location,work_location,manager,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM("home_location,work_location,manager,team"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY("home_location,work_location,manager,team,company"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP(
-            "home_location,work_location,manager,team,company,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP("home_location,work_location,manager,team,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_PAY_GROUP("home_location,work_location,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_TEAM("home_location,work_location,team"),
-
-    HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY("home_location,work_location,team,company"),
-
-    HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP("home_location,work_location,team,company,pay_group"),
-
-    HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP("home_location,work_location,team,pay_group"),
-
-    MANAGER("manager"),
-
-    MANAGER_COMPANY("manager,company"),
-
-    MANAGER_COMPANY_PAY_GROUP("manager,company,pay_group"),
-
-    MANAGER_PAY_GROUP("manager,pay_group"),
-
-    MANAGER_TEAM("manager,team"),
-
-    MANAGER_TEAM_COMPANY("manager,team,company"),
-
-    MANAGER_TEAM_COMPANY_PAY_GROUP("manager,team,company,pay_group"),
-
-    MANAGER_TEAM_PAY_GROUP("manager,team,pay_group"),
-
-    PAY_GROUP("pay_group"),
-
-    TEAM("team"),
-
-    TEAM_COMPANY("team,company"),
-
-    TEAM_COMPANY_PAY_GROUP("team,company,pay_group"),
-
-    TEAM_PAY_GROUP("team,pay_group"),
-
-    WORK_LOCATION("work_location"),
-
-    WORK_LOCATION_COMPANY("work_location,company"),
-
-    WORK_LOCATION_COMPANY_PAY_GROUP("work_location,company,pay_group"),
-
-    WORK_LOCATION_MANAGER("work_location,manager"),
-
-    WORK_LOCATION_MANAGER_COMPANY("work_location,manager,company"),
-
-    WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP("work_location,manager,company,pay_group"),
-
-    WORK_LOCATION_MANAGER_PAY_GROUP("work_location,manager,pay_group"),
-
-    WORK_LOCATION_MANAGER_TEAM("work_location,manager,team"),
-
-    WORK_LOCATION_MANAGER_TEAM_COMPANY("work_location,manager,team,company"),
-
-    WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP("work_location,manager,team,company,pay_group"),
-
-    WORK_LOCATION_MANAGER_TEAM_PAY_GROUP("work_location,manager,team,pay_group"),
-
-    WORK_LOCATION_PAY_GROUP("work_location,pay_group"),
-
-    WORK_LOCATION_TEAM("work_location,team"),
-
-    WORK_LOCATION_TEAM_COMPANY("work_location,team,company"),
-
-    WORK_LOCATION_TEAM_COMPANY_PAY_GROUP("work_location,team,company,pay_group"),
-
-    WORK_LOCATION_TEAM_PAY_GROUP("work_location,team,pay_group");
-
-    private final String value;
-
-    EmployeesRetrieveRequestExpand(String value) {
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP, "employments,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER, "employments,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,home_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_HOME_LOCATION, "employments,home_location");
+
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+                    new EmployeesRetrieveRequestExpand(
+                            Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                            "employments,groups,home_location,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_PAY_GROUP, "groups,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_MANAGER_COMPANY, "work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "groups,home_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM,
+                    "employments,groups,home_location,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_TEAM, "groups,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP, "employments,groups,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_TEAM_PAY_GROUP, "groups,home_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_COMPANY_PAY_GROUP, "home_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM, "employments,home_location,work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION, "employments,groups,work_location");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_COMPANY, "employments,work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM, "home_location,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_COMPANY, "employments,groups,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_TEAM, "employments,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM,
+                    "employments,groups,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_HOME_LOCATION_MANAGER, "groups,home_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_COMPANY_PAY_GROUP, "manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP,
+                    "employments,groups,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP, "employments,groups,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_PAY_GROUP, "home_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+                    "employments,groups,home_location,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP, "groups,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "employments,home_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP, "home_location,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_MANAGER_TEAM_COMPANY, "work_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY, "groups,home_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_COMPANY, "groups,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_TEAM_COMPANY_PAY_GROUP, "work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,home_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP, "employments,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION,
+                    "employments,groups,home_location,work_location");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "groups,home_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+                    "groups,home_location,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER,
+                    "employments,groups,home_location,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION, "employments,home_location,work_location");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_TEAM, "home_location,team");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "home_location,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP, "employments,groups,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY,
+                    "employments,groups,home_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_TEAM_PAY_GROUP, "groups,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,home_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_TEAM_COMPANY, "work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP, "employments,groups,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS, "groups");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+                    "home_location,work_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY, "employments,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS, "employments");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY,
+                    "employments,groups,home_location,work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_TEAM, "work_location,team");
+
+    public static final EmployeesRetrieveRequestExpand
+            EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP = new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_TEAM_COMPANY, "groups,home_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP, "employments,groups,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "home_location,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION, "home_location");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_PAY_GROUP, "employments,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER, "employments,home_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY,
+                    "employments,groups,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP,
+                    "employments,groups,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_TEAM, "employments,groups,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM, "employments,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+                    "home_location,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_TEAM_PAY_GROUP, "groups,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_WORK_LOCATION_PAY_GROUP, "groups,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+                    "employments,home_location,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+                    "groups,home_location,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP,
+                    "employments,groups,home_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+                    "employments,groups,home_location,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+                    "employments,groups,work_location,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM, "employments,groups,home_location,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_COMPANY, "employments,home_location,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_WORK_LOCATION_COMPANY, "groups,work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_MANAGER_TEAM, "work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_PAY_GROUP, "home_location,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_GROUPS_COMPANY, "employments,groups,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM, "employments,home_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_MANAGER_TEAM, "employments,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY, "groups,work_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_MANAGER_TEAM_COMPANY, "home_location,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER_COMPANY, "groups,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_MANAGER_TEAM_PAY_GROUP, "work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP,
+                    "employments,groups,home_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_TEAM, "groups,home_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+                    "employments,home_location,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP, "groups,home_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "home_location,work_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY, "employments,groups,work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP, "employments,work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_COMPANY, "work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY,
+                    "employments,groups,work_location,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY, "employments,home_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "home_location,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP, "groups,manager,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_WORK_LOCATION, "groups,work_location");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_WORK_LOCATION_MANAGER, "groups,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER, "employments,groups,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY,
+                    "employments,home_location,work_location,company");
+
+    public static final EmployeesRetrieveRequestExpand COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.COMPANY_PAY_GROUP, "company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP, "employments,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_MANAGER_PAY_GROUP, "work_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+                    "employments,groups,home_location,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+                    "employments,groups,work_location,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP, "groups,home_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.WORK_LOCATION_MANAGER, "work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_PAY_GROUP, "employments,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_TEAM =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_HOME_LOCATION_TEAM, "groups,home_location,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_MANAGER =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_GROUPS_MANAGER, "employments,groups,manager");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.EMPLOYMENTS_TEAM_PAY_GROUP, "employments,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_TEAM_COMPANY, "manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM,
+                    "employments,groups,home_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY, "employments,work_location,manager,company");
+
+    public static final EmployeesRetrieveRequestExpand MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.MANAGER_PAY_GROUP, "manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_COMPANY_PAY_GROUP, "work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER,
+                    "employments,home_location,work_location,manager");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP, "groups,home_location,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+                    "employments,groups,work_location,manager,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_TEAM_PAY_GROUP, "home_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_MANAGER_COMPANY_PAY_GROUP, "groups,manager,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER_TEAM_COMPANY, "groups,manager,team,company");
+
+    public static final EmployeesRetrieveRequestExpand PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.PAY_GROUP, "pay_group");
+
+    public static final EmployeesRetrieveRequestExpand HOME_LOCATION_WORK_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.HOME_LOCATION_WORK_LOCATION, "home_location,work_location");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_MANAGER_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_MANAGER_PAY_GROUP, "groups,manager,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+                    "employments,groups,home_location,work_location,team,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+                    "employments,home_location,work_location,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_TEAM_COMPANY =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_TEAM_COMPANY, "groups,team,company");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+                    "employments,home_location,work_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+                    "employments,home_location,work_location,manager,team");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION =
+            new EmployeesRetrieveRequestExpand(Value.GROUPS_HOME_LOCATION, "groups,home_location");
+
+    public static final EmployeesRetrieveRequestExpand GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP, "groups,home_location,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+                    "employments,home_location,team,company,pay_group");
+
+    public static final EmployeesRetrieveRequestExpand WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP =
+            new EmployeesRetrieveRequestExpand(
+                    Value.WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP, "work_location,manager,team,company,pay_group");
+
+    private final Value value;
+
+    private final String string;
+
+    EmployeesRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmployeesRetrieveRequestExpand
+                        && this.string.equals(((EmployeesRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case WORK_LOCATION_PAY_GROUP:
+                return visitor.visitWorkLocationPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY:
+                return visitor.visitGroupsHomeLocationWorkLocationCompany();
+            case MANAGER_TEAM:
+                return visitor.visitManagerTeam();
+            case EMPLOYMENTS_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsManagerTeamCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationCompanyPayGroup();
+            case GROUPS_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamCompany();
+            case WORK_LOCATION:
+                return visitor.visitWorkLocation();
+            case HOME_LOCATION_WORK_LOCATION_COMPANY:
+                return visitor.visitHomeLocationWorkLocationCompany();
+            case TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitTeamCompanyPayGroup();
+            case GROUPS_MANAGER:
+                return visitor.visitGroupsManager();
+            case EMPLOYMENTS_HOME_LOCATION_TEAM:
+                return visitor.visitEmploymentsHomeLocationTeam();
+            case HOME_LOCATION_TEAM_COMPANY:
+                return visitor.visitHomeLocationTeamCompany();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerCompany();
+            case EMPLOYMENTS_HOME_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationPayGroup();
+            case EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsManagerTeamCompany();
+            case GROUPS_HOME_LOCATION_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationManagerPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerTeamCompany();
+            case COMPANY:
+                return visitor.visitCompany();
+            case GROUPS_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsTeamCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsHomeLocationTeamCompany();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsWorkLocationManagerTeamCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerPayGroup();
+            case WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_GROUPS:
+                return visitor.visitEmploymentsGroups();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerTeamPayGroup();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER:
+                return visitor.visitHomeLocationWorkLocationManager();
+            case HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitHomeLocationWorkLocationTeamCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_TEAM:
+                return visitor.visitEmploymentsGroupsTeam();
+            case GROUPS_WORK_LOCATION_TEAM:
+                return visitor.visitGroupsWorkLocationTeam();
+            case EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationTeamPayGroup();
+            case GROUPS_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitGroupsManagerTeamPayGroup();
+            case MANAGER:
+                return visitor.visitManager();
+            case EMPLOYMENTS_WORK_LOCATION:
+                return visitor.visitEmploymentsWorkLocation();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerCompanyPayGroup();
+            case GROUPS_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitGroupsWorkLocationManagerTeam();
+            case EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationCompanyPayGroup();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitHomeLocationWorkLocationManagerCompany();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsTeamCompany();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerTeamCompany();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM:
+                return visitor.visitEmploymentsGroupsWorkLocationTeam();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER:
+                return visitor.visitGroupsHomeLocationWorkLocationManager();
+            case GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationManagerTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerTeamPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationTeamCompanyPayGroup();
+            case HOME_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitGroupsHomeLocationWorkLocationTeamCompany();
+            case GROUPS_HOME_LOCATION_MANAGER_COMPANY:
+                return visitor.visitGroupsHomeLocationManagerCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerTeamPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerPayGroup();
+            case GROUPS_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitGroupsWorkLocationTeamCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationManagerTeamCompanyPayGroup();
+            case GROUPS_COMPANY:
+                return visitor.visitGroupsCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationTeamCompany();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsHomeLocationWorkLocationTeamCompany();
+            case EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationPayGroup();
+            case EMPLOYMENTS_MANAGER_COMPANY:
+                return visitor.visitEmploymentsManagerCompany();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerCompany();
+            case EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsManagerTeamPayGroup();
+            case MANAGER_COMPANY:
+                return visitor.visitManagerCompany();
+            case HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerTeamCompany();
+            case EMPLOYMENTS_MANAGER:
+                return visitor.visitEmploymentsManager();
+            case HOME_LOCATION_MANAGER:
+                return visitor.visitHomeLocationManager();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationManagerCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER:
+                return visitor.visitEmploymentsGroupsHomeLocationManager();
+            case HOME_LOCATION_MANAGER_TEAM:
+                return visitor.visitHomeLocationManagerTeam();
+            case MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsManagerPayGroup();
+            case GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM:
+                return visitor.visitGroupsHomeLocationWorkLocationTeam();
+            case GROUPS_MANAGER_TEAM:
+                return visitor.visitGroupsManagerTeam();
+            case MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitManagerTeamPayGroup();
+            case EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsManagerTeamCompanyPayGroup();
+            case GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationManagerCompanyPayGroup();
+            case GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationManagerPayGroup();
+            case HOME_LOCATION_COMPANY:
+                return visitor.visitHomeLocationCompany();
+            case TEAM:
+                return visitor.visitTeam();
+            case HOME_LOCATION_WORK_LOCATION_TEAM:
+                return visitor.visitHomeLocationWorkLocationTeam();
+            case EMPLOYMENTS_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationTeamPayGroup();
+            case EMPLOYMENTS_COMPANY:
+                return visitor.visitEmploymentsCompany();
+            case EMPLOYMENTS_GROUPS_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION:
+                return visitor.visitEmploymentsGroupsHomeLocation();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationCompany();
+            case HOME_LOCATION_MANAGER_COMPANY:
+                return visitor.visitHomeLocationManagerCompany();
+            case TEAM_COMPANY:
+                return visitor.visitTeamCompany();
+            case HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_TEAM:
+                return visitor.visitEmploymentsWorkLocationTeam();
+            case WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitWorkLocationManagerCompanyPayGroup();
+            case TEAM_PAY_GROUP:
+                return visitor.visitTeamPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION:
+                return visitor.visitGroupsHomeLocationWorkLocation();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+            case GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationCompanyPayGroup();
+            case HOME_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitHomeLocationManagerTeamPayGroup();
+            case HOME_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitHomeLocationManagerPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerCompanyPayGroup();
+            case HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationManagerCompanyPayGroup();
+            case EMPLOYMENTS_TEAM_COMPANY:
+                return visitor.visitEmploymentsTeamCompany();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationTeamPayGroup();
+            case GROUPS_HOME_LOCATION_COMPANY:
+                return visitor.visitGroupsHomeLocationCompany();
+            case EMPLOYMENTS_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsManagerPayGroup();
+            case EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsManagerCompanyPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER:
+                return visitor.visitEmploymentsWorkLocationManager();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsHomeLocationManagerTeamCompany();
+            case EMPLOYMENTS_HOME_LOCATION:
+                return visitor.visitEmploymentsHomeLocation();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+            case GROUPS_PAY_GROUP:
+                return visitor.visitGroupsPayGroup();
+            case WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitWorkLocationManagerCompany();
+            case GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationManagerCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationTeam();
+            case GROUPS_TEAM:
+                return visitor.visitGroupsTeam();
+            case EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsManagerTeamPayGroup();
+            case GROUPS_HOME_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationTeamPayGroup();
+            case HOME_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM:
+                return visitor.visitEmploymentsHomeLocationWorkLocationTeam();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION:
+                return visitor.visitEmploymentsGroupsWorkLocation();
+            case EMPLOYMENTS_WORK_LOCATION_COMPANY:
+                return visitor.visitEmploymentsWorkLocationCompany();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitHomeLocationWorkLocationManagerTeam();
+            case EMPLOYMENTS_GROUPS_MANAGER_COMPANY:
+                return visitor.visitEmploymentsGroupsManagerCompany();
+            case EMPLOYMENTS_TEAM:
+                return visitor.visitEmploymentsTeam();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerTeam();
+            case GROUPS_HOME_LOCATION_MANAGER:
+                return visitor.visitGroupsHomeLocationManager();
+            case MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitManagerCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsTeamPayGroup();
+            case HOME_LOCATION_PAY_GROUP:
+                return visitor.visitHomeLocationPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationTeamCompany();
+            case GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationManagerTeamPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationManagerCompanyPayGroup();
+            case HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationTeamCompanyPayGroup();
+            case WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitWorkLocationManagerTeamCompany();
+            case GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitGroupsHomeLocationManagerTeamCompany();
+            case GROUPS_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitGroupsWorkLocationManagerCompany();
+            case WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitWorkLocationTeamCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationManagerTeamPayGroup();
+            case EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocation();
+            case GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationManagerTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitGroupsHomeLocationWorkLocationManagerTeam();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManager();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION:
+                return visitor.visitEmploymentsHomeLocationWorkLocation();
+            case HOME_LOCATION_TEAM:
+                return visitor.visitHomeLocationTeam();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerTeamCompany();
+            case GROUPS_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationManagerTeamCompanyPayGroup();
+            case WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitWorkLocationTeamCompany();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationPayGroup();
+            case GROUPS:
+                return visitor.visitGroups();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitHomeLocationWorkLocationManagerTeamCompany();
+            case EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsWorkLocationTeamCompany();
+            case EMPLOYMENTS:
+                return visitor.visitEmployments();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationCompany();
+            case WORK_LOCATION_TEAM:
+                return visitor.visitWorkLocationTeam();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_TEAM_COMPANY:
+                return visitor.visitGroupsHomeLocationTeamCompany();
+            case EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsManagerCompanyPayGroup();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationManagerTeamPayGroup();
+            case HOME_LOCATION:
+                return visitor.visitHomeLocation();
+            case EMPLOYMENTS_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER:
+                return visitor.visitEmploymentsHomeLocationManager();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerCompany();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerPayGroup();
+            case EMPLOYMENTS_GROUPS_MANAGER_TEAM:
+                return visitor.visitEmploymentsGroupsManagerTeam();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsWorkLocationManagerTeam();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationManagerPayGroup();
+            case GROUPS_TEAM_PAY_GROUP:
+                return visitor.visitGroupsTeamPayGroup();
+            case GROUPS_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitGroupsWorkLocationPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsManagerTeamCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationTeamPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM:
+                return visitor.visitEmploymentsGroupsHomeLocationTeam();
+            case EMPLOYMENTS_HOME_LOCATION_COMPANY:
+                return visitor.visitEmploymentsHomeLocationCompany();
+            case GROUPS_WORK_LOCATION_COMPANY:
+                return visitor.visitGroupsWorkLocationCompany();
+            case WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitWorkLocationManagerTeam();
+            case HOME_LOCATION_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationPayGroup();
+            case EMPLOYMENTS_GROUPS_COMPANY:
+                return visitor.visitEmploymentsGroupsCompany();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsHomeLocationManagerTeam();
+            case EMPLOYMENTS_MANAGER_TEAM:
+                return visitor.visitEmploymentsManagerTeam();
+            case GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitGroupsWorkLocationManagerTeamCompany();
+            case HOME_LOCATION_MANAGER_TEAM_COMPANY:
+                return visitor.visitHomeLocationManagerTeamCompany();
+            case GROUPS_MANAGER_COMPANY:
+                return visitor.visitGroupsManagerCompany();
+            case WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitWorkLocationManagerTeamPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_MANAGER_TEAM:
+                return visitor.visitGroupsHomeLocationManagerTeam();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerPayGroup();
+            case GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationTeamCompanyPayGroup();
+            case HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationTeamCompanyPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY:
+                return visitor.visitEmploymentsGroupsWorkLocationCompany();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationManagerPayGroup();
+            case WORK_LOCATION_COMPANY:
+                return visitor.visitWorkLocationCompany();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY:
+                return visitor.visitEmploymentsGroupsWorkLocationTeamCompany();
+            case EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsHomeLocationManagerCompany();
+            case HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitHomeLocationWorkLocationManagerCompanyPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationManagerTeamPayGroup();
+            case GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsManagerTeamCompanyPayGroup();
+            case GROUPS_WORK_LOCATION:
+                return visitor.visitGroupsWorkLocation();
+            case GROUPS_WORK_LOCATION_MANAGER:
+                return visitor.visitGroupsWorkLocationManager();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER:
+                return visitor.visitEmploymentsGroupsWorkLocationManager();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY:
+                return visitor.visitEmploymentsHomeLocationWorkLocationCompany();
+            case COMPANY_PAY_GROUP:
+                return visitor.visitCompanyPayGroup();
+            case EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsWorkLocationCompanyPayGroup();
+            case WORK_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitWorkLocationManagerPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationManagerTeam();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerCompanyPayGroup();
+            case GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationManagerTeamPayGroup();
+            case WORK_LOCATION_MANAGER:
+                return visitor.visitWorkLocationManager();
+            case EMPLOYMENTS_PAY_GROUP:
+                return visitor.visitEmploymentsPayGroup();
+            case GROUPS_HOME_LOCATION_TEAM:
+                return visitor.visitGroupsHomeLocationTeam();
+            case EMPLOYMENTS_GROUPS_MANAGER:
+                return visitor.visitEmploymentsGroupsManager();
+            case EMPLOYMENTS_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsTeamPayGroup();
+            case MANAGER_TEAM_COMPANY:
+                return visitor.visitManagerTeamCompany();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsGroupsHomeLocationManagerTeam();
+            case EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY:
+                return visitor.visitEmploymentsWorkLocationManagerCompany();
+            case MANAGER_PAY_GROUP:
+                return visitor.visitManagerPayGroup();
+            case WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitWorkLocationCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManager();
+            case GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationManagerPayGroup();
+            case EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsWorkLocationManagerTeamPayGroup();
+            case HOME_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitHomeLocationTeamPayGroup();
+            case GROUPS_MANAGER_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsManagerCompanyPayGroup();
+            case GROUPS_MANAGER_TEAM_COMPANY:
+                return visitor.visitGroupsManagerTeamCompany();
+            case PAY_GROUP:
+                return visitor.visitPayGroup();
+            case HOME_LOCATION_WORK_LOCATION:
+                return visitor.visitHomeLocationWorkLocation();
+            case GROUPS_MANAGER_PAY_GROUP:
+                return visitor.visitGroupsManagerPayGroup();
+            case EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP:
+                return visitor.visitEmploymentsGroupsHomeLocationWorkLocationTeamPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationPayGroup();
+            case GROUPS_TEAM_COMPANY:
+                return visitor.visitGroupsTeamCompany();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationWorkLocationCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM:
+                return visitor.visitEmploymentsHomeLocationWorkLocationManagerTeam();
+            case GROUPS_HOME_LOCATION:
+                return visitor.visitGroupsHomeLocation();
+            case GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP:
+                return visitor.visitGroupsHomeLocationCompanyPayGroup();
+            case EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitEmploymentsHomeLocationTeamCompanyPayGroup();
+            case WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP:
+                return visitor.visitWorkLocationManagerTeamCompanyPayGroup();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmployeesRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "work_location,pay_group":
+                return WORK_LOCATION_PAY_GROUP;
+            case "employments,work_location,team,company,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,company":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY;
+            case "manager,team":
+                return MANAGER_TEAM;
+            case "employments,manager,team,company":
+                return EMPLOYMENTS_MANAGER_TEAM_COMPANY;
+            case "employments,groups,home_location,work_location,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "groups,company,pay_group":
+                return GROUPS_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,work_location,manager,team,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "work_location":
+                return WORK_LOCATION;
+            case "home_location,work_location,company":
+                return HOME_LOCATION_WORK_LOCATION_COMPANY;
+            case "team,company,pay_group":
+                return TEAM_COMPANY_PAY_GROUP;
+            case "groups,manager":
+                return GROUPS_MANAGER;
+            case "employments,home_location,team":
+                return EMPLOYMENTS_HOME_LOCATION_TEAM;
+            case "home_location,team,company":
+                return HOME_LOCATION_TEAM_COMPANY;
+            case "employments,home_location,work_location,manager,company":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY;
+            case "employments,home_location,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_PAY_GROUP;
+            case "employments,groups,manager,team,company":
+                return EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY;
+            case "groups,home_location,pay_group":
+                return GROUPS_HOME_LOCATION_PAY_GROUP;
+            case "employments,home_location,manager,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,home_location,work_location,manager,team,company":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "company":
+                return COMPANY;
+            case "groups,team,company,pay_group":
+                return GROUPS_TEAM_COMPANY_PAY_GROUP;
+            case "employments,home_location,team,company":
+                return EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY;
+            case "employments,work_location,manager,team,company":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "employments,groups,home_location,manager,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY;
+            case "employments,groups,home_location,work_location,manager,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "work_location,team,pay_group":
+                return WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,groups":
+                return EMPLOYMENTS_GROUPS;
+            case "employments,home_location,work_location,manager,team,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "home_location,work_location,manager":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER;
+            case "home_location,work_location,team,company":
+                return HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY;
+            case "employments,groups,home_location,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP;
+            case "employments,groups,home_location,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,team":
+                return EMPLOYMENTS_GROUPS_TEAM;
+            case "groups,work_location,team":
+                return GROUPS_WORK_LOCATION_TEAM;
+            case "employments,work_location,team,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "groups,manager,team,pay_group":
+                return GROUPS_MANAGER_TEAM_PAY_GROUP;
+            case "manager":
+                return MANAGER;
+            case "employments,work_location":
+                return EMPLOYMENTS_WORK_LOCATION;
+            case "employments,groups,home_location,manager,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "groups,work_location,manager,team":
+                return GROUPS_WORK_LOCATION_MANAGER_TEAM;
+            case "employments,home_location,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP;
+            case "home_location,work_location,manager,company":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY;
+            case "groups,home_location,work_location,company,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,team,company,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,manager,company,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,groups,team,company":
+                return EMPLOYMENTS_GROUPS_TEAM_COMPANY;
+            case "groups,home_location,work_location,manager,team,company,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,work_location,manager,team,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "groups,home_location,work_location,manager,team,company":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "employments,groups,work_location,team":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM;
+            case "groups,home_location,work_location,manager":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER;
+            case "groups,work_location,manager,team,company,pay_group":
+                return GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,manager,team,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "employments,home_location,work_location,team,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "home_location,team,company,pay_group":
+                return HOME_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,work_location,manager,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,team,company":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY;
+            case "groups,home_location,manager,company":
+                return GROUPS_HOME_LOCATION_MANAGER_COMPANY;
+            case "employments,groups,home_location,manager,team,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "groups,home_location,work_location,manager,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "groups,work_location,team,company":
+                return GROUPS_WORK_LOCATION_TEAM_COMPANY;
+            case "employments,groups,home_location,manager,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,work_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,company":
+                return GROUPS_COMPANY;
+            case "employments,groups,home_location,team,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY;
+            case "employments,home_location,work_location,team,company":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY;
+            case "employments,groups,company,pay_group":
+                return EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP;
+            case "employments,manager,company":
+                return EMPLOYMENTS_MANAGER_COMPANY;
+            case "groups,home_location,work_location,manager,company":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY;
+            case "employments,manager,team,pay_group":
+                return EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP;
+            case "manager,company":
+                return MANAGER_COMPANY;
+            case "home_location,work_location,company,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,groups,work_location,manager,team,company":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "employments,manager":
+                return EMPLOYMENTS_MANAGER;
+            case "home_location,manager":
+                return HOME_LOCATION_MANAGER;
+            case "employments,work_location,manager,company,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,manager":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER;
+            case "home_location,manager,team":
+                return HOME_LOCATION_MANAGER_TEAM;
+            case "manager,team,company,pay_group":
+                return MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,manager,pay_group":
+                return EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP;
+            case "groups,work_location,team,company,pay_group":
+                return GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,team":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM;
+            case "groups,manager,team":
+                return GROUPS_MANAGER_TEAM;
+            case "manager,team,pay_group":
+                return MANAGER_TEAM_PAY_GROUP;
+            case "employments,manager,team,company,pay_group":
+                return EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,work_location,manager,company,pay_group":
+                return GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "groups,work_location,manager,pay_group":
+                return GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "home_location,company":
+                return HOME_LOCATION_COMPANY;
+            case "team":
+                return TEAM;
+            case "home_location,work_location,team":
+                return HOME_LOCATION_WORK_LOCATION_TEAM;
+            case "employments,company,pay_group":
+                return EMPLOYMENTS_COMPANY_PAY_GROUP;
+            case "employments,home_location,team,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP;
+            case "employments,company":
+                return EMPLOYMENTS_COMPANY;
+            case "employments,groups,pay_group":
+                return EMPLOYMENTS_GROUPS_PAY_GROUP;
+            case "employments,groups,home_location":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION;
+            case "employments,groups,home_location,work_location,manager,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY;
+            case "employments,groups,home_location,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY;
+            case "home_location,manager,company":
+                return HOME_LOCATION_MANAGER_COMPANY;
+            case "team,company":
+                return TEAM_COMPANY;
+            case "home_location,manager,team,company,pay_group":
+                return HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,work_location,team":
+                return EMPLOYMENTS_WORK_LOCATION_TEAM;
+            case "work_location,manager,company,pay_group":
+                return WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "team,pay_group":
+                return TEAM_PAY_GROUP;
+            case "groups,home_location,work_location":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION;
+            case "employments,home_location,work_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,work_location,company,pay_group":
+                return GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "home_location,manager,team,pay_group":
+                return HOME_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "home_location,manager,pay_group":
+                return HOME_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,home_location,work_location,manager,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "home_location,manager,company,pay_group":
+                return HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,team,company":
+                return EMPLOYMENTS_TEAM_COMPANY;
+            case "employments,groups,work_location,team,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "groups,home_location,company":
+                return GROUPS_HOME_LOCATION_COMPANY;
+            case "employments,manager,pay_group":
+                return EMPLOYMENTS_MANAGER_PAY_GROUP;
+            case "employments,manager,company,pay_group":
+                return EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,work_location,manager":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER;
+            case "employments,home_location,manager,team,company":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY;
+            case "employments,home_location":
+                return EMPLOYMENTS_HOME_LOCATION;
+            case "employments,groups,home_location,work_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,pay_group":
+                return GROUPS_PAY_GROUP;
+            case "work_location,manager,company":
+                return WORK_LOCATION_MANAGER_COMPANY;
+            case "groups,home_location,manager,company,pay_group":
+                return GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,work_location,team":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM;
+            case "groups,team":
+                return GROUPS_TEAM;
+            case "employments,groups,manager,team,pay_group":
+                return EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP;
+            case "groups,home_location,team,pay_group":
+                return GROUPS_HOME_LOCATION_TEAM_PAY_GROUP;
+            case "home_location,company,pay_group":
+                return HOME_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,home_location,work_location,team":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM;
+            case "employments,groups,work_location":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION;
+            case "employments,work_location,company":
+                return EMPLOYMENTS_WORK_LOCATION_COMPANY;
+            case "home_location,work_location,manager,team":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM;
+            case "employments,groups,manager,company":
+                return EMPLOYMENTS_GROUPS_MANAGER_COMPANY;
+            case "employments,team":
+                return EMPLOYMENTS_TEAM;
+            case "employments,groups,work_location,manager,team":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM;
+            case "groups,home_location,manager":
+                return GROUPS_HOME_LOCATION_MANAGER;
+            case "manager,company,pay_group":
+                return MANAGER_COMPANY_PAY_GROUP;
+            case "employments,groups,work_location,company,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,groups,team,pay_group":
+                return EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP;
+            case "home_location,pay_group":
+                return HOME_LOCATION_PAY_GROUP;
+            case "employments,groups,home_location,work_location,team,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY;
+            case "groups,work_location,manager,team,pay_group":
+                return GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "employments,home_location,manager,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "home_location,work_location,team,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,groups,work_location,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "work_location,manager,team,company":
+                return WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "groups,home_location,manager,team,company":
+                return GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY;
+            case "groups,work_location,manager,company":
+                return GROUPS_WORK_LOCATION_MANAGER_COMPANY;
+            case "work_location,team,company,pay_group":
+                return WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "employments,home_location,manager,team,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "employments,team,company,pay_group":
+                return EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,work_location":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION;
+            case "groups,home_location,manager,team,company,pay_group":
+                return GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,manager,team":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM;
+            case "employments,groups,home_location,work_location,manager":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER;
+            case "employments,home_location,work_location":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION;
+            case "home_location,team":
+                return HOME_LOCATION_TEAM;
+            case "home_location,work_location,manager,team,company,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,manager,team,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY;
+            case "groups,work_location,team,pay_group":
+                return GROUPS_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,home_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "work_location,team,company":
+                return WORK_LOCATION_TEAM_COMPANY;
+            case "employments,groups,work_location,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP;
+            case "groups":
+                return GROUPS;
+            case "home_location,work_location,manager,team,company":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "employments,work_location,team,company":
+                return EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY;
+            case "employments":
+                return EMPLOYMENTS;
+            case "employments,groups,home_location,work_location,company":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY;
+            case "work_location,team":
+                return WORK_LOCATION_TEAM;
+            case "employments,groups,home_location,work_location,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,team,company":
+                return GROUPS_HOME_LOCATION_TEAM_COMPANY;
+            case "employments,groups,manager,company,pay_group":
+                return EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP;
+            case "home_location,work_location,manager,team,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "home_location":
+                return HOME_LOCATION;
+            case "employments,work_location,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_PAY_GROUP;
+            case "employments,home_location,manager":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER;
+            case "employments,groups,work_location,manager,company":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY;
+            case "employments,groups,work_location,manager,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,groups,manager,team":
+                return EMPLOYMENTS_GROUPS_MANAGER_TEAM;
+            case "employments,work_location,manager,team":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM;
+            case "home_location,work_location,manager,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "groups,team,pay_group":
+                return GROUPS_TEAM_PAY_GROUP;
+            case "groups,work_location,pay_group":
+                return GROUPS_WORK_LOCATION_PAY_GROUP;
+            case "employments,home_location,work_location,team,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,groups,manager,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,home_location,work_location,team,pay_group":
+                return GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,groups,home_location,team,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP;
+            case "employments,groups,home_location,work_location,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP;
+            case "employments,groups,work_location,manager,team,company,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,home_location,team":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM;
+            case "employments,home_location,company":
+                return EMPLOYMENTS_HOME_LOCATION_COMPANY;
+            case "groups,work_location,company":
+                return GROUPS_WORK_LOCATION_COMPANY;
+            case "work_location,manager,team":
+                return WORK_LOCATION_MANAGER_TEAM;
+            case "home_location,work_location,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_PAY_GROUP;
+            case "employments,groups,company":
+                return EMPLOYMENTS_GROUPS_COMPANY;
+            case "employments,home_location,manager,team":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM;
+            case "employments,manager,team":
+                return EMPLOYMENTS_MANAGER_TEAM;
+            case "groups,work_location,manager,team,company":
+                return GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY;
+            case "home_location,manager,team,company":
+                return HOME_LOCATION_MANAGER_TEAM_COMPANY;
+            case "groups,manager,company":
+                return GROUPS_MANAGER_COMPANY;
+            case "work_location,manager,team,pay_group":
+                return WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "employments,groups,home_location,company,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP;
+            case "groups,home_location,manager,team":
+                return GROUPS_HOME_LOCATION_MANAGER_TEAM;
+            case "employments,home_location,work_location,manager,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "groups,home_location,team,company,pay_group":
+                return GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "home_location,work_location,team,company,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "employments,groups,work_location,company":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY;
+            case "employments,work_location,manager,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "work_location,company":
+                return WORK_LOCATION_COMPANY;
+            case "employments,groups,work_location,team,company":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY;
+            case "employments,home_location,manager,company":
+                return EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY;
+            case "home_location,work_location,manager,company,pay_group":
+                return HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "employments,work_location,manager,team,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "groups,manager,team,company,pay_group":
+                return GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            case "groups,work_location":
+                return GROUPS_WORK_LOCATION;
+            case "groups,work_location,manager":
+                return GROUPS_WORK_LOCATION_MANAGER;
+            case "employments,groups,work_location,manager":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER;
+            case "employments,home_location,work_location,company":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY;
+            case "company,pay_group":
+                return COMPANY_PAY_GROUP;
+            case "employments,work_location,company,pay_group":
+                return EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "work_location,manager,pay_group":
+                return WORK_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,groups,home_location,work_location,manager,team":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM;
+            case "employments,groups,work_location,manager,company,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP;
+            case "groups,home_location,manager,team,pay_group":
+                return GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "work_location,manager":
+                return WORK_LOCATION_MANAGER;
+            case "employments,pay_group":
+                return EMPLOYMENTS_PAY_GROUP;
+            case "groups,home_location,team":
+                return GROUPS_HOME_LOCATION_TEAM;
+            case "employments,groups,manager":
+                return EMPLOYMENTS_GROUPS_MANAGER;
+            case "employments,team,pay_group":
+                return EMPLOYMENTS_TEAM_PAY_GROUP;
+            case "manager,team,company":
+                return MANAGER_TEAM_COMPANY;
+            case "employments,groups,home_location,manager,team":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM;
+            case "employments,work_location,manager,company":
+                return EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY;
+            case "manager,pay_group":
+                return MANAGER_PAY_GROUP;
+            case "work_location,company,pay_group":
+                return WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,home_location,work_location,manager":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER;
+            case "groups,home_location,manager,pay_group":
+                return GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP;
+            case "employments,groups,work_location,manager,team,pay_group":
+                return EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP;
+            case "home_location,team,pay_group":
+                return HOME_LOCATION_TEAM_PAY_GROUP;
+            case "groups,manager,company,pay_group":
+                return GROUPS_MANAGER_COMPANY_PAY_GROUP;
+            case "groups,manager,team,company":
+                return GROUPS_MANAGER_TEAM_COMPANY;
+            case "pay_group":
+                return PAY_GROUP;
+            case "home_location,work_location":
+                return HOME_LOCATION_WORK_LOCATION;
+            case "groups,manager,pay_group":
+                return GROUPS_MANAGER_PAY_GROUP;
+            case "employments,groups,home_location,work_location,team,pay_group":
+                return EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP;
+            case "employments,home_location,work_location,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP;
+            case "groups,team,company":
+                return GROUPS_TEAM_COMPANY;
+            case "employments,home_location,work_location,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,home_location,work_location,manager,team":
+                return EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM;
+            case "groups,home_location":
+                return GROUPS_HOME_LOCATION;
+            case "groups,home_location,company,pay_group":
+                return GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP;
+            case "employments,home_location,team,company,pay_group":
+                return EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP;
+            case "work_location,manager,team,company,pay_group":
+                return WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP;
+            default:
+                return new EmployeesRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COMPANY,
+
+        COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS,
+
+        EMPLOYMENTS_COMPANY,
+
+        EMPLOYMENTS_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS,
+
+        EMPLOYMENTS_GROUPS_COMPANY,
+
+        EMPLOYMENTS_GROUPS_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_MANAGER,
+
+        EMPLOYMENTS_GROUPS_MANAGER_COMPANY,
+
+        EMPLOYMENTS_GROUPS_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_MANAGER_TEAM,
+
+        EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_TEAM,
+
+        EMPLOYMENTS_GROUPS_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_GROUPS_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION,
+
+        EMPLOYMENTS_HOME_LOCATION_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_TEAM,
+
+        EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_MANAGER,
+
+        EMPLOYMENTS_MANAGER_COMPANY,
+
+        EMPLOYMENTS_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_MANAGER_TEAM,
+
+        EMPLOYMENTS_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_PAY_GROUP,
+
+        EMPLOYMENTS_TEAM,
+
+        EMPLOYMENTS_TEAM_COMPANY,
+
+        EMPLOYMENTS_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION,
+
+        EMPLOYMENTS_WORK_LOCATION_COMPANY,
+
+        EMPLOYMENTS_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_TEAM,
+
+        EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY,
+
+        EMPLOYMENTS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        EMPLOYMENTS_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        GROUPS,
+
+        GROUPS_COMPANY,
+
+        GROUPS_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION,
+
+        GROUPS_HOME_LOCATION_COMPANY,
+
+        GROUPS_HOME_LOCATION_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_MANAGER,
+
+        GROUPS_HOME_LOCATION_MANAGER_COMPANY,
+
+        GROUPS_HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_MANAGER_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_MANAGER_TEAM,
+
+        GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY,
+
+        GROUPS_HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_TEAM,
+
+        GROUPS_HOME_LOCATION_TEAM_COMPANY,
+
+        GROUPS_HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_TEAM_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        GROUPS_MANAGER,
+
+        GROUPS_MANAGER_COMPANY,
+
+        GROUPS_MANAGER_COMPANY_PAY_GROUP,
+
+        GROUPS_MANAGER_PAY_GROUP,
+
+        GROUPS_MANAGER_TEAM,
+
+        GROUPS_MANAGER_TEAM_COMPANY,
+
+        GROUPS_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_MANAGER_TEAM_PAY_GROUP,
+
+        GROUPS_PAY_GROUP,
+
+        GROUPS_TEAM,
+
+        GROUPS_TEAM_COMPANY,
+
+        GROUPS_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_TEAM_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION,
+
+        GROUPS_WORK_LOCATION_COMPANY,
+
+        GROUPS_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_MANAGER,
+
+        GROUPS_WORK_LOCATION_MANAGER_COMPANY,
+
+        GROUPS_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_MANAGER_TEAM,
+
+        GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        GROUPS_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_TEAM,
+
+        GROUPS_WORK_LOCATION_TEAM_COMPANY,
+
+        GROUPS_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        GROUPS_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        HOME_LOCATION,
+
+        HOME_LOCATION_COMPANY,
+
+        HOME_LOCATION_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_MANAGER,
+
+        HOME_LOCATION_MANAGER_COMPANY,
+
+        HOME_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_MANAGER_PAY_GROUP,
+
+        HOME_LOCATION_MANAGER_TEAM,
+
+        HOME_LOCATION_MANAGER_TEAM_COMPANY,
+
+        HOME_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        HOME_LOCATION_PAY_GROUP,
+
+        HOME_LOCATION_TEAM,
+
+        HOME_LOCATION_TEAM_COMPANY,
+
+        HOME_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_TEAM_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION,
+
+        HOME_LOCATION_WORK_LOCATION_COMPANY,
+
+        HOME_LOCATION_WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_TEAM,
+
+        HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY,
+
+        HOME_LOCATION_WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        HOME_LOCATION_WORK_LOCATION_TEAM_PAY_GROUP,
+
+        MANAGER,
+
+        MANAGER_COMPANY,
+
+        MANAGER_COMPANY_PAY_GROUP,
+
+        MANAGER_PAY_GROUP,
+
+        MANAGER_TEAM,
+
+        MANAGER_TEAM_COMPANY,
+
+        MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        MANAGER_TEAM_PAY_GROUP,
+
+        PAY_GROUP,
+
+        TEAM,
+
+        TEAM_COMPANY,
+
+        TEAM_COMPANY_PAY_GROUP,
+
+        TEAM_PAY_GROUP,
+
+        WORK_LOCATION,
+
+        WORK_LOCATION_COMPANY,
+
+        WORK_LOCATION_COMPANY_PAY_GROUP,
+
+        WORK_LOCATION_MANAGER,
+
+        WORK_LOCATION_MANAGER_COMPANY,
+
+        WORK_LOCATION_MANAGER_COMPANY_PAY_GROUP,
+
+        WORK_LOCATION_MANAGER_PAY_GROUP,
+
+        WORK_LOCATION_MANAGER_TEAM,
+
+        WORK_LOCATION_MANAGER_TEAM_COMPANY,
+
+        WORK_LOCATION_MANAGER_TEAM_COMPANY_PAY_GROUP,
+
+        WORK_LOCATION_MANAGER_TEAM_PAY_GROUP,
+
+        WORK_LOCATION_PAY_GROUP,
+
+        WORK_LOCATION_TEAM,
+
+        WORK_LOCATION_TEAM_COMPANY,
+
+        WORK_LOCATION_TEAM_COMPANY_PAY_GROUP,
+
+        WORK_LOCATION_TEAM_PAY_GROUP,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCompany();
+
+        T visitCompanyPayGroup();
+
+        T visitEmployments();
+
+        T visitEmploymentsCompany();
+
+        T visitEmploymentsCompanyPayGroup();
+
+        T visitEmploymentsGroups();
+
+        T visitEmploymentsGroupsCompany();
+
+        T visitEmploymentsGroupsCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocation();
+
+        T visitEmploymentsGroupsHomeLocationCompany();
+
+        T visitEmploymentsGroupsHomeLocationCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationManager();
+
+        T visitEmploymentsGroupsHomeLocationManagerCompany();
+
+        T visitEmploymentsGroupsHomeLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationManagerPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationManagerTeam();
+
+        T visitEmploymentsGroupsHomeLocationManagerTeamCompany();
+
+        T visitEmploymentsGroupsHomeLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationManagerTeamPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationTeam();
+
+        T visitEmploymentsGroupsHomeLocationTeamCompany();
+
+        T visitEmploymentsGroupsHomeLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationTeamPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocation();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationCompany();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManager();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerCompany();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerTeam();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamCompany();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationManagerTeamPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationTeam();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationTeamCompany();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsHomeLocationWorkLocationTeamPayGroup();
+
+        T visitEmploymentsGroupsManager();
+
+        T visitEmploymentsGroupsManagerCompany();
+
+        T visitEmploymentsGroupsManagerCompanyPayGroup();
+
+        T visitEmploymentsGroupsManagerPayGroup();
+
+        T visitEmploymentsGroupsManagerTeam();
+
+        T visitEmploymentsGroupsManagerTeamCompany();
+
+        T visitEmploymentsGroupsManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsManagerTeamPayGroup();
+
+        T visitEmploymentsGroupsPayGroup();
+
+        T visitEmploymentsGroupsTeam();
+
+        T visitEmploymentsGroupsTeamCompany();
+
+        T visitEmploymentsGroupsTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsTeamPayGroup();
+
+        T visitEmploymentsGroupsWorkLocation();
+
+        T visitEmploymentsGroupsWorkLocationCompany();
+
+        T visitEmploymentsGroupsWorkLocationCompanyPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationManager();
+
+        T visitEmploymentsGroupsWorkLocationManagerCompany();
+
+        T visitEmploymentsGroupsWorkLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationManagerPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationManagerTeam();
+
+        T visitEmploymentsGroupsWorkLocationManagerTeamCompany();
+
+        T visitEmploymentsGroupsWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationManagerTeamPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationTeam();
+
+        T visitEmploymentsGroupsWorkLocationTeamCompany();
+
+        T visitEmploymentsGroupsWorkLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsGroupsWorkLocationTeamPayGroup();
+
+        T visitEmploymentsHomeLocation();
+
+        T visitEmploymentsHomeLocationCompany();
+
+        T visitEmploymentsHomeLocationCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationManager();
+
+        T visitEmploymentsHomeLocationManagerCompany();
+
+        T visitEmploymentsHomeLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationManagerPayGroup();
+
+        T visitEmploymentsHomeLocationManagerTeam();
+
+        T visitEmploymentsHomeLocationManagerTeamCompany();
+
+        T visitEmploymentsHomeLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationManagerTeamPayGroup();
+
+        T visitEmploymentsHomeLocationPayGroup();
+
+        T visitEmploymentsHomeLocationTeam();
+
+        T visitEmploymentsHomeLocationTeamCompany();
+
+        T visitEmploymentsHomeLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationTeamPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocation();
+
+        T visitEmploymentsHomeLocationWorkLocationCompany();
+
+        T visitEmploymentsHomeLocationWorkLocationCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationManager();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerCompany();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerTeam();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerTeamCompany();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationManagerTeamPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationTeam();
+
+        T visitEmploymentsHomeLocationWorkLocationTeamCompany();
+
+        T visitEmploymentsHomeLocationWorkLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsHomeLocationWorkLocationTeamPayGroup();
+
+        T visitEmploymentsManager();
+
+        T visitEmploymentsManagerCompany();
+
+        T visitEmploymentsManagerCompanyPayGroup();
+
+        T visitEmploymentsManagerPayGroup();
+
+        T visitEmploymentsManagerTeam();
+
+        T visitEmploymentsManagerTeamCompany();
+
+        T visitEmploymentsManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsManagerTeamPayGroup();
+
+        T visitEmploymentsPayGroup();
+
+        T visitEmploymentsTeam();
+
+        T visitEmploymentsTeamCompany();
+
+        T visitEmploymentsTeamCompanyPayGroup();
+
+        T visitEmploymentsTeamPayGroup();
+
+        T visitEmploymentsWorkLocation();
+
+        T visitEmploymentsWorkLocationCompany();
+
+        T visitEmploymentsWorkLocationCompanyPayGroup();
+
+        T visitEmploymentsWorkLocationManager();
+
+        T visitEmploymentsWorkLocationManagerCompany();
+
+        T visitEmploymentsWorkLocationManagerCompanyPayGroup();
+
+        T visitEmploymentsWorkLocationManagerPayGroup();
+
+        T visitEmploymentsWorkLocationManagerTeam();
+
+        T visitEmploymentsWorkLocationManagerTeamCompany();
+
+        T visitEmploymentsWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitEmploymentsWorkLocationManagerTeamPayGroup();
+
+        T visitEmploymentsWorkLocationPayGroup();
+
+        T visitEmploymentsWorkLocationTeam();
+
+        T visitEmploymentsWorkLocationTeamCompany();
+
+        T visitEmploymentsWorkLocationTeamCompanyPayGroup();
+
+        T visitEmploymentsWorkLocationTeamPayGroup();
+
+        T visitGroups();
+
+        T visitGroupsCompany();
+
+        T visitGroupsCompanyPayGroup();
+
+        T visitGroupsHomeLocation();
+
+        T visitGroupsHomeLocationCompany();
+
+        T visitGroupsHomeLocationCompanyPayGroup();
+
+        T visitGroupsHomeLocationManager();
+
+        T visitGroupsHomeLocationManagerCompany();
+
+        T visitGroupsHomeLocationManagerCompanyPayGroup();
+
+        T visitGroupsHomeLocationManagerPayGroup();
+
+        T visitGroupsHomeLocationManagerTeam();
+
+        T visitGroupsHomeLocationManagerTeamCompany();
+
+        T visitGroupsHomeLocationManagerTeamCompanyPayGroup();
+
+        T visitGroupsHomeLocationManagerTeamPayGroup();
+
+        T visitGroupsHomeLocationPayGroup();
+
+        T visitGroupsHomeLocationTeam();
+
+        T visitGroupsHomeLocationTeamCompany();
+
+        T visitGroupsHomeLocationTeamCompanyPayGroup();
+
+        T visitGroupsHomeLocationTeamPayGroup();
+
+        T visitGroupsHomeLocationWorkLocation();
+
+        T visitGroupsHomeLocationWorkLocationCompany();
+
+        T visitGroupsHomeLocationWorkLocationCompanyPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationManager();
+
+        T visitGroupsHomeLocationWorkLocationManagerCompany();
+
+        T visitGroupsHomeLocationWorkLocationManagerCompanyPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationManagerPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationManagerTeam();
+
+        T visitGroupsHomeLocationWorkLocationManagerTeamCompany();
+
+        T visitGroupsHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationManagerTeamPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationTeam();
+
+        T visitGroupsHomeLocationWorkLocationTeamCompany();
+
+        T visitGroupsHomeLocationWorkLocationTeamCompanyPayGroup();
+
+        T visitGroupsHomeLocationWorkLocationTeamPayGroup();
+
+        T visitGroupsManager();
+
+        T visitGroupsManagerCompany();
+
+        T visitGroupsManagerCompanyPayGroup();
+
+        T visitGroupsManagerPayGroup();
+
+        T visitGroupsManagerTeam();
+
+        T visitGroupsManagerTeamCompany();
+
+        T visitGroupsManagerTeamCompanyPayGroup();
+
+        T visitGroupsManagerTeamPayGroup();
+
+        T visitGroupsPayGroup();
+
+        T visitGroupsTeam();
+
+        T visitGroupsTeamCompany();
+
+        T visitGroupsTeamCompanyPayGroup();
+
+        T visitGroupsTeamPayGroup();
+
+        T visitGroupsWorkLocation();
+
+        T visitGroupsWorkLocationCompany();
+
+        T visitGroupsWorkLocationCompanyPayGroup();
+
+        T visitGroupsWorkLocationManager();
+
+        T visitGroupsWorkLocationManagerCompany();
+
+        T visitGroupsWorkLocationManagerCompanyPayGroup();
+
+        T visitGroupsWorkLocationManagerPayGroup();
+
+        T visitGroupsWorkLocationManagerTeam();
+
+        T visitGroupsWorkLocationManagerTeamCompany();
+
+        T visitGroupsWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitGroupsWorkLocationManagerTeamPayGroup();
+
+        T visitGroupsWorkLocationPayGroup();
+
+        T visitGroupsWorkLocationTeam();
+
+        T visitGroupsWorkLocationTeamCompany();
+
+        T visitGroupsWorkLocationTeamCompanyPayGroup();
+
+        T visitGroupsWorkLocationTeamPayGroup();
+
+        T visitHomeLocation();
+
+        T visitHomeLocationCompany();
+
+        T visitHomeLocationCompanyPayGroup();
+
+        T visitHomeLocationManager();
+
+        T visitHomeLocationManagerCompany();
+
+        T visitHomeLocationManagerCompanyPayGroup();
+
+        T visitHomeLocationManagerPayGroup();
+
+        T visitHomeLocationManagerTeam();
+
+        T visitHomeLocationManagerTeamCompany();
+
+        T visitHomeLocationManagerTeamCompanyPayGroup();
+
+        T visitHomeLocationManagerTeamPayGroup();
+
+        T visitHomeLocationPayGroup();
+
+        T visitHomeLocationTeam();
+
+        T visitHomeLocationTeamCompany();
+
+        T visitHomeLocationTeamCompanyPayGroup();
+
+        T visitHomeLocationTeamPayGroup();
+
+        T visitHomeLocationWorkLocation();
+
+        T visitHomeLocationWorkLocationCompany();
+
+        T visitHomeLocationWorkLocationCompanyPayGroup();
+
+        T visitHomeLocationWorkLocationManager();
+
+        T visitHomeLocationWorkLocationManagerCompany();
+
+        T visitHomeLocationWorkLocationManagerCompanyPayGroup();
+
+        T visitHomeLocationWorkLocationManagerPayGroup();
+
+        T visitHomeLocationWorkLocationManagerTeam();
+
+        T visitHomeLocationWorkLocationManagerTeamCompany();
+
+        T visitHomeLocationWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitHomeLocationWorkLocationManagerTeamPayGroup();
+
+        T visitHomeLocationWorkLocationPayGroup();
+
+        T visitHomeLocationWorkLocationTeam();
+
+        T visitHomeLocationWorkLocationTeamCompany();
+
+        T visitHomeLocationWorkLocationTeamCompanyPayGroup();
+
+        T visitHomeLocationWorkLocationTeamPayGroup();
+
+        T visitManager();
+
+        T visitManagerCompany();
+
+        T visitManagerCompanyPayGroup();
+
+        T visitManagerPayGroup();
+
+        T visitManagerTeam();
+
+        T visitManagerTeamCompany();
+
+        T visitManagerTeamCompanyPayGroup();
+
+        T visitManagerTeamPayGroup();
+
+        T visitPayGroup();
+
+        T visitTeam();
+
+        T visitTeamCompany();
+
+        T visitTeamCompanyPayGroup();
+
+        T visitTeamPayGroup();
+
+        T visitWorkLocation();
+
+        T visitWorkLocationCompany();
+
+        T visitWorkLocationCompanyPayGroup();
+
+        T visitWorkLocationManager();
+
+        T visitWorkLocationManagerCompany();
+
+        T visitWorkLocationManagerCompanyPayGroup();
+
+        T visitWorkLocationManagerPayGroup();
+
+        T visitWorkLocationManagerTeam();
+
+        T visitWorkLocationManagerTeamCompany();
+
+        T visitWorkLocationManagerTeamCompanyPayGroup();
+
+        T visitWorkLocationManagerTeamPayGroup();
+
+        T visitWorkLocationPayGroup();
+
+        T visitWorkLocationTeam();
+
+        T visitWorkLocationTeamCompany();
+
+        T visitWorkLocationTeamCompanyPayGroup();
+
+        T visitWorkLocationTeamPayGroup();
+
+        T visitUnknown(String unknownType);
     }
 }

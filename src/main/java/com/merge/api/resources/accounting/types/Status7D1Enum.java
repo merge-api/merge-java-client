@@ -3,22 +3,81 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Status7D1Enum {
-    ACTIVE("ACTIVE"),
+public final class Status7D1Enum {
+    public static final Status7D1Enum ARCHIVED = new Status7D1Enum(Value.ARCHIVED, "ARCHIVED");
 
-    ARCHIVED("ARCHIVED");
+    public static final Status7D1Enum ACTIVE = new Status7D1Enum(Value.ACTIVE, "ACTIVE");
 
-    private final String value;
+    private final Value value;
 
-    Status7D1Enum(String value) {
+    private final String string;
+
+    Status7D1Enum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof Status7D1Enum && this.string.equals(((Status7D1Enum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ARCHIVED:
+                return visitor.visitArchived();
+            case ACTIVE:
+                return visitor.visitActive();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static Status7D1Enum valueOf(String value) {
+        switch (value) {
+            case "ARCHIVED":
+                return ARCHIVED;
+            case "ACTIVE":
+                return ACTIVE;
+            default:
+                return new Status7D1Enum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACTIVE,
+
+        ARCHIVED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitActive();
+
+        T visitArchived();
+
+        T visitUnknown(String unknownType);
     }
 }

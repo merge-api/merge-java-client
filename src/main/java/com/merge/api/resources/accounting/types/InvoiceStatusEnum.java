@@ -3,30 +3,122 @@
  */
 package com.merge.api.resources.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum InvoiceStatusEnum {
-    PAID("PAID"),
+public final class InvoiceStatusEnum {
+    public static final InvoiceStatusEnum PARTIALLY_PAID =
+            new InvoiceStatusEnum(Value.PARTIALLY_PAID, "PARTIALLY_PAID");
 
-    DRAFT("DRAFT"),
+    public static final InvoiceStatusEnum SUBMITTED = new InvoiceStatusEnum(Value.SUBMITTED, "SUBMITTED");
 
-    SUBMITTED("SUBMITTED"),
+    public static final InvoiceStatusEnum DRAFT = new InvoiceStatusEnum(Value.DRAFT, "DRAFT");
 
-    PARTIALLY_PAID("PARTIALLY_PAID"),
+    public static final InvoiceStatusEnum PAID = new InvoiceStatusEnum(Value.PAID, "PAID");
 
-    OPEN("OPEN"),
+    public static final InvoiceStatusEnum OPEN = new InvoiceStatusEnum(Value.OPEN, "OPEN");
 
-    VOID("VOID");
+    public static final InvoiceStatusEnum VOID = new InvoiceStatusEnum(Value.VOID, "VOID");
 
-    private final String value;
+    private final Value value;
 
-    InvoiceStatusEnum(String value) {
+    private final String string;
+
+    InvoiceStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof InvoiceStatusEnum && this.string.equals(((InvoiceStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PARTIALLY_PAID:
+                return visitor.visitPartiallyPaid();
+            case SUBMITTED:
+                return visitor.visitSubmitted();
+            case DRAFT:
+                return visitor.visitDraft();
+            case PAID:
+                return visitor.visitPaid();
+            case OPEN:
+                return visitor.visitOpen();
+            case VOID:
+                return visitor.visitVoid();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static InvoiceStatusEnum valueOf(String value) {
+        switch (value) {
+            case "PARTIALLY_PAID":
+                return PARTIALLY_PAID;
+            case "SUBMITTED":
+                return SUBMITTED;
+            case "DRAFT":
+                return DRAFT;
+            case "PAID":
+                return PAID;
+            case "OPEN":
+                return OPEN;
+            case "VOID":
+                return VOID;
+            default:
+                return new InvoiceStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PAID,
+
+        DRAFT,
+
+        SUBMITTED,
+
+        PARTIALLY_PAID,
+
+        OPEN,
+
+        VOID,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPaid();
+
+        T visitDraft();
+
+        T visitSubmitted();
+
+        T visitPartiallyPaid();
+
+        T visitOpen();
+
+        T visitVoid();
+
+        T visitUnknown(String unknownType);
     }
 }

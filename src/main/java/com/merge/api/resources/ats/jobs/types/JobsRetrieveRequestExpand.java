@@ -3,81 +3,416 @@
  */
 package com.merge.api.resources.ats.jobs.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobsRetrieveRequestExpand {
-    DEPARTMENTS("departments"),
+public final class JobsRetrieveRequestExpand {
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS,
+                    "departments,offices,hiring_managers,recruiters");
 
-    DEPARTMENTS_HIRING_MANAGERS("departments,hiring_managers"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_RECRUITERS, "departments,recruiters");
 
-    DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS("departments,hiring_managers,job_postings"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_OFFICES, "departments,offices");
 
-    DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS("departments,hiring_managers,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS, "departments,offices,job_postings,recruiters");
 
-    DEPARTMENTS_HIRING_MANAGERS_RECRUITERS("departments,hiring_managers,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.OFFICES_JOB_POSTINGS_RECRUITERS, "offices,job_postings,recruiters");
 
-    DEPARTMENTS_JOB_POSTINGS("departments,job_postings"),
+    public static final JobsRetrieveRequestExpand OFFICES_HIRING_MANAGERS_JOB_POSTINGS = new JobsRetrieveRequestExpand(
+            Value.OFFICES_HIRING_MANAGERS_JOB_POSTINGS, "offices,hiring_managers,job_postings");
 
-    DEPARTMENTS_JOB_POSTINGS_RECRUITERS("departments,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES = new JobsRetrieveRequestExpand(Value.OFFICES, "offices");
 
-    DEPARTMENTS_OFFICES("departments,offices"),
+    public static final JobsRetrieveRequestExpand OFFICES_HIRING_MANAGERS_RECRUITERS = new JobsRetrieveRequestExpand(
+            Value.OFFICES_HIRING_MANAGERS_RECRUITERS, "offices,hiring_managers,recruiters");
 
-    DEPARTMENTS_OFFICES_HIRING_MANAGERS("departments,offices,hiring_managers"),
+    public static final JobsRetrieveRequestExpand HIRING_MANAGERS_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(Value.HIRING_MANAGERS_JOB_POSTINGS, "hiring_managers,job_postings");
 
-    DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS("departments,offices,hiring_managers,job_postings"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_HIRING_MANAGERS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_HIRING_MANAGERS, "departments,hiring_managers");
 
-    DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS(
-            "departments,offices,hiring_managers,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand HIRING_MANAGERS =
+            new JobsRetrieveRequestExpand(Value.HIRING_MANAGERS, "hiring_managers");
 
-    DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS("departments,offices,hiring_managers,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(Value.OFFICES_JOB_POSTINGS, "offices,job_postings");
 
-    DEPARTMENTS_OFFICES_JOB_POSTINGS("departments,offices,job_postings"),
+    public static final JobsRetrieveRequestExpand RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.RECRUITERS, "recruiters");
 
-    DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS("departments,offices,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.OFFICES_RECRUITERS, "offices,recruiters");
 
-    DEPARTMENTS_OFFICES_RECRUITERS("departments,offices,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+                    "departments,offices,hiring_managers,job_postings,recruiters");
 
-    DEPARTMENTS_RECRUITERS("departments,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES_HIRING_MANAGERS =
+            new JobsRetrieveRequestExpand(Value.OFFICES_HIRING_MANAGERS, "offices,hiring_managers");
 
-    HIRING_MANAGERS("hiring_managers"),
+    public static final JobsRetrieveRequestExpand HIRING_MANAGERS_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.HIRING_MANAGERS_RECRUITERS, "hiring_managers,recruiters");
 
-    HIRING_MANAGERS_JOB_POSTINGS("hiring_managers,job_postings"),
+    public static final JobsRetrieveRequestExpand JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(Value.JOB_POSTINGS, "job_postings");
 
-    HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS("hiring_managers,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.JOB_POSTINGS_RECRUITERS, "job_postings,recruiters");
 
-    HIRING_MANAGERS_RECRUITERS("hiring_managers,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_OFFICES_JOB_POSTINGS, "departments,offices,job_postings");
 
-    JOB_POSTINGS("job_postings"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_JOB_POSTINGS_RECRUITERS = new JobsRetrieveRequestExpand(
+            Value.DEPARTMENTS_JOB_POSTINGS_RECRUITERS, "departments,job_postings,recruiters");
 
-    JOB_POSTINGS_RECRUITERS("job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS, "departments,hiring_managers,job_postings");
 
-    OFFICES("offices"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_JOB_POSTINGS, "departments,job_postings");
 
-    OFFICES_HIRING_MANAGERS("offices,hiring_managers"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_RECRUITERS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS_OFFICES_RECRUITERS, "departments,offices,recruiters");
 
-    OFFICES_HIRING_MANAGERS_JOB_POSTINGS("offices,hiring_managers,job_postings"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+                    "departments,hiring_managers,job_postings,recruiters");
 
-    OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS("offices,hiring_managers,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_HIRING_MANAGERS = new JobsRetrieveRequestExpand(
+            Value.DEPARTMENTS_OFFICES_HIRING_MANAGERS, "departments,offices,hiring_managers");
 
-    OFFICES_HIRING_MANAGERS_RECRUITERS("offices,hiring_managers,recruiters"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_HIRING_MANAGERS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_HIRING_MANAGERS_RECRUITERS, "departments,hiring_managers,recruiters");
 
-    OFFICES_JOB_POSTINGS("offices,job_postings"),
+    public static final JobsRetrieveRequestExpand DEPARTMENTS =
+            new JobsRetrieveRequestExpand(Value.DEPARTMENTS, "departments");
 
-    OFFICES_JOB_POSTINGS_RECRUITERS("offices,job_postings,recruiters"),
+    public static final JobsRetrieveRequestExpand HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS, "hiring_managers,job_postings,recruiters");
 
-    OFFICES_RECRUITERS("offices,recruiters"),
+    public static final JobsRetrieveRequestExpand OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS =
+            new JobsRetrieveRequestExpand(
+                    Value.OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+                    "offices,hiring_managers,job_postings,recruiters");
 
-    RECRUITERS("recruiters");
+    public static final JobsRetrieveRequestExpand DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS =
+            new JobsRetrieveRequestExpand(
+                    Value.DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS,
+                    "departments,offices,hiring_managers,job_postings");
 
-    private final String value;
+    private final Value value;
 
-    JobsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    JobsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobsRetrieveRequestExpand
+                        && this.string.equals(((JobsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS:
+                return visitor.visitDepartmentsOfficesHiringManagersRecruiters();
+            case DEPARTMENTS_RECRUITERS:
+                return visitor.visitDepartmentsRecruiters();
+            case DEPARTMENTS_OFFICES:
+                return visitor.visitDepartmentsOffices();
+            case DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitDepartmentsOfficesJobPostingsRecruiters();
+            case OFFICES_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitOfficesJobPostingsRecruiters();
+            case OFFICES_HIRING_MANAGERS_JOB_POSTINGS:
+                return visitor.visitOfficesHiringManagersJobPostings();
+            case OFFICES:
+                return visitor.visitOffices();
+            case OFFICES_HIRING_MANAGERS_RECRUITERS:
+                return visitor.visitOfficesHiringManagersRecruiters();
+            case HIRING_MANAGERS_JOB_POSTINGS:
+                return visitor.visitHiringManagersJobPostings();
+            case DEPARTMENTS_HIRING_MANAGERS:
+                return visitor.visitDepartmentsHiringManagers();
+            case HIRING_MANAGERS:
+                return visitor.visitHiringManagers();
+            case OFFICES_JOB_POSTINGS:
+                return visitor.visitOfficesJobPostings();
+            case RECRUITERS:
+                return visitor.visitRecruiters();
+            case OFFICES_RECRUITERS:
+                return visitor.visitOfficesRecruiters();
+            case DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitDepartmentsOfficesHiringManagersJobPostingsRecruiters();
+            case OFFICES_HIRING_MANAGERS:
+                return visitor.visitOfficesHiringManagers();
+            case HIRING_MANAGERS_RECRUITERS:
+                return visitor.visitHiringManagersRecruiters();
+            case JOB_POSTINGS:
+                return visitor.visitJobPostings();
+            case JOB_POSTINGS_RECRUITERS:
+                return visitor.visitJobPostingsRecruiters();
+            case DEPARTMENTS_OFFICES_JOB_POSTINGS:
+                return visitor.visitDepartmentsOfficesJobPostings();
+            case DEPARTMENTS_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitDepartmentsJobPostingsRecruiters();
+            case DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS:
+                return visitor.visitDepartmentsHiringManagersJobPostings();
+            case DEPARTMENTS_JOB_POSTINGS:
+                return visitor.visitDepartmentsJobPostings();
+            case DEPARTMENTS_OFFICES_RECRUITERS:
+                return visitor.visitDepartmentsOfficesRecruiters();
+            case DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitDepartmentsHiringManagersJobPostingsRecruiters();
+            case DEPARTMENTS_OFFICES_HIRING_MANAGERS:
+                return visitor.visitDepartmentsOfficesHiringManagers();
+            case DEPARTMENTS_HIRING_MANAGERS_RECRUITERS:
+                return visitor.visitDepartmentsHiringManagersRecruiters();
+            case DEPARTMENTS:
+                return visitor.visitDepartments();
+            case HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitHiringManagersJobPostingsRecruiters();
+            case OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS:
+                return visitor.visitOfficesHiringManagersJobPostingsRecruiters();
+            case DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS:
+                return visitor.visitDepartmentsOfficesHiringManagersJobPostings();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "departments,offices,hiring_managers,recruiters":
+                return DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS;
+            case "departments,recruiters":
+                return DEPARTMENTS_RECRUITERS;
+            case "departments,offices":
+                return DEPARTMENTS_OFFICES;
+            case "departments,offices,job_postings,recruiters":
+                return DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS;
+            case "offices,job_postings,recruiters":
+                return OFFICES_JOB_POSTINGS_RECRUITERS;
+            case "offices,hiring_managers,job_postings":
+                return OFFICES_HIRING_MANAGERS_JOB_POSTINGS;
+            case "offices":
+                return OFFICES;
+            case "offices,hiring_managers,recruiters":
+                return OFFICES_HIRING_MANAGERS_RECRUITERS;
+            case "hiring_managers,job_postings":
+                return HIRING_MANAGERS_JOB_POSTINGS;
+            case "departments,hiring_managers":
+                return DEPARTMENTS_HIRING_MANAGERS;
+            case "hiring_managers":
+                return HIRING_MANAGERS;
+            case "offices,job_postings":
+                return OFFICES_JOB_POSTINGS;
+            case "recruiters":
+                return RECRUITERS;
+            case "offices,recruiters":
+                return OFFICES_RECRUITERS;
+            case "departments,offices,hiring_managers,job_postings,recruiters":
+                return DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS;
+            case "offices,hiring_managers":
+                return OFFICES_HIRING_MANAGERS;
+            case "hiring_managers,recruiters":
+                return HIRING_MANAGERS_RECRUITERS;
+            case "job_postings":
+                return JOB_POSTINGS;
+            case "job_postings,recruiters":
+                return JOB_POSTINGS_RECRUITERS;
+            case "departments,offices,job_postings":
+                return DEPARTMENTS_OFFICES_JOB_POSTINGS;
+            case "departments,job_postings,recruiters":
+                return DEPARTMENTS_JOB_POSTINGS_RECRUITERS;
+            case "departments,hiring_managers,job_postings":
+                return DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS;
+            case "departments,job_postings":
+                return DEPARTMENTS_JOB_POSTINGS;
+            case "departments,offices,recruiters":
+                return DEPARTMENTS_OFFICES_RECRUITERS;
+            case "departments,hiring_managers,job_postings,recruiters":
+                return DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS;
+            case "departments,offices,hiring_managers":
+                return DEPARTMENTS_OFFICES_HIRING_MANAGERS;
+            case "departments,hiring_managers,recruiters":
+                return DEPARTMENTS_HIRING_MANAGERS_RECRUITERS;
+            case "departments":
+                return DEPARTMENTS;
+            case "hiring_managers,job_postings,recruiters":
+                return HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS;
+            case "offices,hiring_managers,job_postings,recruiters":
+                return OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS;
+            case "departments,offices,hiring_managers,job_postings":
+                return DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS;
+            default:
+                return new JobsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DEPARTMENTS,
+
+        DEPARTMENTS_HIRING_MANAGERS,
+
+        DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS,
+
+        DEPARTMENTS_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+
+        DEPARTMENTS_HIRING_MANAGERS_RECRUITERS,
+
+        DEPARTMENTS_JOB_POSTINGS,
+
+        DEPARTMENTS_JOB_POSTINGS_RECRUITERS,
+
+        DEPARTMENTS_OFFICES,
+
+        DEPARTMENTS_OFFICES_HIRING_MANAGERS,
+
+        DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS,
+
+        DEPARTMENTS_OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+
+        DEPARTMENTS_OFFICES_HIRING_MANAGERS_RECRUITERS,
+
+        DEPARTMENTS_OFFICES_JOB_POSTINGS,
+
+        DEPARTMENTS_OFFICES_JOB_POSTINGS_RECRUITERS,
+
+        DEPARTMENTS_OFFICES_RECRUITERS,
+
+        DEPARTMENTS_RECRUITERS,
+
+        HIRING_MANAGERS,
+
+        HIRING_MANAGERS_JOB_POSTINGS,
+
+        HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+
+        HIRING_MANAGERS_RECRUITERS,
+
+        JOB_POSTINGS,
+
+        JOB_POSTINGS_RECRUITERS,
+
+        OFFICES,
+
+        OFFICES_HIRING_MANAGERS,
+
+        OFFICES_HIRING_MANAGERS_JOB_POSTINGS,
+
+        OFFICES_HIRING_MANAGERS_JOB_POSTINGS_RECRUITERS,
+
+        OFFICES_HIRING_MANAGERS_RECRUITERS,
+
+        OFFICES_JOB_POSTINGS,
+
+        OFFICES_JOB_POSTINGS_RECRUITERS,
+
+        OFFICES_RECRUITERS,
+
+        RECRUITERS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDepartments();
+
+        T visitDepartmentsHiringManagers();
+
+        T visitDepartmentsHiringManagersJobPostings();
+
+        T visitDepartmentsHiringManagersJobPostingsRecruiters();
+
+        T visitDepartmentsHiringManagersRecruiters();
+
+        T visitDepartmentsJobPostings();
+
+        T visitDepartmentsJobPostingsRecruiters();
+
+        T visitDepartmentsOffices();
+
+        T visitDepartmentsOfficesHiringManagers();
+
+        T visitDepartmentsOfficesHiringManagersJobPostings();
+
+        T visitDepartmentsOfficesHiringManagersJobPostingsRecruiters();
+
+        T visitDepartmentsOfficesHiringManagersRecruiters();
+
+        T visitDepartmentsOfficesJobPostings();
+
+        T visitDepartmentsOfficesJobPostingsRecruiters();
+
+        T visitDepartmentsOfficesRecruiters();
+
+        T visitDepartmentsRecruiters();
+
+        T visitHiringManagers();
+
+        T visitHiringManagersJobPostings();
+
+        T visitHiringManagersJobPostingsRecruiters();
+
+        T visitHiringManagersRecruiters();
+
+        T visitJobPostings();
+
+        T visitJobPostingsRecruiters();
+
+        T visitOffices();
+
+        T visitOfficesHiringManagers();
+
+        T visitOfficesHiringManagersJobPostings();
+
+        T visitOfficesHiringManagersJobPostingsRecruiters();
+
+        T visitOfficesHiringManagersRecruiters();
+
+        T visitOfficesJobPostings();
+
+        T visitOfficesJobPostingsRecruiters();
+
+        T visitOfficesRecruiters();
+
+        T visitRecruiters();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -29,6 +29,7 @@ public final class ExpenseLineRequestTrackingCategoriesItem {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -79,7 +80,7 @@ public final class ExpenseLineRequestTrackingCategoriesItem {
         }
 
         @java.lang.Override
-        public ExpenseLineRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public ExpenseLineRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

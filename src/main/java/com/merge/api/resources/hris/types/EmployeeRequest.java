@@ -59,11 +59,11 @@ public final class EmployeeRequest {
 
     private final Optional<String> ssn;
 
-    private final Optional<EmployeeRequestGender> gender;
+    private final Optional<GenderEnum> gender;
 
-    private final Optional<EmployeeRequestEthnicity> ethnicity;
+    private final Optional<EthnicityEnum> ethnicity;
 
-    private final Optional<EmployeeRequestMaritalStatus> maritalStatus;
+    private final Optional<MaritalStatusEnum> maritalStatus;
 
     private final Optional<OffsetDateTime> dateOfBirth;
 
@@ -71,7 +71,7 @@ public final class EmployeeRequest {
 
     private final Optional<OffsetDateTime> startDate;
 
-    private final Optional<EmployeeRequestEmploymentStatus> employmentStatus;
+    private final Optional<EmploymentStatusEnum> employmentStatus;
 
     private final Optional<OffsetDateTime> terminationDate;
 
@@ -102,13 +102,13 @@ public final class EmployeeRequest {
             Optional<EmployeeRequestTeam> team,
             Optional<EmployeeRequestPayGroup> payGroup,
             Optional<String> ssn,
-            Optional<EmployeeRequestGender> gender,
-            Optional<EmployeeRequestEthnicity> ethnicity,
-            Optional<EmployeeRequestMaritalStatus> maritalStatus,
+            Optional<GenderEnum> gender,
+            Optional<EthnicityEnum> ethnicity,
+            Optional<MaritalStatusEnum> maritalStatus,
             Optional<OffsetDateTime> dateOfBirth,
             Optional<OffsetDateTime> hireDate,
             Optional<OffsetDateTime> startDate,
-            Optional<EmployeeRequestEmploymentStatus> employmentStatus,
+            Optional<EmploymentStatusEnum> employmentStatus,
             Optional<OffsetDateTime> terminationDate,
             Optional<String> avatar,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -298,7 +298,7 @@ public final class EmployeeRequest {
      * </ul>
      */
     @JsonProperty("gender")
-    public Optional<EmployeeRequestGender> getGender() {
+    public Optional<GenderEnum> getGender() {
         return gender;
     }
 
@@ -316,7 +316,7 @@ public final class EmployeeRequest {
      * </ul>
      */
     @JsonProperty("ethnicity")
-    public Optional<EmployeeRequestEthnicity> getEthnicity() {
+    public Optional<EthnicityEnum> getEthnicity() {
         return ethnicity;
     }
 
@@ -331,7 +331,7 @@ public final class EmployeeRequest {
      * </ul>
      */
     @JsonProperty("marital_status")
-    public Optional<EmployeeRequestMaritalStatus> getMaritalStatus() {
+    public Optional<MaritalStatusEnum> getMaritalStatus() {
         return maritalStatus;
     }
 
@@ -368,7 +368,7 @@ public final class EmployeeRequest {
      * </ul>
      */
     @JsonProperty("employment_status")
-    public Optional<EmployeeRequestEmploymentStatus> getEmploymentStatus() {
+    public Optional<EmploymentStatusEnum> getEmploymentStatus() {
         return employmentStatus;
     }
 
@@ -522,11 +522,11 @@ public final class EmployeeRequest {
 
         private Optional<String> ssn = Optional.empty();
 
-        private Optional<EmployeeRequestGender> gender = Optional.empty();
+        private Optional<GenderEnum> gender = Optional.empty();
 
-        private Optional<EmployeeRequestEthnicity> ethnicity = Optional.empty();
+        private Optional<EthnicityEnum> ethnicity = Optional.empty();
 
-        private Optional<EmployeeRequestMaritalStatus> maritalStatus = Optional.empty();
+        private Optional<MaritalStatusEnum> maritalStatus = Optional.empty();
 
         private Optional<OffsetDateTime> dateOfBirth = Optional.empty();
 
@@ -534,7 +534,7 @@ public final class EmployeeRequest {
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
-        private Optional<EmployeeRequestEmploymentStatus> employmentStatus = Optional.empty();
+        private Optional<EmploymentStatusEnum> employmentStatus = Optional.empty();
 
         private Optional<OffsetDateTime> terminationDate = Optional.empty();
 
@@ -781,34 +781,34 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
-        public Builder gender(Optional<EmployeeRequestGender> gender) {
+        public Builder gender(Optional<GenderEnum> gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder gender(EmployeeRequestGender gender) {
+        public Builder gender(GenderEnum gender) {
             this.gender = Optional.ofNullable(gender);
             return this;
         }
 
         @JsonSetter(value = "ethnicity", nulls = Nulls.SKIP)
-        public Builder ethnicity(Optional<EmployeeRequestEthnicity> ethnicity) {
+        public Builder ethnicity(Optional<EthnicityEnum> ethnicity) {
             this.ethnicity = ethnicity;
             return this;
         }
 
-        public Builder ethnicity(EmployeeRequestEthnicity ethnicity) {
+        public Builder ethnicity(EthnicityEnum ethnicity) {
             this.ethnicity = Optional.ofNullable(ethnicity);
             return this;
         }
 
         @JsonSetter(value = "marital_status", nulls = Nulls.SKIP)
-        public Builder maritalStatus(Optional<EmployeeRequestMaritalStatus> maritalStatus) {
+        public Builder maritalStatus(Optional<MaritalStatusEnum> maritalStatus) {
             this.maritalStatus = maritalStatus;
             return this;
         }
 
-        public Builder maritalStatus(EmployeeRequestMaritalStatus maritalStatus) {
+        public Builder maritalStatus(MaritalStatusEnum maritalStatus) {
             this.maritalStatus = Optional.ofNullable(maritalStatus);
             return this;
         }
@@ -847,12 +847,12 @@ public final class EmployeeRequest {
         }
 
         @JsonSetter(value = "employment_status", nulls = Nulls.SKIP)
-        public Builder employmentStatus(Optional<EmployeeRequestEmploymentStatus> employmentStatus) {
+        public Builder employmentStatus(Optional<EmploymentStatusEnum> employmentStatus) {
             this.employmentStatus = employmentStatus;
             return this;
         }
 
-        public Builder employmentStatus(EmployeeRequestEmploymentStatus employmentStatus) {
+        public Builder employmentStatus(EmploymentStatusEnum employmentStatus) {
             this.employmentStatus = Optional.ofNullable(employmentStatus);
             return this;
         }

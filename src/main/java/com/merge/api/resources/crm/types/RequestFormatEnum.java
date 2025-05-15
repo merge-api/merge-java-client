@@ -3,24 +3,91 @@
  */
 package com.merge.api.resources.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RequestFormatEnum {
-    JSON("JSON"),
+public final class RequestFormatEnum {
+    public static final RequestFormatEnum MULTIPART = new RequestFormatEnum(Value.MULTIPART, "MULTIPART");
 
-    XML("XML"),
+    public static final RequestFormatEnum XML = new RequestFormatEnum(Value.XML, "XML");
 
-    MULTIPART("MULTIPART");
+    public static final RequestFormatEnum JSON = new RequestFormatEnum(Value.JSON, "JSON");
 
-    private final String value;
+    private final Value value;
 
-    RequestFormatEnum(String value) {
+    private final String string;
+
+    RequestFormatEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof RequestFormatEnum && this.string.equals(((RequestFormatEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case MULTIPART:
+                return visitor.visitMultipart();
+            case XML:
+                return visitor.visitXml();
+            case JSON:
+                return visitor.visitJson();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RequestFormatEnum valueOf(String value) {
+        switch (value) {
+            case "MULTIPART":
+                return MULTIPART;
+            case "XML":
+                return XML;
+            case "JSON":
+                return JSON;
+            default:
+                return new RequestFormatEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        JSON,
+
+        XML,
+
+        MULTIPART,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitJson();
+
+        T visitXml();
+
+        T visitMultipart();
+
+        T visitUnknown(String unknownType);
     }
 }

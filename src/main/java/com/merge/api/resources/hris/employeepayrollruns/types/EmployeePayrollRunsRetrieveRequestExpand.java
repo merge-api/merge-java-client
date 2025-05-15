@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.hris.employeepayrollruns.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmployeePayrollRunsRetrieveRequestExpand {
-    EMPLOYEE("employee"),
+public final class EmployeePayrollRunsRetrieveRequestExpand {
+    public static final EmployeePayrollRunsRetrieveRequestExpand PAYROLL_RUN =
+            new EmployeePayrollRunsRetrieveRequestExpand(Value.PAYROLL_RUN, "payroll_run");
 
-    EMPLOYEE_PAYROLL_RUN("employee,payroll_run"),
+    public static final EmployeePayrollRunsRetrieveRequestExpand EMPLOYEE_PAYROLL_RUN =
+            new EmployeePayrollRunsRetrieveRequestExpand(Value.EMPLOYEE_PAYROLL_RUN, "employee,payroll_run");
 
-    PAYROLL_RUN("payroll_run");
+    public static final EmployeePayrollRunsRetrieveRequestExpand EMPLOYEE =
+            new EmployeePayrollRunsRetrieveRequestExpand(Value.EMPLOYEE, "employee");
 
-    private final String value;
+    private final Value value;
 
-    EmployeePayrollRunsRetrieveRequestExpand(String value) {
+    private final String string;
+
+    EmployeePayrollRunsRetrieveRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmployeePayrollRunsRetrieveRequestExpand
+                        && this.string.equals(((EmployeePayrollRunsRetrieveRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PAYROLL_RUN:
+                return visitor.visitPayrollRun();
+            case EMPLOYEE_PAYROLL_RUN:
+                return visitor.visitEmployeePayrollRun();
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmployeePayrollRunsRetrieveRequestExpand valueOf(String value) {
+        switch (value) {
+            case "payroll_run":
+                return PAYROLL_RUN;
+            case "employee,payroll_run":
+                return EMPLOYEE_PAYROLL_RUN;
+            case "employee":
+                return EMPLOYEE;
+            default:
+                return new EmployeePayrollRunsRetrieveRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EMPLOYEE,
+
+        EMPLOYEE_PAYROLL_RUN,
+
+        PAYROLL_RUN,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEmployee();
+
+        T visitEmployeePayrollRun();
+
+        T visitPayrollRun();
+
+        T visitUnknown(String unknownType);
     }
 }

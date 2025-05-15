@@ -3,24 +3,95 @@
  */
 package com.merge.api.resources.ats.jobs.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobsScreeningQuestionsListRequestExpand {
-    JOB("job"),
+public final class JobsScreeningQuestionsListRequestExpand {
+    public static final JobsScreeningQuestionsListRequestExpand OPTIONS_JOB =
+            new JobsScreeningQuestionsListRequestExpand(Value.OPTIONS_JOB, "options,job");
 
-    OPTIONS("options"),
+    public static final JobsScreeningQuestionsListRequestExpand OPTIONS =
+            new JobsScreeningQuestionsListRequestExpand(Value.OPTIONS, "options");
 
-    OPTIONS_JOB("options,job");
+    public static final JobsScreeningQuestionsListRequestExpand JOB =
+            new JobsScreeningQuestionsListRequestExpand(Value.JOB, "job");
 
-    private final String value;
+    private final Value value;
 
-    JobsScreeningQuestionsListRequestExpand(String value) {
+    private final String string;
+
+    JobsScreeningQuestionsListRequestExpand(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobsScreeningQuestionsListRequestExpand
+                        && this.string.equals(((JobsScreeningQuestionsListRequestExpand) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OPTIONS_JOB:
+                return visitor.visitOptionsJob();
+            case OPTIONS:
+                return visitor.visitOptions();
+            case JOB:
+                return visitor.visitJob();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobsScreeningQuestionsListRequestExpand valueOf(String value) {
+        switch (value) {
+            case "options,job":
+                return OPTIONS_JOB;
+            case "options":
+                return OPTIONS;
+            case "job":
+                return JOB;
+            default:
+                return new JobsScreeningQuestionsListRequestExpand(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        JOB,
+
+        OPTIONS,
+
+        OPTIONS_JOB,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitJob();
+
+        T visitOptions();
+
+        T visitOptionsJob();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class UrlRequest {
     private final Optional<String> value;
 
-    private final Optional<UrlRequestUrlType> urlType;
+    private final Optional<UrlTypeEnum> urlType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class UrlRequest {
 
     private UrlRequest(
             Optional<String> value,
-            Optional<UrlRequestUrlType> urlType,
+            Optional<UrlTypeEnum> urlType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -65,7 +65,7 @@ public final class UrlRequest {
      * </ul>
      */
     @JsonProperty("url_type")
-    public Optional<UrlRequestUrlType> getUrlType() {
+    public Optional<UrlTypeEnum> getUrlType() {
         return urlType;
     }
 
@@ -115,7 +115,7 @@ public final class UrlRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<UrlRequestUrlType> urlType = Optional.empty();
+        private Optional<UrlTypeEnum> urlType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -146,12 +146,12 @@ public final class UrlRequest {
         }
 
         @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
-        public Builder urlType(Optional<UrlRequestUrlType> urlType) {
+        public Builder urlType(Optional<UrlTypeEnum> urlType) {
             this.urlType = urlType;
             return this;
         }
 
-        public Builder urlType(UrlRequestUrlType urlType) {
+        public Builder urlType(UrlTypeEnum urlType) {
             this.urlType = Optional.ofNullable(urlType);
             return this;
         }

@@ -35,15 +35,13 @@ public final class Collection {
 
     private final Optional<String> description;
 
-    private final Optional<CollectionCollectionType> collectionType;
+    private final Optional<CollectionTypeEnum> collectionType;
 
     private final Optional<CollectionParentCollection> parentCollection;
 
-    private final Optional<List<Optional<CollectionTeamsItem>>> teams;
-
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<CollectionAccessLevel> accessLevel;
+    private final Optional<AccessLevelEnum> accessLevel;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -58,11 +56,10 @@ public final class Collection {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<String> description,
-            Optional<CollectionCollectionType> collectionType,
+            Optional<CollectionTypeEnum> collectionType,
             Optional<CollectionParentCollection> parentCollection,
-            Optional<List<Optional<CollectionTeamsItem>>> teams,
             Optional<Boolean> remoteWasDeleted,
-            Optional<CollectionAccessLevel> accessLevel,
+            Optional<AccessLevelEnum> accessLevel,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
@@ -74,7 +71,6 @@ public final class Collection {
         this.description = description;
         this.collectionType = collectionType;
         this.parentCollection = parentCollection;
-        this.teams = teams;
         this.remoteWasDeleted = remoteWasDeleted;
         this.accessLevel = accessLevel;
         this.fieldMappings = fieldMappings;
@@ -135,7 +131,7 @@ public final class Collection {
      * </ul>
      */
     @JsonProperty("collection_type")
-    public Optional<CollectionCollectionType> getCollectionType() {
+    public Optional<CollectionTypeEnum> getCollectionType() {
         return collectionType;
     }
 
@@ -145,11 +141,6 @@ public final class Collection {
     @JsonProperty("parent_collection")
     public Optional<CollectionParentCollection> getParentCollection() {
         return parentCollection;
-    }
-
-    @JsonProperty("teams")
-    public Optional<List<Optional<CollectionTeamsItem>>> getTeams() {
-        return teams;
     }
 
     /**
@@ -169,7 +160,7 @@ public final class Collection {
      * </ul>
      */
     @JsonProperty("access_level")
-    public Optional<CollectionAccessLevel> getAccessLevel() {
+    public Optional<AccessLevelEnum> getAccessLevel() {
         return accessLevel;
     }
 
@@ -203,7 +194,6 @@ public final class Collection {
                 && description.equals(other.description)
                 && collectionType.equals(other.collectionType)
                 && parentCollection.equals(other.parentCollection)
-                && teams.equals(other.teams)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accessLevel.equals(other.accessLevel)
                 && fieldMappings.equals(other.fieldMappings)
@@ -221,7 +211,6 @@ public final class Collection {
                 this.description,
                 this.collectionType,
                 this.parentCollection,
-                this.teams,
                 this.remoteWasDeleted,
                 this.accessLevel,
                 this.fieldMappings,
@@ -251,15 +240,13 @@ public final class Collection {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<CollectionCollectionType> collectionType = Optional.empty();
+        private Optional<CollectionTypeEnum> collectionType = Optional.empty();
 
         private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
-        private Optional<List<Optional<CollectionTeamsItem>>> teams = Optional.empty();
-
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<CollectionAccessLevel> accessLevel = Optional.empty();
+        private Optional<AccessLevelEnum> accessLevel = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -279,7 +266,6 @@ public final class Collection {
             description(other.getDescription());
             collectionType(other.getCollectionType());
             parentCollection(other.getParentCollection());
-            teams(other.getTeams());
             remoteWasDeleted(other.getRemoteWasDeleted());
             accessLevel(other.getAccessLevel());
             fieldMappings(other.getFieldMappings());
@@ -354,12 +340,12 @@ public final class Collection {
         }
 
         @JsonSetter(value = "collection_type", nulls = Nulls.SKIP)
-        public Builder collectionType(Optional<CollectionCollectionType> collectionType) {
+        public Builder collectionType(Optional<CollectionTypeEnum> collectionType) {
             this.collectionType = collectionType;
             return this;
         }
 
-        public Builder collectionType(CollectionCollectionType collectionType) {
+        public Builder collectionType(CollectionTypeEnum collectionType) {
             this.collectionType = Optional.ofNullable(collectionType);
             return this;
         }
@@ -375,17 +361,6 @@ public final class Collection {
             return this;
         }
 
-        @JsonSetter(value = "teams", nulls = Nulls.SKIP)
-        public Builder teams(Optional<List<Optional<CollectionTeamsItem>>> teams) {
-            this.teams = teams;
-            return this;
-        }
-
-        public Builder teams(List<Optional<CollectionTeamsItem>> teams) {
-            this.teams = Optional.ofNullable(teams);
-            return this;
-        }
-
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -398,12 +373,12 @@ public final class Collection {
         }
 
         @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
-        public Builder accessLevel(Optional<CollectionAccessLevel> accessLevel) {
+        public Builder accessLevel(Optional<AccessLevelEnum> accessLevel) {
             this.accessLevel = accessLevel;
             return this;
         }
 
-        public Builder accessLevel(CollectionAccessLevel accessLevel) {
+        public Builder accessLevel(AccessLevelEnum accessLevel) {
             this.accessLevel = Optional.ofNullable(accessLevel);
             return this;
         }
@@ -440,7 +415,6 @@ public final class Collection {
                     description,
                     collectionType,
                     parentCollection,
-                    teams,
                     remoteWasDeleted,
                     accessLevel,
                     fieldMappings,

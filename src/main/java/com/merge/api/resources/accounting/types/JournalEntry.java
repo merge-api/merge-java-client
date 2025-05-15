@@ -39,7 +39,7 @@ public final class JournalEntry {
 
     private final Optional<String> memo;
 
-    private final Optional<JournalEntryCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -55,7 +55,7 @@ public final class JournalEntry {
 
     private final Optional<Boolean> remoteWasDeleted;
 
-    private final Optional<JournalEntryPostingStatus> postingStatus;
+    private final Optional<PostingStatusEnum> postingStatus;
 
     private final Optional<JournalEntryAccountingPeriod> accountingPeriod;
 
@@ -80,7 +80,7 @@ public final class JournalEntry {
             Optional<List<Optional<JournalEntryPaymentsItem>>> payments,
             Optional<List<Optional<JournalEntryAppliedPaymentsItem>>> appliedPayments,
             Optional<String> memo,
-            Optional<JournalEntryCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<JournalEntryCompany> company,
             Optional<Boolean> inclusiveOfTax,
@@ -88,7 +88,7 @@ public final class JournalEntry {
             Optional<String> journalNumber,
             Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
-            Optional<JournalEntryPostingStatus> postingStatus,
+            Optional<PostingStatusEnum> postingStatus,
             Optional<JournalEntryAccountingPeriod> accountingPeriod,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -495,7 +495,7 @@ public final class JournalEntry {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<JournalEntryCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -557,7 +557,7 @@ public final class JournalEntry {
      * </ul>
      */
     @JsonProperty("posting_status")
-    public Optional<JournalEntryPostingStatus> getPostingStatus() {
+    public Optional<PostingStatusEnum> getPostingStatus() {
         return postingStatus;
     }
 
@@ -692,7 +692,7 @@ public final class JournalEntry {
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<JournalEntryCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -708,7 +708,7 @@ public final class JournalEntry {
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
-        private Optional<JournalEntryPostingStatus> postingStatus = Optional.empty();
+        private Optional<PostingStatusEnum> postingStatus = Optional.empty();
 
         private Optional<JournalEntryAccountingPeriod> accountingPeriod = Optional.empty();
 
@@ -843,12 +843,12 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<JournalEntryCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(JournalEntryCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -932,12 +932,12 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "posting_status", nulls = Nulls.SKIP)
-        public Builder postingStatus(Optional<JournalEntryPostingStatus> postingStatus) {
+        public Builder postingStatus(Optional<PostingStatusEnum> postingStatus) {
             this.postingStatus = postingStatus;
             return this;
         }
 
-        public Builder postingStatus(JournalEntryPostingStatus postingStatus) {
+        public Builder postingStatus(PostingStatusEnum postingStatus) {
             this.postingStatus = Optional.ofNullable(postingStatus);
             return this;
         }

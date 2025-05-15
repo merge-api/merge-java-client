@@ -28,11 +28,11 @@ public final class AuditLogEvent {
 
     private final Optional<String> userEmail;
 
-    private final AuditLogEventRole role;
+    private final RoleEnum role;
 
     private final String ipAddress;
 
-    private final AuditLogEventEventType eventType;
+    private final EventTypeEnum eventType;
 
     private final String eventDescription;
 
@@ -44,9 +44,9 @@ public final class AuditLogEvent {
             Optional<String> id,
             Optional<String> userName,
             Optional<String> userEmail,
-            AuditLogEventRole role,
+            RoleEnum role,
             String ipAddress,
-            AuditLogEventEventType eventType,
+            EventTypeEnum eventType,
             String eventDescription,
             Optional<OffsetDateTime> createdAt,
             Map<String, Object> additionalProperties) {
@@ -94,7 +94,7 @@ public final class AuditLogEvent {
      * </ul>
      */
     @JsonProperty("role")
-    public AuditLogEventRole getRole() {
+    public RoleEnum getRole() {
         return role;
     }
 
@@ -115,6 +115,7 @@ public final class AuditLogEvent {
      * <li><code>TWO_FACTOR_AUTH_ENABLED</code> - TWO_FACTOR_AUTH_ENABLED</li>
      * <li><code>TWO_FACTOR_AUTH_DISABLED</code> - TWO_FACTOR_AUTH_DISABLED</li>
      * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
+     * <li><code>DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</code> - DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</li>
      * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
      * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
      * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>
@@ -150,7 +151,7 @@ public final class AuditLogEvent {
      * </ul>
      */
     @JsonProperty("event_type")
-    public AuditLogEventEventType getEventType() {
+    public EventTypeEnum getEventType() {
         return eventType;
     }
 
@@ -209,7 +210,7 @@ public final class AuditLogEvent {
     }
 
     public interface RoleStage {
-        IpAddressStage role(@NotNull AuditLogEventRole role);
+        IpAddressStage role(@NotNull RoleEnum role);
 
         Builder from(AuditLogEvent other);
     }
@@ -219,7 +220,7 @@ public final class AuditLogEvent {
     }
 
     public interface EventTypeStage {
-        EventDescriptionStage eventType(@NotNull AuditLogEventEventType eventType);
+        EventDescriptionStage eventType(@NotNull EventTypeEnum eventType);
     }
 
     public interface EventDescriptionStage {
@@ -249,11 +250,11 @@ public final class AuditLogEvent {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder
             implements RoleStage, IpAddressStage, EventTypeStage, EventDescriptionStage, _FinalStage {
-        private AuditLogEventRole role;
+        private RoleEnum role;
 
         private String ipAddress;
 
-        private AuditLogEventEventType eventType;
+        private EventTypeEnum eventType;
 
         private String eventDescription;
 
@@ -297,7 +298,7 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         @JsonSetter("role")
-        public IpAddressStage role(@NotNull AuditLogEventRole role) {
+        public IpAddressStage role(@NotNull RoleEnum role) {
             this.role = role;
             return this;
         }
@@ -321,6 +322,7 @@ public final class AuditLogEvent {
          * <li><code>TWO_FACTOR_AUTH_ENABLED</code> - TWO_FACTOR_AUTH_ENABLED</li>
          * <li><code>TWO_FACTOR_AUTH_DISABLED</code> - TWO_FACTOR_AUTH_DISABLED</li>
          * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
+         * <li><code>DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</code> - DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</li>
          * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
          * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
          * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>
@@ -358,7 +360,7 @@ public final class AuditLogEvent {
          */
         @java.lang.Override
         @JsonSetter("event_type")
-        public EventDescriptionStage eventType(@NotNull AuditLogEventEventType eventType) {
+        public EventDescriptionStage eventType(@NotNull EventTypeEnum eventType) {
             this.eventType = eventType;
             return this;
         }

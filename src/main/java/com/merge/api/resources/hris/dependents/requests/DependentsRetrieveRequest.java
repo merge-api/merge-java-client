@@ -24,14 +24,18 @@ public final class DependentsRetrieveRequest {
 
     private final Optional<Boolean> includeSensitiveFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Map<String, Object> additionalProperties;
 
     private DependentsRetrieveRequest(
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -51,6 +55,14 @@ public final class DependentsRetrieveRequest {
         return includeSensitiveFields;
     }
 
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -64,12 +76,13 @@ public final class DependentsRetrieveRequest {
 
     private boolean equalTo(DependentsRetrieveRequest other) {
         return includeRemoteData.equals(other.includeRemoteData)
-                && includeSensitiveFields.equals(other.includeSensitiveFields);
+                && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.includeRemoteData, this.includeSensitiveFields);
+        return Objects.hash(this.includeRemoteData, this.includeSensitiveFields, this.includeShellData);
     }
 
     @java.lang.Override
@@ -87,6 +100,8 @@ public final class DependentsRetrieveRequest {
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -95,6 +110,7 @@ public final class DependentsRetrieveRequest {
         public Builder from(DependentsRetrieveRequest other) {
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
@@ -120,8 +136,20 @@ public final class DependentsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public DependentsRetrieveRequest build() {
-            return new DependentsRetrieveRequest(includeRemoteData, includeSensitiveFields, additionalProperties);
+            return new DependentsRetrieveRequest(
+                    includeRemoteData, includeSensitiveFields, includeShellData, additionalProperties);
         }
     }
 }
