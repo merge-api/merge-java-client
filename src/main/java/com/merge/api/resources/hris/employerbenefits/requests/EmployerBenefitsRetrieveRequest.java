@@ -22,11 +22,16 @@ import java.util.Optional;
 public final class EmployerBenefitsRetrieveRequest {
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Map<String, Object> additionalProperties;
 
     private EmployerBenefitsRetrieveRequest(
-            Optional<Boolean> includeRemoteData, Map<String, Object> additionalProperties) {
+            Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
+            Map<String, Object> additionalProperties) {
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -36,6 +41,14 @@ public final class EmployerBenefitsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     @java.lang.Override
@@ -50,12 +63,12 @@ public final class EmployerBenefitsRetrieveRequest {
     }
 
     private boolean equalTo(EmployerBenefitsRetrieveRequest other) {
-        return includeRemoteData.equals(other.includeRemoteData);
+        return includeRemoteData.equals(other.includeRemoteData) && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.includeRemoteData);
+        return Objects.hash(this.includeRemoteData, this.includeShellData);
     }
 
     @java.lang.Override
@@ -71,6 +84,8 @@ public final class EmployerBenefitsRetrieveRequest {
     public static final class Builder {
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -78,6 +93,7 @@ public final class EmployerBenefitsRetrieveRequest {
 
         public Builder from(EmployerBenefitsRetrieveRequest other) {
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
@@ -92,8 +108,19 @@ public final class EmployerBenefitsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public EmployerBenefitsRetrieveRequest build() {
-            return new EmployerBenefitsRetrieveRequest(includeRemoteData, additionalProperties);
+            return new EmployerBenefitsRetrieveRequest(includeRemoteData, includeShellData, additionalProperties);
         }
     }
 }

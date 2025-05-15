@@ -78,7 +78,7 @@ public final class AttachmentRequestAttachmentType {
         }
 
         @java.lang.Override
-        public AttachmentRequestAttachmentType deserialize(JsonParser p, DeserializationContext ctxt)
+        public AttachmentRequestAttachmentType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

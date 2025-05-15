@@ -78,7 +78,8 @@ public final class PurchaseOrderLineItemCurrency {
         }
 
         @java.lang.Override
-        public PurchaseOrderLineItemCurrency deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PurchaseOrderLineItemCurrency deserialize(JsonParser p, DeserializationContext context)
+                throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TransactionCurrencyEnum.class));

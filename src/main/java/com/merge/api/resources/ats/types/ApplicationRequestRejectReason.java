@@ -78,7 +78,7 @@ public final class ApplicationRequestRejectReason {
         }
 
         @java.lang.Override
-        public ApplicationRequestRejectReason deserialize(JsonParser p, DeserializationContext ctxt)
+        public ApplicationRequestRejectReason deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

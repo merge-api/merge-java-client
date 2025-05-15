@@ -79,7 +79,7 @@ public final class PurchaseOrderLineItemRequestCurrency {
         }
 
         @java.lang.Override
-        public PurchaseOrderLineItemRequestCurrency deserialize(JsonParser p, DeserializationContext ctxt)
+        public PurchaseOrderLineItemRequestCurrency deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

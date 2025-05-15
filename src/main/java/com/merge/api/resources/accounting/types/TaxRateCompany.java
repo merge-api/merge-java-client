@@ -78,7 +78,7 @@ public final class TaxRateCompany {
         }
 
         @java.lang.Override
-        public TaxRateCompany deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TaxRateCompany deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

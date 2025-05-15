@@ -78,7 +78,7 @@ public final class VendorCreditCurrency {
         }
 
         @java.lang.Override
-        public VendorCreditCurrency deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public VendorCreditCurrency deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TransactionCurrencyEnum.class));

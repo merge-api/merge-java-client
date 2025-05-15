@@ -78,7 +78,7 @@ public final class InvoiceLineItemTrackingCategory {
         }
 
         @java.lang.Override
-        public InvoiceLineItemTrackingCategory deserialize(JsonParser p, DeserializationContext ctxt)
+        public InvoiceLineItemTrackingCategory deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

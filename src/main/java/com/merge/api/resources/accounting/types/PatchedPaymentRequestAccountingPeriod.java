@@ -79,7 +79,7 @@ public final class PatchedPaymentRequestAccountingPeriod {
         }
 
         @java.lang.Override
-        public PatchedPaymentRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext ctxt)
+        public PatchedPaymentRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

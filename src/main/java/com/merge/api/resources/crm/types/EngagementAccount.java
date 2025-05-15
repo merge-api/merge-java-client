@@ -78,7 +78,7 @@ public final class EngagementAccount {
         }
 
         @java.lang.Override
-        public EngagementAccount deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EngagementAccount deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

@@ -79,7 +79,7 @@ public final class JournalLineRequestTrackingCategory {
         }
 
         @java.lang.Override
-        public JournalLineRequestTrackingCategory deserialize(JsonParser p, DeserializationContext ctxt)
+        public JournalLineRequestTrackingCategory deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

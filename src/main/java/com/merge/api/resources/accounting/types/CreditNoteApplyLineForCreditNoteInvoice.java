@@ -79,7 +79,7 @@ public final class CreditNoteApplyLineForCreditNoteInvoice {
         }
 
         @java.lang.Override
-        public CreditNoteApplyLineForCreditNoteInvoice deserialize(JsonParser p, DeserializationContext ctxt)
+        public CreditNoteApplyLineForCreditNoteInvoice deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

@@ -79,7 +79,7 @@ public final class GeneralLedgerTransactionLineContact {
         }
 
         @java.lang.Override
-        public GeneralLedgerTransactionLineContact deserialize(JsonParser p, DeserializationContext ctxt)
+        public GeneralLedgerTransactionLineContact deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

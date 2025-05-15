@@ -78,7 +78,7 @@ public final class ActivityActivityType {
         }
 
         @java.lang.Override
-        public ActivityActivityType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public ActivityActivityType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, ActivityTypeEnum.class));

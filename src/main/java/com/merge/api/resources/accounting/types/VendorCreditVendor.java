@@ -78,7 +78,7 @@ public final class VendorCreditVendor {
         }
 
         @java.lang.Override
-        public VendorCreditVendor deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public VendorCreditVendor deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

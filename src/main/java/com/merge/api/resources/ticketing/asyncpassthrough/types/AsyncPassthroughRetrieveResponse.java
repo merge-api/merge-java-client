@@ -79,7 +79,7 @@ public final class AsyncPassthroughRetrieveResponse {
         }
 
         @java.lang.Override
-        public AsyncPassthroughRetrieveResponse deserialize(JsonParser p, DeserializationContext ctxt)
+        public AsyncPassthroughRetrieveResponse deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

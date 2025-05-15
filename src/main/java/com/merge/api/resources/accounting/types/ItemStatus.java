@@ -78,7 +78,7 @@ public final class ItemStatus {
         }
 
         @java.lang.Override
-        public ItemStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public ItemStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, Status7D1Enum.class));

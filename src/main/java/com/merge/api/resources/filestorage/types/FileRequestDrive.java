@@ -78,7 +78,7 @@ public final class FileRequestDrive {
         }
 
         @java.lang.Override
-        public FileRequestDrive deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public FileRequestDrive deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

@@ -78,7 +78,7 @@ public final class TicketPriority {
         }
 
         @java.lang.Override
-        public TicketPriority deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TicketPriority deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, PriorityEnum.class));

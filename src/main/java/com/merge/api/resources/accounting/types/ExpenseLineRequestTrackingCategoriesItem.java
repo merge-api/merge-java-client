@@ -79,7 +79,7 @@ public final class ExpenseLineRequestTrackingCategoriesItem {
         }
 
         @java.lang.Override
-        public ExpenseLineRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public ExpenseLineRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

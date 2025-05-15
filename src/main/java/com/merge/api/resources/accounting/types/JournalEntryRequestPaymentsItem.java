@@ -78,7 +78,7 @@ public final class JournalEntryRequestPaymentsItem {
         }
 
         @java.lang.Override
-        public JournalEntryRequestPaymentsItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public JournalEntryRequestPaymentsItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

@@ -78,7 +78,7 @@ public final class ScreeningQuestionAnswerQuestion {
         }
 
         @java.lang.Override
-        public ScreeningQuestionAnswerQuestion deserialize(JsonParser p, DeserializationContext ctxt)
+        public ScreeningQuestionAnswerQuestion deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

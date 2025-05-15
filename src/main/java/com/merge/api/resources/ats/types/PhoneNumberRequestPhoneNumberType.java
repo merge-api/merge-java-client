@@ -78,7 +78,7 @@ public final class PhoneNumberRequestPhoneNumberType {
         }
 
         @java.lang.Override
-        public PhoneNumberRequestPhoneNumberType deserialize(JsonParser p, DeserializationContext ctxt)
+        public PhoneNumberRequestPhoneNumberType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

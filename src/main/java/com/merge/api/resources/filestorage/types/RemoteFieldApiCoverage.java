@@ -77,7 +77,7 @@ public final class RemoteFieldApiCoverage {
         }
 
         @java.lang.Override
-        public RemoteFieldApiCoverage deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public RemoteFieldApiCoverage deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             if (value instanceof Integer) {
                 return of((Integer) value);

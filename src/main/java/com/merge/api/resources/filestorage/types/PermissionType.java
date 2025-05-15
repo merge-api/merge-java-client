@@ -78,7 +78,7 @@ public final class PermissionType {
         }
 
         @java.lang.Override
-        public PermissionType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PermissionType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TypeEnum.class));

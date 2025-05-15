@@ -79,7 +79,7 @@ public final class BankFeedTransactionBankFeedAccount {
         }
 
         @java.lang.Override
-        public BankFeedTransactionBankFeedAccount deserialize(JsonParser p, DeserializationContext ctxt)
+        public BankFeedTransactionBankFeedAccount deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

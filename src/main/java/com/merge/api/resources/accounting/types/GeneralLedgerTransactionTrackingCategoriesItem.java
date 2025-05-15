@@ -79,7 +79,7 @@ public final class GeneralLedgerTransactionTrackingCategoriesItem {
         }
 
         @java.lang.Override
-        public GeneralLedgerTransactionTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public GeneralLedgerTransactionTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

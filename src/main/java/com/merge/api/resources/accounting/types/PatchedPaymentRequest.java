@@ -29,6 +29,8 @@ public final class PatchedPaymentRequest {
 
     private final Optional<PatchedPaymentRequestAccount> account;
 
+    private final Optional<PatchedPaymentRequestPaymentMethod> paymentMethod;
+
     private final Optional<PatchedPaymentRequestCurrency> currency;
 
     private final Optional<String> exchangeRate;
@@ -57,6 +59,7 @@ public final class PatchedPaymentRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<PatchedPaymentRequestContact> contact,
             Optional<PatchedPaymentRequestAccount> account,
+            Optional<PatchedPaymentRequestPaymentMethod> paymentMethod,
             Optional<PatchedPaymentRequestCurrency> currency,
             Optional<String> exchangeRate,
             Optional<PatchedPaymentRequestCompany> company,
@@ -72,6 +75,7 @@ public final class PatchedPaymentRequest {
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
+        this.paymentMethod = paymentMethod;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
@@ -108,6 +112,14 @@ public final class PatchedPaymentRequest {
     @JsonProperty("account")
     public Optional<PatchedPaymentRequestAccount> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The method which this payment was made by.
+     */
+    @JsonProperty("payment_method")
+    public Optional<PatchedPaymentRequestPaymentMethod> getPaymentMethod() {
+        return paymentMethod;
     }
 
     /**
@@ -513,6 +525,7 @@ public final class PatchedPaymentRequest {
         return transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
+                && paymentMethod.equals(other.paymentMethod)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
@@ -532,6 +545,7 @@ public final class PatchedPaymentRequest {
                 this.transactionDate,
                 this.contact,
                 this.account,
+                this.paymentMethod,
                 this.currency,
                 this.exchangeRate,
                 this.company,
@@ -561,6 +575,8 @@ public final class PatchedPaymentRequest {
         private Optional<PatchedPaymentRequestContact> contact = Optional.empty();
 
         private Optional<PatchedPaymentRequestAccount> account = Optional.empty();
+
+        private Optional<PatchedPaymentRequestPaymentMethod> paymentMethod = Optional.empty();
 
         private Optional<PatchedPaymentRequestCurrency> currency = Optional.empty();
 
@@ -594,6 +610,7 @@ public final class PatchedPaymentRequest {
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
+            paymentMethod(other.getPaymentMethod());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
@@ -638,6 +655,17 @@ public final class PatchedPaymentRequest {
 
         public Builder account(PatchedPaymentRequestAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_method", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<PatchedPaymentRequestPaymentMethod> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(PatchedPaymentRequestPaymentMethod paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
             return this;
         }
 
@@ -769,6 +797,7 @@ public final class PatchedPaymentRequest {
                     transactionDate,
                     contact,
                     account,
+                    paymentMethod,
                     currency,
                     exchangeRate,
                     company,

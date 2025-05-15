@@ -33,7 +33,7 @@ public final class FilePermissionsItem {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((PermissionRequest) this.value);
+            return visitor.visit((Permission) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
@@ -62,14 +62,14 @@ public final class FilePermissionsItem {
         return new FilePermissionsItem(value, 0);
     }
 
-    public static FilePermissionsItem of(PermissionRequest value) {
+    public static FilePermissionsItem of(Permission value) {
         return new FilePermissionsItem(value, 1);
     }
 
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(PermissionRequest value);
+        T visit(Permission value);
     }
 
     static final class Deserializer extends StdDeserializer<FilePermissionsItem> {
@@ -78,14 +78,14 @@ public final class FilePermissionsItem {
         }
 
         @java.lang.Override
-        public FilePermissionsItem deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public FilePermissionsItem deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));
             } catch (IllegalArgumentException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, PermissionRequest.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, Permission.class));
             } catch (IllegalArgumentException e) {
             }
             throw new JsonParseException(p, "Failed to deserialize");

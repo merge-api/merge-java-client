@@ -79,7 +79,7 @@ public final class PatchedPaymentRequestTrackingCategoriesItem {
         }
 
         @java.lang.Override
-        public PatchedPaymentRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public PatchedPaymentRequestTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

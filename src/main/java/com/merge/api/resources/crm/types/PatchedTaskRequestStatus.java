@@ -78,7 +78,7 @@ public final class PatchedTaskRequestStatus {
         }
 
         @java.lang.Override
-        public PatchedTaskRequestStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PatchedTaskRequestStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TaskStatusEnum.class));

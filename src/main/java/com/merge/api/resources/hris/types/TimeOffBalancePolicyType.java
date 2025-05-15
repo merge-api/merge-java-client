@@ -78,7 +78,7 @@ public final class TimeOffBalancePolicyType {
         }
 
         @java.lang.Override
-        public TimeOffBalancePolicyType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TimeOffBalancePolicyType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, PolicyTypeEnum.class));

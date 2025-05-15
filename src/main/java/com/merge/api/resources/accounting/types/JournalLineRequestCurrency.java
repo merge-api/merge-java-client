@@ -78,7 +78,7 @@ public final class JournalLineRequestCurrency {
         }
 
         @java.lang.Override
-        public JournalLineRequestCurrency deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public JournalLineRequestCurrency deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TransactionCurrencyEnum.class));

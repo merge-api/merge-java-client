@@ -78,7 +78,7 @@ public final class OpportunityStatus {
         }
 
         @java.lang.Override
-        public OpportunityStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public OpportunityStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, OpportunityStatusEnum.class));

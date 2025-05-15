@@ -78,7 +78,7 @@ public final class JournalEntryRequestPostingStatus {
         }
 
         @java.lang.Override
-        public JournalEntryRequestPostingStatus deserialize(JsonParser p, DeserializationContext ctxt)
+        public JournalEntryRequestPostingStatus deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

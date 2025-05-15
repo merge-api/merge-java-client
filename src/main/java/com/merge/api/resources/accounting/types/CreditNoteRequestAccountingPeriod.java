@@ -78,7 +78,7 @@ public final class CreditNoteRequestAccountingPeriod {
         }
 
         @java.lang.Override
-        public CreditNoteRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext ctxt)
+        public CreditNoteRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

@@ -78,7 +78,7 @@ public final class AccountClassification {
         }
 
         @java.lang.Override
-        public AccountClassification deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public AccountClassification deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, ClassificationEnum.class));

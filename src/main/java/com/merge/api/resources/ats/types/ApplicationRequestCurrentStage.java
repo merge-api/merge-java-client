@@ -78,7 +78,7 @@ public final class ApplicationRequestCurrentStage {
         }
 
         @java.lang.Override
-        public ApplicationRequestCurrentStage deserialize(JsonParser p, DeserializationContext ctxt)
+        public ApplicationRequestCurrentStage deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

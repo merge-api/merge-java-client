@@ -78,7 +78,7 @@ public final class EmployeeGroupsItem {
         }
 
         @java.lang.Override
-        public EmployeeGroupsItem deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeeGroupsItem deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

@@ -41,6 +41,8 @@ public final class PurchaseOrderRequest {
 
     private final Optional<Double> totalAmount;
 
+    private final Optional<PurchaseOrderRequestPaymentTerm> paymentTerm;
+
     private final Optional<PurchaseOrderRequestCurrency> currency;
 
     private final Optional<Boolean> inclusiveOfTax;
@@ -69,6 +71,7 @@ public final class PurchaseOrderRequest {
             Optional<String> memo,
             Optional<PurchaseOrderRequestCompany> company,
             Optional<Double> totalAmount,
+            Optional<PurchaseOrderRequestPaymentTerm> paymentTerm,
             Optional<PurchaseOrderRequestCurrency> currency,
             Optional<Boolean> inclusiveOfTax,
             Optional<String> exchangeRate,
@@ -87,6 +90,7 @@ public final class PurchaseOrderRequest {
         this.memo = memo;
         this.company = company;
         this.totalAmount = totalAmount;
+        this.paymentTerm = paymentTerm;
         this.currency = currency;
         this.inclusiveOfTax = inclusiveOfTax;
         this.exchangeRate = exchangeRate;
@@ -175,6 +179,14 @@ public final class PurchaseOrderRequest {
     @JsonProperty("total_amount")
     public Optional<Double> getTotalAmount() {
         return totalAmount;
+    }
+
+    /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<PurchaseOrderRequestPaymentTerm> getPaymentTerm() {
+        return paymentTerm;
     }
 
     /**
@@ -555,6 +567,7 @@ public final class PurchaseOrderRequest {
                 && memo.equals(other.memo)
                 && company.equals(other.company)
                 && totalAmount.equals(other.totalAmount)
+                && paymentTerm.equals(other.paymentTerm)
                 && currency.equals(other.currency)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && exchangeRate.equals(other.exchangeRate)
@@ -577,6 +590,7 @@ public final class PurchaseOrderRequest {
                 this.memo,
                 this.company,
                 this.totalAmount,
+                this.paymentTerm,
                 this.currency,
                 this.inclusiveOfTax,
                 this.exchangeRate,
@@ -616,6 +630,8 @@ public final class PurchaseOrderRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
+        private Optional<PurchaseOrderRequestPaymentTerm> paymentTerm = Optional.empty();
+
         private Optional<PurchaseOrderRequestCurrency> currency = Optional.empty();
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
@@ -648,6 +664,7 @@ public final class PurchaseOrderRequest {
             memo(other.getMemo());
             company(other.getCompany());
             totalAmount(other.getTotalAmount());
+            paymentTerm(other.getPaymentTerm());
             currency(other.getCurrency());
             inclusiveOfTax(other.getInclusiveOfTax());
             exchangeRate(other.getExchangeRate());
@@ -758,6 +775,17 @@ public final class PurchaseOrderRequest {
             return this;
         }
 
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<PurchaseOrderRequestPaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(PurchaseOrderRequestPaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
         public Builder currency(Optional<PurchaseOrderRequestCurrency> currency) {
             this.currency = currency;
@@ -859,6 +887,7 @@ public final class PurchaseOrderRequest {
                     memo,
                     company,
                     totalAmount,
+                    paymentTerm,
                     currency,
                     inclusiveOfTax,
                     exchangeRate,

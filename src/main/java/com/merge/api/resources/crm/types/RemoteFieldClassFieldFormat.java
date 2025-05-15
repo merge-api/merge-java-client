@@ -78,7 +78,8 @@ public final class RemoteFieldClassFieldFormat {
         }
 
         @java.lang.Override
-        public RemoteFieldClassFieldFormat deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public RemoteFieldClassFieldFormat deserialize(JsonParser p, DeserializationContext context)
+                throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, FieldFormatEnum.class));

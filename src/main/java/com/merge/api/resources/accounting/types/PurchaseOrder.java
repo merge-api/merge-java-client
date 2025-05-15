@@ -55,6 +55,8 @@ public final class PurchaseOrder {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<PurchaseOrderPaymentTerm> paymentTerm;
+
     private final Optional<List<PurchaseOrderLineItem>> lineItems;
 
     private final Optional<Boolean> inclusiveOfTax;
@@ -94,6 +96,7 @@ public final class PurchaseOrder {
             Optional<Double> totalAmount,
             Optional<PurchaseOrderCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<PurchaseOrderPaymentTerm> paymentTerm,
             Optional<List<PurchaseOrderLineItem>> lineItems,
             Optional<Boolean> inclusiveOfTax,
             Optional<List<Optional<PurchaseOrderTrackingCategoriesItem>>> trackingCategories,
@@ -121,6 +124,7 @@ public final class PurchaseOrder {
         this.totalAmount = totalAmount;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.paymentTerm = paymentTerm;
         this.lineItems = lineItems;
         this.inclusiveOfTax = inclusiveOfTax;
         this.trackingCategories = trackingCategories;
@@ -574,6 +578,14 @@ public final class PurchaseOrder {
         return exchangeRate;
     }
 
+    /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<PurchaseOrderPaymentTerm> getPaymentTerm() {
+        return paymentTerm;
+    }
+
     @JsonProperty("line_items")
     public Optional<List<PurchaseOrderLineItem>> getLineItems() {
         return lineItems;
@@ -667,6 +679,7 @@ public final class PurchaseOrder {
                 && totalAmount.equals(other.totalAmount)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && paymentTerm.equals(other.paymentTerm)
                 && lineItems.equals(other.lineItems)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && trackingCategories.equals(other.trackingCategories)
@@ -698,6 +711,7 @@ public final class PurchaseOrder {
                 this.totalAmount,
                 this.currency,
                 this.exchangeRate,
+                this.paymentTerm,
                 this.lineItems,
                 this.inclusiveOfTax,
                 this.trackingCategories,
@@ -753,6 +767,8 @@ public final class PurchaseOrder {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<PurchaseOrderPaymentTerm> paymentTerm = Optional.empty();
+
         private Optional<List<PurchaseOrderLineItem>> lineItems = Optional.empty();
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
@@ -795,6 +811,7 @@ public final class PurchaseOrder {
             totalAmount(other.getTotalAmount());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            paymentTerm(other.getPaymentTerm());
             lineItems(other.getLineItems());
             inclusiveOfTax(other.getInclusiveOfTax());
             trackingCategories(other.getTrackingCategories());
@@ -984,6 +1001,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<PurchaseOrderPaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(PurchaseOrderPaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
         public Builder lineItems(Optional<List<PurchaseOrderLineItem>> lineItems) {
             this.lineItems = lineItems;
@@ -1113,6 +1141,7 @@ public final class PurchaseOrder {
                     totalAmount,
                     currency,
                     exchangeRate,
+                    paymentTerm,
                     lineItems,
                     inclusiveOfTax,
                     trackingCategories,

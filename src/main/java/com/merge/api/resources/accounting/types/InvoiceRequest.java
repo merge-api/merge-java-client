@@ -51,6 +51,8 @@ public final class InvoiceRequest {
 
     private final Optional<Double> subTotal;
 
+    private final Optional<InvoiceRequestPaymentTerm> paymentTerm;
+
     private final Optional<Double> totalTaxAmount;
 
     private final Optional<Boolean> inclusiveOfTax;
@@ -90,6 +92,7 @@ public final class InvoiceRequest {
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
+            Optional<InvoiceRequestPaymentTerm> paymentTerm,
             Optional<Double> totalTaxAmount,
             Optional<Boolean> inclusiveOfTax,
             Optional<Double> totalAmount,
@@ -116,6 +119,7 @@ public final class InvoiceRequest {
         this.exchangeRate = exchangeRate;
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
+        this.paymentTerm = paymentTerm;
         this.totalTaxAmount = totalTaxAmount;
         this.inclusiveOfTax = inclusiveOfTax;
         this.totalAmount = totalAmount;
@@ -563,6 +567,14 @@ public final class InvoiceRequest {
     }
 
     /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<InvoiceRequestPaymentTerm> getPaymentTerm() {
+        return paymentTerm;
+    }
+
+    /**
      * @return The total amount being paid in taxes.
      */
     @JsonProperty("total_tax_amount")
@@ -658,6 +670,7 @@ public final class InvoiceRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
+                && paymentTerm.equals(other.paymentTerm)
                 && totalTaxAmount.equals(other.totalTaxAmount)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && totalAmount.equals(other.totalAmount)
@@ -688,6 +701,7 @@ public final class InvoiceRequest {
                 this.exchangeRate,
                 this.totalDiscount,
                 this.subTotal,
+                this.paymentTerm,
                 this.totalTaxAmount,
                 this.inclusiveOfTax,
                 this.totalAmount,
@@ -740,6 +754,8 @@ public final class InvoiceRequest {
 
         private Optional<Double> subTotal = Optional.empty();
 
+        private Optional<InvoiceRequestPaymentTerm> paymentTerm = Optional.empty();
+
         private Optional<Double> totalTaxAmount = Optional.empty();
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
@@ -782,6 +798,7 @@ public final class InvoiceRequest {
             exchangeRate(other.getExchangeRate());
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
+            paymentTerm(other.getPaymentTerm());
             totalTaxAmount(other.getTotalTaxAmount());
             inclusiveOfTax(other.getInclusiveOfTax());
             totalAmount(other.getTotalAmount());
@@ -950,6 +967,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<InvoiceRequestPaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(InvoiceRequestPaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
         @JsonSetter(value = "total_tax_amount", nulls = Nulls.SKIP)
         public Builder totalTaxAmount(Optional<Double> totalTaxAmount) {
             this.totalTaxAmount = totalTaxAmount;
@@ -1088,6 +1116,7 @@ public final class InvoiceRequest {
                     exchangeRate,
                     totalDiscount,
                     subTotal,
+                    paymentTerm,
                     totalTaxAmount,
                     inclusiveOfTax,
                     totalAmount,

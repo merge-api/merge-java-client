@@ -78,7 +78,7 @@ public final class EmploymentPayCurrency {
         }
 
         @java.lang.Override
-        public EmploymentPayCurrency deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmploymentPayCurrency deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, PayCurrencyEnum.class));

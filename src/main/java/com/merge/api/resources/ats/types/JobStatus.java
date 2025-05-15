@@ -78,7 +78,7 @@ public final class JobStatus {
         }
 
         @java.lang.Override
-        public JobStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public JobStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, JobStatusEnum.class));

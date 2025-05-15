@@ -78,7 +78,7 @@ public final class ExpenseAccount {
         }
 
         @java.lang.Override
-        public ExpenseAccount deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public ExpenseAccount deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

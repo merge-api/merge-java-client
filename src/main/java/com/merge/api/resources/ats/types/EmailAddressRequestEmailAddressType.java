@@ -79,7 +79,7 @@ public final class EmailAddressRequestEmailAddressType {
         }
 
         @java.lang.Override
-        public EmailAddressRequestEmailAddressType deserialize(JsonParser p, DeserializationContext ctxt)
+        public EmailAddressRequestEmailAddressType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

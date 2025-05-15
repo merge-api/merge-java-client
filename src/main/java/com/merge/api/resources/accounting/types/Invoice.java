@@ -53,6 +53,8 @@ public final class Invoice {
 
     private final Optional<String> exchangeRate;
 
+    private final Optional<InvoicePaymentTerm> paymentTerm;
+
     private final Optional<Double> totalDiscount;
 
     private final Optional<Double> subTotal;
@@ -111,6 +113,7 @@ public final class Invoice {
             Optional<InvoiceEmployee> employee,
             Optional<InvoiceCurrency> currency,
             Optional<String> exchangeRate,
+            Optional<InvoicePaymentTerm> paymentTerm,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
             Optional<InvoiceStatus> status,
@@ -147,6 +150,7 @@ public final class Invoice {
         this.employee = employee;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
+        this.paymentTerm = paymentTerm;
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
         this.status = status;
@@ -600,6 +604,14 @@ public final class Invoice {
     }
 
     /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<InvoicePaymentTerm> getPaymentTerm() {
+        return paymentTerm;
+    }
+
+    /**
      * @return The total discounts applied to the total cost.
      */
     @JsonProperty("total_discount")
@@ -776,6 +788,7 @@ public final class Invoice {
                 && employee.equals(other.employee)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
+                && paymentTerm.equals(other.paymentTerm)
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
                 && status.equals(other.status)
@@ -816,6 +829,7 @@ public final class Invoice {
                 this.employee,
                 this.currency,
                 this.exchangeRate,
+                this.paymentTerm,
                 this.totalDiscount,
                 this.subTotal,
                 this.status,
@@ -879,6 +893,8 @@ public final class Invoice {
 
         private Optional<String> exchangeRate = Optional.empty();
 
+        private Optional<InvoicePaymentTerm> paymentTerm = Optional.empty();
+
         private Optional<Double> totalDiscount = Optional.empty();
 
         private Optional<Double> subTotal = Optional.empty();
@@ -940,6 +956,7 @@ public final class Invoice {
             employee(other.getEmployee());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
+            paymentTerm(other.getPaymentTerm());
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
             status(other.getStatus());
@@ -1125,6 +1142,17 @@ public final class Invoice {
 
         public Builder exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<InvoicePaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(InvoicePaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
             return this;
         }
 
@@ -1365,6 +1393,7 @@ public final class Invoice {
                     employee,
                     currency,
                     exchangeRate,
+                    paymentTerm,
                     totalDiscount,
                     subTotal,
                     status,

@@ -78,7 +78,7 @@ public final class EmployeeMaritalStatus {
         }
 
         @java.lang.Override
-        public EmployeeMaritalStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeeMaritalStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, MaritalStatusEnum.class));

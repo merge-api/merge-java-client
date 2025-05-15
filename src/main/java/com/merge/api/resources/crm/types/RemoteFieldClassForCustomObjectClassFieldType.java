@@ -79,7 +79,7 @@ public final class RemoteFieldClassForCustomObjectClassFieldType {
         }
 
         @java.lang.Override
-        public RemoteFieldClassForCustomObjectClassFieldType deserialize(JsonParser p, DeserializationContext ctxt)
+        public RemoteFieldClassForCustomObjectClassFieldType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

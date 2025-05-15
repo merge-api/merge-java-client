@@ -78,7 +78,7 @@ public final class CreditNoteStatus {
         }
 
         @java.lang.Override
-        public CreditNoteStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public CreditNoteStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, CreditNoteStatusEnum.class));

@@ -78,7 +78,7 @@ public final class RoleTicketActionsItem {
         }
 
         @java.lang.Override
-        public RoleTicketActionsItem deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public RoleTicketActionsItem deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

@@ -65,6 +65,10 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> employee;
 
+    private final Optional<List<RemoteFieldApi>> paymentMethod;
+
+    private final Optional<List<RemoteFieldApi>> paymentTerm;
+
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldApiResponse(
@@ -90,6 +94,8 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> generalLedgerTransaction,
             Optional<List<RemoteFieldApi>> bankFeedAccount,
             Optional<List<RemoteFieldApi>> employee,
+            Optional<List<RemoteFieldApi>> paymentMethod,
+            Optional<List<RemoteFieldApi>> paymentTerm,
             Map<String, Object> additionalProperties) {
         this.account = account;
         this.accountingAttachment = accountingAttachment;
@@ -113,6 +119,8 @@ public final class RemoteFieldApiResponse {
         this.generalLedgerTransaction = generalLedgerTransaction;
         this.bankFeedAccount = bankFeedAccount;
         this.employee = employee;
+        this.paymentMethod = paymentMethod;
+        this.paymentTerm = paymentTerm;
         this.additionalProperties = additionalProperties;
     }
 
@@ -226,6 +234,16 @@ public final class RemoteFieldApiResponse {
         return employee;
     }
 
+    @JsonProperty("PaymentMethod")
+    public Optional<List<RemoteFieldApi>> getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    @JsonProperty("PaymentTerm")
+    public Optional<List<RemoteFieldApi>> getPaymentTerm() {
+        return paymentTerm;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -259,7 +277,9 @@ public final class RemoteFieldApiResponse {
                 && accountingPeriod.equals(other.accountingPeriod)
                 && generalLedgerTransaction.equals(other.generalLedgerTransaction)
                 && bankFeedAccount.equals(other.bankFeedAccount)
-                && employee.equals(other.employee);
+                && employee.equals(other.employee)
+                && paymentMethod.equals(other.paymentMethod)
+                && paymentTerm.equals(other.paymentTerm);
     }
 
     @java.lang.Override
@@ -286,7 +306,9 @@ public final class RemoteFieldApiResponse {
                 this.accountingPeriod,
                 this.generalLedgerTransaction,
                 this.bankFeedAccount,
-                this.employee);
+                this.employee,
+                this.paymentMethod,
+                this.paymentTerm);
     }
 
     @java.lang.Override
@@ -344,6 +366,10 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> employee = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> paymentMethod = Optional.empty();
+
+        private Optional<List<RemoteFieldApi>> paymentTerm = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -372,6 +398,8 @@ public final class RemoteFieldApiResponse {
             generalLedgerTransaction(other.getGeneralLedgerTransaction());
             bankFeedAccount(other.getBankFeedAccount());
             employee(other.getEmployee());
+            paymentMethod(other.getPaymentMethod());
+            paymentTerm(other.getPaymentTerm());
             return this;
         }
 
@@ -617,6 +645,28 @@ public final class RemoteFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "PaymentMethod", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<List<RemoteFieldApi>> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(List<RemoteFieldApi> paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
+            return this;
+        }
+
+        @JsonSetter(value = "PaymentTerm", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<List<RemoteFieldApi>> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(List<RemoteFieldApi> paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
         public RemoteFieldApiResponse build() {
             return new RemoteFieldApiResponse(
                     account,
@@ -641,6 +691,8 @@ public final class RemoteFieldApiResponse {
                     generalLedgerTransaction,
                     bankFeedAccount,
                     employee,
+                    paymentMethod,
+                    paymentTerm,
                     additionalProperties);
         }
     }

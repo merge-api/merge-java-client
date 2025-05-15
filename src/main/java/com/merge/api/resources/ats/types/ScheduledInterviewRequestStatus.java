@@ -78,7 +78,7 @@ public final class ScheduledInterviewRequestStatus {
         }
 
         @java.lang.Override
-        public ScheduledInterviewRequestStatus deserialize(JsonParser p, DeserializationContext ctxt)
+        public ScheduledInterviewRequestStatus deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

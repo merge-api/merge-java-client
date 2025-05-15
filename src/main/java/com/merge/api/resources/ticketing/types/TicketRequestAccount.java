@@ -78,7 +78,7 @@ public final class TicketRequestAccount {
         }
 
         @java.lang.Override
-        public TicketRequestAccount deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TicketRequestAccount deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

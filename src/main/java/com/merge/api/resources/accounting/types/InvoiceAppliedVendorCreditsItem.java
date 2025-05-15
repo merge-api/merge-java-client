@@ -78,7 +78,7 @@ public final class InvoiceAppliedVendorCreditsItem {
         }
 
         @java.lang.Override
-        public InvoiceAppliedVendorCreditsItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public InvoiceAppliedVendorCreditsItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

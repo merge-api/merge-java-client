@@ -79,7 +79,7 @@ public final class VendorCreditRequestAccountingPeriod {
         }
 
         @java.lang.Override
-        public VendorCreditRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext ctxt)
+        public VendorCreditRequestAccountingPeriod deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

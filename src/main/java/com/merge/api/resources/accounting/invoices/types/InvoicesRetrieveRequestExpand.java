@@ -8,19 +8,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public enum InvoicesRetrieveRequestExpand {
     ACCOUNTING_PERIOD("accounting_period"),
 
+    ACCOUNTING_PERIOD_PAYMENT_TERM("accounting_period,payment_term"),
+
     APPLIED_CREDIT_NOTES("applied_credit_notes"),
 
     APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD("applied_credit_notes,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM("applied_credit_notes,accounting_period,payment_term"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS("applied_credit_notes,applied_vendor_credits"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY("applied_credit_notes,applied_vendor_credits,company"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -28,10 +38,22 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT("applied_credit_notes,applied_vendor_credits,contact"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -39,11 +61,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -51,47 +85,108 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE("applied_credit_notes,applied_vendor_credits,employee"),
 
     APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_CREDIT_NOTES_COMPANY("applied_credit_notes,company"),
 
     APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD("applied_credit_notes,company,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE("applied_credit_notes,company,employee"),
 
     APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM("applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM("applied_credit_notes,company,payment_term"),
+
     APPLIED_CREDIT_NOTES_CONTACT("applied_credit_notes,contact"),
 
     APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD("applied_credit_notes,contact,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,contact,accounting_period,payment_term"),
+
     APPLIED_CREDIT_NOTES_CONTACT_COMPANY("applied_credit_notes,contact,company"),
 
     APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD("applied_credit_notes,contact,company,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE("applied_credit_notes,contact,company,employee"),
 
     APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_credit_notes,contact,company,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM("applied_credit_notes,contact,company,payment_term"),
+
     APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE("applied_credit_notes,contact,employee"),
 
     APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("applied_credit_notes,contact,employee,accounting_period"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM("applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM("applied_credit_notes,contact,payment_term"),
 
     APPLIED_CREDIT_NOTES_EMPLOYEE("applied_credit_notes,employee"),
 
     APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD("applied_credit_notes,employee,accounting_period"),
 
+    APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM("applied_credit_notes,employee,payment_term"),
+
+    APPLIED_CREDIT_NOTES_PAYMENT_TERM("applied_credit_notes,payment_term"),
+
     APPLIED_PAYMENTS("applied_payments"),
 
     APPLIED_PAYMENTS_ACCOUNTING_PERIOD("applied_payments,accounting_period"),
 
+    APPLIED_PAYMENTS_ACCOUNTING_PERIOD_PAYMENT_TERM("applied_payments,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES("applied_payments,applied_credit_notes"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD("applied_payments,applied_credit_notes,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,applied_credit_notes,applied_vendor_credits"),
@@ -99,11 +194,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,applied_credit_notes,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -111,11 +212,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -123,11 +236,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -135,31 +260,67 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,applied_credit_notes,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY("applied_payments,applied_credit_notes,company"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,company,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE("applied_payments,applied_credit_notes,company,employee"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,company,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT("applied_payments,applied_credit_notes,contact"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY("applied_payments,applied_credit_notes,contact,company"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,applied_credit_notes,contact,company,employee"),
@@ -167,25 +328,57 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE("applied_payments,applied_credit_notes,contact,employee"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,contact,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE("applied_payments,applied_credit_notes,employee"),
 
     APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_credit_notes,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_PAYMENT_TERM("applied_payments,applied_credit_notes,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS("applied_payments,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY("applied_payments,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,applied_vendor_credits,company,employee"),
@@ -193,15 +386,30 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT("applied_payments,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY("applied_payments,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,applied_vendor_credits,contact,company,employee"),
@@ -209,54 +417,119 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE("applied_payments,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("applied_payments,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_COMPANY("applied_payments,company"),
 
     APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("applied_payments,company,accounting_period"),
+
+    APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("applied_payments,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_COMPANY_EMPLOYEE("applied_payments,company,employee"),
 
     APPLIED_PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("applied_payments,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_COMPANY_EMPLOYEE_PAYMENT_TERM("applied_payments,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_COMPANY_PAYMENT_TERM("applied_payments,company,payment_term"),
+
     APPLIED_PAYMENTS_CONTACT("applied_payments,contact"),
 
     APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD("applied_payments,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM("applied_payments,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_CONTACT_COMPANY("applied_payments,contact,company"),
 
     APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD("applied_payments,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE("applied_payments,contact,company,employee"),
 
     APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM("applied_payments,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_CONTACT_COMPANY_PAYMENT_TERM("applied_payments,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_CONTACT_EMPLOYEE("applied_payments,contact,employee"),
 
     APPLIED_PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("applied_payments,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_CONTACT_EMPLOYEE_PAYMENT_TERM("applied_payments,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_CONTACT_PAYMENT_TERM("applied_payments,contact,payment_term"),
 
     APPLIED_PAYMENTS_EMPLOYEE("applied_payments,employee"),
 
     APPLIED_PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD("applied_payments,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_EMPLOYEE_PAYMENT_TERM("applied_payments,employee,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS("applied_payments,line_items"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD("applied_payments,line_items,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES("applied_payments,line_items,applied_credit_notes"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits"),
@@ -264,11 +537,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -276,11 +555,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -288,11 +579,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -300,11 +603,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,line_items,applied_credit_notes,company"),
@@ -312,11 +633,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,line_items,applied_credit_notes,contact"),
@@ -324,11 +657,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,line_items,applied_credit_notes,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,contact,company,employee"),
@@ -336,11 +675,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,line_items,applied_credit_notes,employee"),
@@ -348,10 +705,22 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_credit_notes,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,line_items,applied_credit_notes,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS("applied_payments,line_items,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,applied_vendor_credits,company"),
@@ -359,11 +728,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,applied_vendor_credits,contact"),
@@ -371,11 +752,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,applied_vendor_credits,contact,company,employee"),
@@ -383,11 +770,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,applied_vendor_credits,employee"),
@@ -395,42 +800,95 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_COMPANY("applied_payments,line_items,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD("applied_payments,line_items,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE("applied_payments,line_items,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_PAYMENT_TERM("applied_payments,line_items,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT("applied_payments,line_items,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD("applied_payments,line_items,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY("applied_payments,line_items,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE("applied_payments,line_items,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE("applied_payments,line_items,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_PAYMENT_TERM("applied_payments,line_items,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE("applied_payments,line_items,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD("applied_payments,line_items,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_PAYMENT_TERM("applied_payments,line_items,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PAYMENT_TERM("applied_payments,line_items,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS("applied_payments,line_items,purchase_orders"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "applied_payments,line_items,purchase_orders,applied_credit_notes"),
@@ -438,11 +896,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -450,11 +914,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -462,11 +938,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -474,11 +956,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -486,11 +986,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee"),
@@ -498,11 +1010,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company"),
@@ -510,11 +1034,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee"),
@@ -522,11 +1058,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_credit_notes,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits"),
@@ -534,11 +1088,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee"),
@@ -546,11 +1106,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company"),
@@ -558,11 +1130,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -570,16 +1154,37 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY("applied_payments,line_items,purchase_orders,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,company,employee"),
@@ -587,10 +1192,22 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT("applied_payments,line_items,purchase_orders,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY(
             "applied_payments,line_items,purchase_orders,contact,company"),
@@ -598,11 +1215,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,purchase_orders,contact,employee"),
@@ -610,15 +1239,36 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE("applied_payments,line_items,purchase_orders,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,purchase_orders,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_PAYMENT_TERM(
+            "applied_payments,line_items,purchase_orders,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES("applied_payments,line_items,tracking_categories"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES(
             "applied_payments,line_items,tracking_categories,applied_credit_notes"),
@@ -626,11 +1276,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
@@ -638,11 +1294,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
@@ -650,11 +1318,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -662,11 +1336,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
@@ -674,11 +1366,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee"),
@@ -686,11 +1390,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company"),
@@ -698,11 +1414,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee"),
@@ -710,11 +1438,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_credit_notes,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits"),
@@ -722,11 +1468,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee"),
@@ -734,11 +1486,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company"),
@@ -746,11 +1510,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"),
@@ -758,16 +1534,37 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY("applied_payments,line_items,tracking_categories,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,company,employee"),
@@ -775,10 +1572,22 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT("applied_payments,line_items,tracking_categories,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,contact,company"),
@@ -786,11 +1595,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,contact,employee"),
@@ -798,11 +1619,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS(
             "applied_payments,line_items,tracking_categories,purchase_orders"),
@@ -810,11 +1649,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -822,11 +1667,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -834,11 +1685,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -846,11 +1709,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -858,11 +1733,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"),
@@ -870,11 +1763,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"),
@@ -882,11 +1787,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
@@ -894,11 +1805,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"),
@@ -906,11 +1835,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"),
@@ -918,11 +1859,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
@@ -930,11 +1883,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
@@ -942,11 +1901,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
@@ -954,11 +1931,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,company"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,company,employee"),
@@ -966,11 +1955,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,company,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,company"),
@@ -978,11 +1979,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee"),
@@ -990,20 +2003,46 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,contact,payment_term"),
+
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE(
             "applied_payments,line_items,tracking_categories,purchase_orders,employee"),
 
     APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,employee,payment_term"),
+
+    APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "applied_payments,line_items,tracking_categories,purchase_orders,payment_term"),
+
+    APPLIED_PAYMENTS_PAYMENT_TERM("applied_payments,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS("applied_payments,purchase_orders"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD("applied_payments,purchase_orders,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES("applied_payments,purchase_orders,applied_credit_notes"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -1011,11 +2050,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -1023,11 +2068,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -1035,11 +2092,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -1047,11 +2116,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,purchase_orders,applied_credit_notes,company"),
@@ -1059,11 +2146,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,company,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,company,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,company,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,purchase_orders,applied_credit_notes,contact"),
@@ -1071,11 +2170,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,purchase_orders,applied_credit_notes,contact,company"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee"),
@@ -1083,11 +2188,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,contact,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,contact,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,purchase_orders,applied_credit_notes,employee"),
@@ -1095,10 +2218,22 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_credit_notes,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS("applied_payments,purchase_orders,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,purchase_orders,applied_vendor_credits,company"),
@@ -1106,11 +2241,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,purchase_orders,applied_vendor_credits,contact"),
@@ -1118,11 +2265,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee"),
@@ -1130,11 +2283,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,purchase_orders,applied_vendor_credits,employee"),
@@ -1142,25 +2313,51 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,purchase_orders,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY("applied_payments,purchase_orders,company"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,company,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE("applied_payments,purchase_orders,company,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM("applied_payments,purchase_orders,company,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT("applied_payments,purchase_orders,contact"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY("applied_payments,purchase_orders,contact,company"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,purchase_orders,contact,company,employee"),
@@ -1168,19 +2365,46 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE("applied_payments,purchase_orders,contact,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,purchase_orders,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM("applied_payments,purchase_orders,contact,payment_term"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE("applied_payments,purchase_orders,employee"),
 
     APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,purchase_orders,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,purchase_orders,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM("applied_payments,purchase_orders,employee,payment_term"),
+
+    APPLIED_PAYMENTS_PURCHASE_ORDERS_PAYMENT_TERM("applied_payments,purchase_orders,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES("applied_payments,tracking_categories"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("applied_payments,tracking_categories,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES(
             "applied_payments,tracking_categories,applied_credit_notes"),
@@ -1188,11 +2412,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
@@ -1200,11 +2430,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
@@ -1212,11 +2454,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -1224,11 +2472,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
@@ -1236,11 +2502,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,tracking_categories,applied_credit_notes,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,company,employee"),
@@ -1248,11 +2526,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,tracking_categories,applied_credit_notes,contact"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,tracking_categories,applied_credit_notes,contact,company"),
@@ -1260,11 +2550,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,contact,employee"),
@@ -1272,11 +2574,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,contact,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,tracking_categories,applied_credit_notes,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_credit_notes,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS(
             "applied_payments,tracking_categories,applied_vendor_credits"),
@@ -1284,11 +2604,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,tracking_categories,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_vendor_credits,company,employee"),
@@ -1296,11 +2622,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,tracking_categories,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,company"),
@@ -1308,11 +2646,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,employee"),
@@ -1320,31 +2670,67 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,tracking_categories,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,tracking_categories,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("applied_payments,tracking_categories,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE("applied_payments,tracking_categories,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT("applied_payments,tracking_categories,contact"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY("applied_payments,tracking_categories,contact,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,contact,company,employee"),
@@ -1352,20 +2738,49 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE("applied_payments,tracking_categories,contact,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,contact,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE("applied_payments,tracking_categories,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PAYMENT_TERM("applied_payments,tracking_categories,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS("applied_payments,tracking_categories,purchase_orders"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes"),
@@ -1373,11 +2788,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -1385,11 +2806,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -1397,11 +2830,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -1409,11 +2848,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -1421,11 +2878,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -1433,11 +2902,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -1445,11 +2926,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -1457,11 +2950,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -1469,11 +2980,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -1481,11 +2998,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -1493,11 +3022,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -1505,11 +3046,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,company"),
@@ -1517,11 +3076,23 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,company,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,company,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,company,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT(
             "applied_payments,tracking_categories,purchase_orders,contact"),
@@ -1529,11 +3100,17 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,contact,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "applied_payments,tracking_categories,purchase_orders,contact,company"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,contact,company,employee"),
@@ -1541,11 +3118,29 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,company,payment_term"),
+
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,contact,employee"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,contact,payment_term"),
 
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE(
             "applied_payments,tracking_categories,purchase_orders,employee"),
@@ -1553,82 +3148,167 @@ public enum InvoicesRetrieveRequestExpand {
     APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_payments,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,employee,payment_term"),
+
+    APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "applied_payments,tracking_categories,purchase_orders,payment_term"),
+
     APPLIED_VENDOR_CREDITS("applied_vendor_credits"),
 
     APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD("applied_vendor_credits,accounting_period"),
 
+    APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM("applied_vendor_credits,accounting_period,payment_term"),
+
     APPLIED_VENDOR_CREDITS_COMPANY("applied_vendor_credits,company"),
 
     APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD("applied_vendor_credits,company,accounting_period"),
+
+    APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,company,accounting_period,payment_term"),
 
     APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE("applied_vendor_credits,company,employee"),
 
     APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_vendor_credits,company,employee,accounting_period"),
 
+    APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM("applied_vendor_credits,company,employee,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM("applied_vendor_credits,company,payment_term"),
+
     APPLIED_VENDOR_CREDITS_CONTACT("applied_vendor_credits,contact"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD("applied_vendor_credits,contact,accounting_period"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,contact,accounting_period,payment_term"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_COMPANY("applied_vendor_credits,contact,company"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "applied_vendor_credits,contact,company,accounting_period"),
 
+    APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE("applied_vendor_credits,contact,company,employee"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "applied_vendor_credits,contact,company,employee,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM("applied_vendor_credits,contact,company,payment_term"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE("applied_vendor_credits,contact,employee"),
 
     APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "applied_vendor_credits,contact,employee,accounting_period"),
 
+    APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM("applied_vendor_credits,contact,employee,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM("applied_vendor_credits,contact,payment_term"),
+
     APPLIED_VENDOR_CREDITS_EMPLOYEE("applied_vendor_credits,employee"),
 
     APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD("applied_vendor_credits,employee,accounting_period"),
+
+    APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM("applied_vendor_credits,employee,payment_term"),
+
+    APPLIED_VENDOR_CREDITS_PAYMENT_TERM("applied_vendor_credits,payment_term"),
 
     COMPANY("company"),
 
     COMPANY_ACCOUNTING_PERIOD("company,accounting_period"),
 
+    COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("company,accounting_period,payment_term"),
+
     COMPANY_EMPLOYEE("company,employee"),
 
     COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("company,employee,accounting_period"),
+
+    COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("company,employee,accounting_period,payment_term"),
+
+    COMPANY_EMPLOYEE_PAYMENT_TERM("company,employee,payment_term"),
+
+    COMPANY_PAYMENT_TERM("company,payment_term"),
 
     CONTACT("contact"),
 
     CONTACT_ACCOUNTING_PERIOD("contact,accounting_period"),
 
+    CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM("contact,accounting_period,payment_term"),
+
     CONTACT_COMPANY("contact,company"),
 
     CONTACT_COMPANY_ACCOUNTING_PERIOD("contact,company,accounting_period"),
+
+    CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("contact,company,accounting_period,payment_term"),
 
     CONTACT_COMPANY_EMPLOYEE("contact,company,employee"),
 
     CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("contact,company,employee,accounting_period"),
 
+    CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("contact,company,employee,accounting_period,payment_term"),
+
+    CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM("contact,company,employee,payment_term"),
+
+    CONTACT_COMPANY_PAYMENT_TERM("contact,company,payment_term"),
+
     CONTACT_EMPLOYEE("contact,employee"),
 
     CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("contact,employee,accounting_period"),
+
+    CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("contact,employee,accounting_period,payment_term"),
+
+    CONTACT_EMPLOYEE_PAYMENT_TERM("contact,employee,payment_term"),
+
+    CONTACT_PAYMENT_TERM("contact,payment_term"),
 
     EMPLOYEE("employee"),
 
     EMPLOYEE_ACCOUNTING_PERIOD("employee,accounting_period"),
 
+    EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("employee,accounting_period,payment_term"),
+
+    EMPLOYEE_PAYMENT_TERM("employee,payment_term"),
+
     LINE_ITEMS("line_items"),
 
     LINE_ITEMS_ACCOUNTING_PERIOD("line_items,accounting_period"),
+
+    LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM("line_items,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES("line_items,applied_credit_notes"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD("line_items,applied_credit_notes,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS("line_items,applied_credit_notes,applied_vendor_credits"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,applied_credit_notes,applied_vendor_credits,company"),
@@ -1636,11 +3316,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,applied_credit_notes,applied_vendor_credits,contact"),
@@ -1648,11 +3340,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -1660,11 +3358,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,applied_credit_notes,applied_vendor_credits,employee"),
@@ -1672,25 +3388,51 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY("line_items,applied_credit_notes,company"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,company,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,company,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE("line_items,applied_credit_notes,company,employee"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,company,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM("line_items,applied_credit_notes,company,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT("line_items,applied_credit_notes,contact"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,contact,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY("line_items,applied_credit_notes,contact,company"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,contact,company,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "line_items,applied_credit_notes,contact,company,employee"),
@@ -1698,39 +3440,83 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,company,payment_term"),
+
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE("line_items,applied_credit_notes,contact,employee"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,contact,employee,accounting_period"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_credit_notes,contact,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM("line_items,applied_credit_notes,contact,payment_term"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE("line_items,applied_credit_notes,employee"),
 
     LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_credit_notes,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM("line_items,applied_credit_notes,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_CREDIT_NOTES_PAYMENT_TERM("line_items,applied_credit_notes,payment_term"),
+
     LINE_ITEMS_APPLIED_VENDOR_CREDITS("line_items,applied_vendor_credits"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD("line_items,applied_vendor_credits,accounting_period"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY("line_items,applied_vendor_credits,company"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,company,accounting_period"),
 
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,company,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE("line_items,applied_vendor_credits,company,employee"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,company,employee,accounting_period"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM("line_items,applied_vendor_credits,company,payment_term"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT("line_items,applied_vendor_credits,contact"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,contact,accounting_period"),
 
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY("line_items,applied_vendor_credits,contact,company"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,contact,company,accounting_period"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,applied_vendor_credits,contact,company,employee"),
@@ -1738,52 +3524,116 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,company,payment_term"),
+
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE("line_items,applied_vendor_credits,contact,employee"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,contact,employee,accounting_period"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM("line_items,applied_vendor_credits,contact,payment_term"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE("line_items,applied_vendor_credits,employee"),
 
     LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM("line_items,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("line_items,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_COMPANY("line_items,company"),
 
     LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD("line_items,company,accounting_period"),
+
+    LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("line_items,company,accounting_period,payment_term"),
 
     LINE_ITEMS_COMPANY_EMPLOYEE("line_items,company,employee"),
 
     LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("line_items,company,employee,accounting_period"),
 
+    LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_COMPANY_EMPLOYEE_PAYMENT_TERM("line_items,company,employee,payment_term"),
+
+    LINE_ITEMS_COMPANY_PAYMENT_TERM("line_items,company,payment_term"),
+
     LINE_ITEMS_CONTACT("line_items,contact"),
 
     LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD("line_items,contact,accounting_period"),
+
+    LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM("line_items,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_CONTACT_COMPANY("line_items,contact,company"),
 
     LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD("line_items,contact,company,accounting_period"),
 
+    LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE("line_items,contact,company,employee"),
 
     LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("line_items,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM("line_items,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_CONTACT_COMPANY_PAYMENT_TERM("line_items,contact,company,payment_term"),
 
     LINE_ITEMS_CONTACT_EMPLOYEE("line_items,contact,employee"),
 
     LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("line_items,contact,employee,accounting_period"),
 
+    LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_CONTACT_EMPLOYEE_PAYMENT_TERM("line_items,contact,employee,payment_term"),
+
+    LINE_ITEMS_CONTACT_PAYMENT_TERM("line_items,contact,payment_term"),
+
     LINE_ITEMS_EMPLOYEE("line_items,employee"),
 
     LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD("line_items,employee,accounting_period"),
+
+    LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("line_items,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_EMPLOYEE_PAYMENT_TERM("line_items,employee,payment_term"),
+
+    LINE_ITEMS_PAYMENT_TERM("line_items,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS("line_items,purchase_orders"),
 
     LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD("line_items,purchase_orders,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES("line_items,purchase_orders,applied_credit_notes"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -1791,11 +3641,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -1803,11 +3659,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -1815,11 +3683,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -1827,16 +3707,37 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY("line_items,purchase_orders,applied_credit_notes,company"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,company,employee"),
@@ -1844,10 +3745,22 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,company,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT("line_items,purchase_orders,applied_credit_notes,contact"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "line_items,purchase_orders,applied_credit_notes,contact,company"),
@@ -1855,11 +3768,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,contact,employee"),
@@ -1867,16 +3792,37 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "line_items,purchase_orders,applied_credit_notes,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_credit_notes,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_credit_notes,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS("line_items,purchase_orders,applied_vendor_credits"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,purchase_orders,applied_vendor_credits,company"),
@@ -1884,11 +3830,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,company,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_vendor_credits,company,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,company,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,purchase_orders,applied_vendor_credits,contact"),
@@ -1896,11 +3854,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,purchase_orders,applied_vendor_credits,contact,company"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,purchase_orders,applied_vendor_credits,contact,company,employee"),
@@ -1908,11 +3872,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,purchase_orders,applied_vendor_credits,contact,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,contact,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,purchase_orders,applied_vendor_credits,employee"),
@@ -1920,46 +3902,101 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,purchase_orders,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_COMPANY("line_items,purchase_orders,company"),
 
     LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD("line_items,purchase_orders,company,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,company,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE("line_items,purchase_orders,company,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,company,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM("line_items,purchase_orders,company,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT("line_items,purchase_orders,contact"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD("line_items,purchase_orders,contact,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY("line_items,purchase_orders,contact,company"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,contact,company,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE("line_items,purchase_orders,contact,company,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM("line_items,purchase_orders,contact,company,payment_term"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE("line_items,purchase_orders,contact,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,purchase_orders,contact,employee,accounting_period"),
 
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,purchase_orders,contact,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM("line_items,purchase_orders,contact,payment_term"),
+
     LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE("line_items,purchase_orders,employee"),
 
     LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD("line_items,purchase_orders,employee,accounting_period"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,purchase_orders,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM("line_items,purchase_orders,employee,payment_term"),
+
+    LINE_ITEMS_PURCHASE_ORDERS_PAYMENT_TERM("line_items,purchase_orders,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES("line_items,tracking_categories"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("line_items,tracking_categories,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES("line_items,tracking_categories,applied_credit_notes"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"),
@@ -1967,11 +4004,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -1979,11 +4022,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -1991,11 +4046,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -2003,11 +4070,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "line_items,tracking_categories,applied_credit_notes,company"),
@@ -2015,11 +4100,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "line_items,tracking_categories,applied_credit_notes,contact"),
@@ -2027,11 +4124,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,contact,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "line_items,tracking_categories,applied_credit_notes,contact,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,contact,company,employee"),
@@ -2039,11 +4142,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,contact,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,contact,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "line_items,tracking_categories,applied_credit_notes,employee"),
@@ -2051,10 +4172,22 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_credit_notes,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_credit_notes,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS("line_items,tracking_categories,applied_vendor_credits"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,tracking_categories,applied_vendor_credits,company"),
@@ -2062,11 +4195,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_vendor_credits,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,tracking_categories,applied_vendor_credits,contact"),
@@ -2074,11 +4219,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,tracking_categories,applied_vendor_credits,contact,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,applied_vendor_credits,contact,company,employee"),
@@ -2086,11 +4237,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,applied_vendor_credits,contact,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,contact,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,tracking_categories,applied_vendor_credits,employee"),
@@ -2098,45 +4267,98 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,tracking_categories,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_COMPANY("line_items,tracking_categories,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE("line_items,tracking_categories,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM("line_items,tracking_categories,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT("line_items,tracking_categories,contact"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,contact,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY("line_items,tracking_categories,contact,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,contact,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE("line_items,tracking_categories,contact,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE("line_items,tracking_categories,contact,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,contact,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM("line_items,tracking_categories,contact,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE("line_items,tracking_categories,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM("line_items,tracking_categories,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM("line_items,tracking_categories,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS("line_items,tracking_categories,purchase_orders"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes"),
@@ -2144,11 +4366,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -2156,11 +4384,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -2168,11 +4408,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -2180,11 +4426,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -2192,11 +4456,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -2204,11 +4480,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -2216,11 +4504,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -2228,11 +4528,29 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -2240,11 +4558,17 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -2252,11 +4576,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -2264,11 +4600,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -2276,16 +4624,37 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY("line_items,tracking_categories,purchase_orders,company"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,company,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,company,employee"),
@@ -2293,10 +4662,22 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,company,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,company,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT("line_items,tracking_categories,purchase_orders,contact"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,contact,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "line_items,tracking_categories,purchase_orders,contact,company"),
@@ -2304,11 +4685,23 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,contact,company,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,contact,company,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,company,payment_term"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "line_items,tracking_categories,purchase_orders,contact,employee"),
@@ -2316,23 +4709,51 @@ public enum InvoicesRetrieveRequestExpand {
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,contact,payment_term"),
+
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE("line_items,tracking_categories,purchase_orders,employee"),
 
     LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "line_items,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,employee,payment_term"),
+
+    LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "line_items,tracking_categories,purchase_orders,payment_term"),
+
+    PAYMENT_TERM("payment_term"),
+
     PAYMENTS("payments"),
 
     PAYMENTS_ACCOUNTING_PERIOD("payments,accounting_period"),
+
+    PAYMENTS_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES("payments,applied_credit_notes"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD("payments,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS("payments,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_credit_notes,applied_vendor_credits,company"),
@@ -2340,11 +4761,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_credit_notes,applied_vendor_credits,contact"),
@@ -2352,11 +4785,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -2364,11 +4803,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_credit_notes,applied_vendor_credits,employee"),
@@ -2376,47 +4833,103 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY("payments,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD("payments,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE("payments,applied_credit_notes,company,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM("payments,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT("payments,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD("payments,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY("payments,applied_credit_notes,contact,company"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE("payments,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE("payments,applied_credit_notes,contact,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM("payments,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE("payments,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_credit_notes,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM("payments,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_CREDIT_NOTES_PAYMENT_TERM("payments,applied_credit_notes,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS("payments,applied_payments"),
 
     PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD("payments,applied_payments,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES("payments,applied_payments,applied_credit_notes"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits"),
@@ -2424,11 +4937,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -2436,11 +4955,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -2448,11 +4979,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -2460,16 +5003,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY("payments,applied_payments,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,company,employee"),
@@ -2477,10 +5041,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT("payments,applied_payments,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,applied_credit_notes,contact,company"),
@@ -2488,11 +5064,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,applied_credit_notes,contact,employee"),
@@ -2500,15 +5088,36 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE("payments,applied_payments,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_credit_notes,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,applied_credit_notes,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS("payments,applied_payments,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,applied_vendor_credits,company"),
@@ -2516,11 +5125,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,applied_vendor_credits,contact"),
@@ -2528,11 +5149,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,applied_vendor_credits,contact,company,employee"),
@@ -2540,11 +5167,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,applied_vendor_credits,employee"),
@@ -2552,41 +5197,89 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_COMPANY("payments,applied_payments,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD("payments,applied_payments,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_COMPANY_EMPLOYEE("payments,applied_payments,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY_EMPLOYEE_PAYMENT_TERM("payments,applied_payments,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_COMPANY_PAYMENT_TERM("payments,applied_payments,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_CONTACT("payments,applied_payments,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD("payments,applied_payments,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY("payments,applied_payments,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE("payments,applied_payments,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_COMPANY_PAYMENT_TERM("payments,applied_payments,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_EMPLOYEE("payments,applied_payments,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_EMPLOYEE_PAYMENT_TERM("payments,applied_payments,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_CONTACT_PAYMENT_TERM("payments,applied_payments,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_EMPLOYEE("payments,applied_payments,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD("payments,applied_payments,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_EMPLOYEE_PAYMENT_TERM("payments,applied_payments,employee,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS("payments,applied_payments,line_items"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD("payments,applied_payments,line_items,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,line_items,applied_credit_notes"),
@@ -2594,11 +5287,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company"),
@@ -2606,11 +5305,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact"),
@@ -2618,11 +5329,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -2630,11 +5347,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee"),
@@ -2642,11 +5377,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,line_items,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,company,employee"),
@@ -2654,11 +5401,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,line_items,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,line_items,applied_credit_notes,contact,company"),
@@ -2666,11 +5425,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,contact,employee"),
@@ -2678,11 +5449,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,line_items,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,applied_vendor_credits"),
@@ -2690,11 +5479,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_vendor_credits,company,employee"),
@@ -2702,11 +5497,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,company"),
@@ -2714,11 +5521,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,employee"),
@@ -2726,31 +5545,67 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY("payments,applied_payments,line_items,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE("payments,applied_payments,line_items,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT("payments,applied_payments,line_items,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY("payments,applied_payments,line_items,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,contact,company,employee"),
@@ -2758,20 +5613,49 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE("payments,applied_payments,line_items,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE("payments,applied_payments,line_items,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PAYMENT_TERM("payments,applied_payments,line_items,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS("payments,applied_payments,line_items,purchase_orders"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes"),
@@ -2779,11 +5663,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -2791,11 +5681,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -2803,11 +5705,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -2815,11 +5723,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -2827,11 +5753,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee"),
@@ -2839,11 +5777,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company"),
@@ -2851,11 +5801,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee"),
@@ -2863,11 +5825,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits"),
@@ -2875,11 +5855,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee"),
@@ -2887,11 +5873,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company"),
@@ -2899,11 +5897,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -2911,11 +5921,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,applied_vendor_credits,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,company"),
@@ -2923,11 +5951,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT(
             "payments,applied_payments,line_items,purchase_orders,contact"),
@@ -2935,11 +5975,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,purchase_orders,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,contact,company,employee"),
@@ -2947,11 +5993,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE(
             "payments,applied_payments,line_items,purchase_orders,employee"),
@@ -2959,11 +6023,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,purchase_orders,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES(
             "payments,applied_payments,line_items,tracking_categories"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes"),
@@ -2971,11 +6047,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
@@ -2983,11 +6065,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
@@ -2995,11 +6089,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -3007,11 +6107,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
@@ -3019,11 +6137,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee"),
@@ -3031,11 +6161,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company"),
@@ -3043,11 +6185,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee"),
@@ -3055,11 +6209,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits"),
@@ -3067,11 +6239,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee"),
@@ -3079,11 +6257,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company"),
@@ -3091,11 +6281,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"),
@@ -3103,11 +6305,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,applied_vendor_credits,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,company"),
@@ -3115,11 +6335,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,contact"),
@@ -3127,11 +6359,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,contact,company,employee"),
@@ -3139,11 +6377,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,employee"),
@@ -3151,11 +6407,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"),
@@ -3163,11 +6431,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -3175,11 +6449,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -3187,11 +6473,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -3199,11 +6491,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -3211,11 +6521,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -3223,11 +6545,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -3235,11 +6569,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -3247,11 +6593,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -3259,11 +6623,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -3271,11 +6641,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -3283,11 +6665,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -3295,11 +6689,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,company"),
@@ -3307,11 +6719,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact"),
@@ -3319,11 +6743,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee"),
@@ -3331,11 +6761,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee"),
@@ -3343,10 +6791,24 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "payments,applied_payments,line_items,tracking_categories,purchase_orders,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PAYMENT_TERM("payments,applied_payments,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS("payments,applied_payments,purchase_orders"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,purchase_orders,applied_credit_notes"),
@@ -3354,11 +6816,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -3366,11 +6834,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -3378,11 +6858,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -3390,11 +6876,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -3402,11 +6906,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee"),
@@ -3414,11 +6930,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company"),
@@ -3426,11 +6954,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee"),
@@ -3438,11 +6978,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,purchase_orders,applied_vendor_credits"),
@@ -3450,11 +7008,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee"),
@@ -3462,11 +7026,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company"),
@@ -3474,11 +7050,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -3486,16 +7074,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY("payments,applied_payments,purchase_orders,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,company,employee"),
@@ -3503,10 +7112,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT("payments,applied_payments,purchase_orders,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,applied_payments,purchase_orders,contact,company"),
@@ -3514,11 +7135,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,purchase_orders,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,applied_payments,purchase_orders,contact,employee"),
@@ -3526,15 +7159,35 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE("payments,applied_payments,purchase_orders,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_PURCHASE_ORDERS_PAYMENT_TERM("payments,applied_payments,purchase_orders,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES("payments,applied_payments,tracking_categories"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,tracking_categories,applied_credit_notes"),
@@ -3542,11 +7195,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
@@ -3554,11 +7213,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
@@ -3566,11 +7237,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -3578,11 +7255,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
@@ -3590,11 +7285,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,tracking_categories,applied_credit_notes,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee"),
@@ -3602,11 +7309,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company"),
@@ -3614,11 +7333,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee"),
@@ -3626,11 +7357,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_credit_notes,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_credit_notes,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,tracking_categories,applied_vendor_credits"),
@@ -3638,11 +7387,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee"),
@@ -3650,11 +7405,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company"),
@@ -3662,11 +7429,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee"),
@@ -3674,16 +7453,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY("payments,applied_payments,tracking_categories,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,company,employee"),
@@ -3691,10 +7491,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT("payments,applied_payments,tracking_categories,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,contact,company"),
@@ -3702,11 +7514,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,contact,employee"),
@@ -3714,10 +7538,28 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE("payments,applied_payments,tracking_categories,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS(
             "payments,applied_payments,tracking_categories,purchase_orders"),
@@ -3725,11 +7567,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -3737,11 +7585,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -3749,11 +7603,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -3761,11 +7627,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -3773,11 +7651,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company"),
@@ -3785,11 +7681,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact"),
@@ -3797,11 +7705,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
@@ -3809,11 +7723,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee"),
@@ -3821,11 +7753,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company"),
@@ -3833,11 +7777,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
@@ -3845,11 +7801,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
@@ -3857,11 +7819,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
@@ -3869,11 +7849,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,company"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,company,employee"),
@@ -3881,11 +7873,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,company,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT(
             "payments,applied_payments,tracking_categories,purchase_orders,contact"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,company"),
@@ -3893,11 +7897,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,company,payment_term"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,employee"),
@@ -3905,35 +7921,73 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,contact,payment_term"),
+
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE(
             "payments,applied_payments,tracking_categories,purchase_orders,employee"),
 
     PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_payments,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_APPLIED_PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "payments,applied_payments,tracking_categories,purchase_orders,payment_term"),
+
     PAYMENTS_APPLIED_VENDOR_CREDITS("payments,applied_vendor_credits"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD("payments,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY("payments,applied_vendor_credits,company"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE("payments,applied_vendor_credits,company,employee"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM("payments,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT("payments,applied_vendor_credits,contact"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY("payments,applied_vendor_credits,contact,company"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,applied_vendor_credits,contact,company,employee"),
@@ -3941,52 +7995,112 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE("payments,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM("payments,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE("payments,applied_vendor_credits,employee"),
 
     PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM("payments,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("payments,applied_vendor_credits,payment_term"),
+
     PAYMENTS_COMPANY("payments,company"),
 
     PAYMENTS_COMPANY_ACCOUNTING_PERIOD("payments,company,accounting_period"),
+
+    PAYMENTS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,company,accounting_period,payment_term"),
 
     PAYMENTS_COMPANY_EMPLOYEE("payments,company,employee"),
 
     PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("payments,company,employee,accounting_period"),
 
+    PAYMENTS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_COMPANY_EMPLOYEE_PAYMENT_TERM("payments,company,employee,payment_term"),
+
+    PAYMENTS_COMPANY_PAYMENT_TERM("payments,company,payment_term"),
+
     PAYMENTS_CONTACT("payments,contact"),
 
     PAYMENTS_CONTACT_ACCOUNTING_PERIOD("payments,contact,accounting_period"),
+
+    PAYMENTS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,contact,accounting_period,payment_term"),
 
     PAYMENTS_CONTACT_COMPANY("payments,contact,company"),
 
     PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD("payments,contact,company,accounting_period"),
 
+    PAYMENTS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_CONTACT_COMPANY_EMPLOYEE("payments,contact,company,employee"),
 
     PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("payments,contact,company,employee,accounting_period"),
+
+    PAYMENTS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM("payments,contact,company,employee,payment_term"),
+
+    PAYMENTS_CONTACT_COMPANY_PAYMENT_TERM("payments,contact,company,payment_term"),
 
     PAYMENTS_CONTACT_EMPLOYEE("payments,contact,employee"),
 
     PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("payments,contact,employee,accounting_period"),
 
+    PAYMENTS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_CONTACT_EMPLOYEE_PAYMENT_TERM("payments,contact,employee,payment_term"),
+
+    PAYMENTS_CONTACT_PAYMENT_TERM("payments,contact,payment_term"),
+
     PAYMENTS_EMPLOYEE("payments,employee"),
 
     PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD("payments,employee,accounting_period"),
+
+    PAYMENTS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,employee,accounting_period,payment_term"),
+
+    PAYMENTS_EMPLOYEE_PAYMENT_TERM("payments,employee,payment_term"),
 
     PAYMENTS_LINE_ITEMS("payments,line_items"),
 
     PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD("payments,line_items,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,line_items,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES("payments,line_items,applied_credit_notes"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,line_items,applied_credit_notes,applied_vendor_credits"),
@@ -3994,11 +8108,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,company"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -4006,11 +8126,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -4018,11 +8150,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -4030,16 +8174,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY("payments,line_items,applied_credit_notes,company"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,line_items,applied_credit_notes,company,employee"),
@@ -4047,10 +8212,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT("payments,line_items,applied_credit_notes,contact"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,line_items,applied_credit_notes,contact,company"),
@@ -4058,11 +8235,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,line_items,applied_credit_notes,contact,employee"),
@@ -4070,20 +8259,43 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE("payments,line_items,applied_credit_notes,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_CREDIT_NOTES_PAYMENT_TERM("payments,line_items,applied_credit_notes,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS("payments,line_items,applied_vendor_credits"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY("payments,line_items,applied_vendor_credits,company"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,applied_vendor_credits,company,employee"),
@@ -4091,10 +8303,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT("payments,line_items,applied_vendor_credits,contact"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,applied_vendor_credits,contact,company"),
@@ -4102,11 +8326,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,applied_vendor_credits,contact,employee"),
@@ -4114,43 +8350,101 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE("payments,line_items,applied_vendor_credits,employee"),
 
     PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("payments,line_items,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_COMPANY("payments,line_items,company"),
 
     PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD("payments,line_items,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE("payments,line_items,company,employee"),
 
     PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("payments,line_items,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_COMPANY_EMPLOYEE_PAYMENT_TERM("payments,line_items,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_COMPANY_PAYMENT_TERM("payments,line_items,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_CONTACT("payments,line_items,contact"),
 
     PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD("payments,line_items,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_CONTACT_COMPANY("payments,line_items,contact,company"),
 
     PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD("payments,line_items,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE("payments,line_items,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_COMPANY_PAYMENT_TERM("payments,line_items,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE("payments,line_items,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("payments,line_items,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_EMPLOYEE_PAYMENT_TERM("payments,line_items,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_CONTACT_PAYMENT_TERM("payments,line_items,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_EMPLOYEE("payments,line_items,employee"),
 
     PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD("payments,line_items,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_EMPLOYEE_PAYMENT_TERM("payments,line_items,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PAYMENT_TERM("payments,line_items,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS("payments,line_items,purchase_orders"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD("payments,line_items,purchase_orders,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,line_items,purchase_orders,applied_credit_notes"),
@@ -4158,11 +8452,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -4170,11 +8470,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -4182,11 +8494,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -4194,11 +8512,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -4206,11 +8542,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,line_items,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,company,employee"),
@@ -4218,11 +8566,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,line_items,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,company"),
@@ -4230,11 +8590,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,employee"),
@@ -4242,11 +8614,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,line_items,purchase_orders,applied_vendor_credits"),
@@ -4254,11 +8644,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_vendor_credits,company,employee"),
@@ -4266,11 +8662,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,company"),
@@ -4278,11 +8686,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -4290,31 +8710,67 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY("payments,line_items,purchase_orders,company"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE("payments,line_items,purchase_orders,company,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT("payments,line_items,purchase_orders,contact"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY("payments,line_items,purchase_orders,contact,company"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,purchase_orders,contact,company,employee"),
@@ -4322,20 +8778,49 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE("payments,line_items,purchase_orders,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE("payments,line_items,purchase_orders,employee"),
 
     PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_PURCHASE_ORDERS_PAYMENT_TERM("payments,line_items,purchase_orders,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES("payments,line_items,tracking_categories"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES(
             "payments,line_items,tracking_categories,applied_credit_notes"),
@@ -4343,11 +8828,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
@@ -4355,11 +8846,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
@@ -4367,11 +8870,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -4379,11 +8888,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
@@ -4391,11 +8918,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,line_items,tracking_categories,applied_credit_notes,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,company,employee"),
@@ -4403,11 +8942,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,line_items,tracking_categories,applied_credit_notes,contact"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,company"),
@@ -4415,11 +8966,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,employee"),
@@ -4427,11 +8990,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_credit_notes,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_credit_notes,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS(
             "payments,line_items,tracking_categories,applied_vendor_credits"),
@@ -4439,11 +9020,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,tracking_categories,applied_vendor_credits,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_vendor_credits,company,employee"),
@@ -4451,11 +9038,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,company"),
@@ -4463,11 +9062,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee"),
@@ -4475,16 +9086,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,tracking_categories,applied_vendor_credits,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY("payments,line_items,tracking_categories,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,company,employee"),
@@ -4492,15 +9124,30 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT("payments,line_items,tracking_categories,contact"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY("payments,line_items,tracking_categories,contact,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,contact,company,employee"),
@@ -4508,21 +9155,50 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE("payments,line_items,tracking_categories,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PAYMENT_TERM("payments,line_items,tracking_categories,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS("payments,line_items,tracking_categories,purchase_orders"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes"),
@@ -4530,11 +9206,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -4542,11 +9224,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -4554,11 +9248,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -4566,11 +9266,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -4578,11 +9296,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -4590,11 +9320,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -4602,11 +9344,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -4614,11 +9368,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -4626,11 +9398,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -4638,11 +9416,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -4650,11 +9440,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -4662,11 +9464,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,company"),
@@ -4674,11 +9494,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,company,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,company,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,company,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT(
             "payments,line_items,tracking_categories,purchase_orders,contact"),
@@ -4686,11 +9518,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,contact,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,line_items,tracking_categories,purchase_orders,contact,company"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,contact,company,employee"),
@@ -4698,11 +9536,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,company,payment_term"),
+
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,contact,employee"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,contact,payment_term"),
 
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE(
             "payments,line_items,tracking_categories,purchase_orders,employee"),
@@ -4710,14 +9566,30 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,line_items,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_LINE_ITEMS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "payments,line_items,tracking_categories,purchase_orders,payment_term"),
+
+    PAYMENTS_PAYMENT_TERM("payments,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS("payments,purchase_orders"),
 
     PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD("payments,purchase_orders,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM("payments,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES("payments,purchase_orders,applied_credit_notes"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -4725,11 +9597,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -4737,11 +9615,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -4749,11 +9639,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -4761,16 +9663,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY("payments,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,company,employee"),
@@ -4778,10 +9701,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT("payments,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,purchase_orders,applied_credit_notes,contact,company"),
@@ -4789,11 +9724,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,purchase_orders,applied_credit_notes,contact,employee"),
@@ -4801,20 +9748,44 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE("payments,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS("payments,purchase_orders,applied_vendor_credits"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY("payments,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_vendor_credits,company,employee"),
@@ -4822,10 +9793,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT("payments,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,purchase_orders,applied_vendor_credits,contact,company"),
@@ -4833,11 +9816,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -4845,52 +9840,114 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,purchase_orders,applied_vendor_credits,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_COMPANY("payments,purchase_orders,company"),
 
     PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD("payments,purchase_orders,company,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,company,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE("payments,purchase_orders,company,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,company,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM("payments,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM("payments,purchase_orders,company,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_CONTACT("payments,purchase_orders,contact"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD("payments,purchase_orders,contact,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,contact,accounting_period,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY("payments,purchase_orders,contact,company"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,purchase_orders,contact,company,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE("payments,purchase_orders,contact,company,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,contact,company,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM("payments,purchase_orders,contact,company,payment_term"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE("payments,purchase_orders,contact,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,purchase_orders,contact,employee,accounting_period"),
 
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM("payments,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM("payments,purchase_orders,contact,payment_term"),
+
     PAYMENTS_PURCHASE_ORDERS_EMPLOYEE("payments,purchase_orders,employee"),
 
     PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD("payments,purchase_orders,employee,accounting_period"),
+
+    PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM("payments,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_PURCHASE_ORDERS_PAYMENT_TERM("payments,purchase_orders,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES("payments,tracking_categories"),
 
     PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD("payments,tracking_categories,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES("payments,tracking_categories,applied_credit_notes"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits"),
@@ -4898,11 +9955,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -4910,11 +9973,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -4922,11 +9997,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -4934,11 +10021,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,tracking_categories,applied_credit_notes,company"),
@@ -4946,11 +10051,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,tracking_categories,applied_credit_notes,contact"),
@@ -4958,11 +10075,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,contact,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,tracking_categories,applied_credit_notes,contact,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,contact,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,contact,company,employee"),
@@ -4970,11 +10093,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,contact,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,contact,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,tracking_categories,applied_credit_notes,employee"),
@@ -4982,10 +10123,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_credit_notes,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,tracking_categories,applied_credit_notes,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS("payments,tracking_categories,applied_vendor_credits"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,tracking_categories,applied_vendor_credits,company"),
@@ -4993,11 +10146,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_vendor_credits,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,tracking_categories,applied_vendor_credits,contact"),
@@ -5005,11 +10170,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,tracking_categories,applied_vendor_credits,contact,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,applied_vendor_credits,contact,company,employee"),
@@ -5017,11 +10188,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,tracking_categories,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,tracking_categories,applied_vendor_credits,employee"),
@@ -5029,42 +10218,95 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,tracking_categories,applied_vendor_credits,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_COMPANY("payments,tracking_categories,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("payments,tracking_categories,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE("payments,tracking_categories,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM("payments,tracking_categories,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_CONTACT("payments,tracking_categories,contact"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD("payments,tracking_categories,contact,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,contact,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY("payments,tracking_categories,contact,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,contact,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE("payments,tracking_categories,contact,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,contact,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,contact,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE("payments,tracking_categories,contact,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,contact,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM("payments,tracking_categories,contact,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE("payments,tracking_categories,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD("payments,tracking_categories,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM("payments,tracking_categories,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PAYMENT_TERM("payments,tracking_categories,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS("payments,tracking_categories,purchase_orders"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "payments,tracking_categories,purchase_orders,applied_credit_notes"),
@@ -5072,11 +10314,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -5084,11 +10332,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -5096,11 +10356,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -5108,11 +10374,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -5120,11 +10404,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -5132,11 +10428,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -5144,11 +10452,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -5156,11 +10476,29 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -5168,11 +10506,17 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -5180,11 +10524,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -5192,11 +10548,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -5204,16 +10572,37 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY("payments,tracking_categories,purchase_orders,company"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,company,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,company,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,company,employee"),
@@ -5221,10 +10610,22 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,company,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,company,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT("payments,tracking_categories,purchase_orders,contact"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,contact,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY(
             "payments,tracking_categories,purchase_orders,contact,company"),
@@ -5232,11 +10633,23 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,contact,company,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,contact,company,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,company,payment_term"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE(
             "payments,tracking_categories,purchase_orders,contact,employee"),
@@ -5244,18 +10657,41 @@ public enum InvoicesRetrieveRequestExpand {
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,contact,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,contact,payment_term"),
+
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE("payments,tracking_categories,purchase_orders,employee"),
 
     PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
             "payments,tracking_categories,purchase_orders,employee,accounting_period"),
 
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,employee,payment_term"),
+
+    PAYMENTS_TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM(
+            "payments,tracking_categories,purchase_orders,payment_term"),
+
     PURCHASE_ORDERS("purchase_orders"),
 
     PURCHASE_ORDERS_ACCOUNTING_PERIOD("purchase_orders,accounting_period"),
 
+    PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM("purchase_orders,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES("purchase_orders,applied_credit_notes"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD("purchase_orders,applied_credit_notes,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "purchase_orders,applied_credit_notes,applied_vendor_credits"),
@@ -5263,11 +10699,17 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -5275,11 +10717,23 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -5287,11 +10741,23 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -5299,31 +10765,67 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY("purchase_orders,applied_credit_notes,company"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE("purchase_orders,applied_credit_notes,company,employee"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,company,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT("purchase_orders,applied_credit_notes,contact"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,contact,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY("purchase_orders,applied_credit_notes,contact,company"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,contact,company,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "purchase_orders,applied_credit_notes,contact,company,employee"),
@@ -5331,40 +10833,87 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,company,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE("purchase_orders,applied_credit_notes,contact,employee"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,contact,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE("purchase_orders,applied_credit_notes,employee"),
 
     PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_credit_notes,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM("purchase_orders,applied_credit_notes,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS("purchase_orders,applied_vendor_credits"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY("purchase_orders,applied_vendor_credits,company"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,company,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE("purchase_orders,applied_vendor_credits,company,employee"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,company,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT("purchase_orders,applied_vendor_credits,contact"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,contact,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY("purchase_orders,applied_vendor_credits,contact,company"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "purchase_orders,applied_vendor_credits,contact,company,employee"),
@@ -5372,53 +10921,118 @@ public enum InvoicesRetrieveRequestExpand {
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,company,payment_term"),
+
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE("purchase_orders,applied_vendor_credits,contact,employee"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,contact,payment_term"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE("purchase_orders,applied_vendor_credits,employee"),
 
     PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("purchase_orders,applied_vendor_credits,payment_term"),
+
     PURCHASE_ORDERS_COMPANY("purchase_orders,company"),
 
     PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD("purchase_orders,company,accounting_period"),
+
+    PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM("purchase_orders,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_COMPANY_EMPLOYEE("purchase_orders,company,employee"),
 
     PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("purchase_orders,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM("purchase_orders,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_COMPANY_PAYMENT_TERM("purchase_orders,company,payment_term"),
+
     PURCHASE_ORDERS_CONTACT("purchase_orders,contact"),
 
     PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD("purchase_orders,contact,accounting_period"),
 
+    PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM("purchase_orders,contact,accounting_period,payment_term"),
+
     PURCHASE_ORDERS_CONTACT_COMPANY("purchase_orders,contact,company"),
 
     PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD("purchase_orders,contact,company,accounting_period"),
+
+    PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,contact,company,accounting_period,payment_term"),
 
     PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE("purchase_orders,contact,company,employee"),
 
     PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "purchase_orders,contact,company,employee,accounting_period"),
 
+    PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM("purchase_orders,contact,company,employee,payment_term"),
+
+    PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM("purchase_orders,contact,company,payment_term"),
+
     PURCHASE_ORDERS_CONTACT_EMPLOYEE("purchase_orders,contact,employee"),
 
     PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("purchase_orders,contact,employee,accounting_period"),
+
+    PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM("purchase_orders,contact,employee,payment_term"),
+
+    PURCHASE_ORDERS_CONTACT_PAYMENT_TERM("purchase_orders,contact,payment_term"),
 
     PURCHASE_ORDERS_EMPLOYEE("purchase_orders,employee"),
 
     PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD("purchase_orders,employee,accounting_period"),
 
+    PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM("purchase_orders,employee,accounting_period,payment_term"),
+
+    PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM("purchase_orders,employee,payment_term"),
+
+    PURCHASE_ORDERS_PAYMENT_TERM("purchase_orders,payment_term"),
+
     TRACKING_CATEGORIES("tracking_categories"),
 
     TRACKING_CATEGORIES_ACCOUNTING_PERIOD("tracking_categories,accounting_period"),
+
+    TRACKING_CATEGORIES_ACCOUNTING_PERIOD_PAYMENT_TERM("tracking_categories,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES("tracking_categories,applied_credit_notes"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "tracking_categories,applied_credit_notes,applied_vendor_credits"),
@@ -5426,11 +11040,17 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,company"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee"),
@@ -5438,11 +11058,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,company,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company"),
@@ -5450,11 +11082,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee"),
@@ -5462,16 +11106,37 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,employee"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY("tracking_categories,applied_credit_notes,company"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,company,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "tracking_categories,applied_credit_notes,company,employee"),
@@ -5479,10 +11144,22 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,company,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT("tracking_categories,applied_credit_notes,contact"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,contact,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "tracking_categories,applied_credit_notes,contact,company"),
@@ -5490,11 +11167,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,applied_credit_notes,contact,company,employee"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,company,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "tracking_categories,applied_credit_notes,contact,employee"),
@@ -5502,20 +11191,43 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,contact,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE("tracking_categories,applied_credit_notes,employee"),
 
     TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_credit_notes,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_credit_notes,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_CREDIT_NOTES_PAYMENT_TERM("tracking_categories,applied_credit_notes,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS("tracking_categories,applied_vendor_credits"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY("tracking_categories,applied_vendor_credits,company"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,company,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "tracking_categories,applied_vendor_credits,company,employee"),
@@ -5523,10 +11235,22 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,company,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT("tracking_categories,applied_vendor_credits,contact"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,contact,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "tracking_categories,applied_vendor_credits,contact,company"),
@@ -5534,11 +11258,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,applied_vendor_credits,contact,company,employee"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,company,payment_term"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "tracking_categories,applied_vendor_credits,contact,employee"),
@@ -5546,43 +11282,101 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,contact,payment_term"),
+
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE("tracking_categories,applied_vendor_credits,employee"),
 
     TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,applied_vendor_credits,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,applied_vendor_credits,employee,payment_term"),
+
+    TRACKING_CATEGORIES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM("tracking_categories,applied_vendor_credits,payment_term"),
+
     TRACKING_CATEGORIES_COMPANY("tracking_categories,company"),
 
     TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD("tracking_categories,company,accounting_period"),
+
+    TRACKING_CATEGORIES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_COMPANY_EMPLOYEE("tracking_categories,company,employee"),
 
     TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_COMPANY_EMPLOYEE_PAYMENT_TERM("tracking_categories,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_COMPANY_PAYMENT_TERM("tracking_categories,company,payment_term"),
+
     TRACKING_CATEGORIES_CONTACT("tracking_categories,contact"),
 
     TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD("tracking_categories,contact,accounting_period"),
 
+    TRACKING_CATEGORIES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,contact,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_CONTACT_COMPANY("tracking_categories,contact,company"),
 
     TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD("tracking_categories,contact,company,accounting_period"),
+
+    TRACKING_CATEGORIES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,contact,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE("tracking_categories,contact,company,employee"),
 
     TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,contact,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_CONTACT_COMPANY_PAYMENT_TERM("tracking_categories,contact,company,payment_term"),
+
     TRACKING_CATEGORIES_CONTACT_EMPLOYEE("tracking_categories,contact,employee"),
 
     TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,contact,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_CONTACT_EMPLOYEE_PAYMENT_TERM("tracking_categories,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_CONTACT_PAYMENT_TERM("tracking_categories,contact,payment_term"),
 
     TRACKING_CATEGORIES_EMPLOYEE("tracking_categories,employee"),
 
     TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD("tracking_categories,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_EMPLOYEE_PAYMENT_TERM("tracking_categories,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PAYMENT_TERM("tracking_categories,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS("tracking_categories,purchase_orders"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD("tracking_categories,purchase_orders,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES(
             "tracking_categories,purchase_orders,applied_credit_notes"),
@@ -5590,11 +11384,17 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company"),
@@ -5602,11 +11402,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,company,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact"),
@@ -5614,11 +11426,17 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee"),
@@ -5626,11 +11444,29 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,company,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,contact,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee"),
@@ -5638,11 +11474,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,applied_vendor_credits,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY(
             "tracking_categories,purchase_orders,applied_credit_notes,company"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,company,employee"),
@@ -5650,11 +11498,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,company,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT(
             "tracking_categories,purchase_orders,applied_credit_notes,contact"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,company"),
@@ -5662,11 +11522,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,company,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,employee"),
@@ -5674,11 +11546,29 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_CONTACT_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,contact,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_credit_notes,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_CREDIT_NOTES_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_credit_notes,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS(
             "tracking_categories,purchase_orders,applied_vendor_credits"),
@@ -5686,11 +11576,17 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY(
             "tracking_categories,purchase_orders,applied_vendor_credits,company"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_vendor_credits,company,employee"),
@@ -5698,11 +11594,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,company,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,company"),
@@ -5710,11 +11618,23 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,company,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee"),
@@ -5722,31 +11642,67 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_CONTACT_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,contact,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE(
             "tracking_categories,purchase_orders,applied_vendor_credits,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_APPLIED_VENDOR_CREDITS_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,applied_vendor_credits,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY("tracking_categories,purchase_orders,company"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,company,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE("tracking_categories,purchase_orders,company,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,company,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT("tracking_categories,purchase_orders,contact"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,contact,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,accounting_period,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY("tracking_categories,purchase_orders,contact,company"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,contact,company,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,company,accounting_period,payment_term"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE(
             "tracking_categories,purchase_orders,contact,company,employee"),
@@ -5754,15 +11710,41 @@ public enum InvoicesRetrieveRequestExpand {
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,contact,company,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,company,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,company,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_COMPANY_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,company,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE("tracking_categories,purchase_orders,contact,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD(
             "tracking_categories,purchase_orders,contact,employee,accounting_period"),
 
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_CONTACT_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,contact,payment_term"),
+
     TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE("tracking_categories,purchase_orders,employee"),
 
     TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD(
-            "tracking_categories,purchase_orders,employee,accounting_period");
+            "tracking_categories,purchase_orders,employee,accounting_period"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_ACCOUNTING_PERIOD_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,employee,accounting_period,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_EMPLOYEE_PAYMENT_TERM(
+            "tracking_categories,purchase_orders,employee,payment_term"),
+
+    TRACKING_CATEGORIES_PURCHASE_ORDERS_PAYMENT_TERM("tracking_categories,purchase_orders,payment_term");
 
     private final String value;
 

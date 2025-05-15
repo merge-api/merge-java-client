@@ -78,7 +78,7 @@ public final class TicketRequestAssignedTeamsItem {
         }
 
         @java.lang.Override
-        public TicketRequestAssignedTeamsItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public TicketRequestAssignedTeamsItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

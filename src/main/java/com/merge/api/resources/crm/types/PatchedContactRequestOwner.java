@@ -78,7 +78,7 @@ public final class PatchedContactRequestOwner {
         }
 
         @java.lang.Override
-        public PatchedContactRequestOwner deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PatchedContactRequestOwner deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

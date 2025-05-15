@@ -78,7 +78,8 @@ public final class TrackingCategoryCategoryType {
         }
 
         @java.lang.Override
-        public TrackingCategoryCategoryType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TrackingCategoryCategoryType deserialize(JsonParser p, DeserializationContext context)
+                throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, CategoryTypeEnum.class));

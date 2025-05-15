@@ -79,7 +79,7 @@ public final class IgnoreCommonModelRequestReason {
         }
 
         @java.lang.Override
-        public IgnoreCommonModelRequestReason deserialize(JsonParser p, DeserializationContext ctxt)
+        public IgnoreCommonModelRequestReason deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

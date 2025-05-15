@@ -78,7 +78,7 @@ public final class ScorecardOverallRecommendation {
         }
 
         @java.lang.Override
-        public ScorecardOverallRecommendation deserialize(JsonParser p, DeserializationContext ctxt)
+        public ScorecardOverallRecommendation deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

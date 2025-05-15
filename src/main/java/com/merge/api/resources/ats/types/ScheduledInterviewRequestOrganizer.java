@@ -79,7 +79,7 @@ public final class ScheduledInterviewRequestOrganizer {
         }
 
         @java.lang.Override
-        public ScheduledInterviewRequestOrganizer deserialize(JsonParser p, DeserializationContext ctxt)
+        public ScheduledInterviewRequestOrganizer deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

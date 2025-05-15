@@ -78,7 +78,7 @@ public final class AddressAddressType {
         }
 
         @java.lang.Override
-        public AddressAddressType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public AddressAddressType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, AddressTypeEnum.class));

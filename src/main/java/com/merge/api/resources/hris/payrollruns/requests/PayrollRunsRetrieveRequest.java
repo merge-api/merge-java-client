@@ -24,6 +24,8 @@ import java.util.Optional;
 public final class PayrollRunsRetrieveRequest {
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<PayrollRunsRetrieveRequestRemoteFields> remoteFields;
 
     private final Optional<PayrollRunsRetrieveRequestShowEnumOrigins> showEnumOrigins;
@@ -32,10 +34,12 @@ public final class PayrollRunsRetrieveRequest {
 
     private PayrollRunsRetrieveRequest(
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<PayrollRunsRetrieveRequestRemoteFields> remoteFields,
             Optional<PayrollRunsRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -47,6 +51,14 @@ public final class PayrollRunsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -78,13 +90,14 @@ public final class PayrollRunsRetrieveRequest {
 
     private boolean equalTo(PayrollRunsRetrieveRequest other) {
         return includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -100,6 +113,8 @@ public final class PayrollRunsRetrieveRequest {
     public static final class Builder {
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<PayrollRunsRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<PayrollRunsRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
@@ -111,6 +126,7 @@ public final class PayrollRunsRetrieveRequest {
 
         public Builder from(PayrollRunsRetrieveRequest other) {
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -124,6 +140,17 @@ public final class PayrollRunsRetrieveRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.ofNullable(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -151,7 +178,7 @@ public final class PayrollRunsRetrieveRequest {
 
         public PayrollRunsRetrieveRequest build() {
             return new PayrollRunsRetrieveRequest(
-                    includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

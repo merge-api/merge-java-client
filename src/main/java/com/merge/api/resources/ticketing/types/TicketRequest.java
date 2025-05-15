@@ -123,7 +123,7 @@ public final class TicketRequest {
     }
 
     /**
-     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket.
+     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.
      */
     @JsonProperty("assignees")
     public Optional<List<Optional<TicketRequestAssigneesItem>>> getAssignees() {
@@ -131,7 +131,7 @@ public final class TicketRequest {
     }
 
     /**
-     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket.
+     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access this ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.
      */
     @JsonProperty("assigned_teams")
     public Optional<List<Optional<TicketRequestAssignedTeamsItem>>> getAssignedTeams() {

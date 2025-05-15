@@ -78,7 +78,7 @@ public final class EmployeeRequestEthnicity {
         }
 
         @java.lang.Override
-        public EmployeeRequestEthnicity deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeeRequestEthnicity deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, EthnicityEnum.class));

@@ -78,7 +78,7 @@ public final class InvoiceLineItemRequestCurrency {
         }
 
         @java.lang.Override
-        public InvoiceLineItemRequestCurrency deserialize(JsonParser p, DeserializationContext ctxt)
+        public InvoiceLineItemRequestCurrency deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

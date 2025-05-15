@@ -78,7 +78,7 @@ public final class PurchaseOrderRequestStatus {
         }
 
         @java.lang.Override
-        public PurchaseOrderRequestStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PurchaseOrderRequestStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, PurchaseOrderStatusEnum.class));

@@ -78,7 +78,7 @@ public final class PaymentRequestAppliedToLinesItem {
         }
 
         @java.lang.Override
-        public PaymentRequestAppliedToLinesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public PaymentRequestAppliedToLinesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

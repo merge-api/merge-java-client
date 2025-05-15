@@ -78,7 +78,7 @@ public final class BankInfoAccountType {
         }
 
         @java.lang.Override
-        public BankInfoAccountType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public BankInfoAccountType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, AccountTypeEnum.class));

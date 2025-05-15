@@ -22,6 +22,8 @@ import java.util.Optional;
 public final class AddressesRetrieveRequest {
     private final Optional<Boolean> includeRemoteData;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> remoteFields;
 
     private final Optional<String> showEnumOrigins;
@@ -30,10 +32,12 @@ public final class AddressesRetrieveRequest {
 
     private AddressesRetrieveRequest(
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<String> remoteFields,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -45,6 +49,14 @@ public final class AddressesRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -76,13 +88,14 @@ public final class AddressesRetrieveRequest {
 
     private boolean equalTo(AddressesRetrieveRequest other) {
         return includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -98,6 +111,8 @@ public final class AddressesRetrieveRequest {
     public static final class Builder {
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> remoteFields = Optional.empty();
 
         private Optional<String> showEnumOrigins = Optional.empty();
@@ -109,6 +124,7 @@ public final class AddressesRetrieveRequest {
 
         public Builder from(AddressesRetrieveRequest other) {
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
@@ -122,6 +138,17 @@ public final class AddressesRetrieveRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.ofNullable(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -148,7 +175,8 @@ public final class AddressesRetrieveRequest {
         }
 
         public AddressesRetrieveRequest build() {
-            return new AddressesRetrieveRequest(includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+            return new AddressesRetrieveRequest(
+                    includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

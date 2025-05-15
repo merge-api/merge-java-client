@@ -115,6 +115,7 @@ public final class AuditLogEvent {
      * <li><code>TWO_FACTOR_AUTH_ENABLED</code> - TWO_FACTOR_AUTH_ENABLED</li>
      * <li><code>TWO_FACTOR_AUTH_DISABLED</code> - TWO_FACTOR_AUTH_DISABLED</li>
      * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
+     * <li><code>DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</code> - DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</li>
      * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
      * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
      * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>
@@ -321,6 +322,7 @@ public final class AuditLogEvent {
          * <li><code>TWO_FACTOR_AUTH_ENABLED</code> - TWO_FACTOR_AUTH_ENABLED</li>
          * <li><code>TWO_FACTOR_AUTH_DISABLED</code> - TWO_FACTOR_AUTH_DISABLED</li>
          * <li><code>DELETED_LINKED_ACCOUNT</code> - DELETED_LINKED_ACCOUNT</li>
+         * <li><code>DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</code> - DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</li>
          * <li><code>CREATED_DESTINATION</code> - CREATED_DESTINATION</li>
          * <li><code>DELETED_DESTINATION</code> - DELETED_DESTINATION</li>
          * <li><code>CHANGED_DESTINATION</code> - CHANGED_DESTINATION</li>

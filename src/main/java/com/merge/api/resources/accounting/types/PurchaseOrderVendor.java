@@ -78,7 +78,7 @@ public final class PurchaseOrderVendor {
         }
 
         @java.lang.Override
-        public PurchaseOrderVendor deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PurchaseOrderVendor deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

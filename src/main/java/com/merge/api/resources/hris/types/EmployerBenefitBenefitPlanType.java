@@ -78,7 +78,7 @@ public final class EmployerBenefitBenefitPlanType {
         }
 
         @java.lang.Override
-        public EmployerBenefitBenefitPlanType deserialize(JsonParser p, DeserializationContext ctxt)
+        public EmployerBenefitBenefitPlanType deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

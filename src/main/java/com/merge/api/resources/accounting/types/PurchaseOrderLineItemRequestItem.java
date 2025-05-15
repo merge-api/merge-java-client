@@ -78,7 +78,7 @@ public final class PurchaseOrderLineItemRequestItem {
         }
 
         @java.lang.Override
-        public PurchaseOrderLineItemRequestItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public PurchaseOrderLineItemRequestItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

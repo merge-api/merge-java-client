@@ -78,7 +78,7 @@ public final class InvoiceType {
         }
 
         @java.lang.Override
-        public InvoiceType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public InvoiceType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, InvoiceTypeEnum.class));

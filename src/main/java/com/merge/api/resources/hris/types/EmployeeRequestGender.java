@@ -78,7 +78,7 @@ public final class EmployeeRequestGender {
         }
 
         @java.lang.Override
-        public EmployeeRequestGender deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeeRequestGender deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, GenderEnum.class));

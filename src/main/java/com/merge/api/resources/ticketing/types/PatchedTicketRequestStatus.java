@@ -78,7 +78,7 @@ public final class PatchedTicketRequestStatus {
         }
 
         @java.lang.Override
-        public PatchedTicketRequestStatus deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PatchedTicketRequestStatus deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, TicketStatusEnum.class));

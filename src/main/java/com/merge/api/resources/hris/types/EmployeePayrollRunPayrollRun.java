@@ -78,7 +78,8 @@ public final class EmployeePayrollRunPayrollRun {
         }
 
         @java.lang.Override
-        public EmployeePayrollRunPayrollRun deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeePayrollRunPayrollRun deserialize(JsonParser p, DeserializationContext context)
+                throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

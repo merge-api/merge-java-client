@@ -78,7 +78,7 @@ public final class AssociationTypeCardinality {
         }
 
         @java.lang.Override
-        public AssociationTypeCardinality deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public AssociationTypeCardinality deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, CardinalityEnum.class));

@@ -79,7 +79,7 @@ public final class GeneralLedgerTransactionLineAccount {
         }
 
         @java.lang.Override
-        public GeneralLedgerTransactionLineAccount deserialize(JsonParser p, DeserializationContext ctxt)
+        public GeneralLedgerTransactionLineAccount deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

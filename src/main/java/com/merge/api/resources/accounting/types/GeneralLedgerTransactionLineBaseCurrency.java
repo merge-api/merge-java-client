@@ -79,7 +79,7 @@ public final class GeneralLedgerTransactionLineBaseCurrency {
         }
 
         @java.lang.Override
-        public GeneralLedgerTransactionLineBaseCurrency deserialize(JsonParser p, DeserializationContext ctxt)
+        public GeneralLedgerTransactionLineBaseCurrency deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

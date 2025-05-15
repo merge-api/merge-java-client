@@ -78,7 +78,7 @@ public final class UrlUrlType {
         }
 
         @java.lang.Override
-        public UrlUrlType deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public UrlUrlType deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, UrlTypeEnum.class));

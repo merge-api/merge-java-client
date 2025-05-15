@@ -78,7 +78,7 @@ public final class PermissionRolesItem {
         }
 
         @java.lang.Override
-        public PermissionRolesItem deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PermissionRolesItem deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, RolesEnum.class));

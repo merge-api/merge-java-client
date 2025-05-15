@@ -78,7 +78,7 @@ public final class PatchedOpportunityRequestStatus {
         }
 
         @java.lang.Override
-        public PatchedOpportunityRequestStatus deserialize(JsonParser p, DeserializationContext ctxt)
+        public PatchedOpportunityRequestStatus deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

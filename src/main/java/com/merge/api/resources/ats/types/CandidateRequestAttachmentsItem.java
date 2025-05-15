@@ -78,7 +78,7 @@ public final class CandidateRequestAttachmentsItem {
         }
 
         @java.lang.Override
-        public CandidateRequestAttachmentsItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public CandidateRequestAttachmentsItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

@@ -78,7 +78,7 @@ public final class GeneralLedgerTransactionLineItem {
         }
 
         @java.lang.Override
-        public GeneralLedgerTransactionLineItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public GeneralLedgerTransactionLineItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

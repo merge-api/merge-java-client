@@ -78,7 +78,7 @@ public final class BankFeedAccountRequestCurrency {
         }
 
         @java.lang.Override
-        public BankFeedAccountRequestCurrency deserialize(JsonParser p, DeserializationContext ctxt)
+        public BankFeedAccountRequestCurrency deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

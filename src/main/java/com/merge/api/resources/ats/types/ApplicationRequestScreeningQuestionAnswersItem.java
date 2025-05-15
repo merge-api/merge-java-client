@@ -79,7 +79,7 @@ public final class ApplicationRequestScreeningQuestionAnswersItem {
         }
 
         @java.lang.Override
-        public ApplicationRequestScreeningQuestionAnswersItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public ApplicationRequestScreeningQuestionAnswersItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
