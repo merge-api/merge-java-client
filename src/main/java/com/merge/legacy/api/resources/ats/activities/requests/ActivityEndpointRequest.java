@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.ats.activities.requests;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.merge.api.core.ObjectMappers;
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.ats.types.ActivityRequest;
 import org.jetbrains.annotations.NotNull;
 
