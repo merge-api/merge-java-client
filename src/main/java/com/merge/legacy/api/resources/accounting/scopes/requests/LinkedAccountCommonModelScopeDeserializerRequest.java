@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.accounting.scopes.requests;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.merge.api.core.ObjectMappers;
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.accounting.types.IndividualCommonModelScopeDeserializerRequest;
 
 import java.util.*;
