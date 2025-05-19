@@ -4,8 +4,6 @@
 package com.merge.legacy.api.resources.ticketing.tickets;
 
 import com.merge.legacy.api.core.*;
-import com.merge.legacy.api.resources.ticketing.ticketing.tickets.requests.*;
-import com.merge.legacy.api.resources.ticketing.ticketing.types.*;
 import com.merge.legacy.api.resources.ticketing.tickets.requests.*;
 import com.merge.legacy.api.resources.ticketing.types.*;
 import okhttp3.*;

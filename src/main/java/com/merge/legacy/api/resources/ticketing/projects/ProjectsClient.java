@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.projects;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.projects.requests.ProjectsListRequest;
 import com.merge.legacy.api.resources.ticketing.projects.requests.ProjectsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.projects.requests.ProjectsUsersListRequest;

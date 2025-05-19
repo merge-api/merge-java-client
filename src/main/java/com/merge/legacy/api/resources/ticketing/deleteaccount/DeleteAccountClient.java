@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.deleteaccount;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import okhttp3.*;
 
 import java.io.IOException;

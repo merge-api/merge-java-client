@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.roles;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.roles.requests.RolesListRequest;
 import com.merge.legacy.api.resources.ticketing.roles.requests.RolesRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedRoleList;

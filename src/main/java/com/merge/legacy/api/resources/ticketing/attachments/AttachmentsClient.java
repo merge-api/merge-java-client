@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.attachments;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.attachments.requests.AttachmentsDownloadRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.attachments.requests.AttachmentsListRequest;
 import com.merge.legacy.api.resources.ticketing.attachments.requests.AttachmentsRetrieveRequest;

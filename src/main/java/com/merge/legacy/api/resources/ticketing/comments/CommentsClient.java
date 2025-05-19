@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.comments;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.comments.requests.CommentEndpointRequest;
 import com.merge.legacy.api.resources.ticketing.comments.requests.CommentsListRequest;
 import com.merge.legacy.api.resources.ticketing.comments.requests.CommentsRetrieveRequest;

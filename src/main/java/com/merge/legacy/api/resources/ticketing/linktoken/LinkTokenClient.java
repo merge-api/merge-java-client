@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.ticketing.linktoken;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.linktoken.requests.EndUserDetailsRequest;
 import com.merge.legacy.api.resources.ticketing.types.LinkToken;
 import okhttp3.*;

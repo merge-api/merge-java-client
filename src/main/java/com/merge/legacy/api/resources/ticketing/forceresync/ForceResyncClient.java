@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.ticketing.forceresync;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.types.SyncStatus;
 import okhttp3.*;
 

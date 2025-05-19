@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.accounts;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.accounts.requests.AccountsListRequest;
 import com.merge.legacy.api.resources.ticketing.accounts.requests.AccountsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.Account;

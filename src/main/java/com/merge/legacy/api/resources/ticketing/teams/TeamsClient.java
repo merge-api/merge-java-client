@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.teams;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.teams.requests.TeamsListRequest;
 import com.merge.legacy.api.resources.ticketing.teams.requests.TeamsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedTeamList;

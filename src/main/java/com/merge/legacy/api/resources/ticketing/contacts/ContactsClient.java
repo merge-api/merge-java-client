@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.contacts;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.contacts.requests.ContactsListRequest;
 import com.merge.legacy.api.resources.ticketing.contacts.requests.ContactsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.contacts.requests.TicketingContactEndpointRequest;

@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.ticketing.generatekey;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.generatekey.requests.GenerateRemoteKeyRequest;
 import com.merge.legacy.api.resources.ticketing.types.RemoteKey;
 import okhttp3.*;

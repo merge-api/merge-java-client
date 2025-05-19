@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ticketing.availableactions;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.types.AvailableActions;
 import okhttp3.*;
 
