@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.ticketing.tickets.requests;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.merge.api.core.ObjectMappers;
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestExpand;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestPriority;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestRemoteFields;
