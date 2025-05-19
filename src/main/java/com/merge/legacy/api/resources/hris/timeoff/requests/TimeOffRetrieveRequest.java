@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.hris.timeoff.requests;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.merge.legacy.api.core.ObjectMappers
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestExpand;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestShowEnumOrigins;

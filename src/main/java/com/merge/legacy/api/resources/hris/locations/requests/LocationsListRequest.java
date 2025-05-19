@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.hris.locations.requests;
 
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.merge.legacy.api.core.ObjectMappers
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestLocationType;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestShowEnumOrigins;
