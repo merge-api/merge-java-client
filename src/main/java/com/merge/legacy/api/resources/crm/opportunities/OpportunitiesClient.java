@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.opportunities;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.opportunities.requests.*;
 import com.merge.legacy.api.resources.crm.types.*;
 import okhttp3.*;

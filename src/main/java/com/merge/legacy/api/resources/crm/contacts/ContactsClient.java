@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.crm.contacts;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.contacts.requests.*;
 import com.merge.legacy.api.resources.crm.types.*;
 import okhttp3.*;

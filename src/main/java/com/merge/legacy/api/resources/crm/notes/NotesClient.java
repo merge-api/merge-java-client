@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.notes;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.notes.requests.NoteEndpointRequest;
 import com.merge.legacy.api.resources.crm.notes.requests.NotesListRequest;
 import com.merge.legacy.api.resources.crm.notes.requests.NotesRemoteFieldClassesListRequest;

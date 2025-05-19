@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.audittrail;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.audittrail.requests.AuditTrailListRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedAuditLogEventList;
 import okhttp3.*;

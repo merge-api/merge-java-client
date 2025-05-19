@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.associationtypes;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.associationtypes.requests.CrmAssociationTypeEndpointRequest;
 import com.merge.legacy.api.resources.crm.associationtypes.requests.CustomObjectClassesAssociationTypesListRequest;
 import com.merge.legacy.api.resources.crm.associationtypes.requests.CustomObjectClassesAssociationTypesRetrieveRequest;

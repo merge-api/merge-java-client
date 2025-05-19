@@ -3,8 +3,8 @@
  */
 package com.merge.legacy.api.resources.crm;
 
-import com.merge.api.core.ClientOptions;
-import com.merge.api.core.Suppliers;
+import com.merge.legacy.api.core.ClientOptions;
+import com.merge.legacy.api.core.Suppliers;
 import com.merge.legacy.api.resources.crm.accountdetails.AccountDetailsClient;
 import com.merge.legacy.api.resources.crm.accounts.AccountsClient;
 import com.merge.legacy.api.resources.crm.accounttoken.AccountTokenClient;

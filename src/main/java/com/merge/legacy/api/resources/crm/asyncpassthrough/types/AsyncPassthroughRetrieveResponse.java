@@ -9,7 +9,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.merge.api.core.ObjectMappers;
+import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.crm.types.RemoteResponse;
 
 import java.io.IOException;

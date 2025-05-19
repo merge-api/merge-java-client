@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.engagementtypes;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.engagementtypes.requests.EngagementTypesListRequest;
 import com.merge.legacy.api.resources.crm.engagementtypes.requests.EngagementTypesRemoteFieldClassesListRequest;
 import com.merge.legacy.api.resources.crm.engagementtypes.requests.EngagementTypesRetrieveRequest;

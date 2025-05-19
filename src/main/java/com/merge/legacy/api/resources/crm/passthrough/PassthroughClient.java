@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.crm.passthrough;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.types.DataPassthroughRequest;
 import com.merge.legacy.api.resources.crm.types.RemoteResponse;
 import okhttp3.*;

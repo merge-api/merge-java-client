@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.linkedaccounts;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.linkedaccounts.requests.LinkedAccountsListRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedAccountDetailsAndActionsList;
 import okhttp3.*;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.leads;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.leads.requests.LeadEndpointRequest;
 import com.merge.legacy.api.resources.crm.leads.requests.LeadsListRequest;
 import com.merge.legacy.api.resources.crm.leads.requests.LeadsRemoteFieldClassesListRequest;

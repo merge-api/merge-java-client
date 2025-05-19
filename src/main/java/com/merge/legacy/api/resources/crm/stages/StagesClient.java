@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.stages;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.stages.requests.StagesListRequest;
 import com.merge.legacy.api.resources.crm.stages.requests.StagesRemoteFieldClassesListRequest;
 import com.merge.legacy.api.resources.crm.stages.requests.StagesRetrieveRequest;

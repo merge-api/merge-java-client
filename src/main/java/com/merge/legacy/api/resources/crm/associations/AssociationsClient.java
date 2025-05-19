@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.associations;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.associations.requests.CustomObjectClassesCustomObjectsAssociationsListRequest;
 import com.merge.legacy.api.resources.crm.associations.requests.CustomObjectClassesCustomObjectsAssociationsUpdateRequest;
 import com.merge.legacy.api.resources.crm.types.Association;

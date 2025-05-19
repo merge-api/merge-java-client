@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.crm.asyncpassthrough;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.asyncpassthrough.types.AsyncPassthroughRetrieveResponse;
 import com.merge.legacy.api.resources.crm.types.AsyncPassthroughReciept;
 import com.merge.legacy.api.resources.crm.types.DataPassthroughRequest;

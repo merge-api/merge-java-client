@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.crm.users;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.types.IgnoreCommonModelRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedRemoteFieldClassList;
 import com.merge.legacy.api.resources.crm.types.PaginatedUserList;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.crm.customobjectclasses;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.customobjectclasses.requests.CustomObjectClassesListRequest;
 import com.merge.legacy.api.resources.crm.customobjectclasses.requests.CustomObjectClassesRetrieveRequest;
 import com.merge.legacy.api.resources.crm.types.CustomObjectClass;
