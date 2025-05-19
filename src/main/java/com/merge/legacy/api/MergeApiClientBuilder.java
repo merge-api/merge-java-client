@@ -50,7 +50,7 @@ public final class MergeApiClientBuilder {
         return this;
     }
 
-    public com.merge.api.MergeApiClient build() {
+    public com.merge.legacy.api.MergeApiClient build() {
         if (apiKey == null) {
             throw new RuntimeException("Please provide apiKey");
         }

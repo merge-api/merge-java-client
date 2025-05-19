@@ -17,7 +17,7 @@ public final class ObjectMappers {
     public static final ObjectMapper JSON_MAPPER = JsonMapper.builder()
             .addModule(new Jdk8Module())
             .addModule(new JavaTimeModule())
-            .addModule(com.merge.api.core.DateTimeDeserializer.getModule())
+            .addModule(com.merge.legacy.api.core.DateTimeDeserializer.getModule())
             .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
             .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
             .build();
