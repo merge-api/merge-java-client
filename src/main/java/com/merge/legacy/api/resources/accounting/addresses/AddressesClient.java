@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.addresses;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.addresses.requests.AddressesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Address;
 import okhttp3.*;

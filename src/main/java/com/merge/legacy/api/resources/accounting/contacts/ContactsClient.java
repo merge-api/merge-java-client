@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.contacts;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.contacts.requests.ContactEndpointRequest;
 import com.merge.legacy.api.resources.accounting.contacts.requests.ContactsListRequest;
 import com.merge.legacy.api.resources.accounting.contacts.requests.ContactsRemoteFieldClassesListRequest;

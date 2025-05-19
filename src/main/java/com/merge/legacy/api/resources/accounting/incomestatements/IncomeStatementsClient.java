@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.incomestatements;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.incomestatements.requests.IncomeStatementsListRequest;
 import com.merge.legacy.api.resources.accounting.incomestatements.requests.IncomeStatementsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.IncomeStatement;

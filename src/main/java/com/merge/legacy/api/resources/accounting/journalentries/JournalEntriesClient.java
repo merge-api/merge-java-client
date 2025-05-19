@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.journalentries;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.journalentries.requests.*;
 import com.merge.legacy.api.resources.accounting.types.*;
 import okhttp3.*;

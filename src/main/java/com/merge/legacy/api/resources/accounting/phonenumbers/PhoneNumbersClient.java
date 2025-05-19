@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.phonenumbers;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.phonenumbers.requests.PhoneNumbersRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.AccountingPhoneNumber;
 import okhttp3.*;

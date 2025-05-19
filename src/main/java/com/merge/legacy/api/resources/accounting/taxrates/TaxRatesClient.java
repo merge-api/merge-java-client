@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.taxrates;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.taxrates.requests.TaxRatesListRequest;
 import com.merge.legacy.api.resources.accounting.taxrates.requests.TaxRatesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTaxRateList;

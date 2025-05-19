@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.accounttoken;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.AccountToken;
 import okhttp3.*;
 

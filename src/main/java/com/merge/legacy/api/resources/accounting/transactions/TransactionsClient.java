@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.transactions;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.transactions.requests.TransactionsListRequest;
 import com.merge.legacy.api.resources.accounting.transactions.requests.TransactionsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTransactionList;

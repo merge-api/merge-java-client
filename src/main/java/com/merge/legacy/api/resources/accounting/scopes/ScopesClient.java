@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.accounting.scopes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.scopes.requests.LinkedAccountCommonModelScopeDeserializerRequest;
 import com.merge.legacy.api.resources.accounting.types.CommonModelScopeApi;
 import okhttp3.*;

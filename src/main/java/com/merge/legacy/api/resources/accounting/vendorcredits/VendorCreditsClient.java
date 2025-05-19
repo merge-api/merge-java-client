@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.vendorcredits;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.MetaResponse;
 import com.merge.legacy.api.resources.accounting.types.PaginatedVendorCreditList;
 import com.merge.legacy.api.resources.accounting.types.VendorCredit;

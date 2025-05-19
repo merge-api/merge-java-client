@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.generalledgertransactions;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.generalledgertransactions.requests.GeneralLedgerTransactionsListRequest;
 import com.merge.legacy.api.resources.accounting.generalledgertransactions.requests.GeneralLedgerTransactionsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.GeneralLedgerTransaction;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.items;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.items.requests.ItemsListRequest;
 import com.merge.legacy.api.resources.accounting.items.requests.ItemsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Item;

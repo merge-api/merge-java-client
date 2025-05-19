@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.asynctasks;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.AsyncPostTask;
 import okhttp3.*;
 

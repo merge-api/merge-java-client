@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.cashflowstatements;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.cashflowstatements.requests.CashFlowStatementsListRequest;
 import com.merge.legacy.api.resources.accounting.cashflowstatements.requests.CashFlowStatementsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.CashFlowStatement;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.balancesheets;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.balancesheets.requests.BalanceSheetsListRequest;
 import com.merge.legacy.api.resources.accounting.balancesheets.requests.BalanceSheetsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.BalanceSheet;

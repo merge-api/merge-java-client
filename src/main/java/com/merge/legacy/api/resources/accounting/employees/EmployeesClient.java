@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.employees;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.employees.requests.EmployeesListRequest;
 import com.merge.legacy.api.resources.accounting.employees.requests.EmployeesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Employee;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.companyinfo;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.companyinfo.requests.CompanyInfoListRequest;
 import com.merge.legacy.api.resources.accounting.companyinfo.requests.CompanyInfoRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.CompanyInfo;

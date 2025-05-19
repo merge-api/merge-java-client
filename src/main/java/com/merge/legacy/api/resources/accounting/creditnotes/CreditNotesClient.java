@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.creditnotes;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.creditnotes.requests.CreditNoteEndpointRequest;
 import com.merge.legacy.api.resources.accounting.creditnotes.requests.CreditNotesListRequest;
 import com.merge.legacy.api.resources.accounting.creditnotes.requests.CreditNotesRetrieveRequest;

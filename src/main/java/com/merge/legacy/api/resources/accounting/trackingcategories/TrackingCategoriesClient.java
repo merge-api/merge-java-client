@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.trackingcategories;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.trackingcategories.requests.TrackingCategoriesListRequest;
 import com.merge.legacy.api.resources.accounting.trackingcategories.requests.TrackingCategoriesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTrackingCategoryList;

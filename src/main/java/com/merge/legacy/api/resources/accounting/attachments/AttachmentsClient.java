@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.attachments;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.attachments.requests.AccountingAttachmentEndpointRequest;
 import com.merge.legacy.api.resources.accounting.attachments.requests.AttachmentsListRequest;
 import com.merge.legacy.api.resources.accounting.attachments.requests.AttachmentsRetrieveRequest;

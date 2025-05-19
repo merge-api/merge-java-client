@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.accountingperiods;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.accountingperiods.requests.AccountingPeriodsListRequest;
 import com.merge.legacy.api.resources.accounting.accountingperiods.requests.AccountingPeriodsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.AccountingPeriod;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.accounts;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.accounts.requests.AccountEndpointRequest;
 import com.merge.legacy.api.resources.accounting.accounts.requests.AccountsListRequest;
 import com.merge.legacy.api.resources.accounting.accounts.requests.AccountsRetrieveRequest;

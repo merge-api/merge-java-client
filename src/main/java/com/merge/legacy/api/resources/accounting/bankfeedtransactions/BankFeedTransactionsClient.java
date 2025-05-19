@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.accounting.bankfeedtransactions;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.bankfeedtransactions.requests.BankFeedTransactionEndpointRequest;
 import com.merge.legacy.api.resources.accounting.bankfeedtransactions.requests.BankFeedTransactionsListRequest;
 import com.merge.legacy.api.resources.accounting.bankfeedtransactions.requests.BankFeedTransactionsRetrieveRequest;
