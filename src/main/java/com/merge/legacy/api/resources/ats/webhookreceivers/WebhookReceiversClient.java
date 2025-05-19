@@ -5,7 +5,7 @@ package com.merge.legacy.api.resources.ats.webhookreceivers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.types.WebhookReceiver;
 import com.merge.legacy.api.resources.ats.webhookreceivers.requests.WebhookReceiverRequest;
 import okhttp3.*;

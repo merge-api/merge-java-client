@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.availableactions;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.types.AvailableActions;
 import okhttp3.*;
 

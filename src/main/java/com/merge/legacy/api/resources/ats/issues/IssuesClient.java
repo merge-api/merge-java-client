@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.issues;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.issues.requests.IssuesListRequest;
 import com.merge.legacy.api.resources.ats.types.Issue;
 import com.merge.legacy.api.resources.ats.types.PaginatedIssueList;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.rejectreasons;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.rejectreasons.requests.RejectReasonsListRequest;
 import com.merge.legacy.api.resources.ats.rejectreasons.requests.RejectReasonsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedRejectReasonList;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.scorecards;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.scorecards.requests.ScorecardsListRequest;
 import com.merge.legacy.api.resources.ats.scorecards.requests.ScorecardsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedScorecardList;

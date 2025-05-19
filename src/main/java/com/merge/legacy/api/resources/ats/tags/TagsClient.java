@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.tags;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.tags.requests.TagsListRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedTagList;
 import okhttp3.*;

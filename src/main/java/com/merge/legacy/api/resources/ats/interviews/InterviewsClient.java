@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.interviews;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.interviews.requests.InterviewsListRequest;
 import com.merge.legacy.api.resources.ats.interviews.requests.InterviewsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.interviews.requests.ScheduledInterviewEndpointRequest;

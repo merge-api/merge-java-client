@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.users;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.types.PaginatedRemoteUserList;
 import com.merge.legacy.api.resources.ats.types.RemoteUser;
 import com.merge.legacy.api.resources.ats.users.requests.UsersListRequest;

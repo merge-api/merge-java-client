@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.offices;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.offices.requests.OfficesListRequest;
 import com.merge.legacy.api.resources.ats.offices.requests.OfficesRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Office;

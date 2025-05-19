@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.activities;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.activities.requests.ActivitiesListRequest;
 import com.merge.legacy.api.resources.ats.activities.requests.ActivitiesRetrieveRequest;
 import com.merge.legacy.api.resources.ats.activities.requests.ActivityEndpointRequest;

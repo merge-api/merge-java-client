@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.jobpostings;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.jobpostings.requests.JobPostingsListRequest;
 import com.merge.legacy.api.resources.ats.jobpostings.requests.JobPostingsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.JobPosting;

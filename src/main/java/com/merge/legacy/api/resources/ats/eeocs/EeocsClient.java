@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.eeocs;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.eeocs.requests.EeocsListRequest;
 import com.merge.legacy.api.resources.ats.eeocs.requests.EeocsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Eeoc;

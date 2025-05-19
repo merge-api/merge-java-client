@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.jobinterviewstages;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.jobinterviewstages.requests.JobInterviewStagesListRequest;
 import com.merge.legacy.api.resources.ats.jobinterviewstages.requests.JobInterviewStagesRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.JobInterviewStage;

@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.departments;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.departments.requests.DepartmentsListRequest;
 import com.merge.legacy.api.resources.ats.departments.requests.DepartmentsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Department;

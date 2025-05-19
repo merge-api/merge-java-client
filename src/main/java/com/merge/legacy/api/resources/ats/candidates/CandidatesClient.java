@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.ats.candidates;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.candidates.requests.*;
 import com.merge.legacy.api.resources.ats.types.Candidate;
 import com.merge.legacy.api.resources.ats.types.CandidateResponse;

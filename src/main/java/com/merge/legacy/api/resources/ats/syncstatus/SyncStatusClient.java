@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.syncstatus;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.syncstatus.requests.SyncStatusListRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedSyncStatusList;
 import okhttp3.*;

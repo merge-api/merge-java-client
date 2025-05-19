@@ -3,7 +3,7 @@
  */
 package com.merge.legacy.api.resources.ats.offers;
 
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.offers.requests.OffersListRequest;
 import com.merge.legacy.api.resources.ats.offers.requests.OffersRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Offer;

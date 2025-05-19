@@ -4,7 +4,7 @@
 package com.merge.legacy.api.resources.ats.fieldmapping;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.merge.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.fieldmapping.requests.CreateFieldMappingRequest;
 import com.merge.legacy.api.resources.ats.fieldmapping.requests.FieldMappingsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.fieldmapping.requests.PatchedEditFieldMappingRequest;
