@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.engagements.types.EngagementsRetrieveRequestExpand;
+import com.merge.api.resources.crm.engagements.types.EngagementsRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,22 +23,26 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EngagementsRetrieveRequest.Builder.class)
 public final class EngagementsRetrieveRequest {
-    private final Optional<EngagementsRetrieveRequestExpand> expand;
+    private final Optional<List<EngagementsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeRemoteFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Map<String, Object> additionalProperties;
 
     private EngagementsRetrieveRequest(
-            Optional<EngagementsRetrieveRequestExpand> expand,
+            Optional<List<EngagementsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -44,7 +50,7 @@ public final class EngagementsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<EngagementsRetrieveRequestExpand> getExpand() {
+    public Optional<List<EngagementsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -64,6 +70,14 @@ public final class EngagementsRetrieveRequest {
         return includeRemoteFields;
     }
 
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -78,12 +92,13 @@ public final class EngagementsRetrieveRequest {
     private boolean equalTo(EngagementsRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
-                && includeRemoteFields.equals(other.includeRemoteFields);
+                && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields, this.includeShellData);
     }
 
     @java.lang.Override
@@ -97,11 +112,13 @@ public final class EngagementsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<EngagementsRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<EngagementsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,17 +129,23 @@ public final class EngagementsRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EngagementsRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<EngagementsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(EngagementsRetrieveRequestExpand expand) {
+        public Builder expand(List<EngagementsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EngagementsRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -148,8 +171,20 @@ public final class EngagementsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public EngagementsRetrieveRequest build() {
-            return new EngagementsRetrieveRequest(expand, includeRemoteData, includeRemoteFields, additionalProperties);
+            return new EngagementsRetrieveRequest(
+                    expand, includeRemoteData, includeRemoteFields, includeShellData, additionalProperties);
         }
     }
 }

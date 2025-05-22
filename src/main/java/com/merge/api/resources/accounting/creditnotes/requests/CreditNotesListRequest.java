@@ -12,11 +12,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.creditnotes.types.CreditNotesListRequestExpand;
+import com.merge.api.resources.accounting.creditnotes.types.CreditNotesListRequestExpandItem;
 import com.merge.api.resources.accounting.creditnotes.types.CreditNotesListRequestRemoteFields;
 import com.merge.api.resources.accounting.creditnotes.types.CreditNotesListRequestShowEnumOrigins;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,6 +26,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CreditNotesListRequest.Builder.class)
 public final class CreditNotesListRequest {
+    private final Optional<List<CreditNotesListRequestExpandItem>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -31,8 +35,6 @@ public final class CreditNotesListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<CreditNotesListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,11 +61,11 @@ public final class CreditNotesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CreditNotesListRequest(
+            Optional<List<CreditNotesListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<CreditNotesListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -76,11 +78,11 @@ public final class CreditNotesListRequest {
             Optional<OffsetDateTime> transactionDateAfter,
             Optional<OffsetDateTime> transactionDateBefore,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -93,6 +95,14 @@ public final class CreditNotesListRequest {
         this.transactionDateAfter = transactionDateAfter;
         this.transactionDateBefore = transactionDateBefore;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<CreditNotesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -125,14 +135,6 @@ public final class CreditNotesListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<CreditNotesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -235,11 +237,11 @@ public final class CreditNotesListRequest {
     }
 
     private boolean equalTo(CreditNotesListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -256,11 +258,11 @@ public final class CreditNotesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -285,6 +287,8 @@ public final class CreditNotesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<CreditNotesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -292,8 +296,6 @@ public final class CreditNotesListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<CreditNotesListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -323,11 +325,11 @@ public final class CreditNotesListRequest {
         private Builder() {}
 
         public Builder from(CreditNotesListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -339,6 +341,22 @@ public final class CreditNotesListRequest {
             showEnumOrigins(other.getShowEnumOrigins());
             transactionDateAfter(other.getTransactionDateAfter());
             transactionDateBefore(other.getTransactionDateBefore());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<CreditNotesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<CreditNotesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(CreditNotesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -383,17 +401,6 @@ public final class CreditNotesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CreditNotesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(CreditNotesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -520,11 +527,11 @@ public final class CreditNotesListRequest {
 
         public CreditNotesListRequest build() {
             return new CreditNotesListRequest(
+                    expand,
                     companyId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

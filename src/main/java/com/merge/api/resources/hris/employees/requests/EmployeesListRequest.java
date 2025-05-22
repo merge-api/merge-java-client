@@ -13,11 +13,13 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.employees.types.EmployeesListRequestEmploymentStatus;
-import com.merge.api.resources.hris.employees.types.EmployeesListRequestExpand;
+import com.merge.api.resources.hris.employees.types.EmployeesListRequestExpandItem;
 import com.merge.api.resources.hris.employees.types.EmployeesListRequestRemoteFields;
 import com.merge.api.resources.hris.employees.types.EmployeesListRequestShowEnumOrigins;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +27,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesListRequest.Builder.class)
 public final class EmployeesListRequest {
+    private final Optional<List<EmployeesListRequestExpandItem>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -38,8 +42,6 @@ public final class EmployeesListRequest {
     private final Optional<EmployeesListRequestEmploymentStatus> employmentStatus;
 
     private final Optional<String> employmentType;
-
-    private final Optional<EmployeesListRequestExpand> expand;
 
     private final Optional<String> firstName;
 
@@ -94,6 +96,7 @@ public final class EmployeesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmployeesListRequest(
+            Optional<List<EmployeesListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -101,7 +104,6 @@ public final class EmployeesListRequest {
             Optional<String> displayFullName,
             Optional<EmployeesListRequestEmploymentStatus> employmentStatus,
             Optional<String> employmentType,
-            Optional<EmployeesListRequestExpand> expand,
             Optional<String> firstName,
             Optional<String> groups,
             Optional<String> homeLocationId,
@@ -128,6 +130,7 @@ public final class EmployeesListRequest {
             Optional<String> workEmail,
             Optional<String> workLocationId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -135,7 +138,6 @@ public final class EmployeesListRequest {
         this.displayFullName = displayFullName;
         this.employmentStatus = employmentStatus;
         this.employmentType = employmentType;
-        this.expand = expand;
         this.firstName = firstName;
         this.groups = groups;
         this.homeLocationId = homeLocationId;
@@ -162,6 +164,14 @@ public final class EmployeesListRequest {
         this.workEmail = workEmail;
         this.workLocationId = workLocationId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<EmployeesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -223,14 +233,6 @@ public final class EmployeesListRequest {
     @JsonProperty("employment_type")
     public Optional<String> getEmploymentType() {
         return employmentType;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<EmployeesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -445,14 +447,14 @@ public final class EmployeesListRequest {
     }
 
     private boolean equalTo(EmployeesListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && displayFullName.equals(other.displayFullName)
                 && employmentStatus.equals(other.employmentStatus)
                 && employmentType.equals(other.employmentType)
-                && expand.equals(other.expand)
                 && firstName.equals(other.firstName)
                 && groups.equals(other.groups)
                 && homeLocationId.equals(other.homeLocationId)
@@ -483,6 +485,7 @@ public final class EmployeesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
@@ -490,7 +493,6 @@ public final class EmployeesListRequest {
                 this.displayFullName,
                 this.employmentStatus,
                 this.employmentType,
-                this.expand,
                 this.firstName,
                 this.groups,
                 this.homeLocationId,
@@ -529,6 +531,8 @@ public final class EmployeesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<EmployeesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -542,8 +546,6 @@ public final class EmployeesListRequest {
         private Optional<EmployeesListRequestEmploymentStatus> employmentStatus = Optional.empty();
 
         private Optional<String> employmentType = Optional.empty();
-
-        private Optional<EmployeesListRequestExpand> expand = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -601,6 +603,7 @@ public final class EmployeesListRequest {
         private Builder() {}
 
         public Builder from(EmployeesListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
@@ -608,7 +611,6 @@ public final class EmployeesListRequest {
             displayFullName(other.getDisplayFullName());
             employmentStatus(other.getEmploymentStatus());
             employmentType(other.getEmploymentType());
-            expand(other.getExpand());
             firstName(other.getFirstName());
             groups(other.getGroups());
             homeLocationId(other.getHomeLocationId());
@@ -634,6 +636,22 @@ public final class EmployeesListRequest {
             terminatedBefore(other.getTerminatedBefore());
             workEmail(other.getWorkEmail());
             workLocationId(other.getWorkLocationId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<EmployeesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<EmployeesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EmployeesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -711,17 +729,6 @@ public final class EmployeesListRequest {
 
         public Builder employmentType(String employmentType) {
             this.employmentType = Optional.ofNullable(employmentType);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EmployeesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(EmployeesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -1002,6 +1009,7 @@ public final class EmployeesListRequest {
 
         public EmployeesListRequest build() {
             return new EmployeesListRequest(
+                    expand,
                     companyId,
                     createdAfter,
                     createdBefore,
@@ -1009,7 +1017,6 @@ public final class EmployeesListRequest {
                     displayFullName,
                     employmentStatus,
                     employmentType,
-                    expand,
                     firstName,
                     groups,
                     homeLocationId,

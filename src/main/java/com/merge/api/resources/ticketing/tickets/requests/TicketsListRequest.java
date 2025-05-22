@@ -12,12 +12,14 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestExpand;
+import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestExpandItem;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestPriority;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestRemoteFields;
 import com.merge.api.resources.ticketing.tickets.types.TicketsListRequestShowEnumOrigins;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +27,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketsListRequest.Builder.class)
 public final class TicketsListRequest {
+    private final Optional<List<TicketsListRequestExpandItem>> expand;
+
     private final Optional<String> accountId;
 
     private final Optional<String> assigneeIds;
@@ -46,8 +50,6 @@ public final class TicketsListRequest {
     private final Optional<OffsetDateTime> dueAfter;
 
     private final Optional<OffsetDateTime> dueBefore;
-
-    private final Optional<TicketsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -92,6 +94,7 @@ public final class TicketsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private TicketsListRequest(
+            Optional<List<TicketsListRequestExpandItem>> expand,
             Optional<String> accountId,
             Optional<String> assigneeIds,
             Optional<String> collectionIds,
@@ -103,7 +106,6 @@ public final class TicketsListRequest {
             Optional<String> cursor,
             Optional<OffsetDateTime> dueAfter,
             Optional<OffsetDateTime> dueBefore,
-            Optional<TicketsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -125,6 +127,7 @@ public final class TicketsListRequest {
             Optional<String> ticketType,
             Optional<String> ticketUrl,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountId = accountId;
         this.assigneeIds = assigneeIds;
         this.collectionIds = collectionIds;
@@ -136,7 +139,6 @@ public final class TicketsListRequest {
         this.cursor = cursor;
         this.dueAfter = dueAfter;
         this.dueBefore = dueBefore;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -158,6 +160,14 @@ public final class TicketsListRequest {
         this.ticketType = ticketType;
         this.ticketUrl = ticketUrl;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<TicketsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -246,14 +256,6 @@ public final class TicketsListRequest {
     @JsonProperty("due_before")
     public Optional<OffsetDateTime> getDueBefore() {
         return dueBefore;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<TicketsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -434,7 +436,8 @@ public final class TicketsListRequest {
     }
 
     private boolean equalTo(TicketsListRequest other) {
-        return accountId.equals(other.accountId)
+        return expand.equals(other.expand)
+                && accountId.equals(other.accountId)
                 && assigneeIds.equals(other.assigneeIds)
                 && collectionIds.equals(other.collectionIds)
                 && completedAfter.equals(other.completedAfter)
@@ -445,7 +448,6 @@ public final class TicketsListRequest {
                 && cursor.equals(other.cursor)
                 && dueAfter.equals(other.dueAfter)
                 && dueBefore.equals(other.dueBefore)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -471,6 +473,7 @@ public final class TicketsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountId,
                 this.assigneeIds,
                 this.collectionIds,
@@ -482,7 +485,6 @@ public final class TicketsListRequest {
                 this.cursor,
                 this.dueAfter,
                 this.dueBefore,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -516,6 +518,8 @@ public final class TicketsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<TicketsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> accountId = Optional.empty();
 
         private Optional<String> assigneeIds = Optional.empty();
@@ -537,8 +541,6 @@ public final class TicketsListRequest {
         private Optional<OffsetDateTime> dueAfter = Optional.empty();
 
         private Optional<OffsetDateTime> dueBefore = Optional.empty();
-
-        private Optional<TicketsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -586,6 +588,7 @@ public final class TicketsListRequest {
         private Builder() {}
 
         public Builder from(TicketsListRequest other) {
+            expand(other.getExpand());
             accountId(other.getAccountId());
             assigneeIds(other.getAssigneeIds());
             collectionIds(other.getCollectionIds());
@@ -597,7 +600,6 @@ public final class TicketsListRequest {
             cursor(other.getCursor());
             dueAfter(other.getDueAfter());
             dueBefore(other.getDueBefore());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -618,6 +620,22 @@ public final class TicketsListRequest {
             tags(other.getTags());
             ticketType(other.getTicketType());
             ticketUrl(other.getTicketUrl());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<TicketsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<TicketsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(TicketsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -739,17 +757,6 @@ public final class TicketsListRequest {
 
         public Builder dueBefore(OffsetDateTime dueBefore) {
             this.dueBefore = Optional.ofNullable(dueBefore);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<TicketsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(TicketsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -975,6 +982,7 @@ public final class TicketsListRequest {
 
         public TicketsListRequest build() {
             return new TicketsListRequest(
+                    expand,
                     accountId,
                     assigneeIds,
                     collectionIds,
@@ -986,7 +994,6 @@ public final class TicketsListRequest {
                     cursor,
                     dueAfter,
                     dueBefore,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

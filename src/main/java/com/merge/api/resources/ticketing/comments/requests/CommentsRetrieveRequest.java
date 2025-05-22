@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.comments.types.CommentsRetrieveRequestExpand;
+import com.merge.api.resources.ticketing.comments.types.CommentsRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,18 +23,22 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CommentsRetrieveRequest.Builder.class)
 public final class CommentsRetrieveRequest {
-    private final Optional<CommentsRetrieveRequestExpand> expand;
+    private final Optional<List<CommentsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Map<String, Object> additionalProperties;
 
     private CommentsRetrieveRequest(
-            Optional<CommentsRetrieveRequestExpand> expand,
+            Optional<List<CommentsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,7 +46,7 @@ public final class CommentsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<CommentsRetrieveRequestExpand> getExpand() {
+    public Optional<List<CommentsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -50,6 +56,14 @@ public final class CommentsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     @java.lang.Override
@@ -64,12 +78,14 @@ public final class CommentsRetrieveRequest {
     }
 
     private boolean equalTo(CommentsRetrieveRequest other) {
-        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand)
+                && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeShellData);
     }
 
     @java.lang.Override
@@ -83,9 +99,11 @@ public final class CommentsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<CommentsRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<CommentsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -95,17 +113,23 @@ public final class CommentsRetrieveRequest {
         public Builder from(CommentsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CommentsRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<CommentsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(CommentsRetrieveRequestExpand expand) {
+        public Builder expand(List<CommentsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(CommentsRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -120,8 +144,19 @@ public final class CommentsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public CommentsRetrieveRequest build() {
-            return new CommentsRetrieveRequest(expand, includeRemoteData, additionalProperties);
+            return new CommentsRetrieveRequest(expand, includeRemoteData, includeShellData, additionalProperties);
         }
     }
 }

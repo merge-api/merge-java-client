@@ -37,19 +37,19 @@ public final class Employment {
 
     private final Optional<Double> payRate;
 
-    private final Optional<EmploymentPayPeriod> payPeriod;
+    private final Optional<PayPeriodEnum> payPeriod;
 
-    private final Optional<EmploymentPayFrequency> payFrequency;
+    private final Optional<PayFrequencyEnum> payFrequency;
 
-    private final Optional<EmploymentPayCurrency> payCurrency;
+    private final Optional<PayCurrencyEnum> payCurrency;
 
     private final Optional<EmploymentPayGroup> payGroup;
 
-    private final Optional<EmploymentFlsaStatus> flsaStatus;
+    private final Optional<FlsaStatusEnum> flsaStatus;
 
     private final Optional<OffsetDateTime> effectiveDate;
 
-    private final Optional<EmploymentEmploymentType> employmentType;
+    private final Optional<EmploymentTypeEnum> employmentType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -67,13 +67,13 @@ public final class Employment {
             Optional<EmploymentEmployee> employee,
             Optional<String> jobTitle,
             Optional<Double> payRate,
-            Optional<EmploymentPayPeriod> payPeriod,
-            Optional<EmploymentPayFrequency> payFrequency,
-            Optional<EmploymentPayCurrency> payCurrency,
+            Optional<PayPeriodEnum> payPeriod,
+            Optional<PayFrequencyEnum> payFrequency,
+            Optional<PayCurrencyEnum> payCurrency,
             Optional<EmploymentPayGroup> payGroup,
-            Optional<EmploymentFlsaStatus> flsaStatus,
+            Optional<FlsaStatusEnum> flsaStatus,
             Optional<OffsetDateTime> effectiveDate,
-            Optional<EmploymentEmploymentType> employmentType,
+            Optional<EmploymentTypeEnum> employmentType,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -166,7 +166,7 @@ public final class Employment {
      * </ul>
      */
     @JsonProperty("pay_period")
-    public Optional<EmploymentPayPeriod> getPayPeriod() {
+    public Optional<PayPeriodEnum> getPayPeriod() {
         return payPeriod;
     }
 
@@ -185,7 +185,7 @@ public final class Employment {
      * </ul>
      */
     @JsonProperty("pay_frequency")
-    public Optional<EmploymentPayFrequency> getPayFrequency() {
+    public Optional<PayFrequencyEnum> getPayFrequency() {
         return payFrequency;
     }
 
@@ -501,7 +501,7 @@ public final class Employment {
      * </ul>
      */
     @JsonProperty("pay_currency")
-    public Optional<EmploymentPayCurrency> getPayCurrency() {
+    public Optional<PayCurrencyEnum> getPayCurrency() {
         return payCurrency;
     }
 
@@ -523,7 +523,7 @@ public final class Employment {
      * </ul>
      */
     @JsonProperty("flsa_status")
-    public Optional<EmploymentFlsaStatus> getFlsaStatus() {
+    public Optional<FlsaStatusEnum> getFlsaStatus() {
         return flsaStatus;
     }
 
@@ -546,7 +546,7 @@ public final class Employment {
      * </ul>
      */
     @JsonProperty("employment_type")
-    public Optional<EmploymentEmploymentType> getEmploymentType() {
+    public Optional<EmploymentTypeEnum> getEmploymentType() {
         return employmentType;
     }
 
@@ -646,19 +646,19 @@ public final class Employment {
 
         private Optional<Double> payRate = Optional.empty();
 
-        private Optional<EmploymentPayPeriod> payPeriod = Optional.empty();
+        private Optional<PayPeriodEnum> payPeriod = Optional.empty();
 
-        private Optional<EmploymentPayFrequency> payFrequency = Optional.empty();
+        private Optional<PayFrequencyEnum> payFrequency = Optional.empty();
 
-        private Optional<EmploymentPayCurrency> payCurrency = Optional.empty();
+        private Optional<PayCurrencyEnum> payCurrency = Optional.empty();
 
         private Optional<EmploymentPayGroup> payGroup = Optional.empty();
 
-        private Optional<EmploymentFlsaStatus> flsaStatus = Optional.empty();
+        private Optional<FlsaStatusEnum> flsaStatus = Optional.empty();
 
         private Optional<OffsetDateTime> effectiveDate = Optional.empty();
 
-        private Optional<EmploymentEmploymentType> employmentType = Optional.empty();
+        private Optional<EmploymentTypeEnum> employmentType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -770,34 +770,34 @@ public final class Employment {
         }
 
         @JsonSetter(value = "pay_period", nulls = Nulls.SKIP)
-        public Builder payPeriod(Optional<EmploymentPayPeriod> payPeriod) {
+        public Builder payPeriod(Optional<PayPeriodEnum> payPeriod) {
             this.payPeriod = payPeriod;
             return this;
         }
 
-        public Builder payPeriod(EmploymentPayPeriod payPeriod) {
+        public Builder payPeriod(PayPeriodEnum payPeriod) {
             this.payPeriod = Optional.ofNullable(payPeriod);
             return this;
         }
 
         @JsonSetter(value = "pay_frequency", nulls = Nulls.SKIP)
-        public Builder payFrequency(Optional<EmploymentPayFrequency> payFrequency) {
+        public Builder payFrequency(Optional<PayFrequencyEnum> payFrequency) {
             this.payFrequency = payFrequency;
             return this;
         }
 
-        public Builder payFrequency(EmploymentPayFrequency payFrequency) {
+        public Builder payFrequency(PayFrequencyEnum payFrequency) {
             this.payFrequency = Optional.ofNullable(payFrequency);
             return this;
         }
 
         @JsonSetter(value = "pay_currency", nulls = Nulls.SKIP)
-        public Builder payCurrency(Optional<EmploymentPayCurrency> payCurrency) {
+        public Builder payCurrency(Optional<PayCurrencyEnum> payCurrency) {
             this.payCurrency = payCurrency;
             return this;
         }
 
-        public Builder payCurrency(EmploymentPayCurrency payCurrency) {
+        public Builder payCurrency(PayCurrencyEnum payCurrency) {
             this.payCurrency = Optional.ofNullable(payCurrency);
             return this;
         }
@@ -814,12 +814,12 @@ public final class Employment {
         }
 
         @JsonSetter(value = "flsa_status", nulls = Nulls.SKIP)
-        public Builder flsaStatus(Optional<EmploymentFlsaStatus> flsaStatus) {
+        public Builder flsaStatus(Optional<FlsaStatusEnum> flsaStatus) {
             this.flsaStatus = flsaStatus;
             return this;
         }
 
-        public Builder flsaStatus(EmploymentFlsaStatus flsaStatus) {
+        public Builder flsaStatus(FlsaStatusEnum flsaStatus) {
             this.flsaStatus = Optional.ofNullable(flsaStatus);
             return this;
         }
@@ -836,12 +836,12 @@ public final class Employment {
         }
 
         @JsonSetter(value = "employment_type", nulls = Nulls.SKIP)
-        public Builder employmentType(Optional<EmploymentEmploymentType> employmentType) {
+        public Builder employmentType(Optional<EmploymentTypeEnum> employmentType) {
             this.employmentType = employmentType;
             return this;
         }
 
-        public Builder employmentType(EmploymentEmploymentType employmentType) {
+        public Builder employmentType(EmploymentTypeEnum employmentType) {
             this.employmentType = Optional.ofNullable(employmentType);
             return this;
         }

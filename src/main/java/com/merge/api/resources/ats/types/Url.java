@@ -27,7 +27,7 @@ public final class Url {
 
     private final Optional<String> value;
 
-    private final Optional<UrlUrlType> urlType;
+    private final Optional<UrlTypeEnum> urlType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -37,7 +37,7 @@ public final class Url {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
-            Optional<UrlUrlType> urlType,
+            Optional<UrlTypeEnum> urlType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -85,7 +85,7 @@ public final class Url {
      * </ul>
      */
     @JsonProperty("url_type")
-    public Optional<UrlUrlType> getUrlType() {
+    public Optional<UrlTypeEnum> getUrlType() {
         return urlType;
     }
 
@@ -138,7 +138,7 @@ public final class Url {
 
         private Optional<String> value = Optional.empty();
 
-        private Optional<UrlUrlType> urlType = Optional.empty();
+        private Optional<UrlTypeEnum> urlType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -190,12 +190,12 @@ public final class Url {
         }
 
         @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
-        public Builder urlType(Optional<UrlUrlType> urlType) {
+        public Builder urlType(Optional<UrlTypeEnum> urlType) {
             this.urlType = urlType;
             return this;
         }
 
-        public Builder urlType(UrlUrlType urlType) {
+        public Builder urlType(UrlTypeEnum urlType) {
             this.urlType = Optional.ofNullable(urlType);
             return this;
         }

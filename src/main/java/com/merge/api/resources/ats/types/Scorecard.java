@@ -41,7 +41,7 @@ public final class Scorecard {
 
     private final Optional<OffsetDateTime> submittedAt;
 
-    private final Optional<ScorecardOverallRecommendation> overallRecommendation;
+    private final Optional<OverallRecommendationEnum> overallRecommendation;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -61,7 +61,7 @@ public final class Scorecard {
             Optional<ScorecardInterviewer> interviewer,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> submittedAt,
-            Optional<ScorecardOverallRecommendation> overallRecommendation,
+            Optional<OverallRecommendationEnum> overallRecommendation,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -162,7 +162,7 @@ public final class Scorecard {
      * </ul>
      */
     @JsonProperty("overall_recommendation")
-    public Optional<ScorecardOverallRecommendation> getOverallRecommendation() {
+    public Optional<OverallRecommendationEnum> getOverallRecommendation() {
         return overallRecommendation;
     }
 
@@ -258,7 +258,7 @@ public final class Scorecard {
 
         private Optional<OffsetDateTime> submittedAt = Optional.empty();
 
-        private Optional<ScorecardOverallRecommendation> overallRecommendation = Optional.empty();
+        private Optional<OverallRecommendationEnum> overallRecommendation = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -388,12 +388,12 @@ public final class Scorecard {
         }
 
         @JsonSetter(value = "overall_recommendation", nulls = Nulls.SKIP)
-        public Builder overallRecommendation(Optional<ScorecardOverallRecommendation> overallRecommendation) {
+        public Builder overallRecommendation(Optional<OverallRecommendationEnum> overallRecommendation) {
             this.overallRecommendation = overallRecommendation;
             return this;
         }
 
-        public Builder overallRecommendation(ScorecardOverallRecommendation overallRecommendation) {
+        public Builder overallRecommendation(OverallRecommendationEnum overallRecommendation) {
             this.overallRecommendation = Optional.ofNullable(overallRecommendation);
             return this;
         }

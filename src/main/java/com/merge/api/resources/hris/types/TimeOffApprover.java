@@ -29,6 +29,7 @@ public final class TimeOffApprover {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -78,7 +79,7 @@ public final class TimeOffApprover {
         }
 
         @java.lang.Override
-        public TimeOffApprover deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public TimeOffApprover deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

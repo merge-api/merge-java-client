@@ -41,7 +41,7 @@ public final class InvoiceLineItem {
 
     private final Optional<InvoiceLineItemEmployee> employee;
 
-    private final Optional<InvoiceLineItemCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -75,7 +75,7 @@ public final class InvoiceLineItem {
             Optional<Double> quantity,
             Optional<Double> totalAmount,
             Optional<InvoiceLineItemEmployee> employee,
-            Optional<InvoiceLineItemCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<InvoiceLineItemItem> item,
             Optional<InvoiceLineItemAccount> account,
@@ -491,7 +491,7 @@ public final class InvoiceLineItem {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<InvoiceLineItemCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -648,7 +648,7 @@ public final class InvoiceLineItem {
 
         private Optional<InvoiceLineItemEmployee> employee = Optional.empty();
 
-        private Optional<InvoiceLineItemCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -799,12 +799,12 @@ public final class InvoiceLineItem {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<InvoiceLineItemCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(InvoiceLineItemCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

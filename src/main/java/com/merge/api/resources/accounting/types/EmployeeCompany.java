@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.merge.api.core.ObjectMappers;
@@ -30,11 +29,12 @@ public final class EmployeeCompany {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((JsonNode) this.value);
+            return visitor.visit((CompanyInfo) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
@@ -63,14 +63,14 @@ public final class EmployeeCompany {
         return new EmployeeCompany(value, 0);
     }
 
-    public static EmployeeCompany of(JsonNode value) {
+    public static EmployeeCompany of(CompanyInfo value) {
         return new EmployeeCompany(value, 1);
     }
 
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(JsonNode value);
+        T visit(CompanyInfo value);
     }
 
     static final class Deserializer extends StdDeserializer<EmployeeCompany> {
@@ -79,14 +79,14 @@ public final class EmployeeCompany {
         }
 
         @java.lang.Override
-        public EmployeeCompany deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public EmployeeCompany deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));
             } catch (IllegalArgumentException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, JsonNode.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, CompanyInfo.class));
             } catch (IllegalArgumentException e) {
             }
             throw new JsonParseException(p, "Failed to deserialize");

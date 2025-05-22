@@ -45,7 +45,7 @@ public final class Transaction {
 
     private final Optional<String> totalAmount;
 
-    private final Optional<TransactionCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -77,7 +77,7 @@ public final class Transaction {
             Optional<TransactionContact> contact,
             Optional<Boolean> inclusiveOfTax,
             Optional<String> totalAmount,
-            Optional<TransactionCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<String> company,
             Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories,
@@ -507,7 +507,7 @@ public final class Transaction {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<TransactionCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -655,7 +655,7 @@ public final class Transaction {
 
         private Optional<String> totalAmount = Optional.empty();
 
-        private Optional<TransactionCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -824,12 +824,12 @@ public final class Transaction {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<TransactionCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(TransactionCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

@@ -45,9 +45,9 @@ public final class Location {
 
     private final Optional<String> zipCode;
 
-    private final Optional<LocationCountry> country;
+    private final Optional<CountryEnum> country;
 
-    private final Optional<LocationLocationType> locationType;
+    private final Optional<LocationTypeEnum> locationType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -69,8 +69,8 @@ public final class Location {
             Optional<String> city,
             Optional<String> state,
             Optional<String> zipCode,
-            Optional<LocationCountry> country,
-            Optional<LocationLocationType> locationType,
+            Optional<CountryEnum> country,
+            Optional<LocationTypeEnum> locationType,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -434,7 +434,7 @@ public final class Location {
      * </ul>
      */
     @JsonProperty("country")
-    public Optional<LocationCountry> getCountry() {
+    public Optional<CountryEnum> getCountry() {
         return country;
     }
 
@@ -446,7 +446,7 @@ public final class Location {
      * </ul>
      */
     @JsonProperty("location_type")
-    public Optional<LocationLocationType> getLocationType() {
+    public Optional<LocationTypeEnum> getLocationType() {
         return locationType;
     }
 
@@ -552,9 +552,9 @@ public final class Location {
 
         private Optional<String> zipCode = Optional.empty();
 
-        private Optional<LocationCountry> country = Optional.empty();
+        private Optional<CountryEnum> country = Optional.empty();
 
-        private Optional<LocationLocationType> locationType = Optional.empty();
+        private Optional<LocationTypeEnum> locationType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -709,23 +709,23 @@ public final class Location {
         }
 
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
-        public Builder country(Optional<LocationCountry> country) {
+        public Builder country(Optional<CountryEnum> country) {
             this.country = country;
             return this;
         }
 
-        public Builder country(LocationCountry country) {
+        public Builder country(CountryEnum country) {
             this.country = Optional.ofNullable(country);
             return this;
         }
 
         @JsonSetter(value = "location_type", nulls = Nulls.SKIP)
-        public Builder locationType(Optional<LocationLocationType> locationType) {
+        public Builder locationType(Optional<LocationTypeEnum> locationType) {
             this.locationType = locationType;
             return this;
         }
 
-        public Builder locationType(LocationLocationType locationType) {
+        public Builder locationType(LocationTypeEnum locationType) {
             this.locationType = Optional.ofNullable(locationType);
             return this;
         }

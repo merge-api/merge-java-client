@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.contacts.types.ContactsListRequestExpand;
+import com.merge.api.resources.crm.contacts.types.ContactsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ContactsListRequest.Builder.class)
 public final class ContactsListRequest {
+    private final Optional<List<ContactsListRequestExpandItem>> expand;
+
     private final Optional<String> accountId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -31,8 +35,6 @@ public final class ContactsListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> emailAddresses;
-
-    private final Optional<ContactsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -55,12 +57,12 @@ public final class ContactsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private ContactsListRequest(
+            Optional<List<ContactsListRequestExpandItem>> expand,
             Optional<String> accountId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> emailAddresses,
-            Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -71,12 +73,12 @@ public final class ContactsListRequest {
             Optional<String> phoneNumbers,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountId = accountId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.emailAddresses = emailAddresses;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -87,6 +89,14 @@ public final class ContactsListRequest {
         this.phoneNumbers = phoneNumbers;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<ContactsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -127,14 +137,6 @@ public final class ContactsListRequest {
     @JsonProperty("email_addresses")
     public Optional<String> getEmailAddresses() {
         return emailAddresses;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<ContactsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -221,12 +223,12 @@ public final class ContactsListRequest {
     }
 
     private boolean equalTo(ContactsListRequest other) {
-        return accountId.equals(other.accountId)
+        return expand.equals(other.expand)
+                && accountId.equals(other.accountId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && emailAddresses.equals(other.emailAddresses)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -241,12 +243,12 @@ public final class ContactsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.emailAddresses,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -269,6 +271,8 @@ public final class ContactsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<ContactsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> accountId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -278,8 +282,6 @@ public final class ContactsListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> emailAddresses = Optional.empty();
-
-        private Optional<ContactsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -305,12 +307,12 @@ public final class ContactsListRequest {
         private Builder() {}
 
         public Builder from(ContactsListRequest other) {
+            expand(other.getExpand());
             accountId(other.getAccountId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             emailAddresses(other.getEmailAddresses());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -320,6 +322,22 @@ public final class ContactsListRequest {
             pageSize(other.getPageSize());
             phoneNumbers(other.getPhoneNumbers());
             remoteId(other.getRemoteId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<ContactsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<ContactsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(ContactsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -375,17 +393,6 @@ public final class ContactsListRequest {
 
         public Builder emailAddresses(String emailAddresses) {
             this.emailAddresses = Optional.ofNullable(emailAddresses);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<ContactsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(ContactsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -490,12 +497,12 @@ public final class ContactsListRequest {
 
         public ContactsListRequest build() {
             return new ContactsListRequest(
+                    expand,
                     accountId,
                     createdAfter,
                     createdBefore,
                     cursor,
                     emailAddresses,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

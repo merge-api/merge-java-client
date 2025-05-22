@@ -32,7 +32,7 @@ public final class JournalLineRequest {
 
     private final Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<JournalLineRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> company;
 
@@ -60,7 +60,7 @@ public final class JournalLineRequest {
             Optional<Double> netAmount,
             Optional<JournalLineRequestTrackingCategory> trackingCategory,
             Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<JournalLineRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> company,
             Optional<String> employee,
             Optional<String> contact,
@@ -435,7 +435,7 @@ public final class JournalLineRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<JournalLineRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -567,7 +567,7 @@ public final class JournalLineRequest {
         private Optional<List<Optional<JournalLineRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
 
-        private Optional<JournalLineRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> company = Optional.empty();
 
@@ -668,12 +668,12 @@ public final class JournalLineRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<JournalLineRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(JournalLineRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

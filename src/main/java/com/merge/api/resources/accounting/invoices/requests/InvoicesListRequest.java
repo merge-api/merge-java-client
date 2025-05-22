@@ -12,11 +12,13 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestExpand;
+import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestExpandItem;
 import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestStatus;
 import com.merge.api.resources.accounting.invoices.types.InvoicesListRequestType;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -24,6 +26,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InvoicesListRequest.Builder.class)
 public final class InvoicesListRequest {
+    private final Optional<List<InvoicesListRequestExpandItem>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<String> contactId;
@@ -33,8 +37,6 @@ public final class InvoicesListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<InvoicesListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -69,12 +71,12 @@ public final class InvoicesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private InvoicesListRequest(
+            Optional<List<InvoicesListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<String> contactId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<InvoicesListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -91,12 +93,12 @@ public final class InvoicesListRequest {
             Optional<InvoicesListRequestStatus> status,
             Optional<InvoicesListRequestType> type,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.contactId = contactId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -113,6 +115,14 @@ public final class InvoicesListRequest {
         this.status = status;
         this.type = type;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<InvoicesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -153,14 +163,6 @@ public final class InvoicesListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<InvoicesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -307,12 +309,12 @@ public final class InvoicesListRequest {
     }
 
     private boolean equalTo(InvoicesListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && contactId.equals(other.contactId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -333,12 +335,12 @@ public final class InvoicesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.contactId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -367,6 +369,8 @@ public final class InvoicesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<InvoicesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<String> contactId = Optional.empty();
@@ -376,8 +380,6 @@ public final class InvoicesListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<InvoicesListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -415,12 +417,12 @@ public final class InvoicesListRequest {
         private Builder() {}
 
         public Builder from(InvoicesListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             contactId(other.getContactId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -436,6 +438,22 @@ public final class InvoicesListRequest {
             showEnumOrigins(other.getShowEnumOrigins());
             status(other.getStatus());
             type(other.getType());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<InvoicesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<InvoicesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(InvoicesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -491,17 +509,6 @@ public final class InvoicesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<InvoicesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(InvoicesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -672,12 +679,12 @@ public final class InvoicesListRequest {
 
         public InvoicesListRequest build() {
             return new InvoicesListRequest(
+                    expand,
                     companyId,
                     contactId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

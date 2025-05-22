@@ -33,7 +33,7 @@ public final class CashFlowStatement {
 
     private final Optional<String> name;
 
-    private final Optional<CashFlowStatementCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<CashFlowStatementCompany> company;
 
@@ -67,7 +67,7 @@ public final class CashFlowStatement {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<CashFlowStatementCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<CashFlowStatementCompany> company,
             Optional<OffsetDateTime> startPeriod,
             Optional<OffsetDateTime> endPeriod,
@@ -451,7 +451,7 @@ public final class CashFlowStatement {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<CashFlowStatementCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -612,7 +612,7 @@ public final class CashFlowStatement {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<CashFlowStatementCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<CashFlowStatementCompany> company = Optional.empty();
 
@@ -721,12 +721,12 @@ public final class CashFlowStatement {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<CashFlowStatementCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(CashFlowStatementCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

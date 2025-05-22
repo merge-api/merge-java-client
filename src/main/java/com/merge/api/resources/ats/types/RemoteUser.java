@@ -41,7 +41,7 @@ public final class RemoteUser {
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
-    private final Optional<RemoteUserAccessRole> accessRole;
+    private final Optional<AccessRoleEnum> accessRole;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -61,7 +61,7 @@ public final class RemoteUser {
             Optional<String> email,
             Optional<Boolean> disabled,
             Optional<OffsetDateTime> remoteCreatedAt,
-            Optional<RemoteUserAccessRole> accessRole,
+            Optional<AccessRoleEnum> accessRole,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -162,7 +162,7 @@ public final class RemoteUser {
      * </ul>
      */
     @JsonProperty("access_role")
-    public Optional<RemoteUserAccessRole> getAccessRole() {
+    public Optional<AccessRoleEnum> getAccessRole() {
         return accessRole;
     }
 
@@ -258,7 +258,7 @@ public final class RemoteUser {
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
-        private Optional<RemoteUserAccessRole> accessRole = Optional.empty();
+        private Optional<AccessRoleEnum> accessRole = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -388,12 +388,12 @@ public final class RemoteUser {
         }
 
         @JsonSetter(value = "access_role", nulls = Nulls.SKIP)
-        public Builder accessRole(Optional<RemoteUserAccessRole> accessRole) {
+        public Builder accessRole(Optional<AccessRoleEnum> accessRole) {
             this.accessRole = accessRole;
             return this;
         }
 
-        public Builder accessRole(RemoteUserAccessRole accessRole) {
+        public Builder accessRole(AccessRoleEnum accessRole) {
             this.accessRole = Optional.ofNullable(accessRole);
             return this;
         }

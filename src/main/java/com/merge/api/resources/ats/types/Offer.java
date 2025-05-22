@@ -43,7 +43,7 @@ public final class Offer {
 
     private final Optional<OffsetDateTime> startDate;
 
-    private final Optional<OfferStatus> status;
+    private final Optional<OfferStatusEnum> status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -64,7 +64,7 @@ public final class Offer {
             Optional<OffsetDateTime> closedAt,
             Optional<OffsetDateTime> sentAt,
             Optional<OffsetDateTime> startDate,
-            Optional<OfferStatus> status,
+            Optional<OfferStatusEnum> status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -178,7 +178,7 @@ public final class Offer {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OfferStatus> getStatus() {
+    public Optional<OfferStatusEnum> getStatus() {
         return status;
     }
 
@@ -278,7 +278,7 @@ public final class Offer {
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
-        private Optional<OfferStatus> status = Optional.empty();
+        private Optional<OfferStatusEnum> status = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -420,12 +420,12 @@ public final class Offer {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OfferStatus> status) {
+        public Builder status(Optional<OfferStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OfferStatus status) {
+        public Builder status(OfferStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

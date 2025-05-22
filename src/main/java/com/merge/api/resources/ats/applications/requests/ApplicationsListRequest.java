@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ats.applications.types.ApplicationsListRequestExpand;
+import com.merge.api.resources.ats.applications.types.ApplicationsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ApplicationsListRequest.Builder.class)
 public final class ApplicationsListRequest {
+    private final Optional<List<ApplicationsListRequestExpandItem>> expand;
+
     private final Optional<String> candidateId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -33,8 +37,6 @@ public final class ApplicationsListRequest {
     private final Optional<String> currentStageId;
 
     private final Optional<String> cursor;
-
-    private final Optional<ApplicationsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,13 +61,13 @@ public final class ApplicationsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private ApplicationsListRequest(
+            Optional<List<ApplicationsListRequestExpandItem>> expand,
             Optional<String> candidateId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> creditedToId,
             Optional<String> currentStageId,
             Optional<String> cursor,
-            Optional<ApplicationsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -77,13 +79,13 @@ public final class ApplicationsListRequest {
             Optional<String> remoteId,
             Optional<String> source,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.candidateId = candidateId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.creditedToId = creditedToId;
         this.currentStageId = currentStageId;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -95,6 +97,14 @@ public final class ApplicationsListRequest {
         this.remoteId = remoteId;
         this.source = source;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<ApplicationsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -143,14 +153,6 @@ public final class ApplicationsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<ApplicationsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -245,13 +247,13 @@ public final class ApplicationsListRequest {
     }
 
     private boolean equalTo(ApplicationsListRequest other) {
-        return candidateId.equals(other.candidateId)
+        return expand.equals(other.expand)
+                && candidateId.equals(other.candidateId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && creditedToId.equals(other.creditedToId)
                 && currentStageId.equals(other.currentStageId)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -267,13 +269,13 @@ public final class ApplicationsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.candidateId,
                 this.createdAfter,
                 this.createdBefore,
                 this.creditedToId,
                 this.currentStageId,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -297,6 +299,8 @@ public final class ApplicationsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<ApplicationsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> candidateId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -308,8 +312,6 @@ public final class ApplicationsListRequest {
         private Optional<String> currentStageId = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<ApplicationsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -337,13 +339,13 @@ public final class ApplicationsListRequest {
         private Builder() {}
 
         public Builder from(ApplicationsListRequest other) {
+            expand(other.getExpand());
             candidateId(other.getCandidateId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             creditedToId(other.getCreditedToId());
             currentStageId(other.getCurrentStageId());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -354,6 +356,22 @@ public final class ApplicationsListRequest {
             rejectReasonId(other.getRejectReasonId());
             remoteId(other.getRemoteId());
             source(other.getSource());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<ApplicationsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<ApplicationsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(ApplicationsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -420,17 +438,6 @@ public final class ApplicationsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<ApplicationsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(ApplicationsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -546,13 +553,13 @@ public final class ApplicationsListRequest {
 
         public ApplicationsListRequest build() {
             return new ApplicationsListRequest(
+                    expand,
                     candidateId,
                     createdAfter,
                     createdBefore,
                     creditedToId,
                     currentStageId,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

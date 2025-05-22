@@ -29,7 +29,9 @@ public final class PatchedPaymentRequest {
 
     private final Optional<PatchedPaymentRequestAccount> account;
 
-    private final Optional<PatchedPaymentRequestCurrency> currency;
+    private final Optional<PatchedPaymentRequestPaymentMethod> paymentMethod;
+
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -37,7 +39,7 @@ public final class PatchedPaymentRequest {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<PatchedPaymentRequestType> type;
+    private final Optional<PaymentTypeEnum> type;
 
     private final Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories;
 
@@ -57,11 +59,12 @@ public final class PatchedPaymentRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<PatchedPaymentRequestContact> contact,
             Optional<PatchedPaymentRequestAccount> account,
-            Optional<PatchedPaymentRequestCurrency> currency,
+            Optional<PatchedPaymentRequestPaymentMethod> paymentMethod,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<PatchedPaymentRequestCompany> company,
             Optional<Double> totalAmount,
-            Optional<PatchedPaymentRequestType> type,
+            Optional<PaymentTypeEnum> type,
             Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod,
             Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines,
@@ -72,6 +75,7 @@ public final class PatchedPaymentRequest {
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
+        this.paymentMethod = paymentMethod;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
@@ -108,6 +112,14 @@ public final class PatchedPaymentRequest {
     @JsonProperty("account")
     public Optional<PatchedPaymentRequestAccount> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The method which this payment was made by.
+     */
+    @JsonProperty("payment_method")
+    public Optional<PatchedPaymentRequestPaymentMethod> getPaymentMethod() {
+        return paymentMethod;
     }
 
     /**
@@ -422,7 +434,7 @@ public final class PatchedPaymentRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<PatchedPaymentRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -458,7 +470,7 @@ public final class PatchedPaymentRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<PatchedPaymentRequestType> getType() {
+    public Optional<PaymentTypeEnum> getType() {
         return type;
     }
 
@@ -513,6 +525,7 @@ public final class PatchedPaymentRequest {
         return transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
+                && paymentMethod.equals(other.paymentMethod)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
@@ -532,6 +545,7 @@ public final class PatchedPaymentRequest {
                 this.transactionDate,
                 this.contact,
                 this.account,
+                this.paymentMethod,
                 this.currency,
                 this.exchangeRate,
                 this.company,
@@ -562,7 +576,9 @@ public final class PatchedPaymentRequest {
 
         private Optional<PatchedPaymentRequestAccount> account = Optional.empty();
 
-        private Optional<PatchedPaymentRequestCurrency> currency = Optional.empty();
+        private Optional<PatchedPaymentRequestPaymentMethod> paymentMethod = Optional.empty();
+
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -570,7 +586,7 @@ public final class PatchedPaymentRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<PatchedPaymentRequestType> type = Optional.empty();
+        private Optional<PaymentTypeEnum> type = Optional.empty();
 
         private Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
@@ -594,6 +610,7 @@ public final class PatchedPaymentRequest {
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
+            paymentMethod(other.getPaymentMethod());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
@@ -641,13 +658,24 @@ public final class PatchedPaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "payment_method", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<PatchedPaymentRequestPaymentMethod> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(PatchedPaymentRequestPaymentMethod paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
+            return this;
+        }
+
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<PatchedPaymentRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(PatchedPaymentRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -686,12 +714,12 @@ public final class PatchedPaymentRequest {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<PatchedPaymentRequestType> type) {
+        public Builder type(Optional<PaymentTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(PatchedPaymentRequestType type) {
+        public Builder type(PaymentTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -769,6 +797,7 @@ public final class PatchedPaymentRequest {
                     transactionDate,
                     contact,
                     account,
+                    paymentMethod,
                     currency,
                     exchangeRate,
                     company,

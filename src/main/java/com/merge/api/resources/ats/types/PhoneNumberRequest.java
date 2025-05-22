@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class PhoneNumberRequest {
     private final Optional<String> value;
 
-    private final Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType;
+    private final Optional<PhoneNumberTypeEnum> phoneNumberType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class PhoneNumberRequest {
 
     private PhoneNumberRequest(
             Optional<String> value,
-            Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType,
+            Optional<PhoneNumberTypeEnum> phoneNumberType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -63,7 +63,7 @@ public final class PhoneNumberRequest {
      * </ul>
      */
     @JsonProperty("phone_number_type")
-    public Optional<PhoneNumberRequestPhoneNumberType> getPhoneNumberType() {
+    public Optional<PhoneNumberTypeEnum> getPhoneNumberType() {
         return phoneNumberType;
     }
 
@@ -113,7 +113,7 @@ public final class PhoneNumberRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType = Optional.empty();
+        private Optional<PhoneNumberTypeEnum> phoneNumberType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -144,12 +144,12 @@ public final class PhoneNumberRequest {
         }
 
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
-        public Builder phoneNumberType(Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType) {
+        public Builder phoneNumberType(Optional<PhoneNumberTypeEnum> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;
             return this;
         }
 
-        public Builder phoneNumberType(PhoneNumberRequestPhoneNumberType phoneNumberType) {
+        public Builder phoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
             return this;
         }

@@ -37,7 +37,9 @@ import com.merge.api.resources.accounting.journalentries.JournalEntriesClient;
 import com.merge.api.resources.accounting.linkedaccounts.LinkedAccountsClient;
 import com.merge.api.resources.accounting.linktoken.LinkTokenClient;
 import com.merge.api.resources.accounting.passthrough.PassthroughClient;
+import com.merge.api.resources.accounting.paymentmethods.PaymentMethodsClient;
 import com.merge.api.resources.accounting.payments.PaymentsClient;
+import com.merge.api.resources.accounting.paymentterms.PaymentTermsClient;
 import com.merge.api.resources.accounting.phonenumbers.PhoneNumbersClient;
 import com.merge.api.resources.accounting.purchaseorders.PurchaseOrdersClient;
 import com.merge.api.resources.accounting.regeneratekey.RegenerateKeyClient;
@@ -117,6 +119,10 @@ public class AccountingClient {
 
     protected final Supplier<PassthroughClient> passthroughClient;
 
+    protected final Supplier<PaymentMethodsClient> paymentMethodsClient;
+
+    protected final Supplier<PaymentTermsClient> paymentTermsClient;
+
     protected final Supplier<PaymentsClient> paymentsClient;
 
     protected final Supplier<PhoneNumbersClient> phoneNumbersClient;
@@ -174,6 +180,8 @@ public class AccountingClient {
         this.linkTokenClient = Suppliers.memoize(() -> new LinkTokenClient(clientOptions));
         this.linkedAccountsClient = Suppliers.memoize(() -> new LinkedAccountsClient(clientOptions));
         this.passthroughClient = Suppliers.memoize(() -> new PassthroughClient(clientOptions));
+        this.paymentMethodsClient = Suppliers.memoize(() -> new PaymentMethodsClient(clientOptions));
+        this.paymentTermsClient = Suppliers.memoize(() -> new PaymentTermsClient(clientOptions));
         this.paymentsClient = Suppliers.memoize(() -> new PaymentsClient(clientOptions));
         this.phoneNumbersClient = Suppliers.memoize(() -> new PhoneNumbersClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new PurchaseOrdersClient(clientOptions));
@@ -313,6 +321,14 @@ public class AccountingClient {
 
     public PassthroughClient passthrough() {
         return this.passthroughClient.get();
+    }
+
+    public PaymentMethodsClient paymentMethods() {
+        return this.paymentMethodsClient.get();
+    }
+
+    public PaymentTermsClient paymentTerms() {
+        return this.paymentTermsClient.get();
     }
 
     public PaymentsClient payments() {

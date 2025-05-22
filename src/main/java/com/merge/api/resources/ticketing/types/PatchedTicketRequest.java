@@ -33,7 +33,7 @@ public final class PatchedTicketRequest {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<PatchedTicketRequestStatus> status;
+    private final Optional<TicketStatusEnum> status;
 
     private final Optional<String> description;
 
@@ -55,7 +55,7 @@ public final class PatchedTicketRequest {
 
     private final Optional<String> ticketUrl;
 
-    private final Optional<PatchedTicketRequestPriority> priority;
+    private final Optional<PriorityEnum> priority;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -71,7 +71,7 @@ public final class PatchedTicketRequest {
             Optional<List<Optional<String>>> assignedTeams,
             Optional<String> creator,
             Optional<OffsetDateTime> dueDate,
-            Optional<PatchedTicketRequestStatus> status,
+            Optional<TicketStatusEnum> status,
             Optional<String> description,
             Optional<List<Optional<String>>> collections,
             Optional<String> ticketType,
@@ -82,7 +82,7 @@ public final class PatchedTicketRequest {
             Optional<List<Optional<String>>> roles,
             Optional<OffsetDateTime> completedAt,
             Optional<String> ticketUrl,
-            Optional<PatchedTicketRequestPriority> priority,
+            Optional<PriorityEnum> priority,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
@@ -119,7 +119,7 @@ public final class PatchedTicketRequest {
     }
 
     /**
-     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket.
+     * @return The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.
      */
     @JsonProperty("assignees")
     public Optional<List<Optional<String>>> getAssignees() {
@@ -127,7 +127,7 @@ public final class PatchedTicketRequest {
     }
 
     /**
-     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket.
+     * @return The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access this ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.
      */
     @JsonProperty("assigned_teams")
     public Optional<List<Optional<String>>> getAssignedTeams() {
@@ -160,7 +160,7 @@ public final class PatchedTicketRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<PatchedTicketRequestStatus> getStatus() {
+    public Optional<TicketStatusEnum> getStatus() {
         return status;
     }
 
@@ -248,7 +248,7 @@ public final class PatchedTicketRequest {
      * </ul>
      */
     @JsonProperty("priority")
-    public Optional<PatchedTicketRequestPriority> getPriority() {
+    public Optional<PriorityEnum> getPriority() {
         return priority;
     }
 
@@ -347,7 +347,7 @@ public final class PatchedTicketRequest {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<PatchedTicketRequestStatus> status = Optional.empty();
+        private Optional<TicketStatusEnum> status = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -369,7 +369,7 @@ public final class PatchedTicketRequest {
 
         private Optional<String> ticketUrl = Optional.empty();
 
-        private Optional<PatchedTicketRequestPriority> priority = Optional.empty();
+        private Optional<PriorityEnum> priority = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -462,12 +462,12 @@ public final class PatchedTicketRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<PatchedTicketRequestStatus> status) {
+        public Builder status(Optional<TicketStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(PatchedTicketRequestStatus status) {
+        public Builder status(TicketStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -583,12 +583,12 @@ public final class PatchedTicketRequest {
         }
 
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
-        public Builder priority(Optional<PatchedTicketRequestPriority> priority) {
+        public Builder priority(Optional<PriorityEnum> priority) {
             this.priority = priority;
             return this;
         }
 
-        public Builder priority(PatchedTicketRequestPriority priority) {
+        public Builder priority(PriorityEnum priority) {
             this.priority = Optional.ofNullable(priority);
             return this;
         }

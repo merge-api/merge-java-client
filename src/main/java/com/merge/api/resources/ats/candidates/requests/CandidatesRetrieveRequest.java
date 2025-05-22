@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ats.candidates.types.CandidatesRetrieveRequestExpand;
+import com.merge.api.resources.ats.candidates.types.CandidatesRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,18 +23,22 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CandidatesRetrieveRequest.Builder.class)
 public final class CandidatesRetrieveRequest {
-    private final Optional<CandidatesRetrieveRequestExpand> expand;
+    private final Optional<List<CandidatesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Map<String, Object> additionalProperties;
 
     private CandidatesRetrieveRequest(
-            Optional<CandidatesRetrieveRequestExpand> expand,
+            Optional<List<CandidatesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,7 +46,7 @@ public final class CandidatesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<CandidatesRetrieveRequestExpand> getExpand() {
+    public Optional<List<CandidatesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -50,6 +56,14 @@ public final class CandidatesRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     @java.lang.Override
@@ -64,12 +78,14 @@ public final class CandidatesRetrieveRequest {
     }
 
     private boolean equalTo(CandidatesRetrieveRequest other) {
-        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand)
+                && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeShellData);
     }
 
     @java.lang.Override
@@ -83,9 +99,11 @@ public final class CandidatesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<CandidatesRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<CandidatesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -95,17 +113,23 @@ public final class CandidatesRetrieveRequest {
         public Builder from(CandidatesRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CandidatesRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<CandidatesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(CandidatesRetrieveRequestExpand expand) {
+        public Builder expand(List<CandidatesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(CandidatesRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -120,8 +144,19 @@ public final class CandidatesRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public CandidatesRetrieveRequest build() {
-            return new CandidatesRetrieveRequest(expand, includeRemoteData, additionalProperties);
+            return new CandidatesRetrieveRequest(expand, includeRemoteData, includeShellData, additionalProperties);
         }
     }
 }

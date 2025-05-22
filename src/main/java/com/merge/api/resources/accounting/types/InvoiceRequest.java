@@ -23,7 +23,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InvoiceRequest.Builder.class)
 public final class InvoiceRequest {
-    private final Optional<InvoiceRequestType> type;
+    private final Optional<InvoiceTypeEnum> type;
 
     private final Optional<InvoiceRequestContact> contact;
 
@@ -39,17 +39,19 @@ public final class InvoiceRequest {
 
     private final Optional<String> memo;
 
-    private final Optional<InvoiceRequestStatus> status;
+    private final Optional<InvoiceStatusEnum> status;
 
     private final Optional<InvoiceRequestCompany> company;
 
-    private final Optional<InvoiceRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
     private final Optional<Double> totalDiscount;
 
     private final Optional<Double> subTotal;
+
+    private final Optional<InvoiceRequestPaymentTerm> paymentTerm;
 
     private final Optional<Double> totalTaxAmount;
 
@@ -76,7 +78,7 @@ public final class InvoiceRequest {
     private final Map<String, Object> additionalProperties;
 
     private InvoiceRequest(
-            Optional<InvoiceRequestType> type,
+            Optional<InvoiceTypeEnum> type,
             Optional<InvoiceRequestContact> contact,
             Optional<String> number,
             Optional<OffsetDateTime> issueDate,
@@ -84,12 +86,13 @@ public final class InvoiceRequest {
             Optional<OffsetDateTime> paidOnDate,
             Optional<InvoiceRequestEmployee> employee,
             Optional<String> memo,
-            Optional<InvoiceRequestStatus> status,
+            Optional<InvoiceStatusEnum> status,
             Optional<InvoiceRequestCompany> company,
-            Optional<InvoiceRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<Double> totalDiscount,
             Optional<Double> subTotal,
+            Optional<InvoiceRequestPaymentTerm> paymentTerm,
             Optional<Double> totalTaxAmount,
             Optional<Boolean> inclusiveOfTax,
             Optional<Double> totalAmount,
@@ -116,6 +119,7 @@ public final class InvoiceRequest {
         this.exchangeRate = exchangeRate;
         this.totalDiscount = totalDiscount;
         this.subTotal = subTotal;
+        this.paymentTerm = paymentTerm;
         this.totalTaxAmount = totalTaxAmount;
         this.inclusiveOfTax = inclusiveOfTax;
         this.totalAmount = totalAmount;
@@ -138,7 +142,7 @@ public final class InvoiceRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<InvoiceRequestType> getType() {
+    public Optional<InvoiceTypeEnum> getType() {
         return type;
     }
 
@@ -210,7 +214,7 @@ public final class InvoiceRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<InvoiceRequestStatus> getStatus() {
+    public Optional<InvoiceStatusEnum> getStatus() {
         return status;
     }
 
@@ -534,7 +538,7 @@ public final class InvoiceRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<InvoiceRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -560,6 +564,14 @@ public final class InvoiceRequest {
     @JsonProperty("sub_total")
     public Optional<Double> getSubTotal() {
         return subTotal;
+    }
+
+    /**
+     * @return The payment term that applies to this transaction.
+     */
+    @JsonProperty("payment_term")
+    public Optional<InvoiceRequestPaymentTerm> getPaymentTerm() {
+        return paymentTerm;
     }
 
     /**
@@ -658,6 +670,7 @@ public final class InvoiceRequest {
                 && exchangeRate.equals(other.exchangeRate)
                 && totalDiscount.equals(other.totalDiscount)
                 && subTotal.equals(other.subTotal)
+                && paymentTerm.equals(other.paymentTerm)
                 && totalTaxAmount.equals(other.totalTaxAmount)
                 && inclusiveOfTax.equals(other.inclusiveOfTax)
                 && totalAmount.equals(other.totalAmount)
@@ -688,6 +701,7 @@ public final class InvoiceRequest {
                 this.exchangeRate,
                 this.totalDiscount,
                 this.subTotal,
+                this.paymentTerm,
                 this.totalTaxAmount,
                 this.inclusiveOfTax,
                 this.totalAmount,
@@ -712,7 +726,7 @@ public final class InvoiceRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<InvoiceRequestType> type = Optional.empty();
+        private Optional<InvoiceTypeEnum> type = Optional.empty();
 
         private Optional<InvoiceRequestContact> contact = Optional.empty();
 
@@ -728,17 +742,19 @@ public final class InvoiceRequest {
 
         private Optional<String> memo = Optional.empty();
 
-        private Optional<InvoiceRequestStatus> status = Optional.empty();
+        private Optional<InvoiceStatusEnum> status = Optional.empty();
 
         private Optional<InvoiceRequestCompany> company = Optional.empty();
 
-        private Optional<InvoiceRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
         private Optional<Double> totalDiscount = Optional.empty();
 
         private Optional<Double> subTotal = Optional.empty();
+
+        private Optional<InvoiceRequestPaymentTerm> paymentTerm = Optional.empty();
 
         private Optional<Double> totalTaxAmount = Optional.empty();
 
@@ -782,6 +798,7 @@ public final class InvoiceRequest {
             exchangeRate(other.getExchangeRate());
             totalDiscount(other.getTotalDiscount());
             subTotal(other.getSubTotal());
+            paymentTerm(other.getPaymentTerm());
             totalTaxAmount(other.getTotalTaxAmount());
             inclusiveOfTax(other.getInclusiveOfTax());
             totalAmount(other.getTotalAmount());
@@ -797,12 +814,12 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<InvoiceRequestType> type) {
+        public Builder type(Optional<InvoiceTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(InvoiceRequestType type) {
+        public Builder type(InvoiceTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -885,12 +902,12 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<InvoiceRequestStatus> status) {
+        public Builder status(Optional<InvoiceStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(InvoiceRequestStatus status) {
+        public Builder status(InvoiceStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -907,12 +924,12 @@ public final class InvoiceRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<InvoiceRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(InvoiceRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -947,6 +964,17 @@ public final class InvoiceRequest {
 
         public Builder subTotal(Double subTotal) {
             this.subTotal = Optional.ofNullable(subTotal);
+            return this;
+        }
+
+        @JsonSetter(value = "payment_term", nulls = Nulls.SKIP)
+        public Builder paymentTerm(Optional<InvoiceRequestPaymentTerm> paymentTerm) {
+            this.paymentTerm = paymentTerm;
+            return this;
+        }
+
+        public Builder paymentTerm(InvoiceRequestPaymentTerm paymentTerm) {
+            this.paymentTerm = Optional.ofNullable(paymentTerm);
             return this;
         }
 
@@ -1088,6 +1116,7 @@ public final class InvoiceRequest {
                     exchangeRate,
                     totalDiscount,
                     subTotal,
+                    paymentTerm,
                     totalTaxAmount,
                     inclusiveOfTax,
                     totalAmount,

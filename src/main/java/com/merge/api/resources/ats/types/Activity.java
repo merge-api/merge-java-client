@@ -35,13 +35,13 @@ public final class Activity {
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
-    private final Optional<ActivityActivityType> activityType;
+    private final Optional<ActivityTypeEnum> activityType;
 
     private final Optional<String> subject;
 
     private final Optional<String> body;
 
-    private final Optional<ActivityVisibility> visibility;
+    private final Optional<VisibilityEnum> visibility;
 
     private final Optional<String> candidate;
 
@@ -60,10 +60,10 @@ public final class Activity {
             Optional<OffsetDateTime> modifiedAt,
             Optional<ActivityUser> user,
             Optional<OffsetDateTime> remoteCreatedAt,
-            Optional<ActivityActivityType> activityType,
+            Optional<ActivityTypeEnum> activityType,
             Optional<String> subject,
             Optional<String> body,
-            Optional<ActivityVisibility> visibility,
+            Optional<VisibilityEnum> visibility,
             Optional<String> candidate,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -140,7 +140,7 @@ public final class Activity {
      * </ul>
      */
     @JsonProperty("activity_type")
-    public Optional<ActivityActivityType> getActivityType() {
+    public Optional<ActivityTypeEnum> getActivityType() {
         return activityType;
     }
 
@@ -169,7 +169,7 @@ public final class Activity {
      * </ul>
      */
     @JsonProperty("visibility")
-    public Optional<ActivityVisibility> getVisibility() {
+    public Optional<VisibilityEnum> getVisibility() {
         return visibility;
     }
 
@@ -266,13 +266,13 @@ public final class Activity {
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
-        private Optional<ActivityActivityType> activityType = Optional.empty();
+        private Optional<ActivityTypeEnum> activityType = Optional.empty();
 
         private Optional<String> subject = Optional.empty();
 
         private Optional<String> body = Optional.empty();
 
-        private Optional<ActivityVisibility> visibility = Optional.empty();
+        private Optional<VisibilityEnum> visibility = Optional.empty();
 
         private Optional<String> candidate = Optional.empty();
 
@@ -372,12 +372,12 @@ public final class Activity {
         }
 
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<ActivityActivityType> activityType) {
+        public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
             return this;
         }
 
-        public Builder activityType(ActivityActivityType activityType) {
+        public Builder activityType(ActivityTypeEnum activityType) {
             this.activityType = Optional.ofNullable(activityType);
             return this;
         }
@@ -405,12 +405,12 @@ public final class Activity {
         }
 
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
-        public Builder visibility(Optional<ActivityVisibility> visibility) {
+        public Builder visibility(Optional<VisibilityEnum> visibility) {
             this.visibility = visibility;
             return this;
         }
 
-        public Builder visibility(ActivityVisibility visibility) {
+        public Builder visibility(VisibilityEnum visibility) {
             this.visibility = Optional.ofNullable(visibility);
             return this;
         }

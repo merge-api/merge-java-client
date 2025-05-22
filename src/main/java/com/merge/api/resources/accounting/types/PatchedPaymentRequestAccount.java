@@ -29,6 +29,7 @@ public final class PatchedPaymentRequestAccount {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -78,7 +79,8 @@ public final class PatchedPaymentRequestAccount {
         }
 
         @java.lang.Override
-        public PatchedPaymentRequestAccount deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public PatchedPaymentRequestAccount deserialize(JsonParser p, DeserializationContext context)
+                throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));

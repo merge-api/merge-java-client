@@ -37,7 +37,7 @@ public final class Engagement {
 
     private final Optional<String> subject;
 
-    private final Optional<EngagementDirection> direction;
+    private final Optional<DirectionEnum> direction;
 
     private final Optional<EngagementEngagementType> engagementType;
 
@@ -67,7 +67,7 @@ public final class Engagement {
             Optional<EngagementOwner> owner,
             Optional<String> content,
             Optional<String> subject,
-            Optional<EngagementDirection> direction,
+            Optional<DirectionEnum> direction,
             Optional<EngagementEngagementType> engagementType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
@@ -159,7 +159,7 @@ public final class Engagement {
      * </ul>
      */
     @JsonProperty("direction")
-    public Optional<EngagementDirection> getDirection() {
+    public Optional<DirectionEnum> getDirection() {
         return direction;
     }
 
@@ -301,7 +301,7 @@ public final class Engagement {
 
         private Optional<String> subject = Optional.empty();
 
-        private Optional<EngagementDirection> direction = Optional.empty();
+        private Optional<DirectionEnum> direction = Optional.empty();
 
         private Optional<EngagementEngagementType> engagementType = Optional.empty();
 
@@ -425,12 +425,12 @@ public final class Engagement {
         }
 
         @JsonSetter(value = "direction", nulls = Nulls.SKIP)
-        public Builder direction(Optional<EngagementDirection> direction) {
+        public Builder direction(Optional<DirectionEnum> direction) {
             this.direction = direction;
             return this;
         }
 
-        public Builder direction(EngagementDirection direction) {
+        public Builder direction(DirectionEnum direction) {
             this.direction = Optional.ofNullable(direction);
             return this;
         }

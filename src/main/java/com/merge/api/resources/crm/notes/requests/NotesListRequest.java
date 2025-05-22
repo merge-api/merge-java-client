@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.notes.types.NotesListRequestExpand;
+import com.merge.api.resources.crm.notes.types.NotesListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = NotesListRequest.Builder.class)
 public final class NotesListRequest {
+    private final Optional<List<NotesListRequestExpandItem>> expand;
+
     private final Optional<String> accountId;
 
     private final Optional<String> contactId;
@@ -31,8 +35,6 @@ public final class NotesListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<NotesListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -57,12 +59,12 @@ public final class NotesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private NotesListRequest(
+            Optional<List<NotesListRequestExpandItem>> expand,
             Optional<String> accountId,
             Optional<String> contactId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<NotesListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -74,12 +76,12 @@ public final class NotesListRequest {
             Optional<Integer> pageSize,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountId = accountId;
         this.contactId = contactId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -91,6 +93,14 @@ public final class NotesListRequest {
         this.pageSize = pageSize;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<NotesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -131,14 +141,6 @@ public final class NotesListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<NotesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -233,12 +235,12 @@ public final class NotesListRequest {
     }
 
     private boolean equalTo(NotesListRequest other) {
-        return accountId.equals(other.accountId)
+        return expand.equals(other.expand)
+                && accountId.equals(other.accountId)
                 && contactId.equals(other.contactId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -254,12 +256,12 @@ public final class NotesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountId,
                 this.contactId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -283,6 +285,8 @@ public final class NotesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<NotesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> accountId = Optional.empty();
 
         private Optional<String> contactId = Optional.empty();
@@ -292,8 +296,6 @@ public final class NotesListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<NotesListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -321,12 +323,12 @@ public final class NotesListRequest {
         private Builder() {}
 
         public Builder from(NotesListRequest other) {
+            expand(other.getExpand());
             accountId(other.getAccountId());
             contactId(other.getContactId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -337,6 +339,22 @@ public final class NotesListRequest {
             ownerId(other.getOwnerId());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<NotesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<NotesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(NotesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -392,17 +410,6 @@ public final class NotesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<NotesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(NotesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -518,12 +525,12 @@ public final class NotesListRequest {
 
         public NotesListRequest build() {
             return new NotesListRequest(
+                    expand,
                     accountId,
                     contactId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ats.interviews.types.InterviewsListRequestExpand;
+import com.merge.api.resources.ats.interviews.types.InterviewsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = InterviewsListRequest.Builder.class)
 public final class InterviewsListRequest {
+    private final Optional<List<InterviewsListRequestExpandItem>> expand;
+
     private final Optional<String> applicationId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -29,8 +33,6 @@ public final class InterviewsListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<InterviewsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,11 +61,11 @@ public final class InterviewsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private InterviewsListRequest(
+            Optional<List<InterviewsListRequestExpandItem>> expand,
             Optional<String> applicationId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<InterviewsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -77,11 +79,11 @@ public final class InterviewsListRequest {
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.applicationId = applicationId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -95,6 +97,14 @@ public final class InterviewsListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<InterviewsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -127,14 +137,6 @@ public final class InterviewsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<InterviewsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -245,11 +247,11 @@ public final class InterviewsListRequest {
     }
 
     private boolean equalTo(InterviewsListRequest other) {
-        return applicationId.equals(other.applicationId)
+        return expand.equals(other.expand)
+                && applicationId.equals(other.applicationId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -267,11 +269,11 @@ public final class InterviewsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.applicationId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -297,6 +299,8 @@ public final class InterviewsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<InterviewsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> applicationId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -304,8 +308,6 @@ public final class InterviewsListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<InterviewsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -337,11 +339,11 @@ public final class InterviewsListRequest {
         private Builder() {}
 
         public Builder from(InterviewsListRequest other) {
+            expand(other.getExpand());
             applicationId(other.getApplicationId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -354,6 +356,22 @@ public final class InterviewsListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<InterviewsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<InterviewsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(InterviewsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -398,17 +416,6 @@ public final class InterviewsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<InterviewsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(InterviewsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -546,11 +553,11 @@ public final class InterviewsListRequest {
 
         public InterviewsListRequest build() {
             return new InterviewsListRequest(
+                    expand,
                     applicationId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

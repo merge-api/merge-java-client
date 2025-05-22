@@ -34,9 +34,9 @@ public final class Permission {
 
     private final Optional<PermissionGroup> group;
 
-    private final Optional<PermissionType> type;
+    private final Optional<TypeEnum> type;
 
-    private final Optional<List<Optional<PermissionRolesItem>>> roles;
+    private final Optional<List<RolesEnum>> roles;
 
     private final Map<String, Object> additionalProperties;
 
@@ -47,8 +47,8 @@ public final class Permission {
             Optional<OffsetDateTime> modifiedAt,
             Optional<PermissionUser> user,
             Optional<PermissionGroup> group,
-            Optional<PermissionType> type,
-            Optional<List<Optional<PermissionRolesItem>>> roles,
+            Optional<TypeEnum> type,
+            Optional<List<RolesEnum>> roles,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -116,7 +116,7 @@ public final class Permission {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<PermissionType> getType() {
+    public Optional<TypeEnum> getType() {
         return type;
     }
 
@@ -124,7 +124,7 @@ public final class Permission {
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
     @JsonProperty("roles")
-    public Optional<List<Optional<PermissionRolesItem>>> getRoles() {
+    public Optional<List<RolesEnum>> getRoles() {
         return roles;
     }
 
@@ -179,9 +179,9 @@ public final class Permission {
 
         private Optional<PermissionGroup> group = Optional.empty();
 
-        private Optional<PermissionType> type = Optional.empty();
+        private Optional<TypeEnum> type = Optional.empty();
 
-        private Optional<List<Optional<PermissionRolesItem>>> roles = Optional.empty();
+        private Optional<List<RolesEnum>> roles = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -267,23 +267,23 @@ public final class Permission {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<PermissionType> type) {
+        public Builder type(Optional<TypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(PermissionType type) {
+        public Builder type(TypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
 
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
-        public Builder roles(Optional<List<Optional<PermissionRolesItem>>> roles) {
+        public Builder roles(Optional<List<RolesEnum>> roles) {
             this.roles = roles;
             return this;
         }
 
-        public Builder roles(List<Optional<PermissionRolesItem>> roles) {
+        public Builder roles(List<RolesEnum> roles) {
             this.roles = Optional.ofNullable(roles);
             return this;
         }

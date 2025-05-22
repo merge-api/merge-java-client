@@ -31,9 +31,9 @@ public final class AddressRequest {
 
     private final Optional<String> postalCode;
 
-    private final Optional<AddressRequestCountry> country;
+    private final Optional<CountryEnum> country;
 
-    private final Optional<AddressRequestAddressType> addressType;
+    private final Optional<AddressTypeEnum> addressType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -47,8 +47,8 @@ public final class AddressRequest {
             Optional<String> city,
             Optional<String> state,
             Optional<String> postalCode,
-            Optional<AddressRequestCountry> country,
-            Optional<AddressRequestAddressType> addressType,
+            Optional<CountryEnum> country,
+            Optional<AddressTypeEnum> addressType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -359,7 +359,7 @@ public final class AddressRequest {
      * </ul>
      */
     @JsonProperty("country")
-    public Optional<AddressRequestCountry> getCountry() {
+    public Optional<CountryEnum> getCountry() {
         return country;
     }
 
@@ -371,7 +371,7 @@ public final class AddressRequest {
      * </ul>
      */
     @JsonProperty("address_type")
-    public Optional<AddressRequestAddressType> getAddressType() {
+    public Optional<AddressTypeEnum> getAddressType() {
         return addressType;
     }
 
@@ -443,9 +443,9 @@ public final class AddressRequest {
 
         private Optional<String> postalCode = Optional.empty();
 
-        private Optional<AddressRequestCountry> country = Optional.empty();
+        private Optional<CountryEnum> country = Optional.empty();
 
-        private Optional<AddressRequestAddressType> addressType = Optional.empty();
+        private Optional<AddressTypeEnum> addressType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -525,23 +525,23 @@ public final class AddressRequest {
         }
 
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
-        public Builder country(Optional<AddressRequestCountry> country) {
+        public Builder country(Optional<CountryEnum> country) {
             this.country = country;
             return this;
         }
 
-        public Builder country(AddressRequestCountry country) {
+        public Builder country(CountryEnum country) {
             this.country = Optional.ofNullable(country);
             return this;
         }
 
         @JsonSetter(value = "address_type", nulls = Nulls.SKIP)
-        public Builder addressType(Optional<AddressRequestAddressType> addressType) {
+        public Builder addressType(Optional<AddressTypeEnum> addressType) {
             this.addressType = addressType;
             return this;
         }
 
-        public Builder addressType(AddressRequestAddressType addressType) {
+        public Builder addressType(AddressTypeEnum addressType) {
             this.addressType = Optional.ofNullable(addressType);
             return this;
         }

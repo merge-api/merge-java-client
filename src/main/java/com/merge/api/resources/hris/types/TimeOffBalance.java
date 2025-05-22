@@ -37,7 +37,7 @@ public final class TimeOffBalance {
 
     private final Optional<Double> used;
 
-    private final Optional<TimeOffBalancePolicyType> policyType;
+    private final Optional<PolicyTypeEnum> policyType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -55,7 +55,7 @@ public final class TimeOffBalance {
             Optional<TimeOffBalanceEmployee> employee,
             Optional<Double> balance,
             Optional<Double> used,
-            Optional<TimeOffBalancePolicyType> policyType,
+            Optional<PolicyTypeEnum> policyType,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -139,7 +139,7 @@ public final class TimeOffBalance {
      * </ul>
      */
     @JsonProperty("policy_type")
-    public Optional<TimeOffBalancePolicyType> getPolicyType() {
+    public Optional<PolicyTypeEnum> getPolicyType() {
         return policyType;
     }
 
@@ -227,7 +227,7 @@ public final class TimeOffBalance {
 
         private Optional<Double> used = Optional.empty();
 
-        private Optional<TimeOffBalancePolicyType> policyType = Optional.empty();
+        private Optional<PolicyTypeEnum> policyType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -333,12 +333,12 @@ public final class TimeOffBalance {
         }
 
         @JsonSetter(value = "policy_type", nulls = Nulls.SKIP)
-        public Builder policyType(Optional<TimeOffBalancePolicyType> policyType) {
+        public Builder policyType(Optional<PolicyTypeEnum> policyType) {
             this.policyType = policyType;
             return this;
         }
 
-        public Builder policyType(TimeOffBalancePolicyType policyType) {
+        public Builder policyType(PolicyTypeEnum policyType) {
             this.policyType = Optional.ofNullable(policyType);
             return this;
         }

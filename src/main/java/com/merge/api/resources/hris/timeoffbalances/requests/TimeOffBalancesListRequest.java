@@ -14,7 +14,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.timeoffbalances.types.TimeOffBalancesListRequestPolicyType;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffBalancesListRequest.Builder.class)
 public final class TimeOffBalancesListRequest {
+    private final Optional<List<String>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -29,8 +33,6 @@ public final class TimeOffBalancesListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> employeeId;
-
-    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -55,11 +57,11 @@ public final class TimeOffBalancesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private TimeOffBalancesListRequest(
+            Optional<List<String>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
-            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -71,11 +73,11 @@ public final class TimeOffBalancesListRequest {
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -87,6 +89,14 @@ public final class TimeOffBalancesListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
     }
 
     /**
@@ -119,14 +129,6 @@ public final class TimeOffBalancesListRequest {
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
         return employeeId;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<String> getExpand() {
-        return expand;
     }
 
     /**
@@ -229,11 +231,11 @@ public final class TimeOffBalancesListRequest {
     }
 
     private boolean equalTo(TimeOffBalancesListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -249,11 +251,11 @@ public final class TimeOffBalancesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -277,6 +279,8 @@ public final class TimeOffBalancesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -284,8 +288,6 @@ public final class TimeOffBalancesListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
-
-        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -313,11 +315,11 @@ public final class TimeOffBalancesListRequest {
         private Builder() {}
 
         public Builder from(TimeOffBalancesListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -328,6 +330,22 @@ public final class TimeOffBalancesListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -372,17 +390,6 @@ public final class TimeOffBalancesListRequest {
 
         public Builder employeeId(String employeeId) {
             this.employeeId = Optional.ofNullable(employeeId);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(String expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -498,11 +505,11 @@ public final class TimeOffBalancesListRequest {
 
         public TimeOffBalancesListRequest build() {
             return new TimeOffBalancesListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     employeeId,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

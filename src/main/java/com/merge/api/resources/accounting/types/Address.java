@@ -26,7 +26,7 @@ public final class Address {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<AddressType> type;
+    private final Optional<AddressTypeEnum> type;
 
     private final Optional<String> street1;
 
@@ -38,7 +38,7 @@ public final class Address {
 
     private final Optional<String> countrySubdivision;
 
-    private final Optional<AddressCountry> country;
+    private final Optional<CountryEnum> country;
 
     private final Optional<String> zipCode;
 
@@ -47,13 +47,13 @@ public final class Address {
     private Address(
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<AddressType> type,
+            Optional<AddressTypeEnum> type,
             Optional<String> street1,
             Optional<String> street2,
             Optional<String> city,
             Optional<JsonNode> state,
             Optional<String> countrySubdivision,
-            Optional<AddressCountry> country,
+            Optional<CountryEnum> country,
             Optional<String> zipCode,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -93,7 +93,7 @@ public final class Address {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<AddressType> getType() {
+    public Optional<AddressTypeEnum> getType() {
         return type;
     }
 
@@ -389,7 +389,7 @@ public final class Address {
      * </ul>
      */
     @JsonProperty("country")
-    public Optional<AddressCountry> getCountry() {
+    public Optional<CountryEnum> getCountry() {
         return country;
     }
 
@@ -455,7 +455,7 @@ public final class Address {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<AddressType> type = Optional.empty();
+        private Optional<AddressTypeEnum> type = Optional.empty();
 
         private Optional<String> street1 = Optional.empty();
 
@@ -467,7 +467,7 @@ public final class Address {
 
         private Optional<String> countrySubdivision = Optional.empty();
 
-        private Optional<AddressCountry> country = Optional.empty();
+        private Optional<CountryEnum> country = Optional.empty();
 
         private Optional<String> zipCode = Optional.empty();
 
@@ -513,12 +513,12 @@ public final class Address {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<AddressType> type) {
+        public Builder type(Optional<AddressTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(AddressType type) {
+        public Builder type(AddressTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -579,12 +579,12 @@ public final class Address {
         }
 
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
-        public Builder country(Optional<AddressCountry> country) {
+        public Builder country(Optional<CountryEnum> country) {
             this.country = country;
             return this;
         }
 
-        public Builder country(AddressCountry country) {
+        public Builder country(CountryEnum country) {
             this.country = Optional.ofNullable(country);
             return this;
         }

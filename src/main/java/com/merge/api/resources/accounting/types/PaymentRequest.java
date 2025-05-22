@@ -29,7 +29,9 @@ public final class PaymentRequest {
 
     private final Optional<PaymentRequestAccount> account;
 
-    private final Optional<PaymentRequestCurrency> currency;
+    private final Optional<PaymentRequestPaymentMethod> paymentMethod;
+
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -37,7 +39,7 @@ public final class PaymentRequest {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<PaymentRequestType> type;
+    private final Optional<PaymentTypeEnum> type;
 
     private final Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories;
 
@@ -57,11 +59,12 @@ public final class PaymentRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<PaymentRequestContact> contact,
             Optional<PaymentRequestAccount> account,
-            Optional<PaymentRequestCurrency> currency,
+            Optional<PaymentRequestPaymentMethod> paymentMethod,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<PaymentRequestCompany> company,
             Optional<Double> totalAmount,
-            Optional<PaymentRequestType> type,
+            Optional<PaymentTypeEnum> type,
             Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<PaymentRequestAccountingPeriod> accountingPeriod,
             Optional<List<PaymentRequestAppliedToLinesItem>> appliedToLines,
@@ -72,6 +75,7 @@ public final class PaymentRequest {
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
+        this.paymentMethod = paymentMethod;
         this.currency = currency;
         this.exchangeRate = exchangeRate;
         this.company = company;
@@ -108,6 +112,14 @@ public final class PaymentRequest {
     @JsonProperty("account")
     public Optional<PaymentRequestAccount> getAccount() {
         return account;
+    }
+
+    /**
+     * @return The method which this payment was made by.
+     */
+    @JsonProperty("payment_method")
+    public Optional<PaymentRequestPaymentMethod> getPaymentMethod() {
+        return paymentMethod;
     }
 
     /**
@@ -422,7 +434,7 @@ public final class PaymentRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<PaymentRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -458,7 +470,7 @@ public final class PaymentRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<PaymentRequestType> getType() {
+    public Optional<PaymentTypeEnum> getType() {
         return type;
     }
 
@@ -513,6 +525,7 @@ public final class PaymentRequest {
         return transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
+                && paymentMethod.equals(other.paymentMethod)
                 && currency.equals(other.currency)
                 && exchangeRate.equals(other.exchangeRate)
                 && company.equals(other.company)
@@ -532,6 +545,7 @@ public final class PaymentRequest {
                 this.transactionDate,
                 this.contact,
                 this.account,
+                this.paymentMethod,
                 this.currency,
                 this.exchangeRate,
                 this.company,
@@ -562,7 +576,9 @@ public final class PaymentRequest {
 
         private Optional<PaymentRequestAccount> account = Optional.empty();
 
-        private Optional<PaymentRequestCurrency> currency = Optional.empty();
+        private Optional<PaymentRequestPaymentMethod> paymentMethod = Optional.empty();
+
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -570,7 +586,7 @@ public final class PaymentRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<PaymentRequestType> type = Optional.empty();
+        private Optional<PaymentTypeEnum> type = Optional.empty();
 
         private Optional<List<Optional<PaymentRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
@@ -593,6 +609,7 @@ public final class PaymentRequest {
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
+            paymentMethod(other.getPaymentMethod());
             currency(other.getCurrency());
             exchangeRate(other.getExchangeRate());
             company(other.getCompany());
@@ -640,13 +657,24 @@ public final class PaymentRequest {
             return this;
         }
 
+        @JsonSetter(value = "payment_method", nulls = Nulls.SKIP)
+        public Builder paymentMethod(Optional<PaymentRequestPaymentMethod> paymentMethod) {
+            this.paymentMethod = paymentMethod;
+            return this;
+        }
+
+        public Builder paymentMethod(PaymentRequestPaymentMethod paymentMethod) {
+            this.paymentMethod = Optional.ofNullable(paymentMethod);
+            return this;
+        }
+
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<PaymentRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(PaymentRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
@@ -685,12 +713,12 @@ public final class PaymentRequest {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<PaymentRequestType> type) {
+        public Builder type(Optional<PaymentTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(PaymentRequestType type) {
+        public Builder type(PaymentTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -767,6 +795,7 @@ public final class PaymentRequest {
                     transactionDate,
                     contact,
                     account,
+                    paymentMethod,
                     currency,
                     exchangeRate,
                     company,

@@ -15,7 +15,9 @@ import com.merge.api.core.ObjectMappers;
 import com.merge.api.resources.hris.bankinfo.types.BankInfoListRequestAccountType;
 import com.merge.api.resources.hris.bankinfo.types.BankInfoListRequestOrderBy;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +25,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankInfoListRequest.Builder.class)
 public final class BankInfoListRequest {
+    private final Optional<List<String>> expand;
+
     private final Optional<BankInfoListRequestAccountType> accountType;
 
     private final Optional<String> bankName;
@@ -34,8 +38,6 @@ public final class BankInfoListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> employeeId;
-
-    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -60,13 +62,13 @@ public final class BankInfoListRequest {
     private final Map<String, Object> additionalProperties;
 
     private BankInfoListRequest(
+            Optional<List<String>> expand,
             Optional<BankInfoListRequestAccountType> accountType,
             Optional<String> bankName,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
-            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -78,13 +80,13 @@ public final class BankInfoListRequest {
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountType = accountType;
         this.bankName = bankName;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -96,6 +98,14 @@ public final class BankInfoListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
     }
 
     /**
@@ -148,14 +158,6 @@ public final class BankInfoListRequest {
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
         return employeeId;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<String> getExpand() {
-        return expand;
     }
 
     /**
@@ -250,13 +252,13 @@ public final class BankInfoListRequest {
     }
 
     private boolean equalTo(BankInfoListRequest other) {
-        return accountType.equals(other.accountType)
+        return expand.equals(other.expand)
+                && accountType.equals(other.accountType)
                 && bankName.equals(other.bankName)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -272,13 +274,13 @@ public final class BankInfoListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountType,
                 this.bankName,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -302,6 +304,8 @@ public final class BankInfoListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> expand = Optional.empty();
+
         private Optional<BankInfoListRequestAccountType> accountType = Optional.empty();
 
         private Optional<String> bankName = Optional.empty();
@@ -313,8 +317,6 @@ public final class BankInfoListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
-
-        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -342,13 +344,13 @@ public final class BankInfoListRequest {
         private Builder() {}
 
         public Builder from(BankInfoListRequest other) {
+            expand(other.getExpand());
             accountType(other.getAccountType());
             bankName(other.getBankName());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -359,6 +361,22 @@ public final class BankInfoListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -425,17 +443,6 @@ public final class BankInfoListRequest {
 
         public Builder employeeId(String employeeId) {
             this.employeeId = Optional.ofNullable(employeeId);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(String expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -551,13 +558,13 @@ public final class BankInfoListRequest {
 
         public BankInfoListRequest build() {
             return new BankInfoListRequest(
+                    expand,
                     accountType,
                     bankName,
                     createdAfter,
                     createdBefore,
                     cursor,
                     employeeId,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

@@ -21,7 +21,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AddressRequest.Builder.class)
 public final class AddressRequest {
-    private final Optional<AddressRequestType> type;
+    private final Optional<AddressTypeEnum> type;
 
     private final Optional<String> street1;
 
@@ -31,7 +31,7 @@ public final class AddressRequest {
 
     private final Optional<String> countrySubdivision;
 
-    private final Optional<AddressRequestCountry> country;
+    private final Optional<CountryEnum> country;
 
     private final Optional<String> zipCode;
 
@@ -42,12 +42,12 @@ public final class AddressRequest {
     private final Map<String, Object> additionalProperties;
 
     private AddressRequest(
-            Optional<AddressRequestType> type,
+            Optional<AddressTypeEnum> type,
             Optional<String> street1,
             Optional<String> street2,
             Optional<String> city,
             Optional<String> countrySubdivision,
-            Optional<AddressRequestCountry> country,
+            Optional<CountryEnum> country,
             Optional<String> zipCode,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -72,7 +72,7 @@ public final class AddressRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<AddressRequestType> getType() {
+    public Optional<AddressTypeEnum> getType() {
         return type;
     }
 
@@ -363,7 +363,7 @@ public final class AddressRequest {
      * </ul>
      */
     @JsonProperty("country")
-    public Optional<AddressRequestCountry> getCountry() {
+    public Optional<CountryEnum> getCountry() {
         return country;
     }
 
@@ -433,7 +433,7 @@ public final class AddressRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<AddressRequestType> type = Optional.empty();
+        private Optional<AddressTypeEnum> type = Optional.empty();
 
         private Optional<String> street1 = Optional.empty();
 
@@ -443,7 +443,7 @@ public final class AddressRequest {
 
         private Optional<String> countrySubdivision = Optional.empty();
 
-        private Optional<AddressRequestCountry> country = Optional.empty();
+        private Optional<CountryEnum> country = Optional.empty();
 
         private Optional<String> zipCode = Optional.empty();
 
@@ -470,12 +470,12 @@ public final class AddressRequest {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<AddressRequestType> type) {
+        public Builder type(Optional<AddressTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(AddressRequestType type) {
+        public Builder type(AddressTypeEnum type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
@@ -525,12 +525,12 @@ public final class AddressRequest {
         }
 
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
-        public Builder country(Optional<AddressRequestCountry> country) {
+        public Builder country(Optional<CountryEnum> country) {
             this.country = country;
             return this;
         }
 
-        public Builder country(AddressRequestCountry country) {
+        public Builder country(CountryEnum country) {
             this.country = Optional.ofNullable(country);
             return this;
         }

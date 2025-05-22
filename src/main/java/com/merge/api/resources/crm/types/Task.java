@@ -45,7 +45,7 @@ public final class Task {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TaskStatus> status;
+    private final Optional<TaskStatusEnum> status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -69,7 +69,7 @@ public final class Task {
             Optional<TaskOpportunity> opportunity,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
-            Optional<TaskStatus> status,
+            Optional<TaskStatusEnum> status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -187,7 +187,7 @@ public final class Task {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TaskStatus> getStatus() {
+    public Optional<TaskStatusEnum> getStatus() {
         return status;
     }
 
@@ -298,7 +298,7 @@ public final class Task {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TaskStatus> status = Optional.empty();
+        private Optional<TaskStatusEnum> status = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -455,12 +455,12 @@ public final class Task {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TaskStatus> status) {
+        public Builder status(Optional<TaskStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TaskStatus status) {
+        public Builder status(TaskStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

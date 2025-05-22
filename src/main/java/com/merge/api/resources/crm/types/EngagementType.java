@@ -30,7 +30,7 @@ public final class EngagementType {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<EngagementTypeActivityType> activityType;
+    private final Optional<ActivityTypeEnum> activityType;
 
     private final Optional<String> name;
 
@@ -43,7 +43,7 @@ public final class EngagementType {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<EngagementTypeActivityType> activityType,
+            Optional<ActivityTypeEnum> activityType,
             Optional<String> name,
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
@@ -95,7 +95,7 @@ public final class EngagementType {
      * </ul>
      */
     @JsonProperty("activity_type")
-    public Optional<EngagementTypeActivityType> getActivityType() {
+    public Optional<ActivityTypeEnum> getActivityType() {
         return activityType;
     }
 
@@ -164,7 +164,7 @@ public final class EngagementType {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<EngagementTypeActivityType> activityType = Optional.empty();
+        private Optional<ActivityTypeEnum> activityType = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -231,12 +231,12 @@ public final class EngagementType {
         }
 
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<EngagementTypeActivityType> activityType) {
+        public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
             return this;
         }
 
-        public Builder activityType(EngagementTypeActivityType activityType) {
+        public Builder activityType(ActivityTypeEnum activityType) {
             this.activityType = Optional.ofNullable(activityType);
             return this;
         }

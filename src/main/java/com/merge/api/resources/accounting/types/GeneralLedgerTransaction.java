@@ -33,7 +33,7 @@ public final class GeneralLedgerTransaction {
 
     private final Optional<String> underlyingTransactionRemoteId;
 
-    private final Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType;
+    private final Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType;
 
     private final Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod;
 
@@ -64,7 +64,7 @@ public final class GeneralLedgerTransaction {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> underlyingTransactionRemoteId,
-            Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType,
+            Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType,
             Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod,
             Optional<GeneralLedgerTransactionCompany> company,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -145,7 +145,7 @@ public final class GeneralLedgerTransaction {
      * </ul>
      */
     @JsonProperty("underlying_transaction_type")
-    public Optional<GeneralLedgerTransactionUnderlyingTransactionType> getUnderlyingTransactionType() {
+    public Optional<UnderlyingTransactionTypeEnum> getUnderlyingTransactionType() {
         return underlyingTransactionType;
     }
 
@@ -293,8 +293,7 @@ public final class GeneralLedgerTransaction {
 
         private Optional<String> underlyingTransactionRemoteId = Optional.empty();
 
-        private Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType =
-                Optional.empty();
+        private Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType = Optional.empty();
 
         private Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod = Optional.empty();
 
@@ -399,14 +398,12 @@ public final class GeneralLedgerTransaction {
         }
 
         @JsonSetter(value = "underlying_transaction_type", nulls = Nulls.SKIP)
-        public Builder underlyingTransactionType(
-                Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType) {
+        public Builder underlyingTransactionType(Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType) {
             this.underlyingTransactionType = underlyingTransactionType;
             return this;
         }
 
-        public Builder underlyingTransactionType(
-                GeneralLedgerTransactionUnderlyingTransactionType underlyingTransactionType) {
+        public Builder underlyingTransactionType(UnderlyingTransactionTypeEnum underlyingTransactionType) {
             this.underlyingTransactionType = Optional.ofNullable(underlyingTransactionType);
             return this;
         }

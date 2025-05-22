@@ -32,15 +32,15 @@ public final class BankFeedAccountRequest {
 
     private final Optional<String> targetAccountName;
 
-    private final Optional<BankFeedAccountRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
-    private final Optional<BankFeedAccountRequestFeedStatus> feedStatus;
+    private final Optional<FeedStatusEnum> feedStatus;
 
     private final Optional<OffsetDateTime> feedStartDate;
 
     private final Optional<Double> sourceAccountBalance;
 
-    private final Optional<BankFeedAccountRequestAccountType> accountType;
+    private final Optional<BankFeedAccountAccountTypeEnum> accountType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -54,11 +54,11 @@ public final class BankFeedAccountRequest {
             Optional<String> sourceAccountName,
             Optional<String> sourceAccountNumber,
             Optional<String> targetAccountName,
-            Optional<BankFeedAccountRequestCurrency> currency,
-            Optional<BankFeedAccountRequestFeedStatus> feedStatus,
+            Optional<TransactionCurrencyEnum> currency,
+            Optional<FeedStatusEnum> feedStatus,
             Optional<OffsetDateTime> feedStartDate,
             Optional<Double> sourceAccountBalance,
-            Optional<BankFeedAccountRequestAccountType> accountType,
+            Optional<BankFeedAccountAccountTypeEnum> accountType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -429,7 +429,7 @@ public final class BankFeedAccountRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<BankFeedAccountRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -441,7 +441,7 @@ public final class BankFeedAccountRequest {
      * </ul>
      */
     @JsonProperty("feed_status")
-    public Optional<BankFeedAccountRequestFeedStatus> getFeedStatus() {
+    public Optional<FeedStatusEnum> getFeedStatus() {
         return feedStatus;
     }
 
@@ -469,7 +469,7 @@ public final class BankFeedAccountRequest {
      * </ul>
      */
     @JsonProperty("account_type")
-    public Optional<BankFeedAccountRequestAccountType> getAccountType() {
+    public Optional<BankFeedAccountAccountTypeEnum> getAccountType() {
         return accountType;
     }
 
@@ -547,15 +547,15 @@ public final class BankFeedAccountRequest {
 
         private Optional<String> targetAccountName = Optional.empty();
 
-        private Optional<BankFeedAccountRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
-        private Optional<BankFeedAccountRequestFeedStatus> feedStatus = Optional.empty();
+        private Optional<FeedStatusEnum> feedStatus = Optional.empty();
 
         private Optional<OffsetDateTime> feedStartDate = Optional.empty();
 
         private Optional<Double> sourceAccountBalance = Optional.empty();
 
-        private Optional<BankFeedAccountRequestAccountType> accountType = Optional.empty();
+        private Optional<BankFeedAccountAccountTypeEnum> accountType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -638,23 +638,23 @@ public final class BankFeedAccountRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<BankFeedAccountRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(BankFeedAccountRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
 
         @JsonSetter(value = "feed_status", nulls = Nulls.SKIP)
-        public Builder feedStatus(Optional<BankFeedAccountRequestFeedStatus> feedStatus) {
+        public Builder feedStatus(Optional<FeedStatusEnum> feedStatus) {
             this.feedStatus = feedStatus;
             return this;
         }
 
-        public Builder feedStatus(BankFeedAccountRequestFeedStatus feedStatus) {
+        public Builder feedStatus(FeedStatusEnum feedStatus) {
             this.feedStatus = Optional.ofNullable(feedStatus);
             return this;
         }
@@ -682,12 +682,12 @@ public final class BankFeedAccountRequest {
         }
 
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
-        public Builder accountType(Optional<BankFeedAccountRequestAccountType> accountType) {
+        public Builder accountType(Optional<BankFeedAccountAccountTypeEnum> accountType) {
             this.accountType = accountType;
             return this;
         }
 
-        public Builder accountType(BankFeedAccountRequestAccountType accountType) {
+        public Builder accountType(BankFeedAccountAccountTypeEnum accountType) {
             this.accountType = Optional.ofNullable(accountType);
             return this;
         }

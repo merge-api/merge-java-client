@@ -31,7 +31,7 @@ public final class VendorCreditRequest {
 
     private final Optional<Double> totalAmount;
 
-    private final Optional<VendorCreditRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> exchangeRate;
 
@@ -56,7 +56,7 @@ public final class VendorCreditRequest {
             Optional<OffsetDateTime> transactionDate,
             Optional<VendorCreditRequestVendor> vendor,
             Optional<Double> totalAmount,
-            Optional<VendorCreditRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> exchangeRate,
             Optional<Boolean> inclusiveOfTax,
             Optional<VendorCreditRequestCompany> company,
@@ -426,7 +426,7 @@ public final class VendorCreditRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<VendorCreditRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -549,7 +549,7 @@ public final class VendorCreditRequest {
 
         private Optional<Double> totalAmount = Optional.empty();
 
-        private Optional<VendorCreditRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
@@ -635,12 +635,12 @@ public final class VendorCreditRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<VendorCreditRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(VendorCreditRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }
