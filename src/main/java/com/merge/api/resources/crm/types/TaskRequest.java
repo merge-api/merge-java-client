@@ -37,7 +37,7 @@ public final class TaskRequest {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TaskRequestStatus> status;
+    private final Optional<TaskStatusEnum> status;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -55,7 +55,7 @@ public final class TaskRequest {
             Optional<TaskRequestOpportunity> opportunity,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
-            Optional<TaskRequestStatus> status,
+            Optional<TaskStatusEnum> status,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
@@ -138,7 +138,7 @@ public final class TaskRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TaskRequestStatus> getStatus() {
+    public Optional<TaskStatusEnum> getStatus() {
         return status;
     }
 
@@ -223,7 +223,7 @@ public final class TaskRequest {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TaskRequestStatus> status = Optional.empty();
+        private Optional<TaskStatusEnum> status = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -329,12 +329,12 @@ public final class TaskRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TaskRequestStatus> status) {
+        public Builder status(Optional<TaskStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TaskRequestStatus status) {
+        public Builder status(TaskStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

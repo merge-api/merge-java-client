@@ -12,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestExpand;
+import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestExpandItem;
 import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestRemoteFields;
 import com.merge.api.resources.ticketing.tickets.types.TicketsRetrieveRequestShowEnumOrigins;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,11 +25,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketsRetrieveRequest.Builder.class)
 public final class TicketsRetrieveRequest {
-    private final Optional<TicketsRetrieveRequestExpand> expand;
+    private final Optional<List<TicketsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeRemoteFields;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Optional<TicketsRetrieveRequestRemoteFields> remoteFields;
 
@@ -36,15 +40,17 @@ public final class TicketsRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private TicketsRetrieveRequest(
-            Optional<TicketsRetrieveRequestExpand> expand,
+            Optional<List<TicketsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Optional<TicketsRetrieveRequestRemoteFields> remoteFields,
             Optional<TicketsRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -54,7 +60,7 @@ public final class TicketsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<TicketsRetrieveRequestExpand> getExpand() {
+    public Optional<List<TicketsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -72,6 +78,14 @@ public final class TicketsRetrieveRequest {
     @JsonProperty("include_remote_fields")
     public Optional<Boolean> getIncludeRemoteFields() {
         return includeRemoteFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -105,6 +119,7 @@ public final class TicketsRetrieveRequest {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
@@ -112,7 +127,12 @@ public final class TicketsRetrieveRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.expand, this.includeRemoteData, this.includeRemoteFields, this.remoteFields, this.showEnumOrigins);
+                this.expand,
+                this.includeRemoteData,
+                this.includeRemoteFields,
+                this.includeShellData,
+                this.remoteFields,
+                this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -126,11 +146,13 @@ public final class TicketsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<TicketsRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<TicketsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         private Optional<TicketsRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
@@ -145,19 +167,25 @@ public final class TicketsRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<TicketsRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<TicketsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(TicketsRetrieveRequestExpand expand) {
+        public Builder expand(List<TicketsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(TicketsRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -180,6 +208,17 @@ public final class TicketsRetrieveRequest {
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
             this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -210,6 +249,7 @@ public final class TicketsRetrieveRequest {
                     expand,
                     includeRemoteData,
                     includeRemoteFields,
+                    includeShellData,
                     remoteFields,
                     showEnumOrigins,
                     additionalProperties);

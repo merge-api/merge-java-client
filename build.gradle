@@ -42,59 +42,10 @@ java {
 }
 
 
-group = 'dev.merge'
-
-version = '1.1.1'
-
-jar {
-    dependsOn(":generatePomFileForMavenPublication")
-    archiveBaseName = "merge-java-client"
-}
-
-sourcesJar {
-    archiveBaseName = "merge-java-client"
-}
-
-javadocJar {
-    archiveBaseName = "merge-java-client"
-}
-
 test {
     useJUnitPlatform()
     testLogging {
         showStandardStreams = true
-    }
-}
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'dev.merge'
-            artifactId = 'merge-java-client'
-            version = '1.1.1'
-            from components.java
-            pom {
-                licenses {
-                    license {
-                        name = 'CustomLicense{filename: LICENSE}'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
-                    developerConnection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
-                    url = 'https://github.com/merge-api/merge-java-client'
-                }
-            }
-        }
-    }
-    repositories {
-        maven {
-            url "$System.env.MAVEN_PUBLISH_REGISTRY_URL"
-            credentials {
-                username "$System.env.MAVEN_USERNAME"
-                password "$System.env.MAVEN_PASSWORD"
-            }
-        }
     }
 }
 

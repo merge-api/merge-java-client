@@ -39,7 +39,7 @@ public final class BankInfo {
 
     private final Optional<String> bankName;
 
-    private final Optional<BankInfoAccountType> accountType;
+    private final Optional<AccountTypeEnum> accountType;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -60,7 +60,7 @@ public final class BankInfo {
             Optional<String> accountNumber,
             Optional<String> routingNumber,
             Optional<String> bankName,
-            Optional<BankInfoAccountType> accountType,
+            Optional<AccountTypeEnum> accountType,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -151,7 +151,7 @@ public final class BankInfo {
      * </ul>
      */
     @JsonProperty("account_type")
-    public Optional<BankInfoAccountType> getAccountType() {
+    public Optional<AccountTypeEnum> getAccountType() {
         return accountType;
     }
 
@@ -253,7 +253,7 @@ public final class BankInfo {
 
         private Optional<String> bankName = Optional.empty();
 
-        private Optional<BankInfoAccountType> accountType = Optional.empty();
+        private Optional<AccountTypeEnum> accountType = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -374,12 +374,12 @@ public final class BankInfo {
         }
 
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
-        public Builder accountType(Optional<BankInfoAccountType> accountType) {
+        public Builder accountType(Optional<AccountTypeEnum> accountType) {
             this.accountType = accountType;
             return this;
         }
 
-        public Builder accountType(BankInfoAccountType accountType) {
+        public Builder accountType(AccountTypeEnum accountType) {
             this.accountType = Optional.ofNullable(accountType);
             return this;
         }

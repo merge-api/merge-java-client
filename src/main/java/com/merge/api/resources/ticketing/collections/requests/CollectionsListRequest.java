@@ -12,9 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.collections.types.CollectionsListRequestExpand;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CollectionsListRequest.Builder.class)
 public final class CollectionsListRequest {
+    private final Optional<List<String>> expand;
+
     private final Optional<String> collectionType;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -29,8 +32,6 @@ public final class CollectionsListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<CollectionsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -55,11 +56,11 @@ public final class CollectionsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CollectionsListRequest(
+            Optional<List<String>> expand,
             Optional<String> collectionType,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<CollectionsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -71,11 +72,11 @@ public final class CollectionsListRequest {
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.collectionType = collectionType;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -87,6 +88,14 @@ public final class CollectionsListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
     }
 
     /**
@@ -119,14 +128,6 @@ public final class CollectionsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<CollectionsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -221,11 +222,11 @@ public final class CollectionsListRequest {
     }
 
     private boolean equalTo(CollectionsListRequest other) {
-        return collectionType.equals(other.collectionType)
+        return expand.equals(other.expand)
+                && collectionType.equals(other.collectionType)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -241,11 +242,11 @@ public final class CollectionsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.collectionType,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -269,6 +270,8 @@ public final class CollectionsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> expand = Optional.empty();
+
         private Optional<String> collectionType = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -276,8 +279,6 @@ public final class CollectionsListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<CollectionsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -305,11 +306,11 @@ public final class CollectionsListRequest {
         private Builder() {}
 
         public Builder from(CollectionsListRequest other) {
+            expand(other.getExpand());
             collectionType(other.getCollectionType());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -320,6 +321,22 @@ public final class CollectionsListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -364,17 +381,6 @@ public final class CollectionsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CollectionsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(CollectionsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -490,11 +496,11 @@ public final class CollectionsListRequest {
 
         public CollectionsListRequest build() {
             return new CollectionsListRequest(
+                    expand,
                     collectionType,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

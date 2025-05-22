@@ -25,17 +25,17 @@ public final class AccountRequest {
 
     private final Optional<String> description;
 
-    private final Optional<AccountRequestClassification> classification;
+    private final Optional<ClassificationEnum> classification;
 
     private final Optional<String> type;
 
-    private final Optional<AccountRequestAccountType> accountType;
+    private final Optional<AccountAccountTypeEnum> accountType;
 
-    private final Optional<AccountRequestStatus> status;
+    private final Optional<AccountStatusEnum> status;
 
     private final Optional<Double> currentBalance;
 
-    private final Optional<AccountRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> accountNumber;
 
@@ -52,12 +52,12 @@ public final class AccountRequest {
     private AccountRequest(
             Optional<String> name,
             Optional<String> description,
-            Optional<AccountRequestClassification> classification,
+            Optional<ClassificationEnum> classification,
             Optional<String> type,
-            Optional<AccountRequestAccountType> accountType,
-            Optional<AccountRequestStatus> status,
+            Optional<AccountAccountTypeEnum> accountType,
+            Optional<AccountStatusEnum> status,
             Optional<Double> currentBalance,
-            Optional<AccountRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> accountNumber,
             Optional<String> parentAccount,
             Optional<String> company,
@@ -107,7 +107,7 @@ public final class AccountRequest {
      * </ul>
      */
     @JsonProperty("classification")
-    public Optional<AccountRequestClassification> getClassification() {
+    public Optional<ClassificationEnum> getClassification() {
         return classification;
     }
 
@@ -138,7 +138,7 @@ public final class AccountRequest {
      * </ul>
      */
     @JsonProperty("account_type")
-    public Optional<AccountRequestAccountType> getAccountType() {
+    public Optional<AccountAccountTypeEnum> getAccountType() {
         return accountType;
     }
 
@@ -151,7 +151,7 @@ public final class AccountRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<AccountRequestStatus> getStatus() {
+    public Optional<AccountStatusEnum> getStatus() {
         return status;
     }
 
@@ -475,7 +475,7 @@ public final class AccountRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<AccountRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -573,17 +573,17 @@ public final class AccountRequest {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<AccountRequestClassification> classification = Optional.empty();
+        private Optional<ClassificationEnum> classification = Optional.empty();
 
         private Optional<String> type = Optional.empty();
 
-        private Optional<AccountRequestAccountType> accountType = Optional.empty();
+        private Optional<AccountAccountTypeEnum> accountType = Optional.empty();
 
-        private Optional<AccountRequestStatus> status = Optional.empty();
+        private Optional<AccountStatusEnum> status = Optional.empty();
 
         private Optional<Double> currentBalance = Optional.empty();
 
-        private Optional<AccountRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> accountNumber = Optional.empty();
 
@@ -640,12 +640,12 @@ public final class AccountRequest {
         }
 
         @JsonSetter(value = "classification", nulls = Nulls.SKIP)
-        public Builder classification(Optional<AccountRequestClassification> classification) {
+        public Builder classification(Optional<ClassificationEnum> classification) {
             this.classification = classification;
             return this;
         }
 
-        public Builder classification(AccountRequestClassification classification) {
+        public Builder classification(ClassificationEnum classification) {
             this.classification = Optional.ofNullable(classification);
             return this;
         }
@@ -662,23 +662,23 @@ public final class AccountRequest {
         }
 
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
-        public Builder accountType(Optional<AccountRequestAccountType> accountType) {
+        public Builder accountType(Optional<AccountAccountTypeEnum> accountType) {
             this.accountType = accountType;
             return this;
         }
 
-        public Builder accountType(AccountRequestAccountType accountType) {
+        public Builder accountType(AccountAccountTypeEnum accountType) {
             this.accountType = Optional.ofNullable(accountType);
             return this;
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<AccountRequestStatus> status) {
+        public Builder status(Optional<AccountStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(AccountRequestStatus status) {
+        public Builder status(AccountStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -695,12 +695,12 @@ public final class AccountRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<AccountRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(AccountRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

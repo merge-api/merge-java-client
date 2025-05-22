@@ -29,6 +29,7 @@ public final class PurchaseOrderTrackingCategoriesItem {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
@@ -79,7 +80,7 @@ public final class PurchaseOrderTrackingCategoriesItem {
         }
 
         @java.lang.Override
-        public PurchaseOrderTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext ctxt)
+        public PurchaseOrderTrackingCategoriesItem deserialize(JsonParser p, DeserializationContext context)
                 throws IOException {
             Object value = p.readValueAs(Object.class);
             try {

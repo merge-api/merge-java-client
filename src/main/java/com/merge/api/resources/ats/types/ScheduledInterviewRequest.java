@@ -37,7 +37,7 @@ public final class ScheduledInterviewRequest {
 
     private final Optional<OffsetDateTime> endAt;
 
-    private final Optional<ScheduledInterviewRequestStatus> status;
+    private final Optional<ScheduledInterviewStatusEnum> status;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -53,7 +53,7 @@ public final class ScheduledInterviewRequest {
             Optional<String> location,
             Optional<OffsetDateTime> startAt,
             Optional<OffsetDateTime> endAt,
-            Optional<ScheduledInterviewRequestStatus> status,
+            Optional<ScheduledInterviewStatusEnum> status,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -135,7 +135,7 @@ public final class ScheduledInterviewRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ScheduledInterviewRequestStatus> getStatus() {
+    public Optional<ScheduledInterviewStatusEnum> getStatus() {
         return status;
     }
 
@@ -213,7 +213,7 @@ public final class ScheduledInterviewRequest {
 
         private Optional<OffsetDateTime> endAt = Optional.empty();
 
-        private Optional<ScheduledInterviewRequestStatus> status = Optional.empty();
+        private Optional<ScheduledInterviewStatusEnum> status = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -316,12 +316,12 @@ public final class ScheduledInterviewRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ScheduledInterviewRequestStatus> status) {
+        public Builder status(Optional<ScheduledInterviewStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ScheduledInterviewRequestStatus status) {
+        public Builder status(ScheduledInterviewStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

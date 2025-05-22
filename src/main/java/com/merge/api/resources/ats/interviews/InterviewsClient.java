@@ -3,11 +3,7 @@
  */
 package com.merge.api.resources.ats.interviews;
 
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.interviews.requests.InterviewsListRequest;
 import com.merge.api.resources.ats.interviews.requests.InterviewsRetrieveRequest;
@@ -16,291 +12,91 @@ import com.merge.api.resources.ats.types.MetaResponse;
 import com.merge.api.resources.ats.types.PaginatedScheduledInterviewList;
 import com.merge.api.resources.ats.types.ScheduledInterview;
 import com.merge.api.resources.ats.types.ScheduledInterviewResponse;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class InterviewsClient {
     protected final ClientOptions clientOptions;
 
+    private final RawInterviewsClient rawClient;
+
     public InterviewsClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawInterviewsClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawInterviewsClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Returns a list of <code>ScheduledInterview</code> objects.
      */
     public PaginatedScheduledInterviewList list() {
-        return list(InterviewsListRequest.builder().build());
+        return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>ScheduledInterview</code> objects.
      */
     public PaginatedScheduledInterviewList list(InterviewsListRequest request) {
-        return list(request, null);
+        return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>ScheduledInterview</code> objects.
      */
     public PaginatedScheduledInterviewList list(InterviewsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/interviews");
-        if (request.getApplicationId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "application_id", request.getApplicationId().get());
-        }
-        if (request.getCreatedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_after", request.getCreatedAfter().get().toString());
-        }
-        if (request.getCreatedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_before", request.getCreatedBefore().get().toString());
-        }
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getJobId().isPresent()) {
-            httpUrl.addQueryParameter("job_id", request.getJobId().get());
-        }
-        if (request.getJobInterviewStageId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "job_interview_stage_id", request.getJobInterviewStageId().get());
-        }
-        if (request.getModifiedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_after", request.getModifiedAfter().get().toString());
-        }
-        if (request.getModifiedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_before", request.getModifiedBefore().get().toString());
-        }
-        if (request.getOrganizerId().isPresent()) {
-            httpUrl.addQueryParameter("organizer_id", request.getOrganizerId().get());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        if (request.getRemoteFields().isPresent()) {
-            httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
-        }
-        if (request.getRemoteId().isPresent()) {
-            httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
-        }
-        if (request.getShowEnumOrigins().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "show_enum_origins", request.getShowEnumOrigins().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(
-                        responseBody.string(), PaginatedScheduledInterviewList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.list(request, requestOptions).body();
     }
 
     /**
      * Creates a <code>ScheduledInterview</code> object with the given values.
      */
     public ScheduledInterviewResponse create(ScheduledInterviewEndpointRequest request) {
-        return create(request, null);
+        return this.rawClient.create(request).body();
     }
 
     /**
      * Creates a <code>ScheduledInterview</code> object with the given values.
      */
     public ScheduledInterviewResponse create(ScheduledInterviewEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/interviews");
-        if (request.getIsDebugMode().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "is_debug_mode", request.getIsDebugMode().get().toString());
-        }
-        if (request.getRunAsync().isPresent()) {
-            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
-        }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
-        properties.put("remote_user_id", request.getRemoteUserId());
-        RequestBody body;
-        try {
-            body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("POST", body)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ScheduledInterviewResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.create(request, requestOptions).body();
     }
 
     /**
      * Returns a <code>ScheduledInterview</code> object with the given <code>id</code>.
      */
     public ScheduledInterview retrieve(String id) {
-        return retrieve(id, InterviewsRetrieveRequest.builder().build());
+        return this.rawClient.retrieve(id).body();
     }
 
     /**
      * Returns a <code>ScheduledInterview</code> object with the given <code>id</code>.
      */
     public ScheduledInterview retrieve(String id, InterviewsRetrieveRequest request) {
-        return retrieve(id, request, null);
+        return this.rawClient.retrieve(id, request).body();
     }
 
     /**
      * Returns a <code>ScheduledInterview</code> object with the given <code>id</code>.
      */
     public ScheduledInterview retrieve(String id, InterviewsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/interviews")
-                .addPathSegment(id);
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getRemoteFields().isPresent()) {
-            httpUrl.addQueryParameter("remote_fields", request.getRemoteFields().get());
-        }
-        if (request.getShowEnumOrigins().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "show_enum_origins", request.getShowEnumOrigins().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ScheduledInterview.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 
     /**
      * Returns metadata for <code>ScheduledInterview</code> POSTs.
      */
     public MetaResponse metaPostRetrieve() {
-        return metaPostRetrieve(null);
+        return this.rawClient.metaPostRetrieve().body();
     }
 
     /**
      * Returns metadata for <code>ScheduledInterview</code> POSTs.
      */
     public MetaResponse metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/interviews/meta/post")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.metaPostRetrieve(requestOptions).body();
     }
 }

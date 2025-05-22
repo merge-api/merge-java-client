@@ -31,7 +31,7 @@ public final class EmployerBenefit {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final Optional<EmployerBenefitBenefitPlanType> benefitPlanType;
+    private final Optional<BenefitPlanTypeEnum> benefitPlanType;
 
     private final Optional<String> name;
 
@@ -52,7 +52,7 @@ public final class EmployerBenefit {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            Optional<EmployerBenefitBenefitPlanType> benefitPlanType,
+            Optional<BenefitPlanTypeEnum> benefitPlanType,
             Optional<String> name,
             Optional<String> description,
             Optional<String> deductionCode,
@@ -114,7 +114,7 @@ public final class EmployerBenefit {
      * </ul>
      */
     @JsonProperty("benefit_plan_type")
-    public Optional<EmployerBenefitBenefitPlanType> getBenefitPlanType() {
+    public Optional<BenefitPlanTypeEnum> getBenefitPlanType() {
         return benefitPlanType;
     }
 
@@ -220,7 +220,7 @@ public final class EmployerBenefit {
 
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
-        private Optional<EmployerBenefitBenefitPlanType> benefitPlanType = Optional.empty();
+        private Optional<BenefitPlanTypeEnum> benefitPlanType = Optional.empty();
 
         private Optional<String> name = Optional.empty();
 
@@ -299,12 +299,12 @@ public final class EmployerBenefit {
         }
 
         @JsonSetter(value = "benefit_plan_type", nulls = Nulls.SKIP)
-        public Builder benefitPlanType(Optional<EmployerBenefitBenefitPlanType> benefitPlanType) {
+        public Builder benefitPlanType(Optional<BenefitPlanTypeEnum> benefitPlanType) {
             this.benefitPlanType = benefitPlanType;
             return this;
         }
 
-        public Builder benefitPlanType(EmployerBenefitBenefitPlanType benefitPlanType) {
+        public Builder benefitPlanType(BenefitPlanTypeEnum benefitPlanType) {
             this.benefitPlanType = Optional.ofNullable(benefitPlanType);
             return this;
         }

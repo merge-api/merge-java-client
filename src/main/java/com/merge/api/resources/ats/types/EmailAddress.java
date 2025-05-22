@@ -27,7 +27,7 @@ public final class EmailAddress {
 
     private final Optional<String> value;
 
-    private final Optional<EmailAddressEmailAddressType> emailAddressType;
+    private final Optional<EmailAddressTypeEnum> emailAddressType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -37,7 +37,7 @@ public final class EmailAddress {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
-            Optional<EmailAddressEmailAddressType> emailAddressType,
+            Optional<EmailAddressTypeEnum> emailAddressType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -81,7 +81,7 @@ public final class EmailAddress {
      * </ul>
      */
     @JsonProperty("email_address_type")
-    public Optional<EmailAddressEmailAddressType> getEmailAddressType() {
+    public Optional<EmailAddressTypeEnum> getEmailAddressType() {
         return emailAddressType;
     }
 
@@ -134,7 +134,7 @@ public final class EmailAddress {
 
         private Optional<String> value = Optional.empty();
 
-        private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
+        private Optional<EmailAddressTypeEnum> emailAddressType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -186,12 +186,12 @@ public final class EmailAddress {
         }
 
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
-        public Builder emailAddressType(Optional<EmailAddressEmailAddressType> emailAddressType) {
+        public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
             this.emailAddressType = emailAddressType;
             return this;
         }
 
-        public Builder emailAddressType(EmailAddressEmailAddressType emailAddressType) {
+        public Builder emailAddressType(EmailAddressTypeEnum emailAddressType) {
             this.emailAddressType = Optional.ofNullable(emailAddressType);
             return this;
         }

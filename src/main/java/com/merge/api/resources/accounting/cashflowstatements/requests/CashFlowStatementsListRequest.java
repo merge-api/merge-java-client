@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CashFlowStatementsListRequest.Builder.class)
 public final class CashFlowStatementsListRequest {
+    private final Optional<List<String>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -28,8 +32,6 @@ public final class CashFlowStatementsListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -48,11 +50,11 @@ public final class CashFlowStatementsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CashFlowStatementsListRequest(
+            Optional<List<String>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -61,11 +63,11 @@ public final class CashFlowStatementsListRequest {
             Optional<Integer> pageSize,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -74,6 +76,14 @@ public final class CashFlowStatementsListRequest {
         this.pageSize = pageSize;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
     }
 
     /**
@@ -106,14 +116,6 @@ public final class CashFlowStatementsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<String> getExpand() {
-        return expand;
     }
 
     /**
@@ -184,11 +186,11 @@ public final class CashFlowStatementsListRequest {
     }
 
     private boolean equalTo(CashFlowStatementsListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -201,11 +203,11 @@ public final class CashFlowStatementsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -226,6 +228,8 @@ public final class CashFlowStatementsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -233,8 +237,6 @@ public final class CashFlowStatementsListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -256,11 +258,11 @@ public final class CashFlowStatementsListRequest {
         private Builder() {}
 
         public Builder from(CashFlowStatementsListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -268,6 +270,22 @@ public final class CashFlowStatementsListRequest {
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -312,17 +330,6 @@ public final class CashFlowStatementsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(String expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -405,11 +412,11 @@ public final class CashFlowStatementsListRequest {
 
         public CashFlowStatementsListRequest build() {
             return new CashFlowStatementsListRequest(
+                    expand,
                     companyId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

@@ -20,13 +20,25 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FilesDownloadRetrieveRequest.Builder.class)
 public final class FilesDownloadRetrieveRequest {
+    private final Optional<Boolean> includeShellData;
+
     private final Optional<String> mimeType;
 
     private final Map<String, Object> additionalProperties;
 
-    private FilesDownloadRetrieveRequest(Optional<String> mimeType, Map<String, Object> additionalProperties) {
+    private FilesDownloadRetrieveRequest(
+            Optional<Boolean> includeShellData, Optional<String> mimeType, Map<String, Object> additionalProperties) {
+        this.includeShellData = includeShellData;
         this.mimeType = mimeType;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -49,12 +61,12 @@ public final class FilesDownloadRetrieveRequest {
     }
 
     private boolean equalTo(FilesDownloadRetrieveRequest other) {
-        return mimeType.equals(other.mimeType);
+        return includeShellData.equals(other.includeShellData) && mimeType.equals(other.mimeType);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.mimeType);
+        return Objects.hash(this.includeShellData, this.mimeType);
     }
 
     @java.lang.Override
@@ -68,6 +80,8 @@ public final class FilesDownloadRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<Boolean> includeShellData = Optional.empty();
+
         private Optional<String> mimeType = Optional.empty();
 
         @JsonAnySetter
@@ -76,7 +90,19 @@ public final class FilesDownloadRetrieveRequest {
         private Builder() {}
 
         public Builder from(FilesDownloadRetrieveRequest other) {
+            includeShellData(other.getIncludeShellData());
             mimeType(other.getMimeType());
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -92,7 +118,7 @@ public final class FilesDownloadRetrieveRequest {
         }
 
         public FilesDownloadRetrieveRequest build() {
-            return new FilesDownloadRetrieveRequest(mimeType, additionalProperties);
+            return new FilesDownloadRetrieveRequest(includeShellData, mimeType, additionalProperties);
         }
     }
 }

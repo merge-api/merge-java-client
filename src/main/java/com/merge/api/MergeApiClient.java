@@ -8,7 +8,7 @@ import com.merge.api.core.Suppliers;
 import com.merge.api.resources.accounting.AccountingClient;
 import com.merge.api.resources.ats.AtsClient;
 import com.merge.api.resources.crm.CrmClient;
-import com.merge.api.resources.filestorage.FilestorageClient;
+import com.merge.api.resources.filestorage.FileStorageClient;
 import com.merge.api.resources.hris.HrisClient;
 import com.merge.api.resources.ticketing.TicketingClient;
 import java.util.function.Supplier;
@@ -18,48 +18,48 @@ public class MergeApiClient {
 
     protected final Supplier<AtsClient> atsClient;
 
+    protected final Supplier<AccountingClient> accountingClient;
+
     protected final Supplier<CrmClient> crmClient;
 
-    protected final Supplier<FilestorageClient> filestorageClient;
-
-    protected final Supplier<TicketingClient> ticketingClient;
+    protected final Supplier<FileStorageClient> fileStorageClient;
 
     protected final Supplier<HrisClient> hrisClient;
 
-    protected final Supplier<AccountingClient> accountingClient;
+    protected final Supplier<TicketingClient> ticketingClient;
 
     public MergeApiClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
         this.atsClient = Suppliers.memoize(() -> new AtsClient(clientOptions));
-        this.crmClient = Suppliers.memoize(() -> new CrmClient(clientOptions));
-        this.filestorageClient = Suppliers.memoize(() -> new FilestorageClient(clientOptions));
-        this.ticketingClient = Suppliers.memoize(() -> new TicketingClient(clientOptions));
-        this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
         this.accountingClient = Suppliers.memoize(() -> new AccountingClient(clientOptions));
+        this.crmClient = Suppliers.memoize(() -> new CrmClient(clientOptions));
+        this.fileStorageClient = Suppliers.memoize(() -> new FileStorageClient(clientOptions));
+        this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
+        this.ticketingClient = Suppliers.memoize(() -> new TicketingClient(clientOptions));
     }
 
     public AtsClient ats() {
         return this.atsClient.get();
     }
 
+    public AccountingClient accounting() {
+        return this.accountingClient.get();
+    }
+
     public CrmClient crm() {
         return this.crmClient.get();
     }
 
-    public FilestorageClient filestorage() {
-        return this.filestorageClient.get();
-    }
-
-    public TicketingClient ticketing() {
-        return this.ticketingClient.get();
+    public FileStorageClient fileStorage() {
+        return this.fileStorageClient.get();
     }
 
     public HrisClient hris() {
         return this.hrisClient.get();
     }
 
-    public AccountingClient accounting() {
-        return this.accountingClient.get();
+    public TicketingClient ticketing() {
+        return this.ticketingClient.get();
     }
 
     public static MergeApiClientBuilder builder() {

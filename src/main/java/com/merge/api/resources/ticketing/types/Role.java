@@ -33,9 +33,9 @@ public final class Role {
 
     private final Optional<String> name;
 
-    private final Optional<List<Optional<RoleTicketActionsItem>>> ticketActions;
+    private final Optional<List<TicketActionsEnum>> ticketActions;
 
-    private final Optional<RoleTicketAccess> ticketAccess;
+    private final Optional<TicketAccessEnum> ticketAccess;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -51,8 +51,8 @@ public final class Role {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<List<Optional<RoleTicketActionsItem>>> ticketActions,
-            Optional<RoleTicketAccess> ticketAccess,
+            Optional<List<TicketActionsEnum>> ticketActions,
+            Optional<TicketAccessEnum> ticketAccess,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -111,7 +111,7 @@ public final class Role {
      * @return The set of actions that a User with this Role can perform. Possible enum values include: <code>VIEW</code>, <code>CREATE</code>, <code>EDIT</code>, <code>DELETE</code>, <code>CLOSE</code>, and <code>ASSIGN</code>.
      */
     @JsonProperty("ticket_actions")
-    public Optional<List<Optional<RoleTicketActionsItem>>> getTicketActions() {
+    public Optional<List<TicketActionsEnum>> getTicketActions() {
         return ticketActions;
     }
 
@@ -124,7 +124,7 @@ public final class Role {
      * </ul>
      */
     @JsonProperty("ticket_access")
-    public Optional<RoleTicketAccess> getTicketAccess() {
+    public Optional<TicketAccessEnum> getTicketAccess() {
         return ticketAccess;
     }
 
@@ -206,9 +206,9 @@ public final class Role {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<List<Optional<RoleTicketActionsItem>>> ticketActions = Optional.empty();
+        private Optional<List<TicketActionsEnum>> ticketActions = Optional.empty();
 
-        private Optional<RoleTicketAccess> ticketAccess = Optional.empty();
+        private Optional<TicketAccessEnum> ticketAccess = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -291,23 +291,23 @@ public final class Role {
         }
 
         @JsonSetter(value = "ticket_actions", nulls = Nulls.SKIP)
-        public Builder ticketActions(Optional<List<Optional<RoleTicketActionsItem>>> ticketActions) {
+        public Builder ticketActions(Optional<List<TicketActionsEnum>> ticketActions) {
             this.ticketActions = ticketActions;
             return this;
         }
 
-        public Builder ticketActions(List<Optional<RoleTicketActionsItem>> ticketActions) {
+        public Builder ticketActions(List<TicketActionsEnum> ticketActions) {
             this.ticketActions = Optional.ofNullable(ticketActions);
             return this;
         }
 
         @JsonSetter(value = "ticket_access", nulls = Nulls.SKIP)
-        public Builder ticketAccess(Optional<RoleTicketAccess> ticketAccess) {
+        public Builder ticketAccess(Optional<TicketAccessEnum> ticketAccess) {
             this.ticketAccess = ticketAccess;
             return this;
         }
 
-        public Builder ticketAccess(RoleTicketAccess ticketAccess) {
+        public Builder ticketAccess(TicketAccessEnum ticketAccess) {
             this.ticketAccess = Optional.ofNullable(ticketAccess);
             return this;
         }

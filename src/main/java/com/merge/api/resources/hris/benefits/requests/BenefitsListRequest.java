@@ -13,7 +13,9 @@ import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BenefitsListRequest.Builder.class)
 public final class BenefitsListRequest {
+    private final Optional<List<String>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -28,8 +32,6 @@ public final class BenefitsListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> employeeId;
-
-    private final Optional<String> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -48,11 +50,11 @@ public final class BenefitsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private BenefitsListRequest(
+            Optional<List<String>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
-            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -61,11 +63,11 @@ public final class BenefitsListRequest {
             Optional<Integer> pageSize,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -74,6 +76,14 @@ public final class BenefitsListRequest {
         this.pageSize = pageSize;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
     }
 
     /**
@@ -106,14 +116,6 @@ public final class BenefitsListRequest {
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
         return employeeId;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<String> getExpand() {
-        return expand;
     }
 
     /**
@@ -184,11 +186,11 @@ public final class BenefitsListRequest {
     }
 
     private boolean equalTo(BenefitsListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -201,11 +203,11 @@ public final class BenefitsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -226,6 +228,8 @@ public final class BenefitsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -233,8 +237,6 @@ public final class BenefitsListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
-
-        private Optional<String> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -256,11 +258,11 @@ public final class BenefitsListRequest {
         private Builder() {}
 
         public Builder from(BenefitsListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -268,6 +270,22 @@ public final class BenefitsListRequest {
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -312,17 +330,6 @@ public final class BenefitsListRequest {
 
         public Builder employeeId(String employeeId) {
             this.employeeId = Optional.ofNullable(employeeId);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(String expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -405,11 +412,11 @@ public final class BenefitsListRequest {
 
         public BenefitsListRequest build() {
             return new BenefitsListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     employeeId,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

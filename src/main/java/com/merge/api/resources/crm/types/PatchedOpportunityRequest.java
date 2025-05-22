@@ -35,7 +35,7 @@ public final class PatchedOpportunityRequest {
 
     private final Optional<String> stage;
 
-    private final Optional<PatchedOpportunityRequestStatus> status;
+    private final Optional<OpportunityStatusEnum> status;
 
     private final Optional<OffsetDateTime> lastActivityAt;
 
@@ -56,7 +56,7 @@ public final class PatchedOpportunityRequest {
             Optional<String> owner,
             Optional<String> account,
             Optional<String> stage,
-            Optional<PatchedOpportunityRequestStatus> status,
+            Optional<OpportunityStatusEnum> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -135,7 +135,7 @@ public final class PatchedOpportunityRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<PatchedOpportunityRequestStatus> getStatus() {
+    public Optional<OpportunityStatusEnum> getStatus() {
         return status;
     }
 
@@ -236,7 +236,7 @@ public final class PatchedOpportunityRequest {
 
         private Optional<String> stage = Optional.empty();
 
-        private Optional<PatchedOpportunityRequestStatus> status = Optional.empty();
+        private Optional<OpportunityStatusEnum> status = Optional.empty();
 
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
@@ -336,12 +336,12 @@ public final class PatchedOpportunityRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<PatchedOpportunityRequestStatus> status) {
+        public Builder status(Optional<OpportunityStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(PatchedOpportunityRequestStatus status) {
+        public Builder status(OpportunityStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

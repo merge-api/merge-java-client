@@ -35,7 +35,7 @@ public final class OpportunityRequest {
 
     private final Optional<OpportunityRequestStage> stage;
 
-    private final Optional<OpportunityRequestStatus> status;
+    private final Optional<OpportunityStatusEnum> status;
 
     private final Optional<OffsetDateTime> lastActivityAt;
 
@@ -56,7 +56,7 @@ public final class OpportunityRequest {
             Optional<OpportunityRequestOwner> owner,
             Optional<OpportunityRequestAccount> account,
             Optional<OpportunityRequestStage> stage,
-            Optional<OpportunityRequestStatus> status,
+            Optional<OpportunityStatusEnum> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -135,7 +135,7 @@ public final class OpportunityRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OpportunityRequestStatus> getStatus() {
+    public Optional<OpportunityStatusEnum> getStatus() {
         return status;
     }
 
@@ -236,7 +236,7 @@ public final class OpportunityRequest {
 
         private Optional<OpportunityRequestStage> stage = Optional.empty();
 
-        private Optional<OpportunityRequestStatus> status = Optional.empty();
+        private Optional<OpportunityStatusEnum> status = Optional.empty();
 
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
@@ -336,12 +336,12 @@ public final class OpportunityRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OpportunityRequestStatus> status) {
+        public Builder status(Optional<OpportunityStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OpportunityRequestStatus status) {
+        public Builder status(OpportunityStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

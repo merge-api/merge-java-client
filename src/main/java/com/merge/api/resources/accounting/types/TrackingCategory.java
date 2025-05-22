@@ -32,9 +32,9 @@ public final class TrackingCategory {
 
     private final Optional<String> name;
 
-    private final Optional<TrackingCategoryStatus> status;
+    private final Optional<Status7D1Enum> status;
 
-    private final Optional<TrackingCategoryCategoryType> categoryType;
+    private final Optional<CategoryTypeEnum> categoryType;
 
     private final Optional<String> parentCategory;
 
@@ -52,8 +52,8 @@ public final class TrackingCategory {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<TrackingCategoryStatus> status,
-            Optional<TrackingCategoryCategoryType> categoryType,
+            Optional<Status7D1Enum> status,
+            Optional<CategoryTypeEnum> categoryType,
             Optional<String> parentCategory,
             Optional<TrackingCategoryCompany> company,
             Optional<Boolean> remoteWasDeleted,
@@ -118,7 +118,7 @@ public final class TrackingCategory {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TrackingCategoryStatus> getStatus() {
+    public Optional<Status7D1Enum> getStatus() {
         return status;
     }
 
@@ -130,7 +130,7 @@ public final class TrackingCategory {
      * </ul>
      */
     @JsonProperty("category_type")
-    public Optional<TrackingCategoryCategoryType> getCategoryType() {
+    public Optional<CategoryTypeEnum> getCategoryType() {
         return categoryType;
     }
 
@@ -222,9 +222,9 @@ public final class TrackingCategory {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<TrackingCategoryStatus> status = Optional.empty();
+        private Optional<Status7D1Enum> status = Optional.empty();
 
-        private Optional<TrackingCategoryCategoryType> categoryType = Optional.empty();
+        private Optional<CategoryTypeEnum> categoryType = Optional.empty();
 
         private Optional<String> parentCategory = Optional.empty();
 
@@ -310,23 +310,23 @@ public final class TrackingCategory {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TrackingCategoryStatus> status) {
+        public Builder status(Optional<Status7D1Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TrackingCategoryStatus status) {
+        public Builder status(Status7D1Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
         @JsonSetter(value = "category_type", nulls = Nulls.SKIP)
-        public Builder categoryType(Optional<TrackingCategoryCategoryType> categoryType) {
+        public Builder categoryType(Optional<CategoryTypeEnum> categoryType) {
             this.categoryType = categoryType;
             return this;
         }
 
-        public Builder categoryType(TrackingCategoryCategoryType categoryType) {
+        public Builder categoryType(CategoryTypeEnum categoryType) {
             this.categoryType = Optional.ofNullable(categoryType);
             return this;
         }

@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ticketing.tickets.types.TicketsViewersListRequestExpand;
+import com.merge.api.resources.ticketing.tickets.types.TicketsViewersListRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,9 +23,9 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TicketsViewersListRequest.Builder.class)
 public final class TicketsViewersListRequest {
-    private final Optional<String> cursor;
+    private final Optional<List<TicketsViewersListRequestExpandItem>> expand;
 
-    private final Optional<TicketsViewersListRequestExpand> expand;
+    private final Optional<String> cursor;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -36,15 +38,15 @@ public final class TicketsViewersListRequest {
     private final Map<String, Object> additionalProperties;
 
     private TicketsViewersListRequest(
+            Optional<List<TicketsViewersListRequestExpandItem>> expand,
             Optional<String> cursor,
-            Optional<TicketsViewersListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
-        this.cursor = cursor;
         this.expand = expand;
+        this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -53,19 +55,19 @@ public final class TicketsViewersListRequest {
     }
 
     /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<TicketsViewersListRequestExpandItem>> getExpand() {
+        return expand;
+    }
+
+    /**
      * @return The pagination cursor value.
      */
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<TicketsViewersListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -112,8 +114,8 @@ public final class TicketsViewersListRequest {
     }
 
     private boolean equalTo(TicketsViewersListRequest other) {
-        return cursor.equals(other.cursor)
-                && expand.equals(other.expand)
+        return expand.equals(other.expand)
+                && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -123,8 +125,8 @@ public final class TicketsViewersListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.cursor,
                 this.expand,
+                this.cursor,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -142,9 +144,9 @@ public final class TicketsViewersListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> cursor = Optional.empty();
+        private Optional<List<TicketsViewersListRequestExpandItem>> expand = Optional.empty();
 
-        private Optional<TicketsViewersListRequestExpand> expand = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -160,12 +162,28 @@ public final class TicketsViewersListRequest {
         private Builder() {}
 
         public Builder from(TicketsViewersListRequest other) {
-            cursor(other.getCursor());
             expand(other.getExpand());
+            cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
             pageSize(other.getPageSize());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<TicketsViewersListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<TicketsViewersListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(TicketsViewersListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -177,17 +195,6 @@ public final class TicketsViewersListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<TicketsViewersListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(TicketsViewersListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -237,8 +244,8 @@ public final class TicketsViewersListRequest {
 
         public TicketsViewersListRequest build() {
             return new TicketsViewersListRequest(
-                    cursor,
                     expand,
+                    cursor,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

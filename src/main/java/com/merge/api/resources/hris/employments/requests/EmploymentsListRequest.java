@@ -12,12 +12,14 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.employments.types.EmploymentsListRequestExpand;
+import com.merge.api.resources.hris.employments.types.EmploymentsListRequestExpandItem;
 import com.merge.api.resources.hris.employments.types.EmploymentsListRequestOrderBy;
 import com.merge.api.resources.hris.employments.types.EmploymentsListRequestRemoteFields;
 import com.merge.api.resources.hris.employments.types.EmploymentsListRequestShowEnumOrigins;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -25,6 +27,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmploymentsListRequest.Builder.class)
 public final class EmploymentsListRequest {
+    private final Optional<List<EmploymentsListRequestExpandItem>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -32,8 +36,6 @@ public final class EmploymentsListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> employeeId;
-
-    private final Optional<EmploymentsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -58,11 +60,11 @@ public final class EmploymentsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmploymentsListRequest(
+            Optional<List<EmploymentsListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
-            Optional<EmploymentsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -74,11 +76,11 @@ public final class EmploymentsListRequest {
             Optional<String> remoteId,
             Optional<EmploymentsListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -90,6 +92,14 @@ public final class EmploymentsListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<EmploymentsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -122,14 +132,6 @@ public final class EmploymentsListRequest {
     @JsonProperty("employee_id")
     public Optional<String> getEmployeeId() {
         return employeeId;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<EmploymentsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -224,11 +226,11 @@ public final class EmploymentsListRequest {
     }
 
     private boolean equalTo(EmploymentsListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -244,11 +246,11 @@ public final class EmploymentsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -272,6 +274,8 @@ public final class EmploymentsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<EmploymentsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -279,8 +283,6 @@ public final class EmploymentsListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> employeeId = Optional.empty();
-
-        private Optional<EmploymentsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -308,11 +310,11 @@ public final class EmploymentsListRequest {
         private Builder() {}
 
         public Builder from(EmploymentsListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -323,6 +325,22 @@ public final class EmploymentsListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<EmploymentsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<EmploymentsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EmploymentsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -367,17 +385,6 @@ public final class EmploymentsListRequest {
 
         public Builder employeeId(String employeeId) {
             this.employeeId = Optional.ofNullable(employeeId);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EmploymentsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(EmploymentsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -493,11 +500,11 @@ public final class EmploymentsListRequest {
 
         public EmploymentsListRequest build() {
             return new EmploymentsListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     employeeId,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

@@ -33,7 +33,7 @@ public final class Item {
 
     private final Optional<String> name;
 
-    private final Optional<ItemStatus> status;
+    private final Optional<Status7D1Enum> status;
 
     private final Optional<Double> unitPrice;
 
@@ -65,7 +65,7 @@ public final class Item {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<ItemStatus> status,
+            Optional<Status7D1Enum> status,
             Optional<Double> unitPrice,
             Optional<Double> purchasePrice,
             Optional<ItemPurchaseAccount> purchaseAccount,
@@ -143,7 +143,7 @@ public final class Item {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ItemStatus> getStatus() {
+    public Optional<Status7D1Enum> getStatus() {
         return status;
     }
 
@@ -303,7 +303,7 @@ public final class Item {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<ItemStatus> status = Optional.empty();
+        private Optional<Status7D1Enum> status = Optional.empty();
 
         private Optional<Double> unitPrice = Optional.empty();
 
@@ -409,12 +409,12 @@ public final class Item {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ItemStatus> status) {
+        public Builder status(Optional<Status7D1Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ItemStatus status) {
+        public Builder status(Status7D1Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

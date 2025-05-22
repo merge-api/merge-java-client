@@ -1,3 +1,1 @@
-rootProject.name = 'merge-java-client'
-
 include 'sample-app'

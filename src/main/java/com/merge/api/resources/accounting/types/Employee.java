@@ -44,7 +44,7 @@ public final class Employee {
 
     private final Optional<EmployeeCompany> company;
 
-    private final EmployeeStatus status;
+    private final Status895Enum status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -65,7 +65,7 @@ public final class Employee {
             Optional<String> employeeNumber,
             Optional<String> emailAddress,
             Optional<EmployeeCompany> company,
-            EmployeeStatus status,
+            Status895Enum status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -172,7 +172,7 @@ public final class Employee {
      * </ul>
      */
     @JsonProperty("status")
-    public EmployeeStatus getStatus() {
+    public Status895Enum getStatus() {
         return status;
     }
 
@@ -251,7 +251,7 @@ public final class Employee {
     }
 
     public interface StatusStage {
-        _FinalStage status(@NotNull EmployeeStatus status);
+        _FinalStage status(@NotNull Status895Enum status);
 
         Builder from(Employee other);
     }
@@ -314,7 +314,7 @@ public final class Employee {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StatusStage, _FinalStage {
-        private EmployeeStatus status;
+        private Status895Enum status;
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -376,7 +376,7 @@ public final class Employee {
          */
         @java.lang.Override
         @JsonSetter("status")
-        public _FinalStage status(@NotNull EmployeeStatus status) {
+        public _FinalStage status(@NotNull Status895Enum status) {
             this.status = status;
             return this;
         }

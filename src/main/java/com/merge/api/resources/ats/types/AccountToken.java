@@ -23,12 +23,15 @@ public final class AccountToken {
 
     private final AccountIntegration integration;
 
+    private final String id;
+
     private final Map<String, Object> additionalProperties;
 
     private AccountToken(
-            String accountToken, AccountIntegration integration, Map<String, Object> additionalProperties) {
+            String accountToken, AccountIntegration integration, String id, Map<String, Object> additionalProperties) {
         this.accountToken = accountToken;
         this.integration = integration;
+        this.id = id;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,6 +43,11 @@ public final class AccountToken {
     @JsonProperty("integration")
     public AccountIntegration getIntegration() {
         return integration;
+    }
+
+    @JsonProperty("id")
+    public String getId() {
+        return id;
     }
 
     @java.lang.Override
@@ -54,12 +62,12 @@ public final class AccountToken {
     }
 
     private boolean equalTo(AccountToken other) {
-        return accountToken.equals(other.accountToken) && integration.equals(other.integration);
+        return accountToken.equals(other.accountToken) && integration.equals(other.integration) && id.equals(other.id);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.accountToken, this.integration);
+        return Objects.hash(this.accountToken, this.integration, this.id);
     }
 
     @java.lang.Override
@@ -78,7 +86,11 @@ public final class AccountToken {
     }
 
     public interface IntegrationStage {
-        _FinalStage integration(@NotNull AccountIntegration integration);
+        IdStage integration(@NotNull AccountIntegration integration);
+    }
+
+    public interface IdStage {
+        _FinalStage id(@NotNull String id);
     }
 
     public interface _FinalStage {
@@ -86,10 +98,12 @@ public final class AccountToken {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements AccountTokenStage, IntegrationStage, _FinalStage {
+    public static final class Builder implements AccountTokenStage, IntegrationStage, IdStage, _FinalStage {
         private String accountToken;
 
         private AccountIntegration integration;
+
+        private String id;
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -100,6 +114,7 @@ public final class AccountToken {
         public Builder from(AccountToken other) {
             accountToken(other.getAccountToken());
             integration(other.getIntegration());
+            id(other.getId());
             return this;
         }
 
@@ -112,14 +127,21 @@ public final class AccountToken {
 
         @java.lang.Override
         @JsonSetter("integration")
-        public _FinalStage integration(@NotNull AccountIntegration integration) {
+        public IdStage integration(@NotNull AccountIntegration integration) {
             this.integration = integration;
             return this;
         }
 
         @java.lang.Override
+        @JsonSetter("id")
+        public _FinalStage id(@NotNull String id) {
+            this.id = id;
+            return this;
+        }
+
+        @java.lang.Override
         public AccountToken build() {
-            return new AccountToken(accountToken, integration, additionalProperties);
+            return new AccountToken(accountToken, integration, id, additionalProperties);
         }
     }
 }

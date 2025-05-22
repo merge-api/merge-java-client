@@ -4,11 +4,13 @@
 package com.merge.api.core;
 
 public final class Environment {
-    public static final Environment PRODUCTION = new Environment("https://api.merge.dev/api");
+    public static final Environment PRODUCTION = new Environment("https://api.merge.dev/api/ticketing/v1");
 
-    public static final Environment SANDBOX = new Environment("https://api-sandbox.merge.dev/api");
+    public static final Environment SANDBOX = new Environment("https://api-sandbox.merge.dev/api/ticketing/v1");
 
-    public static final Environment PRODUCTION_EU = new Environment("https://api-eu.merge.dev/api");
+    public static final Environment PRODUCTION_EU = new Environment("https://api-eu.merge.dev/api/ticketing/v1");
+
+    public static final Environment PRODUCTION_APSE_1 = new Environment("https://api-ap.merge.dev/api/ticketing/v1");
 
     private final String url;
 

@@ -31,11 +31,12 @@ public final class FilePermissions {
         return this.value;
     }
 
+    @SuppressWarnings("unchecked")
     public <T> T visit(Visitor<T> visitor) {
         if (this.type == 0) {
             return visitor.visit((String) this.value);
         } else if (this.type == 1) {
-            return visitor.visit((PermissionRequest) this.value);
+            return visitor.visit((Permission) this.value);
         } else if (this.type == 2) {
             return visitor.visit((List<FilePermissionsItem>) this.value);
         }
@@ -66,7 +67,7 @@ public final class FilePermissions {
         return new FilePermissions(value, 0);
     }
 
-    public static FilePermissions of(PermissionRequest value) {
+    public static FilePermissions of(Permission value) {
         return new FilePermissions(value, 1);
     }
 
@@ -77,7 +78,7 @@ public final class FilePermissions {
     public interface Visitor<T> {
         T visit(String value);
 
-        T visit(PermissionRequest value);
+        T visit(Permission value);
 
         T visit(List<FilePermissionsItem> value);
     }
@@ -88,14 +89,14 @@ public final class FilePermissions {
         }
 
         @java.lang.Override
-        public FilePermissions deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+        public FilePermissions deserialize(JsonParser p, DeserializationContext context) throws IOException {
             Object value = p.readValueAs(Object.class);
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(value, String.class));
             } catch (IllegalArgumentException e) {
             }
             try {
-                return of(ObjectMappers.JSON_MAPPER.convertValue(value, PermissionRequest.class));
+                return of(ObjectMappers.JSON_MAPPER.convertValue(value, Permission.class));
             } catch (IllegalArgumentException e) {
             }
             try {

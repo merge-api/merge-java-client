@@ -36,7 +36,7 @@ public final class BankFeedTransactionRequestRequest {
 
     private final Optional<String> payee;
 
-    private final Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit;
+    private final Optional<CreditOrDebitEnum> creditOrDebit;
 
     private final Optional<String> sourceTransactionId;
 
@@ -54,7 +54,7 @@ public final class BankFeedTransactionRequestRequest {
             Optional<String> description,
             Optional<String> transactionType,
             Optional<String> payee,
-            Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit,
+            Optional<CreditOrDebitEnum> creditOrDebit,
             Optional<String> sourceTransactionId,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -137,7 +137,7 @@ public final class BankFeedTransactionRequestRequest {
      * </ul>
      */
     @JsonProperty("credit_or_debit")
-    public Optional<BankFeedTransactionRequestRequestCreditOrDebit> getCreditOrDebit() {
+    public Optional<CreditOrDebitEnum> getCreditOrDebit() {
         return creditOrDebit;
     }
 
@@ -225,7 +225,7 @@ public final class BankFeedTransactionRequestRequest {
 
         private Optional<String> payee = Optional.empty();
 
-        private Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit = Optional.empty();
+        private Optional<CreditOrDebitEnum> creditOrDebit = Optional.empty();
 
         private Optional<String> sourceTransactionId = Optional.empty();
 
@@ -331,12 +331,12 @@ public final class BankFeedTransactionRequestRequest {
         }
 
         @JsonSetter(value = "credit_or_debit", nulls = Nulls.SKIP)
-        public Builder creditOrDebit(Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit) {
+        public Builder creditOrDebit(Optional<CreditOrDebitEnum> creditOrDebit) {
             this.creditOrDebit = creditOrDebit;
             return this;
         }
 
-        public Builder creditOrDebit(BankFeedTransactionRequestRequestCreditOrDebit creditOrDebit) {
+        public Builder creditOrDebit(CreditOrDebitEnum creditOrDebit) {
             this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }

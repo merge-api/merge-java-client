@@ -12,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.opportunities.types.OpportunitiesListRequestExpand;
+import com.merge.api.resources.crm.opportunities.types.OpportunitiesListRequestExpandItem;
 import com.merge.api.resources.crm.opportunities.types.OpportunitiesListRequestStatus;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +25,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = OpportunitiesListRequest.Builder.class)
 public final class OpportunitiesListRequest {
+    private final Optional<List<OpportunitiesListRequestExpandItem>> expand;
+
     private final Optional<String> accountId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -30,8 +34,6 @@ public final class OpportunitiesListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<OpportunitiesListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -64,11 +66,11 @@ public final class OpportunitiesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private OpportunitiesListRequest(
+            Optional<List<OpportunitiesListRequestExpandItem>> expand,
             Optional<String> accountId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<OpportunitiesListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -84,11 +86,11 @@ public final class OpportunitiesListRequest {
             Optional<String> stageId,
             Optional<OpportunitiesListRequestStatus> status,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountId = accountId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -104,6 +106,14 @@ public final class OpportunitiesListRequest {
         this.stageId = stageId;
         this.status = status;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<OpportunitiesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -136,14 +146,6 @@ public final class OpportunitiesListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<OpportunitiesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -275,11 +277,11 @@ public final class OpportunitiesListRequest {
     }
 
     private boolean equalTo(OpportunitiesListRequest other) {
-        return accountId.equals(other.accountId)
+        return expand.equals(other.expand)
+                && accountId.equals(other.accountId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -299,11 +301,11 @@ public final class OpportunitiesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -331,6 +333,8 @@ public final class OpportunitiesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<OpportunitiesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> accountId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -338,8 +342,6 @@ public final class OpportunitiesListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<OpportunitiesListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -375,11 +377,11 @@ public final class OpportunitiesListRequest {
         private Builder() {}
 
         public Builder from(OpportunitiesListRequest other) {
+            expand(other.getExpand());
             accountId(other.getAccountId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -394,6 +396,22 @@ public final class OpportunitiesListRequest {
             showEnumOrigins(other.getShowEnumOrigins());
             stageId(other.getStageId());
             status(other.getStatus());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<OpportunitiesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<OpportunitiesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(OpportunitiesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -438,17 +456,6 @@ public final class OpportunitiesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<OpportunitiesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(OpportunitiesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -608,11 +615,11 @@ public final class OpportunitiesListRequest {
 
         public OpportunitiesListRequest build() {
             return new OpportunitiesListRequest(
+                    expand,
                     accountId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

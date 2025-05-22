@@ -25,7 +25,7 @@ public final class MultipartFormFieldRequest {
 
     private final String data;
 
-    private final Optional<MultipartFormFieldRequestEncoding> encoding;
+    private final Optional<EncodingEnum> encoding;
 
     private final Optional<String> fileName;
 
@@ -36,7 +36,7 @@ public final class MultipartFormFieldRequest {
     private MultipartFormFieldRequest(
             String name,
             String data,
-            Optional<MultipartFormFieldRequestEncoding> encoding,
+            Optional<EncodingEnum> encoding,
             Optional<String> fileName,
             Optional<String> contentType,
             Map<String, Object> additionalProperties) {
@@ -73,7 +73,7 @@ public final class MultipartFormFieldRequest {
      * </ul>
      */
     @JsonProperty("encoding")
-    public Optional<MultipartFormFieldRequestEncoding> getEncoding() {
+    public Optional<EncodingEnum> getEncoding() {
         return encoding;
     }
 
@@ -139,9 +139,9 @@ public final class MultipartFormFieldRequest {
     public interface _FinalStage {
         MultipartFormFieldRequest build();
 
-        _FinalStage encoding(Optional<MultipartFormFieldRequestEncoding> encoding);
+        _FinalStage encoding(Optional<EncodingEnum> encoding);
 
-        _FinalStage encoding(MultipartFormFieldRequestEncoding encoding);
+        _FinalStage encoding(EncodingEnum encoding);
 
         _FinalStage fileName(Optional<String> fileName);
 
@@ -162,7 +162,7 @@ public final class MultipartFormFieldRequest {
 
         private Optional<String> fileName = Optional.empty();
 
-        private Optional<MultipartFormFieldRequestEncoding> encoding = Optional.empty();
+        private Optional<EncodingEnum> encoding = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -245,14 +245,14 @@ public final class MultipartFormFieldRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage encoding(MultipartFormFieldRequestEncoding encoding) {
+        public _FinalStage encoding(EncodingEnum encoding) {
             this.encoding = Optional.ofNullable(encoding);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "encoding", nulls = Nulls.SKIP)
-        public _FinalStage encoding(Optional<MultipartFormFieldRequestEncoding> encoding) {
+        public _FinalStage encoding(Optional<EncodingEnum> encoding) {
             this.encoding = encoding;
             return this;
         }

@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.employeepayrollruns.types.EmployeePayrollRunsListRequestExpand;
+import com.merge.api.resources.hris.employeepayrollruns.types.EmployeePayrollRunsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeePayrollRunsListRequest.Builder.class)
 public final class EmployeePayrollRunsListRequest {
+    private final Optional<List<EmployeePayrollRunsListRequestExpandItem>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -33,8 +37,6 @@ public final class EmployeePayrollRunsListRequest {
     private final Optional<OffsetDateTime> endedAfter;
 
     private final Optional<OffsetDateTime> endedBefore;
-
-    private final Optional<EmployeePayrollRunsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,13 +61,13 @@ public final class EmployeePayrollRunsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmployeePayrollRunsListRequest(
+            Optional<List<EmployeePayrollRunsListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> employeeId,
             Optional<OffsetDateTime> endedAfter,
             Optional<OffsetDateTime> endedBefore,
-            Optional<EmployeePayrollRunsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -77,13 +79,13 @@ public final class EmployeePayrollRunsListRequest {
             Optional<OffsetDateTime> startedAfter,
             Optional<OffsetDateTime> startedBefore,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.employeeId = employeeId;
         this.endedAfter = endedAfter;
         this.endedBefore = endedBefore;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -95,6 +97,14 @@ public final class EmployeePayrollRunsListRequest {
         this.startedAfter = startedAfter;
         this.startedBefore = startedBefore;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<EmployeePayrollRunsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -143,14 +153,6 @@ public final class EmployeePayrollRunsListRequest {
     @JsonProperty("ended_before")
     public Optional<OffsetDateTime> getEndedBefore() {
         return endedBefore;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<EmployeePayrollRunsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -245,13 +247,13 @@ public final class EmployeePayrollRunsListRequest {
     }
 
     private boolean equalTo(EmployeePayrollRunsListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
                 && endedAfter.equals(other.endedAfter)
                 && endedBefore.equals(other.endedBefore)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -267,13 +269,13 @@ public final class EmployeePayrollRunsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.employeeId,
                 this.endedAfter,
                 this.endedBefore,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -297,6 +299,8 @@ public final class EmployeePayrollRunsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<EmployeePayrollRunsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -308,8 +312,6 @@ public final class EmployeePayrollRunsListRequest {
         private Optional<OffsetDateTime> endedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> endedBefore = Optional.empty();
-
-        private Optional<EmployeePayrollRunsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -337,13 +339,13 @@ public final class EmployeePayrollRunsListRequest {
         private Builder() {}
 
         public Builder from(EmployeePayrollRunsListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             employeeId(other.getEmployeeId());
             endedAfter(other.getEndedAfter());
             endedBefore(other.getEndedBefore());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -354,6 +356,22 @@ public final class EmployeePayrollRunsListRequest {
             remoteId(other.getRemoteId());
             startedAfter(other.getStartedAfter());
             startedBefore(other.getStartedBefore());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<EmployeePayrollRunsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<EmployeePayrollRunsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EmployeePayrollRunsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -420,17 +438,6 @@ public final class EmployeePayrollRunsListRequest {
 
         public Builder endedBefore(OffsetDateTime endedBefore) {
             this.endedBefore = Optional.ofNullable(endedBefore);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EmployeePayrollRunsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(EmployeePayrollRunsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -546,13 +553,13 @@ public final class EmployeePayrollRunsListRequest {
 
         public EmployeePayrollRunsListRequest build() {
             return new EmployeePayrollRunsListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     employeeId,
                     endedAfter,
                     endedBefore,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

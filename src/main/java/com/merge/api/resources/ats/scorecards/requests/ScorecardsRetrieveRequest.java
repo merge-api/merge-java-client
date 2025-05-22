@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ats.scorecards.types.ScorecardsRetrieveRequestExpand;
+import com.merge.api.resources.ats.scorecards.types.ScorecardsRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,9 +23,11 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ScorecardsRetrieveRequest.Builder.class)
 public final class ScorecardsRetrieveRequest {
-    private final Optional<ScorecardsRetrieveRequestExpand> expand;
+    private final Optional<List<ScorecardsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Optional<String> remoteFields;
 
@@ -32,13 +36,15 @@ public final class ScorecardsRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private ScorecardsRetrieveRequest(
-            Optional<ScorecardsRetrieveRequestExpand> expand,
+            Optional<List<ScorecardsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<String> remoteFields,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -48,7 +54,7 @@ public final class ScorecardsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<ScorecardsRetrieveRequestExpand> getExpand() {
+    public Optional<List<ScorecardsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -58,6 +64,14 @@ public final class ScorecardsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -90,13 +104,15 @@ public final class ScorecardsRetrieveRequest {
     private boolean equalTo(ScorecardsRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(
+                this.expand, this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -110,9 +126,11 @@ public final class ScorecardsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<ScorecardsRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<ScorecardsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         private Optional<String> remoteFields = Optional.empty();
 
@@ -126,19 +144,25 @@ public final class ScorecardsRetrieveRequest {
         public Builder from(ScorecardsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<ScorecardsRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<ScorecardsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(ScorecardsRetrieveRequestExpand expand) {
+        public Builder expand(List<ScorecardsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(ScorecardsRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -150,6 +174,17 @@ public final class ScorecardsRetrieveRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.ofNullable(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -177,7 +212,7 @@ public final class ScorecardsRetrieveRequest {
 
         public ScorecardsRetrieveRequest build() {
             return new ScorecardsRetrieveRequest(
-                    expand, includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

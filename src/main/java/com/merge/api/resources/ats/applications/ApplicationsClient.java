@@ -3,11 +3,7 @@
  */
 package com.merge.api.resources.ats.applications;
 
-import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
-import com.merge.api.core.MediaTypes;
-import com.merge.api.core.MergeException;
-import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.resources.ats.applications.requests.ApplicationEndpointRequest;
 import com.merge.api.resources.ats.applications.requests.ApplicationsListRequest;
@@ -18,131 +14,43 @@ import com.merge.api.resources.ats.types.Application;
 import com.merge.api.resources.ats.types.ApplicationResponse;
 import com.merge.api.resources.ats.types.MetaResponse;
 import com.merge.api.resources.ats.types.PaginatedApplicationList;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
-import okhttp3.ResponseBody;
 
 public class ApplicationsClient {
     protected final ClientOptions clientOptions;
 
+    private final RawApplicationsClient rawClient;
+
     public ApplicationsClient(ClientOptions clientOptions) {
         this.clientOptions = clientOptions;
+        this.rawClient = new RawApplicationsClient(clientOptions);
+    }
+
+    /**
+     * Get responses with HTTP metadata like headers
+     */
+    public RawApplicationsClient withRawResponse() {
+        return this.rawClient;
     }
 
     /**
      * Returns a list of <code>Application</code> objects.
      */
     public PaginatedApplicationList list() {
-        return list(ApplicationsListRequest.builder().build());
+        return this.rawClient.list().body();
     }
 
     /**
      * Returns a list of <code>Application</code> objects.
      */
     public PaginatedApplicationList list(ApplicationsListRequest request) {
-        return list(request, null);
+        return this.rawClient.list(request).body();
     }
 
     /**
      * Returns a list of <code>Application</code> objects.
      */
     public PaginatedApplicationList list(ApplicationsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/applications");
-        if (request.getCandidateId().isPresent()) {
-            httpUrl.addQueryParameter("candidate_id", request.getCandidateId().get());
-        }
-        if (request.getCreatedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_after", request.getCreatedAfter().get().toString());
-        }
-        if (request.getCreatedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "created_before", request.getCreatedBefore().get().toString());
-        }
-        if (request.getCreditedToId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "credited_to_id", request.getCreditedToId().get());
-        }
-        if (request.getCurrentStageId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "current_stage_id", request.getCurrentStageId().get());
-        }
-        if (request.getCursor().isPresent()) {
-            httpUrl.addQueryParameter("cursor", request.getCursor().get());
-        }
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeDeletedData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        if (request.getIncludeShellData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_shell_data", request.getIncludeShellData().get().toString());
-        }
-        if (request.getJobId().isPresent()) {
-            httpUrl.addQueryParameter("job_id", request.getJobId().get());
-        }
-        if (request.getModifiedAfter().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_after", request.getModifiedAfter().get().toString());
-        }
-        if (request.getModifiedBefore().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "modified_before", request.getModifiedBefore().get().toString());
-        }
-        if (request.getPageSize().isPresent()) {
-            httpUrl.addQueryParameter("page_size", request.getPageSize().get().toString());
-        }
-        if (request.getRejectReasonId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "reject_reason_id", request.getRejectReasonId().get());
-        }
-        if (request.getRemoteId().isPresent()) {
-            httpUrl.addQueryParameter("remote_id", request.getRemoteId().get());
-        }
-        if (request.getSource().isPresent()) {
-            httpUrl.addQueryParameter("source", request.getSource().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedApplicationList.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.list(request, requestOptions).body();
     }
 
     /**
@@ -151,7 +59,7 @@ public class ApplicationsClient {
      * <p>See our <a href="https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024">Help Center article</a> for detailed support per integration.</p>
      */
     public ApplicationResponse create(ApplicationEndpointRequest request) {
-        return create(request, null);
+        return this.rawClient.create(request).body();
     }
 
     /**
@@ -160,119 +68,42 @@ public class ApplicationsClient {
      * <p>See our <a href="https://help.merge.dev/en/articles/10012366-updates-to-post-applications-oct-2024">Help Center article</a> for detailed support per integration.</p>
      */
     public ApplicationResponse create(ApplicationEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/applications");
-        if (request.getIsDebugMode().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "is_debug_mode", request.getIsDebugMode().get().toString());
-        }
-        if (request.getRunAsync().isPresent()) {
-            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
-        }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
-        properties.put("remote_user_id", request.getRemoteUserId());
-        RequestBody body;
-        try {
-            body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("POST", body)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ApplicationResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.create(request, requestOptions).body();
     }
 
     /**
      * Returns an <code>Application</code> object with the given <code>id</code>.
      */
     public Application retrieve(String id) {
-        return retrieve(id, ApplicationsRetrieveRequest.builder().build());
+        return this.rawClient.retrieve(id).body();
     }
 
     /**
      * Returns an <code>Application</code> object with the given <code>id</code>.
      */
     public Application retrieve(String id, ApplicationsRetrieveRequest request) {
-        return retrieve(id, request, null);
+        return this.rawClient.retrieve(id, request).body();
     }
 
     /**
      * Returns an <code>Application</code> object with the given <code>id</code>.
      */
     public Application retrieve(String id, ApplicationsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/applications")
-                .addPathSegment(id);
-        if (request.getExpand().isPresent()) {
-            httpUrl.addQueryParameter("expand", request.getExpand().get().toString());
-        }
-        if (request.getIncludeRemoteData().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "include_remote_data", request.getIncludeRemoteData().get().toString());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Application.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 
     /**
      * Updates the <code>current_stage</code> field of an <code>Application</code> object
      */
     public ApplicationResponse changeStageCreate(String id) {
-        return changeStageCreate(id, UpdateApplicationStageRequest.builder().build());
+        return this.rawClient.changeStageCreate(id).body();
     }
 
     /**
      * Updates the <code>current_stage</code> field of an <code>Application</code> object
      */
     public ApplicationResponse changeStageCreate(String id, UpdateApplicationStageRequest request) {
-        return changeStageCreate(id, request, null);
+        return this.rawClient.changeStageCreate(id, request).body();
     }
 
     /**
@@ -280,107 +111,27 @@ public class ApplicationsClient {
      */
     public ApplicationResponse changeStageCreate(
             String id, UpdateApplicationStageRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/applications")
-                .addPathSegment(id)
-                .addPathSegments("change-stage");
-        if (request.getIsDebugMode().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "is_debug_mode", request.getIsDebugMode().get().toString());
-        }
-        if (request.getRunAsync().isPresent()) {
-            httpUrl.addQueryParameter("run_async", request.getRunAsync().get().toString());
-        }
-        Map<String, Object> properties = new HashMap<>();
-        if (request.getJobInterviewStage().isPresent()) {
-            properties.put("job_interview_stage", request.getJobInterviewStage());
-        }
-        if (request.getRemoteUserId().isPresent()) {
-            properties.put("remote_user_id", request.getRemoteUserId());
-        }
-        RequestBody body;
-        try {
-            body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("POST", body)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ApplicationResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.changeStageCreate(id, request, requestOptions).body();
     }
 
     /**
      * Returns metadata for <code>Application</code> POSTs.
      */
     public MetaResponse metaPostRetrieve() {
-        return metaPostRetrieve(ApplicationsMetaPostRetrieveRequest.builder().build());
+        return this.rawClient.metaPostRetrieve().body();
     }
 
     /**
      * Returns metadata for <code>Application</code> POSTs.
      */
     public MetaResponse metaPostRetrieve(ApplicationsMetaPostRetrieveRequest request) {
-        return metaPostRetrieve(request, null);
+        return this.rawClient.metaPostRetrieve(request).body();
     }
 
     /**
      * Returns metadata for <code>Application</code> POSTs.
      */
     public MetaResponse metaPostRetrieve(ApplicationsMetaPostRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
-                .newBuilder()
-                .addPathSegments("ats/v1/applications/meta/post");
-        if (request.getApplicationRemoteTemplateId().isPresent()) {
-            httpUrl.addQueryParameter(
-                    "application_remote_template_id",
-                    request.getApplicationRemoteTemplateId().get());
-        }
-        Request.Builder _requestBuilder = new Request.Builder()
-                .url(httpUrl.build())
-                .method("GET", null)
-                .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json");
-        Request okhttpRequest = _requestBuilder.build();
-        OkHttpClient client = clientOptions.httpClient();
-        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
-            client = clientOptions.httpClientWithTimeout(requestOptions);
-        }
-        try (Response response = client.newCall(okhttpRequest).execute()) {
-            ResponseBody responseBody = response.body();
-            if (response.isSuccessful()) {
-                return ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class);
-            }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class));
-        } catch (IOException e) {
-            throw new MergeException("Network error executing HTTP request", e);
-        }
+        return this.rawClient.metaPostRetrieve(request, requestOptions).body();
     }
 }

@@ -35,11 +35,11 @@ public final class Group {
 
     private final Optional<String> name;
 
-    private final Optional<GroupType> type;
-
-    private final Optional<Boolean> remoteWasDeleted;
+    private final Optional<GroupTypeEnum> type;
 
     private final Optional<Boolean> isCommonlyUsedAsTeam;
+
+    private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -54,9 +54,9 @@ public final class Group {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> parentGroup,
             Optional<String> name,
-            Optional<GroupType> type,
-            Optional<Boolean> remoteWasDeleted,
+            Optional<GroupTypeEnum> type,
             Optional<Boolean> isCommonlyUsedAsTeam,
+            Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
@@ -67,8 +67,8 @@ public final class Group {
         this.parentGroup = parentGroup;
         this.name = name;
         this.type = type;
-        this.remoteWasDeleted = remoteWasDeleted;
         this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
+        this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -130,16 +130,8 @@ public final class Group {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<GroupType> getType() {
+    public Optional<GroupTypeEnum> getType() {
         return type;
-    }
-
-    /**
-     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
-     */
-    @JsonProperty("remote_was_deleted")
-    public Optional<Boolean> getRemoteWasDeleted() {
-        return remoteWasDeleted;
     }
 
     /**
@@ -148,6 +140,14 @@ public final class Group {
     @JsonProperty("is_commonly_used_as_team")
     public Optional<Boolean> getIsCommonlyUsedAsTeam() {
         return isCommonlyUsedAsTeam;
+    }
+
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
     }
 
     @JsonProperty("field_mappings")
@@ -179,8 +179,8 @@ public final class Group {
                 && parentGroup.equals(other.parentGroup)
                 && name.equals(other.name)
                 && type.equals(other.type)
-                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && isCommonlyUsedAsTeam.equals(other.isCommonlyUsedAsTeam)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -195,8 +195,8 @@ public final class Group {
                 this.parentGroup,
                 this.name,
                 this.type,
-                this.remoteWasDeleted,
                 this.isCommonlyUsedAsTeam,
+                this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -224,11 +224,11 @@ public final class Group {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<GroupType> type = Optional.empty();
-
-        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+        private Optional<GroupTypeEnum> type = Optional.empty();
 
         private Optional<Boolean> isCommonlyUsedAsTeam = Optional.empty();
+
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -247,8 +247,8 @@ public final class Group {
             parentGroup(other.getParentGroup());
             name(other.getName());
             type(other.getType());
-            remoteWasDeleted(other.getRemoteWasDeleted());
             isCommonlyUsedAsTeam(other.getIsCommonlyUsedAsTeam());
+            remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -321,24 +321,13 @@ public final class Group {
         }
 
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<GroupType> type) {
+        public Builder type(Optional<GroupTypeEnum> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(GroupType type) {
+        public Builder type(GroupTypeEnum type) {
             this.type = Optional.ofNullable(type);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -350,6 +339,17 @@ public final class Group {
 
         public Builder isCommonlyUsedAsTeam(Boolean isCommonlyUsedAsTeam) {
             this.isCommonlyUsedAsTeam = Optional.ofNullable(isCommonlyUsedAsTeam);
+            return this;
+        }
+
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -384,8 +384,8 @@ public final class Group {
                     parentGroup,
                     name,
                     type,
-                    remoteWasDeleted,
                     isCommonlyUsedAsTeam,
+                    remoteWasDeleted,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.filestorage.folders.types.FoldersListRequestExpand;
+import com.merge.api.resources.filestorage.folders.types.FoldersListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FoldersListRequest.Builder.class)
 public final class FoldersListRequest {
+    private final Optional<List<FoldersListRequestExpandItem>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -29,8 +33,6 @@ public final class FoldersListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> driveId;
-
-    private final Optional<FoldersListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -53,11 +55,11 @@ public final class FoldersListRequest {
     private final Map<String, Object> additionalProperties;
 
     private FoldersListRequest(
+            Optional<List<FoldersListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> driveId,
-            Optional<FoldersListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -68,11 +70,11 @@ public final class FoldersListRequest {
             Optional<String> parentFolderId,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.driveId = driveId;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -83,6 +85,14 @@ public final class FoldersListRequest {
         this.parentFolderId = parentFolderId;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<FoldersListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -115,14 +125,6 @@ public final class FoldersListRequest {
     @JsonProperty("drive_id")
     public Optional<String> getDriveId() {
         return driveId;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<FoldersListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -209,11 +211,11 @@ public final class FoldersListRequest {
     }
 
     private boolean equalTo(FoldersListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && driveId.equals(other.driveId)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -228,11 +230,11 @@ public final class FoldersListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.driveId,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -255,6 +257,8 @@ public final class FoldersListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<FoldersListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -262,8 +266,6 @@ public final class FoldersListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> driveId = Optional.empty();
-
-        private Optional<FoldersListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -289,11 +291,11 @@ public final class FoldersListRequest {
         private Builder() {}
 
         public Builder from(FoldersListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             driveId(other.getDriveId());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -303,6 +305,22 @@ public final class FoldersListRequest {
             pageSize(other.getPageSize());
             parentFolderId(other.getParentFolderId());
             remoteId(other.getRemoteId());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<FoldersListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<FoldersListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(FoldersListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -347,17 +365,6 @@ public final class FoldersListRequest {
 
         public Builder driveId(String driveId) {
             this.driveId = Optional.ofNullable(driveId);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<FoldersListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(FoldersListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -462,11 +469,11 @@ public final class FoldersListRequest {
 
         public FoldersListRequest build() {
             return new FoldersListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     driveId,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

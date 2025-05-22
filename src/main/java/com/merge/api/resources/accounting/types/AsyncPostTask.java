@@ -19,21 +19,21 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AsyncPostTask.Builder.class)
 public final class AsyncPostTask {
-    private final AsyncPostTaskStatus status;
+    private final AsyncPostTaskStatusEnum status;
 
     private final AsyncPostTaskResult result;
 
     private final Map<String, Object> additionalProperties;
 
     private AsyncPostTask(
-            AsyncPostTaskStatus status, AsyncPostTaskResult result, Map<String, Object> additionalProperties) {
+            AsyncPostTaskStatusEnum status, AsyncPostTaskResult result, Map<String, Object> additionalProperties) {
         this.status = status;
         this.result = result;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("status")
-    public AsyncPostTaskStatus getStatus() {
+    public AsyncPostTaskStatusEnum getStatus() {
         return status;
     }
 
@@ -72,7 +72,7 @@ public final class AsyncPostTask {
     }
 
     public interface StatusStage {
-        ResultStage status(@NotNull AsyncPostTaskStatus status);
+        ResultStage status(@NotNull AsyncPostTaskStatusEnum status);
 
         Builder from(AsyncPostTask other);
     }
@@ -87,7 +87,7 @@ public final class AsyncPostTask {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StatusStage, ResultStage, _FinalStage {
-        private AsyncPostTaskStatus status;
+        private AsyncPostTaskStatusEnum status;
 
         private AsyncPostTaskResult result;
 
@@ -105,7 +105,7 @@ public final class AsyncPostTask {
 
         @java.lang.Override
         @JsonSetter("status")
-        public ResultStage status(@NotNull AsyncPostTaskStatus status) {
+        public ResultStage status(@NotNull AsyncPostTaskStatusEnum status) {
             this.status = status;
             return this;
         }

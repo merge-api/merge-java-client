@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.purchaseorders.types.PurchaseOrdersListRequestExpand;
+import com.merge.api.resources.accounting.purchaseorders.types.PurchaseOrdersListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PurchaseOrdersListRequest.Builder.class)
 public final class PurchaseOrdersListRequest {
+    private final Optional<List<PurchaseOrdersListRequestExpandItem>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -29,8 +33,6 @@ public final class PurchaseOrdersListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<PurchaseOrdersListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,11 +61,11 @@ public final class PurchaseOrdersListRequest {
     private final Map<String, Object> additionalProperties;
 
     private PurchaseOrdersListRequest(
+            Optional<List<PurchaseOrdersListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<PurchaseOrdersListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -77,11 +79,11 @@ public final class PurchaseOrdersListRequest {
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -95,6 +97,14 @@ public final class PurchaseOrdersListRequest {
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<PurchaseOrdersListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -127,14 +137,6 @@ public final class PurchaseOrdersListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<PurchaseOrdersListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -245,11 +247,11 @@ public final class PurchaseOrdersListRequest {
     }
 
     private boolean equalTo(PurchaseOrdersListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -267,11 +269,11 @@ public final class PurchaseOrdersListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -297,6 +299,8 @@ public final class PurchaseOrdersListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<PurchaseOrdersListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -304,8 +308,6 @@ public final class PurchaseOrdersListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<PurchaseOrdersListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -337,11 +339,11 @@ public final class PurchaseOrdersListRequest {
         private Builder() {}
 
         public Builder from(PurchaseOrdersListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -354,6 +356,22 @@ public final class PurchaseOrdersListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<PurchaseOrdersListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<PurchaseOrdersListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(PurchaseOrdersListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -398,17 +416,6 @@ public final class PurchaseOrdersListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<PurchaseOrdersListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(PurchaseOrdersListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -546,11 +553,11 @@ public final class PurchaseOrdersListRequest {
 
         public PurchaseOrdersListRequest build() {
             return new PurchaseOrdersListRequest(
+                    expand,
                     companyId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

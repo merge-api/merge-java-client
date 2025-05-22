@@ -26,15 +26,15 @@ public final class TimeOffRequest {
 
     private final Optional<TimeOffRequestApprover> approver;
 
-    private final Optional<TimeOffRequestStatus> status;
+    private final Optional<TimeOffStatusEnum> status;
 
     private final Optional<String> employeeNote;
 
-    private final Optional<TimeOffRequestUnits> units;
+    private final Optional<UnitsEnum> units;
 
     private final Optional<Double> amount;
 
-    private final Optional<TimeOffRequestRequestType> requestType;
+    private final Optional<RequestTypeEnum> requestType;
 
     private final Optional<OffsetDateTime> startTime;
 
@@ -49,11 +49,11 @@ public final class TimeOffRequest {
     private TimeOffRequest(
             Optional<TimeOffRequestEmployee> employee,
             Optional<TimeOffRequestApprover> approver,
-            Optional<TimeOffRequestStatus> status,
+            Optional<TimeOffStatusEnum> status,
             Optional<String> employeeNote,
-            Optional<TimeOffRequestUnits> units,
+            Optional<UnitsEnum> units,
             Optional<Double> amount,
-            Optional<TimeOffRequestRequestType> requestType,
+            Optional<RequestTypeEnum> requestType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -100,7 +100,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TimeOffRequestStatus> getStatus() {
+    public Optional<TimeOffStatusEnum> getStatus() {
         return status;
     }
 
@@ -120,7 +120,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("units")
-    public Optional<TimeOffRequestUnits> getUnits() {
+    public Optional<UnitsEnum> getUnits() {
         return units;
     }
 
@@ -144,7 +144,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("request_type")
-    public Optional<TimeOffRequestRequestType> getRequestType() {
+    public Optional<RequestTypeEnum> getRequestType() {
         return requestType;
     }
 
@@ -230,15 +230,15 @@ public final class TimeOffRequest {
 
         private Optional<TimeOffRequestApprover> approver = Optional.empty();
 
-        private Optional<TimeOffRequestStatus> status = Optional.empty();
+        private Optional<TimeOffStatusEnum> status = Optional.empty();
 
         private Optional<String> employeeNote = Optional.empty();
 
-        private Optional<TimeOffRequestUnits> units = Optional.empty();
+        private Optional<UnitsEnum> units = Optional.empty();
 
         private Optional<Double> amount = Optional.empty();
 
-        private Optional<TimeOffRequestRequestType> requestType = Optional.empty();
+        private Optional<RequestTypeEnum> requestType = Optional.empty();
 
         private Optional<OffsetDateTime> startTime = Optional.empty();
 
@@ -291,12 +291,12 @@ public final class TimeOffRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TimeOffRequestStatus> status) {
+        public Builder status(Optional<TimeOffStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TimeOffRequestStatus status) {
+        public Builder status(TimeOffStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -313,12 +313,12 @@ public final class TimeOffRequest {
         }
 
         @JsonSetter(value = "units", nulls = Nulls.SKIP)
-        public Builder units(Optional<TimeOffRequestUnits> units) {
+        public Builder units(Optional<UnitsEnum> units) {
             this.units = units;
             return this;
         }
 
-        public Builder units(TimeOffRequestUnits units) {
+        public Builder units(UnitsEnum units) {
             this.units = Optional.ofNullable(units);
             return this;
         }
@@ -335,12 +335,12 @@ public final class TimeOffRequest {
         }
 
         @JsonSetter(value = "request_type", nulls = Nulls.SKIP)
-        public Builder requestType(Optional<TimeOffRequestRequestType> requestType) {
+        public Builder requestType(Optional<RequestTypeEnum> requestType) {
             this.requestType = requestType;
             return this;
         }
 
-        public Builder requestType(TimeOffRequestRequestType requestType) {
+        public Builder requestType(RequestTypeEnum requestType) {
             this.requestType = Optional.ofNullable(requestType);
             return this;
         }

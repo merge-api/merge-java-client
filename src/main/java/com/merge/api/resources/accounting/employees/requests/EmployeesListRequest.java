@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,9 +22,9 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesListRequest.Builder.class)
 public final class EmployeesListRequest {
-    private final Optional<String> cursor;
+    private final Optional<List<String>> expand;
 
-    private final Optional<String> expand;
+    private final Optional<String> cursor;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -35,15 +37,15 @@ public final class EmployeesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmployeesListRequest(
+            Optional<List<String>> expand,
             Optional<String> cursor,
-            Optional<String> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
-        this.cursor = cursor;
         this.expand = expand;
+        this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -52,19 +54,19 @@ public final class EmployeesListRequest {
     }
 
     /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<String>> getExpand() {
+        return expand;
+    }
+
+    /**
      * @return The pagination cursor value.
      */
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<String> getExpand() {
-        return expand;
     }
 
     /**
@@ -111,8 +113,8 @@ public final class EmployeesListRequest {
     }
 
     private boolean equalTo(EmployeesListRequest other) {
-        return cursor.equals(other.cursor)
-                && expand.equals(other.expand)
+        return expand.equals(other.expand)
+                && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -122,8 +124,8 @@ public final class EmployeesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.cursor,
                 this.expand,
+                this.cursor,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -141,9 +143,9 @@ public final class EmployeesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<String> cursor = Optional.empty();
+        private Optional<List<String>> expand = Optional.empty();
 
-        private Optional<String> expand = Optional.empty();
+        private Optional<String> cursor = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -159,12 +161,28 @@ public final class EmployeesListRequest {
         private Builder() {}
 
         public Builder from(EmployeesListRequest other) {
-            cursor(other.getCursor());
             expand(other.getExpand());
+            cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
             pageSize(other.getPageSize());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<String>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<String> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(String expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -176,17 +194,6 @@ public final class EmployeesListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<String> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(String expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -236,8 +243,8 @@ public final class EmployeesListRequest {
 
         public EmployeesListRequest build() {
             return new EmployeesListRequest(
-                    cursor,
                     expand,
+                    cursor,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

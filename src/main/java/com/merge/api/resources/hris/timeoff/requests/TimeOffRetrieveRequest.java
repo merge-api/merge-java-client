@@ -12,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestExpand;
+import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestExpandItem;
 import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestRemoteFields;
 import com.merge.api.resources.hris.timeoff.types.TimeOffRetrieveRequestShowEnumOrigins;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,9 +25,11 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffRetrieveRequest.Builder.class)
 public final class TimeOffRetrieveRequest {
-    private final Optional<TimeOffRetrieveRequestExpand> expand;
+    private final Optional<List<TimeOffRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Optional<TimeOffRetrieveRequestRemoteFields> remoteFields;
 
@@ -34,13 +38,15 @@ public final class TimeOffRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private TimeOffRetrieveRequest(
-            Optional<TimeOffRetrieveRequestExpand> expand,
+            Optional<List<TimeOffRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Optional<TimeOffRetrieveRequestRemoteFields> remoteFields,
             Optional<TimeOffRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -50,7 +56,7 @@ public final class TimeOffRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<TimeOffRetrieveRequestExpand> getExpand() {
+    public Optional<List<TimeOffRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -60,6 +66,14 @@ public final class TimeOffRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -92,13 +106,15 @@ public final class TimeOffRetrieveRequest {
     private boolean equalTo(TimeOffRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.remoteFields, this.showEnumOrigins);
+        return Objects.hash(
+                this.expand, this.includeRemoteData, this.includeShellData, this.remoteFields, this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -112,9 +128,11 @@ public final class TimeOffRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<TimeOffRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<TimeOffRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         private Optional<TimeOffRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
@@ -128,19 +146,25 @@ public final class TimeOffRetrieveRequest {
         public Builder from(TimeOffRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<TimeOffRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<TimeOffRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(TimeOffRetrieveRequestExpand expand) {
+        public Builder expand(List<TimeOffRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(TimeOffRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -152,6 +176,17 @@ public final class TimeOffRetrieveRequest {
 
         public Builder includeRemoteData(Boolean includeRemoteData) {
             this.includeRemoteData = Optional.ofNullable(includeRemoteData);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -179,7 +214,7 @@ public final class TimeOffRetrieveRequest {
 
         public TimeOffRetrieveRequest build() {
             return new TimeOffRetrieveRequest(
-                    expand, includeRemoteData, remoteFields, showEnumOrigins, additionalProperties);
+                    expand, includeRemoteData, includeShellData, remoteFields, showEnumOrigins, additionalProperties);
         }
     }
 }

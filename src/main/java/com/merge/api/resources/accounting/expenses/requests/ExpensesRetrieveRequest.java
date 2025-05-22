@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.expenses.types.ExpensesRetrieveRequestExpand;
+import com.merge.api.resources.accounting.expenses.types.ExpensesRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,22 +23,26 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ExpensesRetrieveRequest.Builder.class)
 public final class ExpensesRetrieveRequest {
-    private final Optional<ExpensesRetrieveRequestExpand> expand;
+    private final Optional<List<ExpensesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeRemoteFields;
 
+    private final Optional<Boolean> includeShellData;
+
     private final Map<String, Object> additionalProperties;
 
     private ExpensesRetrieveRequest(
-            Optional<ExpensesRetrieveRequestExpand> expand,
+            Optional<List<ExpensesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -44,7 +50,7 @@ public final class ExpensesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<ExpensesRetrieveRequestExpand> getExpand() {
+    public Optional<List<ExpensesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -64,6 +70,14 @@ public final class ExpensesRetrieveRequest {
         return includeRemoteFields;
     }
 
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -78,12 +92,13 @@ public final class ExpensesRetrieveRequest {
     private boolean equalTo(ExpensesRetrieveRequest other) {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
-                && includeRemoteFields.equals(other.includeRemoteFields);
+                && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeRemoteFields, this.includeShellData);
     }
 
     @java.lang.Override
@@ -97,11 +112,13 @@ public final class ExpensesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<ExpensesRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<ExpensesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -112,17 +129,23 @@ public final class ExpensesRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<ExpensesRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<ExpensesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(ExpensesRetrieveRequestExpand expand) {
+        public Builder expand(List<ExpensesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(ExpensesRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -148,8 +171,20 @@ public final class ExpensesRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public ExpensesRetrieveRequest build() {
-            return new ExpensesRetrieveRequest(expand, includeRemoteData, includeRemoteFields, additionalProperties);
+            return new ExpensesRetrieveRequest(
+                    expand, includeRemoteData, includeRemoteFields, includeShellData, additionalProperties);
         }
     }
 }

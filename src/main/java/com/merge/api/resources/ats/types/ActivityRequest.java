@@ -23,13 +23,13 @@ import java.util.Optional;
 public final class ActivityRequest {
     private final Optional<ActivityRequestUser> user;
 
-    private final Optional<ActivityRequestActivityType> activityType;
+    private final Optional<ActivityTypeEnum> activityType;
 
     private final Optional<String> subject;
 
     private final Optional<String> body;
 
-    private final Optional<ActivityRequestVisibility> visibility;
+    private final Optional<VisibilityEnum> visibility;
 
     private final Optional<String> candidate;
 
@@ -41,10 +41,10 @@ public final class ActivityRequest {
 
     private ActivityRequest(
             Optional<ActivityRequestUser> user,
-            Optional<ActivityRequestActivityType> activityType,
+            Optional<ActivityTypeEnum> activityType,
             Optional<String> subject,
             Optional<String> body,
-            Optional<ActivityRequestVisibility> visibility,
+            Optional<VisibilityEnum> visibility,
             Optional<String> candidate,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -77,7 +77,7 @@ public final class ActivityRequest {
      * </ul>
      */
     @JsonProperty("activity_type")
-    public Optional<ActivityRequestActivityType> getActivityType() {
+    public Optional<ActivityTypeEnum> getActivityType() {
         return activityType;
     }
 
@@ -106,7 +106,7 @@ public final class ActivityRequest {
      * </ul>
      */
     @JsonProperty("visibility")
-    public Optional<ActivityRequestVisibility> getVisibility() {
+    public Optional<VisibilityEnum> getVisibility() {
         return visibility;
     }
 
@@ -173,13 +173,13 @@ public final class ActivityRequest {
     public static final class Builder {
         private Optional<ActivityRequestUser> user = Optional.empty();
 
-        private Optional<ActivityRequestActivityType> activityType = Optional.empty();
+        private Optional<ActivityTypeEnum> activityType = Optional.empty();
 
         private Optional<String> subject = Optional.empty();
 
         private Optional<String> body = Optional.empty();
 
-        private Optional<ActivityRequestVisibility> visibility = Optional.empty();
+        private Optional<VisibilityEnum> visibility = Optional.empty();
 
         private Optional<String> candidate = Optional.empty();
 
@@ -216,12 +216,12 @@ public final class ActivityRequest {
         }
 
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<ActivityRequestActivityType> activityType) {
+        public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
             return this;
         }
 
-        public Builder activityType(ActivityRequestActivityType activityType) {
+        public Builder activityType(ActivityTypeEnum activityType) {
             this.activityType = Optional.ofNullable(activityType);
             return this;
         }
@@ -249,12 +249,12 @@ public final class ActivityRequest {
         }
 
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
-        public Builder visibility(Optional<ActivityRequestVisibility> visibility) {
+        public Builder visibility(Optional<VisibilityEnum> visibility) {
             this.visibility = visibility;
             return this;
         }
 
-        public Builder visibility(ActivityRequestVisibility visibility) {
+        public Builder visibility(VisibilityEnum visibility) {
             this.visibility = Optional.ofNullable(visibility);
             return this;
         }

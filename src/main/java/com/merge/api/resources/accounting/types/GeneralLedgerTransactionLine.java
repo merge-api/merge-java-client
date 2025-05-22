@@ -40,15 +40,15 @@ public final class GeneralLedgerTransactionLine {
 
     private final Optional<GeneralLedgerTransactionLineContact> contact;
 
-    private final Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency;
+    private final Optional<TransactionCurrencyEnum> baseCurrency;
 
-    private final Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency;
+    private final Optional<TransactionCurrencyEnum> transactionCurrency;
 
     private final Optional<String> exchangeRate;
 
     private final Optional<String> description;
 
-    private final Optional<List<TrackingCategory>> trackingCategories;
+    private final Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories;
 
     private final String debitAmount;
 
@@ -75,11 +75,11 @@ public final class GeneralLedgerTransactionLine {
             Optional<GeneralLedgerTransactionLineCompany> company,
             Optional<GeneralLedgerTransactionLineEmployee> employee,
             Optional<GeneralLedgerTransactionLineContact> contact,
-            Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency,
-            Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency,
+            Optional<TransactionCurrencyEnum> baseCurrency,
+            Optional<TransactionCurrencyEnum> transactionCurrency,
             Optional<String> exchangeRate,
             Optional<String> description,
-            Optional<List<TrackingCategory>> trackingCategories,
+            Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories,
             String debitAmount,
             String creditAmount,
             Optional<GeneralLedgerTransactionLineItem> item,
@@ -475,7 +475,7 @@ public final class GeneralLedgerTransactionLine {
      * </ul>
      */
     @JsonProperty("base_currency")
-    public Optional<GeneralLedgerTransactionLineBaseCurrency> getBaseCurrency() {
+    public Optional<TransactionCurrencyEnum> getBaseCurrency() {
         return baseCurrency;
     }
 
@@ -791,7 +791,7 @@ public final class GeneralLedgerTransactionLine {
      * </ul>
      */
     @JsonProperty("transaction_currency")
-    public Optional<GeneralLedgerTransactionLineTransactionCurrency> getTransactionCurrency() {
+    public Optional<TransactionCurrencyEnum> getTransactionCurrency() {
         return transactionCurrency;
     }
 
@@ -812,7 +812,7 @@ public final class GeneralLedgerTransactionLine {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<TrackingCategory>> getTrackingCategories() {
+    public Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -975,13 +975,13 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage contact(GeneralLedgerTransactionLineContact contact);
 
-        _FinalStage baseCurrency(Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency);
+        _FinalStage baseCurrency(Optional<TransactionCurrencyEnum> baseCurrency);
 
-        _FinalStage baseCurrency(GeneralLedgerTransactionLineBaseCurrency baseCurrency);
+        _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency);
 
-        _FinalStage transactionCurrency(Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency);
+        _FinalStage transactionCurrency(Optional<TransactionCurrencyEnum> transactionCurrency);
 
-        _FinalStage transactionCurrency(GeneralLedgerTransactionLineTransactionCurrency transactionCurrency);
+        _FinalStage transactionCurrency(TransactionCurrencyEnum transactionCurrency);
 
         _FinalStage exchangeRate(Optional<String> exchangeRate);
 
@@ -991,9 +991,10 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage description(String description);
 
-        _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories);
+        _FinalStage trackingCategories(
+                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories);
 
-        _FinalStage trackingCategories(List<TrackingCategory> trackingCategories);
+        _FinalStage trackingCategories(List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories);
 
         _FinalStage item(Optional<GeneralLedgerTransactionLineItem> item);
 
@@ -1029,15 +1030,16 @@ public final class GeneralLedgerTransactionLine {
 
         private Optional<GeneralLedgerTransactionLineItem> item = Optional.empty();
 
-        private Optional<List<TrackingCategory>> trackingCategories = Optional.empty();
+        private Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories =
+                Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> transactionCurrency = Optional.empty();
 
-        private Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> baseCurrency = Optional.empty();
 
         private Optional<GeneralLedgerTransactionLineContact> contact = Optional.empty();
 
@@ -1157,14 +1159,16 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
-        public _FinalStage trackingCategories(List<TrackingCategory> trackingCategories) {
+        public _FinalStage trackingCategories(
+                List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories) {
             this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories) {
+        public _FinalStage trackingCategories(
+                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
@@ -1516,15 +1520,14 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage transactionCurrency(GeneralLedgerTransactionLineTransactionCurrency transactionCurrency) {
+        public _FinalStage transactionCurrency(TransactionCurrencyEnum transactionCurrency) {
             this.transactionCurrency = Optional.ofNullable(transactionCurrency);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "transaction_currency", nulls = Nulls.SKIP)
-        public _FinalStage transactionCurrency(
-                Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency) {
+        public _FinalStage transactionCurrency(Optional<TransactionCurrencyEnum> transactionCurrency) {
             this.transactionCurrency = transactionCurrency;
             return this;
         }
@@ -1842,14 +1845,14 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage baseCurrency(GeneralLedgerTransactionLineBaseCurrency baseCurrency) {
+        public _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency) {
             this.baseCurrency = Optional.ofNullable(baseCurrency);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "base_currency", nulls = Nulls.SKIP)
-        public _FinalStage baseCurrency(Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency) {
+        public _FinalStage baseCurrency(Optional<TransactionCurrencyEnum> baseCurrency) {
             this.baseCurrency = baseCurrency;
             return this;
         }

@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.vendorcredits.types.VendorCreditsRetrieveRequestExpand;
+import com.merge.api.resources.accounting.vendorcredits.types.VendorCreditsRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,18 +23,22 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = VendorCreditsRetrieveRequest.Builder.class)
 public final class VendorCreditsRetrieveRequest {
-    private final Optional<VendorCreditsRetrieveRequestExpand> expand;
+    private final Optional<List<VendorCreditsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Map<String, Object> additionalProperties;
 
     private VendorCreditsRetrieveRequest(
-            Optional<VendorCreditsRetrieveRequestExpand> expand,
+            Optional<List<VendorCreditsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
+            Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
+        this.includeShellData = includeShellData;
         this.additionalProperties = additionalProperties;
     }
 
@@ -40,7 +46,7 @@ public final class VendorCreditsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<VendorCreditsRetrieveRequestExpand> getExpand() {
+    public Optional<List<VendorCreditsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -50,6 +56,14 @@ public final class VendorCreditsRetrieveRequest {
     @JsonProperty("include_remote_data")
     public Optional<Boolean> getIncludeRemoteData() {
         return includeRemoteData;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     @java.lang.Override
@@ -64,12 +78,14 @@ public final class VendorCreditsRetrieveRequest {
     }
 
     private boolean equalTo(VendorCreditsRetrieveRequest other) {
-        return expand.equals(other.expand) && includeRemoteData.equals(other.includeRemoteData);
+        return expand.equals(other.expand)
+                && includeRemoteData.equals(other.includeRemoteData)
+                && includeShellData.equals(other.includeShellData);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.expand, this.includeRemoteData);
+        return Objects.hash(this.expand, this.includeRemoteData, this.includeShellData);
     }
 
     @java.lang.Override
@@ -83,9 +99,11 @@ public final class VendorCreditsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<VendorCreditsRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<VendorCreditsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -95,17 +113,23 @@ public final class VendorCreditsRetrieveRequest {
         public Builder from(VendorCreditsRetrieveRequest other) {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
+            includeShellData(other.getIncludeShellData());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<VendorCreditsRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<VendorCreditsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(VendorCreditsRetrieveRequestExpand expand) {
+        public Builder expand(List<VendorCreditsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(VendorCreditsRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -120,8 +144,19 @@ public final class VendorCreditsRetrieveRequest {
             return this;
         }
 
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
+            return this;
+        }
+
         public VendorCreditsRetrieveRequest build() {
-            return new VendorCreditsRetrieveRequest(expand, includeRemoteData, additionalProperties);
+            return new VendorCreditsRetrieveRequest(expand, includeRemoteData, includeShellData, additionalProperties);
         }
     }
 }

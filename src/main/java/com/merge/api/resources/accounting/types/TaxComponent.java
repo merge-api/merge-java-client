@@ -35,7 +35,7 @@ public final class TaxComponent {
 
     private final Optional<Boolean> isCompound;
 
-    private final Optional<TaxComponentComponentType> componentType;
+    private final Optional<ComponentTypeEnum> componentType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -49,7 +49,7 @@ public final class TaxComponent {
             Optional<String> name,
             Optional<String> rate,
             Optional<Boolean> isCompound,
-            Optional<TaxComponentComponentType> componentType,
+            Optional<ComponentTypeEnum> componentType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -125,7 +125,7 @@ public final class TaxComponent {
      * </ul>
      */
     @JsonProperty("component_type")
-    public Optional<TaxComponentComponentType> getComponentType() {
+    public Optional<ComponentTypeEnum> getComponentType() {
         return componentType;
     }
 
@@ -199,7 +199,7 @@ public final class TaxComponent {
 
         private Optional<Boolean> isCompound = Optional.empty();
 
-        private Optional<TaxComponentComponentType> componentType = Optional.empty();
+        private Optional<ComponentTypeEnum> componentType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -299,12 +299,12 @@ public final class TaxComponent {
         }
 
         @JsonSetter(value = "component_type", nulls = Nulls.SKIP)
-        public Builder componentType(Optional<TaxComponentComponentType> componentType) {
+        public Builder componentType(Optional<ComponentTypeEnum> componentType) {
             this.componentType = componentType;
             return this;
         }
 
-        public Builder componentType(TaxComponentComponentType componentType) {
+        public Builder componentType(ComponentTypeEnum componentType) {
             this.componentType = Optional.ofNullable(componentType);
             return this;
         }

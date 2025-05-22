@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.crm.engagements.types.EngagementsListRequestExpand;
+import com.merge.api.resources.crm.engagements.types.EngagementsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,13 +24,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EngagementsListRequest.Builder.class)
 public final class EngagementsListRequest {
+    private final Optional<List<EngagementsListRequestExpandItem>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<EngagementsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -53,10 +55,10 @@ public final class EngagementsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EngagementsListRequest(
+            Optional<List<EngagementsListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<EngagementsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -68,10 +70,10 @@ public final class EngagementsListRequest {
             Optional<OffsetDateTime> startedAfter,
             Optional<OffsetDateTime> startedBefore,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -83,6 +85,14 @@ public final class EngagementsListRequest {
         this.startedAfter = startedAfter;
         this.startedBefore = startedBefore;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<EngagementsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -107,14 +117,6 @@ public final class EngagementsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<EngagementsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -209,10 +211,10 @@ public final class EngagementsListRequest {
     }
 
     private boolean equalTo(EngagementsListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -228,10 +230,10 @@ public final class EngagementsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -255,13 +257,13 @@ public final class EngagementsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<EngagementsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<EngagementsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -289,10 +291,10 @@ public final class EngagementsListRequest {
         private Builder() {}
 
         public Builder from(EngagementsListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -303,6 +305,22 @@ public final class EngagementsListRequest {
             remoteId(other.getRemoteId());
             startedAfter(other.getStartedAfter());
             startedBefore(other.getStartedBefore());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<EngagementsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<EngagementsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EngagementsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -336,17 +354,6 @@ public final class EngagementsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EngagementsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(EngagementsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -462,10 +469,10 @@ public final class EngagementsListRequest {
 
         public EngagementsListRequest build() {
             return new EngagementsListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

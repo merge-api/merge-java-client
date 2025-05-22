@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.contacts.types.ContactsListRequestExpand;
+import com.merge.api.resources.accounting.contacts.types.ContactsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ContactsListRequest.Builder.class)
 public final class ContactsListRequest {
+    private final Optional<List<ContactsListRequestExpandItem>> expand;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -31,8 +35,6 @@ public final class ContactsListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> emailAddress;
-
-    private final Optional<ContactsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -60,15 +62,17 @@ public final class ContactsListRequest {
 
     private final Optional<String> showEnumOrigins;
 
+    private final Optional<String> status;
+
     private final Map<String, Object> additionalProperties;
 
     private ContactsListRequest(
+            Optional<List<ContactsListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> emailAddress,
-            Optional<ContactsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -82,13 +86,14 @@ public final class ContactsListRequest {
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
+            Optional<String> status,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.emailAddress = emailAddress;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -102,7 +107,16 @@ public final class ContactsListRequest {
         this.remoteFields = remoteFields;
         this.remoteId = remoteId;
         this.showEnumOrigins = showEnumOrigins;
+        this.status = status;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<ContactsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -143,14 +157,6 @@ public final class ContactsListRequest {
     @JsonProperty("email_address")
     public Optional<String> getEmailAddress() {
         return emailAddress;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<ContactsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -257,6 +263,14 @@ public final class ContactsListRequest {
         return showEnumOrigins;
     }
 
+    /**
+     * @return If provided, will only return Contacts that match this status.
+     */
+    @JsonProperty("status")
+    public Optional<String> getStatus() {
+        return status;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -269,12 +283,12 @@ public final class ContactsListRequest {
     }
 
     private boolean equalTo(ContactsListRequest other) {
-        return companyId.equals(other.companyId)
+        return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && emailAddress.equals(other.emailAddress)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -287,18 +301,19 @@ public final class ContactsListRequest {
                 && pageSize.equals(other.pageSize)
                 && remoteFields.equals(other.remoteFields)
                 && remoteId.equals(other.remoteId)
-                && showEnumOrigins.equals(other.showEnumOrigins);
+                && showEnumOrigins.equals(other.showEnumOrigins)
+                && status.equals(other.status);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.emailAddress,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -311,7 +326,8 @@ public final class ContactsListRequest {
                 this.pageSize,
                 this.remoteFields,
                 this.remoteId,
-                this.showEnumOrigins);
+                this.showEnumOrigins,
+                this.status);
     }
 
     @java.lang.Override
@@ -325,6 +341,8 @@ public final class ContactsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<ContactsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> companyId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -334,8 +352,6 @@ public final class ContactsListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> emailAddress = Optional.empty();
-
-        private Optional<ContactsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -363,18 +379,20 @@ public final class ContactsListRequest {
 
         private Optional<String> showEnumOrigins = Optional.empty();
 
+        private Optional<String> status = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
         private Builder() {}
 
         public Builder from(ContactsListRequest other) {
+            expand(other.getExpand());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             emailAddress(other.getEmailAddress());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -388,6 +406,23 @@ public final class ContactsListRequest {
             remoteFields(other.getRemoteFields());
             remoteId(other.getRemoteId());
             showEnumOrigins(other.getShowEnumOrigins());
+            status(other.getStatus());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<ContactsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<ContactsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(ContactsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -443,17 +478,6 @@ public final class ContactsListRequest {
 
         public Builder emailAddress(String emailAddress) {
             this.emailAddress = Optional.ofNullable(emailAddress);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<ContactsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(ContactsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -600,14 +624,25 @@ public final class ContactsListRequest {
             return this;
         }
 
+        @JsonSetter(value = "status", nulls = Nulls.SKIP)
+        public Builder status(Optional<String> status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder status(String status) {
+            this.status = Optional.ofNullable(status);
+            return this;
+        }
+
         public ContactsListRequest build() {
             return new ContactsListRequest(
+                    expand,
                     companyId,
                     createdAfter,
                     createdBefore,
                     cursor,
                     emailAddress,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,
@@ -621,6 +656,7 @@ public final class ContactsListRequest {
                     remoteFields,
                     remoteId,
                     showEnumOrigins,
+                    status,
                     additionalProperties);
         }
     }

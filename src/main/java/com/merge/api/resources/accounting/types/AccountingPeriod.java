@@ -33,7 +33,7 @@ public final class AccountingPeriod {
 
     private final Optional<String> name;
 
-    private final Optional<AccountingPeriodStatus> status;
+    private final Optional<Status895Enum> status;
 
     private final Optional<OffsetDateTime> startDate;
 
@@ -51,7 +51,7 @@ public final class AccountingPeriod {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<AccountingPeriodStatus> status,
+            Optional<Status895Enum> status,
             Optional<OffsetDateTime> startDate,
             Optional<OffsetDateTime> endDate,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -108,7 +108,7 @@ public final class AccountingPeriod {
     }
 
     @JsonProperty("status")
-    public Optional<AccountingPeriodStatus> getStatus() {
+    public Optional<Status895Enum> getStatus() {
         return status;
     }
 
@@ -198,7 +198,7 @@ public final class AccountingPeriod {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<AccountingPeriodStatus> status = Optional.empty();
+        private Optional<Status895Enum> status = Optional.empty();
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
@@ -283,12 +283,12 @@ public final class AccountingPeriod {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<AccountingPeriodStatus> status) {
+        public Builder status(Optional<Status895Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(AccountingPeriodStatus status) {
+        public Builder status(Status895Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

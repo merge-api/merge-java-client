@@ -30,7 +30,11 @@ public final class SyncStatus {
 
     private final Optional<OffsetDateTime> nextSyncStart;
 
-    private final SyncStatusStatusEnum status;
+    private final Optional<LastSyncResultEnum> lastSyncResult;
+
+    private final Optional<OffsetDateTime> lastSyncFinished;
+
+    private final StatusFd5Enum status;
 
     private final boolean isInitialSync;
 
@@ -43,7 +47,9 @@ public final class SyncStatus {
             String modelId,
             Optional<OffsetDateTime> lastSyncStart,
             Optional<OffsetDateTime> nextSyncStart,
-            SyncStatusStatusEnum status,
+            Optional<LastSyncResultEnum> lastSyncResult,
+            Optional<OffsetDateTime> lastSyncFinished,
+            StatusFd5Enum status,
             boolean isInitialSync,
             Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage,
             Map<String, Object> additionalProperties) {
@@ -51,6 +57,8 @@ public final class SyncStatus {
         this.modelId = modelId;
         this.lastSyncStart = lastSyncStart;
         this.nextSyncStart = nextSyncStart;
+        this.lastSyncResult = lastSyncResult;
+        this.lastSyncFinished = lastSyncFinished;
         this.status = status;
         this.isInitialSync = isInitialSync;
         this.selectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
@@ -77,8 +85,18 @@ public final class SyncStatus {
         return nextSyncStart;
     }
 
+    @JsonProperty("last_sync_result")
+    public Optional<LastSyncResultEnum> getLastSyncResult() {
+        return lastSyncResult;
+    }
+
+    @JsonProperty("last_sync_finished")
+    public Optional<OffsetDateTime> getLastSyncFinished() {
+        return lastSyncFinished;
+    }
+
     @JsonProperty("status")
-    public SyncStatusStatusEnum getStatus() {
+    public StatusFd5Enum getStatus() {
         return status;
     }
 
@@ -108,6 +126,8 @@ public final class SyncStatus {
                 && modelId.equals(other.modelId)
                 && lastSyncStart.equals(other.lastSyncStart)
                 && nextSyncStart.equals(other.nextSyncStart)
+                && lastSyncResult.equals(other.lastSyncResult)
+                && lastSyncFinished.equals(other.lastSyncFinished)
                 && status.equals(other.status)
                 && isInitialSync == other.isInitialSync
                 && selectiveSyncConfigurationsUsage.equals(other.selectiveSyncConfigurationsUsage);
@@ -120,6 +140,8 @@ public final class SyncStatus {
                 this.modelId,
                 this.lastSyncStart,
                 this.nextSyncStart,
+                this.lastSyncResult,
+                this.lastSyncFinished,
                 this.status,
                 this.isInitialSync,
                 this.selectiveSyncConfigurationsUsage);
@@ -145,7 +167,7 @@ public final class SyncStatus {
     }
 
     public interface StatusStage {
-        IsInitialSyncStage status(@NotNull SyncStatusStatusEnum status);
+        IsInitialSyncStage status(@NotNull StatusFd5Enum status);
     }
 
     public interface IsInitialSyncStage {
@@ -163,6 +185,14 @@ public final class SyncStatus {
 
         _FinalStage nextSyncStart(OffsetDateTime nextSyncStart);
 
+        _FinalStage lastSyncResult(Optional<LastSyncResultEnum> lastSyncResult);
+
+        _FinalStage lastSyncResult(LastSyncResultEnum lastSyncResult);
+
+        _FinalStage lastSyncFinished(Optional<OffsetDateTime> lastSyncFinished);
+
+        _FinalStage lastSyncFinished(OffsetDateTime lastSyncFinished);
+
         _FinalStage selectiveSyncConfigurationsUsage(
                 Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage);
 
@@ -177,11 +207,15 @@ public final class SyncStatus {
 
         private String modelId;
 
-        private SyncStatusStatusEnum status;
+        private StatusFd5Enum status;
 
         private boolean isInitialSync;
 
         private Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage = Optional.empty();
+
+        private Optional<OffsetDateTime> lastSyncFinished = Optional.empty();
+
+        private Optional<LastSyncResultEnum> lastSyncResult = Optional.empty();
 
         private Optional<OffsetDateTime> nextSyncStart = Optional.empty();
 
@@ -198,6 +232,8 @@ public final class SyncStatus {
             modelId(other.getModelId());
             lastSyncStart(other.getLastSyncStart());
             nextSyncStart(other.getNextSyncStart());
+            lastSyncResult(other.getLastSyncResult());
+            lastSyncFinished(other.getLastSyncFinished());
             status(other.getStatus());
             isInitialSync(other.getIsInitialSync());
             selectiveSyncConfigurationsUsage(other.getSelectiveSyncConfigurationsUsage());
@@ -220,7 +256,7 @@ public final class SyncStatus {
 
         @java.lang.Override
         @JsonSetter("status")
-        public IsInitialSyncStage status(@NotNull SyncStatusStatusEnum status) {
+        public IsInitialSyncStage status(@NotNull StatusFd5Enum status) {
             this.status = status;
             return this;
         }
@@ -244,6 +280,32 @@ public final class SyncStatus {
         public _FinalStage selectiveSyncConfigurationsUsage(
                 Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage) {
             this.selectiveSyncConfigurationsUsage = selectiveSyncConfigurationsUsage;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage lastSyncFinished(OffsetDateTime lastSyncFinished) {
+            this.lastSyncFinished = Optional.ofNullable(lastSyncFinished);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "last_sync_finished", nulls = Nulls.SKIP)
+        public _FinalStage lastSyncFinished(Optional<OffsetDateTime> lastSyncFinished) {
+            this.lastSyncFinished = lastSyncFinished;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage lastSyncResult(LastSyncResultEnum lastSyncResult) {
+            this.lastSyncResult = Optional.ofNullable(lastSyncResult);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "last_sync_result", nulls = Nulls.SKIP)
+        public _FinalStage lastSyncResult(Optional<LastSyncResultEnum> lastSyncResult) {
+            this.lastSyncResult = lastSyncResult;
             return this;
         }
 
@@ -280,6 +342,8 @@ public final class SyncStatus {
                     modelId,
                     lastSyncStart,
                     nextSyncStart,
+                    lastSyncResult,
+                    lastSyncFinished,
                     status,
                     isInitialSync,
                     selectiveSyncConfigurationsUsage,

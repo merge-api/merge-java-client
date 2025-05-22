@@ -12,10 +12,12 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestExpand;
+import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestExpandItem;
 import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestRemoteFields;
 import com.merge.api.resources.hris.employees.types.EmployeesRetrieveRequestShowEnumOrigins;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,11 +25,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesRetrieveRequest.Builder.class)
 public final class EmployeesRetrieveRequest {
-    private final Optional<EmployeesRetrieveRequestExpand> expand;
+    private final Optional<List<EmployeesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeSensitiveFields;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Optional<EmployeesRetrieveRequestRemoteFields> remoteFields;
 
@@ -36,15 +40,17 @@ public final class EmployeesRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmployeesRetrieveRequest(
-            Optional<EmployeesRetrieveRequestExpand> expand,
+            Optional<List<EmployeesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeSensitiveFields,
+            Optional<Boolean> includeShellData,
             Optional<EmployeesRetrieveRequestRemoteFields> remoteFields,
             Optional<EmployeesRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeSensitiveFields = includeSensitiveFields;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -54,7 +60,7 @@ public final class EmployeesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<EmployeesRetrieveRequestExpand> getExpand() {
+    public Optional<List<EmployeesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -72,6 +78,14 @@ public final class EmployeesRetrieveRequest {
     @JsonProperty("include_sensitive_fields")
     public Optional<Boolean> getIncludeSensitiveFields() {
         return includeSensitiveFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -105,6 +119,7 @@ public final class EmployeesRetrieveRequest {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeSensitiveFields.equals(other.includeSensitiveFields)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
@@ -115,6 +130,7 @@ public final class EmployeesRetrieveRequest {
                 this.expand,
                 this.includeRemoteData,
                 this.includeSensitiveFields,
+                this.includeShellData,
                 this.remoteFields,
                 this.showEnumOrigins);
     }
@@ -130,11 +146,13 @@ public final class EmployeesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<EmployeesRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<EmployeesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeSensitiveFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         private Optional<EmployeesRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
@@ -149,19 +167,25 @@ public final class EmployeesRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeSensitiveFields(other.getIncludeSensitiveFields());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<EmployeesRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<EmployeesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(EmployeesRetrieveRequestExpand expand) {
+        public Builder expand(List<EmployeesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(EmployeesRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -184,6 +208,17 @@ public final class EmployeesRetrieveRequest {
 
         public Builder includeSensitiveFields(Boolean includeSensitiveFields) {
             this.includeSensitiveFields = Optional.ofNullable(includeSensitiveFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -214,6 +249,7 @@ public final class EmployeesRetrieveRequest {
                     expand,
                     includeRemoteData,
                     includeSensitiveFields,
+                    includeShellData,
                     remoteFields,
                     showEnumOrigins,
                     additionalProperties);

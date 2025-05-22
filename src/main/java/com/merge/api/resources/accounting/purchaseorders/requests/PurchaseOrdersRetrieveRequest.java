@@ -12,8 +12,10 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.purchaseorders.types.PurchaseOrdersRetrieveRequestExpand;
+import com.merge.api.resources.accounting.purchaseorders.types.PurchaseOrdersRetrieveRequestExpandItem;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -21,11 +23,13 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PurchaseOrdersRetrieveRequest.Builder.class)
 public final class PurchaseOrdersRetrieveRequest {
-    private final Optional<PurchaseOrdersRetrieveRequestExpand> expand;
+    private final Optional<List<PurchaseOrdersRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeRemoteFields;
+
+    private final Optional<Boolean> includeShellData;
 
     private final Optional<String> remoteFields;
 
@@ -34,15 +38,17 @@ public final class PurchaseOrdersRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private PurchaseOrdersRetrieveRequest(
-            Optional<PurchaseOrdersRetrieveRequestExpand> expand,
+            Optional<List<PurchaseOrdersRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
+            Optional<Boolean> includeShellData,
             Optional<String> remoteFields,
             Optional<String> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
+        this.includeShellData = includeShellData;
         this.remoteFields = remoteFields;
         this.showEnumOrigins = showEnumOrigins;
         this.additionalProperties = additionalProperties;
@@ -52,7 +58,7 @@ public final class PurchaseOrdersRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<PurchaseOrdersRetrieveRequestExpand> getExpand() {
+    public Optional<List<PurchaseOrdersRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -70,6 +76,14 @@ public final class PurchaseOrdersRetrieveRequest {
     @JsonProperty("include_remote_fields")
     public Optional<Boolean> getIncludeRemoteFields() {
         return includeRemoteFields;
+    }
+
+    /**
+     * @return Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).
+     */
+    @JsonProperty("include_shell_data")
+    public Optional<Boolean> getIncludeShellData() {
+        return includeShellData;
     }
 
     /**
@@ -103,6 +117,7 @@ public final class PurchaseOrdersRetrieveRequest {
         return expand.equals(other.expand)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
+                && includeShellData.equals(other.includeShellData)
                 && remoteFields.equals(other.remoteFields)
                 && showEnumOrigins.equals(other.showEnumOrigins);
     }
@@ -110,7 +125,12 @@ public final class PurchaseOrdersRetrieveRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.expand, this.includeRemoteData, this.includeRemoteFields, this.remoteFields, this.showEnumOrigins);
+                this.expand,
+                this.includeRemoteData,
+                this.includeRemoteFields,
+                this.includeShellData,
+                this.remoteFields,
+                this.showEnumOrigins);
     }
 
     @java.lang.Override
@@ -124,11 +144,13 @@ public final class PurchaseOrdersRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<PurchaseOrdersRetrieveRequestExpand> expand = Optional.empty();
+        private Optional<List<PurchaseOrdersRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeRemoteFields = Optional.empty();
+
+        private Optional<Boolean> includeShellData = Optional.empty();
 
         private Optional<String> remoteFields = Optional.empty();
 
@@ -143,19 +165,25 @@ public final class PurchaseOrdersRetrieveRequest {
             expand(other.getExpand());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
+            includeShellData(other.getIncludeShellData());
             remoteFields(other.getRemoteFields());
             showEnumOrigins(other.getShowEnumOrigins());
             return this;
         }
 
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<PurchaseOrdersRetrieveRequestExpand> expand) {
+        public Builder expand(Optional<List<PurchaseOrdersRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(PurchaseOrdersRetrieveRequestExpand expand) {
+        public Builder expand(List<PurchaseOrdersRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(PurchaseOrdersRetrieveRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -178,6 +206,17 @@ public final class PurchaseOrdersRetrieveRequest {
 
         public Builder includeRemoteFields(Boolean includeRemoteFields) {
             this.includeRemoteFields = Optional.ofNullable(includeRemoteFields);
+            return this;
+        }
+
+        @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
+        public Builder includeShellData(Optional<Boolean> includeShellData) {
+            this.includeShellData = includeShellData;
+            return this;
+        }
+
+        public Builder includeShellData(Boolean includeShellData) {
+            this.includeShellData = Optional.ofNullable(includeShellData);
             return this;
         }
 
@@ -208,6 +247,7 @@ public final class PurchaseOrdersRetrieveRequest {
                     expand,
                     includeRemoteData,
                     includeRemoteFields,
+                    includeShellData,
                     remoteFields,
                     showEnumOrigins,
                     additionalProperties);

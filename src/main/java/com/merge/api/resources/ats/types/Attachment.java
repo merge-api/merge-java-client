@@ -37,7 +37,7 @@ public final class Attachment {
 
     private final Optional<String> candidate;
 
-    private final Optional<AttachmentAttachmentType> attachmentType;
+    private final Optional<AttachmentTypeEnum> attachmentType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -55,7 +55,7 @@ public final class Attachment {
             Optional<String> fileName,
             Optional<String> fileUrl,
             Optional<String> candidate,
-            Optional<AttachmentAttachmentType> attachmentType,
+            Optional<AttachmentTypeEnum> attachmentType,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -137,7 +137,7 @@ public final class Attachment {
      * </ul>
      */
     @JsonProperty("attachment_type")
-    public Optional<AttachmentAttachmentType> getAttachmentType() {
+    public Optional<AttachmentTypeEnum> getAttachmentType() {
         return attachmentType;
     }
 
@@ -225,7 +225,7 @@ public final class Attachment {
 
         private Optional<String> candidate = Optional.empty();
 
-        private Optional<AttachmentAttachmentType> attachmentType = Optional.empty();
+        private Optional<AttachmentTypeEnum> attachmentType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -331,12 +331,12 @@ public final class Attachment {
         }
 
         @JsonSetter(value = "attachment_type", nulls = Nulls.SKIP)
-        public Builder attachmentType(Optional<AttachmentAttachmentType> attachmentType) {
+        public Builder attachmentType(Optional<AttachmentTypeEnum> attachmentType) {
             this.attachmentType = attachmentType;
             return this;
         }
 
-        public Builder attachmentType(AttachmentAttachmentType attachmentType) {
+        public Builder attachmentType(AttachmentTypeEnum attachmentType) {
             this.attachmentType = Optional.ofNullable(attachmentType);
             return this;
         }

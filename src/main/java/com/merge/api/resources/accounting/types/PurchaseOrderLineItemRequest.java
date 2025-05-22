@@ -42,7 +42,7 @@ public final class PurchaseOrderLineItemRequest {
 
     private final Optional<String> totalLineAmount;
 
-    private final Optional<PurchaseOrderLineItemRequestCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<String> taxRate;
 
@@ -69,7 +69,7 @@ public final class PurchaseOrderLineItemRequest {
             Optional<List<Optional<String>>> trackingCategories,
             Optional<String> taxAmount,
             Optional<String> totalLineAmount,
-            Optional<PurchaseOrderLineItemRequestCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<String> taxRate,
             Optional<String> exchangeRate,
             Optional<String> company,
@@ -486,7 +486,7 @@ public final class PurchaseOrderLineItemRequest {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<PurchaseOrderLineItemRequestCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -613,7 +613,7 @@ public final class PurchaseOrderLineItemRequest {
 
         private Optional<String> totalLineAmount = Optional.empty();
 
-        private Optional<PurchaseOrderLineItemRequestCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<String> taxRate = Optional.empty();
 
@@ -764,12 +764,12 @@ public final class PurchaseOrderLineItemRequest {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<PurchaseOrderLineItemRequestCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(PurchaseOrderLineItemRequestCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

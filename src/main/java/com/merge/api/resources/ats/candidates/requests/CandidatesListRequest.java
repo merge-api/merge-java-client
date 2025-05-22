@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.ats.candidates.types.CandidatesListRequestExpand;
+import com.merge.api.resources.ats.candidates.types.CandidatesListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CandidatesListRequest.Builder.class)
 public final class CandidatesListRequest {
+    private final Optional<List<CandidatesListRequestExpandItem>> expand;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -29,8 +33,6 @@ public final class CandidatesListRequest {
     private final Optional<String> cursor;
 
     private final Optional<String> emailAddresses;
-
-    private final Optional<CandidatesListRequestExpand> expand;
 
     private final Optional<String> firstName;
 
@@ -55,11 +57,11 @@ public final class CandidatesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private CandidatesListRequest(
+            Optional<List<CandidatesListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<String> emailAddresses,
-            Optional<CandidatesListRequestExpand> expand,
             Optional<String> firstName,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
@@ -71,11 +73,11 @@ public final class CandidatesListRequest {
             Optional<String> remoteId,
             Optional<String> tags,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.emailAddresses = emailAddresses;
-        this.expand = expand;
         this.firstName = firstName;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
@@ -87,6 +89,14 @@ public final class CandidatesListRequest {
         this.remoteId = remoteId;
         this.tags = tags;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<CandidatesListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -119,14 +129,6 @@ public final class CandidatesListRequest {
     @JsonProperty("email_addresses")
     public Optional<String> getEmailAddresses() {
         return emailAddresses;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<CandidatesListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -221,11 +223,11 @@ public final class CandidatesListRequest {
     }
 
     private boolean equalTo(CandidatesListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return expand.equals(other.expand)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && emailAddresses.equals(other.emailAddresses)
-                && expand.equals(other.expand)
                 && firstName.equals(other.firstName)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
@@ -241,11 +243,11 @@ public final class CandidatesListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
                 this.emailAddresses,
-                this.expand,
                 this.firstName,
                 this.includeDeletedData,
                 this.includeRemoteData,
@@ -269,6 +271,8 @@ public final class CandidatesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<CandidatesListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
@@ -276,8 +280,6 @@ public final class CandidatesListRequest {
         private Optional<String> cursor = Optional.empty();
 
         private Optional<String> emailAddresses = Optional.empty();
-
-        private Optional<CandidatesListRequestExpand> expand = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -305,11 +307,11 @@ public final class CandidatesListRequest {
         private Builder() {}
 
         public Builder from(CandidatesListRequest other) {
+            expand(other.getExpand());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             emailAddresses(other.getEmailAddresses());
-            expand(other.getExpand());
             firstName(other.getFirstName());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
@@ -320,6 +322,22 @@ public final class CandidatesListRequest {
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
             tags(other.getTags());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<CandidatesListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<CandidatesListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(CandidatesListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -364,17 +382,6 @@ public final class CandidatesListRequest {
 
         public Builder emailAddresses(String emailAddresses) {
             this.emailAddresses = Optional.ofNullable(emailAddresses);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<CandidatesListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(CandidatesListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -490,11 +497,11 @@ public final class CandidatesListRequest {
 
         public CandidatesListRequest build() {
             return new CandidatesListRequest(
+                    expand,
                     createdAfter,
                     createdBefore,
                     cursor,
                     emailAddresses,
-                    expand,
                     firstName,
                     includeDeletedData,
                     includeRemoteData,

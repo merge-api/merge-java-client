@@ -33,7 +33,7 @@ public final class CreditNote {
 
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<CreditNoteStatus> status;
+    private final Optional<CreditNoteStatusEnum> status;
 
     private final Optional<String> number;
 
@@ -53,7 +53,7 @@ public final class CreditNote {
 
     private final Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<CreditNoteCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -81,7 +81,7 @@ public final class CreditNote {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<OffsetDateTime> transactionDate,
-            Optional<CreditNoteStatus> status,
+            Optional<CreditNoteStatusEnum> status,
             Optional<String> number,
             Optional<CreditNoteContact> contact,
             Optional<CreditNoteCompany> company,
@@ -91,7 +91,7 @@ public final class CreditNote {
             Optional<Boolean> inclusiveOfTax,
             Optional<List<CreditNoteLineItem>> lineItems,
             Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories,
-            Optional<CreditNoteCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<List<Optional<CreditNotePaymentsItem>>> payments,
@@ -176,7 +176,7 @@ public final class CreditNote {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<CreditNoteStatus> getStatus() {
+    public Optional<CreditNoteStatusEnum> getStatus() {
         return status;
     }
 
@@ -558,7 +558,7 @@ public final class CreditNote {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<CreditNoteCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -718,7 +718,7 @@ public final class CreditNote {
 
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<CreditNoteStatus> status = Optional.empty();
+        private Optional<CreditNoteStatusEnum> status = Optional.empty();
 
         private Optional<String> number = Optional.empty();
 
@@ -738,7 +738,7 @@ public final class CreditNote {
 
         private Optional<List<Optional<CreditNoteTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<CreditNoteCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -848,12 +848,12 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<CreditNoteStatus> status) {
+        public Builder status(Optional<CreditNoteStatusEnum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(CreditNoteStatus status) {
+        public Builder status(CreditNoteStatusEnum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
@@ -959,12 +959,12 @@ public final class CreditNote {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<CreditNoteCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(CreditNoteCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

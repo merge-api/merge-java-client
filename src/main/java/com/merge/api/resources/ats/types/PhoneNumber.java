@@ -27,7 +27,7 @@ public final class PhoneNumber {
 
     private final Optional<String> value;
 
-    private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
+    private final Optional<PhoneNumberTypeEnum> phoneNumberType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -37,7 +37,7 @@ public final class PhoneNumber {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
-            Optional<PhoneNumberPhoneNumberType> phoneNumberType,
+            Optional<PhoneNumberTypeEnum> phoneNumberType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -83,7 +83,7 @@ public final class PhoneNumber {
      * </ul>
      */
     @JsonProperty("phone_number_type")
-    public Optional<PhoneNumberPhoneNumberType> getPhoneNumberType() {
+    public Optional<PhoneNumberTypeEnum> getPhoneNumberType() {
         return phoneNumberType;
     }
 
@@ -136,7 +136,7 @@ public final class PhoneNumber {
 
         private Optional<String> value = Optional.empty();
 
-        private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
+        private Optional<PhoneNumberTypeEnum> phoneNumberType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -188,12 +188,12 @@ public final class PhoneNumber {
         }
 
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
-        public Builder phoneNumberType(Optional<PhoneNumberPhoneNumberType> phoneNumberType) {
+        public Builder phoneNumberType(Optional<PhoneNumberTypeEnum> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;
             return this;
         }
 
-        public Builder phoneNumberType(PhoneNumberPhoneNumberType phoneNumberType) {
+        public Builder phoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
             return this;
         }

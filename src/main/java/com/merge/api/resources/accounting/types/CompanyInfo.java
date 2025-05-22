@@ -41,7 +41,7 @@ public final class CompanyInfo {
 
     private final Optional<Integer> fiscalYearEndDay;
 
-    private final Optional<CompanyInfoCurrency> currency;
+    private final Optional<TransactionCurrencyEnum> currency;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -69,7 +69,7 @@ public final class CompanyInfo {
             Optional<String> taxNumber,
             Optional<Integer> fiscalYearEndMonth,
             Optional<Integer> fiscalYearEndDay,
-            Optional<CompanyInfoCurrency> currency,
+            Optional<TransactionCurrencyEnum> currency,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<List<Optional<String>>> urls,
             Optional<List<Address>> addresses,
@@ -479,7 +479,7 @@ public final class CompanyInfo {
      * </ul>
      */
     @JsonProperty("currency")
-    public Optional<CompanyInfoCurrency> getCurrency() {
+    public Optional<TransactionCurrencyEnum> getCurrency() {
         return currency;
     }
 
@@ -609,7 +609,7 @@ public final class CompanyInfo {
 
         private Optional<Integer> fiscalYearEndDay = Optional.empty();
 
-        private Optional<CompanyInfoCurrency> currency = Optional.empty();
+        private Optional<TransactionCurrencyEnum> currency = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -751,12 +751,12 @@ public final class CompanyInfo {
         }
 
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
-        public Builder currency(Optional<CompanyInfoCurrency> currency) {
+        public Builder currency(Optional<TransactionCurrencyEnum> currency) {
             this.currency = currency;
             return this;
         }
 
-        public Builder currency(CompanyInfoCurrency currency) {
+        public Builder currency(TransactionCurrencyEnum currency) {
             this.currency = Optional.ofNullable(currency);
             return this;
         }

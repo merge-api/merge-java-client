@@ -32,7 +32,7 @@ public final class ContactRequest {
 
     private final Optional<String> taxNumber;
 
-    private final Optional<ContactRequestStatus> status;
+    private final Optional<Status7D1Enum> status;
 
     private final Optional<String> currency;
 
@@ -56,7 +56,7 @@ public final class ContactRequest {
             Optional<Boolean> isCustomer,
             Optional<String> emailAddress,
             Optional<String> taxNumber,
-            Optional<ContactRequestStatus> status,
+            Optional<Status7D1Enum> status,
             Optional<String> currency,
             Optional<String> company,
             Optional<List<Optional<ContactRequestAddressesItem>>> addresses,
@@ -129,7 +129,7 @@ public final class ContactRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ContactRequestStatus> getStatus() {
+    public Optional<Status7D1Enum> getStatus() {
         return status;
     }
 
@@ -246,7 +246,7 @@ public final class ContactRequest {
 
         private Optional<String> taxNumber = Optional.empty();
 
-        private Optional<ContactRequestStatus> status = Optional.empty();
+        private Optional<Status7D1Enum> status = Optional.empty();
 
         private Optional<String> currency = Optional.empty();
 
@@ -340,12 +340,12 @@ public final class ContactRequest {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ContactRequestStatus> status) {
+        public Builder status(Optional<Status7D1Enum> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ContactRequestStatus status) {
+        public Builder status(Status7D1Enum status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

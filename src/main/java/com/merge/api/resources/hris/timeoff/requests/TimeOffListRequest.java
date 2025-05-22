@@ -12,13 +12,15 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestExpand;
+import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestExpandItem;
 import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestRemoteFields;
 import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestRequestType;
 import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestShowEnumOrigins;
 import com.merge.api.resources.hris.timeoff.types.TimeOffListRequestStatus;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -26,6 +28,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffListRequest.Builder.class)
 public final class TimeOffListRequest {
+    private final Optional<List<TimeOffListRequestExpandItem>> expand;
+
     private final Optional<String> approverId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -39,8 +43,6 @@ public final class TimeOffListRequest {
     private final Optional<OffsetDateTime> endedAfter;
 
     private final Optional<OffsetDateTime> endedBefore;
-
-    private final Optional<TimeOffListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -71,6 +73,7 @@ public final class TimeOffListRequest {
     private final Map<String, Object> additionalProperties;
 
     private TimeOffListRequest(
+            Optional<List<TimeOffListRequestExpandItem>> expand,
             Optional<String> approverId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -78,7 +81,6 @@ public final class TimeOffListRequest {
             Optional<String> employeeId,
             Optional<OffsetDateTime> endedAfter,
             Optional<OffsetDateTime> endedBefore,
-            Optional<TimeOffListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -93,6 +95,7 @@ public final class TimeOffListRequest {
             Optional<OffsetDateTime> startedBefore,
             Optional<TimeOffListRequestStatus> status,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.approverId = approverId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -100,7 +103,6 @@ public final class TimeOffListRequest {
         this.employeeId = employeeId;
         this.endedAfter = endedAfter;
         this.endedBefore = endedBefore;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -115,6 +117,14 @@ public final class TimeOffListRequest {
         this.startedBefore = startedBefore;
         this.status = status;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<TimeOffListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -171,14 +181,6 @@ public final class TimeOffListRequest {
     @JsonProperty("ended_before")
     public Optional<OffsetDateTime> getEndedBefore() {
         return endedBefore;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<TimeOffListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -312,14 +314,14 @@ public final class TimeOffListRequest {
     }
 
     private boolean equalTo(TimeOffListRequest other) {
-        return approverId.equals(other.approverId)
+        return expand.equals(other.expand)
+                && approverId.equals(other.approverId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && employeeId.equals(other.employeeId)
                 && endedAfter.equals(other.endedAfter)
                 && endedBefore.equals(other.endedBefore)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -338,6 +340,7 @@ public final class TimeOffListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.approverId,
                 this.createdAfter,
                 this.createdBefore,
@@ -345,7 +348,6 @@ public final class TimeOffListRequest {
                 this.employeeId,
                 this.endedAfter,
                 this.endedBefore,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -372,6 +374,8 @@ public final class TimeOffListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<TimeOffListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> approverId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
@@ -385,8 +389,6 @@ public final class TimeOffListRequest {
         private Optional<OffsetDateTime> endedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> endedBefore = Optional.empty();
-
-        private Optional<TimeOffListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -420,6 +422,7 @@ public final class TimeOffListRequest {
         private Builder() {}
 
         public Builder from(TimeOffListRequest other) {
+            expand(other.getExpand());
             approverId(other.getApproverId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
@@ -427,7 +430,6 @@ public final class TimeOffListRequest {
             employeeId(other.getEmployeeId());
             endedAfter(other.getEndedAfter());
             endedBefore(other.getEndedBefore());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -441,6 +443,22 @@ public final class TimeOffListRequest {
             startedAfter(other.getStartedAfter());
             startedBefore(other.getStartedBefore());
             status(other.getStatus());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<TimeOffListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<TimeOffListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(TimeOffListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -518,17 +536,6 @@ public final class TimeOffListRequest {
 
         public Builder endedBefore(OffsetDateTime endedBefore) {
             this.endedBefore = Optional.ofNullable(endedBefore);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<TimeOffListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(TimeOffListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -677,6 +684,7 @@ public final class TimeOffListRequest {
 
         public TimeOffListRequest build() {
             return new TimeOffListRequest(
+                    expand,
                     approverId,
                     createdAfter,
                     createdBefore,
@@ -684,7 +692,6 @@ public final class TimeOffListRequest {
                     employeeId,
                     endedAfter,
                     endedBefore,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

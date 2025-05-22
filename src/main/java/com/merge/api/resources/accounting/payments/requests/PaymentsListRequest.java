@@ -12,9 +12,11 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
-import com.merge.api.resources.accounting.payments.types.PaymentsListRequestExpand;
+import com.merge.api.resources.accounting.payments.types.PaymentsListRequestExpandItem;
 import java.time.OffsetDateTime;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -22,6 +24,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaymentsListRequest.Builder.class)
 public final class PaymentsListRequest {
+    private final Optional<List<PaymentsListRequestExpandItem>> expand;
+
     private final Optional<String> accountId;
 
     private final Optional<String> companyId;
@@ -33,8 +37,6 @@ public final class PaymentsListRequest {
     private final Optional<OffsetDateTime> createdBefore;
 
     private final Optional<String> cursor;
-
-    private final Optional<PaymentsListRequestExpand> expand;
 
     private final Optional<Boolean> includeDeletedData;
 
@@ -59,13 +61,13 @@ public final class PaymentsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private PaymentsListRequest(
+            Optional<List<PaymentsListRequestExpandItem>> expand,
             Optional<String> accountId,
             Optional<String> companyId,
             Optional<String> contactId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
-            Optional<PaymentsListRequestExpand> expand,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
@@ -77,13 +79,13 @@ public final class PaymentsListRequest {
             Optional<OffsetDateTime> transactionDateAfter,
             Optional<OffsetDateTime> transactionDateBefore,
             Map<String, Object> additionalProperties) {
+        this.expand = expand;
         this.accountId = accountId;
         this.companyId = companyId;
         this.contactId = contactId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
-        this.expand = expand;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeRemoteFields = includeRemoteFields;
@@ -95,6 +97,14 @@ public final class PaymentsListRequest {
         this.transactionDateAfter = transactionDateAfter;
         this.transactionDateBefore = transactionDateBefore;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
+     */
+    @JsonProperty("expand")
+    public Optional<List<PaymentsListRequestExpandItem>> getExpand() {
+        return expand;
     }
 
     /**
@@ -143,14 +153,6 @@ public final class PaymentsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
-    }
-
-    /**
-     * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
-     */
-    @JsonProperty("expand")
-    public Optional<PaymentsListRequestExpand> getExpand() {
-        return expand;
     }
 
     /**
@@ -245,13 +247,13 @@ public final class PaymentsListRequest {
     }
 
     private boolean equalTo(PaymentsListRequest other) {
-        return accountId.equals(other.accountId)
+        return expand.equals(other.expand)
+                && accountId.equals(other.accountId)
                 && companyId.equals(other.companyId)
                 && contactId.equals(other.contactId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
-                && expand.equals(other.expand)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeRemoteFields.equals(other.includeRemoteFields)
@@ -267,13 +269,13 @@ public final class PaymentsListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.expand,
                 this.accountId,
                 this.companyId,
                 this.contactId,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
-                this.expand,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeRemoteFields,
@@ -297,6 +299,8 @@ public final class PaymentsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<PaymentsListRequestExpandItem>> expand = Optional.empty();
+
         private Optional<String> accountId = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
@@ -308,8 +312,6 @@ public final class PaymentsListRequest {
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
-
-        private Optional<PaymentsListRequestExpand> expand = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
@@ -337,13 +339,13 @@ public final class PaymentsListRequest {
         private Builder() {}
 
         public Builder from(PaymentsListRequest other) {
+            expand(other.getExpand());
             accountId(other.getAccountId());
             companyId(other.getCompanyId());
             contactId(other.getContactId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
-            expand(other.getExpand());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeRemoteFields(other.getIncludeRemoteFields());
@@ -354,6 +356,22 @@ public final class PaymentsListRequest {
             remoteId(other.getRemoteId());
             transactionDateAfter(other.getTransactionDateAfter());
             transactionDateBefore(other.getTransactionDateBefore());
+            return this;
+        }
+
+        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
+        public Builder expand(Optional<List<PaymentsListRequestExpandItem>> expand) {
+            this.expand = expand;
+            return this;
+        }
+
+        public Builder expand(List<PaymentsListRequestExpandItem> expand) {
+            this.expand = Optional.ofNullable(expand);
+            return this;
+        }
+
+        public Builder expand(PaymentsListRequestExpandItem expand) {
+            this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
 
@@ -420,17 +438,6 @@ public final class PaymentsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
-            return this;
-        }
-
-        @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<PaymentsListRequestExpand> expand) {
-            this.expand = expand;
-            return this;
-        }
-
-        public Builder expand(PaymentsListRequestExpand expand) {
-            this.expand = Optional.ofNullable(expand);
             return this;
         }
 
@@ -546,13 +553,13 @@ public final class PaymentsListRequest {
 
         public PaymentsListRequest build() {
             return new PaymentsListRequest(
+                    expand,
                     accountId,
                     companyId,
                     contactId,
                     createdAfter,
                     createdBefore,
                     cursor,
-                    expand,
                     includeDeletedData,
                     includeRemoteData,
                     includeRemoteFields,

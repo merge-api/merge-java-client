@@ -35,9 +35,9 @@ public final class Address {
 
     private final Optional<String> postalCode;
 
-    private final Optional<AddressCountry> country;
+    private final Optional<CountryEnum> country;
 
-    private final Optional<AddressAddressType> addressType;
+    private final Optional<AddressTypeEnum> addressType;
 
     private final Map<String, Object> additionalProperties;
 
@@ -49,8 +49,8 @@ public final class Address {
             Optional<String> city,
             Optional<String> state,
             Optional<String> postalCode,
-            Optional<AddressCountry> country,
-            Optional<AddressAddressType> addressType,
+            Optional<CountryEnum> country,
+            Optional<AddressTypeEnum> addressType,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -375,7 +375,7 @@ public final class Address {
      * </ul>
      */
     @JsonProperty("country")
-    public Optional<AddressCountry> getCountry() {
+    public Optional<CountryEnum> getCountry() {
         return country;
     }
 
@@ -387,7 +387,7 @@ public final class Address {
      * </ul>
      */
     @JsonProperty("address_type")
-    public Optional<AddressAddressType> getAddressType() {
+    public Optional<AddressTypeEnum> getAddressType() {
         return addressType;
     }
 
@@ -453,9 +453,9 @@ public final class Address {
 
         private Optional<String> postalCode = Optional.empty();
 
-        private Optional<AddressCountry> country = Optional.empty();
+        private Optional<CountryEnum> country = Optional.empty();
 
-        private Optional<AddressAddressType> addressType = Optional.empty();
+        private Optional<AddressTypeEnum> addressType = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -553,23 +553,23 @@ public final class Address {
         }
 
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
-        public Builder country(Optional<AddressCountry> country) {
+        public Builder country(Optional<CountryEnum> country) {
             this.country = country;
             return this;
         }
 
-        public Builder country(AddressCountry country) {
+        public Builder country(CountryEnum country) {
             this.country = Optional.ofNullable(country);
             return this;
         }
 
         @JsonSetter(value = "address_type", nulls = Nulls.SKIP)
-        public Builder addressType(Optional<AddressAddressType> addressType) {
+        public Builder addressType(Optional<AddressTypeEnum> addressType) {
             this.addressType = addressType;
             return this;
         }
 
-        public Builder addressType(AddressAddressType addressType) {
+        public Builder addressType(AddressTypeEnum addressType) {
             this.addressType = Optional.ofNullable(addressType);
             return this;
         }
