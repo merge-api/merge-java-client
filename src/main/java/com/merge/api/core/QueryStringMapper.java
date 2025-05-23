@@ -21,7 +21,30 @@ public class QueryStringMapper {
 
     public static void addQueryParameter(HttpUrl.Builder httpUrl, String key, Object value, boolean arraysAsRepeats) {
         JsonNode valueNode = MAPPER.valueToTree(value);
+    
+        // In cases where valueNode is a list of strings, we want to return a comma separated string
+        if (key.equals("expand")) {
+            String commaSeparatedQueryParams = "";
+            
+            if (valueNode.isArray()) {
+                List<String> values = new ArrayList<>();
+                for (JsonNode node : valueNode) {
+                    values.add(node.asText());
+                }
+                commaSeparatedQueryParams = String.join(",", values);
+            } else if (value instanceof String) {
+                String text = ((String) value).trim();
+                if (text.startsWith("[") && text.endsWith("]")) {
+                    commaSeparatedQueryParams = text.replace("[", "").replace("]", "").replace(", ", ",");
+                }
+            }
 
+            if (commaSeparatedQueryParams.length() > 0) {
+                httpUrl.addQueryParameter(key, commaSeparatedQueryParams);
+                return;
+            }
+        }
+    
         List<Map.Entry<String, JsonNode>> flat;
         if (valueNode.isObject()) {
             flat = flattenObject((ObjectNode) valueNode, arraysAsRepeats);
@@ -35,7 +58,7 @@ public class QueryStringMapper {
             }
             return;
         }
-
+    
         for (Map.Entry<String, JsonNode> field : flat) {
             if (field.getValue().isTextual()) {
                 httpUrl.addQueryParameter(key + field.getKey(), field.getValue().textValue());
@@ -44,6 +67,7 @@ public class QueryStringMapper {
             }
         }
     }
+    
 
     public static void addFormDataPart(
             MultipartBody.Builder multipartBody, String key, Object value, boolean arraysAsRepeats) {
