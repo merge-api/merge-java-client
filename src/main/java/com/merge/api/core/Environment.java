@@ -6,21 +6,13 @@ package com.merge.api.core;
 public final class Environment {
     public static final Environment PRODUCTION = new Environment("https://api.merge.dev/api");
 
-    public static final Environment SANDBOX = new Environment("https://api-sandbox.merge.dev/api");
+    private final String api;
 
-    public static final Environment PRODUCTION_EU = new Environment("https://api-eu.merge.dev/api");
-
-    private final String url;
-
-    private Environment(String url) {
-        this.url = url;
+    Environment(String api) {
+        this.api = api;
     }
 
-    public String getUrl() {
-        return this.url;
-    }
-
-    public static Environment custom(String url) {
-        return new Environment(url);
+    public String getApiURL() {
+        return this.api;
     }
 }
