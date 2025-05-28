@@ -5,6 +5,7 @@ package com.merge.api;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Environment;
+import okhttp3.OkHttpClient;
 
 public final class MergeApiClientBuilder {
     private ClientOptions.Builder clientOptionsBuilder = ClientOptions.builder();
@@ -36,16 +37,27 @@ public final class MergeApiClientBuilder {
         return this;
     }
 
-    public MergeApiClientBuilder url(String url) {
-        this.environment = Environment.custom(url);
+    /**
+     * Sets the timeout (in seconds) for the client. Defaults to 60 seconds.
+     */
+    public MergeApiClientBuilder timeout(int timeout) {
+        this.clientOptionsBuilder.timeout(timeout);
         return this;
     }
 
     /**
-     * Sets the timeout (in seconds) for the client
+     * Sets the maximum number of retries for the client. Defaults to 2 retries.
      */
-    public MergeApiClientBuilder timeout(int timeout) {
-        this.clientOptionsBuilder.timeout(timeout);
+    public MergeApiClientBuilder maxRetries(int maxRetries) {
+        this.clientOptionsBuilder.maxRetries(maxRetries);
+        return this;
+    }
+
+    /**
+     * Sets the underlying OkHttp client
+     */
+    public MergeApiClientBuilder httpClient(OkHttpClient httpClient) {
+        this.clientOptionsBuilder.httpClient(httpClient);
         return this;
     }
 
