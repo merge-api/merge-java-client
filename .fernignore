@@ -6,3 +6,4 @@ LICENSE.md
 # Patch
 
 src/main/java/com/merge/api/core/MergeApiApiError.java
+src/main/java/com/merge/legacy
