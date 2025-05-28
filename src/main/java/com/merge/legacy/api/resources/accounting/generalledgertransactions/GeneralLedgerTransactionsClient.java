@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.generalledgertransactions.reque
 import com.merge.legacy.api.resources.accounting.generalledgertransactions.requests.GeneralLedgerTransactionsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.GeneralLedgerTransaction;
 import com.merge.legacy.api.resources.accounting.types.PaginatedGeneralLedgerTransactionList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class GeneralLedgerTransactionsClient {
     protected final ClientOptions clientOptions;

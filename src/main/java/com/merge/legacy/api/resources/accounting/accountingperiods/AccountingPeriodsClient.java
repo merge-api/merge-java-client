@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.accountingperiods.requests.Acco
 import com.merge.legacy.api.resources.accounting.accountingperiods.requests.AccountingPeriodsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.AccountingPeriod;
 import com.merge.legacy.api.resources.accounting.types.PaginatedAccountingPeriodList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AccountingPeriodsClient {
     protected final ClientOptions clientOptions;

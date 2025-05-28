@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.collections.requests.Collections
 import com.merge.legacy.api.resources.ticketing.collections.requests.CollectionsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.Collection;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedCollectionList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class CollectionsClient {
     protected final ClientOptions clientOptions;

@@ -7,9 +7,8 @@ import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.issues.requests.IssuesListRequest;
 import com.merge.legacy.api.resources.ats.types.Issue;
 import com.merge.legacy.api.resources.ats.types.PaginatedIssueList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class IssuesClient {
     protected final ClientOptions clientOptions;

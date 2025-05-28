@@ -5,9 +5,8 @@ package com.merge.legacy.api.resources.accounting.accountdetails;
 
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.AccountDetails;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AccountDetailsClient {
     protected final ClientOptions clientOptions;

@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.jobinterviewstages.requests.JobIntervi
 import com.merge.legacy.api.resources.ats.jobinterviewstages.requests.JobInterviewStagesRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.JobInterviewStage;
 import com.merge.legacy.api.resources.ats.types.PaginatedJobInterviewStageList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class JobInterviewStagesClient {
     protected final ClientOptions clientOptions;

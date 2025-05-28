@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.roles.requests.RolesListRequest;
 import com.merge.legacy.api.resources.ticketing.roles.requests.RolesRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedRoleList;
 import com.merge.legacy.api.resources.ticketing.types.Role;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class RolesClient {
     protected final ClientOptions clientOptions;

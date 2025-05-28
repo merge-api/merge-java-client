@@ -13,11 +13,10 @@ import com.merge.legacy.api.resources.accounting.types.ExternalTargetFieldApiRes
 import com.merge.legacy.api.resources.accounting.types.FieldMappingApiInstanceResponse;
 import com.merge.legacy.api.resources.accounting.types.FieldMappingInstanceResponse;
 import com.merge.legacy.api.resources.accounting.types.RemoteFieldApiResponse;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class FieldMappingClient {
     protected final ClientOptions clientOptions;

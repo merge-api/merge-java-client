@@ -4,12 +4,11 @@
 package com.merge.legacy.api.resources.filestorage.passthrough;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.types.DataPassthroughRequest;
 import com.merge.legacy.api.resources.filestorage.types.RemoteResponse;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class PassthroughClient {
     protected final ClientOptions clientOptions;

@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.accounts.requests.AccountsListRe
 import com.merge.legacy.api.resources.ticketing.accounts.requests.AccountsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.Account;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedAccountList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AccountsClient {
     protected final ClientOptions clientOptions;

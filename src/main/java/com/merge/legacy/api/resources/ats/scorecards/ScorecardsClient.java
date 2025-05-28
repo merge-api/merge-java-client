@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.scorecards.requests.ScorecardsListRequ
 import com.merge.legacy.api.resources.ats.scorecards.requests.ScorecardsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedScorecardList;
 import com.merge.legacy.api.resources.ats.types.Scorecard;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class ScorecardsClient {
     protected final ClientOptions clientOptions;

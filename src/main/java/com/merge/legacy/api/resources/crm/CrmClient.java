@@ -36,7 +36,6 @@ import com.merge.legacy.api.resources.crm.syncstatus.SyncStatusClient;
 import com.merge.legacy.api.resources.crm.tasks.TasksClient;
 import com.merge.legacy.api.resources.crm.users.UsersClient;
 import com.merge.legacy.api.resources.crm.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class CrmClient {

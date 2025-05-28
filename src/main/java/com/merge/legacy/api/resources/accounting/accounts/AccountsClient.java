@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.accounting.types.Account;
 import com.merge.legacy.api.resources.accounting.types.AccountResponse;
 import com.merge.legacy.api.resources.accounting.types.MetaResponse;
 import com.merge.legacy.api.resources.accounting.types.PaginatedAccountList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class AccountsClient {
     protected final ClientOptions clientOptions;

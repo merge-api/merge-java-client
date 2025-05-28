@@ -27,7 +27,6 @@ import com.merge.legacy.api.resources.filestorage.scopes.ScopesClient;
 import com.merge.legacy.api.resources.filestorage.syncstatus.SyncStatusClient;
 import com.merge.legacy.api.resources.filestorage.users.UsersClient;
 import com.merge.legacy.api.resources.filestorage.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class FilestorageClient {

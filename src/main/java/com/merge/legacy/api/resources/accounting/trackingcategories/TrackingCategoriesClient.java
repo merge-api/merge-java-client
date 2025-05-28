@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.trackingcategories.requests.Tra
 import com.merge.legacy.api.resources.accounting.trackingcategories.requests.TrackingCategoriesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTrackingCategoryList;
 import com.merge.legacy.api.resources.accounting.types.TrackingCategory;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TrackingCategoriesClient {
     protected final ClientOptions clientOptions;

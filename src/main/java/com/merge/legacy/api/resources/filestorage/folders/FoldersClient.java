@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.filestorage.types.FileStorageFolderRespons
 import com.merge.legacy.api.resources.filestorage.types.Folder;
 import com.merge.legacy.api.resources.filestorage.types.MetaResponse;
 import com.merge.legacy.api.resources.filestorage.types.PaginatedFolderList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class FoldersClient {
     protected final ClientOptions clientOptions;

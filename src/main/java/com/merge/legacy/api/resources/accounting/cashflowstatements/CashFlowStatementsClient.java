@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.cashflowstatements.requests.Cas
 import com.merge.legacy.api.resources.accounting.cashflowstatements.requests.CashFlowStatementsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.CashFlowStatement;
 import com.merge.legacy.api.resources.accounting.types.PaginatedCashFlowStatementList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class CashFlowStatementsClient {
     protected final ClientOptions clientOptions;

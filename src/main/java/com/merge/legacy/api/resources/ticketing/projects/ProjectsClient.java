@@ -10,9 +10,8 @@ import com.merge.legacy.api.resources.ticketing.projects.requests.ProjectsUsersL
 import com.merge.legacy.api.resources.ticketing.types.PaginatedProjectList;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedUserList;
 import com.merge.legacy.api.resources.ticketing.types.Project;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class ProjectsClient {
     protected final ClientOptions clientOptions;

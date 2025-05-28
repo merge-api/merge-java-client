@@ -4,7 +4,6 @@
 package com.merge.legacy.api.core;
 
 import com.merge.api.core.ObjectMappers;
-
 import java.io.Reader;
 import java.util.Iterator;
 import java.util.NoSuchElementException;

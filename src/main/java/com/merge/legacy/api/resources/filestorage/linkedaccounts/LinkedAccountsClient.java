@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.filestorage.linkedaccounts;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.linkedaccounts.requests.LinkedAccountsListRequest;
 import com.merge.legacy.api.resources.filestorage.types.PaginatedAccountDetailsAndActionsList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class LinkedAccountsClient {
     protected final ClientOptions clientOptions;

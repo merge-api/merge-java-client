@@ -10,7 +10,6 @@ import com.merge.legacy.api.resources.hris.employments.types.EmploymentsListRequ
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsListRequestOrderBy;
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsListRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

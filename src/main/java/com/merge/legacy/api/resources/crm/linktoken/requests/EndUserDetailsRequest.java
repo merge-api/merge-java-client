@@ -11,9 +11,8 @@ import com.merge.legacy.api.resources.crm.types.CategoriesEnum;
 import com.merge.legacy.api.resources.crm.types.CommonModelScopesBodyRequest;
 import com.merge.legacy.api.resources.crm.types.IndividualCommonModelScopeDeserializerRequest;
 import com.merge.legacy.api.resources.crm.types.LanguageEnum;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EndUserDetailsRequest.Builder.class)

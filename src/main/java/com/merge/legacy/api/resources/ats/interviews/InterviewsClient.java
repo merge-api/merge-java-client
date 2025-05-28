@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.ats.types.MetaResponse;
 import com.merge.legacy.api.resources.ats.types.PaginatedScheduledInterviewList;
 import com.merge.legacy.api.resources.ats.types.ScheduledInterview;
 import com.merge.legacy.api.resources.ats.types.ScheduledInterviewResponse;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class InterviewsClient {
     protected final ClientOptions clientOptions;

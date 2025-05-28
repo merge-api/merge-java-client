@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.bankinfo.requests.BankInfoListRequest
 import com.merge.legacy.api.resources.hris.bankinfo.requests.BankInfoRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.BankInfo;
 import com.merge.legacy.api.resources.hris.types.PaginatedBankInfoList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class BankInfoClient {
     protected final ClientOptions clientOptions;

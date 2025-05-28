@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.hris.types.MetaResponse;
 import com.merge.legacy.api.resources.hris.types.PaginatedTimesheetEntryList;
 import com.merge.legacy.api.resources.hris.types.TimesheetEntry;
 import com.merge.legacy.api.resources.hris.types.TimesheetEntryResponse;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class TimesheetEntriesClient {
     protected final ClientOptions clientOptions;

@@ -10,7 +10,6 @@ import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequest
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestPriority;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestRemoteFields;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.accounting.accounts.types.AccountsListRequestRemoteFields;
 import com.merge.legacy.api.resources.accounting.accounts.types.AccountsListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

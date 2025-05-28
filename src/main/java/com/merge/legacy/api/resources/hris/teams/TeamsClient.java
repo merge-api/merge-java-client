@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.teams.requests.TeamsListRequest;
 import com.merge.legacy.api.resources.hris.teams.requests.TeamsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.PaginatedTeamList;
 import com.merge.legacy.api.resources.hris.types.Team;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TeamsClient {
     protected final ClientOptions clientOptions;

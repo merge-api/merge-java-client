@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.crm.audittrail;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.audittrail.requests.AuditTrailListRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedAuditLogEventList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AuditTrailClient {
     protected final ClientOptions clientOptions;

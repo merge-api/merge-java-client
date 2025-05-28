@@ -5,9 +5,8 @@ package com.merge.legacy.api.resources.filestorage.accounttoken;
 
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.types.AccountToken;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AccountTokenClient {
     protected final ClientOptions clientOptions;

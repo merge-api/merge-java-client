@@ -5,9 +5,8 @@ package com.merge.legacy.api.resources.hris.availableactions;
 
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.hris.types.AvailableActions;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AvailableActionsClient {
     protected final ClientOptions clientOptions;

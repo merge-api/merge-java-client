@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.taxrates.requests.TaxRatesListR
 import com.merge.legacy.api.resources.accounting.taxrates.requests.TaxRatesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTaxRateList;
 import com.merge.legacy.api.resources.accounting.types.TaxRate;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TaxRatesClient {
     protected final ClientOptions clientOptions;

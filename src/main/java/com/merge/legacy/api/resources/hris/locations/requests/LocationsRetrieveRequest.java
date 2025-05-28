@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

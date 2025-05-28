@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.payrollruns.types.PayrollRunsListRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.payrollruns.types.PayrollRunsListRequestRunType;
 import com.merge.legacy.api.resources.hris.payrollruns.types.PayrollRunsListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

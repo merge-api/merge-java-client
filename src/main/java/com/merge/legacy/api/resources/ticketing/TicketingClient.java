@@ -33,7 +33,6 @@ import com.merge.legacy.api.resources.ticketing.teams.TeamsClient;
 import com.merge.legacy.api.resources.ticketing.tickets.TicketsClient;
 import com.merge.legacy.api.resources.ticketing.users.UsersClient;
 import com.merge.legacy.api.resources.ticketing.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class TicketingClient {

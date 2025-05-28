@@ -9,11 +9,10 @@ import com.merge.legacy.api.resources.ats.types.Application;
 import com.merge.legacy.api.resources.ats.types.ApplicationResponse;
 import com.merge.legacy.api.resources.ats.types.MetaResponse;
 import com.merge.legacy.api.resources.ats.types.PaginatedApplicationList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class ApplicationsClient {
     protected final ClientOptions clientOptions;

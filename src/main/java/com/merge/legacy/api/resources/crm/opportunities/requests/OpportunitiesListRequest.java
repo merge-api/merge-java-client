@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.crm.opportunities.types.OpportunitiesListRequestExpand;
 import com.merge.legacy.api.resources.crm.opportunities.types.OpportunitiesListRequestStatus;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

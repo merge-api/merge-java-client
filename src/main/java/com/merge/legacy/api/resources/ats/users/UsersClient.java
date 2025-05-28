@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.types.PaginatedRemoteUserList;
 import com.merge.legacy.api.resources.ats.types.RemoteUser;
 import com.merge.legacy.api.resources.ats.users.requests.UsersListRequest;
 import com.merge.legacy.api.resources.ats.users.requests.UsersRetrieveRequest;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class UsersClient {
     protected final ClientOptions clientOptions;

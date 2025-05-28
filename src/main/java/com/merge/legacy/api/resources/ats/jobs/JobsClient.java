@@ -10,9 +10,8 @@ import com.merge.legacy.api.resources.ats.jobs.requests.JobsScreeningQuestionsLi
 import com.merge.legacy.api.resources.ats.types.Job;
 import com.merge.legacy.api.resources.ats.types.PaginatedJobList;
 import com.merge.legacy.api.resources.ats.types.PaginatedScreeningQuestionList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class JobsClient {
     protected final ClientOptions clientOptions;

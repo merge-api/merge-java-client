@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.ticketing.tickets;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ticketing.tickets.requests.*;
 import com.merge.legacy.api.resources.ticketing.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class TicketsClient {
     protected final ClientOptions clientOptions;

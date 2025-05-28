@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.ats.types.Attachment;
 import com.merge.legacy.api.resources.ats.types.AttachmentResponse;
 import com.merge.legacy.api.resources.ats.types.MetaResponse;
 import com.merge.legacy.api.resources.ats.types.PaginatedAttachmentList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class AttachmentsClient {
     protected final ClientOptions clientOptions;

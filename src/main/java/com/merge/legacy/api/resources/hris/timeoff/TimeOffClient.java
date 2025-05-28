@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.hris.types.MetaResponse;
 import com.merge.legacy.api.resources.hris.types.PaginatedTimeOffList;
 import com.merge.legacy.api.resources.hris.types.TimeOff;
 import com.merge.legacy.api.resources.hris.types.TimeOffResponse;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class TimeOffClient {
     protected final ClientOptions clientOptions;

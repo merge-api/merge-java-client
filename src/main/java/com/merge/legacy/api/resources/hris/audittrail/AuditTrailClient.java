@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.hris.audittrail;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.hris.audittrail.requests.AuditTrailListRequest;
 import com.merge.legacy.api.resources.hris.types.PaginatedAuditLogEventList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AuditTrailClient {
     protected final ClientOptions clientOptions;

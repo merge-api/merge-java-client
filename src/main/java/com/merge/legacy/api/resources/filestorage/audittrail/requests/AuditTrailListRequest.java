@@ -6,7 +6,6 @@ package com.merge.legacy.api.resources.filestorage.audittrail.requests;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

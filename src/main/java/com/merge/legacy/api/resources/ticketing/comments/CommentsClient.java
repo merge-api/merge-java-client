@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.ticketing.types.Comment;
 import com.merge.legacy.api.resources.ticketing.types.CommentResponse;
 import com.merge.legacy.api.resources.ticketing.types.MetaResponse;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedCommentList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class CommentsClient {
     protected final ClientOptions clientOptions;

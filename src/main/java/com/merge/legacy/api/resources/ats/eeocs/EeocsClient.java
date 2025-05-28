@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.eeocs.requests.EeocsListRequest;
 import com.merge.legacy.api.resources.ats.eeocs.requests.EeocsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Eeoc;
 import com.merge.legacy.api.resources.ats.types.PaginatedEeocList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class EeocsClient {
     protected final ClientOptions clientOptions;

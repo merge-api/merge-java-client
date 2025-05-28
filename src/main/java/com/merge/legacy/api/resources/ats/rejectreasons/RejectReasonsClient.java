@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.rejectreasons.requests.RejectReasonsLi
 import com.merge.legacy.api.resources.ats.rejectreasons.requests.RejectReasonsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.PaginatedRejectReasonList;
 import com.merge.legacy.api.resources.ats.types.RejectReason;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class RejectReasonsClient {
     protected final ClientOptions clientOptions;

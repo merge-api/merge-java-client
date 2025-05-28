@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesListRequestExpand;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesListRequestRemoteFields;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

@@ -7,9 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.DataPassthroughRequest;
 import com.merge.legacy.api.resources.accounting.types.RemoteResponse;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class PassthroughClient {
     protected final ClientOptions clientOptions;

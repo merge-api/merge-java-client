@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestLocationType;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.locations.types.LocationsListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

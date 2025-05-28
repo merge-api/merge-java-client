@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.offices.requests.OfficesListRequest;
 import com.merge.legacy.api.resources.ats.offices.requests.OfficesRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Office;
 import com.merge.legacy.api.resources.ats.types.PaginatedOfficeList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class OfficesClient {
     protected final ClientOptions clientOptions;

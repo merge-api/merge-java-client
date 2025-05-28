@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.accounting.types.VendorCreditResponse;
 import com.merge.legacy.api.resources.accounting.vendorcredits.requests.VendorCreditEndpointRequest;
 import com.merge.legacy.api.resources.accounting.vendorcredits.requests.VendorCreditsListRequest;
 import com.merge.legacy.api.resources.accounting.vendorcredits.requests.VendorCreditsRetrieveRequest;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class VendorCreditsClient {
     protected final ClientOptions clientOptions;

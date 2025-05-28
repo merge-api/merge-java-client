@@ -4,12 +4,11 @@
 package com.merge.legacy.api.resources.filestorage.scopes;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.scopes.requests.LinkedAccountCommonModelScopeDeserializerRequest;
 import com.merge.legacy.api.resources.filestorage.types.CommonModelScopeApi;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class ScopesClient {
     protected final ClientOptions clientOptions;

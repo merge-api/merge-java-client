@@ -6,7 +6,6 @@ package com.merge.legacy.api.resources.ats.types;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
-
 import java.util.*;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)

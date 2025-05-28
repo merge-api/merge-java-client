@@ -8,10 +8,9 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.hris.types.WebhookReceiver;
 import com.merge.legacy.api.resources.hris.webhookreceivers.requests.WebhookReceiverRequest;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.List;
+import okhttp3.*;
 
 public class WebhookReceiversClient {
     protected final ClientOptions clientOptions;

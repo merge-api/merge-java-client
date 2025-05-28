@@ -9,11 +9,10 @@ import com.merge.legacy.api.resources.accounting.contacts.requests.ContactsListR
 import com.merge.legacy.api.resources.accounting.contacts.requests.ContactsRemoteFieldClassesListRequest;
 import com.merge.legacy.api.resources.accounting.contacts.requests.ContactsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class ContactsClient {
     protected final ClientOptions clientOptions;

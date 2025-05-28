@@ -6,10 +6,9 @@ package com.merge.legacy.api.resources.accounting.forceresync;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.SyncStatus;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.List;
+import okhttp3.*;
 
 public class ForceResyncClient {
     protected final ClientOptions clientOptions;

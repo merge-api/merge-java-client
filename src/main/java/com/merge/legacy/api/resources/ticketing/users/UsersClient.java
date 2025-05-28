@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.types.PaginatedUserList;
 import com.merge.legacy.api.resources.ticketing.types.User;
 import com.merge.legacy.api.resources.ticketing.users.requests.UsersListRequest;
 import com.merge.legacy.api.resources.ticketing.users.requests.UsersRetrieveRequest;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class UsersClient {
     protected final ClientOptions clientOptions;

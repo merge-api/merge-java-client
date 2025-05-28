@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.balancesheets.requests.BalanceS
 import com.merge.legacy.api.resources.accounting.balancesheets.requests.BalanceSheetsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.BalanceSheet;
 import com.merge.legacy.api.resources.accounting.types.PaginatedBalanceSheetList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class BalanceSheetsClient {
     protected final ClientOptions clientOptions;

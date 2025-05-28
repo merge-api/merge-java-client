@@ -3,15 +3,11 @@
  */
 package com.merge.legacy.api.core;
 
-import com.merge.legacy.api.core.Environment;
-import com.merge.legacy.api.core.RequestOptions;
-import com.merge.legacy.api.core.RetryInterceptor;
-import okhttp3.OkHttpClient;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
+import okhttp3.OkHttpClient;
 
 public final class ClientOptions {
     private final Environment environment;

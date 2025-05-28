@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.accounting.phonenumbers;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.phonenumbers.requests.PhoneNumbersRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.AccountingPhoneNumber;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class PhoneNumbersClient {
     protected final ClientOptions clientOptions;

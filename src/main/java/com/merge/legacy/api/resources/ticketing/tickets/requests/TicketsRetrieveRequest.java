@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsRetrieveRequestExpand;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.ticketing.tickets.types.TicketsRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

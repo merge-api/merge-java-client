@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.payrollruns.requests.PayrollRunsListR
 import com.merge.legacy.api.resources.hris.payrollruns.requests.PayrollRunsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.PaginatedPayrollRunList;
 import com.merge.legacy.api.resources.hris.types.PayrollRun;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class PayrollRunsClient {
     protected final ClientOptions clientOptions;

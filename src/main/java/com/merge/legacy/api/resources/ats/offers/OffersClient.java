@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.offers.requests.OffersListRequest;
 import com.merge.legacy.api.resources.ats.offers.requests.OffersRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Offer;
 import com.merge.legacy.api.resources.ats.types.PaginatedOfferList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class OffersClient {
     protected final ClientOptions clientOptions;

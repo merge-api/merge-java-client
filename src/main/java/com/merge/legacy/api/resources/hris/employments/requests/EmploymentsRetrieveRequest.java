@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsRetrieveRequestExpand;
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.employments.types.EmploymentsRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

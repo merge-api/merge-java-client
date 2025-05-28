@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.items.requests.ItemsListRequest
 import com.merge.legacy.api.resources.accounting.items.requests.ItemsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Item;
 import com.merge.legacy.api.resources.accounting.types.PaginatedItemList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class ItemsClient {
     protected final ClientOptions clientOptions;

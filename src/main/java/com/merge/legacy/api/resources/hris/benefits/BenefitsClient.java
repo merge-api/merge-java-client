@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.benefits.requests.BenefitsListRequest
 import com.merge.legacy.api.resources.hris.benefits.requests.BenefitsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Benefit;
 import com.merge.legacy.api.resources.hris.types.PaginatedBenefitList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class BenefitsClient {
     protected final ClientOptions clientOptions;

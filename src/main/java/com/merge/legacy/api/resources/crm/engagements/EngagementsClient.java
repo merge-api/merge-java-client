@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.crm.engagements;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.engagements.requests.*;
 import com.merge.legacy.api.resources.crm.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class EngagementsClient {
     protected final ClientOptions clientOptions;

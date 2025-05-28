@@ -3,7 +3,6 @@
  */
 package com.merge.legacy.api;
 
-import com.merge.legacy.api.MergeApiClient;
 import com.merge.legacy.api.core.ClientOptions;
 import com.merge.legacy.api.core.Environment;
 

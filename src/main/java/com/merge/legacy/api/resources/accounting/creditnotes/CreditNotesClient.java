@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.accounting.types.CreditNote;
 import com.merge.legacy.api.resources.accounting.types.CreditNoteResponse;
 import com.merge.legacy.api.resources.accounting.types.MetaResponse;
 import com.merge.legacy.api.resources.accounting.types.PaginatedCreditNoteList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class CreditNotesClient {
     protected final ClientOptions clientOptions;

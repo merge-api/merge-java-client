@@ -10,11 +10,10 @@ import com.merge.legacy.api.resources.ats.types.Candidate;
 import com.merge.legacy.api.resources.ats.types.CandidateResponse;
 import com.merge.legacy.api.resources.ats.types.MetaResponse;
 import com.merge.legacy.api.resources.ats.types.PaginatedCandidateList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class CandidatesClient {
     protected final ClientOptions clientOptions;

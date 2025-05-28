@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.teams.requests.TeamsListRequest;
 import com.merge.legacy.api.resources.ticketing.teams.requests.TeamsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedTeamList;
 import com.merge.legacy.api.resources.ticketing.types.Team;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TeamsClient {
     protected final ClientOptions clientOptions;

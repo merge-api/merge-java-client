@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestExpand;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.accounting.creditnotes.types.CreditNotesRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

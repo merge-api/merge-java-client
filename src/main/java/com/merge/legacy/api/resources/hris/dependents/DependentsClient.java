@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.dependents.requests.DependentsListReq
 import com.merge.legacy.api.resources.hris.dependents.requests.DependentsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Dependent;
 import com.merge.legacy.api.resources.hris.types.PaginatedDependentList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class DependentsClient {
     protected final ClientOptions clientOptions;

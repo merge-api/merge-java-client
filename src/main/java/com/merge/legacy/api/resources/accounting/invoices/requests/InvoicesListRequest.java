@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.accounting.invoices.types.InvoicesListRequestExpand;
 import com.merge.legacy.api.resources.accounting.invoices.types.InvoicesListRequestStatus;
 import com.merge.legacy.api.resources.accounting.invoices.types.InvoicesListRequestType;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

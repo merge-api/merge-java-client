@@ -38,7 +38,6 @@ import com.merge.legacy.api.resources.ats.syncstatus.SyncStatusClient;
 import com.merge.legacy.api.resources.ats.tags.TagsClient;
 import com.merge.legacy.api.resources.ats.users.UsersClient;
 import com.merge.legacy.api.resources.ats.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class AtsClient {

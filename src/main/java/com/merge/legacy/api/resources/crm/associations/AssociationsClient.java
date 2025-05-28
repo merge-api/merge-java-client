@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.crm.associations.requests.CustomObjectClas
 import com.merge.legacy.api.resources.crm.associations.requests.CustomObjectClassesCustomObjectsAssociationsUpdateRequest;
 import com.merge.legacy.api.resources.crm.types.Association;
 import com.merge.legacy.api.resources.crm.types.PaginatedAssociationList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AssociationsClient {
     protected final ClientOptions clientOptions;

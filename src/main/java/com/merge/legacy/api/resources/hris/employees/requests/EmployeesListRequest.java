@@ -10,7 +10,6 @@ import com.merge.legacy.api.resources.hris.employees.types.EmployeesListRequestE
 import com.merge.legacy.api.resources.hris.employees.types.EmployeesListRequestExpand;
 import com.merge.legacy.api.resources.hris.employees.types.EmployeesListRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.employees.types.EmployeesListRequestShowEnumOrigins;
-
 import java.time.OffsetDateTime;
 import java.util.HashMap;
 import java.util.Map;

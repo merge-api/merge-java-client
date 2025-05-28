@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.accounting.expenses;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.expenses.requests.*;
 import com.merge.legacy.api.resources.accounting.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class ExpensesClient {
     protected final ClientOptions clientOptions;

@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.accounting.invoices;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.invoices.requests.*;
 import com.merge.legacy.api.resources.accounting.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class InvoicesClient {
     protected final ClientOptions clientOptions;

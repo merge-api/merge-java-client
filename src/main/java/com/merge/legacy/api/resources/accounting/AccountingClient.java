@@ -48,7 +48,6 @@ import com.merge.legacy.api.resources.accounting.trackingcategories.TrackingCate
 import com.merge.legacy.api.resources.accounting.transactions.TransactionsClient;
 import com.merge.legacy.api.resources.accounting.vendorcredits.VendorCreditsClient;
 import com.merge.legacy.api.resources.accounting.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class AccountingClient {

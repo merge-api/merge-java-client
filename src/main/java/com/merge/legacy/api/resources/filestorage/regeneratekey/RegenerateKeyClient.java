@@ -4,12 +4,11 @@
 package com.merge.legacy.api.resources.filestorage.regeneratekey;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.regeneratekey.requests.RemoteKeyForRegenerationRequest;
 import com.merge.legacy.api.resources.filestorage.types.RemoteKey;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class RegenerateKeyClient {
     protected final ClientOptions clientOptions;

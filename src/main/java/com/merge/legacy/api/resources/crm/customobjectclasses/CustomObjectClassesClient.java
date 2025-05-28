@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.crm.customobjectclasses.requests.CustomObj
 import com.merge.legacy.api.resources.crm.customobjectclasses.requests.CustomObjectClassesRetrieveRequest;
 import com.merge.legacy.api.resources.crm.types.CustomObjectClass;
 import com.merge.legacy.api.resources.crm.types.PaginatedCustomObjectClassList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class CustomObjectClassesClient {
     protected final ClientOptions clientOptions;

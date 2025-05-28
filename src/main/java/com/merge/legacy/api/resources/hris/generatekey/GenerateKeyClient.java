@@ -7,9 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.hris.generatekey.requests.GenerateRemoteKeyRequest;
 import com.merge.legacy.api.resources.hris.types.RemoteKey;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class GenerateKeyClient {
     protected final ClientOptions clientOptions;

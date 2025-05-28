@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.companyinfo.requests.CompanyInf
 import com.merge.legacy.api.resources.accounting.companyinfo.requests.CompanyInfoRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.CompanyInfo;
 import com.merge.legacy.api.resources.accounting.types.PaginatedCompanyInfoList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class CompanyInfoClient {
     protected final ClientOptions clientOptions;

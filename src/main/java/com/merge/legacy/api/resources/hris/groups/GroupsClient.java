@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.groups.requests.GroupsListRequest;
 import com.merge.legacy.api.resources.hris.groups.requests.GroupsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Group;
 import com.merge.legacy.api.resources.hris.types.PaginatedGroupList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class GroupsClient {
     protected final ClientOptions clientOptions;

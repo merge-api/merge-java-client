@@ -3,7 +3,6 @@
  */
 package com.merge.legacy.api;
 
-import com.merge.legacy.api.MergeApiClientBuilder;
 import com.merge.legacy.api.core.ClientOptions;
 import com.merge.legacy.api.core.Suppliers;
 import com.merge.legacy.api.resources.accounting.AccountingClient;
@@ -12,7 +11,6 @@ import com.merge.legacy.api.resources.crm.CrmClient;
 import com.merge.legacy.api.resources.filestorage.FilestorageClient;
 import com.merge.legacy.api.resources.hris.HrisClient;
 import com.merge.legacy.api.resources.ticketing.TicketingClient;
-
 import java.util.function.Supplier;
 
 public class MergeApiClient {

@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.employments.requests.EmploymentsListR
 import com.merge.legacy.api.resources.hris.employments.requests.EmploymentsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Employment;
 import com.merge.legacy.api.resources.hris.types.PaginatedEmploymentList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class EmploymentsClient {
     protected final ClientOptions clientOptions;

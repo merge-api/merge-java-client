@@ -12,12 +12,11 @@ import com.merge.legacy.api.resources.ticketing.types.Attachment;
 import com.merge.legacy.api.resources.ticketing.types.MetaResponse;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedAttachmentList;
 import com.merge.legacy.api.resources.ticketing.types.TicketingAttachmentResponse;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class AttachmentsClient {
     protected final ClientOptions clientOptions;

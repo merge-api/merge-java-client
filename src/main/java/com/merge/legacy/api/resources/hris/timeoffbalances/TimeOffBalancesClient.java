@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.timeoffbalances.requests.TimeOffBalan
 import com.merge.legacy.api.resources.hris.timeoffbalances.requests.TimeOffBalancesRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.PaginatedTimeOffBalanceList;
 import com.merge.legacy.api.resources.hris.types.TimeOffBalance;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TimeOffBalancesClient {
     protected final ClientOptions clientOptions;

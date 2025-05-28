@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.employees.requests.EmployeesLis
 import com.merge.legacy.api.resources.accounting.employees.requests.EmployeesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Employee;
 import com.merge.legacy.api.resources.accounting.types.PaginatedEmployeeList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class EmployeesClient {
     protected final ClientOptions clientOptions;

@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.transactions.requests.Transacti
 import com.merge.legacy.api.resources.accounting.transactions.requests.TransactionsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.PaginatedTransactionList;
 import com.merge.legacy.api.resources.accounting.types.Transaction;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TransactionsClient {
     protected final ClientOptions clientOptions;

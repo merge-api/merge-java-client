@@ -10,9 +10,8 @@ import com.merge.legacy.api.resources.crm.engagementtypes.requests.EngagementTyp
 import com.merge.legacy.api.resources.crm.types.EngagementType;
 import com.merge.legacy.api.resources.crm.types.PaginatedEngagementTypeList;
 import com.merge.legacy.api.resources.crm.types.PaginatedRemoteFieldClassList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class EngagementTypesClient {
     protected final ClientOptions clientOptions;

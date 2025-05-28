@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.departments.requests.DepartmentsListRe
 import com.merge.legacy.api.resources.ats.departments.requests.DepartmentsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.Department;
 import com.merge.legacy.api.resources.ats.types.PaginatedDepartmentList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class DepartmentsClient {
     protected final ClientOptions clientOptions;

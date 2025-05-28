@@ -38,7 +38,6 @@ import com.merge.legacy.api.resources.hris.timeoff.TimeOffClient;
 import com.merge.legacy.api.resources.hris.timeoffbalances.TimeOffBalancesClient;
 import com.merge.legacy.api.resources.hris.timesheetentries.TimesheetEntriesClient;
 import com.merge.legacy.api.resources.hris.webhookreceivers.WebhookReceiversClient;
-
 import java.util.function.Supplier;
 
 public class HrisClient {

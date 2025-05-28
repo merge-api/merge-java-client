@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.ats.types.Activity;
 import com.merge.legacy.api.resources.ats.types.ActivityResponse;
 import com.merge.legacy.api.resources.ats.types.MetaResponse;
 import com.merge.legacy.api.resources.ats.types.PaginatedActivityList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class ActivitiesClient {
     protected final ClientOptions clientOptions;

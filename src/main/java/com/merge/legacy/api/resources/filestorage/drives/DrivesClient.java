@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.filestorage.drives.requests.DrivesListRequ
 import com.merge.legacy.api.resources.filestorage.drives.requests.DrivesRetrieveRequest;
 import com.merge.legacy.api.resources.filestorage.types.Drive;
 import com.merge.legacy.api.resources.filestorage.types.PaginatedDriveList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class DrivesClient {
     protected final ClientOptions clientOptions;

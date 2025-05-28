@@ -3,14 +3,13 @@
  */
 package com.merge.legacy.api.resources.filestorage.groups;
 
-import  com.merge.legacy.api.core.*;
+import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.filestorage.groups.requests.GroupsListRequest;
 import com.merge.legacy.api.resources.filestorage.groups.requests.GroupsRetrieveRequest;
 import com.merge.legacy.api.resources.filestorage.types.Group;
 import com.merge.legacy.api.resources.filestorage.types.PaginatedGroupList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class GroupsClient {
     protected final ClientOptions clientOptions;

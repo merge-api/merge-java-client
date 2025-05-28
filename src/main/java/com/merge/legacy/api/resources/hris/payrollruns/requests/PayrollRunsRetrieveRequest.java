@@ -8,7 +8,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.payrollruns.types.PayrollRunsRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.payrollruns.types.PayrollRunsRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

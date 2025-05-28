@@ -5,9 +5,8 @@ package com.merge.legacy.api.resources.accounting.asynctasks;
 
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.types.AsyncPostTask;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AsyncTasksClient {
     protected final ClientOptions clientOptions;

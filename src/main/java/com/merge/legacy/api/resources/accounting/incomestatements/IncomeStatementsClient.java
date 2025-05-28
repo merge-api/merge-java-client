@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.accounting.incomestatements.requests.Incom
 import com.merge.legacy.api.resources.accounting.incomestatements.requests.IncomeStatementsRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.IncomeStatement;
 import com.merge.legacy.api.resources.accounting.types.PaginatedIncomeStatementList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class IncomeStatementsClient {
     protected final ClientOptions clientOptions;

@@ -10,9 +10,8 @@ import com.merge.legacy.api.resources.crm.stages.requests.StagesRetrieveRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedRemoteFieldClassList;
 import com.merge.legacy.api.resources.crm.types.PaginatedStageList;
 import com.merge.legacy.api.resources.crm.types.Stage;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class StagesClient {
     protected final ClientOptions clientOptions;

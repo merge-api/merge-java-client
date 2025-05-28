@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ats.jobpostings.requests.JobPostingsListRe
 import com.merge.legacy.api.resources.ats.jobpostings.requests.JobPostingsRetrieveRequest;
 import com.merge.legacy.api.resources.ats.types.JobPosting;
 import com.merge.legacy.api.resources.ats.types.PaginatedJobPostingList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class JobPostingsClient {
     protected final ClientOptions clientOptions;

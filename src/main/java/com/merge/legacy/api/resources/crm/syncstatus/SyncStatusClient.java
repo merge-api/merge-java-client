@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.crm.syncstatus;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.syncstatus.requests.SyncStatusListRequest;
 import com.merge.legacy.api.resources.crm.types.PaginatedSyncStatusList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class SyncStatusClient {
     protected final ClientOptions clientOptions;

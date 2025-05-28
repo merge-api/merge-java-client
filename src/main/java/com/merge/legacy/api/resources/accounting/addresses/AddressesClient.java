@@ -6,9 +6,8 @@ package com.merge.legacy.api.resources.accounting.addresses;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.addresses.requests.AddressesRetrieveRequest;
 import com.merge.legacy.api.resources.accounting.types.Address;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AddressesClient {
     protected final ClientOptions clientOptions;

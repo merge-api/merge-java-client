@@ -7,9 +7,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.ats.scopes.requests.LinkedAccountCommonModelScopeDeserializerRequest;
 import com.merge.legacy.api.resources.ats.types.CommonModelScopeApi;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class ScopesClient {
     protected final ClientOptions clientOptions;

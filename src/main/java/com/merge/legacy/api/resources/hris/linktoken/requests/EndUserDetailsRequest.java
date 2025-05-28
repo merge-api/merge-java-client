@@ -11,9 +11,8 @@ import com.merge.legacy.api.resources.hris.types.CategoriesEnum;
 import com.merge.legacy.api.resources.hris.types.CommonModelScopesBodyRequest;
 import com.merge.legacy.api.resources.hris.types.IndividualCommonModelScopeDeserializerRequest;
 import com.merge.legacy.api.resources.hris.types.LanguageEnum;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
+import org.jetbrains.annotations.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EndUserDetailsRequest.Builder.class)

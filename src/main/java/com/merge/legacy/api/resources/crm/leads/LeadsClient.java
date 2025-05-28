@@ -9,11 +9,10 @@ import com.merge.legacy.api.resources.crm.leads.requests.LeadsListRequest;
 import com.merge.legacy.api.resources.crm.leads.requests.LeadsRemoteFieldClassesListRequest;
 import com.merge.legacy.api.resources.crm.leads.requests.LeadsRetrieveRequest;
 import com.merge.legacy.api.resources.crm.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class LeadsClient {
     protected final ClientOptions clientOptions;

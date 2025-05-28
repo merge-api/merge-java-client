@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.locations.requests.LocationsListReque
 import com.merge.legacy.api.resources.hris.locations.requests.LocationsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Location;
 import com.merge.legacy.api.resources.hris.types.PaginatedLocationList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class LocationsClient {
     protected final ClientOptions clientOptions;

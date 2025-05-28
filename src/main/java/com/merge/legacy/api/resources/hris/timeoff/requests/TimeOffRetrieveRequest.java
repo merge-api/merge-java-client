@@ -9,7 +9,6 @@ import com.merge.legacy.api.core.ObjectMappers;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestExpand;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestRemoteFields;
 import com.merge.legacy.api.resources.hris.timeoff.types.TimeOffRetrieveRequestShowEnumOrigins;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;

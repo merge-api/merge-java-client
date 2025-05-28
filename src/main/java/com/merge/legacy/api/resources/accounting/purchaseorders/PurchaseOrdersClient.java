@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.accounting.purchaseorders;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.accounting.purchaseorders.requests.*;
 import com.merge.legacy.api.resources.accounting.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class PurchaseOrdersClient {
     protected final ClientOptions clientOptions;

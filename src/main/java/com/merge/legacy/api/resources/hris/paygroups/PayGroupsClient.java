@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.paygroups.requests.PayGroupsListReque
 import com.merge.legacy.api.resources.hris.paygroups.requests.PayGroupsRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.PaginatedPayGroupList;
 import com.merge.legacy.api.resources.hris.types.PayGroup;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class PayGroupsClient {
     protected final ClientOptions clientOptions;

@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.ticketing.tags.requests.TagsListRequest;
 import com.merge.legacy.api.resources.ticketing.tags.requests.TagsRetrieveRequest;
 import com.merge.legacy.api.resources.ticketing.types.PaginatedTagList;
 import com.merge.legacy.api.resources.ticketing.types.Tag;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class TagsClient {
     protected final ClientOptions clientOptions;

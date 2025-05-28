@@ -7,11 +7,10 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.contacts.requests.*;
 import com.merge.legacy.api.resources.crm.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class ContactsClient {
     protected final ClientOptions clientOptions;

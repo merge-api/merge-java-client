@@ -8,9 +8,8 @@ import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.asyncpassthrough.types.AsyncPassthroughRetrieveResponse;
 import com.merge.legacy.api.resources.crm.types.AsyncPassthroughReciept;
 import com.merge.legacy.api.resources.crm.types.DataPassthroughRequest;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class AsyncPassthroughClient {
     protected final ClientOptions clientOptions;

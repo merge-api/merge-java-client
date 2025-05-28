@@ -12,12 +12,11 @@ import com.merge.legacy.api.resources.filestorage.types.File;
 import com.merge.legacy.api.resources.filestorage.types.FileStorageFileResponse;
 import com.merge.legacy.api.resources.filestorage.types.MetaResponse;
 import com.merge.legacy.api.resources.filestorage.types.PaginatedFileList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class FilesClient {
     protected final ClientOptions clientOptions;

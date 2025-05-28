@@ -11,11 +11,10 @@ import com.merge.legacy.api.resources.accounting.types.BankFeedAccount;
 import com.merge.legacy.api.resources.accounting.types.BankFeedAccountResponse;
 import com.merge.legacy.api.resources.accounting.types.MetaResponse;
 import com.merge.legacy.api.resources.accounting.types.PaginatedBankFeedAccountList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class BankFeedAccountsClient {
     protected final ClientOptions clientOptions;

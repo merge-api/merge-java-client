@@ -13,11 +13,10 @@ import com.merge.legacy.api.resources.hris.types.Employee;
 import com.merge.legacy.api.resources.hris.types.EmployeeResponse;
 import com.merge.legacy.api.resources.hris.types.MetaResponse;
 import com.merge.legacy.api.resources.hris.types.PaginatedEmployeeList;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class EmployeesClient {
     protected final ClientOptions clientOptions;

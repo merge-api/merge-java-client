@@ -8,9 +8,8 @@ import com.merge.legacy.api.resources.hris.companies.requests.CompaniesListReque
 import com.merge.legacy.api.resources.hris.companies.requests.CompaniesRetrieveRequest;
 import com.merge.legacy.api.resources.hris.types.Company;
 import com.merge.legacy.api.resources.hris.types.PaginatedCompanyList;
-import okhttp3.*;
-
 import java.io.IOException;
+import okhttp3.*;
 
 public class CompaniesClient {
     protected final ClientOptions clientOptions;

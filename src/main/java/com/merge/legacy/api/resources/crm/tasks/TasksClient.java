@@ -6,11 +6,10 @@ package com.merge.legacy.api.resources.crm.tasks;
 import com.merge.legacy.api.core.*;
 import com.merge.legacy.api.resources.crm.tasks.requests.*;
 import com.merge.legacy.api.resources.crm.types.*;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import okhttp3.*;
 
 public class TasksClient {
     protected final ClientOptions clientOptions;
