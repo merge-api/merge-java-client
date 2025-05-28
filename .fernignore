@@ -7,3 +7,8 @@ LICENSE.md
 
 src/main/java/com/merge/api/core/MergeApiApiError.java
 src/main/java/com/merge/legacy
+
+# Fern is working on a fix to our code, which will automatically handle the logic we
+# added to QueryStringMapper.java. Once that is fixed, we can remove this file from
+# .fernignore.
+src/main/java/com/merge/api/core/QueryStringMapper.java
