@@ -251,6 +251,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -262,6 +265,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -273,6 +279,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<TaskRequestOwner> owner) {
             this.owner = owner;
@@ -284,6 +293,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<TaskRequestAccount> account) {
             this.account = account;
@@ -295,6 +307,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's opportunity.</p>
+         */
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
         public Builder opportunity(Optional<TaskRequestOpportunity> opportunity) {
             this.opportunity = opportunity;
@@ -306,6 +321,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>When the task is completed.</p>
+         */
         @JsonSetter(value = "completed_date", nulls = Nulls.SKIP)
         public Builder completedDate(Optional<OffsetDateTime> completedDate) {
             this.completedDate = completedDate;
@@ -317,6 +335,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>When the task is due.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -328,6 +349,13 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<TaskStatusEnum> status) {
             this.status = status;

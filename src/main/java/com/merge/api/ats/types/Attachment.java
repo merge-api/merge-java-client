@@ -264,6 +264,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -275,6 +278,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -286,6 +292,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -297,6 +306,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The attachment's name.</p>
+         */
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public Builder fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -308,6 +320,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The attachment's url.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -330,6 +345,15 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>The attachment's type.</p>
+         * <ul>
+         * <li><code>RESUME</code> - RESUME</li>
+         * <li><code>COVER_LETTER</code> - COVER_LETTER</li>
+         * <li><code>OFFER_LETTER</code> - OFFER_LETTER</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "attachment_type", nulls = Nulls.SKIP)
         public Builder attachmentType(Optional<AttachmentTypeEnum> attachmentType) {
             this.attachmentType = attachmentType;
@@ -341,6 +365,9 @@ public final class Attachment {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

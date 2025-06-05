@@ -316,6 +316,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -327,6 +330,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -338,6 +344,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -349,6 +358,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The user that performed the action.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<ActivityUser> user) {
             this.user = user;
@@ -360,6 +372,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>When the third party's activity was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -371,6 +386,14 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's type.</p>
+         * <ul>
+         * <li><code>NOTE</code> - NOTE</li>
+         * <li><code>EMAIL</code> - EMAIL</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
         public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
@@ -382,6 +405,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -393,6 +419,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -404,6 +433,14 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's visibility.</p>
+         * <ul>
+         * <li><code>ADMIN_ONLY</code> - ADMIN_ONLY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * </ul>
+         */
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
         public Builder visibility(Optional<VisibilityEnum> visibility) {
             this.visibility = visibility;
@@ -426,6 +463,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

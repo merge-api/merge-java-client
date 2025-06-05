@@ -204,6 +204,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The user that performed the action.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<ActivityRequestUser> user) {
             this.user = user;
@@ -215,6 +218,14 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's type.</p>
+         * <ul>
+         * <li><code>NOTE</code> - NOTE</li>
+         * <li><code>EMAIL</code> - EMAIL</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
         public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
@@ -226,6 +237,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -237,6 +251,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -248,6 +265,14 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's visibility.</p>
+         * <ul>
+         * <li><code>ADMIN_ONLY</code> - ADMIN_ONLY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * </ul>
+         */
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
         public Builder visibility(Optional<VisibilityEnum> visibility) {
             this.visibility = visibility;

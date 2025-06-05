@@ -158,34 +158,55 @@ public final class CreateFieldMappingRequest {
     }
 
     public interface TargetFieldNameStage {
+        /**
+         * The name of the target field you want this remote field to map to.
+         */
         TargetFieldDescriptionStage targetFieldName(@NotNull String targetFieldName);
 
         Builder from(CreateFieldMappingRequest other);
     }
 
     public interface TargetFieldDescriptionStage {
+        /**
+         * The description of the target field you want this remote field to map to.
+         */
         RemoteMethodStage targetFieldDescription(@NotNull String targetFieldDescription);
     }
 
     public interface RemoteMethodStage {
+        /**
+         * The method of the remote endpoint where the remote field is coming from.
+         */
         RemoteUrlPathStage remoteMethod(@NotNull String remoteMethod);
     }
 
     public interface RemoteUrlPathStage {
+        /**
+         * The path of the remote endpoint where the remote field is coming from.
+         */
         CommonModelNameStage remoteUrlPath(@NotNull String remoteUrlPath);
     }
 
     public interface CommonModelNameStage {
+        /**
+         * The name of the Common Model that the remote field corresponds to in a given category.
+         */
         _FinalStage commonModelName(@NotNull String commonModelName);
     }
 
     public interface _FinalStage {
         CreateFieldMappingRequest build();
 
+        /**
+         * <p>If <code>true</code>, remote fields metadata is excluded from each field mapping instance (i.e. <code>remote_fields.remote_key_name</code> and <code>remote_fields.schema</code> will be null). This will increase the speed of the request since these fields require some calculations.</p>
+         */
         _FinalStage excludeRemoteFieldMetadata(Optional<Boolean> excludeRemoteFieldMetadata);
 
         _FinalStage excludeRemoteFieldMetadata(Boolean excludeRemoteFieldMetadata);
 
+        /**
+         * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
+         */
         _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath);
 
         _FinalStage addRemoteFieldTraversalPath(JsonNode remoteFieldTraversalPath);
@@ -233,7 +254,7 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * <p>The name of the target field you want this remote field to map to.</p>
+         * The name of the target field you want this remote field to map to.<p>The name of the target field you want this remote field to map to.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -244,7 +265,7 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * <p>The description of the target field you want this remote field to map to.</p>
+         * The description of the target field you want this remote field to map to.<p>The description of the target field you want this remote field to map to.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -255,7 +276,7 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * <p>The method of the remote endpoint where the remote field is coming from.</p>
+         * The method of the remote endpoint where the remote field is coming from.<p>The method of the remote endpoint where the remote field is coming from.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -266,7 +287,7 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * <p>The path of the remote endpoint where the remote field is coming from.</p>
+         * The path of the remote endpoint where the remote field is coming from.<p>The path of the remote endpoint where the remote field is coming from.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -277,7 +298,7 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * <p>The name of the Common Model that the remote field corresponds to in a given category.</p>
+         * The name of the Common Model that the remote field corresponds to in a given category.<p>The name of the Common Model that the remote field corresponds to in a given category.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -307,6 +328,9 @@ public final class CreateFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_field_traversal_path", nulls = Nulls.SKIP)
         public _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
@@ -325,6 +349,9 @@ public final class CreateFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>If <code>true</code>, remote fields metadata is excluded from each field mapping instance (i.e. <code>remote_fields.remote_key_name</code> and <code>remote_fields.schema</code> will be null). This will increase the speed of the request since these fields require some calculations.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "exclude_remote_field_metadata", nulls = Nulls.SKIP)
         public _FinalStage excludeRemoteFieldMetadata(Optional<Boolean> excludeRemoteFieldMetadata) {

@@ -187,6 +187,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -198,6 +201,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The user that is granted this permission. This will only be populated if the type is <code>USER</code>.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<PermissionRequestUser> user) {
             this.user = user;
@@ -209,6 +215,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.</p>
+         */
         @JsonSetter(value = "group", nulls = Nulls.SKIP)
         public Builder group(Optional<PermissionRequestGroup> group) {
             this.group = group;
@@ -220,6 +229,15 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>Denotes what type of people have access to the file.</p>
+         * <ul>
+         * <li><code>USER</code> - USER</li>
+         * <li><code>GROUP</code> - GROUP</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>ANYONE</code> - ANYONE</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<TypeEnum> type) {
             this.type = type;
@@ -231,6 +249,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.</p>
+         */
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
         public Builder roles(Optional<List<RolesEnum>> roles) {
             this.roles = roles;

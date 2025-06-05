@@ -365,6 +365,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -376,6 +379,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -387,6 +393,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -398,6 +407,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The application being interviewed.</p>
+         */
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
         public Builder application(Optional<ScheduledInterviewApplication> application) {
             this.application = application;
@@ -409,6 +421,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The stage of the interview.</p>
+         */
         @JsonSetter(value = "job_interview_stage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<ScheduledInterviewJobInterviewStage> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
@@ -420,6 +435,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The user organizing the interview.</p>
+         */
         @JsonSetter(value = "organizer", nulls = Nulls.SKIP)
         public Builder organizer(Optional<ScheduledInterviewOrganizer> organizer) {
             this.organizer = organizer;
@@ -431,6 +449,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>Array of <code>RemoteUser</code> IDs.</p>
+         */
         @JsonSetter(value = "interviewers", nulls = Nulls.SKIP)
         public Builder interviewers(Optional<List<Optional<ScheduledInterviewInterviewersItem>>> interviewers) {
             this.interviewers = interviewers;
@@ -442,6 +463,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The interview's location.</p>
+         */
         @JsonSetter(value = "location", nulls = Nulls.SKIP)
         public Builder location(Optional<String> location) {
             this.location = location;
@@ -453,6 +477,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>When the interview was started.</p>
+         */
         @JsonSetter(value = "start_at", nulls = Nulls.SKIP)
         public Builder startAt(Optional<OffsetDateTime> startAt) {
             this.startAt = startAt;
@@ -464,6 +491,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>When the interview was ended.</p>
+         */
         @JsonSetter(value = "end_at", nulls = Nulls.SKIP)
         public Builder endAt(Optional<OffsetDateTime> endAt) {
             this.endAt = endAt;
@@ -475,6 +505,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>When the third party's interview was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -486,6 +519,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>When the third party's interview was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -497,6 +533,14 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>The interview's status.</p>
+         * <ul>
+         * <li><code>SCHEDULED</code> - SCHEDULED</li>
+         * <li><code>AWAITING_FEEDBACK</code> - AWAITING_FEEDBACK</li>
+         * <li><code>COMPLETE</code> - COMPLETE</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<ScheduledInterviewStatusEnum> status) {
             this.status = status;
@@ -508,6 +552,9 @@ public final class ScheduledInterview {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

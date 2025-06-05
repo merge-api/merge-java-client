@@ -35,7 +35,7 @@ public final class TaxComponent {
 
     private final Optional<Boolean> isCompound;
 
-    private final Optional<ComponentTypeEnum> componentType;
+    private final Optional<TaxComponentComponentType> componentType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -49,7 +49,7 @@ public final class TaxComponent {
             Optional<String> name,
             Optional<String> rate,
             Optional<Boolean> isCompound,
-            Optional<ComponentTypeEnum> componentType,
+            Optional<TaxComponentComponentType> componentType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -125,7 +125,7 @@ public final class TaxComponent {
      * </ul>
      */
     @JsonProperty("component_type")
-    public Optional<ComponentTypeEnum> getComponentType() {
+    public Optional<TaxComponentComponentType> getComponentType() {
         return componentType;
     }
 
@@ -199,7 +199,7 @@ public final class TaxComponent {
 
         private Optional<Boolean> isCompound = Optional.empty();
 
-        private Optional<ComponentTypeEnum> componentType = Optional.empty();
+        private Optional<TaxComponentComponentType> componentType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -232,6 +232,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -243,6 +246,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -254,6 +260,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -265,6 +274,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>The tax rate’s name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -276,6 +288,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>The tax component’s rate.</p>
+         */
         @JsonSetter(value = "rate", nulls = Nulls.SKIP)
         public Builder rate(Optional<String> rate) {
             this.rate = rate;
@@ -287,6 +302,9 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>Returns True if the tax component is compound, False if not.</p>
+         */
         @JsonSetter(value = "is_compound", nulls = Nulls.SKIP)
         public Builder isCompound(Optional<Boolean> isCompound) {
             this.isCompound = isCompound;
@@ -298,17 +316,27 @@ public final class TaxComponent {
             return this;
         }
 
+        /**
+         * <p>Returns PURCHASE if the tax component corresponds to a purchase tax or SALES if the tax component corresponds to a sales tax.</p>
+         * <ul>
+         * <li><code>SALES</code> - SALES</li>
+         * <li><code>PURCHASE</code> - PURCHASE</li>
+         * </ul>
+         */
         @JsonSetter(value = "component_type", nulls = Nulls.SKIP)
-        public Builder componentType(Optional<ComponentTypeEnum> componentType) {
+        public Builder componentType(Optional<TaxComponentComponentType> componentType) {
             this.componentType = componentType;
             return this;
         }
 
-        public Builder componentType(ComponentTypeEnum componentType) {
+        public Builder componentType(TaxComponentComponentType componentType) {
             this.componentType = Optional.ofNullable(componentType);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

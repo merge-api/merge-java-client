@@ -152,6 +152,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -163,6 +166,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -174,6 +180,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The email address.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -185,6 +194,14 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The type of email address.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
         public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
             this.emailAddressType = emailAddressType;
@@ -196,6 +213,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

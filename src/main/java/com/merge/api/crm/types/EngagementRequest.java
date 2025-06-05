@@ -265,6 +265,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The engagement's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<EngagementRequestOwner> owner) {
             this.owner = owner;
@@ -276,6 +279,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The engagement's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -287,6 +293,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The engagement's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -298,6 +307,13 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The engagement's direction.</p>
+         * <ul>
+         * <li><code>INBOUND</code> - INBOUND</li>
+         * <li><code>OUTBOUND</code> - OUTBOUND</li>
+         * </ul>
+         */
         @JsonSetter(value = "direction", nulls = Nulls.SKIP)
         public Builder direction(Optional<DirectionEnum> direction) {
             this.direction = direction;
@@ -309,6 +325,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The engagement type of the engagement.</p>
+         */
         @JsonSetter(value = "engagement_type", nulls = Nulls.SKIP)
         public Builder engagementType(Optional<EngagementRequestEngagementType> engagementType) {
             this.engagementType = engagementType;
@@ -320,6 +339,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The time at which the engagement started.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -331,6 +353,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The time at which the engagement ended.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;
@@ -342,6 +367,9 @@ public final class EngagementRequest {
             return this;
         }
 
+        /**
+         * <p>The account of the engagement.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<EngagementRequestAccount> account) {
             this.account = account;

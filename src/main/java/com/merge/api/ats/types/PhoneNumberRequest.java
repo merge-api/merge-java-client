@@ -132,6 +132,9 @@ public final class PhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The phone number.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -143,6 +146,16 @@ public final class PhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The type of phone number.</p>
+         * <ul>
+         * <li><code>HOME</code> - HOME</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>MOBILE</code> - MOBILE</li>
+         * <li><code>SKYPE</code> - SKYPE</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
         public Builder phoneNumberType(Optional<PhoneNumberTypeEnum> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;

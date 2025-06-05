@@ -164,6 +164,9 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        /**
+         * <p>The employee the timesheet entry is for.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<TimesheetEntryRequestEmployee> employee) {
             this.employee = employee;
@@ -175,6 +178,9 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        /**
+         * <p>The number of hours logged by the employee.</p>
+         */
         @JsonSetter(value = "hours_worked", nulls = Nulls.SKIP)
         public Builder hoursWorked(Optional<Double> hoursWorked) {
             this.hoursWorked = hoursWorked;
@@ -186,6 +192,9 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        /**
+         * <p>The time at which the employee started work.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -197,6 +206,9 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        /**
+         * <p>The time at which the employee ended work.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;

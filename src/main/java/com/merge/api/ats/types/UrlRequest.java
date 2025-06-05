@@ -134,6 +134,9 @@ public final class UrlRequest {
             return this;
         }
 
+        /**
+         * <p>The site's url.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -145,6 +148,18 @@ public final class UrlRequest {
             return this;
         }
 
+        /**
+         * <p>The type of site.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PORTFOLIO</code> - PORTFOLIO</li>
+         * <li><code>BLOG</code> - BLOG</li>
+         * <li><code>SOCIAL_MEDIA</code> - SOCIAL_MEDIA</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * <li><code>JOB_POSTING</code> - JOB_POSTING</li>
+         * </ul>
+         */
         @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
         public Builder urlType(Optional<UrlTypeEnum> urlType) {
             this.urlType = urlType;

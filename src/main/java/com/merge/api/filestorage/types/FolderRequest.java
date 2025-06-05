@@ -214,6 +214,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The folder's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -225,6 +228,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The URL to access the folder.</p>
+         */
         @JsonSetter(value = "folder_url", nulls = Nulls.SKIP)
         public Builder folderUrl(Optional<String> folderUrl) {
             this.folderUrl = folderUrl;
@@ -236,6 +242,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The folder's size, in bytes.</p>
+         */
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
         public Builder size(Optional<Long> size) {
             this.size = size;
@@ -247,6 +256,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The folder's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -258,6 +270,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The folder that the folder belongs to.</p>
+         */
         @JsonSetter(value = "parent_folder", nulls = Nulls.SKIP)
         public Builder parentFolder(Optional<FolderRequestParentFolder> parentFolder) {
             this.parentFolder = parentFolder;
@@ -269,6 +284,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The drive that the folder belongs to.</p>
+         */
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
         public Builder drive(Optional<FolderRequestDrive> drive) {
             this.drive = drive;
@@ -280,6 +298,9 @@ public final class FolderRequest {
             return this;
         }
 
+        /**
+         * <p>The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /folders</code>.</p>
+         */
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
         public Builder permissions(Optional<FolderRequestPermissions> permissions) {
             this.permissions = permissions;

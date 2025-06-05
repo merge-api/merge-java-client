@@ -265,6 +265,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -276,6 +279,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -287,6 +293,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -298,6 +307,16 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The type of benefit plan.</p>
+         * <ul>
+         * <li><code>MEDICAL</code> - MEDICAL</li>
+         * <li><code>HEALTH_SAVINGS</code> - HEALTH_SAVINGS</li>
+         * <li><code>INSURANCE</code> - INSURANCE</li>
+         * <li><code>RETIREMENT</code> - RETIREMENT</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "benefit_plan_type", nulls = Nulls.SKIP)
         public Builder benefitPlanType(Optional<BenefitPlanTypeEnum> benefitPlanType) {
             this.benefitPlanType = benefitPlanType;
@@ -309,6 +328,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The employer benefit's name - typically the carrier or network name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -320,6 +342,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The employer benefit's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -331,6 +356,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>The employer benefit's deduction code.</p>
+         */
         @JsonSetter(value = "deduction_code", nulls = Nulls.SKIP)
         public Builder deductionCode(Optional<String> deductionCode) {
             this.deductionCode = deductionCode;
@@ -342,6 +370,9 @@ public final class EmployerBenefit {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

@@ -41,7 +41,7 @@ public final class Contact {
 
     private final Optional<String> taxNumber;
 
-    private final Optional<Status7D1Enum> status;
+    private final Optional<ContactStatus> status;
 
     private final Optional<String> currency;
 
@@ -73,7 +73,7 @@ public final class Contact {
             Optional<Boolean> isCustomer,
             Optional<String> emailAddress,
             Optional<String> taxNumber,
-            Optional<Status7D1Enum> status,
+            Optional<ContactStatus> status,
             Optional<String> currency,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<String> company,
@@ -183,7 +183,7 @@ public final class Contact {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<Status7D1Enum> getStatus() {
+    public Optional<ContactStatus> getStatus() {
         return status;
     }
 
@@ -336,7 +336,7 @@ public final class Contact {
 
         private Optional<String> taxNumber = Optional.empty();
 
-        private Optional<Status7D1Enum> status = Optional.empty();
+        private Optional<ContactStatus> status = Optional.empty();
 
         private Optional<String> currency = Optional.empty();
 
@@ -395,6 +395,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -406,6 +409,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -417,6 +423,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -428,6 +437,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -439,6 +451,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>Whether the contact is a supplier.</p>
+         */
         @JsonSetter(value = "is_supplier", nulls = Nulls.SKIP)
         public Builder isSupplier(Optional<Boolean> isSupplier) {
             this.isSupplier = isSupplier;
@@ -450,6 +465,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>Whether the contact is a customer.</p>
+         */
         @JsonSetter(value = "is_customer", nulls = Nulls.SKIP)
         public Builder isCustomer(Optional<Boolean> isCustomer) {
             this.isCustomer = isCustomer;
@@ -461,6 +479,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's email address.</p>
+         */
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public Builder emailAddress(Optional<String> emailAddress) {
             this.emailAddress = emailAddress;
@@ -472,6 +493,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's tax number.</p>
+         */
         @JsonSetter(value = "tax_number", nulls = Nulls.SKIP)
         public Builder taxNumber(Optional<String> taxNumber) {
             this.taxNumber = taxNumber;
@@ -483,17 +507,27 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's status</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status7D1Enum> status) {
+        public Builder status(Optional<ContactStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status7D1Enum status) {
+        public Builder status(ContactStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The currency the contact's transactions are in.</p>
+         */
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
         public Builder currency(Optional<String> currency) {
             this.currency = currency;
@@ -505,6 +539,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>When the third party's contact was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -516,6 +553,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The company the contact belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -527,6 +567,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p><code>Address</code> object IDs for the given <code>Contacts</code> object.</p>
+         */
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
         public Builder addresses(Optional<List<Optional<ContactAddressesItem>>> addresses) {
             this.addresses = addresses;
@@ -538,6 +581,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p><code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.</p>
+         */
         @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
         public Builder phoneNumbers(Optional<List<AccountingPhoneNumber>> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;
@@ -549,6 +595,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

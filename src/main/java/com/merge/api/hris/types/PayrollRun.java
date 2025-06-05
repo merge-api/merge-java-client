@@ -289,6 +289,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -300,6 +303,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -311,6 +317,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -322,6 +331,16 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The state of the payroll run</p>
+         * <ul>
+         * <li><code>PAID</code> - PAID</li>
+         * <li><code>DRAFT</code> - DRAFT</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>FAILED</code> - FAILED</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * </ul>
+         */
         @JsonSetter(value = "run_state", nulls = Nulls.SKIP)
         public Builder runState(Optional<RunStateEnum> runState) {
             this.runState = runState;
@@ -333,6 +352,16 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The type of the payroll run</p>
+         * <ul>
+         * <li><code>REGULAR</code> - REGULAR</li>
+         * <li><code>OFF_CYCLE</code> - OFF_CYCLE</li>
+         * <li><code>CORRECTION</code> - CORRECTION</li>
+         * <li><code>TERMINATION</code> - TERMINATION</li>
+         * <li><code>SIGN_ON_BONUS</code> - SIGN_ON_BONUS</li>
+         * </ul>
+         */
         @JsonSetter(value = "run_type", nulls = Nulls.SKIP)
         public Builder runType(Optional<RunTypeEnum> runType) {
             this.runType = runType;
@@ -344,6 +373,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run started.</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -355,6 +387,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run ended.</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<OffsetDateTime> endDate) {
             this.endDate = endDate;
@@ -366,6 +401,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run was checked.</p>
+         */
         @JsonSetter(value = "check_date", nulls = Nulls.SKIP)
         public Builder checkDate(Optional<OffsetDateTime> checkDate) {
             this.checkDate = checkDate;
@@ -377,6 +415,9 @@ public final class PayrollRun {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

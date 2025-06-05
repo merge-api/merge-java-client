@@ -309,6 +309,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -320,6 +323,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -331,6 +337,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -342,6 +351,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<CommentUser> user) {
             this.user = user;
@@ -353,6 +365,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<CommentContact> contact) {
             this.contact = contact;
@@ -364,6 +379,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The comment's text body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -375,6 +393,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The comment's text body formatted as html.</p>
+         */
         @JsonSetter(value = "html_body", nulls = Nulls.SKIP)
         public Builder htmlBody(Optional<String> htmlBody) {
             this.htmlBody = htmlBody;
@@ -386,6 +407,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>The ticket associated with the comment.</p>
+         */
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
         public Builder ticket(Optional<CommentTicket> ticket) {
             this.ticket = ticket;
@@ -397,6 +421,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>Whether or not the comment is internal.</p>
+         */
         @JsonSetter(value = "is_private", nulls = Nulls.SKIP)
         public Builder isPrivate(Optional<Boolean> isPrivate) {
             this.isPrivate = isPrivate;
@@ -408,6 +435,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>When the third party's comment was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -419,6 +449,9 @@ public final class Comment {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

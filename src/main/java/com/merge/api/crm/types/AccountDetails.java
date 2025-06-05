@@ -340,6 +340,9 @@ public final class AccountDetails {
             return this;
         }
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         @JsonSetter(value = "is_duplicate", nulls = Nulls.SKIP)
         public Builder isDuplicate(Optional<Boolean> isDuplicate) {
             this.isDuplicate = isDuplicate;
@@ -362,6 +365,9 @@ public final class AccountDetails {
             return this;
         }
 
+        /**
+         * <p>The time at which account completes the linking flow.</p>
+         */
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;

@@ -248,6 +248,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -259,6 +262,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The URL to access the file.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -270,6 +276,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The URL that produces a thumbnail preview of the file. Typically an image.</p>
+         */
         @JsonSetter(value = "file_thumbnail_url", nulls = Nulls.SKIP)
         public Builder fileThumbnailUrl(Optional<String> fileThumbnailUrl) {
             this.fileThumbnailUrl = fileThumbnailUrl;
@@ -281,6 +290,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's size, in bytes.</p>
+         */
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
         public Builder size(Optional<Long> size) {
             this.size = size;
@@ -292,6 +304,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's mime type.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;
@@ -303,6 +318,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -314,6 +332,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The folder that the file belongs to.</p>
+         */
         @JsonSetter(value = "folder", nulls = Nulls.SKIP)
         public Builder folder(Optional<FileRequestFolder> folder) {
             this.folder = folder;
@@ -325,6 +346,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /files</code>.</p>
+         */
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
         public Builder permissions(Optional<FileRequestPermissions> permissions) {
             this.permissions = permissions;
@@ -336,6 +360,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The drive that the file belongs to.</p>
+         */
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
         public Builder drive(Optional<FileRequestDrive> drive) {
             this.drive = drive;

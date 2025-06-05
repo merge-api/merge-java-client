@@ -169,6 +169,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's name.</p>
+         */
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public Builder fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -180,6 +183,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's url.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -202,6 +208,15 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's type.</p>
+         * <ul>
+         * <li><code>RESUME</code> - RESUME</li>
+         * <li><code>COVER_LETTER</code> - COVER_LETTER</li>
+         * <li><code>OFFER_LETTER</code> - OFFER_LETTER</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "attachment_type", nulls = Nulls.SKIP)
         public Builder attachmentType(Optional<AttachmentTypeEnum> attachmentType) {
             this.attachmentType = attachmentType;
