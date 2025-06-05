@@ -184,6 +184,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -195,6 +198,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -206,6 +212,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -228,6 +237,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>Date that the vendor credit is applied to the invoice.</p>
+         */
         @JsonSetter(value = "applied_date", nulls = Nulls.SKIP)
         public Builder appliedDate(Optional<OffsetDateTime> appliedDate) {
             this.appliedDate = appliedDate;
@@ -239,6 +251,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>The amount of the VendorCredit applied to the invoice.</p>
+         */
         @JsonSetter(value = "applied_amount", nulls = Nulls.SKIP)
         public Builder appliedAmount(Optional<String> appliedAmount) {
             this.appliedAmount = appliedAmount;
@@ -250,6 +265,9 @@ public final class VendorCreditApplyLineForVendorCredit {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

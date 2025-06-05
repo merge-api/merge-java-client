@@ -33,7 +33,7 @@ public final class GeneralLedgerTransaction {
 
     private final Optional<String> underlyingTransactionRemoteId;
 
-    private final Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType;
+    private final Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType;
 
     private final Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod;
 
@@ -64,7 +64,7 @@ public final class GeneralLedgerTransaction {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> underlyingTransactionRemoteId,
-            Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType,
+            Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType,
             Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod,
             Optional<GeneralLedgerTransactionCompany> company,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -145,7 +145,7 @@ public final class GeneralLedgerTransaction {
      * </ul>
      */
     @JsonProperty("underlying_transaction_type")
-    public Optional<UnderlyingTransactionTypeEnum> getUnderlyingTransactionType() {
+    public Optional<GeneralLedgerTransactionUnderlyingTransactionType> getUnderlyingTransactionType() {
         return underlyingTransactionType;
     }
 
@@ -293,7 +293,8 @@ public final class GeneralLedgerTransaction {
 
         private Optional<String> underlyingTransactionRemoteId = Optional.empty();
 
-        private Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType = Optional.empty();
+        private Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType =
+                Optional.empty();
 
         private Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod = Optional.empty();
 
@@ -353,6 +354,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -364,6 +368,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -375,6 +382,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -386,6 +396,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The third party remote ID of the underlying transaction.</p>
+         */
         @JsonSetter(value = "underlying_transaction_remote_id", nulls = Nulls.SKIP)
         public Builder underlyingTransactionRemoteId(Optional<String> underlyingTransactionRemoteId) {
             this.underlyingTransactionRemoteId = underlyingTransactionRemoteId;
@@ -397,17 +410,34 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The type of the underlying transaction.</p>
+         * <ul>
+         * <li><code>INVOICE</code> - INVOICE</li>
+         * <li><code>EXPENSE</code> - EXPENSE</li>
+         * <li><code>TRANSACTION</code> - TRANSACTION</li>
+         * <li><code>JOURNAL_ENTRY</code> - JOURNAL_ENTRY</li>
+         * <li><code>PAYMENT</code> - PAYMENT</li>
+         * <li><code>VENDOR_CREDIT</code> - VENDOR_CREDIT</li>
+         * <li><code>CREDIT_NOTE</code> - CREDIT_NOTE</li>
+         * </ul>
+         */
         @JsonSetter(value = "underlying_transaction_type", nulls = Nulls.SKIP)
-        public Builder underlyingTransactionType(Optional<UnderlyingTransactionTypeEnum> underlyingTransactionType) {
+        public Builder underlyingTransactionType(
+                Optional<GeneralLedgerTransactionUnderlyingTransactionType> underlyingTransactionType) {
             this.underlyingTransactionType = underlyingTransactionType;
             return this;
         }
 
-        public Builder underlyingTransactionType(UnderlyingTransactionTypeEnum underlyingTransactionType) {
+        public Builder underlyingTransactionType(
+                GeneralLedgerTransactionUnderlyingTransactionType underlyingTransactionType) {
             this.underlyingTransactionType = Optional.ofNullable(underlyingTransactionType);
             return this;
         }
 
+        /**
+         * <p>The accounting period that the GeneralLedgerTransaction was generated in.</p>
+         */
         @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
         public Builder accountingPeriod(Optional<GeneralLedgerTransactionAccountingPeriod> accountingPeriod) {
             this.accountingPeriod = accountingPeriod;
@@ -419,6 +449,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The company the GeneralLedgerTransaction belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<GeneralLedgerTransactionCompany> company) {
             this.company = company;
@@ -430,6 +463,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>When the third party's GeneralLedgerTransaction entry was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -441,6 +477,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>When the third party's GeneralLedgerTransaction entry was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -465,6 +504,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>The date that the transaction was posted to the general ledger.</p>
+         */
         @JsonSetter(value = "posting_date", nulls = Nulls.SKIP)
         public Builder postingDate(Optional<OffsetDateTime> postingDate) {
             this.postingDate = postingDate;
@@ -476,6 +518,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>A list of “General Ledger Transaction Applied to Lines” objects.</p>
+         */
         @JsonSetter(value = "general_ledger_transaction_lines", nulls = Nulls.SKIP)
         public Builder generalLedgerTransactionLines(
                 Optional<List<GeneralLedgerTransactionGeneralLedgerTransactionLinesItem>>
@@ -490,6 +535,9 @@ public final class GeneralLedgerTransaction {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

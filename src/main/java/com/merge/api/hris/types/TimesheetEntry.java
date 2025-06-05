@@ -258,6 +258,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -269,6 +272,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -280,6 +286,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -291,6 +300,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The employee the timesheet entry is for.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<TimesheetEntryEmployee> employee) {
             this.employee = employee;
@@ -302,6 +314,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The number of hours logged by the employee.</p>
+         */
         @JsonSetter(value = "hours_worked", nulls = Nulls.SKIP)
         public Builder hoursWorked(Optional<Double> hoursWorked) {
             this.hoursWorked = hoursWorked;
@@ -313,6 +328,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The time at which the employee started work.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -324,6 +342,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>The time at which the employee ended work.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;
@@ -335,6 +356,9 @@ public final class TimesheetEntry {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

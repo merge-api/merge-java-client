@@ -33,7 +33,7 @@ public final class AccountingPeriod {
 
     private final Optional<String> name;
 
-    private final Optional<Status895Enum> status;
+    private final Optional<AccountingPeriodStatus> status;
 
     private final Optional<OffsetDateTime> startDate;
 
@@ -51,7 +51,7 @@ public final class AccountingPeriod {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<Status895Enum> status,
+            Optional<AccountingPeriodStatus> status,
             Optional<OffsetDateTime> startDate,
             Optional<OffsetDateTime> endDate,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -108,7 +108,7 @@ public final class AccountingPeriod {
     }
 
     @JsonProperty("status")
-    public Optional<Status895Enum> getStatus() {
+    public Optional<AccountingPeriodStatus> getStatus() {
         return status;
     }
 
@@ -198,7 +198,7 @@ public final class AccountingPeriod {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Status895Enum> status = Optional.empty();
+        private Optional<AccountingPeriodStatus> status = Optional.empty();
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
@@ -238,6 +238,9 @@ public final class AccountingPeriod {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -249,6 +252,9 @@ public final class AccountingPeriod {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -260,6 +266,9 @@ public final class AccountingPeriod {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -271,6 +280,9 @@ public final class AccountingPeriod {
             return this;
         }
 
+        /**
+         * <p>Name of the accounting period.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -283,16 +295,19 @@ public final class AccountingPeriod {
         }
 
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status895Enum> status) {
+        public Builder status(Optional<AccountingPeriodStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status895Enum status) {
+        public Builder status(AccountingPeriodStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>Beginning date of the period</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -304,6 +319,9 @@ public final class AccountingPeriod {
             return this;
         }
 
+        /**
+         * <p>End date of the period</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<OffsetDateTime> endDate) {
             this.endDate = endDate;

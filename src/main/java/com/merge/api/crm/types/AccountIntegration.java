@@ -196,6 +196,9 @@ public final class AccountIntegration {
     }
 
     public interface NameStage {
+        /**
+         * Company name.
+         */
         _FinalStage name(@NotNull String name);
 
         Builder from(AccountIntegration other);
@@ -204,22 +207,37 @@ public final class AccountIntegration {
     public interface _FinalStage {
         AccountIntegration build();
 
+        /**
+         * <p>Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;</p>
+         */
         _FinalStage abbreviatedName(Optional<String> abbreviatedName);
 
         _FinalStage abbreviatedName(String abbreviatedName);
 
+        /**
+         * <p>Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].</p>
+         */
         _FinalStage categories(Optional<List<CategoriesEnum>> categories);
 
         _FinalStage categories(List<CategoriesEnum> categories);
 
+        /**
+         * <p>Company logo in rectangular shape.</p>
+         */
         _FinalStage image(Optional<String> image);
 
         _FinalStage image(String image);
 
+        /**
+         * <p>Company logo in square shape.</p>
+         */
         _FinalStage squareImage(Optional<String> squareImage);
 
         _FinalStage squareImage(String squareImage);
 
+        /**
+         * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;</p>
+         */
         _FinalStage color(Optional<String> color);
 
         _FinalStage color(String color);
@@ -228,14 +246,23 @@ public final class AccountIntegration {
 
         _FinalStage slug(String slug);
 
+        /**
+         * <p>Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}</p>
+         */
         _FinalStage apiEndpointsToDocumentationUrls(Optional<Map<String, JsonNode>> apiEndpointsToDocumentationUrls);
 
         _FinalStage apiEndpointsToDocumentationUrls(Map<String, JsonNode> apiEndpointsToDocumentationUrls);
 
+        /**
+         * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
+         */
         _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl);
 
         _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl);
 
+        /**
+         * <p>Category or categories this integration is in beta status for.</p>
+         */
         _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus);
 
         _FinalStage categoryBetaStatus(Map<String, JsonNode> categoryBetaStatus);
@@ -284,7 +311,7 @@ public final class AccountIntegration {
         }
 
         /**
-         * <p>Company name.</p>
+         * Company name.<p>Company name.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -304,6 +331,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Category or categories this integration is in beta status for.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "category_beta_status", nulls = Nulls.SKIP)
         public _FinalStage categoryBetaStatus(Optional<Map<String, JsonNode>> categoryBetaStatus) {
@@ -321,6 +351,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "webhook_setup_guide_url", nulls = Nulls.SKIP)
         public _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl) {
@@ -338,6 +371,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Mapping of API endpoints to documentation urls for support. Example: {'GET': [['/common-model-scopes', 'https://docs.merge.dev/accounting/common-model-scopes/#common_model_scopes_retrieve'],['/common-model-actions', 'https://docs.merge.dev/accounting/common-model-actions/#common_model_actions_retrieve']], 'POST': []}</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "api_endpoints_to_documentation_urls", nulls = Nulls.SKIP)
         public _FinalStage apiEndpointsToDocumentationUrls(
@@ -369,6 +405,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "color", nulls = Nulls.SKIP)
         public _FinalStage color(Optional<String> color) {
@@ -386,6 +425,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Company logo in square shape.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "square_image", nulls = Nulls.SKIP)
         public _FinalStage squareImage(Optional<String> squareImage) {
@@ -403,6 +445,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Company logo in rectangular shape.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "image", nulls = Nulls.SKIP)
         public _FinalStage image(Optional<String> image) {
@@ -420,6 +465,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(Optional<List<CategoriesEnum>> categories) {
@@ -437,6 +485,9 @@ public final class AccountIntegration {
             return this;
         }
 
+        /**
+         * <p>Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "abbreviated_name", nulls = Nulls.SKIP)
         public _FinalStage abbreviatedName(Optional<String> abbreviatedName) {

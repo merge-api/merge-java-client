@@ -377,6 +377,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -388,6 +391,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -399,6 +405,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -410,6 +419,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The file's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -421,6 +433,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The URL to access the file.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -432,6 +447,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The URL that produces a thumbnail preview of the file. Typically an image.</p>
+         */
         @JsonSetter(value = "file_thumbnail_url", nulls = Nulls.SKIP)
         public Builder fileThumbnailUrl(Optional<String> fileThumbnailUrl) {
             this.fileThumbnailUrl = fileThumbnailUrl;
@@ -443,6 +461,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The file's size, in bytes.</p>
+         */
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
         public Builder size(Optional<Long> size) {
             this.size = size;
@@ -454,6 +475,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The file's mime type.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;
@@ -465,6 +489,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The file's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -476,6 +503,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The folder that the file belongs to.</p>
+         */
         @JsonSetter(value = "folder", nulls = Nulls.SKIP)
         public Builder folder(Optional<FileFolder> folder) {
             this.folder = folder;
@@ -487,6 +517,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /files</code>.</p>
+         */
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
         public Builder permissions(Optional<FilePermissions> permissions) {
             this.permissions = permissions;
@@ -498,6 +531,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>The drive that the file belongs to.</p>
+         */
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
         public Builder drive(Optional<FileDrive> drive) {
             this.drive = drive;
@@ -509,6 +545,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>When the third party's file was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -520,6 +559,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>When the third party's file was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -531,6 +573,9 @@ public final class File {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

@@ -115,10 +115,16 @@ public final class ScheduledInterviewEndpointRequest {
     public interface _FinalStage {
         ScheduledInterviewEndpointRequest build();
 
+        /**
+         * <p>Whether to include debug fields (such as log file links) in the response.</p>
+         */
         _FinalStage isDebugMode(Optional<Boolean> isDebugMode);
 
         _FinalStage isDebugMode(Boolean isDebugMode);
 
+        /**
+         * <p>Whether or not third-party updates should be run asynchronously.</p>
+         */
         _FinalStage runAsync(Optional<Boolean> runAsync);
 
         _FinalStage runAsync(Boolean runAsync);
@@ -172,6 +178,9 @@ public final class ScheduledInterviewEndpointRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not third-party updates should be run asynchronously.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "run_async", nulls = Nulls.SKIP)
         public _FinalStage runAsync(Optional<Boolean> runAsync) {
@@ -189,6 +198,9 @@ public final class ScheduledInterviewEndpointRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include debug fields (such as log file links) in the response.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_debug_mode", nulls = Nulls.SKIP)
         public _FinalStage isDebugMode(Optional<Boolean> isDebugMode) {

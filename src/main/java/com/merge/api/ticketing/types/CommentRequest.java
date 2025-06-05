@@ -197,6 +197,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<CommentRequestUser> user) {
             this.user = user;
@@ -208,6 +211,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<CommentRequestContact> contact) {
             this.contact = contact;
@@ -219,6 +225,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>The comment's text body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -230,6 +239,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>The comment's text body formatted as html.</p>
+         */
         @JsonSetter(value = "html_body", nulls = Nulls.SKIP)
         public Builder htmlBody(Optional<String> htmlBody) {
             this.htmlBody = htmlBody;
@@ -241,6 +253,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket associated with the comment.</p>
+         */
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
         public Builder ticket(Optional<CommentRequestTicket> ticket) {
             this.ticket = ticket;
@@ -252,6 +267,9 @@ public final class CommentRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not the comment is internal.</p>
+         */
         @JsonSetter(value = "is_private", nulls = Nulls.SKIP)
         public Builder isPrivate(Optional<Boolean> isPrivate) {
             this.isPrivate = isPrivate;

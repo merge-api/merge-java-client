@@ -131,6 +131,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -142,6 +145,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -153,6 +159,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The email address.</p>
+         */
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public Builder emailAddress(Optional<String> emailAddress) {
             this.emailAddress = emailAddress;
@@ -164,6 +173,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The email address's type.</p>
+         */
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
         public Builder emailAddressType(Optional<String> emailAddressType) {
             this.emailAddressType = emailAddressType;

@@ -420,6 +420,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -431,6 +434,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
         public Builder assignees(Optional<List<Optional<TicketRequestAssigneesItem>>> assignees) {
             this.assignees = assignees;
@@ -442,6 +448,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access this ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
         public Builder assignedTeams(Optional<List<Optional<TicketRequestAssignedTeamsItem>>> assignedTeams) {
             this.assignedTeams = assignedTeams;
@@ -453,6 +462,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The user who created this ticket.</p>
+         */
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
         public Builder creator(Optional<TicketRequestCreator> creator) {
             this.creator = creator;
@@ -464,6 +476,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's due date.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -475,6 +490,15 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The current status of the ticket.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>IN_PROGRESS</code> - IN_PROGRESS</li>
+         * <li><code>ON_HOLD</code> - ON_HOLD</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<TicketStatusEnum> status) {
             this.status = status;
@@ -486,6 +510,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket’s description. HTML version of description is mapped if supported by the third-party platform.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -497,6 +524,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The <code>Collections</code> that this <code>Ticket</code> is included in.</p>
+         */
         @JsonSetter(value = "collections", nulls = Nulls.SKIP)
         public Builder collections(Optional<List<Optional<TicketRequestCollectionsItem>>> collections) {
             this.collections = collections;
@@ -508,6 +538,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.</p>
+         */
         @JsonSetter(value = "ticket_type", nulls = Nulls.SKIP)
         public Builder ticketType(Optional<String> ticketType) {
             this.ticketType = ticketType;
@@ -519,6 +552,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The account associated with the ticket.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<TicketRequestAccount> account) {
             this.account = account;
@@ -530,6 +566,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The contact associated with the ticket.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<TicketRequestContact> contact) {
             this.contact = contact;
@@ -541,6 +580,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's parent ticket.</p>
+         */
         @JsonSetter(value = "parent_ticket", nulls = Nulls.SKIP)
         public Builder parentTicket(Optional<TicketRequestParentTicket> parentTicket) {
             this.parentTicket = parentTicket;
@@ -585,6 +627,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>When the ticket was completed.</p>
+         */
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;
@@ -596,6 +641,9 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The 3rd party url of the Ticket.</p>
+         */
         @JsonSetter(value = "ticket_url", nulls = Nulls.SKIP)
         public Builder ticketUrl(Optional<String> ticketUrl) {
             this.ticketUrl = ticketUrl;
@@ -607,6 +655,15 @@ public final class TicketRequest {
             return this;
         }
 
+        /**
+         * <p>The priority or urgency of the Ticket.</p>
+         * <ul>
+         * <li><code>URGENT</code> - URGENT</li>
+         * <li><code>HIGH</code> - HIGH</li>
+         * <li><code>NORMAL</code> - NORMAL</li>
+         * <li><code>LOW</code> - LOW</li>
+         * </ul>
+         */
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
         public Builder priority(Optional<PriorityEnum> priority) {
             this.priority = priority;

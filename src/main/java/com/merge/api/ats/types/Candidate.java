@@ -453,6 +453,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -464,6 +467,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -475,6 +481,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -486,6 +495,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The candidate's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -497,6 +509,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The candidate's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -508,6 +523,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The candidate's current company.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -519,6 +537,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The candidate's current title.</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -530,6 +551,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>When the third party's candidate was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -541,6 +565,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>When the third party's candidate was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -552,6 +579,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>When the most recent interaction with the candidate occurred.</p>
+         */
         @JsonSetter(value = "last_interaction_at", nulls = Nulls.SKIP)
         public Builder lastInteractionAt(Optional<OffsetDateTime> lastInteractionAt) {
             this.lastInteractionAt = lastInteractionAt;
@@ -563,6 +593,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Whether or not the candidate is private.</p>
+         */
         @JsonSetter(value = "is_private", nulls = Nulls.SKIP)
         public Builder isPrivate(Optional<Boolean> isPrivate) {
             this.isPrivate = isPrivate;
@@ -574,6 +607,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Whether or not the candidate can be emailed.</p>
+         */
         @JsonSetter(value = "can_email", nulls = Nulls.SKIP)
         public Builder canEmail(Optional<Boolean> canEmail) {
             this.canEmail = canEmail;
@@ -585,6 +621,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>The candidate's locations.</p>
+         */
         @JsonSetter(value = "locations", nulls = Nulls.SKIP)
         public Builder locations(Optional<List<Optional<String>>> locations) {
             this.locations = locations;
@@ -629,6 +668,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Tag</code> names as strings.</p>
+         */
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public Builder tags(Optional<List<Optional<String>>> tags) {
             this.tags = tags;
@@ -640,6 +682,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Application</code> object IDs.</p>
+         */
         @JsonSetter(value = "applications", nulls = Nulls.SKIP)
         public Builder applications(Optional<List<Optional<CandidateApplicationsItem>>> applications) {
             this.applications = applications;
@@ -651,6 +696,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Attachment</code> object IDs.</p>
+         */
         @JsonSetter(value = "attachments", nulls = Nulls.SKIP)
         public Builder attachments(Optional<List<Optional<CandidateAttachmentsItem>>> attachments) {
             this.attachments = attachments;
@@ -662,6 +710,9 @@ public final class Candidate {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

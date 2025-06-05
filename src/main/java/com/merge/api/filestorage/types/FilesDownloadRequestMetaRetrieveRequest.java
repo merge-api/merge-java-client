@@ -82,6 +82,9 @@ public final class FilesDownloadRequestMetaRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, specifies the export format of the file to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;

@@ -130,6 +130,9 @@ public final class EmailAddressRequest {
             return this;
         }
 
+        /**
+         * <p>The email address.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -141,6 +144,14 @@ public final class EmailAddressRequest {
             return this;
         }
 
+        /**
+         * <p>The type of email address.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
         public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
             this.emailAddressType = emailAddressType;

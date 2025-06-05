@@ -71,6 +71,10 @@ public class AsyncRawAccountsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "account_type", request.getAccountType().get(), false);
         }
+        if (request.getClassification().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "classification", request.getClassification().get(), false);
+        }
         if (request.getCompanyId().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "company_id", request.getCompanyId().get(), false);

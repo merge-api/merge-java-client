@@ -306,6 +306,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<LeadRequestOwner> owner) {
             this.owner = owner;
@@ -317,6 +320,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's source.</p>
+         */
         @JsonSetter(value = "lead_source", nulls = Nulls.SKIP)
         public Builder leadSource(Optional<String> leadSource) {
             this.leadSource = leadSource;
@@ -328,6 +334,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's title.</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -339,6 +348,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's company.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -350,6 +362,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -361,6 +376,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The lead's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -405,6 +423,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>When the lead was converted.</p>
+         */
         @JsonSetter(value = "converted_date", nulls = Nulls.SKIP)
         public Builder convertedDate(Optional<OffsetDateTime> convertedDate) {
             this.convertedDate = convertedDate;
@@ -416,6 +437,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The contact of the converted lead.</p>
+         */
         @JsonSetter(value = "converted_contact", nulls = Nulls.SKIP)
         public Builder convertedContact(Optional<LeadRequestConvertedContact> convertedContact) {
             this.convertedContact = convertedContact;
@@ -427,6 +451,9 @@ public final class LeadRequest {
             return this;
         }
 
+        /**
+         * <p>The account of the converted lead.</p>
+         */
         @JsonSetter(value = "converted_account", nulls = Nulls.SKIP)
         public Builder convertedAccount(Optional<LeadRequestConvertedAccount> convertedAccount) {
             this.convertedAccount = convertedAccount;

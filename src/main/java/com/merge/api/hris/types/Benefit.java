@@ -326,6 +326,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -337,6 +340,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -348,6 +354,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -359,6 +368,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The employee on the plan.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<BenefitEmployee> employee) {
             this.employee = employee;
@@ -370,6 +382,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The name of the benefit provider.</p>
+         */
         @JsonSetter(value = "provider_name", nulls = Nulls.SKIP)
         public Builder providerName(Optional<String> providerName) {
             this.providerName = providerName;
@@ -381,6 +396,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The type of benefit plan</p>
+         */
         @JsonSetter(value = "benefit_plan_type", nulls = Nulls.SKIP)
         public Builder benefitPlanType(Optional<String> benefitPlanType) {
             this.benefitPlanType = benefitPlanType;
@@ -392,6 +410,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The employee's contribution.</p>
+         */
         @JsonSetter(value = "employee_contribution", nulls = Nulls.SKIP)
         public Builder employeeContribution(Optional<Double> employeeContribution) {
             this.employeeContribution = employeeContribution;
@@ -403,6 +424,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The company's contribution.</p>
+         */
         @JsonSetter(value = "company_contribution", nulls = Nulls.SKIP)
         public Builder companyContribution(Optional<Double> companyContribution) {
             this.companyContribution = companyContribution;
@@ -414,6 +438,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The day and time the benefit started.</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -425,6 +452,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The day and time the benefit ended.</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<OffsetDateTime> endDate) {
             this.endDate = endDate;
@@ -436,6 +466,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -447,6 +480,9 @@ public final class Benefit {
             return this;
         }
 
+        /**
+         * <p>The employer benefit plan the employee is enrolled in.</p>
+         */
         @JsonSetter(value = "employer_benefit", nulls = Nulls.SKIP)
         public Builder employerBenefit(Optional<String> employerBenefit) {
             this.employerBenefit = employerBenefit;

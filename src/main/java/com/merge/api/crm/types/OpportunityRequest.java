@@ -269,6 +269,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -280,6 +283,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -291,6 +297,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's amount.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Integer> amount) {
             this.amount = amount;
@@ -302,6 +311,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<OpportunityRequestOwner> owner) {
             this.owner = owner;
@@ -313,6 +325,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The account of the opportunity.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<OpportunityRequestAccount> account) {
             this.account = account;
@@ -324,6 +339,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The stage of the opportunity.</p>
+         */
         @JsonSetter(value = "stage", nulls = Nulls.SKIP)
         public Builder stage(Optional<OpportunityRequestStage> stage) {
             this.stage = stage;
@@ -335,6 +353,14 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>WON</code> - WON</li>
+         * <li><code>LOST</code> - LOST</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<OpportunityStatusEnum> status) {
             this.status = status;
@@ -346,6 +372,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>When the opportunity's last activity occurred.</p>
+         */
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;
@@ -357,6 +386,9 @@ public final class OpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>When the opportunity was closed.</p>
+         */
         @JsonSetter(value = "close_date", nulls = Nulls.SKIP)
         public Builder closeDate(Optional<OffsetDateTime> closeDate) {
             this.closeDate = closeDate;

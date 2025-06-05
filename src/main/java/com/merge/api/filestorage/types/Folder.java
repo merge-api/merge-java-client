@@ -343,6 +343,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -354,6 +357,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -365,6 +371,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -376,6 +385,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The folder's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -387,6 +399,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The URL to access the folder.</p>
+         */
         @JsonSetter(value = "folder_url", nulls = Nulls.SKIP)
         public Builder folderUrl(Optional<String> folderUrl) {
             this.folderUrl = folderUrl;
@@ -398,6 +413,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The folder's size, in bytes.</p>
+         */
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
         public Builder size(Optional<Long> size) {
             this.size = size;
@@ -409,6 +427,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The folder's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -420,6 +441,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The folder that the folder belongs to.</p>
+         */
         @JsonSetter(value = "parent_folder", nulls = Nulls.SKIP)
         public Builder parentFolder(Optional<FolderParentFolder> parentFolder) {
             this.parentFolder = parentFolder;
@@ -431,6 +455,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The drive that the folder belongs to.</p>
+         */
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
         public Builder drive(Optional<FolderDrive> drive) {
             this.drive = drive;
@@ -442,6 +469,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /folders</code>.</p>
+         */
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
         public Builder permissions(Optional<FolderPermissions> permissions) {
             this.permissions = permissions;
@@ -453,6 +483,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>When the third party's folder was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -464,6 +497,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>When the third party's folder was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -475,6 +511,9 @@ public final class Folder {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

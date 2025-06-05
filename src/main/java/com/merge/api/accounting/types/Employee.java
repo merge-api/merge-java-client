@@ -44,7 +44,7 @@ public final class Employee {
 
     private final Optional<EmployeeCompany> company;
 
-    private final Status895Enum status;
+    private final EmployeeStatus status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -65,7 +65,7 @@ public final class Employee {
             Optional<String> employeeNumber,
             Optional<String> emailAddress,
             Optional<EmployeeCompany> company,
-            Status895Enum status,
+            EmployeeStatus status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -172,7 +172,7 @@ public final class Employee {
      * </ul>
      */
     @JsonProperty("status")
-    public Status895Enum getStatus() {
+    public EmployeeStatus getStatus() {
         return status;
     }
 
@@ -251,7 +251,13 @@ public final class Employee {
     }
 
     public interface StatusStage {
-        _FinalStage status(@NotNull Status895Enum status);
+        /**
+         * The employee's status in the accounting system.
+         *
+         * * `ACTIVE` - ACTIVE
+         * * `INACTIVE` - INACTIVE
+         */
+        _FinalStage status(@NotNull EmployeeStatus status);
 
         Builder from(Employee other);
     }
@@ -263,42 +269,72 @@ public final class Employee {
 
         _FinalStage id(String id);
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         _FinalStage remoteId(Optional<String> remoteId);
 
         _FinalStage remoteId(String remoteId);
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         _FinalStage createdAt(Optional<OffsetDateTime> createdAt);
 
         _FinalStage createdAt(OffsetDateTime createdAt);
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt);
 
         _FinalStage modifiedAt(OffsetDateTime modifiedAt);
 
+        /**
+         * <p>The employee's first name.</p>
+         */
         _FinalStage firstName(Optional<String> firstName);
 
         _FinalStage firstName(String firstName);
 
+        /**
+         * <p>The employee's last name.</p>
+         */
         _FinalStage lastName(Optional<String> lastName);
 
         _FinalStage lastName(String lastName);
 
+        /**
+         * <p><code>True</code> if the employee is a contractor, <code>False</code> if not.</p>
+         */
         _FinalStage isContractor(Optional<Boolean> isContractor);
 
         _FinalStage isContractor(Boolean isContractor);
 
+        /**
+         * <p>The employee's internal identification number.</p>
+         */
         _FinalStage employeeNumber(Optional<String> employeeNumber);
 
         _FinalStage employeeNumber(String employeeNumber);
 
+        /**
+         * <p>The employee's email address.</p>
+         */
         _FinalStage emailAddress(Optional<String> emailAddress);
 
         _FinalStage emailAddress(String emailAddress);
 
+        /**
+         * <p>The subsidiary that the employee belongs to.</p>
+         */
         _FinalStage company(Optional<EmployeeCompany> company);
 
         _FinalStage company(EmployeeCompany company);
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         _FinalStage remoteWasDeleted(Optional<Boolean> remoteWasDeleted);
 
         _FinalStage remoteWasDeleted(Boolean remoteWasDeleted);
@@ -314,7 +350,7 @@ public final class Employee {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements StatusStage, _FinalStage {
-        private Status895Enum status;
+        private EmployeeStatus status;
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
 
@@ -367,7 +403,10 @@ public final class Employee {
         }
 
         /**
-         * <p>The employee's status in the accounting system.</p>
+         * The employee's status in the accounting system.
+         *
+         * * `ACTIVE` - ACTIVE
+         * * `INACTIVE` - INACTIVE<p>The employee's status in the accounting system.</p>
          * <ul>
          * <li><code>ACTIVE</code> - ACTIVE</li>
          * <li><code>INACTIVE</code> - INACTIVE</li>
@@ -376,7 +415,7 @@ public final class Employee {
          */
         @java.lang.Override
         @JsonSetter("status")
-        public _FinalStage status(@NotNull Status895Enum status) {
+        public _FinalStage status(@NotNull EmployeeStatus status) {
             this.status = status;
             return this;
         }
@@ -417,6 +456,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public _FinalStage remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
@@ -434,6 +476,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The subsidiary that the employee belongs to.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public _FinalStage company(Optional<EmployeeCompany> company) {
@@ -451,6 +496,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The employee's email address.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public _FinalStage emailAddress(Optional<String> emailAddress) {
@@ -468,6 +516,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The employee's internal identification number.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "employee_number", nulls = Nulls.SKIP)
         public _FinalStage employeeNumber(Optional<String> employeeNumber) {
@@ -485,6 +536,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p><code>True</code> if the employee is a contractor, <code>False</code> if not.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_contractor", nulls = Nulls.SKIP)
         public _FinalStage isContractor(Optional<Boolean> isContractor) {
@@ -502,6 +556,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The employee's last name.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public _FinalStage lastName(Optional<String> lastName) {
@@ -519,6 +576,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The employee's first name.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public _FinalStage firstName(Optional<String> firstName) {
@@ -536,6 +596,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt) {
@@ -553,6 +616,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
@@ -570,6 +636,9 @@ public final class Employee {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public _FinalStage remoteId(Optional<String> remoteId) {

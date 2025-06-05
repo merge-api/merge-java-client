@@ -125,6 +125,9 @@ public final class AccountingPhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The phone number.</p>
+         */
         @JsonSetter(value = "number", nulls = Nulls.SKIP)
         public Builder number(Optional<String> number) {
             this.number = number;
@@ -136,6 +139,9 @@ public final class AccountingPhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The phone number's type.</p>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<String> type) {
             this.type = type;

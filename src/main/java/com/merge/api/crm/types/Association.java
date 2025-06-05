@@ -142,6 +142,9 @@ public final class Association {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -153,6 +156,9 @@ public final class Association {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -186,6 +192,9 @@ public final class Association {
             return this;
         }
 
+        /**
+         * <p>The association type the association belongs to.</p>
+         */
         @JsonSetter(value = "association_type", nulls = Nulls.SKIP)
         public Builder associationType(Optional<AssociationAssociationType> associationType) {
             this.associationType = associationType;

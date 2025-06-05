@@ -246,6 +246,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -257,6 +260,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -268,6 +274,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -279,6 +288,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The name of the Role.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -290,6 +302,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The set of actions that a User with this Role can perform. Possible enum values include: <code>VIEW</code>, <code>CREATE</code>, <code>EDIT</code>, <code>DELETE</code>, <code>CLOSE</code>, and <code>ASSIGN</code>.</p>
+         */
         @JsonSetter(value = "ticket_actions", nulls = Nulls.SKIP)
         public Builder ticketActions(Optional<List<TicketActionsEnum>> ticketActions) {
             this.ticketActions = ticketActions;
@@ -301,6 +316,14 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>The level of Ticket access that a User with this Role can perform.</p>
+         * <ul>
+         * <li><code>ALL</code> - ALL</li>
+         * <li><code>ASSIGNED_ONLY</code> - ASSIGNED_ONLY</li>
+         * <li><code>TEAM_ONLY</code> - TEAM_ONLY</li>
+         * </ul>
+         */
         @JsonSetter(value = "ticket_access", nulls = Nulls.SKIP)
         public Builder ticketAccess(Optional<TicketAccessEnum> ticketAccess) {
             this.ticketAccess = ticketAccess;
@@ -312,6 +335,9 @@ public final class Role {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

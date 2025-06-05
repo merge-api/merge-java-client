@@ -242,6 +242,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -253,6 +256,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -264,6 +270,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -275,6 +284,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The group's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -286,6 +298,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The users that belong in the group. If null, this typically means it's either a domain or the third-party platform does not surface this information.</p>
+         */
         @JsonSetter(value = "users", nulls = Nulls.SKIP)
         public Builder users(List<String> users) {
             this.users.clear();
@@ -303,6 +318,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>Groups that inherit the permissions of the parent group.</p>
+         */
         @JsonSetter(value = "child_groups", nulls = Nulls.SKIP)
         public Builder childGroups(Optional<List<GroupChildGroupsItem>> childGroups) {
             this.childGroups = childGroups;
@@ -314,6 +332,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

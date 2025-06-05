@@ -232,6 +232,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -243,6 +246,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -254,6 +260,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -265,6 +274,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The class of the source object (Custom Object or Common Model) for the association type.</p>
+         */
         @JsonSetter(value = "source_object_class", nulls = Nulls.SKIP)
         public Builder sourceObjectClass(Optional<Map<String, JsonNode>> sourceObjectClass) {
             this.sourceObjectClass = sourceObjectClass;

@@ -82,6 +82,8 @@ public class AccountingClient {
 
     protected final Supplier<PhoneNumbersClient> phoneNumbersClient;
 
+    protected final Supplier<ProjectsClient> projectsClient;
+
     protected final Supplier<PurchaseOrdersClient> purchaseOrdersClient;
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
@@ -139,6 +141,7 @@ public class AccountingClient {
         this.paymentTermsClient = Suppliers.memoize(() -> new PaymentTermsClient(clientOptions));
         this.paymentsClient = Suppliers.memoize(() -> new PaymentsClient(clientOptions));
         this.phoneNumbersClient = Suppliers.memoize(() -> new PhoneNumbersClient(clientOptions));
+        this.projectsClient = Suppliers.memoize(() -> new ProjectsClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new PurchaseOrdersClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
@@ -292,6 +295,10 @@ public class AccountingClient {
 
     public PhoneNumbersClient phoneNumbers() {
         return this.phoneNumbersClient.get();
+    }
+
+    public ProjectsClient projects() {
+        return this.projectsClient.get();
     }
 
     public PurchaseOrdersClient purchaseOrders() {

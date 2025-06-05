@@ -275,6 +275,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -286,6 +289,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -297,6 +303,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -308,6 +317,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -319,6 +331,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's email address.</p>
+         */
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public Builder emailAddress(Optional<String> emailAddress) {
             this.emailAddress = emailAddress;
@@ -330,6 +345,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's phone number.</p>
+         */
         @JsonSetter(value = "phone_number", nulls = Nulls.SKIP)
         public Builder phoneNumber(Optional<String> phoneNumber) {
             this.phoneNumber = phoneNumber;
@@ -341,6 +359,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's details.</p>
+         */
         @JsonSetter(value = "details", nulls = Nulls.SKIP)
         public Builder details(Optional<String> details) {
             this.details = details;
@@ -352,6 +373,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>The contact's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<ContactAccount> account) {
             this.account = account;
@@ -363,6 +387,9 @@ public final class Contact {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

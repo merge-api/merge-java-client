@@ -170,6 +170,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<OpportunitiesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
@@ -186,6 +189,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -197,6 +203,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.</p>
+         */
         @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
         public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
             this.includeRemoteFields = includeRemoteFields;
@@ -208,6 +217,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -219,6 +231,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Deprecated. Use show_enum_origins.</p>
+         */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<String> remoteFields) {
             this.remoteFields = remoteFields;
@@ -230,6 +245,9 @@ public final class OpportunitiesRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
+         */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
         public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;

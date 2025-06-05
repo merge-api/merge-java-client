@@ -244,6 +244,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<AccountRequestOwner> owner) {
             this.owner = owner;
@@ -255,6 +258,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -266,6 +272,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -277,6 +286,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's industry.</p>
+         */
         @JsonSetter(value = "industry", nulls = Nulls.SKIP)
         public Builder industry(Optional<String> industry) {
             this.industry = industry;
@@ -288,6 +300,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's website.</p>
+         */
         @JsonSetter(value = "website", nulls = Nulls.SKIP)
         public Builder website(Optional<String> website) {
             this.website = website;
@@ -299,6 +314,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The account's number of employees.</p>
+         */
         @JsonSetter(value = "number_of_employees", nulls = Nulls.SKIP)
         public Builder numberOfEmployees(Optional<Integer> numberOfEmployees) {
             this.numberOfEmployees = numberOfEmployees;
@@ -321,6 +339,9 @@ public final class AccountRequest {
             return this;
         }
 
+        /**
+         * <p>The last date (either most recent or furthest in the future) of when an activity occurs in an account.</p>
+         */
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;

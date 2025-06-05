@@ -276,6 +276,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate applying.</p>
+         */
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<ApplicationRequestCandidate> candidate) {
             this.candidate = candidate;
@@ -287,6 +290,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The job being applied for.</p>
+         */
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
         public Builder job(Optional<ApplicationRequestJob> job) {
             this.job = job;
@@ -298,6 +304,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>When the application was submitted.</p>
+         */
         @JsonSetter(value = "applied_at", nulls = Nulls.SKIP)
         public Builder appliedAt(Optional<OffsetDateTime> appliedAt) {
             this.appliedAt = appliedAt;
@@ -309,6 +318,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>When the application was rejected.</p>
+         */
         @JsonSetter(value = "rejected_at", nulls = Nulls.SKIP)
         public Builder rejectedAt(Optional<OffsetDateTime> rejectedAt) {
             this.rejectedAt = rejectedAt;
@@ -331,6 +343,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The application's source.</p>
+         */
         @JsonSetter(value = "source", nulls = Nulls.SKIP)
         public Builder source(Optional<String> source) {
             this.source = source;
@@ -342,6 +357,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The user credited for this application.</p>
+         */
         @JsonSetter(value = "credited_to", nulls = Nulls.SKIP)
         public Builder creditedTo(Optional<ApplicationRequestCreditedTo> creditedTo) {
             this.creditedTo = creditedTo;
@@ -366,6 +384,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The application's current stage.</p>
+         */
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
         public Builder currentStage(Optional<ApplicationRequestCurrentStage> currentStage) {
             this.currentStage = currentStage;
@@ -377,6 +398,9 @@ public final class ApplicationRequest {
             return this;
         }
 
+        /**
+         * <p>The application's reason for rejection.</p>
+         */
         @JsonSetter(value = "reject_reason", nulls = Nulls.SKIP)
         public Builder rejectReason(Optional<ApplicationRequestRejectReason> rejectReason) {
             this.rejectReason = rejectReason;

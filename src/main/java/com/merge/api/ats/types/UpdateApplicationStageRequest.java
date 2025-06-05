@@ -127,6 +127,9 @@ public final class UpdateApplicationStageRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include debug fields (such as log file links) in the response.</p>
+         */
         @JsonSetter(value = "is_debug_mode", nulls = Nulls.SKIP)
         public Builder isDebugMode(Optional<Boolean> isDebugMode) {
             this.isDebugMode = isDebugMode;
@@ -138,6 +141,9 @@ public final class UpdateApplicationStageRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not third-party updates should be run asynchronously.</p>
+         */
         @JsonSetter(value = "run_async", nulls = Nulls.SKIP)
         public Builder runAsync(Optional<Boolean> runAsync) {
             this.runAsync = runAsync;
@@ -149,6 +155,9 @@ public final class UpdateApplicationStageRequest {
             return this;
         }
 
+        /**
+         * <p>The interview stage to move the application to.</p>
+         */
         @JsonSetter(value = "job_interview_stage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<String> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;

@@ -54,6 +54,10 @@ public final class CreditNoteLineItem {
 
     private final Optional<CreditNoteLineItemCompany> company;
 
+    private final Optional<CreditNoteLineItemContact> contact;
+
+    private final Optional<CreditNoteLineItemProject> project;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Map<String, Object> additionalProperties;
@@ -75,6 +79,8 @@ public final class CreditNoteLineItem {
             Optional<List<Optional<String>>> trackingCategories,
             Optional<String> account,
             Optional<CreditNoteLineItemCompany> company,
+            Optional<CreditNoteLineItemContact> contact,
+            Optional<CreditNoteLineItemProject> project,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -93,6 +99,8 @@ public final class CreditNoteLineItem {
         this.trackingCategories = trackingCategories;
         this.account = account;
         this.company = company;
+        this.contact = contact;
+        this.project = project;
         this.remoteWasDeleted = remoteWasDeleted;
         this.additionalProperties = additionalProperties;
     }
@@ -220,6 +228,19 @@ public final class CreditNoteLineItem {
     }
 
     /**
+     * @return The credit note's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<CreditNoteLineItemContact> getContact() {
+        return contact;
+    }
+
+    @JsonProperty("project")
+    public Optional<CreditNoteLineItemProject> getProject() {
+        return project;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -255,6 +276,8 @@ public final class CreditNoteLineItem {
                 && trackingCategories.equals(other.trackingCategories)
                 && account.equals(other.account)
                 && company.equals(other.company)
+                && contact.equals(other.contact)
+                && project.equals(other.project)
                 && remoteWasDeleted.equals(other.remoteWasDeleted);
     }
 
@@ -277,6 +300,8 @@ public final class CreditNoteLineItem {
                 this.trackingCategories,
                 this.account,
                 this.company,
+                this.contact,
+                this.project,
                 this.remoteWasDeleted);
     }
 
@@ -323,6 +348,10 @@ public final class CreditNoteLineItem {
 
         private Optional<CreditNoteLineItemCompany> company = Optional.empty();
 
+        private Optional<CreditNoteLineItemContact> contact = Optional.empty();
+
+        private Optional<CreditNoteLineItemProject> project = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         @JsonAnySetter
@@ -347,6 +376,8 @@ public final class CreditNoteLineItem {
             trackingCategories(other.getTrackingCategories());
             account(other.getAccount());
             company(other.getCompany());
+            contact(other.getContact());
+            project(other.getProject());
             remoteWasDeleted(other.getRemoteWasDeleted());
             return this;
         }
@@ -362,6 +393,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -373,6 +407,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -384,6 +421,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -406,6 +446,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -417,6 +460,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The description of the item that is owed.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -428,6 +474,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's quantity.</p>
+         */
         @JsonSetter(value = "quantity", nulls = Nulls.SKIP)
         public Builder quantity(Optional<String> quantity) {
             this.quantity = quantity;
@@ -439,6 +488,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's memo.</p>
+         */
         @JsonSetter(value = "memo", nulls = Nulls.SKIP)
         public Builder memo(Optional<String> memo) {
             this.memo = memo;
@@ -450,6 +502,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's unit price.</p>
+         */
         @JsonSetter(value = "unit_price", nulls = Nulls.SKIP)
         public Builder unitPrice(Optional<String> unitPrice) {
             this.unitPrice = unitPrice;
@@ -461,6 +516,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The tax rate that applies to this line item.</p>
+         */
         @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
         public Builder taxRate(Optional<String> taxRate) {
             this.taxRate = taxRate;
@@ -472,6 +530,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's total.</p>
+         */
         @JsonSetter(value = "total_line_amount", nulls = Nulls.SKIP)
         public Builder totalLineAmount(Optional<String> totalLineAmount) {
             this.totalLineAmount = totalLineAmount;
@@ -483,6 +544,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's associated tracking category.</p>
+         */
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<String> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -494,6 +558,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's associated tracking categories.</p>
+         */
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
@@ -505,6 +572,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<String> account) {
             this.account = account;
@@ -516,6 +586,9 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The company the credit note belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<CreditNoteLineItemCompany> company) {
             this.company = company;
@@ -527,6 +600,34 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        /**
+         * <p>The credit note's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<CreditNoteLineItemContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(CreditNoteLineItemContact contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        @JsonSetter(value = "project", nulls = Nulls.SKIP)
+        public Builder project(Optional<CreditNoteLineItemProject> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(CreditNoteLineItemProject project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -556,6 +657,8 @@ public final class CreditNoteLineItem {
                     trackingCategories,
                     account,
                     company,
+                    contact,
+                    project,
                     remoteWasDeleted,
                     additionalProperties);
         }

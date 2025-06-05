@@ -96,6 +96,9 @@ public final class CustomObjectClassesCustomObjectsAssociationsUpdateRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include debug fields (such as log file links) in the response.</p>
+         */
         @JsonSetter(value = "is_debug_mode", nulls = Nulls.SKIP)
         public Builder isDebugMode(Optional<Boolean> isDebugMode) {
             this.isDebugMode = isDebugMode;
@@ -107,6 +110,9 @@ public final class CustomObjectClassesCustomObjectsAssociationsUpdateRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not third-party updates should be run asynchronously.</p>
+         */
         @JsonSetter(value = "run_async", nulls = Nulls.SKIP)
         public Builder runAsync(Optional<Boolean> runAsync) {
             this.runAsync = runAsync;

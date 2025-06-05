@@ -582,6 +582,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's number that appears in the third-party integration's UI.</p>
+         */
         @JsonSetter(value = "employee_number", nulls = Nulls.SKIP)
         public Builder employeeNumber(Optional<String> employeeNumber) {
             this.employeeNumber = employeeNumber;
@@ -593,6 +596,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The ID of the employee's company.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<EmployeeRequestCompany> company) {
             this.company = company;
@@ -604,6 +610,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -615,6 +624,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -626,6 +638,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's preferred first name.</p>
+         */
         @JsonSetter(value = "preferred_name", nulls = Nulls.SKIP)
         public Builder preferredName(Optional<String> preferredName) {
             this.preferredName = preferredName;
@@ -637,6 +652,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's full name, to use for display purposes. If a preferred first name is available, the full name will include the preferred first name.</p>
+         */
         @JsonSetter(value = "display_full_name", nulls = Nulls.SKIP)
         public Builder displayFullName(Optional<String> displayFullName) {
             this.displayFullName = displayFullName;
@@ -648,6 +666,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's username that appears in the remote UI.</p>
+         */
         @JsonSetter(value = "username", nulls = Nulls.SKIP)
         public Builder username(Optional<String> username) {
             this.username = username;
@@ -670,6 +691,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's work email.</p>
+         */
         @JsonSetter(value = "work_email", nulls = Nulls.SKIP)
         public Builder workEmail(Optional<String> workEmail) {
             this.workEmail = workEmail;
@@ -681,6 +705,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's personal email.</p>
+         */
         @JsonSetter(value = "personal_email", nulls = Nulls.SKIP)
         public Builder personalEmail(Optional<String> personalEmail) {
             this.personalEmail = personalEmail;
@@ -692,6 +719,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's mobile phone number.</p>
+         */
         @JsonSetter(value = "mobile_phone_number", nulls = Nulls.SKIP)
         public Builder mobilePhoneNumber(Optional<String> mobilePhoneNumber) {
             this.mobilePhoneNumber = mobilePhoneNumber;
@@ -703,6 +733,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Employment</code> IDs for this Employee.</p>
+         */
         @JsonSetter(value = "employments", nulls = Nulls.SKIP)
         public Builder employments(Optional<List<Optional<EmployeeRequestEmploymentsItem>>> employments) {
             this.employments = employments;
@@ -714,6 +747,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's home address.</p>
+         */
         @JsonSetter(value = "home_location", nulls = Nulls.SKIP)
         public Builder homeLocation(Optional<EmployeeRequestHomeLocation> homeLocation) {
             this.homeLocation = homeLocation;
@@ -725,6 +761,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's work address.</p>
+         */
         @JsonSetter(value = "work_location", nulls = Nulls.SKIP)
         public Builder workLocation(Optional<EmployeeRequestWorkLocation> workLocation) {
             this.workLocation = workLocation;
@@ -736,6 +775,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee ID of the employee's manager.</p>
+         */
         @JsonSetter(value = "manager", nulls = Nulls.SKIP)
         public Builder manager(Optional<EmployeeRequestManager> manager) {
             this.manager = manager;
@@ -747,6 +789,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's team.</p>
+         */
         @JsonSetter(value = "team", nulls = Nulls.SKIP)
         public Builder team(Optional<EmployeeRequestTeam> team) {
             this.team = team;
@@ -758,6 +803,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's pay group</p>
+         */
         @JsonSetter(value = "pay_group", nulls = Nulls.SKIP)
         public Builder payGroup(Optional<EmployeeRequestPayGroup> payGroup) {
             this.payGroup = payGroup;
@@ -769,6 +817,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's social security number.</p>
+         */
         @JsonSetter(value = "ssn", nulls = Nulls.SKIP)
         public Builder ssn(Optional<String> ssn) {
             this.ssn = ssn;
@@ -780,6 +831,16 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's gender.</p>
+         * <ul>
+         * <li><code>MALE</code> - MALE</li>
+         * <li><code>FEMALE</code> - FEMALE</li>
+         * <li><code>NON-BINARY</code> - NON-BINARY</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * <li><code>PREFER_NOT_TO_DISCLOSE</code> - PREFER_NOT_TO_DISCLOSE</li>
+         * </ul>
+         */
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
         public Builder gender(Optional<GenderEnum> gender) {
             this.gender = gender;
@@ -791,6 +852,19 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's ethnicity.</p>
+         * <ul>
+         * <li><code>AMERICAN_INDIAN_OR_ALASKA_NATIVE</code> - AMERICAN_INDIAN_OR_ALASKA_NATIVE</li>
+         * <li><code>ASIAN_OR_INDIAN_SUBCONTINENT</code> - ASIAN_OR_INDIAN_SUBCONTINENT</li>
+         * <li><code>BLACK_OR_AFRICAN_AMERICAN</code> - BLACK_OR_AFRICAN_AMERICAN</li>
+         * <li><code>HISPANIC_OR_LATINO</code> - HISPANIC_OR_LATINO</li>
+         * <li><code>NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER</code> - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER</li>
+         * <li><code>TWO_OR_MORE_RACES</code> - TWO_OR_MORE_RACES</li>
+         * <li><code>WHITE</code> - WHITE</li>
+         * <li><code>PREFER_NOT_TO_DISCLOSE</code> - PREFER_NOT_TO_DISCLOSE</li>
+         * </ul>
+         */
         @JsonSetter(value = "ethnicity", nulls = Nulls.SKIP)
         public Builder ethnicity(Optional<EthnicityEnum> ethnicity) {
             this.ethnicity = ethnicity;
@@ -802,6 +876,16 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's filing status as related to marital status.</p>
+         * <ul>
+         * <li><code>SINGLE</code> - SINGLE</li>
+         * <li><code>MARRIED_FILING_JOINTLY</code> - MARRIED_FILING_JOINTLY</li>
+         * <li><code>MARRIED_FILING_SEPARATELY</code> - MARRIED_FILING_SEPARATELY</li>
+         * <li><code>HEAD_OF_HOUSEHOLD</code> - HEAD_OF_HOUSEHOLD</li>
+         * <li><code>QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD</code> - QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD</li>
+         * </ul>
+         */
         @JsonSetter(value = "marital_status", nulls = Nulls.SKIP)
         public Builder maritalStatus(Optional<MaritalStatusEnum> maritalStatus) {
             this.maritalStatus = maritalStatus;
@@ -813,6 +897,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's date of birth.</p>
+         */
         @JsonSetter(value = "date_of_birth", nulls = Nulls.SKIP)
         public Builder dateOfBirth(Optional<OffsetDateTime> dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
@@ -824,6 +911,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The date that the employee was hired, usually the day that an offer letter is signed. If an employee has multiple hire dates from previous employments, this represents the most recent hire date. Note: If you're looking for the employee's start date, refer to the start_date field.</p>
+         */
         @JsonSetter(value = "hire_date", nulls = Nulls.SKIP)
         public Builder hireDate(Optional<OffsetDateTime> hireDate) {
             this.hireDate = hireDate;
@@ -835,6 +925,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The date that the employee started working. If an employee was rehired, the most recent start date will be returned.</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -846,6 +939,14 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employment status of the employee.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>PENDING</code> - PENDING</li>
+         * <li><code>INACTIVE</code> - INACTIVE</li>
+         * </ul>
+         */
         @JsonSetter(value = "employment_status", nulls = Nulls.SKIP)
         public Builder employmentStatus(Optional<EmploymentStatusEnum> employmentStatus) {
             this.employmentStatus = employmentStatus;
@@ -857,6 +958,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The employee's termination date.</p>
+         */
         @JsonSetter(value = "termination_date", nulls = Nulls.SKIP)
         public Builder terminationDate(Optional<OffsetDateTime> terminationDate) {
             this.terminationDate = terminationDate;
@@ -868,6 +972,9 @@ public final class EmployeeRequest {
             return this;
         }
 
+        /**
+         * <p>The URL of the employee's avatar image.</p>
+         */
         @JsonSetter(value = "avatar", nulls = Nulls.SKIP)
         public Builder avatar(Optional<String> avatar) {
             this.avatar = avatar;

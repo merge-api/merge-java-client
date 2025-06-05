@@ -311,6 +311,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -322,6 +325,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include issues whose most recent action occurred before this time</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<String> endDate) {
             this.endDate = endDate;
@@ -344,6 +350,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return issues whose first incident time was after this datetime.</p>
+         */
         @JsonSetter(value = "first_incident_time_after", nulls = Nulls.SKIP)
         public Builder firstIncidentTimeAfter(Optional<OffsetDateTime> firstIncidentTimeAfter) {
             this.firstIncidentTimeAfter = firstIncidentTimeAfter;
@@ -355,6 +364,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return issues whose first incident time was before this datetime.</p>
+         */
         @JsonSetter(value = "first_incident_time_before", nulls = Nulls.SKIP)
         public Builder firstIncidentTimeBefore(Optional<OffsetDateTime> firstIncidentTimeBefore) {
             this.firstIncidentTimeBefore = firstIncidentTimeBefore;
@@ -366,6 +378,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If true, will include muted issues</p>
+         */
         @JsonSetter(value = "include_muted", nulls = Nulls.SKIP)
         public Builder includeMuted(Optional<String> includeMuted) {
             this.includeMuted = includeMuted;
@@ -388,6 +403,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return issues whose last incident time was after this datetime.</p>
+         */
         @JsonSetter(value = "last_incident_time_after", nulls = Nulls.SKIP)
         public Builder lastIncidentTimeAfter(Optional<OffsetDateTime> lastIncidentTimeAfter) {
             this.lastIncidentTimeAfter = lastIncidentTimeAfter;
@@ -399,6 +417,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return issues whose last incident time was before this datetime.</p>
+         */
         @JsonSetter(value = "last_incident_time_before", nulls = Nulls.SKIP)
         public Builder lastIncidentTimeBefore(Optional<OffsetDateTime> lastIncidentTimeBefore) {
             this.lastIncidentTimeBefore = lastIncidentTimeBefore;
@@ -410,6 +431,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only include issues pertaining to the linked account passed in.</p>
+         */
         @JsonSetter(value = "linked_account_id", nulls = Nulls.SKIP)
         public Builder linkedAccountId(Optional<String> linkedAccountId) {
             this.linkedAccountId = linkedAccountId;
@@ -421,6 +445,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -432,6 +459,9 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include issues whose most recent action occurred after this time</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<String> startDate) {
             this.startDate = startDate;
@@ -443,6 +473,13 @@ public final class IssuesListRequest {
             return this;
         }
 
+        /**
+         * <p>Status of the issue. Options: ('ONGOING', 'RESOLVED')</p>
+         * <ul>
+         * <li><code>ONGOING</code> - ONGOING</li>
+         * <li><code>RESOLVED</code> - RESOLVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<IssuesListRequestStatus> status) {
             this.status = status;

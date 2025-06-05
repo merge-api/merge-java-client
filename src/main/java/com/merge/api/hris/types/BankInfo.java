@@ -296,6 +296,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -307,6 +310,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -318,6 +324,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -329,6 +338,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The employee with this bank account.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<BankInfoEmployee> employee) {
             this.employee = employee;
@@ -340,6 +352,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The account number.</p>
+         */
         @JsonSetter(value = "account_number", nulls = Nulls.SKIP)
         public Builder accountNumber(Optional<String> accountNumber) {
             this.accountNumber = accountNumber;
@@ -351,6 +366,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The routing number.</p>
+         */
         @JsonSetter(value = "routing_number", nulls = Nulls.SKIP)
         public Builder routingNumber(Optional<String> routingNumber) {
             this.routingNumber = routingNumber;
@@ -362,6 +380,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The bank name.</p>
+         */
         @JsonSetter(value = "bank_name", nulls = Nulls.SKIP)
         public Builder bankName(Optional<String> bankName) {
             this.bankName = bankName;
@@ -373,6 +394,13 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>The bank account type</p>
+         * <ul>
+         * <li><code>SAVINGS</code> - SAVINGS</li>
+         * <li><code>CHECKING</code> - CHECKING</li>
+         * </ul>
+         */
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
         public Builder accountType(Optional<AccountTypeEnum> accountType) {
             this.accountType = accountType;
@@ -384,6 +412,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>When the matching bank object was created in the third party system.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -395,6 +426,9 @@ public final class BankInfo {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

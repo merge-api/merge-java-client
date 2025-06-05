@@ -171,24 +171,39 @@ public final class DataPassthroughRequest {
     }
 
     public interface PathStage {
+        /**
+         * The path of the request in the third party's platform.
+         */
         _FinalStage path(@NotNull String path);
     }
 
     public interface _FinalStage {
         DataPassthroughRequest build();
 
+        /**
+         * <p>An optional override of the third party's base url for the request.</p>
+         */
         _FinalStage baseUrlOverride(Optional<String> baseUrlOverride);
 
         _FinalStage baseUrlOverride(String baseUrlOverride);
 
+        /**
+         * <p>The data with the request. You must include a <code>request_format</code> parameter matching the data's format</p>
+         */
         _FinalStage data(Optional<String> data);
 
         _FinalStage data(String data);
 
+        /**
+         * <p>Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.</p>
+         */
         _FinalStage multipartFormData(Optional<List<MultipartFormFieldRequest>> multipartFormData);
 
         _FinalStage multipartFormData(List<MultipartFormFieldRequest> multipartFormData);
 
+        /**
+         * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
+         */
         _FinalStage headers(Optional<Map<String, JsonNode>> headers);
 
         _FinalStage headers(Map<String, JsonNode> headers);
@@ -197,6 +212,9 @@ public final class DataPassthroughRequest {
 
         _FinalStage requestFormat(RequestFormatEnum requestFormat);
 
+        /**
+         * <p>Optional. If true, the response will always be an object of the form <code>{&quot;type&quot;: T, &quot;value&quot;: ...}</code> where <code>T</code> will be one of <code>string, boolean, number, null, array, object</code>.</p>
+         */
         _FinalStage normalizeResponse(Optional<Boolean> normalizeResponse);
 
         _FinalStage normalizeResponse(Boolean normalizeResponse);
@@ -246,7 +264,7 @@ public final class DataPassthroughRequest {
         }
 
         /**
-         * <p>The path of the request in the third party's platform.</p>
+         * The path of the request in the third party's platform.<p>The path of the request in the third party's platform.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -266,6 +284,9 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>Optional. If true, the response will always be an object of the form <code>{&quot;type&quot;: T, &quot;value&quot;: ...}</code> where <code>T</code> will be one of <code>string, boolean, number, null, array, object</code>.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "normalize_response", nulls = Nulls.SKIP)
         public _FinalStage normalizeResponse(Optional<Boolean> normalizeResponse) {
@@ -296,6 +317,9 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
         public _FinalStage headers(Optional<Map<String, JsonNode>> headers) {
@@ -313,6 +337,9 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "multipart_form_data", nulls = Nulls.SKIP)
         public _FinalStage multipartFormData(Optional<List<MultipartFormFieldRequest>> multipartFormData) {
@@ -330,6 +357,9 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>The data with the request. You must include a <code>request_format</code> parameter matching the data's format</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
         public _FinalStage data(Optional<String> data) {
@@ -347,6 +377,9 @@ public final class DataPassthroughRequest {
             return this;
         }
 
+        /**
+         * <p>An optional override of the third party's base url for the request.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "base_url_override", nulls = Nulls.SKIP)
         public _FinalStage baseUrlOverride(Optional<String> baseUrlOverride) {

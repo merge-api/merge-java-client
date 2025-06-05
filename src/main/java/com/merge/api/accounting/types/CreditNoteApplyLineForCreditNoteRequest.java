@@ -162,6 +162,9 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -184,6 +187,9 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
             return this;
         }
 
+        /**
+         * <p>Date that the credit note is applied to the invoice.</p>
+         */
         @JsonSetter(value = "applied_date", nulls = Nulls.SKIP)
         public Builder appliedDate(Optional<OffsetDateTime> appliedDate) {
             this.appliedDate = appliedDate;
@@ -195,6 +201,9 @@ public final class CreditNoteApplyLineForCreditNoteRequest {
             return this;
         }
 
+        /**
+         * <p>The amount of the Credit Note applied to the invoice.</p>
+         */
         @JsonSetter(value = "applied_amount", nulls = Nulls.SKIP)
         public Builder appliedAmount(Optional<String> appliedAmount) {
             this.appliedAmount = appliedAmount;

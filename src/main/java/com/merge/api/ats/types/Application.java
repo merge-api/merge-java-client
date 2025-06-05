@@ -354,6 +354,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -365,6 +368,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -376,6 +382,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -387,6 +396,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The candidate applying.</p>
+         */
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<ApplicationCandidate> candidate) {
             this.candidate = candidate;
@@ -398,6 +410,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The job being applied for.</p>
+         */
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
         public Builder job(Optional<ApplicationJob> job) {
             this.job = job;
@@ -409,6 +424,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>When the application was submitted.</p>
+         */
         @JsonSetter(value = "applied_at", nulls = Nulls.SKIP)
         public Builder appliedAt(Optional<OffsetDateTime> appliedAt) {
             this.appliedAt = appliedAt;
@@ -420,6 +438,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>When the application was rejected.</p>
+         */
         @JsonSetter(value = "rejected_at", nulls = Nulls.SKIP)
         public Builder rejectedAt(Optional<OffsetDateTime> rejectedAt) {
             this.rejectedAt = rejectedAt;
@@ -442,6 +463,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The application's source.</p>
+         */
         @JsonSetter(value = "source", nulls = Nulls.SKIP)
         public Builder source(Optional<String> source) {
             this.source = source;
@@ -453,6 +477,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The user credited for this application.</p>
+         */
         @JsonSetter(value = "credited_to", nulls = Nulls.SKIP)
         public Builder creditedTo(Optional<ApplicationCreditedTo> creditedTo) {
             this.creditedTo = creditedTo;
@@ -477,6 +504,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The application's current stage.</p>
+         */
         @JsonSetter(value = "current_stage", nulls = Nulls.SKIP)
         public Builder currentStage(Optional<ApplicationCurrentStage> currentStage) {
             this.currentStage = currentStage;
@@ -488,6 +518,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>The application's reason for rejection.</p>
+         */
         @JsonSetter(value = "reject_reason", nulls = Nulls.SKIP)
         public Builder rejectReason(Optional<ApplicationRejectReason> rejectReason) {
             this.rejectReason = rejectReason;
@@ -499,6 +532,9 @@ public final class Application {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

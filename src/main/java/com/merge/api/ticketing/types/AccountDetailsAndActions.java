@@ -251,10 +251,16 @@ public final class AccountDetailsAndActions {
 
         _FinalStage endUserOriginId(String endUserOriginId);
 
+        /**
+         * <p>The tenant or domain the customer has provided access to.</p>
+         */
         _FinalStage subdomain(Optional<String> subdomain);
 
         _FinalStage subdomain(String subdomain);
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         _FinalStage isDuplicate(Optional<Boolean> isDuplicate);
 
         _FinalStage isDuplicate(Boolean isDuplicate);
@@ -395,6 +401,9 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_duplicate", nulls = Nulls.SKIP)
         public _FinalStage isDuplicate(Optional<Boolean> isDuplicate) {
@@ -412,6 +421,9 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
+        /**
+         * <p>The tenant or domain the customer has provided access to.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "subdomain", nulls = Nulls.SKIP)
         public _FinalStage subdomain(Optional<String> subdomain) {

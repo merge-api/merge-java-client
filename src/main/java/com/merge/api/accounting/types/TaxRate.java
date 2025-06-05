@@ -39,7 +39,7 @@ public final class TaxRate {
 
     private final Optional<String> description;
 
-    private final Optional<Status7D1Enum> status;
+    private final Optional<TaxRateStatus> status;
 
     private final Optional<String> country;
 
@@ -66,7 +66,7 @@ public final class TaxRate {
             Optional<String> code,
             Optional<String> name,
             Optional<String> description,
-            Optional<Status7D1Enum> status,
+            Optional<TaxRateStatus> status,
             Optional<String> country,
             Optional<Double> totalTaxRate,
             Optional<Double> effectiveTaxRate,
@@ -163,7 +163,7 @@ public final class TaxRate {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<Status7D1Enum> getStatus() {
+    public Optional<TaxRateStatus> getStatus() {
         return status;
     }
 
@@ -295,7 +295,7 @@ public final class TaxRate {
 
         private Optional<String> description = Optional.empty();
 
-        private Optional<Status7D1Enum> status = Optional.empty();
+        private Optional<TaxRateStatus> status = Optional.empty();
 
         private Optional<String> country = Optional.empty();
 
@@ -347,6 +347,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -358,6 +361,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -369,6 +375,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -380,6 +389,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The subsidiary that the tax rate belongs to (in the case of multi-entity systems).</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<TaxRateCompany> company) {
             this.company = company;
@@ -391,6 +403,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax code associated with this tax rate or group of tax rates from the third-party platform.</p>
+         */
         @JsonSetter(value = "code", nulls = Nulls.SKIP)
         public Builder code(Optional<String> code) {
             this.code = code;
@@ -402,6 +417,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax rate’s name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -413,6 +431,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax rate's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -424,17 +445,27 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax rate’s status - <code>ACTIVE</code> if an active tax rate, <code>ARCHIVED</code> if not active.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status7D1Enum> status) {
+        public Builder status(Optional<TaxRateStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status7D1Enum status) {
+        public Builder status(TaxRateStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The country the tax rate is associated with.</p>
+         */
         @JsonSetter(value = "country", nulls = Nulls.SKIP)
         public Builder country(Optional<String> country) {
             this.country = country;
@@ -446,6 +477,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax’s total tax rate - sum of the tax components (not compounded).</p>
+         */
         @JsonSetter(value = "total_tax_rate", nulls = Nulls.SKIP)
         public Builder totalTaxRate(Optional<Double> totalTaxRate) {
             this.totalTaxRate = totalTaxRate;
@@ -457,6 +491,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The tax rate’s effective tax rate - total amount of tax with compounding.</p>
+         */
         @JsonSetter(value = "effective_tax_rate", nulls = Nulls.SKIP)
         public Builder effectiveTaxRate(Optional<Double> effectiveTaxRate) {
             this.effectiveTaxRate = effectiveTaxRate;
@@ -468,6 +505,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>The related tax components of the tax rate.</p>
+         */
         @JsonSetter(value = "tax_components", nulls = Nulls.SKIP)
         public Builder taxComponents(Optional<List<TaxRateTaxComponentsItem>> taxComponents) {
             this.taxComponents = taxComponents;
@@ -479,6 +519,9 @@ public final class TaxRate {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

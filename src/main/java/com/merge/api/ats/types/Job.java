@@ -437,6 +437,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -448,6 +451,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -459,6 +465,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -470,6 +479,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The job's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -481,6 +493,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The job's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -492,6 +507,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The job's code. Typically an additional identifier used to reference the particular job that is displayed on the ATS.</p>
+         */
         @JsonSetter(value = "code", nulls = Nulls.SKIP)
         public Builder code(Optional<String> code) {
             this.code = code;
@@ -503,6 +521,16 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The job's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>DRAFT</code> - DRAFT</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * <li><code>PENDING</code> - PENDING</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<JobStatusEnum> status) {
             this.status = status;
@@ -514,6 +542,14 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>The job's type.</p>
+         * <ul>
+         * <li><code>POSTING</code> - POSTING</li>
+         * <li><code>REQUISITION</code> - REQUISITION</li>
+         * <li><code>PROFILE</code> - PROFILE</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<JobTypeEnum> type) {
             this.type = type;
@@ -525,6 +561,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>IDs of <code>JobPosting</code> objects that serve as job postings for this <code>Job</code>.</p>
+         */
         @JsonSetter(value = "job_postings", nulls = Nulls.SKIP)
         public Builder jobPostings(Optional<List<Optional<String>>> jobPostings) {
             this.jobPostings = jobPostings;
@@ -547,6 +586,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>When the third party's job was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -558,6 +600,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>When the third party's job was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -569,6 +614,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>Whether the job is confidential.</p>
+         */
         @JsonSetter(value = "confidential", nulls = Nulls.SKIP)
         public Builder confidential(Optional<Boolean> confidential) {
             this.confidential = confidential;
@@ -580,6 +628,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>IDs of <code>Department</code> objects for this <code>Job</code>.</p>
+         */
         @JsonSetter(value = "departments", nulls = Nulls.SKIP)
         public Builder departments(Optional<List<Optional<JobDepartmentsItem>>> departments) {
             this.departments = departments;
@@ -591,6 +642,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>IDs of <code>Office</code> objects for this <code>Job</code>.</p>
+         */
         @JsonSetter(value = "offices", nulls = Nulls.SKIP)
         public Builder offices(Optional<List<Optional<JobOfficesItem>>> offices) {
             this.offices = offices;
@@ -602,6 +656,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>IDs of <code>RemoteUser</code> objects that serve as hiring managers for this <code>Job</code>.</p>
+         */
         @JsonSetter(value = "hiring_managers", nulls = Nulls.SKIP)
         public Builder hiringManagers(Optional<List<Optional<JobHiringManagersItem>>> hiringManagers) {
             this.hiringManagers = hiringManagers;
@@ -613,6 +670,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>IDs of <code>RemoteUser</code> objects that serve as recruiters for this <code>Job</code>.</p>
+         */
         @JsonSetter(value = "recruiters", nulls = Nulls.SKIP)
         public Builder recruiters(Optional<List<Optional<JobRecruitersItem>>> recruiters) {
             this.recruiters = recruiters;
@@ -624,6 +684,9 @@ public final class Job {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

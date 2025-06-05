@@ -167,6 +167,13 @@ public final class Issue {
 
         _FinalStage id(String id);
 
+        /**
+         * <p>Status of the issue. Options: ('ONGOING', 'RESOLVED')</p>
+         * <ul>
+         * <li><code>ONGOING</code> - ONGOING</li>
+         * <li><code>RESOLVED</code> - RESOLVED</li>
+         * </ul>
+         */
         _FinalStage status(Optional<IssueStatusEnum> status);
 
         _FinalStage status(IssueStatusEnum status);
@@ -314,6 +321,13 @@ public final class Issue {
             return this;
         }
 
+        /**
+         * <p>Status of the issue. Options: ('ONGOING', 'RESOLVED')</p>
+         * <ul>
+         * <li><code>ONGOING</code> - ONGOING</li>
+         * <li><code>RESOLVED</code> - RESOLVED</li>
+         * </ul>
+         */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public _FinalStage status(Optional<IssueStatusEnum> status) {

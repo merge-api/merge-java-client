@@ -307,6 +307,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<VendorCreditsListRequestExpandItem>> expand) {
             this.expand = expand;
@@ -323,6 +326,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return vendor credits for this company.</p>
+         */
         @JsonSetter(value = "company_id", nulls = Nulls.SKIP)
         public Builder companyId(Optional<String> companyId) {
             this.companyId = companyId;
@@ -334,6 +340,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
         @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
         public Builder createdAfter(Optional<OffsetDateTime> createdAfter) {
             this.createdAfter = createdAfter;
@@ -345,6 +354,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
         @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
         public Builder createdBefore(Optional<OffsetDateTime> createdBefore) {
             this.createdBefore = createdBefore;
@@ -356,6 +368,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -367,6 +382,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -378,6 +396,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -389,6 +410,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -400,6 +424,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -411,6 +438,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge before this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
         public Builder modifiedBefore(Optional<OffsetDateTime> modifiedBefore) {
             this.modifiedBefore = modifiedBefore;
@@ -422,6 +452,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -433,6 +466,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>The API provider's ID for the given object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -444,6 +480,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
         @JsonSetter(value = "transaction_date_after", nulls = Nulls.SKIP)
         public Builder transactionDateAfter(Optional<OffsetDateTime> transactionDateAfter) {
             this.transactionDateAfter = transactionDateAfter;
@@ -455,6 +494,9 @@ public final class VendorCreditsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
         @JsonSetter(value = "transaction_date_before", nulls = Nulls.SKIP)
         public Builder transactionDateBefore(Optional<OffsetDateTime> transactionDateBefore) {
             this.transactionDateBefore = transactionDateBefore;

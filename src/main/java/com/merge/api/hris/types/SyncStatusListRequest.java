@@ -95,6 +95,9 @@ public final class SyncStatusListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -106,6 +109,9 @@ public final class SyncStatusListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;

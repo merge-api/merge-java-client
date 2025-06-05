@@ -293,6 +293,18 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>mktg</code>, <code>ticketing</code></p>
+         * <ul>
+         * <li><code>hris</code> - hris</li>
+         * <li><code>ats</code> - ats</li>
+         * <li><code>accounting</code> - accounting</li>
+         * <li><code>ticketing</code> - ticketing</li>
+         * <li><code>crm</code> - crm</li>
+         * <li><code>mktg</code> - mktg</li>
+         * <li><code>filestorage</code> - filestorage</li>
+         * </ul>
+         */
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
         public Builder category(Optional<LinkedAccountsListRequestCategory> category) {
             this.category = category;
@@ -304,6 +316,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -315,6 +330,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return linked accounts associated with the given email address.</p>
+         */
         @JsonSetter(value = "end_user_email_address", nulls = Nulls.SKIP)
         public Builder endUserEmailAddress(Optional<String> endUserEmailAddress) {
             this.endUserEmailAddress = endUserEmailAddress;
@@ -326,6 +344,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return linked accounts associated with the given organization name.</p>
+         */
         @JsonSetter(value = "end_user_organization_name", nulls = Nulls.SKIP)
         public Builder endUserOrganizationName(Optional<String> endUserOrganizationName) {
             this.endUserOrganizationName = endUserOrganizationName;
@@ -337,6 +358,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return linked accounts associated with the given origin ID.</p>
+         */
         @JsonSetter(value = "end_user_origin_id", nulls = Nulls.SKIP)
         public Builder endUserOriginId(Optional<String> endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
@@ -348,6 +372,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Comma-separated list of EndUser origin IDs, making it possible to specify multiple EndUsers at once.</p>
+         */
         @JsonSetter(value = "end_user_origin_ids", nulls = Nulls.SKIP)
         public Builder endUserOriginIds(Optional<String> endUserOriginIds) {
             this.endUserOriginIds = endUserOriginIds;
@@ -370,6 +397,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Comma-separated list of LinkedAccount IDs, making it possible to specify multiple LinkedAccounts at once.</p>
+         */
         @JsonSetter(value = "ids", nulls = Nulls.SKIP)
         public Builder ids(Optional<String> ids) {
             this.ids = ids;
@@ -381,6 +411,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If <code>true</code>, will include complete production duplicates of the account specified by the <code>id</code> query parameter in the response. <code>id</code> must be for a complete production linked account.</p>
+         */
         @JsonSetter(value = "include_duplicates", nulls = Nulls.SKIP)
         public Builder includeDuplicates(Optional<Boolean> includeDuplicates) {
             this.includeDuplicates = includeDuplicates;
@@ -392,6 +425,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return linked accounts associated with the given integration name.</p>
+         */
         @JsonSetter(value = "integration_name", nulls = Nulls.SKIP)
         public Builder integrationName(Optional<String> integrationName) {
             this.integrationName = integrationName;
@@ -403,6 +439,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include test linked accounts. If not included, will only include non-test linked accounts.</p>
+         */
         @JsonSetter(value = "is_test_account", nulls = Nulls.SKIP)
         public Builder isTestAccount(Optional<String> isTestAccount) {
             this.isTestAccount = isTestAccount;
@@ -414,6 +453,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -425,6 +467,9 @@ public final class LinkedAccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Filter by status. Options: <code>COMPLETE</code>, <code>IDLE</code>, <code>INCOMPLETE</code>, <code>RELINK_NEEDED</code></p>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<String> status) {
             this.status = status;

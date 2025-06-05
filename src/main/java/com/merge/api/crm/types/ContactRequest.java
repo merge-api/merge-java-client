@@ -238,6 +238,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -249,6 +252,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -260,6 +266,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<ContactRequestAccount> account) {
             this.account = account;
@@ -271,6 +280,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<ContactRequestOwner> owner) {
             this.owner = owner;
@@ -315,6 +327,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>When the contact's last activity occurred.</p>
+         */
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;

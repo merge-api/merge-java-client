@@ -271,6 +271,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -282,6 +285,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -293,6 +299,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -304,6 +313,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The job associated with the screening question.</p>
+         */
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
         public Builder job(Optional<ScreeningQuestionJob> job) {
             this.job = job;
@@ -315,6 +327,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The description of the screening question</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -326,6 +341,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The title of the screening question</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -337,6 +355,19 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>The data type for the screening question.</p>
+         * <ul>
+         * <li><code>DATE</code> - DATE</li>
+         * <li><code>FILE</code> - FILE</li>
+         * <li><code>SINGLE_SELECT</code> - SINGLE_SELECT</li>
+         * <li><code>MULTI_SELECT</code> - MULTI_SELECT</li>
+         * <li><code>SINGLE_LINE_TEXT</code> - SINGLE_LINE_TEXT</li>
+         * <li><code>MULTI_LINE_TEXT</code> - MULTI_LINE_TEXT</li>
+         * <li><code>NUMERIC</code> - NUMERIC</li>
+         * <li><code>BOOLEAN</code> - BOOLEAN</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
         public Builder type(Optional<ScreeningQuestionTypeEnum> type) {
             this.type = type;
@@ -348,6 +379,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>Whether or not the screening question is required.</p>
+         */
         @JsonSetter(value = "required", nulls = Nulls.SKIP)
         public Builder required(Optional<Boolean> required) {
             this.required = required;
@@ -370,6 +404,9 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

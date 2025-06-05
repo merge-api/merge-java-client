@@ -351,6 +351,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -362,6 +365,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -373,6 +379,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -384,6 +393,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The employee whose payroll is being run.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<EmployeePayrollRunEmployee> employee) {
             this.employee = employee;
@@ -395,6 +407,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The payroll being run.</p>
+         */
         @JsonSetter(value = "payroll_run", nulls = Nulls.SKIP)
         public Builder payrollRun(Optional<EmployeePayrollRunPayrollRun> payrollRun) {
             this.payrollRun = payrollRun;
@@ -406,6 +421,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The total earnings throughout a given period for an employee before any deductions are made.</p>
+         */
         @JsonSetter(value = "gross_pay", nulls = Nulls.SKIP)
         public Builder grossPay(Optional<Double> grossPay) {
             this.grossPay = grossPay;
@@ -417,6 +435,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The take-home pay throughout a given period for an employee after deductions are made.</p>
+         */
         @JsonSetter(value = "net_pay", nulls = Nulls.SKIP)
         public Builder netPay(Optional<Double> netPay) {
             this.netPay = netPay;
@@ -428,6 +449,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run started.</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -439,6 +463,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run ended.</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<OffsetDateTime> endDate) {
             this.endDate = endDate;
@@ -450,6 +477,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>The day and time the payroll run was checked.</p>
+         */
         @JsonSetter(value = "check_date", nulls = Nulls.SKIP)
         public Builder checkDate(Optional<OffsetDateTime> checkDate) {
             this.checkDate = checkDate;
@@ -494,6 +524,9 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

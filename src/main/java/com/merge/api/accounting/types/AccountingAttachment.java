@@ -241,6 +241,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -252,6 +255,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -263,6 +269,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -274,6 +283,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The attachment's name.</p>
+         */
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public Builder fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -285,6 +297,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The attachment's url.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -296,6 +311,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>The company the accounting attachment belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -307,6 +325,9 @@ public final class AccountingAttachment {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

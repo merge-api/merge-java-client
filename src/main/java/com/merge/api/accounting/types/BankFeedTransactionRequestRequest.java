@@ -36,7 +36,7 @@ public final class BankFeedTransactionRequestRequest {
 
     private final Optional<String> payee;
 
-    private final Optional<CreditOrDebitEnum> creditOrDebit;
+    private final Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit;
 
     private final Optional<String> sourceTransactionId;
 
@@ -54,7 +54,7 @@ public final class BankFeedTransactionRequestRequest {
             Optional<String> description,
             Optional<String> transactionType,
             Optional<String> payee,
-            Optional<CreditOrDebitEnum> creditOrDebit,
+            Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit,
             Optional<String> sourceTransactionId,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -137,7 +137,7 @@ public final class BankFeedTransactionRequestRequest {
      * </ul>
      */
     @JsonProperty("credit_or_debit")
-    public Optional<CreditOrDebitEnum> getCreditOrDebit() {
+    public Optional<BankFeedTransactionRequestRequestCreditOrDebit> getCreditOrDebit() {
         return creditOrDebit;
     }
 
@@ -225,7 +225,7 @@ public final class BankFeedTransactionRequestRequest {
 
         private Optional<String> payee = Optional.empty();
 
-        private Optional<CreditOrDebitEnum> creditOrDebit = Optional.empty();
+        private Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit = Optional.empty();
 
         private Optional<String> sourceTransactionId = Optional.empty();
 
@@ -253,6 +253,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The bank feed account associated with the transaction.</p>
+         */
         @JsonSetter(value = "bank_feed_account", nulls = Nulls.SKIP)
         public Builder bankFeedAccount(Optional<BankFeedTransactionRequestRequestBankFeedAccount> bankFeedAccount) {
             this.bankFeedAccount = bankFeedAccount;
@@ -264,6 +267,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The date that the transaction occurred.</p>
+         */
         @JsonSetter(value = "transaction_date", nulls = Nulls.SKIP)
         public Builder transactionDate(Optional<OffsetDateTime> transactionDate) {
             this.transactionDate = transactionDate;
@@ -275,6 +281,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The date the transaction was posted to the bank account.</p>
+         */
         @JsonSetter(value = "posted_date", nulls = Nulls.SKIP)
         public Builder postedDate(Optional<OffsetDateTime> postedDate) {
             this.postedDate = postedDate;
@@ -286,6 +295,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The amount of the transaction.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Double> amount) {
             this.amount = amount;
@@ -297,6 +309,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The description of the transaction.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -308,6 +323,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The underlying type of the transaction.</p>
+         */
         @JsonSetter(value = "transaction_type", nulls = Nulls.SKIP)
         public Builder transactionType(Optional<String> transactionType) {
             this.transactionType = transactionType;
@@ -319,6 +337,9 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>The person or merchant who initiated the transaction, or alternatively, to whom the transaction was paid.</p>
+         */
         @JsonSetter(value = "payee", nulls = Nulls.SKIP)
         public Builder payee(Optional<String> payee) {
             this.payee = payee;
@@ -330,17 +351,27 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        /**
+         * <p>If the transaction is of type debit or credit.</p>
+         * <ul>
+         * <li><code>CREDIT</code> - CREDIT</li>
+         * <li><code>DEBIT</code> - DEBIT</li>
+         * </ul>
+         */
         @JsonSetter(value = "credit_or_debit", nulls = Nulls.SKIP)
-        public Builder creditOrDebit(Optional<CreditOrDebitEnum> creditOrDebit) {
+        public Builder creditOrDebit(Optional<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit) {
             this.creditOrDebit = creditOrDebit;
             return this;
         }
 
-        public Builder creditOrDebit(CreditOrDebitEnum creditOrDebit) {
+        public Builder creditOrDebit(BankFeedTransactionRequestRequestCreditOrDebit creditOrDebit) {
             this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }
 
+        /**
+         * <p>The customer’s identifier for the transaction.</p>
+         */
         @JsonSetter(value = "source_transaction_id", nulls = Nulls.SKIP)
         public Builder sourceTransactionId(Optional<String> sourceTransactionId) {
             this.sourceTransactionId = sourceTransactionId;

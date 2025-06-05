@@ -132,6 +132,9 @@ public final class LeadsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<LeadsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
@@ -148,6 +151,9 @@ public final class LeadsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -159,6 +165,9 @@ public final class LeadsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.</p>
+         */
         @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
         public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
             this.includeRemoteFields = includeRemoteFields;
@@ -170,6 +179,9 @@ public final class LeadsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;

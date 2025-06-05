@@ -131,6 +131,9 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -142,6 +145,9 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -153,6 +159,9 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, specifies the export format of the files to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;
@@ -164,6 +173,9 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;

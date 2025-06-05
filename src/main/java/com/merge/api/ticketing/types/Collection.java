@@ -284,6 +284,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -295,6 +298,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -306,6 +312,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -317,6 +326,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The collection's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -328,6 +340,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The collection's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -339,6 +354,13 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The collection's type.</p>
+         * <ul>
+         * <li><code>LIST</code> - LIST</li>
+         * <li><code>PROJECT</code> - PROJECT</li>
+         * </ul>
+         */
         @JsonSetter(value = "collection_type", nulls = Nulls.SKIP)
         public Builder collectionType(Optional<CollectionTypeEnum> collectionType) {
             this.collectionType = collectionType;
@@ -350,6 +372,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The parent collection for this collection.</p>
+         */
         @JsonSetter(value = "parent_collection", nulls = Nulls.SKIP)
         public Builder parentCollection(Optional<CollectionParentCollection> parentCollection) {
             this.parentCollection = parentCollection;
@@ -361,6 +386,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -372,6 +400,14 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The level of access a User has to the Collection and its sub-objects.</p>
+         * <ul>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * </ul>
+         */
         @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
         public Builder accessLevel(Optional<AccessLevelEnum> accessLevel) {
             this.accessLevel = accessLevel;

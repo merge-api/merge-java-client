@@ -197,6 +197,9 @@ public final class EngagementType {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -208,6 +211,9 @@ public final class EngagementType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -219,6 +225,9 @@ public final class EngagementType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -230,6 +239,14 @@ public final class EngagementType {
             return this;
         }
 
+        /**
+         * <p>The engagement type's activity type.</p>
+         * <ul>
+         * <li><code>CALL</code> - CALL</li>
+         * <li><code>MEETING</code> - MEETING</li>
+         * <li><code>EMAIL</code> - EMAIL</li>
+         * </ul>
+         */
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
         public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
@@ -241,6 +258,9 @@ public final class EngagementType {
             return this;
         }
 
+        /**
+         * <p>The engagement type's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;

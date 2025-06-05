@@ -193,6 +193,9 @@ public final class CustomObject {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -204,6 +207,9 @@ public final class CustomObject {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -215,6 +221,9 @@ public final class CustomObject {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -226,6 +235,9 @@ public final class CustomObject {
             return this;
         }
 
+        /**
+         * <p>The custom object class the custom object record belongs to.</p>
+         */
         @JsonSetter(value = "object_class", nulls = Nulls.SKIP)
         public Builder objectClass(Optional<String> objectClass) {
             this.objectClass = objectClass;
@@ -237,6 +249,9 @@ public final class CustomObject {
             return this;
         }
 
+        /**
+         * <p>The fields and values contained within the custom object record.</p>
+         */
         @JsonSetter(value = "fields", nulls = Nulls.SKIP)
         public Builder fields(Optional<Map<String, JsonNode>> fields) {
             this.fields = fields;

@@ -441,6 +441,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<TimeOffListRequestExpandItem>> expand) {
             this.expand = expand;
@@ -457,6 +460,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return time off for this approver.</p>
+         */
         @JsonSetter(value = "approver_id", nulls = Nulls.SKIP)
         public Builder approverId(Optional<String> approverId) {
             this.approverId = approverId;
@@ -468,6 +474,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
         @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
         public Builder createdAfter(Optional<OffsetDateTime> createdAfter) {
             this.createdAfter = createdAfter;
@@ -479,6 +488,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
         @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
         public Builder createdBefore(Optional<OffsetDateTime> createdBefore) {
             this.createdBefore = createdBefore;
@@ -490,6 +502,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -501,6 +516,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return time off for this employee.</p>
+         */
         @JsonSetter(value = "employee_id", nulls = Nulls.SKIP)
         public Builder employeeId(Optional<String> employeeId) {
             this.employeeId = employeeId;
@@ -512,6 +530,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return employees that ended after this datetime.</p>
+         */
         @JsonSetter(value = "ended_after", nulls = Nulls.SKIP)
         public Builder endedAfter(Optional<OffsetDateTime> endedAfter) {
             this.endedAfter = endedAfter;
@@ -523,6 +544,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return time-offs that ended before this datetime.</p>
+         */
         @JsonSetter(value = "ended_before", nulls = Nulls.SKIP)
         public Builder endedBefore(Optional<OffsetDateTime> endedBefore) {
             this.endedBefore = endedBefore;
@@ -534,6 +558,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -545,6 +572,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -556,6 +586,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -567,6 +600,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -578,6 +614,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge before this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
         public Builder modifiedBefore(Optional<OffsetDateTime> modifiedBefore) {
             this.modifiedBefore = modifiedBefore;
@@ -589,6 +628,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -600,6 +642,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>Deprecated. Use show_enum_origins.</p>
+         */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<TimeOffListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -611,6 +656,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>The API provider's ID for the given object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -622,6 +670,17 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')</p>
+         * <ul>
+         * <li><code>VACATION</code> - VACATION</li>
+         * <li><code>SICK</code> - SICK</li>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>JURY_DUTY</code> - JURY_DUTY</li>
+         * <li><code>VOLUNTEER</code> - VOLUNTEER</li>
+         * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
+         * </ul>
+         */
         @JsonSetter(value = "request_type", nulls = Nulls.SKIP)
         public Builder requestType(Optional<TimeOffListRequestRequestType> requestType) {
             this.requestType = requestType;
@@ -633,6 +692,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
+         */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
         public Builder showEnumOrigins(Optional<TimeOffListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
@@ -644,6 +706,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return time-offs that started after this datetime.</p>
+         */
         @JsonSetter(value = "started_after", nulls = Nulls.SKIP)
         public Builder startedAfter(Optional<OffsetDateTime> startedAfter) {
             this.startedAfter = startedAfter;
@@ -655,6 +720,9 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return time-offs that started before this datetime.</p>
+         */
         @JsonSetter(value = "started_before", nulls = Nulls.SKIP)
         public Builder startedBefore(Optional<OffsetDateTime> startedBefore) {
             this.startedBefore = startedBefore;
@@ -666,6 +734,16 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return TimeOff with this status. Options: ('REQUESTED', 'APPROVED', 'DECLINED', 'CANCELLED', 'DELETED')</p>
+         * <ul>
+         * <li><code>REQUESTED</code> - REQUESTED</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>DECLINED</code> - DECLINED</li>
+         * <li><code>CANCELLED</code> - CANCELLED</li>
+         * <li><code>DELETED</code> - DELETED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<TimeOffListRequestStatus> status) {
             this.status = status;

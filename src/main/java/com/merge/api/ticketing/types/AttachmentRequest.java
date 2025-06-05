@@ -180,6 +180,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's name. It is required to include the file extension in the attachment's name.</p>
+         */
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public Builder fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -191,6 +194,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket associated with the attachment.</p>
+         */
         @JsonSetter(value = "ticket", nulls = Nulls.SKIP)
         public Builder ticket(Optional<AttachmentRequestTicket> ticket) {
             this.ticket = ticket;
@@ -202,6 +208,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's url. It is required to include the file extension in the file's URL.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -213,6 +222,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's file format.</p>
+         */
         @JsonSetter(value = "content_type", nulls = Nulls.SKIP)
         public Builder contentType(Optional<String> contentType) {
             this.contentType = contentType;
@@ -224,6 +236,9 @@ public final class AttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The user who uploaded the attachment.</p>
+         */
         @JsonSetter(value = "uploaded_by", nulls = Nulls.SKIP)
         public Builder uploadedBy(Optional<String> uploadedBy) {
             this.uploadedBy = uploadedBy;

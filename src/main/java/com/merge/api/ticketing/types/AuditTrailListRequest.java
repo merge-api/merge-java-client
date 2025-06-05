@@ -162,6 +162,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -173,6 +176,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include audit trail events that occurred before this time</p>
+         */
         @JsonSetter(value = "end_date", nulls = Nulls.SKIP)
         public Builder endDate(Optional<String> endDate) {
             this.endDate = endDate;
@@ -184,6 +190,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include events with the given event type. Possible values include: <code>CREATED_REMOTE_PRODUCTION_API_KEY</code>, <code>DELETED_REMOTE_PRODUCTION_API_KEY</code>, <code>CREATED_TEST_API_KEY</code>, <code>DELETED_TEST_API_KEY</code>, <code>REGENERATED_PRODUCTION_API_KEY</code>, <code>INVITED_USER</code>, <code>TWO_FACTOR_AUTH_ENABLED</code>, <code>TWO_FACTOR_AUTH_DISABLED</code>, <code>DELETED_LINKED_ACCOUNT</code>, <code>DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT</code>, <code>CREATED_DESTINATION</code>, <code>DELETED_DESTINATION</code>, <code>CHANGED_DESTINATION</code>, <code>CHANGED_SCOPES</code>, <code>CHANGED_PERSONAL_INFORMATION</code>, <code>CHANGED_ORGANIZATION_SETTINGS</code>, <code>ENABLED_INTEGRATION</code>, <code>DISABLED_INTEGRATION</code>, <code>ENABLED_CATEGORY</code>, <code>DISABLED_CATEGORY</code>, <code>CHANGED_PASSWORD</code>, <code>RESET_PASSWORD</code>, <code>ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION</code>, <code>ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT</code>, <code>DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION</code>, <code>DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT</code>, <code>CREATED_INTEGRATION_WIDE_FIELD_MAPPING</code>, <code>CREATED_LINKED_ACCOUNT_FIELD_MAPPING</code>, <code>CHANGED_INTEGRATION_WIDE_FIELD_MAPPING</code>, <code>CHANGED_LINKED_ACCOUNT_FIELD_MAPPING</code>, <code>DELETED_INTEGRATION_WIDE_FIELD_MAPPING</code>, <code>DELETED_LINKED_ACCOUNT_FIELD_MAPPING</code>, <code>CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE</code>, <code>CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE</code>, <code>DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE</code>, <code>FORCED_LINKED_ACCOUNT_RESYNC</code>, <code>MUTED_ISSUE</code>, <code>GENERATED_MAGIC_LINK</code>, <code>ENABLED_MERGE_WEBHOOK</code>, <code>DISABLED_MERGE_WEBHOOK</code>, <code>MERGE_WEBHOOK_TARGET_CHANGED</code>, <code>END_USER_CREDENTIALS_ACCESSED</code></p>
+         */
         @JsonSetter(value = "event_type", nulls = Nulls.SKIP)
         public Builder eventType(Optional<String> eventType) {
             this.eventType = eventType;
@@ -195,6 +204,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -206,6 +218,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>If included, will only include audit trail events that occurred after this time</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<String> startDate) {
             this.startDate = startDate;
@@ -217,6 +232,9 @@ public final class AuditTrailListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, this will return events associated with the specified user email. Please note that the email address reflects the user's email at the time of the event, and may not be their current email.</p>
+         */
         @JsonSetter(value = "user_email", nulls = Nulls.SKIP)
         public Builder userEmail(Optional<String> userEmail) {
             this.userEmail = userEmail;

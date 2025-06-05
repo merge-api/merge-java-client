@@ -299,6 +299,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -310,6 +313,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -321,6 +327,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -332,6 +341,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The user's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -343,6 +355,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The user's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -354,6 +369,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The user's email.</p>
+         */
         @JsonSetter(value = "email", nulls = Nulls.SKIP)
         public Builder email(Optional<String> email) {
             this.email = email;
@@ -365,6 +383,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>Whether the user's account had been disabled.</p>
+         */
         @JsonSetter(value = "disabled", nulls = Nulls.SKIP)
         public Builder disabled(Optional<Boolean> disabled) {
             this.disabled = disabled;
@@ -376,6 +397,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>When the third party's user was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -387,6 +411,16 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>The user's role.</p>
+         * <ul>
+         * <li><code>SUPER_ADMIN</code> - SUPER_ADMIN</li>
+         * <li><code>ADMIN</code> - ADMIN</li>
+         * <li><code>TEAM_MEMBER</code> - TEAM_MEMBER</li>
+         * <li><code>LIMITED_TEAM_MEMBER</code> - LIMITED_TEAM_MEMBER</li>
+         * <li><code>INTERVIEWER</code> - INTERVIEWER</li>
+         * </ul>
+         */
         @JsonSetter(value = "access_role", nulls = Nulls.SKIP)
         public Builder accessRole(Optional<AccessRoleEnum> accessRole) {
             this.accessRole = accessRole;
@@ -398,6 +432,9 @@ public final class RemoteUser {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

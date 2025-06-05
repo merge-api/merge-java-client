@@ -219,6 +219,9 @@ public final class PaymentTerm {
     }
 
     public interface NameStage {
+        /**
+         * The name of the payment term.
+         */
         _FinalStage name(@NotNull String name);
 
         Builder from(PaymentTerm other);
@@ -231,34 +234,58 @@ public final class PaymentTerm {
 
         _FinalStage id(String id);
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         _FinalStage remoteId(Optional<String> remoteId);
 
         _FinalStage remoteId(String remoteId);
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         _FinalStage createdAt(Optional<OffsetDateTime> createdAt);
 
         _FinalStage createdAt(OffsetDateTime createdAt);
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt);
 
         _FinalStage modifiedAt(OffsetDateTime modifiedAt);
 
+        /**
+         * <p><code>True</code> if the payment term is active, <code>False</code> if not.</p>
+         */
         _FinalStage isActive(Optional<Boolean> isActive);
 
         _FinalStage isActive(Boolean isActive);
 
+        /**
+         * <p>The subsidiary that the payment term belongs to.</p>
+         */
         _FinalStage company(Optional<PaymentTermCompany> company);
 
         _FinalStage company(PaymentTermCompany company);
 
+        /**
+         * <p>The number of days after the invoice date that payment is due.</p>
+         */
         _FinalStage daysUntilDue(Optional<Integer> daysUntilDue);
 
         _FinalStage daysUntilDue(Integer daysUntilDue);
 
+        /**
+         * <p>The number of days the invoice must be paid before discounts expire.</p>
+         */
         _FinalStage discountDays(Optional<Integer> discountDays);
 
         _FinalStage discountDays(Integer discountDays);
 
+        /**
+         * <p>When the third party's payment term was modified.</p>
+         */
         _FinalStage remoteLastModifiedAt(Optional<OffsetDateTime> remoteLastModifiedAt);
 
         _FinalStage remoteLastModifiedAt(OffsetDateTime remoteLastModifiedAt);
@@ -321,7 +348,7 @@ public final class PaymentTerm {
         }
 
         /**
-         * <p>The name of the payment term.</p>
+         * The name of the payment term.<p>The name of the payment term.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -367,6 +394,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>When the third party's payment term was modified.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_last_modified_at", nulls = Nulls.SKIP)
         public _FinalStage remoteLastModifiedAt(Optional<OffsetDateTime> remoteLastModifiedAt) {
@@ -384,6 +414,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The number of days the invoice must be paid before discounts expire.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "discount_days", nulls = Nulls.SKIP)
         public _FinalStage discountDays(Optional<Integer> discountDays) {
@@ -401,6 +434,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The number of days after the invoice date that payment is due.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "days_until_due", nulls = Nulls.SKIP)
         public _FinalStage daysUntilDue(Optional<Integer> daysUntilDue) {
@@ -418,6 +454,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The subsidiary that the payment term belongs to.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public _FinalStage company(Optional<PaymentTermCompany> company) {
@@ -435,6 +474,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p><code>True</code> if the payment term is active, <code>False</code> if not.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_active", nulls = Nulls.SKIP)
         public _FinalStage isActive(Optional<Boolean> isActive) {
@@ -452,6 +494,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt) {
@@ -469,6 +514,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
@@ -486,6 +534,9 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public _FinalStage remoteId(Optional<String> remoteId) {

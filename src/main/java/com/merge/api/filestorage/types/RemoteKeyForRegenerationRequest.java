@@ -66,6 +66,9 @@ public final class RemoteKeyForRegenerationRequest {
     }
 
     public interface NameStage {
+        /**
+         * The name of the remote key
+         */
         _FinalStage name(@NotNull String name);
 
         Builder from(RemoteKeyForRegenerationRequest other);
@@ -91,7 +94,7 @@ public final class RemoteKeyForRegenerationRequest {
         }
 
         /**
-         * <p>The name of the remote key</p>
+         * The name of the remote key<p>The name of the remote key</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

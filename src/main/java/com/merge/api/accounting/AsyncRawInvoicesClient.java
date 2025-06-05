@@ -542,6 +542,10 @@ public class AsyncRawInvoicesClient {
                     request.getIsCommonModelField().get().toString(),
                     false);
         }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get().toString(), false);
@@ -778,6 +782,10 @@ public class AsyncRawInvoicesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

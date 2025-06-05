@@ -82,6 +82,9 @@ public final class CommonModelScopeApi {
             return this;
         }
 
+        /**
+         * <p>The common models you want to update the scopes for</p>
+         */
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public Builder commonModels(List<IndividualCommonModelScopeDeserializer> commonModels) {
             this.commonModels.clear();
