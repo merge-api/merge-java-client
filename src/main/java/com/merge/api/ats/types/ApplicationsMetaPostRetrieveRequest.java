@@ -82,6 +82,9 @@ public final class ApplicationsMetaPostRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>The template ID associated with the nested application in the request.</p>
+         */
         @JsonSetter(value = "application_remote_template_id", nulls = Nulls.SKIP)
         public Builder applicationRemoteTemplateId(Optional<String> applicationRemoteTemplateId) {
             this.applicationRemoteTemplateId = applicationRemoteTemplateId;

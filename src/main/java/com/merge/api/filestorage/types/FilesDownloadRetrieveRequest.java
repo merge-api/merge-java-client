@@ -95,6 +95,9 @@ public final class FilesDownloadRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -106,6 +109,9 @@ public final class FilesDownloadRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, specifies the export format of the file to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;

@@ -35,13 +35,13 @@ public final class Eeoc {
 
     private final Optional<OffsetDateTime> submittedAt;
 
-    private final Optional<RaceEnum> race;
+    private final Optional<EeocRace> race;
 
-    private final Optional<GenderEnum> gender;
+    private final Optional<EeocGender> gender;
 
-    private final Optional<VeteranStatusEnum> veteranStatus;
+    private final Optional<EeocVeteranStatus> veteranStatus;
 
-    private final Optional<DisabilityStatusEnum> disabilityStatus;
+    private final Optional<EeocDisabilityStatus> disabilityStatus;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -58,10 +58,10 @@ public final class Eeoc {
             Optional<OffsetDateTime> modifiedAt,
             Optional<EeocCandidate> candidate,
             Optional<OffsetDateTime> submittedAt,
-            Optional<RaceEnum> race,
-            Optional<GenderEnum> gender,
-            Optional<VeteranStatusEnum> veteranStatus,
-            Optional<DisabilityStatusEnum> disabilityStatus,
+            Optional<EeocRace> race,
+            Optional<EeocGender> gender,
+            Optional<EeocVeteranStatus> veteranStatus,
+            Optional<EeocDisabilityStatus> disabilityStatus,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -141,7 +141,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("race")
-    public Optional<RaceEnum> getRace() {
+    public Optional<EeocRace> getRace() {
         return race;
     }
 
@@ -156,7 +156,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("gender")
-    public Optional<GenderEnum> getGender() {
+    public Optional<EeocGender> getGender() {
         return gender;
     }
 
@@ -169,7 +169,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("veteran_status")
-    public Optional<VeteranStatusEnum> getVeteranStatus() {
+    public Optional<EeocVeteranStatus> getVeteranStatus() {
         return veteranStatus;
     }
 
@@ -182,7 +182,7 @@ public final class Eeoc {
      * </ul>
      */
     @JsonProperty("disability_status")
-    public Optional<DisabilityStatusEnum> getDisabilityStatus() {
+    public Optional<EeocDisabilityStatus> getDisabilityStatus() {
         return disabilityStatus;
     }
 
@@ -272,13 +272,13 @@ public final class Eeoc {
 
         private Optional<OffsetDateTime> submittedAt = Optional.empty();
 
-        private Optional<RaceEnum> race = Optional.empty();
+        private Optional<EeocRace> race = Optional.empty();
 
-        private Optional<GenderEnum> gender = Optional.empty();
+        private Optional<EeocGender> gender = Optional.empty();
 
-        private Optional<VeteranStatusEnum> veteranStatus = Optional.empty();
+        private Optional<EeocVeteranStatus> veteranStatus = Optional.empty();
 
-        private Optional<DisabilityStatusEnum> disabilityStatus = Optional.empty();
+        private Optional<EeocDisabilityStatus> disabilityStatus = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -319,6 +319,9 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -330,6 +333,9 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -341,6 +347,9 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -352,6 +361,9 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>The candidate being represented.</p>
+         */
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<EeocCandidate> candidate) {
             this.candidate = candidate;
@@ -363,6 +375,9 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>When the information was submitted.</p>
+         */
         @JsonSetter(value = "submitted_at", nulls = Nulls.SKIP)
         public Builder submittedAt(Optional<OffsetDateTime> submittedAt) {
             this.submittedAt = submittedAt;
@@ -374,50 +389,92 @@ public final class Eeoc {
             return this;
         }
 
+        /**
+         * <p>The candidate's race.</p>
+         * <ul>
+         * <li><code>AMERICAN_INDIAN_OR_ALASKAN_NATIVE</code> - AMERICAN_INDIAN_OR_ALASKAN_NATIVE</li>
+         * <li><code>ASIAN</code> - ASIAN</li>
+         * <li><code>BLACK_OR_AFRICAN_AMERICAN</code> - BLACK_OR_AFRICAN_AMERICAN</li>
+         * <li><code>HISPANIC_OR_LATINO</code> - HISPANIC_OR_LATINO</li>
+         * <li><code>WHITE</code> - WHITE</li>
+         * <li><code>NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER</code> - NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER</li>
+         * <li><code>TWO_OR_MORE_RACES</code> - TWO_OR_MORE_RACES</li>
+         * <li><code>DECLINE_TO_SELF_IDENTIFY</code> - DECLINE_TO_SELF_IDENTIFY</li>
+         * </ul>
+         */
         @JsonSetter(value = "race", nulls = Nulls.SKIP)
-        public Builder race(Optional<RaceEnum> race) {
+        public Builder race(Optional<EeocRace> race) {
             this.race = race;
             return this;
         }
 
-        public Builder race(RaceEnum race) {
+        public Builder race(EeocRace race) {
             this.race = Optional.ofNullable(race);
             return this;
         }
 
+        /**
+         * <p>The candidate's gender.</p>
+         * <ul>
+         * <li><code>MALE</code> - MALE</li>
+         * <li><code>FEMALE</code> - FEMALE</li>
+         * <li><code>NON-BINARY</code> - NON-BINARY</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * <li><code>DECLINE_TO_SELF_IDENTIFY</code> - DECLINE_TO_SELF_IDENTIFY</li>
+         * </ul>
+         */
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
-        public Builder gender(Optional<GenderEnum> gender) {
+        public Builder gender(Optional<EeocGender> gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder gender(GenderEnum gender) {
+        public Builder gender(EeocGender gender) {
             this.gender = Optional.ofNullable(gender);
             return this;
         }
 
+        /**
+         * <p>The candidate's veteran status.</p>
+         * <ul>
+         * <li><code>I_AM_NOT_A_PROTECTED_VETERAN</code> - I_AM_NOT_A_PROTECTED_VETERAN</li>
+         * <li><code>I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN</code> - I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN</li>
+         * <li><code>I_DONT_WISH_TO_ANSWER</code> - I_DONT_WISH_TO_ANSWER</li>
+         * </ul>
+         */
         @JsonSetter(value = "veteran_status", nulls = Nulls.SKIP)
-        public Builder veteranStatus(Optional<VeteranStatusEnum> veteranStatus) {
+        public Builder veteranStatus(Optional<EeocVeteranStatus> veteranStatus) {
             this.veteranStatus = veteranStatus;
             return this;
         }
 
-        public Builder veteranStatus(VeteranStatusEnum veteranStatus) {
+        public Builder veteranStatus(EeocVeteranStatus veteranStatus) {
             this.veteranStatus = Optional.ofNullable(veteranStatus);
             return this;
         }
 
+        /**
+         * <p>The candidate's disability status.</p>
+         * <ul>
+         * <li><code>YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY</code> - YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY</li>
+         * <li><code>NO_I_DONT_HAVE_A_DISABILITY</code> - NO_I_DONT_HAVE_A_DISABILITY</li>
+         * <li><code>I_DONT_WISH_TO_ANSWER</code> - I_DONT_WISH_TO_ANSWER</li>
+         * </ul>
+         */
         @JsonSetter(value = "disability_status", nulls = Nulls.SKIP)
-        public Builder disabilityStatus(Optional<DisabilityStatusEnum> disabilityStatus) {
+        public Builder disabilityStatus(Optional<EeocDisabilityStatus> disabilityStatus) {
             this.disabilityStatus = disabilityStatus;
             return this;
         }
 
-        public Builder disabilityStatus(DisabilityStatusEnum disabilityStatus) {
+        public Builder disabilityStatus(EeocDisabilityStatus disabilityStatus) {
             this.disabilityStatus = Optional.ofNullable(disabilityStatus);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

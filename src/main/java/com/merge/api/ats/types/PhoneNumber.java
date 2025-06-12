@@ -27,7 +27,7 @@ public final class PhoneNumber {
 
     private final Optional<String> value;
 
-    private final Optional<PhoneNumberTypeEnum> phoneNumberType;
+    private final Optional<PhoneNumberPhoneNumberType> phoneNumberType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -37,7 +37,7 @@ public final class PhoneNumber {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
-            Optional<PhoneNumberTypeEnum> phoneNumberType,
+            Optional<PhoneNumberPhoneNumberType> phoneNumberType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -83,7 +83,7 @@ public final class PhoneNumber {
      * </ul>
      */
     @JsonProperty("phone_number_type")
-    public Optional<PhoneNumberTypeEnum> getPhoneNumberType() {
+    public Optional<PhoneNumberPhoneNumberType> getPhoneNumberType() {
         return phoneNumberType;
     }
 
@@ -136,7 +136,7 @@ public final class PhoneNumber {
 
         private Optional<String> value = Optional.empty();
 
-        private Optional<PhoneNumberTypeEnum> phoneNumberType = Optional.empty();
+        private Optional<PhoneNumberPhoneNumberType> phoneNumberType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -154,6 +154,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -165,6 +168,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -176,6 +182,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The phone number.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -187,17 +196,30 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The type of phone number.</p>
+         * <ul>
+         * <li><code>HOME</code> - HOME</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>MOBILE</code> - MOBILE</li>
+         * <li><code>SKYPE</code> - SKYPE</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
-        public Builder phoneNumberType(Optional<PhoneNumberTypeEnum> phoneNumberType) {
+        public Builder phoneNumberType(Optional<PhoneNumberPhoneNumberType> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;
             return this;
         }
 
-        public Builder phoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
+        public Builder phoneNumberType(PhoneNumberPhoneNumberType phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

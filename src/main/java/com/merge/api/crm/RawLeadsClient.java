@@ -433,6 +433,10 @@ public class RawLeadsClient {
                     request.getIsCommonModelField().get().toString(),
                     false);
         }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get().toString(), false);

@@ -195,6 +195,9 @@ public final class NoteRequest {
             return this;
         }
 
+        /**
+         * <p>The note's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<NoteRequestOwner> owner) {
             this.owner = owner;
@@ -206,6 +209,9 @@ public final class NoteRequest {
             return this;
         }
 
+        /**
+         * <p>The note's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -217,6 +223,9 @@ public final class NoteRequest {
             return this;
         }
 
+        /**
+         * <p>The note's contact.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<NoteRequestContact> contact) {
             this.contact = contact;
@@ -228,6 +237,9 @@ public final class NoteRequest {
             return this;
         }
 
+        /**
+         * <p>The note's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<NoteRequestAccount> account) {
             this.account = account;
@@ -239,6 +251,9 @@ public final class NoteRequest {
             return this;
         }
 
+        /**
+         * <p>The note's opportunity.</p>
+         */
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
         public Builder opportunity(Optional<NoteRequestOpportunity> opportunity) {
             this.opportunity = opportunity;

@@ -27,7 +27,7 @@ public final class AccountDetails {
 
     private final Optional<String> integrationSlug;
 
-    private final Optional<CategoryEnum> category;
+    private final Optional<AccountDetailsCategory> category;
 
     private final Optional<String> endUserOriginId;
 
@@ -51,7 +51,7 @@ public final class AccountDetails {
             Optional<String> id,
             Optional<String> integration,
             Optional<String> integrationSlug,
-            Optional<CategoryEnum> category,
+            Optional<AccountDetailsCategory> category,
             Optional<String> endUserOriginId,
             Optional<String> endUserOrganizationName,
             Optional<String> endUserEmailAddress,
@@ -92,7 +92,7 @@ public final class AccountDetails {
     }
 
     @JsonProperty("category")
-    public Optional<CategoryEnum> getCategory() {
+    public Optional<AccountDetailsCategory> getCategory() {
         return category;
     }
 
@@ -202,7 +202,7 @@ public final class AccountDetails {
 
         private Optional<String> integrationSlug = Optional.empty();
 
-        private Optional<CategoryEnum> category = Optional.empty();
+        private Optional<AccountDetailsCategory> category = Optional.empty();
 
         private Optional<String> endUserOriginId = Optional.empty();
 
@@ -275,12 +275,12 @@ public final class AccountDetails {
         }
 
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
-        public Builder category(Optional<CategoryEnum> category) {
+        public Builder category(Optional<AccountDetailsCategory> category) {
             this.category = category;
             return this;
         }
 
-        public Builder category(CategoryEnum category) {
+        public Builder category(AccountDetailsCategory category) {
             this.category = Optional.ofNullable(category);
             return this;
         }
@@ -340,6 +340,9 @@ public final class AccountDetails {
             return this;
         }
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         @JsonSetter(value = "is_duplicate", nulls = Nulls.SKIP)
         public Builder isDuplicate(Optional<Boolean> isDuplicate) {
             this.isDuplicate = isDuplicate;
@@ -362,6 +365,9 @@ public final class AccountDetails {
             return this;
         }
 
+        /**
+         * <p>The time at which account completes the linking flow.</p>
+         */
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;

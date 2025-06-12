@@ -67,6 +67,8 @@ public final class RemoteFieldApiResponse {
 
     private final Optional<List<RemoteFieldApi>> paymentMethod;
 
+    private final Optional<List<RemoteFieldApi>> project;
+
     private final Optional<List<RemoteFieldApi>> paymentTerm;
 
     private final Map<String, Object> additionalProperties;
@@ -95,6 +97,7 @@ public final class RemoteFieldApiResponse {
             Optional<List<RemoteFieldApi>> bankFeedAccount,
             Optional<List<RemoteFieldApi>> employee,
             Optional<List<RemoteFieldApi>> paymentMethod,
+            Optional<List<RemoteFieldApi>> project,
             Optional<List<RemoteFieldApi>> paymentTerm,
             Map<String, Object> additionalProperties) {
         this.account = account;
@@ -120,6 +123,7 @@ public final class RemoteFieldApiResponse {
         this.bankFeedAccount = bankFeedAccount;
         this.employee = employee;
         this.paymentMethod = paymentMethod;
+        this.project = project;
         this.paymentTerm = paymentTerm;
         this.additionalProperties = additionalProperties;
     }
@@ -239,6 +243,11 @@ public final class RemoteFieldApiResponse {
         return paymentMethod;
     }
 
+    @JsonProperty("Project")
+    public Optional<List<RemoteFieldApi>> getProject() {
+        return project;
+    }
+
     @JsonProperty("PaymentTerm")
     public Optional<List<RemoteFieldApi>> getPaymentTerm() {
         return paymentTerm;
@@ -279,6 +288,7 @@ public final class RemoteFieldApiResponse {
                 && bankFeedAccount.equals(other.bankFeedAccount)
                 && employee.equals(other.employee)
                 && paymentMethod.equals(other.paymentMethod)
+                && project.equals(other.project)
                 && paymentTerm.equals(other.paymentTerm);
     }
 
@@ -308,6 +318,7 @@ public final class RemoteFieldApiResponse {
                 this.bankFeedAccount,
                 this.employee,
                 this.paymentMethod,
+                this.project,
                 this.paymentTerm);
     }
 
@@ -368,6 +379,8 @@ public final class RemoteFieldApiResponse {
 
         private Optional<List<RemoteFieldApi>> paymentMethod = Optional.empty();
 
+        private Optional<List<RemoteFieldApi>> project = Optional.empty();
+
         private Optional<List<RemoteFieldApi>> paymentTerm = Optional.empty();
 
         @JsonAnySetter
@@ -399,6 +412,7 @@ public final class RemoteFieldApiResponse {
             bankFeedAccount(other.getBankFeedAccount());
             employee(other.getEmployee());
             paymentMethod(other.getPaymentMethod());
+            project(other.getProject());
             paymentTerm(other.getPaymentTerm());
             return this;
         }
@@ -656,6 +670,17 @@ public final class RemoteFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "Project", nulls = Nulls.SKIP)
+        public Builder project(Optional<List<RemoteFieldApi>> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(List<RemoteFieldApi> project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
         @JsonSetter(value = "PaymentTerm", nulls = Nulls.SKIP)
         public Builder paymentTerm(Optional<List<RemoteFieldApi>> paymentTerm) {
             this.paymentTerm = paymentTerm;
@@ -692,6 +717,7 @@ public final class RemoteFieldApiResponse {
                     bankFeedAccount,
                     employee,
                     paymentMethod,
+                    project,
                     paymentTerm,
                     additionalProperties);
         }

@@ -41,7 +41,7 @@ public final class Ticket {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TicketStatusEnum> status;
+    private final Optional<TicketStatus> status;
 
     private final Optional<String> description;
 
@@ -57,9 +57,15 @@ public final class Ticket {
 
     private final Optional<List<Optional<TicketAttachmentsItem>>> attachments;
 
+    private final Optional<TicketAccessLevel> accessLevel;
+
     private final Optional<List<Optional<String>>> tags;
 
     private final Optional<List<Optional<String>>> roles;
+
+    private final Optional<String> ticketUrl;
+
+    private final Optional<TicketPriority> priority;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
@@ -68,10 +74,6 @@ public final class Ticket {
     private final Optional<OffsetDateTime> completedAt;
 
     private final Optional<Boolean> remoteWasDeleted;
-
-    private final Optional<String> ticketUrl;
-
-    private final Optional<PriorityEnum> priority;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -91,7 +93,7 @@ public final class Ticket {
             Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams,
             Optional<TicketCreator> creator,
             Optional<OffsetDateTime> dueDate,
-            Optional<TicketStatusEnum> status,
+            Optional<TicketStatus> status,
             Optional<String> description,
             Optional<List<Optional<TicketCollectionsItem>>> collections,
             Optional<String> ticketType,
@@ -99,14 +101,15 @@ public final class Ticket {
             Optional<TicketContact> contact,
             Optional<TicketParentTicket> parentTicket,
             Optional<List<Optional<TicketAttachmentsItem>>> attachments,
+            Optional<TicketAccessLevel> accessLevel,
             Optional<List<Optional<String>>> tags,
             Optional<List<Optional<String>>> roles,
+            Optional<String> ticketUrl,
+            Optional<TicketPriority> priority,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<OffsetDateTime> completedAt,
             Optional<Boolean> remoteWasDeleted,
-            Optional<String> ticketUrl,
-            Optional<PriorityEnum> priority,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Optional<List<RemoteField>> remoteFields,
@@ -128,14 +131,15 @@ public final class Ticket {
         this.contact = contact;
         this.parentTicket = parentTicket;
         this.attachments = attachments;
+        this.accessLevel = accessLevel;
         this.tags = tags;
         this.roles = roles;
+        this.ticketUrl = ticketUrl;
+        this.priority = priority;
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
         this.completedAt = completedAt;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.ticketUrl = ticketUrl;
-        this.priority = priority;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.remoteFields = remoteFields;
@@ -221,7 +225,7 @@ public final class Ticket {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TicketStatusEnum> getStatus() {
+    public Optional<TicketStatus> getStatus() {
         return status;
     }
 
@@ -278,6 +282,20 @@ public final class Ticket {
         return attachments;
     }
 
+    /**
+     * @return The description of who is able to access a given ticket, or where access is inherited from.
+     * <ul>
+     * <li><code>COMPANY</code> - COMPANY</li>
+     * <li><code>PUBLIC</code> - PUBLIC</li>
+     * <li><code>PRIVATE</code> - PRIVATE</li>
+     * <li><code>COLLECTION</code> - COLLECTION</li>
+     * </ul>
+     */
+    @JsonProperty("access_level")
+    public Optional<TicketAccessLevel> getAccessLevel() {
+        return accessLevel;
+    }
+
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
@@ -286,6 +304,28 @@ public final class Ticket {
     @JsonProperty("roles")
     public Optional<List<Optional<String>>> getRoles() {
         return roles;
+    }
+
+    /**
+     * @return The 3rd party url of the Ticket.
+     */
+    @JsonProperty("ticket_url")
+    public Optional<String> getTicketUrl() {
+        return ticketUrl;
+    }
+
+    /**
+     * @return The priority or urgency of the Ticket.
+     * <ul>
+     * <li><code>URGENT</code> - URGENT</li>
+     * <li><code>HIGH</code> - HIGH</li>
+     * <li><code>NORMAL</code> - NORMAL</li>
+     * <li><code>LOW</code> - LOW</li>
+     * </ul>
+     */
+    @JsonProperty("priority")
+    public Optional<TicketPriority> getPriority() {
+        return priority;
     }
 
     /**
@@ -318,28 +358,6 @@ public final class Ticket {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    /**
-     * @return The 3rd party url of the Ticket.
-     */
-    @JsonProperty("ticket_url")
-    public Optional<String> getTicketUrl() {
-        return ticketUrl;
-    }
-
-    /**
-     * @return The priority or urgency of the Ticket.
-     * <ul>
-     * <li><code>URGENT</code> - URGENT</li>
-     * <li><code>HIGH</code> - HIGH</li>
-     * <li><code>NORMAL</code> - NORMAL</li>
-     * <li><code>LOW</code> - LOW</li>
-     * </ul>
-     */
-    @JsonProperty("priority")
-    public Optional<PriorityEnum> getPriority() {
-        return priority;
     }
 
     @JsonProperty("field_mappings")
@@ -386,14 +404,15 @@ public final class Ticket {
                 && contact.equals(other.contact)
                 && parentTicket.equals(other.parentTicket)
                 && attachments.equals(other.attachments)
+                && accessLevel.equals(other.accessLevel)
                 && tags.equals(other.tags)
                 && roles.equals(other.roles)
+                && ticketUrl.equals(other.ticketUrl)
+                && priority.equals(other.priority)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && completedAt.equals(other.completedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && ticketUrl.equals(other.ticketUrl)
-                && priority.equals(other.priority)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData)
                 && remoteFields.equals(other.remoteFields);
@@ -419,14 +438,15 @@ public final class Ticket {
                 this.contact,
                 this.parentTicket,
                 this.attachments,
+                this.accessLevel,
                 this.tags,
                 this.roles,
+                this.ticketUrl,
+                this.priority,
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
                 this.completedAt,
                 this.remoteWasDeleted,
-                this.ticketUrl,
-                this.priority,
                 this.fieldMappings,
                 this.remoteData,
                 this.remoteFields);
@@ -461,7 +481,7 @@ public final class Ticket {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TicketStatusEnum> status = Optional.empty();
+        private Optional<TicketStatus> status = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -477,9 +497,15 @@ public final class Ticket {
 
         private Optional<List<Optional<TicketAttachmentsItem>>> attachments = Optional.empty();
 
+        private Optional<TicketAccessLevel> accessLevel = Optional.empty();
+
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
         private Optional<List<Optional<String>>> roles = Optional.empty();
+
+        private Optional<String> ticketUrl = Optional.empty();
+
+        private Optional<TicketPriority> priority = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
@@ -488,10 +514,6 @@ public final class Ticket {
         private Optional<OffsetDateTime> completedAt = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
-        private Optional<String> ticketUrl = Optional.empty();
-
-        private Optional<PriorityEnum> priority = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -522,14 +544,15 @@ public final class Ticket {
             contact(other.getContact());
             parentTicket(other.getParentTicket());
             attachments(other.getAttachments());
+            accessLevel(other.getAccessLevel());
             tags(other.getTags());
             roles(other.getRoles());
+            ticketUrl(other.getTicketUrl());
+            priority(other.getPriority());
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             completedAt(other.getCompletedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            ticketUrl(other.getTicketUrl());
-            priority(other.getPriority());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             remoteFields(other.getRemoteFields());
@@ -547,6 +570,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -558,6 +584,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -569,6 +598,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -580,6 +612,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The ticket's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -591,6 +626,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
         public Builder assignees(Optional<List<Optional<TicketAssigneesItem>>> assignees) {
             this.assignees = assignees;
@@ -602,6 +640,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access this ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
         public Builder assignedTeams(Optional<List<Optional<TicketAssignedTeamsItem>>> assignedTeams) {
             this.assignedTeams = assignedTeams;
@@ -613,6 +654,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The user who created this ticket.</p>
+         */
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
         public Builder creator(Optional<TicketCreator> creator) {
             this.creator = creator;
@@ -624,6 +668,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The ticket's due date.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -635,17 +682,29 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The current status of the ticket.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>IN_PROGRESS</code> - IN_PROGRESS</li>
+         * <li><code>ON_HOLD</code> - ON_HOLD</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TicketStatusEnum> status) {
+        public Builder status(Optional<TicketStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TicketStatusEnum status) {
+        public Builder status(TicketStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The ticket’s description. HTML version of description is mapped if supported by the third-party platform.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -657,6 +716,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The <code>Collections</code> that this <code>Ticket</code> is included in.</p>
+         */
         @JsonSetter(value = "collections", nulls = Nulls.SKIP)
         public Builder collections(Optional<List<Optional<TicketCollectionsItem>>> collections) {
             this.collections = collections;
@@ -668,6 +730,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.</p>
+         */
         @JsonSetter(value = "ticket_type", nulls = Nulls.SKIP)
         public Builder ticketType(Optional<String> ticketType) {
             this.ticketType = ticketType;
@@ -679,6 +744,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The account associated with the ticket.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<TicketAccount> account) {
             this.account = account;
@@ -690,6 +758,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The contact associated with the ticket.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<TicketContact> contact) {
             this.contact = contact;
@@ -701,6 +772,9 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The ticket's parent ticket.</p>
+         */
         @JsonSetter(value = "parent_ticket", nulls = Nulls.SKIP)
         public Builder parentTicket(Optional<TicketParentTicket> parentTicket) {
             this.parentTicket = parentTicket;
@@ -720,6 +794,26 @@ public final class Ticket {
 
         public Builder attachments(List<Optional<TicketAttachmentsItem>> attachments) {
             this.attachments = Optional.ofNullable(attachments);
+            return this;
+        }
+
+        /**
+         * <p>The description of who is able to access a given ticket, or where access is inherited from.</p>
+         * <ul>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * <li><code>COLLECTION</code> - COLLECTION</li>
+         * </ul>
+         */
+        @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
+        public Builder accessLevel(Optional<TicketAccessLevel> accessLevel) {
+            this.accessLevel = accessLevel;
+            return this;
+        }
+
+        public Builder accessLevel(TicketAccessLevel accessLevel) {
+            this.accessLevel = Optional.ofNullable(accessLevel);
             return this;
         }
 
@@ -745,50 +839,9 @@ public final class Ticket {
             return this;
         }
 
-        @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
-        public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
-            this.remoteCreatedAt = remoteCreatedAt;
-            return this;
-        }
-
-        public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
-            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
-        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
-            this.remoteUpdatedAt = remoteUpdatedAt;
-            return this;
-        }
-
-        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
-            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
-            return this;
-        }
-
-        @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
-        public Builder completedAt(Optional<OffsetDateTime> completedAt) {
-            this.completedAt = completedAt;
-            return this;
-        }
-
-        public Builder completedAt(OffsetDateTime completedAt) {
-            this.completedAt = Optional.ofNullable(completedAt);
-            return this;
-        }
-
-        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
-        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
-            this.remoteWasDeleted = remoteWasDeleted;
-            return this;
-        }
-
-        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
-            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
-            return this;
-        }
-
+        /**
+         * <p>The 3rd party url of the Ticket.</p>
+         */
         @JsonSetter(value = "ticket_url", nulls = Nulls.SKIP)
         public Builder ticketUrl(Optional<String> ticketUrl) {
             this.ticketUrl = ticketUrl;
@@ -800,14 +853,79 @@ public final class Ticket {
             return this;
         }
 
+        /**
+         * <p>The priority or urgency of the Ticket.</p>
+         * <ul>
+         * <li><code>URGENT</code> - URGENT</li>
+         * <li><code>HIGH</code> - HIGH</li>
+         * <li><code>NORMAL</code> - NORMAL</li>
+         * <li><code>LOW</code> - LOW</li>
+         * </ul>
+         */
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
-        public Builder priority(Optional<PriorityEnum> priority) {
+        public Builder priority(Optional<TicketPriority> priority) {
             this.priority = priority;
             return this;
         }
 
-        public Builder priority(PriorityEnum priority) {
+        public Builder priority(TicketPriority priority) {
             this.priority = Optional.ofNullable(priority);
+            return this;
+        }
+
+        /**
+         * <p>When the third party's ticket was created.</p>
+         */
+        @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
+            this.remoteCreatedAt = remoteCreatedAt;
+            return this;
+        }
+
+        public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        /**
+         * <p>When the third party's ticket was updated.</p>
+         */
+        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
+        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
+            this.remoteUpdatedAt = remoteUpdatedAt;
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        /**
+         * <p>When the ticket was completed.</p>
+         */
+        @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
+        public Builder completedAt(Optional<OffsetDateTime> completedAt) {
+            this.completedAt = completedAt;
+            return this;
+        }
+
+        public Builder completedAt(OffsetDateTime completedAt) {
+            this.completedAt = Optional.ofNullable(completedAt);
+            return this;
+        }
+
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
             return this;
         }
 
@@ -863,14 +981,15 @@ public final class Ticket {
                     contact,
                     parentTicket,
                     attachments,
+                    accessLevel,
                     tags,
                     roles,
+                    ticketUrl,
+                    priority,
                     remoteCreatedAt,
                     remoteUpdatedAt,
                     completedAt,
                     remoteWasDeleted,
-                    ticketUrl,
-                    priority,
                     fieldMappings,
                     remoteData,
                     remoteFields,

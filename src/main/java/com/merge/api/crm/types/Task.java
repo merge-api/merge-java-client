@@ -45,7 +45,7 @@ public final class Task {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TaskStatusEnum> status;
+    private final Optional<TaskStatus> status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -69,7 +69,7 @@ public final class Task {
             Optional<TaskOpportunity> opportunity,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
-            Optional<TaskStatusEnum> status,
+            Optional<TaskStatus> status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -187,7 +187,7 @@ public final class Task {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TaskStatusEnum> getStatus() {
+    public Optional<TaskStatus> getStatus() {
         return status;
     }
 
@@ -298,7 +298,7 @@ public final class Task {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TaskStatusEnum> status = Optional.empty();
+        private Optional<TaskStatus> status = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -344,6 +344,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -355,6 +358,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -366,6 +372,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -377,6 +386,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -388,6 +400,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -399,6 +414,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<TaskOwner> owner) {
             this.owner = owner;
@@ -410,6 +428,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<TaskAccount> account) {
             this.account = account;
@@ -421,6 +442,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's opportunity.</p>
+         */
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
         public Builder opportunity(Optional<TaskOpportunity> opportunity) {
             this.opportunity = opportunity;
@@ -432,6 +456,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>When the task is completed.</p>
+         */
         @JsonSetter(value = "completed_date", nulls = Nulls.SKIP)
         public Builder completedDate(Optional<OffsetDateTime> completedDate) {
             this.completedDate = completedDate;
@@ -443,6 +470,9 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>When the task is due.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -454,17 +484,27 @@ public final class Task {
             return this;
         }
 
+        /**
+         * <p>The task's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TaskStatusEnum> status) {
+        public Builder status(Optional<TaskStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TaskStatusEnum status) {
+        public Builder status(TaskStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

@@ -5,8 +5,7 @@ package com.merge.api.crm;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
-import com.merge.api.core.SyncPagingIterable;
-import com.merge.api.crm.types.SyncStatus;
+import com.merge.api.crm.types.PaginatedSyncStatusList;
 import com.merge.api.crm.types.SyncStatusListRequest;
 
 public class SyncStatusClient {
@@ -27,23 +26,23 @@ public class SyncStatusClient {
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public SyncPagingIterable<SyncStatus> list() {
+    public PaginatedSyncStatusList list() {
         return this.rawClient.list().body();
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public SyncPagingIterable<SyncStatus> list(SyncStatusListRequest request) {
+    public PaginatedSyncStatusList list(SyncStatusListRequest request) {
         return this.rawClient.list(request).body();
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
-    public SyncPagingIterable<SyncStatus> list(SyncStatusListRequest request, RequestOptions requestOptions) {
+    public PaginatedSyncStatusList list(SyncStatusListRequest request, RequestOptions requestOptions) {
         return this.rawClient.list(request, requestOptions).body();
     }
 }

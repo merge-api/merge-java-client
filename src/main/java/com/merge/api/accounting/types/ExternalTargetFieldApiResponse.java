@@ -67,6 +67,8 @@ public final class ExternalTargetFieldApiResponse {
 
     private final Optional<List<ExternalTargetFieldApi>> paymentMethod;
 
+    private final Optional<List<ExternalTargetFieldApi>> project;
+
     private final Optional<List<ExternalTargetFieldApi>> paymentTerm;
 
     private final Map<String, Object> additionalProperties;
@@ -95,6 +97,7 @@ public final class ExternalTargetFieldApiResponse {
             Optional<List<ExternalTargetFieldApi>> bankFeedAccount,
             Optional<List<ExternalTargetFieldApi>> employee,
             Optional<List<ExternalTargetFieldApi>> paymentMethod,
+            Optional<List<ExternalTargetFieldApi>> project,
             Optional<List<ExternalTargetFieldApi>> paymentTerm,
             Map<String, Object> additionalProperties) {
         this.account = account;
@@ -120,6 +123,7 @@ public final class ExternalTargetFieldApiResponse {
         this.bankFeedAccount = bankFeedAccount;
         this.employee = employee;
         this.paymentMethod = paymentMethod;
+        this.project = project;
         this.paymentTerm = paymentTerm;
         this.additionalProperties = additionalProperties;
     }
@@ -239,6 +243,11 @@ public final class ExternalTargetFieldApiResponse {
         return paymentMethod;
     }
 
+    @JsonProperty("Project")
+    public Optional<List<ExternalTargetFieldApi>> getProject() {
+        return project;
+    }
+
     @JsonProperty("PaymentTerm")
     public Optional<List<ExternalTargetFieldApi>> getPaymentTerm() {
         return paymentTerm;
@@ -279,6 +288,7 @@ public final class ExternalTargetFieldApiResponse {
                 && bankFeedAccount.equals(other.bankFeedAccount)
                 && employee.equals(other.employee)
                 && paymentMethod.equals(other.paymentMethod)
+                && project.equals(other.project)
                 && paymentTerm.equals(other.paymentTerm);
     }
 
@@ -308,6 +318,7 @@ public final class ExternalTargetFieldApiResponse {
                 this.bankFeedAccount,
                 this.employee,
                 this.paymentMethod,
+                this.project,
                 this.paymentTerm);
     }
 
@@ -368,6 +379,8 @@ public final class ExternalTargetFieldApiResponse {
 
         private Optional<List<ExternalTargetFieldApi>> paymentMethod = Optional.empty();
 
+        private Optional<List<ExternalTargetFieldApi>> project = Optional.empty();
+
         private Optional<List<ExternalTargetFieldApi>> paymentTerm = Optional.empty();
 
         @JsonAnySetter
@@ -399,6 +412,7 @@ public final class ExternalTargetFieldApiResponse {
             bankFeedAccount(other.getBankFeedAccount());
             employee(other.getEmployee());
             paymentMethod(other.getPaymentMethod());
+            project(other.getProject());
             paymentTerm(other.getPaymentTerm());
             return this;
         }
@@ -656,6 +670,17 @@ public final class ExternalTargetFieldApiResponse {
             return this;
         }
 
+        @JsonSetter(value = "Project", nulls = Nulls.SKIP)
+        public Builder project(Optional<List<ExternalTargetFieldApi>> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(List<ExternalTargetFieldApi> project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
         @JsonSetter(value = "PaymentTerm", nulls = Nulls.SKIP)
         public Builder paymentTerm(Optional<List<ExternalTargetFieldApi>> paymentTerm) {
             this.paymentTerm = paymentTerm;
@@ -692,6 +717,7 @@ public final class ExternalTargetFieldApiResponse {
                     bankFeedAccount,
                     employee,
                     paymentMethod,
+                    project,
                     paymentTerm,
                     additionalProperties);
         }

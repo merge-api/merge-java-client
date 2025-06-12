@@ -116,6 +116,9 @@ public final class PatchedEditFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>The field traversal path of the remote field listed when you hit the GET /remote-fields endpoint.</p>
+         */
         @JsonSetter(value = "remote_field_traversal_path", nulls = Nulls.SKIP)
         public Builder remoteFieldTraversalPath(Optional<List<JsonNode>> remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath = remoteFieldTraversalPath;
@@ -127,6 +130,9 @@ public final class PatchedEditFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>The method of the remote endpoint where the remote field is coming from.</p>
+         */
         @JsonSetter(value = "remote_method", nulls = Nulls.SKIP)
         public Builder remoteMethod(Optional<String> remoteMethod) {
             this.remoteMethod = remoteMethod;
@@ -138,6 +144,9 @@ public final class PatchedEditFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>The path of the remote endpoint where the remote field is coming from.</p>
+         */
         @JsonSetter(value = "remote_url_path", nulls = Nulls.SKIP)
         public Builder remoteUrlPath(Optional<String> remoteUrlPath) {
             this.remoteUrlPath = remoteUrlPath;

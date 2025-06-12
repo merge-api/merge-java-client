@@ -37,7 +37,7 @@ public final class TimeOffBalance {
 
     private final Optional<Double> used;
 
-    private final Optional<PolicyTypeEnum> policyType;
+    private final Optional<TimeOffBalancePolicyType> policyType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -55,7 +55,7 @@ public final class TimeOffBalance {
             Optional<TimeOffBalanceEmployee> employee,
             Optional<Double> balance,
             Optional<Double> used,
-            Optional<PolicyTypeEnum> policyType,
+            Optional<TimeOffBalancePolicyType> policyType,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -139,7 +139,7 @@ public final class TimeOffBalance {
      * </ul>
      */
     @JsonProperty("policy_type")
-    public Optional<PolicyTypeEnum> getPolicyType() {
+    public Optional<TimeOffBalancePolicyType> getPolicyType() {
         return policyType;
     }
 
@@ -227,7 +227,7 @@ public final class TimeOffBalance {
 
         private Optional<Double> used = Optional.empty();
 
-        private Optional<PolicyTypeEnum> policyType = Optional.empty();
+        private Optional<TimeOffBalancePolicyType> policyType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -266,6 +266,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -277,6 +280,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -288,6 +294,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -299,6 +308,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The employee the balance belongs to.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<TimeOffBalanceEmployee> employee) {
             this.employee = employee;
@@ -310,6 +322,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The current remaining PTO balance, measured in hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.</p>
+         */
         @JsonSetter(value = "balance", nulls = Nulls.SKIP)
         public Builder balance(Optional<Double> balance) {
             this.balance = balance;
@@ -321,6 +336,9 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The amount of PTO used in terms of hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.</p>
+         */
         @JsonSetter(value = "used", nulls = Nulls.SKIP)
         public Builder used(Optional<Double> used) {
             this.used = used;
@@ -332,17 +350,31 @@ public final class TimeOffBalance {
             return this;
         }
 
+        /**
+         * <p>The policy type of this time off balance.</p>
+         * <ul>
+         * <li><code>VACATION</code> - VACATION</li>
+         * <li><code>SICK</code> - SICK</li>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>JURY_DUTY</code> - JURY_DUTY</li>
+         * <li><code>VOLUNTEER</code> - VOLUNTEER</li>
+         * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
+         * </ul>
+         */
         @JsonSetter(value = "policy_type", nulls = Nulls.SKIP)
-        public Builder policyType(Optional<PolicyTypeEnum> policyType) {
+        public Builder policyType(Optional<TimeOffBalancePolicyType> policyType) {
             this.policyType = policyType;
             return this;
         }
 
-        public Builder policyType(PolicyTypeEnum policyType) {
+        public Builder policyType(TimeOffBalancePolicyType policyType) {
             this.policyType = Optional.ofNullable(policyType);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

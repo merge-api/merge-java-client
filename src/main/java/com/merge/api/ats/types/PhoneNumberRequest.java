@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class PhoneNumberRequest {
     private final Optional<String> value;
 
-    private final Optional<PhoneNumberTypeEnum> phoneNumberType;
+    private final Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class PhoneNumberRequest {
 
     private PhoneNumberRequest(
             Optional<String> value,
-            Optional<PhoneNumberTypeEnum> phoneNumberType,
+            Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -63,7 +63,7 @@ public final class PhoneNumberRequest {
      * </ul>
      */
     @JsonProperty("phone_number_type")
-    public Optional<PhoneNumberTypeEnum> getPhoneNumberType() {
+    public Optional<PhoneNumberRequestPhoneNumberType> getPhoneNumberType() {
         return phoneNumberType;
     }
 
@@ -113,7 +113,7 @@ public final class PhoneNumberRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<PhoneNumberTypeEnum> phoneNumberType = Optional.empty();
+        private Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -132,6 +132,9 @@ public final class PhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The phone number.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -143,13 +146,23 @@ public final class PhoneNumberRequest {
             return this;
         }
 
+        /**
+         * <p>The type of phone number.</p>
+         * <ul>
+         * <li><code>HOME</code> - HOME</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>MOBILE</code> - MOBILE</li>
+         * <li><code>SKYPE</code> - SKYPE</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
-        public Builder phoneNumberType(Optional<PhoneNumberTypeEnum> phoneNumberType) {
+        public Builder phoneNumberType(Optional<PhoneNumberRequestPhoneNumberType> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;
             return this;
         }
 
-        public Builder phoneNumberType(PhoneNumberTypeEnum phoneNumberType) {
+        public Builder phoneNumberType(PhoneNumberRequestPhoneNumberType phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
             return this;
         }

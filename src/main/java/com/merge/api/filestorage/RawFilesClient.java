@@ -129,6 +129,10 @@ public class RawFilesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "name", request.getName().get(), false);
         }
+        if (request.getOrderBy().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "order_by", request.getOrderBy().get().toString(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get().toString(), false);
@@ -454,6 +458,14 @@ public class RawFilesClient {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files/download/request-meta");
+        if (request.getCreatedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
+        }
+        if (request.getCreatedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
+        }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
@@ -465,9 +477,21 @@ public class RawFilesClient {
                     request.getIncludeDeletedData().get().toString(),
                     false);
         }
-        if (request.getMimeType().isPresent()) {
+        if (request.getMimeTypes().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "mime_type", request.getMimeType().get(), false);
+                    httpUrl, "mime_types", request.getMimeTypes().get(), false);
+        }
+        if (request.getModifiedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
+        }
+        if (request.getModifiedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
+        }
+        if (request.getOrderBy().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "order_by", request.getOrderBy().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

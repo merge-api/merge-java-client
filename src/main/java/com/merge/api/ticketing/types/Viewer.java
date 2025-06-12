@@ -171,6 +171,9 @@ public final class Viewer {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -182,6 +185,9 @@ public final class Viewer {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -193,6 +199,9 @@ public final class Viewer {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -204,6 +213,9 @@ public final class Viewer {
             return this;
         }
 
+        /**
+         * <p>The Team this Viewer belongs to.</p>
+         */
         @JsonSetter(value = "team", nulls = Nulls.SKIP)
         public Builder team(Optional<ViewerTeam> team) {
             this.team = team;
@@ -215,6 +227,9 @@ public final class Viewer {
             return this;
         }
 
+        /**
+         * <p>The User this Viewer belongs to.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<ViewerUser> user) {
             this.user = user;

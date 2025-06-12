@@ -43,7 +43,7 @@ public final class BankFeedTransaction {
 
     private final Optional<String> payee;
 
-    private final Optional<CreditOrDebitEnum> creditOrDebit;
+    private final Optional<BankFeedTransactionCreditOrDebit> creditOrDebit;
 
     private final Optional<String> sourceTransactionId;
 
@@ -65,7 +65,7 @@ public final class BankFeedTransaction {
             Optional<String> description,
             Optional<String> transactionType,
             Optional<String> payee,
-            Optional<CreditOrDebitEnum> creditOrDebit,
+            Optional<BankFeedTransactionCreditOrDebit> creditOrDebit,
             Optional<String> sourceTransactionId,
             Optional<Boolean> remoteWasDeleted,
             Optional<Boolean> isProcessed,
@@ -181,7 +181,7 @@ public final class BankFeedTransaction {
      * </ul>
      */
     @JsonProperty("credit_or_debit")
-    public Optional<CreditOrDebitEnum> getCreditOrDebit() {
+    public Optional<BankFeedTransactionCreditOrDebit> getCreditOrDebit() {
         return creditOrDebit;
     }
 
@@ -291,7 +291,7 @@ public final class BankFeedTransaction {
 
         private Optional<String> payee = Optional.empty();
 
-        private Optional<CreditOrDebitEnum> creditOrDebit = Optional.empty();
+        private Optional<BankFeedTransactionCreditOrDebit> creditOrDebit = Optional.empty();
 
         private Optional<String> sourceTransactionId = Optional.empty();
 
@@ -334,6 +334,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -345,6 +348,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -356,6 +362,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -367,6 +376,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The bank feed account associated with the transaction.</p>
+         */
         @JsonSetter(value = "bank_feed_account", nulls = Nulls.SKIP)
         public Builder bankFeedAccount(Optional<BankFeedTransactionBankFeedAccount> bankFeedAccount) {
             this.bankFeedAccount = bankFeedAccount;
@@ -378,6 +390,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The date that the transaction occurred.</p>
+         */
         @JsonSetter(value = "transaction_date", nulls = Nulls.SKIP)
         public Builder transactionDate(Optional<OffsetDateTime> transactionDate) {
             this.transactionDate = transactionDate;
@@ -389,6 +404,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The date the transaction was posted to the bank account.</p>
+         */
         @JsonSetter(value = "posted_date", nulls = Nulls.SKIP)
         public Builder postedDate(Optional<OffsetDateTime> postedDate) {
             this.postedDate = postedDate;
@@ -400,6 +418,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The amount of the transaction.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Double> amount) {
             this.amount = amount;
@@ -411,6 +432,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The description of the transaction.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -422,6 +446,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The underlying type of the transaction.</p>
+         */
         @JsonSetter(value = "transaction_type", nulls = Nulls.SKIP)
         public Builder transactionType(Optional<String> transactionType) {
             this.transactionType = transactionType;
@@ -433,6 +460,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>The person or merchant who initiated the transaction, or alternatively, to whom the transaction was paid.</p>
+         */
         @JsonSetter(value = "payee", nulls = Nulls.SKIP)
         public Builder payee(Optional<String> payee) {
             this.payee = payee;
@@ -444,17 +474,27 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>If the transaction is of type debit or credit.</p>
+         * <ul>
+         * <li><code>CREDIT</code> - CREDIT</li>
+         * <li><code>DEBIT</code> - DEBIT</li>
+         * </ul>
+         */
         @JsonSetter(value = "credit_or_debit", nulls = Nulls.SKIP)
-        public Builder creditOrDebit(Optional<CreditOrDebitEnum> creditOrDebit) {
+        public Builder creditOrDebit(Optional<BankFeedTransactionCreditOrDebit> creditOrDebit) {
             this.creditOrDebit = creditOrDebit;
             return this;
         }
 
-        public Builder creditOrDebit(CreditOrDebitEnum creditOrDebit) {
+        public Builder creditOrDebit(BankFeedTransactionCreditOrDebit creditOrDebit) {
             this.creditOrDebit = Optional.ofNullable(creditOrDebit);
             return this;
         }
 
+        /**
+         * <p>The customer’s identifier for the transaction.</p>
+         */
         @JsonSetter(value = "source_transaction_id", nulls = Nulls.SKIP)
         public Builder sourceTransactionId(Optional<String> sourceTransactionId) {
             this.sourceTransactionId = sourceTransactionId;
@@ -466,6 +506,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -477,6 +520,9 @@ public final class BankFeedTransaction {
             return this;
         }
 
+        /**
+         * <p>Whether or not this transaction has been processed by the external system. For example, NetSuite writes this field as True when the SuiteApp has processed the transaction.</p>
+         */
         @JsonSetter(value = "is_processed", nulls = Nulls.SKIP)
         public Builder isProcessed(Optional<Boolean> isProcessed) {
             this.isProcessed = isProcessed;

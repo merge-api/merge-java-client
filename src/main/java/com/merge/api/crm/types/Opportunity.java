@@ -43,7 +43,7 @@ public final class Opportunity {
 
     private final Optional<OpportunityStage> stage;
 
-    private final Optional<OpportunityStatusEnum> status;
+    private final Optional<OpportunityStatus> status;
 
     private final Optional<OffsetDateTime> lastActivityAt;
 
@@ -72,7 +72,7 @@ public final class Opportunity {
             Optional<OpportunityOwner> owner,
             Optional<OpportunityAccount> account,
             Optional<OpportunityStage> stage,
-            Optional<OpportunityStatusEnum> status,
+            Optional<OpportunityStatus> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
             Optional<OffsetDateTime> remoteCreatedAt,
@@ -188,7 +188,7 @@ public final class Opportunity {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OpportunityStatusEnum> getStatus() {
+    public Optional<OpportunityStatus> getStatus() {
         return status;
     }
 
@@ -325,7 +325,7 @@ public final class Opportunity {
 
         private Optional<OpportunityStage> stage = Optional.empty();
 
-        private Optional<OpportunityStatusEnum> status = Optional.empty();
+        private Optional<OpportunityStatus> status = Optional.empty();
 
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
@@ -379,6 +379,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -390,6 +393,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -401,6 +407,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -412,6 +421,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The opportunity's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -423,6 +435,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The opportunity's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -434,6 +449,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The opportunity's amount.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Integer> amount) {
             this.amount = amount;
@@ -445,6 +463,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The opportunity's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<OpportunityOwner> owner) {
             this.owner = owner;
@@ -456,6 +477,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The account of the opportunity.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<OpportunityAccount> account) {
             this.account = account;
@@ -467,6 +491,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The stage of the opportunity.</p>
+         */
         @JsonSetter(value = "stage", nulls = Nulls.SKIP)
         public Builder stage(Optional<OpportunityStage> stage) {
             this.stage = stage;
@@ -478,17 +505,28 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>The opportunity's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>WON</code> - WON</li>
+         * <li><code>LOST</code> - LOST</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OpportunityStatusEnum> status) {
+        public Builder status(Optional<OpportunityStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OpportunityStatusEnum status) {
+        public Builder status(OpportunityStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>When the opportunity's last activity occurred.</p>
+         */
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;
@@ -500,6 +538,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>When the opportunity was closed.</p>
+         */
         @JsonSetter(value = "close_date", nulls = Nulls.SKIP)
         public Builder closeDate(Optional<OffsetDateTime> closeDate) {
             this.closeDate = closeDate;
@@ -511,6 +552,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>When the third party's opportunity was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -522,6 +566,9 @@ public final class Opportunity {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

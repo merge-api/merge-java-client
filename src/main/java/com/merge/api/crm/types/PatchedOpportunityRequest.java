@@ -35,7 +35,7 @@ public final class PatchedOpportunityRequest {
 
     private final Optional<String> stage;
 
-    private final Optional<OpportunityStatusEnum> status;
+    private final Optional<PatchedOpportunityRequestStatus> status;
 
     private final Optional<OffsetDateTime> lastActivityAt;
 
@@ -56,7 +56,7 @@ public final class PatchedOpportunityRequest {
             Optional<String> owner,
             Optional<String> account,
             Optional<String> stage,
-            Optional<OpportunityStatusEnum> status,
+            Optional<PatchedOpportunityRequestStatus> status,
             Optional<OffsetDateTime> lastActivityAt,
             Optional<OffsetDateTime> closeDate,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -135,7 +135,7 @@ public final class PatchedOpportunityRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OpportunityStatusEnum> getStatus() {
+    public Optional<PatchedOpportunityRequestStatus> getStatus() {
         return status;
     }
 
@@ -236,7 +236,7 @@ public final class PatchedOpportunityRequest {
 
         private Optional<String> stage = Optional.empty();
 
-        private Optional<OpportunityStatusEnum> status = Optional.empty();
+        private Optional<PatchedOpportunityRequestStatus> status = Optional.empty();
 
         private Optional<OffsetDateTime> lastActivityAt = Optional.empty();
 
@@ -269,6 +269,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -280,6 +283,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -291,6 +297,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's amount.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Integer> amount) {
             this.amount = amount;
@@ -302,6 +311,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<String> owner) {
             this.owner = owner;
@@ -313,6 +325,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The account of the opportunity.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<String> account) {
             this.account = account;
@@ -324,6 +339,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The stage of the opportunity.</p>
+         */
         @JsonSetter(value = "stage", nulls = Nulls.SKIP)
         public Builder stage(Optional<String> stage) {
             this.stage = stage;
@@ -335,17 +353,28 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>The opportunity's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>WON</code> - WON</li>
+         * <li><code>LOST</code> - LOST</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OpportunityStatusEnum> status) {
+        public Builder status(Optional<PatchedOpportunityRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OpportunityStatusEnum status) {
+        public Builder status(PatchedOpportunityRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>When the opportunity's last activity occurred.</p>
+         */
         @JsonSetter(value = "last_activity_at", nulls = Nulls.SKIP)
         public Builder lastActivityAt(Optional<OffsetDateTime> lastActivityAt) {
             this.lastActivityAt = lastActivityAt;
@@ -357,6 +386,9 @@ public final class PatchedOpportunityRequest {
             return this;
         }
 
+        /**
+         * <p>When the opportunity was closed.</p>
+         */
         @JsonSetter(value = "close_date", nulls = Nulls.SKIP)
         public Builder closeDate(Optional<OffsetDateTime> closeDate) {
             this.closeDate = closeDate;

@@ -33,7 +33,9 @@ public final class Item {
 
     private final Optional<String> name;
 
-    private final Optional<Status7D1Enum> status;
+    private final Optional<ItemStatus> status;
+
+    private final Optional<ItemType> type;
 
     private final Optional<Double> unitPrice;
 
@@ -65,7 +67,8 @@ public final class Item {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<Status7D1Enum> status,
+            Optional<ItemStatus> status,
+            Optional<ItemType> type,
             Optional<Double> unitPrice,
             Optional<Double> purchasePrice,
             Optional<ItemPurchaseAccount> purchaseAccount,
@@ -84,6 +87,7 @@ public final class Item {
         this.modifiedAt = modifiedAt;
         this.name = name;
         this.status = status;
+        this.type = type;
         this.unitPrice = unitPrice;
         this.purchasePrice = purchasePrice;
         this.purchaseAccount = purchaseAccount;
@@ -143,8 +147,22 @@ public final class Item {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<Status7D1Enum> getStatus() {
+    public Optional<ItemStatus> getStatus() {
         return status;
+    }
+
+    /**
+     * @return The item's type.
+     * <ul>
+     * <li><code>INVENTORY</code> - INVENTORY</li>
+     * <li><code>NON_INVENTORY</code> - NON_INVENTORY</li>
+     * <li><code>SERVICE</code> - SERVICE</li>
+     * <li><code>UNKNOWN</code> - UNKNOWN</li>
+     * </ul>
+     */
+    @JsonProperty("type")
+    public Optional<ItemType> getType() {
+        return type;
     }
 
     /**
@@ -247,6 +265,7 @@ public final class Item {
                 && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && status.equals(other.status)
+                && type.equals(other.type)
                 && unitPrice.equals(other.unitPrice)
                 && purchasePrice.equals(other.purchasePrice)
                 && purchaseAccount.equals(other.purchaseAccount)
@@ -269,6 +288,7 @@ public final class Item {
                 this.modifiedAt,
                 this.name,
                 this.status,
+                this.type,
                 this.unitPrice,
                 this.purchasePrice,
                 this.purchaseAccount,
@@ -303,7 +323,9 @@ public final class Item {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Status7D1Enum> status = Optional.empty();
+        private Optional<ItemStatus> status = Optional.empty();
+
+        private Optional<ItemType> type = Optional.empty();
 
         private Optional<Double> unitPrice = Optional.empty();
 
@@ -339,6 +361,7 @@ public final class Item {
             modifiedAt(other.getModifiedAt());
             name(other.getName());
             status(other.getStatus());
+            type(other.getType());
             unitPrice(other.getUnitPrice());
             purchasePrice(other.getPurchasePrice());
             purchaseAccount(other.getPurchaseAccount());
@@ -364,6 +387,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -375,6 +401,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -386,6 +415,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -397,6 +429,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The item's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -408,17 +443,47 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The item's status.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status7D1Enum> status) {
+        public Builder status(Optional<ItemStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status7D1Enum status) {
+        public Builder status(ItemStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The item's type.</p>
+         * <ul>
+         * <li><code>INVENTORY</code> - INVENTORY</li>
+         * <li><code>NON_INVENTORY</code> - NON_INVENTORY</li>
+         * <li><code>SERVICE</code> - SERVICE</li>
+         * <li><code>UNKNOWN</code> - UNKNOWN</li>
+         * </ul>
+         */
+        @JsonSetter(value = "type", nulls = Nulls.SKIP)
+        public Builder type(Optional<ItemType> type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder type(ItemType type) {
+            this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        /**
+         * <p>The item's unit price.</p>
+         */
         @JsonSetter(value = "unit_price", nulls = Nulls.SKIP)
         public Builder unitPrice(Optional<Double> unitPrice) {
             this.unitPrice = unitPrice;
@@ -430,6 +495,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The price at which the item is purchased from a vendor.</p>
+         */
         @JsonSetter(value = "purchase_price", nulls = Nulls.SKIP)
         public Builder purchasePrice(Optional<Double> purchasePrice) {
             this.purchasePrice = purchasePrice;
@@ -441,6 +509,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>References the default account used to record a purchase of the item.</p>
+         */
         @JsonSetter(value = "purchase_account", nulls = Nulls.SKIP)
         public Builder purchaseAccount(Optional<ItemPurchaseAccount> purchaseAccount) {
             this.purchaseAccount = purchaseAccount;
@@ -452,6 +523,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>References the default account used to record a sale.</p>
+         */
         @JsonSetter(value = "sales_account", nulls = Nulls.SKIP)
         public Builder salesAccount(Optional<ItemSalesAccount> salesAccount) {
             this.salesAccount = salesAccount;
@@ -463,6 +537,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The company the item belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<ItemCompany> company) {
             this.company = company;
@@ -474,6 +551,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The default purchase tax rate for this item.</p>
+         */
         @JsonSetter(value = "purchase_tax_rate", nulls = Nulls.SKIP)
         public Builder purchaseTaxRate(Optional<ItemPurchaseTaxRate> purchaseTaxRate) {
             this.purchaseTaxRate = purchaseTaxRate;
@@ -485,6 +565,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>The default sales tax rate for this item.</p>
+         */
         @JsonSetter(value = "sales_tax_rate", nulls = Nulls.SKIP)
         public Builder salesTaxRate(Optional<ItemSalesTaxRate> salesTaxRate) {
             this.salesTaxRate = salesTaxRate;
@@ -496,6 +579,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>When the third party's item note was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -507,6 +593,9 @@ public final class Item {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -548,6 +637,7 @@ public final class Item {
                     modifiedAt,
                     name,
                     status,
+                    type,
                     unitPrice,
                     purchasePrice,
                     purchaseAccount,

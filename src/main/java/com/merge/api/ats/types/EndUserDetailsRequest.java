@@ -45,7 +45,7 @@ public final class EndUserDetailsRequest {
     private final Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
             categoryCommonModelScopes;
 
-    private final Optional<LanguageEnum> language;
+    private final Optional<EndUserDetailsRequestLanguage> language;
 
     private final Optional<Boolean> areSyncsDisabled;
 
@@ -65,7 +65,7 @@ public final class EndUserDetailsRequest {
             Optional<List<CommonModelScopesBodyRequest>> commonModels,
             Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                     categoryCommonModelScopes,
-            Optional<LanguageEnum> language,
+            Optional<EndUserDetailsRequestLanguage> language,
             Optional<Boolean> areSyncsDisabled,
             Optional<Map<String, JsonNode>> integrationSpecificConfig,
             Map<String, Object> additionalProperties) {
@@ -174,7 +174,7 @@ public final class EndUserDetailsRequest {
      * </ul>
      */
     @JsonProperty("language")
-    public Optional<LanguageEnum> getLanguage() {
+    public Optional<EndUserDetailsRequestLanguage> getLanguage() {
         return language;
     }
 
@@ -249,48 +249,78 @@ public final class EndUserDetailsRequest {
     }
 
     public interface EndUserEmailAddressStage {
+        /**
+         * Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
+         */
         EndUserOrganizationNameStage endUserEmailAddress(@NotNull String endUserEmailAddress);
 
         Builder from(EndUserDetailsRequest other);
     }
 
     public interface EndUserOrganizationNameStage {
+        /**
+         * Your end user's organization.
+         */
         EndUserOriginIdStage endUserOrganizationName(@NotNull String endUserOrganizationName);
     }
 
     public interface EndUserOriginIdStage {
+        /**
+         * This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.
+         */
         _FinalStage endUserOriginId(@NotNull String endUserOriginId);
     }
 
     public interface _FinalStage {
         EndUserDetailsRequest build();
 
+        /**
+         * <p>The integration categories to show in Merge Link.</p>
+         */
         _FinalStage categories(List<CategoriesEnum> categories);
 
         _FinalStage addCategories(CategoriesEnum categories);
 
         _FinalStage addAllCategories(List<CategoriesEnum> categories);
 
+        /**
+         * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.</p>
+         */
         _FinalStage integration(Optional<String> integration);
 
         _FinalStage integration(String integration);
 
+        /**
+         * <p>An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.</p>
+         */
         _FinalStage linkExpiryMins(Optional<Integer> linkExpiryMins);
 
         _FinalStage linkExpiryMins(Integer linkExpiryMins);
 
+        /**
+         * <p>Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         */
         _FinalStage shouldCreateMagicLinkUrl(Optional<Boolean> shouldCreateMagicLinkUrl);
 
         _FinalStage shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl);
 
+        /**
+         * <p>Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         */
         _FinalStage hideAdminMagicLink(Optional<Boolean> hideAdminMagicLink);
 
         _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink);
 
+        /**
+         * <p>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</p>
+         */
         _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels);
 
         _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels);
 
+        /**
+         * <p>When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.</p>
+         */
         _FinalStage categoryCommonModelScopes(
                 Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                         categoryCommonModelScopes);
@@ -298,14 +328,27 @@ public final class EndUserDetailsRequest {
         _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
 
-        _FinalStage language(Optional<LanguageEnum> language);
+        /**
+         * <p>The following subset of IETF language tags can be used to configure localization.</p>
+         * <ul>
+         * <li><code>en</code> - en</li>
+         * <li><code>de</code> - de</li>
+         * </ul>
+         */
+        _FinalStage language(Optional<EndUserDetailsRequestLanguage> language);
 
-        _FinalStage language(LanguageEnum language);
+        _FinalStage language(EndUserDetailsRequestLanguage language);
 
+        /**
+         * <p>The boolean that indicates whether initial, periodic, and force syncs will be disabled.</p>
+         */
         _FinalStage areSyncsDisabled(Optional<Boolean> areSyncsDisabled);
 
         _FinalStage areSyncsDisabled(Boolean areSyncsDisabled);
 
+        /**
+         * <p>A JSON object containing integration-specific configuration options.</p>
+         */
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
         _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
@@ -324,7 +367,7 @@ public final class EndUserDetailsRequest {
 
         private Optional<Boolean> areSyncsDisabled = Optional.empty();
 
-        private Optional<LanguageEnum> language = Optional.empty();
+        private Optional<EndUserDetailsRequestLanguage> language = Optional.empty();
 
         private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                 categoryCommonModelScopes = Optional.empty();
@@ -365,7 +408,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
+         * Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.<p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -376,7 +419,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>Your end user's organization.</p>
+         * Your end user's organization.<p>Your end user's organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -387,7 +430,7 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
+         * This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.<p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -407,6 +450,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>A JSON object containing integration-specific configuration options.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "integration_specific_config", nulls = Nulls.SKIP)
         public _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig) {
@@ -424,6 +470,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>The boolean that indicates whether initial, periodic, and force syncs will be disabled.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "are_syncs_disabled", nulls = Nulls.SKIP)
         public _FinalStage areSyncsDisabled(Optional<Boolean> areSyncsDisabled) {
@@ -440,14 +489,21 @@ public final class EndUserDetailsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage language(LanguageEnum language) {
+        public _FinalStage language(EndUserDetailsRequestLanguage language) {
             this.language = Optional.ofNullable(language);
             return this;
         }
 
+        /**
+         * <p>The following subset of IETF language tags can be used to configure localization.</p>
+         * <ul>
+         * <li><code>en</code> - en</li>
+         * <li><code>de</code> - de</li>
+         * </ul>
+         */
         @java.lang.Override
         @JsonSetter(value = "language", nulls = Nulls.SKIP)
-        public _FinalStage language(Optional<LanguageEnum> language) {
+        public _FinalStage language(Optional<EndUserDetailsRequestLanguage> language) {
             this.language = language;
             return this;
         }
@@ -463,6 +519,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "category_common_model_scopes", nulls = Nulls.SKIP)
         public _FinalStage categoryCommonModelScopes(
@@ -482,6 +541,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels) {
@@ -499,6 +561,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "hide_admin_magic_link", nulls = Nulls.SKIP)
         public _FinalStage hideAdminMagicLink(Optional<Boolean> hideAdminMagicLink) {
@@ -516,6 +581,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "should_create_magic_link_url", nulls = Nulls.SKIP)
         public _FinalStage shouldCreateMagicLinkUrl(Optional<Boolean> shouldCreateMagicLinkUrl) {
@@ -533,6 +601,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "link_expiry_mins", nulls = Nulls.SKIP)
         public _FinalStage linkExpiryMins(Optional<Integer> linkExpiryMins) {
@@ -550,6 +621,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "integration", nulls = Nulls.SKIP)
         public _FinalStage integration(Optional<String> integration) {
@@ -577,6 +651,9 @@ public final class EndUserDetailsRequest {
             return this;
         }
 
+        /**
+         * <p>The integration categories to show in Merge Link.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(List<CategoriesEnum> categories) {

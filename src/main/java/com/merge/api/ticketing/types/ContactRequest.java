@@ -180,6 +180,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -191,6 +194,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's email address.</p>
+         */
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public Builder emailAddress(Optional<String> emailAddress) {
             this.emailAddress = emailAddress;
@@ -202,6 +208,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's phone number.</p>
+         */
         @JsonSetter(value = "phone_number", nulls = Nulls.SKIP)
         public Builder phoneNumber(Optional<String> phoneNumber) {
             this.phoneNumber = phoneNumber;
@@ -213,6 +222,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's details.</p>
+         */
         @JsonSetter(value = "details", nulls = Nulls.SKIP)
         public Builder details(Optional<String> details) {
             this.details = details;
@@ -224,6 +236,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<ContactRequestAccount> account) {
             this.account = account;

@@ -22,6 +22,7 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsViewersListRequest;
@@ -111,6 +112,10 @@ public class AsyncRawTicketsClient {
         if (request.getCreatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "created_before", request.getCreatedBefore().get().toString(), false);
+        }
+        if (request.getCreatorId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "creator_id", request.getCreatorId().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -725,24 +730,40 @@ public class AsyncRawTicketsClient {
      * Returns metadata for <code>Ticket</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve() {
-        return metaPostRetrieve(null);
+        return metaPostRetrieve(TicketsMetaPostRetrieveRequest.builder().build());
     }
 
     /**
      * Returns metadata for <code>Ticket</code> POSTs.
      */
-    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(
+            TicketsMetaPostRetrieveRequest request) {
+        return metaPostRetrieve(request, null);
+    }
+
+    /**
+     * Returns metadata for <code>Ticket</code> POSTs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(
+            TicketsMetaPostRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
                 .newBuilder()
-                .addPathSegments("ticketing/v1/tickets/meta/post")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegments("ticketing/v1/tickets/meta/post");
+        if (request.getCollectionId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "collection_id", request.getCollectionId().get(), false);
+        }
+        if (request.getTicketType().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "ticket_type", request.getTicketType().get(), false);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -836,6 +857,10 @@ public class AsyncRawTicketsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

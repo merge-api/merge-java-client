@@ -24,9 +24,9 @@ import org.jetbrains.annotations.NotNull;
 public final class AccountDetailsAndActions {
     private final String id;
 
-    private final Optional<CategoryEnum> category;
+    private final Optional<AccountDetailsAndActionsCategory> category;
 
-    private final AccountDetailsAndActionsStatusEnum status;
+    private final AccountDetailsAndActionsStatus status;
 
     private final Optional<String> statusDetail;
 
@@ -52,8 +52,8 @@ public final class AccountDetailsAndActions {
 
     private AccountDetailsAndActions(
             String id,
-            Optional<CategoryEnum> category,
-            AccountDetailsAndActionsStatusEnum status,
+            Optional<AccountDetailsAndActionsCategory> category,
+            AccountDetailsAndActionsStatus status,
             Optional<String> statusDetail,
             Optional<String> endUserOriginId,
             String endUserOrganizationName,
@@ -87,12 +87,12 @@ public final class AccountDetailsAndActions {
     }
 
     @JsonProperty("category")
-    public Optional<CategoryEnum> getCategory() {
+    public Optional<AccountDetailsAndActionsCategory> getCategory() {
         return category;
     }
 
     @JsonProperty("status")
-    public AccountDetailsAndActionsStatusEnum getStatus() {
+    public AccountDetailsAndActionsStatus getStatus() {
         return status;
     }
 
@@ -213,7 +213,7 @@ public final class AccountDetailsAndActions {
     }
 
     public interface StatusStage {
-        EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatusEnum status);
+        EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatus status);
     }
 
     public interface EndUserOrganizationNameStage {
@@ -239,9 +239,9 @@ public final class AccountDetailsAndActions {
     public interface _FinalStage {
         AccountDetailsAndActions build();
 
-        _FinalStage category(Optional<CategoryEnum> category);
+        _FinalStage category(Optional<AccountDetailsAndActionsCategory> category);
 
-        _FinalStage category(CategoryEnum category);
+        _FinalStage category(AccountDetailsAndActionsCategory category);
 
         _FinalStage statusDetail(Optional<String> statusDetail);
 
@@ -251,10 +251,16 @@ public final class AccountDetailsAndActions {
 
         _FinalStage endUserOriginId(String endUserOriginId);
 
+        /**
+         * <p>The tenant or domain the customer has provided access to.</p>
+         */
         _FinalStage subdomain(Optional<String> subdomain);
 
         _FinalStage subdomain(String subdomain);
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         _FinalStage isDuplicate(Optional<Boolean> isDuplicate);
 
         _FinalStage isDuplicate(Boolean isDuplicate);
@@ -276,7 +282,7 @@ public final class AccountDetailsAndActions {
                     _FinalStage {
         private String id;
 
-        private AccountDetailsAndActionsStatusEnum status;
+        private AccountDetailsAndActionsStatus status;
 
         private String endUserOrganizationName;
 
@@ -298,7 +304,7 @@ public final class AccountDetailsAndActions {
 
         private Optional<String> statusDetail = Optional.empty();
 
-        private Optional<CategoryEnum> category = Optional.empty();
+        private Optional<AccountDetailsAndActionsCategory> category = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -332,7 +338,7 @@ public final class AccountDetailsAndActions {
 
         @java.lang.Override
         @JsonSetter("status")
-        public EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatusEnum status) {
+        public EndUserOrganizationNameStage status(@NotNull AccountDetailsAndActionsStatus status) {
             this.status = status;
             return this;
         }
@@ -395,6 +401,9 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_duplicate", nulls = Nulls.SKIP)
         public _FinalStage isDuplicate(Optional<Boolean> isDuplicate) {
@@ -412,6 +421,9 @@ public final class AccountDetailsAndActions {
             return this;
         }
 
+        /**
+         * <p>The tenant or domain the customer has provided access to.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "subdomain", nulls = Nulls.SKIP)
         public _FinalStage subdomain(Optional<String> subdomain) {
@@ -446,14 +458,14 @@ public final class AccountDetailsAndActions {
         }
 
         @java.lang.Override
-        public _FinalStage category(CategoryEnum category) {
+        public _FinalStage category(AccountDetailsAndActionsCategory category) {
             this.category = Optional.ofNullable(category);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
-        public _FinalStage category(Optional<CategoryEnum> category) {
+        public _FinalStage category(Optional<AccountDetailsAndActionsCategory> category) {
             this.category = category;
             return this;
         }

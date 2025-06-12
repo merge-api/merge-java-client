@@ -35,7 +35,7 @@ public final class Group {
 
     private final Optional<String> name;
 
-    private final Optional<GroupTypeEnum> type;
+    private final Optional<GroupType> type;
 
     private final Optional<Boolean> isCommonlyUsedAsTeam;
 
@@ -54,7 +54,7 @@ public final class Group {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> parentGroup,
             Optional<String> name,
-            Optional<GroupTypeEnum> type,
+            Optional<GroupType> type,
             Optional<Boolean> isCommonlyUsedAsTeam,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -130,7 +130,7 @@ public final class Group {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<GroupTypeEnum> getType() {
+    public Optional<GroupType> getType() {
         return type;
     }
 
@@ -224,7 +224,7 @@ public final class Group {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<GroupTypeEnum> type = Optional.empty();
+        private Optional<GroupType> type = Optional.empty();
 
         private Optional<Boolean> isCommonlyUsedAsTeam = Optional.empty();
 
@@ -265,6 +265,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -276,6 +279,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -287,6 +293,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -298,6 +307,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The parent group for this group.</p>
+         */
         @JsonSetter(value = "parent_group", nulls = Nulls.SKIP)
         public Builder parentGroup(Optional<String> parentGroup) {
             this.parentGroup = parentGroup;
@@ -309,6 +321,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The group name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -320,17 +335,30 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>The Group type returned directly from the third-party.</p>
+         * <ul>
+         * <li><code>TEAM</code> - TEAM</li>
+         * <li><code>DEPARTMENT</code> - DEPARTMENT</li>
+         * <li><code>COST_CENTER</code> - COST_CENTER</li>
+         * <li><code>BUSINESS_UNIT</code> - BUSINESS_UNIT</li>
+         * <li><code>GROUP</code> - GROUP</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<GroupTypeEnum> type) {
+        public Builder type(Optional<GroupType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(GroupTypeEnum type) {
+        public Builder type(GroupType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * <p>Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct.</p>
+         */
         @JsonSetter(value = "is_commonly_used_as_team", nulls = Nulls.SKIP)
         public Builder isCommonlyUsedAsTeam(Optional<Boolean> isCommonlyUsedAsTeam) {
             this.isCommonlyUsedAsTeam = isCommonlyUsedAsTeam;
@@ -342,6 +370,9 @@ public final class Group {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

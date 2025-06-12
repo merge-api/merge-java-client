@@ -28,9 +28,9 @@ public final class PermissionRequest {
 
     private final Optional<PermissionRequestGroup> group;
 
-    private final Optional<TypeEnum> type;
+    private final Optional<PermissionRequestType> type;
 
-    private final Optional<List<RolesEnum>> roles;
+    private final Optional<List<Optional<PermissionRequestRolesItem>>> roles;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -42,8 +42,8 @@ public final class PermissionRequest {
             Optional<String> remoteId,
             Optional<PermissionRequestUser> user,
             Optional<PermissionRequestGroup> group,
-            Optional<TypeEnum> type,
-            Optional<List<RolesEnum>> roles,
+            Optional<PermissionRequestType> type,
+            Optional<List<Optional<PermissionRequestRolesItem>>> roles,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -91,7 +91,7 @@ public final class PermissionRequest {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<TypeEnum> getType() {
+    public Optional<PermissionRequestType> getType() {
         return type;
     }
 
@@ -99,7 +99,7 @@ public final class PermissionRequest {
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
     @JsonProperty("roles")
-    public Optional<List<RolesEnum>> getRoles() {
+    public Optional<List<Optional<PermissionRequestRolesItem>>> getRoles() {
         return roles;
     }
 
@@ -163,9 +163,9 @@ public final class PermissionRequest {
 
         private Optional<PermissionRequestGroup> group = Optional.empty();
 
-        private Optional<TypeEnum> type = Optional.empty();
+        private Optional<PermissionRequestType> type = Optional.empty();
 
-        private Optional<List<RolesEnum>> roles = Optional.empty();
+        private Optional<List<Optional<PermissionRequestRolesItem>>> roles = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -187,6 +187,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -198,6 +201,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The user that is granted this permission. This will only be populated if the type is <code>USER</code>.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<PermissionRequestUser> user) {
             this.user = user;
@@ -209,6 +215,9 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.</p>
+         */
         @JsonSetter(value = "group", nulls = Nulls.SKIP)
         public Builder group(Optional<PermissionRequestGroup> group) {
             this.group = group;
@@ -220,24 +229,36 @@ public final class PermissionRequest {
             return this;
         }
 
+        /**
+         * <p>Denotes what type of people have access to the file.</p>
+         * <ul>
+         * <li><code>USER</code> - USER</li>
+         * <li><code>GROUP</code> - GROUP</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>ANYONE</code> - ANYONE</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<TypeEnum> type) {
+        public Builder type(Optional<PermissionRequestType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(TypeEnum type) {
+        public Builder type(PermissionRequestType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * <p>The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.</p>
+         */
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
-        public Builder roles(Optional<List<RolesEnum>> roles) {
+        public Builder roles(Optional<List<Optional<PermissionRequestRolesItem>>> roles) {
             this.roles = roles;
             return this;
         }
 
-        public Builder roles(List<RolesEnum> roles) {
+        public Builder roles(List<Optional<PermissionRequestRolesItem>> roles) {
             this.roles = Optional.ofNullable(roles);
             return this;
         }
