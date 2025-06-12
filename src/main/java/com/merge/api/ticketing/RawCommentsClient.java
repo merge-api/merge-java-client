@@ -59,7 +59,7 @@ public class RawCommentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Comment>> list(
             CommentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments");
         if (request.getCreatedAfter().isPresent()) {
@@ -179,7 +179,7 @@ public class RawCommentsClient {
      * Creates a <code>Comment</code> object with the given values.
      */
     public MergeApiHttpResponse<CommentResponse> create(CommentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments");
         if (request.getIsDebugMode().isPresent()) {
@@ -246,7 +246,7 @@ public class RawCommentsClient {
      */
     public MergeApiHttpResponse<Comment> retrieve(
             String id, CommentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments")
                 .addPathSegment(id);
@@ -307,7 +307,7 @@ public class RawCommentsClient {
      * Returns metadata for <code>Comment</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments/meta/post")
                 .build();

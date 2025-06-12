@@ -36,7 +36,7 @@ public class RawAsyncTasksClient {
      * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<AsyncPostTask> retrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/async-tasks")
                 .addPathSegment(id)

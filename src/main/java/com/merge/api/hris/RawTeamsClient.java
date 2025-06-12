@@ -52,7 +52,7 @@ public class RawTeamsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Team>> list(
             TeamsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/teams");
         if (request.getCreatedAfter().isPresent()) {
@@ -172,7 +172,7 @@ public class RawTeamsClient {
      * Returns a <code>Team</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Team> retrieve(String id, TeamsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/teams")
                 .addPathSegment(id);

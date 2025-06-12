@@ -52,7 +52,7 @@ public class RawTransactionsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Transaction>> list(
             TransactionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/transactions");
         if (request.getCompanyId().isPresent()) {
@@ -187,7 +187,7 @@ public class RawTransactionsClient {
      */
     public MergeApiHttpResponse<Transaction> retrieve(
             String id, TransactionsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/transactions")
                 .addPathSegment(id);

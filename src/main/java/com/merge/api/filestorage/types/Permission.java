@@ -34,9 +34,9 @@ public final class Permission {
 
     private final Optional<PermissionGroup> group;
 
-    private final Optional<TypeEnum> type;
+    private final Optional<PermissionType> type;
 
-    private final Optional<List<RolesEnum>> roles;
+    private final Optional<List<Optional<PermissionRolesItem>>> roles;
 
     private final Map<String, Object> additionalProperties;
 
@@ -47,8 +47,8 @@ public final class Permission {
             Optional<OffsetDateTime> modifiedAt,
             Optional<PermissionUser> user,
             Optional<PermissionGroup> group,
-            Optional<TypeEnum> type,
-            Optional<List<RolesEnum>> roles,
+            Optional<PermissionType> type,
+            Optional<List<Optional<PermissionRolesItem>>> roles,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -116,7 +116,7 @@ public final class Permission {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<TypeEnum> getType() {
+    public Optional<PermissionType> getType() {
         return type;
     }
 
@@ -124,7 +124,7 @@ public final class Permission {
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
     @JsonProperty("roles")
-    public Optional<List<RolesEnum>> getRoles() {
+    public Optional<List<Optional<PermissionRolesItem>>> getRoles() {
         return roles;
     }
 
@@ -179,9 +179,9 @@ public final class Permission {
 
         private Optional<PermissionGroup> group = Optional.empty();
 
-        private Optional<TypeEnum> type = Optional.empty();
+        private Optional<PermissionType> type = Optional.empty();
 
-        private Optional<List<RolesEnum>> roles = Optional.empty();
+        private Optional<List<Optional<PermissionRolesItem>>> roles = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -211,6 +211,9 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -222,6 +225,9 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -233,6 +239,9 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -244,6 +253,9 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>The user that is granted this permission. This will only be populated if the type is <code>USER</code>.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<PermissionUser> user) {
             this.user = user;
@@ -255,6 +267,9 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.</p>
+         */
         @JsonSetter(value = "group", nulls = Nulls.SKIP)
         public Builder group(Optional<PermissionGroup> group) {
             this.group = group;
@@ -266,24 +281,36 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>Denotes what type of people have access to the file.</p>
+         * <ul>
+         * <li><code>USER</code> - USER</li>
+         * <li><code>GROUP</code> - GROUP</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>ANYONE</code> - ANYONE</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<TypeEnum> type) {
+        public Builder type(Optional<PermissionType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(TypeEnum type) {
+        public Builder type(PermissionType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * <p>The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.</p>
+         */
         @JsonSetter(value = "roles", nulls = Nulls.SKIP)
-        public Builder roles(Optional<List<RolesEnum>> roles) {
+        public Builder roles(Optional<List<Optional<PermissionRolesItem>>> roles) {
             this.roles = roles;
             return this;
         }
 
-        public Builder roles(List<RolesEnum> roles) {
+        public Builder roles(List<Optional<PermissionRolesItem>> roles) {
             this.roles = Optional.ofNullable(roles);
             return this;
         }

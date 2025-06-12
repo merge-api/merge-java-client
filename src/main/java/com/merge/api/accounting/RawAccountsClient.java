@@ -59,12 +59,16 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Account>> list(
             AccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts");
         if (request.getAccountType().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "account_type", request.getAccountType().get(), false);
+        }
+        if (request.getClassification().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "classification", request.getClassification().get(), false);
         }
         if (request.getCompanyId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -195,7 +199,7 @@ public class RawAccountsClient {
      * Creates an <code>Account</code> object with the given values.
      */
     public MergeApiHttpResponse<AccountResponse> create(AccountEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts");
         if (request.getIsDebugMode().isPresent()) {
@@ -262,7 +266,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<Account> retrieve(
             String id, AccountsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts")
                 .addPathSegment(id);
@@ -334,7 +338,7 @@ public class RawAccountsClient {
      * Returns metadata for <code>Account</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts/meta/post")
                 .build();

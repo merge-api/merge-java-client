@@ -40,7 +40,7 @@ public class RawLinkTokenClient {
      * Creates a link token to be used when linking a new end user.
      */
     public MergeApiHttpResponse<LinkToken> create(EndUserDetailsRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/link-token")
                 .build();

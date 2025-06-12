@@ -82,6 +82,8 @@ public class AsyncAccountingClient {
 
     protected final Supplier<AsyncPhoneNumbersClient> phoneNumbersClient;
 
+    protected final Supplier<AsyncProjectsClient> projectsClient;
+
     protected final Supplier<AsyncPurchaseOrdersClient> purchaseOrdersClient;
 
     protected final Supplier<AsyncRegenerateKeyClient> regenerateKeyClient;
@@ -139,6 +141,7 @@ public class AsyncAccountingClient {
         this.paymentTermsClient = Suppliers.memoize(() -> new AsyncPaymentTermsClient(clientOptions));
         this.paymentsClient = Suppliers.memoize(() -> new AsyncPaymentsClient(clientOptions));
         this.phoneNumbersClient = Suppliers.memoize(() -> new AsyncPhoneNumbersClient(clientOptions));
+        this.projectsClient = Suppliers.memoize(() -> new AsyncProjectsClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new AsyncPurchaseOrdersClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new AsyncRegenerateKeyClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new AsyncSyncStatusClient(clientOptions));
@@ -292,6 +295,10 @@ public class AsyncAccountingClient {
 
     public AsyncPhoneNumbersClient phoneNumbers() {
         return this.phoneNumbersClient.get();
+    }
+
+    public AsyncProjectsClient projects() {
+        return this.projectsClient.get();
     }
 
     public AsyncPurchaseOrdersClient purchaseOrders() {

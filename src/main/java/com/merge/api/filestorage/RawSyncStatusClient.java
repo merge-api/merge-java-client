@@ -33,25 +33,25 @@ public class RawSyncStatusClient {
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
     public MergeApiHttpResponse<SyncPagingIterable<SyncStatus>> list() {
         return list(SyncStatusListRequest.builder().build());
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
     public MergeApiHttpResponse<SyncPagingIterable<SyncStatus>> list(SyncStatusListRequest request) {
         return list(request, null);
     }
 
     /**
-     * Get syncing status. Possible values: <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
+     * Get sync status for the current sync and the most recently finished sync. <code>last_sync_start</code> represents the most recent time any sync began. <code>last_sync_finished</code> represents the most recent time any sync completed. These timestamps may correspond to different sync instances which may result in a sync start time being later than a separate sync completed time. To ensure you are retrieving the latest available data reference the <code>last_sync_finished</code> timestamp where <code>last_sync_result</code> is <code>DONE</code>. Possible values for <code>status</code> and <code>last_sync_result</code> are <code>DISABLED</code>, <code>DONE</code>, <code>FAILED</code>, <code>PARTIALLY_SYNCED</code>, <code>PAUSED</code>, <code>SYNCING</code>. Learn more about sync status in our <a href="https://help.merge.dev/en/articles/8184193-merge-sync-statuses">Help Center</a>.
      */
     public MergeApiHttpResponse<SyncPagingIterable<SyncStatus>> list(
             SyncStatusListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/sync-status");
         if (request.getCursor().isPresent()) {

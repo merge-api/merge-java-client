@@ -52,7 +52,7 @@ public class RawDependentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Dependent>> list(
             DependentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/dependents");
         if (request.getCreatedAfter().isPresent()) {
@@ -172,7 +172,7 @@ public class RawDependentsClient {
      */
     public MergeApiHttpResponse<Dependent> retrieve(
             String id, DependentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/dependents")
                 .addPathSegment(id);

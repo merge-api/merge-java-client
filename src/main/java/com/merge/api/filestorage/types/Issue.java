@@ -26,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 public final class Issue {
     private final Optional<String> id;
 
-    private final Optional<IssueStatusEnum> status;
+    private final Optional<IssueStatus> status;
 
     private final String errorDescription;
 
@@ -44,7 +44,7 @@ public final class Issue {
 
     private Issue(
             Optional<String> id,
-            Optional<IssueStatusEnum> status,
+            Optional<IssueStatus> status,
             String errorDescription,
             Optional<Map<String, JsonNode>> endUser,
             Optional<OffsetDateTime> firstIncidentTime,
@@ -76,7 +76,7 @@ public final class Issue {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<IssueStatusEnum> getStatus() {
+    public Optional<IssueStatus> getStatus() {
         return status;
     }
 
@@ -167,9 +167,16 @@ public final class Issue {
 
         _FinalStage id(String id);
 
-        _FinalStage status(Optional<IssueStatusEnum> status);
+        /**
+         * <p>Status of the issue. Options: ('ONGOING', 'RESOLVED')</p>
+         * <ul>
+         * <li><code>ONGOING</code> - ONGOING</li>
+         * <li><code>RESOLVED</code> - RESOLVED</li>
+         * </ul>
+         */
+        _FinalStage status(Optional<IssueStatus> status);
 
-        _FinalStage status(IssueStatusEnum status);
+        _FinalStage status(IssueStatus status);
 
         _FinalStage endUser(Optional<Map<String, JsonNode>> endUser);
 
@@ -206,7 +213,7 @@ public final class Issue {
 
         private Optional<Map<String, JsonNode>> endUser = Optional.empty();
 
-        private Optional<IssueStatusEnum> status = Optional.empty();
+        private Optional<IssueStatus> status = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -309,14 +316,21 @@ public final class Issue {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage status(IssueStatusEnum status) {
+        public _FinalStage status(IssueStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>Status of the issue. Options: ('ONGOING', 'RESOLVED')</p>
+         * <ul>
+         * <li><code>ONGOING</code> - ONGOING</li>
+         * <li><code>RESOLVED</code> - RESOLVED</li>
+         * </ul>
+         */
         @java.lang.Override
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public _FinalStage status(Optional<IssueStatusEnum> status) {
+        public _FinalStage status(Optional<IssueStatus> status) {
             this.status = status;
             return this;
         }

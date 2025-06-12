@@ -45,7 +45,7 @@ public class AsyncRawLinkTokenClient {
      */
     public CompletableFuture<MergeApiHttpResponse<LinkToken>> create(
             EndUserDetailsRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/link-token")
                 .build();

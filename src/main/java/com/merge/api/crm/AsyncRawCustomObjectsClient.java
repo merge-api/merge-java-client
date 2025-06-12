@@ -75,7 +75,7 @@ public class AsyncRawCustomObjectsClient {
                     String customObjectClassId,
                     CustomObjectClassesCustomObjectsListRequest request,
                     RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -212,7 +212,7 @@ public class AsyncRawCustomObjectsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CrmCustomObjectResponse>> customObjectClassesCustomObjectsCreate(
             String customObjectClassId, CrmCustomObjectEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -304,7 +304,7 @@ public class AsyncRawCustomObjectsClient {
             String id,
             CustomObjectClassesCustomObjectsRetrieveRequest request,
             RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -386,7 +386,7 @@ public class AsyncRawCustomObjectsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> customObjectClassesCustomObjectsMetaPostRetrieve(
             String customObjectClassId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -460,7 +460,7 @@ public class AsyncRawCustomObjectsClient {
             customObjectClassesCustomObjectsRemoteFieldClassesList(
                     CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest request,
                     RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes/custom-objects/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -501,6 +501,10 @@ public class AsyncRawCustomObjectsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

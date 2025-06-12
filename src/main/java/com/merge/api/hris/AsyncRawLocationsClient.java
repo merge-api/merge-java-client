@@ -57,7 +57,7 @@ public class AsyncRawLocationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Location>>> list(
             LocationsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/locations");
         if (request.getCreatedAfter().isPresent()) {
@@ -204,7 +204,7 @@ public class AsyncRawLocationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Location>> retrieve(
             String id, LocationsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/locations")
                 .addPathSegment(id);

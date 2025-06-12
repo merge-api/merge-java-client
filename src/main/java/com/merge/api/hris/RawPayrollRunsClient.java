@@ -52,7 +52,7 @@ public class RawPayrollRunsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<PayrollRun>> list(
             PayrollRunsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/payroll-runs");
         if (request.getCreatedAfter().isPresent()) {
@@ -196,7 +196,7 @@ public class RawPayrollRunsClient {
      */
     public MergeApiHttpResponse<PayrollRun> retrieve(
             String id, PayrollRunsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/payroll-runs")
                 .addPathSegment(id);

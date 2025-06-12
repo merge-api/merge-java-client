@@ -37,6 +37,11 @@ public final class MergeApiClientBuilder {
         return this;
     }
 
+    public MergeApiClientBuilder url(String url) {
+        this.environment = Environment.custom(url);
+        return this;
+    }
+
     /**
      * Sets the timeout (in seconds) for the client. Defaults to 60 seconds.
      */

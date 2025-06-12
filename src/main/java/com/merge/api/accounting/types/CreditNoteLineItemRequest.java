@@ -48,6 +48,10 @@ public final class CreditNoteLineItemRequest {
 
     private final Optional<CreditNoteLineItemRequestCompany> company;
 
+    private final Optional<CreditNoteLineItemRequestContact> contact;
+
+    private final Optional<CreditNoteLineItemRequestProject> project;
+
     private final Optional<Map<String, JsonNode>> integrationParams;
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
@@ -68,6 +72,8 @@ public final class CreditNoteLineItemRequest {
             Optional<List<Optional<String>>> trackingCategories,
             Optional<String> account,
             Optional<CreditNoteLineItemRequestCompany> company,
+            Optional<CreditNoteLineItemRequestContact> contact,
+            Optional<CreditNoteLineItemRequestProject> project,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -84,6 +90,8 @@ public final class CreditNoteLineItemRequest {
         this.trackingCategories = trackingCategories;
         this.account = account;
         this.company = company;
+        this.contact = contact;
+        this.project = project;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.additionalProperties = additionalProperties;
@@ -190,6 +198,19 @@ public final class CreditNoteLineItemRequest {
         return company;
     }
 
+    /**
+     * @return The credit note's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<CreditNoteLineItemRequestContact> getContact() {
+        return contact;
+    }
+
+    @JsonProperty("project")
+    public Optional<CreditNoteLineItemRequestProject> getProject() {
+        return project;
+    }
+
     @JsonProperty("integration_params")
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
         return integrationParams;
@@ -225,6 +246,8 @@ public final class CreditNoteLineItemRequest {
                 && trackingCategories.equals(other.trackingCategories)
                 && account.equals(other.account)
                 && company.equals(other.company)
+                && contact.equals(other.contact)
+                && project.equals(other.project)
                 && integrationParams.equals(other.integrationParams)
                 && linkedAccountParams.equals(other.linkedAccountParams);
     }
@@ -245,6 +268,8 @@ public final class CreditNoteLineItemRequest {
                 this.trackingCategories,
                 this.account,
                 this.company,
+                this.contact,
+                this.project,
                 this.integrationParams,
                 this.linkedAccountParams);
     }
@@ -286,6 +311,10 @@ public final class CreditNoteLineItemRequest {
 
         private Optional<CreditNoteLineItemRequestCompany> company = Optional.empty();
 
+        private Optional<CreditNoteLineItemRequestContact> contact = Optional.empty();
+
+        private Optional<CreditNoteLineItemRequestProject> project = Optional.empty();
+
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
@@ -309,11 +338,16 @@ public final class CreditNoteLineItemRequest {
             trackingCategories(other.getTrackingCategories());
             account(other.getAccount());
             company(other.getCompany());
+            contact(other.getContact());
+            project(other.getProject());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -336,6 +370,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -347,6 +384,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The description of the item that is owed.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -358,6 +398,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's quantity.</p>
+         */
         @JsonSetter(value = "quantity", nulls = Nulls.SKIP)
         public Builder quantity(Optional<String> quantity) {
             this.quantity = quantity;
@@ -369,6 +412,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's memo.</p>
+         */
         @JsonSetter(value = "memo", nulls = Nulls.SKIP)
         public Builder memo(Optional<String> memo) {
             this.memo = memo;
@@ -380,6 +426,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's unit price.</p>
+         */
         @JsonSetter(value = "unit_price", nulls = Nulls.SKIP)
         public Builder unitPrice(Optional<String> unitPrice) {
             this.unitPrice = unitPrice;
@@ -391,6 +440,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The tax rate that applies to this line item.</p>
+         */
         @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
         public Builder taxRate(Optional<String> taxRate) {
             this.taxRate = taxRate;
@@ -402,6 +454,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's total.</p>
+         */
         @JsonSetter(value = "total_line_amount", nulls = Nulls.SKIP)
         public Builder totalLineAmount(Optional<String> totalLineAmount) {
             this.totalLineAmount = totalLineAmount;
@@ -413,6 +468,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's associated tracking category.</p>
+         */
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<String> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -424,6 +482,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's associated tracking categories.</p>
+         */
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
@@ -435,6 +496,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The credit note line item's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<String> account) {
             this.account = account;
@@ -446,6 +510,9 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The company the credit note belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<CreditNoteLineItemRequestCompany> company) {
             this.company = company;
@@ -454,6 +521,31 @@ public final class CreditNoteLineItemRequest {
 
         public Builder company(CreditNoteLineItemRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        /**
+         * <p>The credit note's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<CreditNoteLineItemRequestContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(CreditNoteLineItemRequestContact contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        @JsonSetter(value = "project", nulls = Nulls.SKIP)
+        public Builder project(Optional<CreditNoteLineItemRequestProject> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(CreditNoteLineItemRequestProject project) {
+            this.project = Optional.ofNullable(project);
             return this;
         }
 
@@ -494,6 +586,8 @@ public final class CreditNoteLineItemRequest {
                     trackingCategories,
                     account,
                     company,
+                    contact,
+                    project,
                     integrationParams,
                     linkedAccountParams,
                     additionalProperties);

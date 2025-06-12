@@ -52,7 +52,7 @@ public class RawPaymentMethodsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<PaymentMethod>> list(
             PaymentMethodsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payment-methods");
         if (request.getCursor().isPresent()) {
@@ -142,7 +142,7 @@ public class RawPaymentMethodsClient {
      */
     public MergeApiHttpResponse<PaymentMethod> retrieve(
             String id, PaymentMethodsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payment-methods")
                 .addPathSegment(id);

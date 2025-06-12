@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class EmailAddressRequest {
     private final Optional<String> value;
 
-    private final Optional<EmailAddressTypeEnum> emailAddressType;
+    private final Optional<EmailAddressRequestEmailAddressType> emailAddressType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class EmailAddressRequest {
 
     private EmailAddressRequest(
             Optional<String> value,
-            Optional<EmailAddressTypeEnum> emailAddressType,
+            Optional<EmailAddressRequestEmailAddressType> emailAddressType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -61,7 +61,7 @@ public final class EmailAddressRequest {
      * </ul>
      */
     @JsonProperty("email_address_type")
-    public Optional<EmailAddressTypeEnum> getEmailAddressType() {
+    public Optional<EmailAddressRequestEmailAddressType> getEmailAddressType() {
         return emailAddressType;
     }
 
@@ -111,7 +111,7 @@ public final class EmailAddressRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<EmailAddressTypeEnum> emailAddressType = Optional.empty();
+        private Optional<EmailAddressRequestEmailAddressType> emailAddressType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -130,6 +130,9 @@ public final class EmailAddressRequest {
             return this;
         }
 
+        /**
+         * <p>The email address.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -141,13 +144,21 @@ public final class EmailAddressRequest {
             return this;
         }
 
+        /**
+         * <p>The type of email address.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
-        public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
+        public Builder emailAddressType(Optional<EmailAddressRequestEmailAddressType> emailAddressType) {
             this.emailAddressType = emailAddressType;
             return this;
         }
 
-        public Builder emailAddressType(EmailAddressTypeEnum emailAddressType) {
+        public Builder emailAddressType(EmailAddressRequestEmailAddressType emailAddressType) {
             this.emailAddressType = Optional.ofNullable(emailAddressType);
             return this;
         }

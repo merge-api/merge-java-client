@@ -58,7 +58,7 @@ public class AsyncRawEmployerBenefitsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<EmployerBenefit>>> list(
             EmployerBenefitsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employer-benefits");
         if (request.getCreatedAfter().isPresent()) {
@@ -192,7 +192,7 @@ public class AsyncRawEmployerBenefitsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<EmployerBenefit>> retrieve(
             String id, EmployerBenefitsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employer-benefits")
                 .addPathSegment(id);

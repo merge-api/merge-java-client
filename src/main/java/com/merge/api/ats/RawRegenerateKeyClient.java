@@ -41,7 +41,7 @@ public class RawRegenerateKeyClient {
      */
     public MergeApiHttpResponse<RemoteKey> create(
             RemoteKeyForRegenerationRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/regenerate-key")
                 .build();

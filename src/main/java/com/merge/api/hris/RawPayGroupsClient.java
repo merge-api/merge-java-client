@@ -52,7 +52,7 @@ public class RawPayGroupsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<PayGroup>> list(
             PayGroupsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/pay-groups");
         if (request.getCreatedAfter().isPresent()) {
@@ -165,7 +165,7 @@ public class RawPayGroupsClient {
      */
     public MergeApiHttpResponse<PayGroup> retrieve(
             String id, PayGroupsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/pay-groups")
                 .addPathSegment(id);

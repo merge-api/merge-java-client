@@ -61,7 +61,7 @@ public class AsyncRawEngagementTypesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<EngagementType>>> list(
             EngagementTypesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/engagement-types");
         if (request.getCreatedAfter().isPresent()) {
@@ -202,7 +202,7 @@ public class AsyncRawEngagementTypesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<EngagementType>> retrieve(
             String id, EngagementTypesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/engagement-types")
                 .addPathSegment(id);
@@ -290,7 +290,7 @@ public class AsyncRawEngagementTypesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>> remoteFieldClassesList(
             EngagementTypesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/engagement-types/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -331,6 +331,10 @@ public class AsyncRawEngagementTypesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

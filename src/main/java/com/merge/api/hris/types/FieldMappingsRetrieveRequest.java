@@ -81,6 +81,9 @@ public final class FieldMappingsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>If <code>true</code>, remote fields metadata is excluded from each field mapping instance (i.e. <code>remote_fields.remote_key_name</code> and <code>remote_fields.schema</code> will be null). This will increase the speed of the request since these fields require some calculations.</p>
+         */
         @JsonSetter(value = "exclude_remote_field_metadata", nulls = Nulls.SKIP)
         public Builder excludeRemoteFieldMetadata(Optional<Boolean> excludeRemoteFieldMetadata) {
             this.excludeRemoteFieldMetadata = excludeRemoteFieldMetadata;

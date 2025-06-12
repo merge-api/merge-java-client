@@ -36,7 +36,7 @@ public class RawAccountTokenClient {
      * Returns the account token for the end user with the provided public token.
      */
     public MergeApiHttpResponse<AccountToken> retrieve(String publicToken, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/account-token")
                 .addPathSegment(publicToken)

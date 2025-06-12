@@ -62,7 +62,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingApiInstanceResponse>> fieldMappingsRetrieve(
             FieldMappingsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/field-mappings");
         if (request.getExcludeRemoteFieldMetadata().isPresent()) {
@@ -128,7 +128,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsCreate(
             CreateFieldMappingRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/field-mappings");
         if (request.getExcludeRemoteFieldMetadata().isPresent()) {
@@ -208,7 +208,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsDestroy(
             String fieldMappingId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
@@ -278,7 +278,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsPartialUpdate(
             String fieldMappingId, PatchedEditFieldMappingRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
@@ -353,7 +353,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RemoteFieldApiResponse>> remoteFieldsRetrieve(
             RemoteFieldsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/remote-fields");
         if (request.getCommonModels().isPresent()) {
@@ -422,7 +422,7 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<ExternalTargetFieldApiResponse>> targetFieldsRetrieve(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/target-fields")
                 .build();

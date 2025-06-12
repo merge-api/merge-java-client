@@ -42,7 +42,7 @@ public class RawAsyncPassthroughClient {
      */
     public MergeApiHttpResponse<AsyncPassthroughReciept> create(
             DataPassthroughRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/async-passthrough")
                 .build();
@@ -94,7 +94,7 @@ public class RawAsyncPassthroughClient {
      */
     public MergeApiHttpResponse<AsyncPassthroughRetrieveResponse> retrieve(
             String asyncPassthroughReceiptId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)

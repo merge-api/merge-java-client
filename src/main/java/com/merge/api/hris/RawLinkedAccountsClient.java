@@ -51,7 +51,7 @@ public class RawLinkedAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<AccountDetailsAndActions>> list(
             LinkedAccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/linked-accounts");
         if (request.getCategory().isPresent()) {

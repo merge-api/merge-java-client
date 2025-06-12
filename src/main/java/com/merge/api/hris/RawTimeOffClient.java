@@ -59,7 +59,7 @@ public class RawTimeOffClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<TimeOff>> list(
             TimeOffListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off");
         if (request.getApproverId().isPresent()) {
@@ -211,7 +211,7 @@ public class RawTimeOffClient {
      * Creates a <code>TimeOff</code> object with the given values.
      */
     public MergeApiHttpResponse<TimeOffResponse> create(TimeOffEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off");
         if (request.getIsDebugMode().isPresent()) {
@@ -278,7 +278,7 @@ public class RawTimeOffClient {
      */
     public MergeApiHttpResponse<TimeOff> retrieve(
             String id, TimeOffRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off")
                 .addPathSegment(id);
@@ -350,7 +350,7 @@ public class RawTimeOffClient {
      * Returns metadata for <code>TimeOff</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off/meta/post")
                 .build();

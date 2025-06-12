@@ -60,7 +60,7 @@ public class AsyncRawProjectsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Project>>> list(
             ProjectsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/projects");
         if (request.getCreatedAfter().isPresent()) {
@@ -192,7 +192,7 @@ public class AsyncRawProjectsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Project>> retrieve(
             String id, ProjectsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/projects")
                 .addPathSegment(id);
@@ -271,7 +271,7 @@ public class AsyncRawProjectsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<User>>> usersList(
             String parentId, ProjectsUsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/projects")
                 .addPathSegment(parentId)

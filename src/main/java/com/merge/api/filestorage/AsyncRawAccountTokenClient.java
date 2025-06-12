@@ -41,7 +41,7 @@ public class AsyncRawAccountTokenClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountToken>> retrieve(
             String publicToken, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/account-token")
                 .addPathSegment(publicToken)

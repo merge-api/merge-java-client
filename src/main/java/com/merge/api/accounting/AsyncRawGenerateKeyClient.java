@@ -45,7 +45,7 @@ public class AsyncRawGenerateKeyClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RemoteKey>> create(
             GenerateRemoteKeyRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/generate-key")
                 .build();

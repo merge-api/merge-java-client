@@ -51,7 +51,7 @@ public class RawTagsClient {
      * Returns a list of <code>Tag</code> objects.
      */
     public MergeApiHttpResponse<SyncPagingIterable<Tag>> list(TagsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tags");
         if (request.getCreatedAfter().isPresent()) {
@@ -163,7 +163,7 @@ public class RawTagsClient {
      * Returns a <code>Tag</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Tag> retrieve(String id, TagsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tags")
                 .addPathSegment(id);

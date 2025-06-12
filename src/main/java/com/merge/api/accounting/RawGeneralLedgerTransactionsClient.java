@@ -53,7 +53,7 @@ public class RawGeneralLedgerTransactionsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<GeneralLedgerTransaction>> list(
             GeneralLedgerTransactionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/general-ledger-transactions");
         if (request.getCompanyId().isPresent()) {
@@ -190,7 +190,7 @@ public class RawGeneralLedgerTransactionsClient {
      */
     public MergeApiHttpResponse<GeneralLedgerTransaction> retrieve(
             String id, GeneralLedgerTransactionsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/general-ledger-transactions")
                 .addPathSegment(id);

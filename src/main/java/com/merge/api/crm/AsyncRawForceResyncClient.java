@@ -44,7 +44,7 @@ public class AsyncRawForceResyncClient {
      */
     public CompletableFuture<MergeApiHttpResponse<List<SyncStatus>>> syncStatusResyncCreate(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/sync-status/resync")
                 .build();

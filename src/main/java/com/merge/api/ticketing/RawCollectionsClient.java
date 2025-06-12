@@ -55,7 +55,7 @@ public class RawCollectionsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Collection>> list(
             CollectionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/collections");
         if (request.getCollectionType().isPresent()) {
@@ -192,7 +192,7 @@ public class RawCollectionsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Viewer>> viewersList(
             String collectionId, CollectionsViewersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/collections")
                 .addPathSegment(collectionId)
@@ -288,7 +288,7 @@ public class RawCollectionsClient {
      */
     public MergeApiHttpResponse<Collection> retrieve(
             String id, CollectionsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/collections")
                 .addPathSegment(id);

@@ -52,7 +52,7 @@ public class RawTaxRatesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<TaxRate>> list(
             TaxRatesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/tax-rates");
         if (request.getCompanyId().isPresent()) {
@@ -177,7 +177,7 @@ public class RawTaxRatesClient {
      */
     public MergeApiHttpResponse<TaxRate> retrieve(
             String id, TaxRatesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/tax-rates")
                 .addPathSegment(id);

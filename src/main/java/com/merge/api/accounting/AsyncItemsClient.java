@@ -4,8 +4,12 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.Item;
+import com.merge.api.accounting.types.ItemEndpointRequest;
+import com.merge.api.accounting.types.ItemResponse;
 import com.merge.api.accounting.types.ItemsListRequest;
 import com.merge.api.accounting.types.ItemsRetrieveRequest;
+import com.merge.api.accounting.types.MetaResponse;
+import com.merge.api.accounting.types.PatchedItemEndpointRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
@@ -50,6 +54,20 @@ public class AsyncItemsClient {
     }
 
     /**
+     * Creates an <code>Item</code> object with the given values.
+     */
+    public CompletableFuture<ItemResponse> create(ItemEndpointRequest request) {
+        return this.rawClient.create(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Creates an <code>Item</code> object with the given values.
+     */
+    public CompletableFuture<ItemResponse> create(ItemEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.create(request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
      * Returns an <code>Item</code> object with the given <code>id</code>.
      */
     public CompletableFuture<Item> retrieve(String id) {
@@ -68,5 +86,48 @@ public class AsyncItemsClient {
      */
     public CompletableFuture<Item> retrieve(String id, ItemsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an <code>Item</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<ItemResponse> partialUpdate(String id, PatchedItemEndpointRequest request) {
+        return this.rawClient.partialUpdate(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates an <code>Item</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<ItemResponse> partialUpdate(
+            String id, PatchedItemEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.partialUpdate(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id) {
+        return this.rawClient.metaPatchRetrieve(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> POSTs.
+     */
+    public CompletableFuture<MetaResponse> metaPostRetrieve() {
+        return this.rawClient.metaPostRetrieve().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> POSTs.
+     */
+    public CompletableFuture<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
+        return this.rawClient.metaPostRetrieve(requestOptions).thenApply(response -> response.body());
     }
 }

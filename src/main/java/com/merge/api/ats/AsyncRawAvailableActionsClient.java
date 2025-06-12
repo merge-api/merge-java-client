@@ -40,7 +40,7 @@ public class AsyncRawAvailableActionsClient {
      * Returns a list of models and actions available for an account.
      */
     public CompletableFuture<MergeApiHttpResponse<AvailableActions>> retrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/available-actions")
                 .build();

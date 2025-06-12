@@ -52,7 +52,7 @@ public class RawCompaniesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Company>> list(
             CompaniesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/companies");
         if (request.getCreatedAfter().isPresent()) {
@@ -165,7 +165,7 @@ public class RawCompaniesClient {
      */
     public MergeApiHttpResponse<Company> retrieve(
             String id, CompaniesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/companies")
                 .addPathSegment(id);

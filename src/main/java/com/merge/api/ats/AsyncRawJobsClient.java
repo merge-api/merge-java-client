@@ -60,7 +60,7 @@ public class AsyncRawJobsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Job>>> list(
             JobsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs");
         if (request.getCode().isPresent()) {
@@ -216,7 +216,7 @@ public class AsyncRawJobsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Job>> retrieve(
             String id, JobsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs")
                 .addPathSegment(id);
@@ -309,7 +309,7 @@ public class AsyncRawJobsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<ScreeningQuestion>>> screeningQuestionsList(
             String jobId, JobsScreeningQuestionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs")
                 .addPathSegment(jobId)

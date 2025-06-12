@@ -58,7 +58,7 @@ public class AsyncRawCustomObjectClassesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<CustomObjectClass>>> list(
             CustomObjectClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes");
         if (request.getCreatedAfter().isPresent()) {
@@ -197,7 +197,7 @@ public class AsyncRawCustomObjectClassesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CustomObjectClass>> retrieve(
             String id, CustomObjectClassesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(id);

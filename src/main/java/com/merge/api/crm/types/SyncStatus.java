@@ -30,11 +30,11 @@ public final class SyncStatus {
 
     private final Optional<OffsetDateTime> nextSyncStart;
 
-    private final Optional<LastSyncResultEnum> lastSyncResult;
+    private final Optional<SyncStatusLastSyncResult> lastSyncResult;
 
     private final Optional<OffsetDateTime> lastSyncFinished;
 
-    private final StatusFd5Enum status;
+    private final SyncStatusStatus status;
 
     private final boolean isInitialSync;
 
@@ -47,9 +47,9 @@ public final class SyncStatus {
             String modelId,
             Optional<OffsetDateTime> lastSyncStart,
             Optional<OffsetDateTime> nextSyncStart,
-            Optional<LastSyncResultEnum> lastSyncResult,
+            Optional<SyncStatusLastSyncResult> lastSyncResult,
             Optional<OffsetDateTime> lastSyncFinished,
-            StatusFd5Enum status,
+            SyncStatusStatus status,
             boolean isInitialSync,
             Optional<SelectiveSyncConfigurationsUsageEnum> selectiveSyncConfigurationsUsage,
             Map<String, Object> additionalProperties) {
@@ -86,7 +86,7 @@ public final class SyncStatus {
     }
 
     @JsonProperty("last_sync_result")
-    public Optional<LastSyncResultEnum> getLastSyncResult() {
+    public Optional<SyncStatusLastSyncResult> getLastSyncResult() {
         return lastSyncResult;
     }
 
@@ -96,7 +96,7 @@ public final class SyncStatus {
     }
 
     @JsonProperty("status")
-    public StatusFd5Enum getStatus() {
+    public SyncStatusStatus getStatus() {
         return status;
     }
 
@@ -167,7 +167,7 @@ public final class SyncStatus {
     }
 
     public interface StatusStage {
-        IsInitialSyncStage status(@NotNull StatusFd5Enum status);
+        IsInitialSyncStage status(@NotNull SyncStatusStatus status);
     }
 
     public interface IsInitialSyncStage {
@@ -185,9 +185,9 @@ public final class SyncStatus {
 
         _FinalStage nextSyncStart(OffsetDateTime nextSyncStart);
 
-        _FinalStage lastSyncResult(Optional<LastSyncResultEnum> lastSyncResult);
+        _FinalStage lastSyncResult(Optional<SyncStatusLastSyncResult> lastSyncResult);
 
-        _FinalStage lastSyncResult(LastSyncResultEnum lastSyncResult);
+        _FinalStage lastSyncResult(SyncStatusLastSyncResult lastSyncResult);
 
         _FinalStage lastSyncFinished(Optional<OffsetDateTime> lastSyncFinished);
 
@@ -207,7 +207,7 @@ public final class SyncStatus {
 
         private String modelId;
 
-        private StatusFd5Enum status;
+        private SyncStatusStatus status;
 
         private boolean isInitialSync;
 
@@ -215,7 +215,7 @@ public final class SyncStatus {
 
         private Optional<OffsetDateTime> lastSyncFinished = Optional.empty();
 
-        private Optional<LastSyncResultEnum> lastSyncResult = Optional.empty();
+        private Optional<SyncStatusLastSyncResult> lastSyncResult = Optional.empty();
 
         private Optional<OffsetDateTime> nextSyncStart = Optional.empty();
 
@@ -256,7 +256,7 @@ public final class SyncStatus {
 
         @java.lang.Override
         @JsonSetter("status")
-        public IsInitialSyncStage status(@NotNull StatusFd5Enum status) {
+        public IsInitialSyncStage status(@NotNull SyncStatusStatus status) {
             this.status = status;
             return this;
         }
@@ -297,14 +297,14 @@ public final class SyncStatus {
         }
 
         @java.lang.Override
-        public _FinalStage lastSyncResult(LastSyncResultEnum lastSyncResult) {
+        public _FinalStage lastSyncResult(SyncStatusLastSyncResult lastSyncResult) {
             this.lastSyncResult = Optional.ofNullable(lastSyncResult);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "last_sync_result", nulls = Nulls.SKIP)
-        public _FinalStage lastSyncResult(Optional<LastSyncResultEnum> lastSyncResult) {
+        public _FinalStage lastSyncResult(Optional<SyncStatusLastSyncResult> lastSyncResult) {
             this.lastSyncResult = lastSyncResult;
             return this;
         }

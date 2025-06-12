@@ -57,7 +57,7 @@ public class AsyncRawScorecardsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Scorecard>>> list(
             ScorecardsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/scorecards");
         if (request.getApplicationId().isPresent()) {
@@ -213,7 +213,7 @@ public class AsyncRawScorecardsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Scorecard>> retrieve(
             String id, ScorecardsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/scorecards")
                 .addPathSegment(id);

@@ -433,6 +433,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -444,6 +447,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -455,6 +461,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -466,6 +475,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<LeadOwner> owner) {
             this.owner = owner;
@@ -477,6 +489,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's source.</p>
+         */
         @JsonSetter(value = "lead_source", nulls = Nulls.SKIP)
         public Builder leadSource(Optional<String> leadSource) {
             this.leadSource = leadSource;
@@ -488,6 +503,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's title.</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -499,6 +517,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's company.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -510,6 +531,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -521,6 +545,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The lead's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -565,6 +592,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>When the third party's lead was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -576,6 +606,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>When the third party's lead was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -587,6 +620,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>When the lead was converted.</p>
+         */
         @JsonSetter(value = "converted_date", nulls = Nulls.SKIP)
         public Builder convertedDate(Optional<OffsetDateTime> convertedDate) {
             this.convertedDate = convertedDate;
@@ -598,6 +634,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The contact of the converted lead.</p>
+         */
         @JsonSetter(value = "converted_contact", nulls = Nulls.SKIP)
         public Builder convertedContact(Optional<LeadConvertedContact> convertedContact) {
             this.convertedContact = convertedContact;
@@ -609,6 +648,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>The account of the converted lead.</p>
+         */
         @JsonSetter(value = "converted_account", nulls = Nulls.SKIP)
         public Builder convertedAccount(Optional<LeadConvertedAccount> convertedAccount) {
             this.convertedAccount = convertedAccount;
@@ -620,6 +662,9 @@ public final class Lead {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

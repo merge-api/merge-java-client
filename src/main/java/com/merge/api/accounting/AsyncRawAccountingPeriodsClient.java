@@ -58,7 +58,7 @@ public class AsyncRawAccountingPeriodsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<AccountingPeriod>>> list(
             AccountingPeriodsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounting-periods");
         if (request.getCursor().isPresent()) {
@@ -170,7 +170,7 @@ public class AsyncRawAccountingPeriodsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountingPeriod>> retrieve(
             String id, AccountingPeriodsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounting-periods")
                 .addPathSegment(id);

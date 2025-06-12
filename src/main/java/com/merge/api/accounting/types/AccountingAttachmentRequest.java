@@ -142,6 +142,9 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's name.</p>
+         */
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public Builder fileName(Optional<String> fileName) {
             this.fileName = fileName;
@@ -153,6 +156,9 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The attachment's url.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -164,6 +170,9 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        /**
+         * <p>The company the accounting attachment belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;

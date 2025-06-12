@@ -58,7 +58,7 @@ public class AsyncRawEmployeePayrollRunsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<EmployeePayrollRun>>> list(
             EmployeePayrollRunsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employee-payroll-runs");
         if (request.getCreatedAfter().isPresent()) {
@@ -221,7 +221,7 @@ public class AsyncRawEmployeePayrollRunsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<EmployeePayrollRun>> retrieve(
             String id, EmployeePayrollRunsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employee-payroll-runs")
                 .addPathSegment(id);

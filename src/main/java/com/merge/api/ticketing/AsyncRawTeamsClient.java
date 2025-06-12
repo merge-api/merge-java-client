@@ -57,7 +57,7 @@ public class AsyncRawTeamsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Team>>> list(
             TeamsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/teams");
         if (request.getCreatedAfter().isPresent()) {
@@ -189,7 +189,7 @@ public class AsyncRawTeamsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Team>> retrieve(
             String id, TeamsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/teams")
                 .addPathSegment(id);

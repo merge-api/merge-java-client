@@ -32,6 +32,8 @@ public final class LeadsRemoteFieldClassesListRequest {
 
     private final Optional<Boolean> isCommonModelField;
 
+    private final Optional<Boolean> isCustom;
+
     private final Optional<Integer> pageSize;
 
     private final Map<String, Object> additionalProperties;
@@ -43,6 +45,7 @@ public final class LeadsRemoteFieldClassesListRequest {
             Optional<Boolean> includeRemoteFields,
             Optional<Boolean> includeShellData,
             Optional<Boolean> isCommonModelField,
+            Optional<Boolean> isCustom,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
         this.cursor = cursor;
@@ -51,6 +54,7 @@ public final class LeadsRemoteFieldClassesListRequest {
         this.includeRemoteFields = includeRemoteFields;
         this.includeShellData = includeShellData;
         this.isCommonModelField = isCommonModelField;
+        this.isCustom = isCustom;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
     }
@@ -104,6 +108,14 @@ public final class LeadsRemoteFieldClassesListRequest {
     }
 
     /**
+     * @return If provided, will only return remote fields classes with this is_custom value
+     */
+    @JsonProperty("is_custom")
+    public Optional<Boolean> getIsCustom() {
+        return isCustom;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -130,6 +142,7 @@ public final class LeadsRemoteFieldClassesListRequest {
                 && includeRemoteFields.equals(other.includeRemoteFields)
                 && includeShellData.equals(other.includeShellData)
                 && isCommonModelField.equals(other.isCommonModelField)
+                && isCustom.equals(other.isCustom)
                 && pageSize.equals(other.pageSize);
     }
 
@@ -142,6 +155,7 @@ public final class LeadsRemoteFieldClassesListRequest {
                 this.includeRemoteFields,
                 this.includeShellData,
                 this.isCommonModelField,
+                this.isCustom,
                 this.pageSize);
     }
 
@@ -168,6 +182,8 @@ public final class LeadsRemoteFieldClassesListRequest {
 
         private Optional<Boolean> isCommonModelField = Optional.empty();
 
+        private Optional<Boolean> isCustom = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         @JsonAnySetter
@@ -182,10 +198,14 @@ public final class LeadsRemoteFieldClassesListRequest {
             includeRemoteFields(other.getIncludeRemoteFields());
             includeShellData(other.getIncludeShellData());
             isCommonModelField(other.getIsCommonModelField());
+            isCustom(other.getIsCustom());
             pageSize(other.getPageSize());
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -197,6 +217,9 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -208,6 +231,9 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -219,6 +245,9 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.</p>
+         */
         @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
         public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
             this.includeRemoteFields = includeRemoteFields;
@@ -230,6 +259,9 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -241,6 +273,9 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return remote field classes with this is_common_model_field value</p>
+         */
         @JsonSetter(value = "is_common_model_field", nulls = Nulls.SKIP)
         public Builder isCommonModelField(Optional<Boolean> isCommonModelField) {
             this.isCommonModelField = isCommonModelField;
@@ -252,6 +287,23 @@ public final class LeadsRemoteFieldClassesListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return remote fields classes with this is_custom value</p>
+         */
+        @JsonSetter(value = "is_custom", nulls = Nulls.SKIP)
+        public Builder isCustom(Optional<Boolean> isCustom) {
+            this.isCustom = isCustom;
+            return this;
+        }
+
+        public Builder isCustom(Boolean isCustom) {
+            this.isCustom = Optional.ofNullable(isCustom);
+            return this;
+        }
+
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -271,6 +323,7 @@ public final class LeadsRemoteFieldClassesListRequest {
                     includeRemoteFields,
                     includeShellData,
                     isCommonModelField,
+                    isCustom,
                     pageSize,
                     additionalProperties);
         }

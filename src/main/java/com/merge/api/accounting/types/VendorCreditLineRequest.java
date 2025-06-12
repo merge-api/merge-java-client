@@ -36,6 +36,10 @@ public final class VendorCreditLineRequest {
 
     private final Optional<String> company;
 
+    private final Optional<VendorCreditLineRequestProject> project;
+
+    private final Optional<VendorCreditLineRequestContact> contact;
+
     private final Optional<String> taxRate;
 
     private final Optional<String> exchangeRate;
@@ -54,6 +58,8 @@ public final class VendorCreditLineRequest {
             Optional<String> description,
             Optional<VendorCreditLineRequestAccount> account,
             Optional<String> company,
+            Optional<VendorCreditLineRequestProject> project,
+            Optional<VendorCreditLineRequestContact> contact,
             Optional<String> taxRate,
             Optional<String> exchangeRate,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -66,6 +72,8 @@ public final class VendorCreditLineRequest {
         this.description = description;
         this.account = account;
         this.company = company;
+        this.project = project;
+        this.contact = contact;
         this.taxRate = taxRate;
         this.exchangeRate = exchangeRate;
         this.integrationParams = integrationParams;
@@ -129,6 +137,16 @@ public final class VendorCreditLineRequest {
         return company;
     }
 
+    @JsonProperty("project")
+    public Optional<VendorCreditLineRequestProject> getProject() {
+        return project;
+    }
+
+    @JsonProperty("contact")
+    public Optional<VendorCreditLineRequestContact> getContact() {
+        return contact;
+    }
+
     /**
      * @return The tax rate that applies to this line item.
      */
@@ -174,6 +192,8 @@ public final class VendorCreditLineRequest {
                 && description.equals(other.description)
                 && account.equals(other.account)
                 && company.equals(other.company)
+                && project.equals(other.project)
+                && contact.equals(other.contact)
                 && taxRate.equals(other.taxRate)
                 && exchangeRate.equals(other.exchangeRate)
                 && integrationParams.equals(other.integrationParams)
@@ -190,6 +210,8 @@ public final class VendorCreditLineRequest {
                 this.description,
                 this.account,
                 this.company,
+                this.project,
+                this.contact,
                 this.taxRate,
                 this.exchangeRate,
                 this.integrationParams,
@@ -221,6 +243,10 @@ public final class VendorCreditLineRequest {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<VendorCreditLineRequestProject> project = Optional.empty();
+
+        private Optional<VendorCreditLineRequestContact> contact = Optional.empty();
+
         private Optional<String> taxRate = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -242,6 +268,8 @@ public final class VendorCreditLineRequest {
             description(other.getDescription());
             account(other.getAccount());
             company(other.getCompany());
+            project(other.getProject());
+            contact(other.getContact());
             taxRate(other.getTaxRate());
             exchangeRate(other.getExchangeRate());
             integrationParams(other.getIntegrationParams());
@@ -249,6 +277,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -260,6 +291,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The full value of the credit.</p>
+         */
         @JsonSetter(value = "net_amount", nulls = Nulls.SKIP)
         public Builder netAmount(Optional<Double> netAmount) {
             this.netAmount = netAmount;
@@ -271,6 +305,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The line's associated tracking category.</p>
+         */
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<String> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -282,6 +319,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The vendor credit line item's associated tracking categories.</p>
+         */
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
@@ -293,6 +333,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The line's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -304,6 +347,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The line's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<VendorCreditLineRequestAccount> account) {
             this.account = account;
@@ -315,6 +361,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The company the line belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -326,6 +375,31 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        @JsonSetter(value = "project", nulls = Nulls.SKIP)
+        public Builder project(Optional<VendorCreditLineRequestProject> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(VendorCreditLineRequestProject project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<VendorCreditLineRequestContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(VendorCreditLineRequestContact contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        /**
+         * <p>The tax rate that applies to this line item.</p>
+         */
         @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
         public Builder taxRate(Optional<String> taxRate) {
             this.taxRate = taxRate;
@@ -337,6 +411,9 @@ public final class VendorCreditLineRequest {
             return this;
         }
 
+        /**
+         * <p>The vendor credit line item's exchange rate.</p>
+         */
         @JsonSetter(value = "exchange_rate", nulls = Nulls.SKIP)
         public Builder exchangeRate(Optional<String> exchangeRate) {
             this.exchangeRate = exchangeRate;
@@ -379,6 +456,8 @@ public final class VendorCreditLineRequest {
                     description,
                     account,
                     company,
+                    project,
+                    contact,
                     taxRate,
                     exchangeRate,
                     integrationParams,

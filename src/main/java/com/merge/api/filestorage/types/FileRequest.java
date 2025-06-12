@@ -35,6 +35,8 @@ public final class FileRequest {
 
     private final Optional<FileRequestFolder> folder;
 
+    private final Optional<Map<String, JsonNode>> checksum;
+
     private final Optional<FileRequestPermissions> permissions;
 
     private final Optional<FileRequestDrive> drive;
@@ -53,6 +55,7 @@ public final class FileRequest {
             Optional<String> mimeType,
             Optional<String> description,
             Optional<FileRequestFolder> folder,
+            Optional<Map<String, JsonNode>> checksum,
             Optional<FileRequestPermissions> permissions,
             Optional<FileRequestDrive> drive,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -65,6 +68,7 @@ public final class FileRequest {
         this.mimeType = mimeType;
         this.description = description;
         this.folder = folder;
+        this.checksum = checksum;
         this.permissions = permissions;
         this.drive = drive;
         this.integrationParams = integrationParams;
@@ -129,6 +133,14 @@ public final class FileRequest {
     }
 
     /**
+     * @return This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.
+     */
+    @JsonProperty("checksum")
+    public Optional<Map<String, JsonNode>> getChecksum() {
+        return checksum;
+    }
+
+    /**
      * @return The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /files</code>.
      */
     @JsonProperty("permissions")
@@ -173,6 +185,7 @@ public final class FileRequest {
                 && mimeType.equals(other.mimeType)
                 && description.equals(other.description)
                 && folder.equals(other.folder)
+                && checksum.equals(other.checksum)
                 && permissions.equals(other.permissions)
                 && drive.equals(other.drive)
                 && integrationParams.equals(other.integrationParams)
@@ -189,6 +202,7 @@ public final class FileRequest {
                 this.mimeType,
                 this.description,
                 this.folder,
+                this.checksum,
                 this.permissions,
                 this.drive,
                 this.integrationParams,
@@ -220,6 +234,8 @@ public final class FileRequest {
 
         private Optional<FileRequestFolder> folder = Optional.empty();
 
+        private Optional<Map<String, JsonNode>> checksum = Optional.empty();
+
         private Optional<FileRequestPermissions> permissions = Optional.empty();
 
         private Optional<FileRequestDrive> drive = Optional.empty();
@@ -241,6 +257,7 @@ public final class FileRequest {
             mimeType(other.getMimeType());
             description(other.getDescription());
             folder(other.getFolder());
+            checksum(other.getChecksum());
             permissions(other.getPermissions());
             drive(other.getDrive());
             integrationParams(other.getIntegrationParams());
@@ -248,6 +265,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -259,6 +279,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The URL to access the file.</p>
+         */
         @JsonSetter(value = "file_url", nulls = Nulls.SKIP)
         public Builder fileUrl(Optional<String> fileUrl) {
             this.fileUrl = fileUrl;
@@ -270,6 +293,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The URL that produces a thumbnail preview of the file. Typically an image.</p>
+         */
         @JsonSetter(value = "file_thumbnail_url", nulls = Nulls.SKIP)
         public Builder fileThumbnailUrl(Optional<String> fileThumbnailUrl) {
             this.fileThumbnailUrl = fileThumbnailUrl;
@@ -281,6 +307,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's size, in bytes.</p>
+         */
         @JsonSetter(value = "size", nulls = Nulls.SKIP)
         public Builder size(Optional<Long> size) {
             this.size = size;
@@ -292,6 +321,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's mime type.</p>
+         */
         @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
         public Builder mimeType(Optional<String> mimeType) {
             this.mimeType = mimeType;
@@ -303,6 +335,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The file's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -314,6 +349,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The folder that the file belongs to.</p>
+         */
         @JsonSetter(value = "folder", nulls = Nulls.SKIP)
         public Builder folder(Optional<FileRequestFolder> folder) {
             this.folder = folder;
@@ -325,6 +363,23 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.</p>
+         */
+        @JsonSetter(value = "checksum", nulls = Nulls.SKIP)
+        public Builder checksum(Optional<Map<String, JsonNode>> checksum) {
+            this.checksum = checksum;
+            return this;
+        }
+
+        public Builder checksum(Map<String, JsonNode> checksum) {
+            this.checksum = Optional.ofNullable(checksum);
+            return this;
+        }
+
+        /**
+         * <p>The Permission object is used to represent a user's or group's access to a File or Folder. Permissions are unexpanded by default. Use the query param <code>expand=permissions</code> to see more details under <code>GET /files</code>.</p>
+         */
         @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
         public Builder permissions(Optional<FileRequestPermissions> permissions) {
             this.permissions = permissions;
@@ -336,6 +391,9 @@ public final class FileRequest {
             return this;
         }
 
+        /**
+         * <p>The drive that the file belongs to.</p>
+         */
         @JsonSetter(value = "drive", nulls = Nulls.SKIP)
         public Builder drive(Optional<FileRequestDrive> drive) {
             this.drive = drive;
@@ -378,6 +436,7 @@ public final class FileRequest {
                     mimeType,
                     description,
                     folder,
+                    checksum,
                     permissions,
                     drive,
                     integrationParams,

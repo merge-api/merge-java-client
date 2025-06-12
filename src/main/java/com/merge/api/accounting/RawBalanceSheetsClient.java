@@ -52,7 +52,7 @@ public class RawBalanceSheetsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<BalanceSheet>> list(
             BalanceSheetsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/balance-sheets");
         if (request.getCompanyId().isPresent()) {
@@ -173,7 +173,7 @@ public class RawBalanceSheetsClient {
      */
     public MergeApiHttpResponse<BalanceSheet> retrieve(
             String id, BalanceSheetsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/balance-sheets")
                 .addPathSegment(id);

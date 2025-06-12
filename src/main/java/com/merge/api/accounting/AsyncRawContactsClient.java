@@ -67,7 +67,7 @@ public class AsyncRawContactsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Contact>>> list(
             ContactsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts");
         if (request.getCompanyId().isPresent()) {
@@ -235,7 +235,7 @@ public class AsyncRawContactsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<ContactResponse>> create(
             ContactEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts");
         if (request.getIsDebugMode().isPresent()) {
@@ -316,7 +316,7 @@ public class AsyncRawContactsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Contact>> retrieve(
             String id, ContactsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts")
                 .addPathSegment(id);
@@ -405,7 +405,7 @@ public class AsyncRawContactsClient {
      * Returns metadata for <code>Contact</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts/meta/post")
                 .build();
@@ -472,7 +472,7 @@ public class AsyncRawContactsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>> remoteFieldClassesList(
             ContactsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -506,6 +506,10 @@ public class AsyncRawContactsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

@@ -41,7 +41,7 @@ public final class Scorecard {
 
     private final Optional<OffsetDateTime> submittedAt;
 
-    private final Optional<OverallRecommendationEnum> overallRecommendation;
+    private final Optional<ScorecardOverallRecommendation> overallRecommendation;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -61,7 +61,7 @@ public final class Scorecard {
             Optional<ScorecardInterviewer> interviewer,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> submittedAt,
-            Optional<OverallRecommendationEnum> overallRecommendation,
+            Optional<ScorecardOverallRecommendation> overallRecommendation,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -162,7 +162,7 @@ public final class Scorecard {
      * </ul>
      */
     @JsonProperty("overall_recommendation")
-    public Optional<OverallRecommendationEnum> getOverallRecommendation() {
+    public Optional<ScorecardOverallRecommendation> getOverallRecommendation() {
         return overallRecommendation;
     }
 
@@ -258,7 +258,7 @@ public final class Scorecard {
 
         private Optional<OffsetDateTime> submittedAt = Optional.empty();
 
-        private Optional<OverallRecommendationEnum> overallRecommendation = Optional.empty();
+        private Optional<ScorecardOverallRecommendation> overallRecommendation = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -299,6 +299,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -310,6 +313,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -321,6 +327,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -332,6 +341,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The application being scored.</p>
+         */
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
         public Builder application(Optional<ScorecardApplication> application) {
             this.application = application;
@@ -343,6 +355,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The interview being scored.</p>
+         */
         @JsonSetter(value = "interview", nulls = Nulls.SKIP)
         public Builder interview(Optional<ScorecardInterview> interview) {
             this.interview = interview;
@@ -354,6 +369,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The interviewer doing the scoring.</p>
+         */
         @JsonSetter(value = "interviewer", nulls = Nulls.SKIP)
         public Builder interviewer(Optional<ScorecardInterviewer> interviewer) {
             this.interviewer = interviewer;
@@ -365,6 +383,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>When the third party's scorecard was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -376,6 +397,9 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>When the scorecard was submitted.</p>
+         */
         @JsonSetter(value = "submitted_at", nulls = Nulls.SKIP)
         public Builder submittedAt(Optional<OffsetDateTime> submittedAt) {
             this.submittedAt = submittedAt;
@@ -387,17 +411,30 @@ public final class Scorecard {
             return this;
         }
 
+        /**
+         * <p>The inteviewer's recommendation.</p>
+         * <ul>
+         * <li><code>DEFINITELY_NO</code> - DEFINITELY_NO</li>
+         * <li><code>NO</code> - NO</li>
+         * <li><code>YES</code> - YES</li>
+         * <li><code>STRONG_YES</code> - STRONG_YES</li>
+         * <li><code>NO_DECISION</code> - NO_DECISION</li>
+         * </ul>
+         */
         @JsonSetter(value = "overall_recommendation", nulls = Nulls.SKIP)
-        public Builder overallRecommendation(Optional<OverallRecommendationEnum> overallRecommendation) {
+        public Builder overallRecommendation(Optional<ScorecardOverallRecommendation> overallRecommendation) {
             this.overallRecommendation = overallRecommendation;
             return this;
         }
 
-        public Builder overallRecommendation(OverallRecommendationEnum overallRecommendation) {
+        public Builder overallRecommendation(ScorecardOverallRecommendation overallRecommendation) {
             this.overallRecommendation = Optional.ofNullable(overallRecommendation);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

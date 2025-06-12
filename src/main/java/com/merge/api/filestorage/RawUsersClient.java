@@ -52,7 +52,7 @@ public class RawUsersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<User>> list(
             UsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/users");
         if (request.getCreatedAfter().isPresent()) {
@@ -168,7 +168,7 @@ public class RawUsersClient {
      * Returns a <code>User</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<User> retrieve(String id, UsersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/users")
                 .addPathSegment(id);

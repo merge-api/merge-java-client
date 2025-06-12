@@ -56,7 +56,7 @@ public class AsyncRawSyncStatusClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<SyncStatus>>> list(
             SyncStatusListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/sync-status");
         if (request.getCursor().isPresent()) {

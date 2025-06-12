@@ -63,7 +63,7 @@ public class RawPurchaseOrdersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<PurchaseOrder>> list(
             PurchaseOrdersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders");
         if (request.getCompanyId().isPresent()) {
@@ -206,7 +206,7 @@ public class RawPurchaseOrdersClient {
      */
     public MergeApiHttpResponse<PurchaseOrderResponse> create(
             PurchaseOrderEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders");
         if (request.getIsDebugMode().isPresent()) {
@@ -274,7 +274,7 @@ public class RawPurchaseOrdersClient {
      */
     public MergeApiHttpResponse<PurchaseOrder> retrieve(
             String id, PurchaseOrdersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders")
                 .addPathSegment(id);
@@ -360,7 +360,7 @@ public class RawPurchaseOrdersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> lineItemsRemoteFieldClassesList(
             PurchaseOrdersLineItemsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders/line-items/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -394,6 +394,10 @@ public class RawPurchaseOrdersClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -451,7 +455,7 @@ public class RawPurchaseOrdersClient {
      * Returns metadata for <code>PurchaseOrder</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders/meta/post")
                 .build();
@@ -504,7 +508,7 @@ public class RawPurchaseOrdersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             PurchaseOrdersRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/purchase-orders/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -538,6 +542,10 @@ public class RawPurchaseOrdersClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

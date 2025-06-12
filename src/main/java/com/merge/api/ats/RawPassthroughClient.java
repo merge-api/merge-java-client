@@ -40,7 +40,7 @@ public class RawPassthroughClient {
      * Pull data from an endpoint not currently supported by Merge.
      */
     public MergeApiHttpResponse<RemoteResponse> create(DataPassthroughRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/passthrough")
                 .build();

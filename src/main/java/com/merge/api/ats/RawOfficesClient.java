@@ -52,7 +52,7 @@ public class RawOfficesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Office>> list(
             OfficesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offices");
         if (request.getCreatedAfter().isPresent()) {
@@ -165,7 +165,7 @@ public class RawOfficesClient {
      */
     public MergeApiHttpResponse<Office> retrieve(
             String id, OfficesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offices")
                 .addPathSegment(id);

@@ -33,7 +33,7 @@ public final class PatchedTicketRequest {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TicketStatusEnum> status;
+    private final Optional<PatchedTicketRequestStatus> status;
 
     private final Optional<String> description;
 
@@ -46,6 +46,8 @@ public final class PatchedTicketRequest {
     private final Optional<String> contact;
 
     private final Optional<String> parentTicket;
+
+    private final Optional<PatchedTicketRequestAccessLevel> accessLevel;
 
     private final Optional<List<Optional<String>>> tags;
 
@@ -71,13 +73,14 @@ public final class PatchedTicketRequest {
             Optional<List<Optional<String>>> assignedTeams,
             Optional<String> creator,
             Optional<OffsetDateTime> dueDate,
-            Optional<TicketStatusEnum> status,
+            Optional<PatchedTicketRequestStatus> status,
             Optional<String> description,
             Optional<List<Optional<String>>> collections,
             Optional<String> ticketType,
             Optional<String> account,
             Optional<String> contact,
             Optional<String> parentTicket,
+            Optional<PatchedTicketRequestAccessLevel> accessLevel,
             Optional<List<Optional<String>>> tags,
             Optional<List<Optional<String>>> roles,
             Optional<OffsetDateTime> completedAt,
@@ -99,6 +102,7 @@ public final class PatchedTicketRequest {
         this.account = account;
         this.contact = contact;
         this.parentTicket = parentTicket;
+        this.accessLevel = accessLevel;
         this.tags = tags;
         this.roles = roles;
         this.completedAt = completedAt;
@@ -160,7 +164,7 @@ public final class PatchedTicketRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TicketStatusEnum> getStatus() {
+    public Optional<PatchedTicketRequestStatus> getStatus() {
         return status;
     }
 
@@ -210,6 +214,20 @@ public final class PatchedTicketRequest {
     @JsonProperty("parent_ticket")
     public Optional<String> getParentTicket() {
         return parentTicket;
+    }
+
+    /**
+     * @return The description of who is able to access a given ticket, or where access is inherited from.
+     * <ul>
+     * <li><code>COMPANY</code> - COMPANY</li>
+     * <li><code>PUBLIC</code> - PUBLIC</li>
+     * <li><code>PRIVATE</code> - PRIVATE</li>
+     * <li><code>COLLECTION</code> - COLLECTION</li>
+     * </ul>
+     */
+    @JsonProperty("access_level")
+    public Optional<PatchedTicketRequestAccessLevel> getAccessLevel() {
+        return accessLevel;
     }
 
     @JsonProperty("tags")
@@ -291,6 +309,7 @@ public final class PatchedTicketRequest {
                 && account.equals(other.account)
                 && contact.equals(other.contact)
                 && parentTicket.equals(other.parentTicket)
+                && accessLevel.equals(other.accessLevel)
                 && tags.equals(other.tags)
                 && roles.equals(other.roles)
                 && completedAt.equals(other.completedAt)
@@ -316,6 +335,7 @@ public final class PatchedTicketRequest {
                 this.account,
                 this.contact,
                 this.parentTicket,
+                this.accessLevel,
                 this.tags,
                 this.roles,
                 this.completedAt,
@@ -347,7 +367,7 @@ public final class PatchedTicketRequest {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TicketStatusEnum> status = Optional.empty();
+        private Optional<PatchedTicketRequestStatus> status = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -360,6 +380,8 @@ public final class PatchedTicketRequest {
         private Optional<String> contact = Optional.empty();
 
         private Optional<String> parentTicket = Optional.empty();
+
+        private Optional<PatchedTicketRequestAccessLevel> accessLevel = Optional.empty();
 
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
@@ -395,6 +417,7 @@ public final class PatchedTicketRequest {
             account(other.getAccount());
             contact(other.getContact());
             parentTicket(other.getParentTicket());
+            accessLevel(other.getAccessLevel());
             tags(other.getTags());
             roles(other.getRoles());
             completedAt(other.getCompletedAt());
@@ -406,6 +429,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -417,6 +443,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assignees", nulls = Nulls.SKIP)
         public Builder assignees(Optional<List<Optional<String>>> assignees) {
             this.assignees = assignees;
@@ -428,6 +457,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The <code>Teams</code> that are assigned to this ticket. This does not include <code>Teams</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access this ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
+         */
         @JsonSetter(value = "assigned_teams", nulls = Nulls.SKIP)
         public Builder assignedTeams(Optional<List<Optional<String>>> assignedTeams) {
             this.assignedTeams = assignedTeams;
@@ -439,6 +471,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The user who created this ticket.</p>
+         */
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
         public Builder creator(Optional<String> creator) {
             this.creator = creator;
@@ -450,6 +485,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's due date.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -461,17 +499,29 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The current status of the ticket.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>IN_PROGRESS</code> - IN_PROGRESS</li>
+         * <li><code>ON_HOLD</code> - ON_HOLD</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TicketStatusEnum> status) {
+        public Builder status(Optional<PatchedTicketRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TicketStatusEnum status) {
+        public Builder status(PatchedTicketRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The ticket’s description. HTML version of description is mapped if supported by the third-party platform.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -483,6 +533,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The <code>Collections</code> that this <code>Ticket</code> is included in.</p>
+         */
         @JsonSetter(value = "collections", nulls = Nulls.SKIP)
         public Builder collections(Optional<List<Optional<String>>> collections) {
             this.collections = collections;
@@ -494,6 +547,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.</p>
+         */
         @JsonSetter(value = "ticket_type", nulls = Nulls.SKIP)
         public Builder ticketType(Optional<String> ticketType) {
             this.ticketType = ticketType;
@@ -505,6 +561,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The account associated with the ticket.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<String> account) {
             this.account = account;
@@ -516,6 +575,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The contact associated with the ticket.</p>
+         */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public Builder contact(Optional<String> contact) {
             this.contact = contact;
@@ -527,6 +589,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The ticket's parent ticket.</p>
+         */
         @JsonSetter(value = "parent_ticket", nulls = Nulls.SKIP)
         public Builder parentTicket(Optional<String> parentTicket) {
             this.parentTicket = parentTicket;
@@ -535,6 +600,26 @@ public final class PatchedTicketRequest {
 
         public Builder parentTicket(String parentTicket) {
             this.parentTicket = Optional.ofNullable(parentTicket);
+            return this;
+        }
+
+        /**
+         * <p>The description of who is able to access a given ticket, or where access is inherited from.</p>
+         * <ul>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * <li><code>COLLECTION</code> - COLLECTION</li>
+         * </ul>
+         */
+        @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
+        public Builder accessLevel(Optional<PatchedTicketRequestAccessLevel> accessLevel) {
+            this.accessLevel = accessLevel;
+            return this;
+        }
+
+        public Builder accessLevel(PatchedTicketRequestAccessLevel accessLevel) {
+            this.accessLevel = Optional.ofNullable(accessLevel);
             return this;
         }
 
@@ -560,6 +645,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>When the ticket was completed.</p>
+         */
         @JsonSetter(value = "completed_at", nulls = Nulls.SKIP)
         public Builder completedAt(Optional<OffsetDateTime> completedAt) {
             this.completedAt = completedAt;
@@ -571,6 +659,9 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The 3rd party url of the Ticket.</p>
+         */
         @JsonSetter(value = "ticket_url", nulls = Nulls.SKIP)
         public Builder ticketUrl(Optional<String> ticketUrl) {
             this.ticketUrl = ticketUrl;
@@ -582,6 +673,15 @@ public final class PatchedTicketRequest {
             return this;
         }
 
+        /**
+         * <p>The priority or urgency of the Ticket.</p>
+         * <ul>
+         * <li><code>URGENT</code> - URGENT</li>
+         * <li><code>HIGH</code> - HIGH</li>
+         * <li><code>NORMAL</code> - NORMAL</li>
+         * <li><code>LOW</code> - LOW</li>
+         * </ul>
+         */
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
         public Builder priority(Optional<PriorityEnum> priority) {
             this.priority = priority;
@@ -640,6 +740,7 @@ public final class PatchedTicketRequest {
                     account,
                     contact,
                     parentTicket,
+                    accessLevel,
                     tags,
                     roles,
                     completedAt,

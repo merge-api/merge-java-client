@@ -58,7 +58,7 @@ public class AsyncRawRejectReasonsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RejectReason>>> list(
             RejectReasonsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/reject-reasons");
         if (request.getCreatedAfter().isPresent()) {
@@ -191,7 +191,7 @@ public class AsyncRawRejectReasonsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RejectReason>> retrieve(
             String id, RejectReasonsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/reject-reasons")
                 .addPathSegment(id);

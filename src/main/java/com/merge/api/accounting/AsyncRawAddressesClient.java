@@ -50,7 +50,7 @@ public class AsyncRawAddressesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Address>> retrieve(
             String id, AddressesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/addresses")
                 .addPathSegment(id);

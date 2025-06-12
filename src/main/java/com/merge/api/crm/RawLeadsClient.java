@@ -62,7 +62,7 @@ public class RawLeadsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Lead>> list(
             LeadsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/leads");
         if (request.getConvertedAccountId().isPresent()) {
@@ -204,7 +204,7 @@ public class RawLeadsClient {
      * Creates a <code>Lead</code> object with the given values.
      */
     public MergeApiHttpResponse<LeadResponse> create(LeadEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/leads");
         if (request.getIsDebugMode().isPresent()) {
@@ -270,7 +270,7 @@ public class RawLeadsClient {
      * Returns a <code>Lead</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Lead> retrieve(String id, LeadsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/leads")
                 .addPathSegment(id);
@@ -338,7 +338,7 @@ public class RawLeadsClient {
      * Returns metadata for <code>Lead</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/leads/meta/post")
                 .build();
@@ -391,7 +391,7 @@ public class RawLeadsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             LeadsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/leads/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -432,6 +432,10 @@ public class RawLeadsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

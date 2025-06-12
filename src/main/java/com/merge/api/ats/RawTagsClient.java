@@ -50,7 +50,7 @@ public class RawTagsClient {
      * Returns a list of <code>Tag</code> objects.
      */
     public MergeApiHttpResponse<SyncPagingIterable<Tag>> list(TagsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/tags");
         if (request.getCreatedAfter().isPresent()) {

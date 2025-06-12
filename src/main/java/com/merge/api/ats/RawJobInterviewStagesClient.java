@@ -52,7 +52,7 @@ public class RawJobInterviewStagesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<JobInterviewStage>> list(
             JobInterviewStagesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/job-interview-stages");
         if (request.getCreatedAfter().isPresent()) {
@@ -173,7 +173,7 @@ public class RawJobInterviewStagesClient {
      */
     public MergeApiHttpResponse<JobInterviewStage> retrieve(
             String id, JobInterviewStagesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/job-interview-stages")
                 .addPathSegment(id);

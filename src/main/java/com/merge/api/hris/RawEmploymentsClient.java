@@ -52,7 +52,7 @@ public class RawEmploymentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Employment>> list(
             EmploymentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employments");
         if (request.getCreatedAfter().isPresent()) {
@@ -188,7 +188,7 @@ public class RawEmploymentsClient {
      */
     public MergeApiHttpResponse<Employment> retrieve(
             String id, EmploymentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employments")
                 .addPathSegment(id);

@@ -46,7 +46,7 @@ public class AsyncRawWebhookReceiversClient {
      * Returns a list of <code>WebhookReceiver</code> objects.
      */
     public CompletableFuture<MergeApiHttpResponse<List<WebhookReceiver>>> list(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/webhook-receivers")
                 .build();
@@ -105,7 +105,7 @@ public class AsyncRawWebhookReceiversClient {
      */
     public CompletableFuture<MergeApiHttpResponse<WebhookReceiver>> create(
             WebhookReceiverRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/webhook-receivers")
                 .build();

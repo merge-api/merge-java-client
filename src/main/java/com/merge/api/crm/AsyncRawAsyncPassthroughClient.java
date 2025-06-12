@@ -46,7 +46,7 @@ public class AsyncRawAsyncPassthroughClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AsyncPassthroughReciept>> create(
             DataPassthroughRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/async-passthrough")
                 .build();
@@ -113,7 +113,7 @@ public class AsyncRawAsyncPassthroughClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AsyncPassthroughRetrieveResponse>> retrieve(
             String asyncPassthroughReceiptId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)

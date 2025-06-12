@@ -206,11 +206,6 @@ client.ats().activities().create(
 );
 ```
 
-## Staged Builders
-The generated builders all follow the staged builder pattern. Read more [here](https://immutables.github.io/immutable.html#staged-builder). 
-
-Staged builders only allow you to build the object once all required properties have been specified. For example, to build an `ApplicationEndpointRequest` the Merge SDK will require that you specify the `model` and `remoteUserId` properties. 
-
 ## Contributing
 
 While we value open-source contributions to this SDK, this library is generated programmatically.
@@ -220,3 +215,7 @@ a proof of concept, but know that we will not be able to merge it as-is. We sugg
 an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
+## Staged Builders
+The generated builders all follow the staged builder pattern. Read more [here](https://immutables.github.io/immutable.html#staged-builder). 
+
+Staged builders only allow you to build the object once all required properties have been specified. For example, to build an `ApplicationEndpointRequest` the Merge SDK will require that you specify the `model` and `remoteUserId` properties. 

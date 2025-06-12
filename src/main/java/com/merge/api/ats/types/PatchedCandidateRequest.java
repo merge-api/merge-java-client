@@ -340,6 +340,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -351,6 +354,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -362,6 +368,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate's current company.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -373,6 +382,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate's current title.</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -384,6 +396,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>When the most recent interaction with the candidate occurred.</p>
+         */
         @JsonSetter(value = "last_interaction_at", nulls = Nulls.SKIP)
         public Builder lastInteractionAt(Optional<OffsetDateTime> lastInteractionAt) {
             this.lastInteractionAt = lastInteractionAt;
@@ -395,6 +410,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not the candidate is private.</p>
+         */
         @JsonSetter(value = "is_private", nulls = Nulls.SKIP)
         public Builder isPrivate(Optional<Boolean> isPrivate) {
             this.isPrivate = isPrivate;
@@ -406,6 +424,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>Whether or not the candidate can be emailed.</p>
+         */
         @JsonSetter(value = "can_email", nulls = Nulls.SKIP)
         public Builder canEmail(Optional<Boolean> canEmail) {
             this.canEmail = canEmail;
@@ -417,6 +438,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate's locations.</p>
+         */
         @JsonSetter(value = "locations", nulls = Nulls.SKIP)
         public Builder locations(Optional<List<Optional<String>>> locations) {
             this.locations = locations;
@@ -461,6 +485,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Tag</code> names as strings.</p>
+         */
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public Builder tags(Optional<List<Optional<String>>> tags) {
             this.tags = tags;
@@ -472,6 +499,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Application</code> object IDs.</p>
+         */
         @JsonSetter(value = "applications", nulls = Nulls.SKIP)
         public Builder applications(Optional<List<Optional<String>>> applications) {
             this.applications = applications;
@@ -483,6 +513,9 @@ public final class PatchedCandidateRequest {
             return this;
         }
 
+        /**
+         * <p>Array of <code>Attachment</code> object IDs.</p>
+         */
         @JsonSetter(value = "attachments", nulls = Nulls.SKIP)
         public Builder attachments(Optional<List<Optional<String>>> attachments) {
             this.attachments = attachments;

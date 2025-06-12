@@ -131,6 +131,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -142,6 +145,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -153,6 +159,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The phone number.</p>
+         */
         @JsonSetter(value = "phone_number", nulls = Nulls.SKIP)
         public Builder phoneNumber(Optional<String> phoneNumber) {
             this.phoneNumber = phoneNumber;
@@ -164,6 +173,9 @@ public final class PhoneNumber {
             return this;
         }
 
+        /**
+         * <p>The phone number's type.</p>
+         */
         @JsonSetter(value = "phone_number_type", nulls = Nulls.SKIP)
         public Builder phoneNumberType(Optional<String> phoneNumberType) {
             this.phoneNumberType = phoneNumberType;

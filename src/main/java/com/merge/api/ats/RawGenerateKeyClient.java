@@ -40,7 +40,7 @@ public class RawGenerateKeyClient {
      * Create a remote key.
      */
     public MergeApiHttpResponse<RemoteKey> create(GenerateRemoteKeyRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/generate-key")
                 .build();

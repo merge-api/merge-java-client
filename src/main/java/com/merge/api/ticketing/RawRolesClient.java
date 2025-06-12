@@ -52,7 +52,7 @@ public class RawRolesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Role>> list(
             RolesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/roles");
         if (request.getCreatedAfter().isPresent()) {
@@ -164,7 +164,7 @@ public class RawRolesClient {
      * Returns a <code>Role</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Role> retrieve(String id, RolesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/roles")
                 .addPathSegment(id);

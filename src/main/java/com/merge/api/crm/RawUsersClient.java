@@ -59,7 +59,7 @@ public class RawUsersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<User>> list(
             UsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/users");
         if (request.getCreatedAfter().isPresent()) {
@@ -182,7 +182,7 @@ public class RawUsersClient {
      * Returns a <code>User</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<User> retrieve(String id, UsersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/users")
                 .addPathSegment(id);
@@ -247,7 +247,7 @@ public class RawUsersClient {
      */
     public MergeApiHttpResponse<Void> ignoreCreate(
             String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/users/ignore")
                 .addPathSegment(modelId)
@@ -306,7 +306,7 @@ public class RawUsersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             UsersRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/users/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -347,6 +347,10 @@ public class RawUsersClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

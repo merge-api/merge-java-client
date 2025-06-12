@@ -35,15 +35,15 @@ public final class TimeOff {
 
     private final Optional<TimeOffApprover> approver;
 
-    private final Optional<TimeOffStatusEnum> status;
+    private final Optional<TimeOffStatus> status;
 
     private final Optional<String> employeeNote;
 
-    private final Optional<UnitsEnum> units;
+    private final Optional<TimeOffUnits> units;
 
     private final Optional<Double> amount;
 
-    private final Optional<RequestTypeEnum> requestType;
+    private final Optional<TimeOffRequestType> requestType;
 
     private final Optional<OffsetDateTime> startTime;
 
@@ -64,11 +64,11 @@ public final class TimeOff {
             Optional<OffsetDateTime> modifiedAt,
             Optional<TimeOffEmployee> employee,
             Optional<TimeOffApprover> approver,
-            Optional<TimeOffStatusEnum> status,
+            Optional<TimeOffStatus> status,
             Optional<String> employeeNote,
-            Optional<UnitsEnum> units,
+            Optional<TimeOffUnits> units,
             Optional<Double> amount,
-            Optional<RequestTypeEnum> requestType,
+            Optional<TimeOffRequestType> requestType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<Boolean> remoteWasDeleted,
@@ -150,7 +150,7 @@ public final class TimeOff {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TimeOffStatusEnum> getStatus() {
+    public Optional<TimeOffStatus> getStatus() {
         return status;
     }
 
@@ -170,7 +170,7 @@ public final class TimeOff {
      * </ul>
      */
     @JsonProperty("units")
-    public Optional<UnitsEnum> getUnits() {
+    public Optional<TimeOffUnits> getUnits() {
         return units;
     }
 
@@ -194,7 +194,7 @@ public final class TimeOff {
      * </ul>
      */
     @JsonProperty("request_type")
-    public Optional<RequestTypeEnum> getRequestType() {
+    public Optional<TimeOffRequestType> getRequestType() {
         return requestType;
     }
 
@@ -306,15 +306,15 @@ public final class TimeOff {
 
         private Optional<TimeOffApprover> approver = Optional.empty();
 
-        private Optional<TimeOffStatusEnum> status = Optional.empty();
+        private Optional<TimeOffStatus> status = Optional.empty();
 
         private Optional<String> employeeNote = Optional.empty();
 
-        private Optional<UnitsEnum> units = Optional.empty();
+        private Optional<TimeOffUnits> units = Optional.empty();
 
         private Optional<Double> amount = Optional.empty();
 
-        private Optional<RequestTypeEnum> requestType = Optional.empty();
+        private Optional<TimeOffRequestType> requestType = Optional.empty();
 
         private Optional<OffsetDateTime> startTime = Optional.empty();
 
@@ -362,6 +362,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -373,6 +376,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -384,6 +390,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -395,6 +404,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The employee requesting time off.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<TimeOffEmployee> employee) {
             this.employee = employee;
@@ -406,6 +418,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The Merge ID of the employee with the ability to approve the time off request.</p>
+         */
         @JsonSetter(value = "approver", nulls = Nulls.SKIP)
         public Builder approver(Optional<TimeOffApprover> approver) {
             this.approver = approver;
@@ -417,17 +432,30 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The status of this time off request.</p>
+         * <ul>
+         * <li><code>REQUESTED</code> - REQUESTED</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>DECLINED</code> - DECLINED</li>
+         * <li><code>CANCELLED</code> - CANCELLED</li>
+         * <li><code>DELETED</code> - DELETED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TimeOffStatusEnum> status) {
+        public Builder status(Optional<TimeOffStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TimeOffStatusEnum status) {
+        public Builder status(TimeOffStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The employee note for this time off request.</p>
+         */
         @JsonSetter(value = "employee_note", nulls = Nulls.SKIP)
         public Builder employeeNote(Optional<String> employeeNote) {
             this.employeeNote = employeeNote;
@@ -439,17 +467,27 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The measurement that the third-party integration uses to count time requested.</p>
+         * <ul>
+         * <li><code>HOURS</code> - HOURS</li>
+         * <li><code>DAYS</code> - DAYS</li>
+         * </ul>
+         */
         @JsonSetter(value = "units", nulls = Nulls.SKIP)
-        public Builder units(Optional<UnitsEnum> units) {
+        public Builder units(Optional<TimeOffUnits> units) {
             this.units = units;
             return this;
         }
 
-        public Builder units(UnitsEnum units) {
+        public Builder units(TimeOffUnits units) {
             this.units = Optional.ofNullable(units);
             return this;
         }
 
+        /**
+         * <p>The time off quantity measured by the prescribed “units”.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Double> amount) {
             this.amount = amount;
@@ -461,17 +499,31 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The type of time off request.</p>
+         * <ul>
+         * <li><code>VACATION</code> - VACATION</li>
+         * <li><code>SICK</code> - SICK</li>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>JURY_DUTY</code> - JURY_DUTY</li>
+         * <li><code>VOLUNTEER</code> - VOLUNTEER</li>
+         * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
+         * </ul>
+         */
         @JsonSetter(value = "request_type", nulls = Nulls.SKIP)
-        public Builder requestType(Optional<RequestTypeEnum> requestType) {
+        public Builder requestType(Optional<TimeOffRequestType> requestType) {
             this.requestType = requestType;
             return this;
         }
 
-        public Builder requestType(RequestTypeEnum requestType) {
+        public Builder requestType(TimeOffRequestType requestType) {
             this.requestType = Optional.ofNullable(requestType);
             return this;
         }
 
+        /**
+         * <p>The day and time of the start of the time requested off.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -483,6 +535,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>The day and time of the end of the time requested off.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;
@@ -494,6 +549,9 @@ public final class TimeOff {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

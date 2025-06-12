@@ -72,7 +72,7 @@ public class AsyncRawAssociationTypesClient {
                     String customObjectClassId,
                     CustomObjectClassesAssociationTypesListRequest request,
                     RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -211,7 +211,7 @@ public class AsyncRawAssociationTypesClient {
                     String customObjectClassId,
                     CrmAssociationTypeEndpointRequest request,
                     RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -303,7 +303,7 @@ public class AsyncRawAssociationTypesClient {
             String id,
             CustomObjectClassesAssociationTypesRetrieveRequest request,
             RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
@@ -382,7 +382,7 @@ public class AsyncRawAssociationTypesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> customObjectClassesAssociationTypesMetaPostRetrieve(
             String customObjectClassId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)

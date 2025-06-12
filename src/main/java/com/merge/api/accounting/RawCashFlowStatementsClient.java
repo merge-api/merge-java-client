@@ -52,7 +52,7 @@ public class RawCashFlowStatementsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<CashFlowStatement>> list(
             CashFlowStatementsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/cash-flow-statements");
         if (request.getCompanyId().isPresent()) {
@@ -173,7 +173,7 @@ public class RawCashFlowStatementsClient {
      */
     public MergeApiHttpResponse<CashFlowStatement> retrieve(
             String id, CashFlowStatementsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/cash-flow-statements")
                 .addPathSegment(id);

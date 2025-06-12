@@ -35,7 +35,7 @@ public final class Earning {
 
     private final Optional<Double> amount;
 
-    private final Optional<EarningTypeEnum> type;
+    private final Optional<EarningType> type;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -52,7 +52,7 @@ public final class Earning {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> employeePayrollRun,
             Optional<Double> amount,
-            Optional<EarningTypeEnum> type,
+            Optional<EarningType> type,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -122,7 +122,7 @@ public final class Earning {
      * </ul>
      */
     @JsonProperty("type")
-    public Optional<EarningTypeEnum> getType() {
+    public Optional<EarningType> getType() {
         return type;
     }
 
@@ -206,7 +206,7 @@ public final class Earning {
 
         private Optional<Double> amount = Optional.empty();
 
-        private Optional<EarningTypeEnum> type = Optional.empty();
+        private Optional<EarningType> type = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -244,6 +244,9 @@ public final class Earning {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -255,6 +258,9 @@ public final class Earning {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -266,6 +272,9 @@ public final class Earning {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -288,6 +297,9 @@ public final class Earning {
             return this;
         }
 
+        /**
+         * <p>The amount earned.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Double> amount) {
             this.amount = amount;
@@ -299,17 +311,29 @@ public final class Earning {
             return this;
         }
 
+        /**
+         * <p>The type of earning.</p>
+         * <ul>
+         * <li><code>SALARY</code> - SALARY</li>
+         * <li><code>REIMBURSEMENT</code> - REIMBURSEMENT</li>
+         * <li><code>OVERTIME</code> - OVERTIME</li>
+         * <li><code>BONUS</code> - BONUS</li>
+         * </ul>
+         */
         @JsonSetter(value = "type", nulls = Nulls.SKIP)
-        public Builder type(Optional<EarningTypeEnum> type) {
+        public Builder type(Optional<EarningType> type) {
             this.type = type;
             return this;
         }
 
-        public Builder type(EarningTypeEnum type) {
+        public Builder type(EarningType type) {
             this.type = Optional.ofNullable(type);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

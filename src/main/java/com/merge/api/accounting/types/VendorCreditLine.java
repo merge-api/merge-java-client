@@ -42,6 +42,10 @@ public final class VendorCreditLine {
 
     private final Optional<String> company;
 
+    private final Optional<VendorCreditLineProject> project;
+
+    private final Optional<VendorCreditLineContact> contact;
+
     private final Optional<String> taxRate;
 
     private final Optional<String> exchangeRate;
@@ -61,6 +65,8 @@ public final class VendorCreditLine {
             Optional<String> description,
             Optional<VendorCreditLineAccount> account,
             Optional<String> company,
+            Optional<VendorCreditLineProject> project,
+            Optional<VendorCreditLineContact> contact,
             Optional<String> taxRate,
             Optional<String> exchangeRate,
             Optional<Boolean> remoteWasDeleted,
@@ -75,6 +81,8 @@ public final class VendorCreditLine {
         this.description = description;
         this.account = account;
         this.company = company;
+        this.project = project;
+        this.contact = contact;
         this.taxRate = taxRate;
         this.exchangeRate = exchangeRate;
         this.remoteWasDeleted = remoteWasDeleted;
@@ -158,6 +166,16 @@ public final class VendorCreditLine {
         return company;
     }
 
+    @JsonProperty("project")
+    public Optional<VendorCreditLineProject> getProject() {
+        return project;
+    }
+
+    @JsonProperty("contact")
+    public Optional<VendorCreditLineContact> getContact() {
+        return contact;
+    }
+
     /**
      * @return The tax rate that applies to this line item.
      */
@@ -204,6 +222,8 @@ public final class VendorCreditLine {
                 && description.equals(other.description)
                 && account.equals(other.account)
                 && company.equals(other.company)
+                && project.equals(other.project)
+                && contact.equals(other.contact)
                 && taxRate.equals(other.taxRate)
                 && exchangeRate.equals(other.exchangeRate)
                 && remoteWasDeleted.equals(other.remoteWasDeleted);
@@ -222,6 +242,8 @@ public final class VendorCreditLine {
                 this.description,
                 this.account,
                 this.company,
+                this.project,
+                this.contact,
                 this.taxRate,
                 this.exchangeRate,
                 this.remoteWasDeleted);
@@ -258,6 +280,10 @@ public final class VendorCreditLine {
 
         private Optional<String> company = Optional.empty();
 
+        private Optional<VendorCreditLineProject> project = Optional.empty();
+
+        private Optional<VendorCreditLineContact> contact = Optional.empty();
+
         private Optional<String> taxRate = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
@@ -280,6 +306,8 @@ public final class VendorCreditLine {
             description(other.getDescription());
             account(other.getAccount());
             company(other.getCompany());
+            project(other.getProject());
+            contact(other.getContact());
             taxRate(other.getTaxRate());
             exchangeRate(other.getExchangeRate());
             remoteWasDeleted(other.getRemoteWasDeleted());
@@ -297,6 +325,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -308,6 +339,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -319,6 +353,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -330,6 +367,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The full value of the credit.</p>
+         */
         @JsonSetter(value = "net_amount", nulls = Nulls.SKIP)
         public Builder netAmount(Optional<Double> netAmount) {
             this.netAmount = netAmount;
@@ -341,6 +381,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The line's associated tracking category.</p>
+         */
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<String> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -352,6 +395,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The vendor credit line item's associated tracking categories.</p>
+         */
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
         public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
@@ -363,6 +409,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The line's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -374,6 +423,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The line's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<VendorCreditLineAccount> account) {
             this.account = account;
@@ -385,6 +437,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The company the line belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -396,6 +451,31 @@ public final class VendorCreditLine {
             return this;
         }
 
+        @JsonSetter(value = "project", nulls = Nulls.SKIP)
+        public Builder project(Optional<VendorCreditLineProject> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(VendorCreditLineProject project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<VendorCreditLineContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(VendorCreditLineContact contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        /**
+         * <p>The tax rate that applies to this line item.</p>
+         */
         @JsonSetter(value = "tax_rate", nulls = Nulls.SKIP)
         public Builder taxRate(Optional<String> taxRate) {
             this.taxRate = taxRate;
@@ -407,6 +487,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>The vendor credit line item's exchange rate.</p>
+         */
         @JsonSetter(value = "exchange_rate", nulls = Nulls.SKIP)
         public Builder exchangeRate(Optional<String> exchangeRate) {
             this.exchangeRate = exchangeRate;
@@ -418,6 +501,9 @@ public final class VendorCreditLine {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -441,6 +527,8 @@ public final class VendorCreditLine {
                     description,
                     account,
                     company,
+                    project,
+                    contact,
                     taxRate,
                     exchangeRate,
                     remoteWasDeleted,

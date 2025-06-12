@@ -62,7 +62,7 @@ public class RawNotesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Note>> list(
             NotesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/notes");
         if (request.getAccountId().isPresent()) {
@@ -194,7 +194,7 @@ public class RawNotesClient {
      * Creates a <code>Note</code> object with the given values.
      */
     public MergeApiHttpResponse<NoteResponse> create(NoteEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/notes");
         if (request.getIsDebugMode().isPresent()) {
@@ -260,7 +260,7 @@ public class RawNotesClient {
      * Returns a <code>Note</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Note> retrieve(String id, NotesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/notes")
                 .addPathSegment(id);
@@ -328,7 +328,7 @@ public class RawNotesClient {
      * Returns metadata for <code>Note</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/notes/meta/post")
                 .build();
@@ -381,7 +381,7 @@ public class RawNotesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             NotesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/notes/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -422,6 +422,10 @@ public class RawNotesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

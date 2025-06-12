@@ -36,7 +36,7 @@ public class RawAvailableActionsClient {
      * Returns a list of models and actions available for an account.
      */
     public MergeApiHttpResponse<AvailableActions> retrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/available-actions")
                 .build();

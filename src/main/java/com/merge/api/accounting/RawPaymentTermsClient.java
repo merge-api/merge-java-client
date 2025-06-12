@@ -52,7 +52,7 @@ public class RawPaymentTermsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<PaymentTerm>> list(
             PaymentTermsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payment-terms");
         if (request.getCursor().isPresent()) {
@@ -146,7 +146,7 @@ public class RawPaymentTermsClient {
      */
     public MergeApiHttpResponse<PaymentTerm> retrieve(
             String id, PaymentTermsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payment-terms")
                 .addPathSegment(id);

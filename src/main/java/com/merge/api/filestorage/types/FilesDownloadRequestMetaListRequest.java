@@ -20,27 +20,63 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FilesDownloadRequestMetaListRequest.Builder.class)
 public final class FilesDownloadRequestMetaListRequest {
+    private final Optional<String> createdAfter;
+
+    private final Optional<String> createdBefore;
+
     private final Optional<String> cursor;
 
     private final Optional<Boolean> includeDeletedData;
 
-    private final Optional<String> mimeType;
+    private final Optional<String> mimeTypes;
+
+    private final Optional<String> modifiedAfter;
+
+    private final Optional<String> modifiedBefore;
+
+    private final Optional<FilesDownloadRequestMetaListRequestOrderBy> orderBy;
 
     private final Optional<Integer> pageSize;
 
     private final Map<String, Object> additionalProperties;
 
     private FilesDownloadRequestMetaListRequest(
+            Optional<String> createdAfter,
+            Optional<String> createdBefore,
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
-            Optional<String> mimeType,
+            Optional<String> mimeTypes,
+            Optional<String> modifiedAfter,
+            Optional<String> modifiedBefore,
+            Optional<FilesDownloadRequestMetaListRequestOrderBy> orderBy,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
+        this.createdAfter = createdAfter;
+        this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
-        this.mimeType = mimeType;
+        this.mimeTypes = mimeTypes;
+        this.modifiedAfter = modifiedAfter;
+        this.modifiedBefore = modifiedBefore;
+        this.orderBy = orderBy;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return If provided, will only return objects created after this datetime.
+     */
+    @JsonProperty("created_after")
+    public Optional<String> getCreatedAfter() {
+        return createdAfter;
+    }
+
+    /**
+     * @return If provided, will only return objects created before this datetime.
+     */
+    @JsonProperty("created_before")
+    public Optional<String> getCreatedBefore() {
+        return createdBefore;
     }
 
     /**
@@ -60,11 +96,35 @@ public final class FilesDownloadRequestMetaListRequest {
     }
 
     /**
-     * @return If provided, specifies the export format of the files to be downloaded. For information on supported export formats, please refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.
+     * @return A comma-separated list of preferred MIME types in order of priority. If supported by the third-party provider, the file(s) will be returned in the first supported MIME type from the list. The default MIME type is PDF. To see supported MIME types by file type, refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.
      */
-    @JsonProperty("mime_type")
-    public Optional<String> getMimeType() {
-        return mimeType;
+    @JsonProperty("mime_types")
+    public Optional<String> getMimeTypes() {
+        return mimeTypes;
+    }
+
+    /**
+     * @return If provided, will only return objects modified after this datetime.
+     */
+    @JsonProperty("modified_after")
+    public Optional<String> getModifiedAfter() {
+        return modifiedAfter;
+    }
+
+    /**
+     * @return If provided, will only return objects modified before this datetime.
+     */
+    @JsonProperty("modified_before")
+    public Optional<String> getModifiedBefore() {
+        return modifiedBefore;
+    }
+
+    /**
+     * @return Overrides the default ordering for this endpoint. Possible values include: created_at, -created_at, modified_at, -modified_at.
+     */
+    @JsonProperty("order_by")
+    public Optional<FilesDownloadRequestMetaListRequestOrderBy> getOrderBy() {
+        return orderBy;
     }
 
     /**
@@ -88,15 +148,29 @@ public final class FilesDownloadRequestMetaListRequest {
     }
 
     private boolean equalTo(FilesDownloadRequestMetaListRequest other) {
-        return cursor.equals(other.cursor)
+        return createdAfter.equals(other.createdAfter)
+                && createdBefore.equals(other.createdBefore)
+                && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
-                && mimeType.equals(other.mimeType)
+                && mimeTypes.equals(other.mimeTypes)
+                && modifiedAfter.equals(other.modifiedAfter)
+                && modifiedBefore.equals(other.modifiedBefore)
+                && orderBy.equals(other.orderBy)
                 && pageSize.equals(other.pageSize);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.cursor, this.includeDeletedData, this.mimeType, this.pageSize);
+        return Objects.hash(
+                this.createdAfter,
+                this.createdBefore,
+                this.cursor,
+                this.includeDeletedData,
+                this.mimeTypes,
+                this.modifiedAfter,
+                this.modifiedBefore,
+                this.orderBy,
+                this.pageSize);
     }
 
     @java.lang.Override
@@ -110,11 +184,21 @@ public final class FilesDownloadRequestMetaListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> createdAfter = Optional.empty();
+
+        private Optional<String> createdBefore = Optional.empty();
+
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
-        private Optional<String> mimeType = Optional.empty();
+        private Optional<String> mimeTypes = Optional.empty();
+
+        private Optional<String> modifiedAfter = Optional.empty();
+
+        private Optional<String> modifiedBefore = Optional.empty();
+
+        private Optional<FilesDownloadRequestMetaListRequestOrderBy> orderBy = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
 
@@ -124,13 +208,49 @@ public final class FilesDownloadRequestMetaListRequest {
         private Builder() {}
 
         public Builder from(FilesDownloadRequestMetaListRequest other) {
+            createdAfter(other.getCreatedAfter());
+            createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
-            mimeType(other.getMimeType());
+            mimeTypes(other.getMimeTypes());
+            modifiedAfter(other.getModifiedAfter());
+            modifiedBefore(other.getModifiedBefore());
+            orderBy(other.getOrderBy());
             pageSize(other.getPageSize());
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
+        @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
+        public Builder createdAfter(Optional<String> createdAfter) {
+            this.createdAfter = createdAfter;
+            return this;
+        }
+
+        public Builder createdAfter(String createdAfter) {
+            this.createdAfter = Optional.ofNullable(createdAfter);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
+        @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
+        public Builder createdBefore(Optional<String> createdBefore) {
+            this.createdBefore = createdBefore;
+            return this;
+        }
+
+        public Builder createdBefore(String createdBefore) {
+            this.createdBefore = Optional.ofNullable(createdBefore);
+            return this;
+        }
+
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -142,6 +262,9 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -153,17 +276,65 @@ public final class FilesDownloadRequestMetaListRequest {
             return this;
         }
 
-        @JsonSetter(value = "mime_type", nulls = Nulls.SKIP)
-        public Builder mimeType(Optional<String> mimeType) {
-            this.mimeType = mimeType;
+        /**
+         * <p>A comma-separated list of preferred MIME types in order of priority. If supported by the third-party provider, the file(s) will be returned in the first supported MIME type from the list. The default MIME type is PDF. To see supported MIME types by file type, refer to our &lt;a href='https://help.merge.dev/en/articles/8615316-file-export-and-download-specification' target='_blank'&gt;export format help center article&lt;/a&gt;.</p>
+         */
+        @JsonSetter(value = "mime_types", nulls = Nulls.SKIP)
+        public Builder mimeTypes(Optional<String> mimeTypes) {
+            this.mimeTypes = mimeTypes;
             return this;
         }
 
-        public Builder mimeType(String mimeType) {
-            this.mimeType = Optional.ofNullable(mimeType);
+        public Builder mimeTypes(String mimeTypes) {
+            this.mimeTypes = Optional.ofNullable(mimeTypes);
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects modified after this datetime.</p>
+         */
+        @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
+        public Builder modifiedAfter(Optional<String> modifiedAfter) {
+            this.modifiedAfter = modifiedAfter;
+            return this;
+        }
+
+        public Builder modifiedAfter(String modifiedAfter) {
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return objects modified before this datetime.</p>
+         */
+        @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
+        public Builder modifiedBefore(Optional<String> modifiedBefore) {
+            this.modifiedBefore = modifiedBefore;
+            return this;
+        }
+
+        public Builder modifiedBefore(String modifiedBefore) {
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
+            return this;
+        }
+
+        /**
+         * <p>Overrides the default ordering for this endpoint. Possible values include: created_at, -created_at, modified_at, -modified_at.</p>
+         */
+        @JsonSetter(value = "order_by", nulls = Nulls.SKIP)
+        public Builder orderBy(Optional<FilesDownloadRequestMetaListRequestOrderBy> orderBy) {
+            this.orderBy = orderBy;
+            return this;
+        }
+
+        public Builder orderBy(FilesDownloadRequestMetaListRequestOrderBy orderBy) {
+            this.orderBy = Optional.ofNullable(orderBy);
+            return this;
+        }
+
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -177,7 +348,16 @@ public final class FilesDownloadRequestMetaListRequest {
 
         public FilesDownloadRequestMetaListRequest build() {
             return new FilesDownloadRequestMetaListRequest(
-                    cursor, includeDeletedData, mimeType, pageSize, additionalProperties);
+                    createdAfter,
+                    createdBefore,
+                    cursor,
+                    includeDeletedData,
+                    mimeTypes,
+                    modifiedAfter,
+                    modifiedBefore,
+                    orderBy,
+                    pageSize,
+                    additionalProperties);
         }
     }
 }

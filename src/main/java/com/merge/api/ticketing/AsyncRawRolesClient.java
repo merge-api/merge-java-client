@@ -57,7 +57,7 @@ public class AsyncRawRolesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Role>>> list(
             RolesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/roles");
         if (request.getCreatedAfter().isPresent()) {
@@ -189,7 +189,7 @@ public class AsyncRawRolesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Role>> retrieve(
             String id, RolesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/roles")
                 .addPathSegment(id);
