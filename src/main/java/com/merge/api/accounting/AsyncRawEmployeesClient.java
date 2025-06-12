@@ -57,7 +57,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Employee>>> list(
             EmployeesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/employees");
         if (request.getCursor().isPresent()) {
@@ -170,7 +170,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Employee>> retrieve(
             String id, EmployeesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/employees")
                 .addPathSegment(id);

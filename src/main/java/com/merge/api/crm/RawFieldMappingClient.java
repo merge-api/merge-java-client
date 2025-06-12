@@ -58,7 +58,7 @@ public class RawFieldMappingClient {
      */
     public MergeApiHttpResponse<FieldMappingApiInstanceResponse> fieldMappingsRetrieve(
             FieldMappingsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/field-mappings");
         if (request.getExcludeRemoteFieldMetadata().isPresent()) {
@@ -110,7 +110,7 @@ public class RawFieldMappingClient {
      */
     public MergeApiHttpResponse<FieldMappingInstanceResponse> fieldMappingsCreate(
             CreateFieldMappingRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/field-mappings");
         if (request.getExcludeRemoteFieldMetadata().isPresent()) {
@@ -175,7 +175,7 @@ public class RawFieldMappingClient {
      */
     public MergeApiHttpResponse<FieldMappingInstanceResponse> fieldMappingsDestroy(
             String fieldMappingId, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
@@ -230,7 +230,7 @@ public class RawFieldMappingClient {
      */
     public MergeApiHttpResponse<FieldMappingInstanceResponse> fieldMappingsPartialUpdate(
             String fieldMappingId, PatchedEditFieldMappingRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
@@ -290,7 +290,7 @@ public class RawFieldMappingClient {
      */
     public MergeApiHttpResponse<RemoteFieldApiResponse> remoteFieldsRetrieve(
             RemoteFieldsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/remote-fields");
         if (request.getCommonModels().isPresent()) {
@@ -344,7 +344,7 @@ public class RawFieldMappingClient {
      * Get all organization-wide Target Fields, this will not include any Linked Account specific Target Fields. Organization-wide Target Fields are additional fields appended to the Merge Common Model for all Linked Accounts in a category. <a href="https://docs.merge.dev/supplemental-data/field-mappings/target-fields/">Learn more</a>.
      */
     public MergeApiHttpResponse<ExternalTargetFieldApiResponse> targetFieldsRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/target-fields")
                 .build();

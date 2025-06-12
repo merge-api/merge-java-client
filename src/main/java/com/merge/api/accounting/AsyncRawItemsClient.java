@@ -4,11 +4,16 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.Item;
+import com.merge.api.accounting.types.ItemEndpointRequest;
+import com.merge.api.accounting.types.ItemResponse;
 import com.merge.api.accounting.types.ItemsListRequest;
 import com.merge.api.accounting.types.ItemsRetrieveRequest;
+import com.merge.api.accounting.types.MetaResponse;
 import com.merge.api.accounting.types.PaginatedItemList;
+import com.merge.api.accounting.types.PatchedItemEndpointRequest;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
+import com.merge.api.core.MediaTypes;
 import com.merge.api.core.MergeApiHttpResponse;
 import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
@@ -17,7 +22,9 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
@@ -27,6 +34,7 @@ import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.jetbrains.annotations.NotNull;
@@ -57,7 +65,7 @@ public class AsyncRawItemsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Item>>> list(
             ItemsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/items");
         if (request.getCompanyId().isPresent()) {
@@ -187,6 +195,80 @@ public class AsyncRawItemsClient {
     }
 
     /**
+     * Creates an <code>Item</code> object with the given values.
+     */
+    public CompletableFuture<MergeApiHttpResponse<ItemResponse>> create(ItemEndpointRequest request) {
+        return create(request, null);
+    }
+
+    /**
+     * Creates an <code>Item</code> object with the given values.
+     */
+    public CompletableFuture<MergeApiHttpResponse<ItemResponse>> create(
+            ItemEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/items");
+        if (request.getIsDebugMode().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get().toString(), false);
+        }
+        if (request.getRunAsync().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "run_async", request.getRunAsync().get().toString(), false);
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("model", request.getModel());
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("POST", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<ItemResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ItemResponse.class),
+                                response));
+                        return;
+                    }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(),
+                            response.code(),
+                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                            response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
      * Returns an <code>Item</code> object with the given <code>id</code>.
      */
     public CompletableFuture<MergeApiHttpResponse<Item>> retrieve(String id) {
@@ -205,7 +287,7 @@ public class AsyncRawItemsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Item>> retrieve(
             String id, ItemsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/items")
                 .addPathSegment(id);
@@ -254,6 +336,198 @@ public class AsyncRawItemsClient {
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Item.class), response));
+                        return;
+                    }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(),
+                            response.code(),
+                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                            response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Updates an <code>Item</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<MergeApiHttpResponse<ItemResponse>> partialUpdate(
+            String id, PatchedItemEndpointRequest request) {
+        return partialUpdate(id, request, null);
+    }
+
+    /**
+     * Updates an <code>Item</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<MergeApiHttpResponse<ItemResponse>> partialUpdate(
+            String id, PatchedItemEndpointRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/items")
+                .addPathSegment(id);
+        if (request.getIsDebugMode().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get().toString(), false);
+        }
+        if (request.getRunAsync().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "run_async", request.getRunAsync().get().toString(), false);
+        }
+        Map<String, Object> properties = new HashMap<>();
+        properties.put("model", request.getModel());
+        RequestBody body;
+        try {
+            body = RequestBody.create(
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("PATCH", body)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<ItemResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), ItemResponse.class),
+                                response));
+                        return;
+                    }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(),
+                            response.code(),
+                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                            response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> PATCHs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(String id) {
+        return metaPatchRetrieve(id, null);
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> PATCHs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(
+            String id, RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/items/meta/patch")
+                .addPathSegment(id)
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<MetaResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class),
+                                response));
+                        return;
+                    }
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(),
+                            response.code(),
+                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
+                            response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> POSTs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve() {
+        return metaPostRetrieve(null);
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> POSTs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("accounting/v1/items/meta/post")
+                .build();
+        Request okhttpRequest = new Request.Builder()
+                .url(httpUrl)
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Content-Type", "application/json")
+                .addHeader("Accept", "application/json")
+                .build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<MetaResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class),
+                                response));
                         return;
                     }
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";

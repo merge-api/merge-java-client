@@ -52,7 +52,7 @@ public class RawTrackingCategoriesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<TrackingCategory>> list(
             TrackingCategoriesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/tracking-categories");
         if (request.getCategoryType().isPresent()) {
@@ -193,7 +193,7 @@ public class RawTrackingCategoriesClient {
      */
     public MergeApiHttpResponse<TrackingCategory> retrieve(
             String id, TrackingCategoriesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/tracking-categories")
                 .addPathSegment(id);

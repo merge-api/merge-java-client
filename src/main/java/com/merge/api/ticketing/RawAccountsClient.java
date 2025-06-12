@@ -52,7 +52,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Account>> list(
             AccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/accounts");
         if (request.getCreatedAfter().isPresent()) {
@@ -165,7 +165,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<Account> retrieve(
             String id, AccountsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/accounts")
                 .addPathSegment(id);

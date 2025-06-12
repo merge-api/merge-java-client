@@ -65,7 +65,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<AccountingAttachment>>> list(
             AttachmentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/attachments");
         if (request.getCompanyId().isPresent()) {
@@ -197,7 +197,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountingAttachmentResponse>> create(
             AccountingAttachmentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/attachments");
         if (request.getIsDebugMode().isPresent()) {
@@ -280,7 +280,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountingAttachment>> retrieve(
             String id, AttachmentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/attachments")
                 .addPathSegment(id);
@@ -351,7 +351,7 @@ public class AsyncRawAttachmentsClient {
      * Returns metadata for <code>AccountingAttachment</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/attachments/meta/post")
                 .build();

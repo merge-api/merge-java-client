@@ -51,7 +51,7 @@ public class RawAuditTrailClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<AuditLogEvent>> list(
             AuditTrailListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/audit-trail");
         if (request.getCursor().isPresent()) {

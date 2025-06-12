@@ -43,7 +43,7 @@ public final class Offer {
 
     private final Optional<OffsetDateTime> startDate;
 
-    private final Optional<OfferStatusEnum> status;
+    private final Optional<OfferStatus> status;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -64,7 +64,7 @@ public final class Offer {
             Optional<OffsetDateTime> closedAt,
             Optional<OffsetDateTime> sentAt,
             Optional<OffsetDateTime> startDate,
-            Optional<OfferStatusEnum> status,
+            Optional<OfferStatus> status,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -178,7 +178,7 @@ public final class Offer {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<OfferStatusEnum> getStatus() {
+    public Optional<OfferStatus> getStatus() {
         return status;
     }
 
@@ -278,7 +278,7 @@ public final class Offer {
 
         private Optional<OffsetDateTime> startDate = Optional.empty();
 
-        private Optional<OfferStatusEnum> status = Optional.empty();
+        private Optional<OfferStatus> status = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -320,6 +320,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -331,6 +334,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -342,6 +348,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -353,6 +362,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The application who is receiving the offer.</p>
+         */
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
         public Builder application(Optional<OfferApplication> application) {
             this.application = application;
@@ -364,6 +376,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The user who created the offer.</p>
+         */
         @JsonSetter(value = "creator", nulls = Nulls.SKIP)
         public Builder creator(Optional<OfferCreator> creator) {
             this.creator = creator;
@@ -375,6 +390,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>When the third party's offer was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -386,6 +404,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>When the offer was closed.</p>
+         */
         @JsonSetter(value = "closed_at", nulls = Nulls.SKIP)
         public Builder closedAt(Optional<OffsetDateTime> closedAt) {
             this.closedAt = closedAt;
@@ -397,6 +418,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>When the offer was sent.</p>
+         */
         @JsonSetter(value = "sent_at", nulls = Nulls.SKIP)
         public Builder sentAt(Optional<OffsetDateTime> sentAt) {
             this.sentAt = sentAt;
@@ -408,6 +432,9 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The employment start date on the offer.</p>
+         */
         @JsonSetter(value = "start_date", nulls = Nulls.SKIP)
         public Builder startDate(Optional<OffsetDateTime> startDate) {
             this.startDate = startDate;
@@ -419,17 +446,34 @@ public final class Offer {
             return this;
         }
 
+        /**
+         * <p>The offer's status.</p>
+         * <ul>
+         * <li><code>DRAFT</code> - DRAFT</li>
+         * <li><code>APPROVAL-SENT</code> - APPROVAL-SENT</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>SENT</code> - SENT</li>
+         * <li><code>SENT-MANUALLY</code> - SENT-MANUALLY</li>
+         * <li><code>OPENED</code> - OPENED</li>
+         * <li><code>DENIED</code> - DENIED</li>
+         * <li><code>SIGNED</code> - SIGNED</li>
+         * <li><code>DEPRECATED</code> - DEPRECATED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<OfferStatusEnum> status) {
+        public Builder status(Optional<OfferStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(OfferStatusEnum status) {
+        public Builder status(OfferStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

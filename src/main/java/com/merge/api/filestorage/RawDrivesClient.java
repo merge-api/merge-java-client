@@ -52,7 +52,7 @@ public class RawDrivesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Drive>> list(
             DrivesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/drives");
         if (request.getCreatedAfter().isPresent()) {
@@ -169,7 +169,7 @@ public class RawDrivesClient {
      */
     public MergeApiHttpResponse<Drive> retrieve(
             String id, DrivesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/drives")
                 .addPathSegment(id);

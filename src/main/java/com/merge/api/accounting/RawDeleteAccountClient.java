@@ -36,7 +36,7 @@ public class RawDeleteAccountClient {
      * Delete a linked account.
      */
     public MergeApiHttpResponse<Void> delete(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/delete-account")
                 .build();

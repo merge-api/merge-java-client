@@ -37,7 +37,7 @@ public final class JobPosting {
 
     private final Optional<JobPostingJob> job;
 
-    private final Optional<JobPostingStatusEnum> status;
+    private final Optional<JobPostingStatus> status;
 
     private final Optional<String> content;
 
@@ -63,7 +63,7 @@ public final class JobPosting {
             Optional<String> title,
             Optional<List<JobPostingJobPostingUrlsItem>> jobPostingUrls,
             Optional<JobPostingJob> job,
-            Optional<JobPostingStatusEnum> status,
+            Optional<JobPostingStatus> status,
             Optional<String> content,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -154,7 +154,7 @@ public final class JobPosting {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<JobPostingStatusEnum> getStatus() {
+    public Optional<JobPostingStatus> getStatus() {
         return status;
     }
 
@@ -282,7 +282,7 @@ public final class JobPosting {
 
         private Optional<JobPostingJob> job = Optional.empty();
 
-        private Optional<JobPostingStatusEnum> status = Optional.empty();
+        private Optional<JobPostingStatus> status = Optional.empty();
 
         private Optional<String> content = Optional.empty();
 
@@ -333,6 +333,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -344,6 +347,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -355,6 +361,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -366,6 +375,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The job posting’s title.</p>
+         */
         @JsonSetter(value = "title", nulls = Nulls.SKIP)
         public Builder title(Optional<String> title) {
             this.title = title;
@@ -377,6 +389,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The Url object is used to represent hyperlinks for a candidate to apply to a given job.</p>
+         */
         @JsonSetter(value = "job_posting_urls", nulls = Nulls.SKIP)
         public Builder jobPostingUrls(Optional<List<JobPostingJobPostingUrlsItem>> jobPostingUrls) {
             this.jobPostingUrls = jobPostingUrls;
@@ -388,6 +403,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>ID of <code>Job</code> object for this <code>JobPosting</code>.</p>
+         */
         @JsonSetter(value = "job", nulls = Nulls.SKIP)
         public Builder job(Optional<JobPostingJob> job) {
             this.job = job;
@@ -399,17 +417,30 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>The job posting's status.</p>
+         * <ul>
+         * <li><code>PUBLISHED</code> - PUBLISHED</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * <li><code>DRAFT</code> - DRAFT</li>
+         * <li><code>INTERNAL</code> - INTERNAL</li>
+         * <li><code>PENDING</code> - PENDING</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<JobPostingStatusEnum> status) {
+        public Builder status(Optional<JobPostingStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(JobPostingStatusEnum status) {
+        public Builder status(JobPostingStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The job posting’s content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -421,6 +452,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>When the third party's job posting was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -432,6 +466,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>When the third party's job posting was updated.</p>
+         */
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
             this.remoteUpdatedAt = remoteUpdatedAt;
@@ -443,6 +480,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>Indicates whether the job posting is internal or external.</p>
+         */
         @JsonSetter(value = "is_internal", nulls = Nulls.SKIP)
         public Builder isInternal(Optional<Boolean> isInternal) {
             this.isInternal = isInternal;
@@ -454,6 +494,9 @@ public final class JobPosting {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

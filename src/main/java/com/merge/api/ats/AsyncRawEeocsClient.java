@@ -57,7 +57,7 @@ public class AsyncRawEeocsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Eeoc>>> list(
             EeocsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/eeocs");
         if (request.getCandidateId().isPresent()) {
@@ -208,7 +208,7 @@ public class AsyncRawEeocsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Eeoc>> retrieve(
             String id, EeocsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/eeocs")
                 .addPathSegment(id);

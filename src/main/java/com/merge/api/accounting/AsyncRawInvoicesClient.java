@@ -69,7 +69,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Invoice>>> list(
             InvoicesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices");
         if (request.getCompanyId().isPresent()) {
@@ -249,7 +249,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<InvoiceResponse>> create(
             InvoiceEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices");
         if (request.getIsDebugMode().isPresent()) {
@@ -330,7 +330,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Invoice>> retrieve(
             String id, InvoicesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices")
                 .addPathSegment(id);
@@ -421,7 +421,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<InvoiceResponse>> partialUpdate(
             String id, PatchedInvoiceEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices")
                 .addPathSegment(id);
@@ -507,7 +507,7 @@ public class AsyncRawInvoicesClient {
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>>
             lineItemsRemoteFieldClassesList(
                     InvoicesLineItemsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices/line-items/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -541,6 +541,10 @@ public class AsyncRawInvoicesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -619,7 +623,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(
             String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices/meta/patch")
                 .addPathSegment(id)
@@ -677,7 +681,7 @@ public class AsyncRawInvoicesClient {
      * Returns metadata for <code>Invoice</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices/meta/post")
                 .build();
@@ -744,7 +748,7 @@ public class AsyncRawInvoicesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>> remoteFieldClassesList(
             InvoicesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/invoices/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -778,6 +782,10 @@ public class AsyncRawInvoicesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

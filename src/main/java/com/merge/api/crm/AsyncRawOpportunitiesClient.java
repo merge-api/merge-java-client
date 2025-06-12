@@ -69,7 +69,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Opportunity>>> list(
             OpportunitiesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities");
         if (request.getAccountId().isPresent()) {
@@ -236,7 +236,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<OpportunityResponse>> create(
             OpportunityEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities");
         if (request.getIsDebugMode().isPresent()) {
@@ -318,7 +318,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Opportunity>> retrieve(
             String id, OpportunitiesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities")
                 .addPathSegment(id);
@@ -410,7 +410,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<OpportunityResponse>> partialUpdate(
             String id, PatchedOpportunityEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities")
                 .addPathSegment(id);
@@ -485,7 +485,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPatchRetrieve(
             String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities/meta/patch")
                 .addPathSegment(id)
@@ -543,7 +543,7 @@ public class AsyncRawOpportunitiesClient {
      * Returns metadata for <code>Opportunity</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities/meta/post")
                 .build();
@@ -610,7 +610,7 @@ public class AsyncRawOpportunitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>> remoteFieldClassesList(
             OpportunitiesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/opportunities/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -651,6 +651,10 @@ public class AsyncRawOpportunitiesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

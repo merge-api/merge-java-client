@@ -32,7 +32,7 @@ public final class ContactRequest {
 
     private final Optional<String> taxNumber;
 
-    private final Optional<Status7D1Enum> status;
+    private final Optional<ContactRequestStatus> status;
 
     private final Optional<String> currency;
 
@@ -56,7 +56,7 @@ public final class ContactRequest {
             Optional<Boolean> isCustomer,
             Optional<String> emailAddress,
             Optional<String> taxNumber,
-            Optional<Status7D1Enum> status,
+            Optional<ContactRequestStatus> status,
             Optional<String> currency,
             Optional<String> company,
             Optional<List<Optional<ContactRequestAddressesItem>>> addresses,
@@ -129,7 +129,7 @@ public final class ContactRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<Status7D1Enum> getStatus() {
+    public Optional<ContactRequestStatus> getStatus() {
         return status;
     }
 
@@ -246,7 +246,7 @@ public final class ContactRequest {
 
         private Optional<String> taxNumber = Optional.empty();
 
-        private Optional<Status7D1Enum> status = Optional.empty();
+        private Optional<ContactRequestStatus> status = Optional.empty();
 
         private Optional<String> currency = Optional.empty();
 
@@ -284,6 +284,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -295,6 +298,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>Whether the contact is a supplier.</p>
+         */
         @JsonSetter(value = "is_supplier", nulls = Nulls.SKIP)
         public Builder isSupplier(Optional<Boolean> isSupplier) {
             this.isSupplier = isSupplier;
@@ -306,6 +312,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>Whether the contact is a customer.</p>
+         */
         @JsonSetter(value = "is_customer", nulls = Nulls.SKIP)
         public Builder isCustomer(Optional<Boolean> isCustomer) {
             this.isCustomer = isCustomer;
@@ -317,6 +326,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's email address.</p>
+         */
         @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
         public Builder emailAddress(Optional<String> emailAddress) {
             this.emailAddress = emailAddress;
@@ -328,6 +340,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's tax number.</p>
+         */
         @JsonSetter(value = "tax_number", nulls = Nulls.SKIP)
         public Builder taxNumber(Optional<String> taxNumber) {
             this.taxNumber = taxNumber;
@@ -339,17 +354,27 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The contact's status</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status7D1Enum> status) {
+        public Builder status(Optional<ContactRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status7D1Enum status) {
+        public Builder status(ContactRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The currency the contact's transactions are in.</p>
+         */
         @JsonSetter(value = "currency", nulls = Nulls.SKIP)
         public Builder currency(Optional<String> currency) {
             this.currency = currency;
@@ -361,6 +386,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p>The company the contact belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<String> company) {
             this.company = company;
@@ -372,6 +400,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p><code>Address</code> object IDs for the given <code>Contacts</code> object.</p>
+         */
         @JsonSetter(value = "addresses", nulls = Nulls.SKIP)
         public Builder addresses(Optional<List<Optional<ContactRequestAddressesItem>>> addresses) {
             this.addresses = addresses;
@@ -383,6 +414,9 @@ public final class ContactRequest {
             return this;
         }
 
+        /**
+         * <p><code>AccountingPhoneNumber</code> object for the given <code>Contacts</code> object.</p>
+         */
         @JsonSetter(value = "phone_numbers", nulls = Nulls.SKIP)
         public Builder phoneNumbers(Optional<List<AccountingPhoneNumberRequest>> phoneNumbers) {
             this.phoneNumbers = phoneNumbers;

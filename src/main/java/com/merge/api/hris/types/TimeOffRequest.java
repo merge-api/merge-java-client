@@ -26,15 +26,15 @@ public final class TimeOffRequest {
 
     private final Optional<TimeOffRequestApprover> approver;
 
-    private final Optional<TimeOffStatusEnum> status;
+    private final Optional<TimeOffRequestStatus> status;
 
     private final Optional<String> employeeNote;
 
-    private final Optional<UnitsEnum> units;
+    private final Optional<TimeOffRequestUnits> units;
 
     private final Optional<Double> amount;
 
-    private final Optional<RequestTypeEnum> requestType;
+    private final Optional<TimeOffRequestRequestType> requestType;
 
     private final Optional<OffsetDateTime> startTime;
 
@@ -49,11 +49,11 @@ public final class TimeOffRequest {
     private TimeOffRequest(
             Optional<TimeOffRequestEmployee> employee,
             Optional<TimeOffRequestApprover> approver,
-            Optional<TimeOffStatusEnum> status,
+            Optional<TimeOffRequestStatus> status,
             Optional<String> employeeNote,
-            Optional<UnitsEnum> units,
+            Optional<TimeOffRequestUnits> units,
             Optional<Double> amount,
-            Optional<RequestTypeEnum> requestType,
+            Optional<TimeOffRequestRequestType> requestType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -100,7 +100,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TimeOffStatusEnum> getStatus() {
+    public Optional<TimeOffRequestStatus> getStatus() {
         return status;
     }
 
@@ -120,7 +120,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("units")
-    public Optional<UnitsEnum> getUnits() {
+    public Optional<TimeOffRequestUnits> getUnits() {
         return units;
     }
 
@@ -144,7 +144,7 @@ public final class TimeOffRequest {
      * </ul>
      */
     @JsonProperty("request_type")
-    public Optional<RequestTypeEnum> getRequestType() {
+    public Optional<TimeOffRequestRequestType> getRequestType() {
         return requestType;
     }
 
@@ -230,15 +230,15 @@ public final class TimeOffRequest {
 
         private Optional<TimeOffRequestApprover> approver = Optional.empty();
 
-        private Optional<TimeOffStatusEnum> status = Optional.empty();
+        private Optional<TimeOffRequestStatus> status = Optional.empty();
 
         private Optional<String> employeeNote = Optional.empty();
 
-        private Optional<UnitsEnum> units = Optional.empty();
+        private Optional<TimeOffRequestUnits> units = Optional.empty();
 
         private Optional<Double> amount = Optional.empty();
 
-        private Optional<RequestTypeEnum> requestType = Optional.empty();
+        private Optional<TimeOffRequestRequestType> requestType = Optional.empty();
 
         private Optional<OffsetDateTime> startTime = Optional.empty();
 
@@ -268,6 +268,9 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The employee requesting time off.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<TimeOffRequestEmployee> employee) {
             this.employee = employee;
@@ -279,6 +282,9 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The Merge ID of the employee with the ability to approve the time off request.</p>
+         */
         @JsonSetter(value = "approver", nulls = Nulls.SKIP)
         public Builder approver(Optional<TimeOffRequestApprover> approver) {
             this.approver = approver;
@@ -290,17 +296,30 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The status of this time off request.</p>
+         * <ul>
+         * <li><code>REQUESTED</code> - REQUESTED</li>
+         * <li><code>APPROVED</code> - APPROVED</li>
+         * <li><code>DECLINED</code> - DECLINED</li>
+         * <li><code>CANCELLED</code> - CANCELLED</li>
+         * <li><code>DELETED</code> - DELETED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TimeOffStatusEnum> status) {
+        public Builder status(Optional<TimeOffRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TimeOffStatusEnum status) {
+        public Builder status(TimeOffRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The employee note for this time off request.</p>
+         */
         @JsonSetter(value = "employee_note", nulls = Nulls.SKIP)
         public Builder employeeNote(Optional<String> employeeNote) {
             this.employeeNote = employeeNote;
@@ -312,17 +331,27 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The measurement that the third-party integration uses to count time requested.</p>
+         * <ul>
+         * <li><code>HOURS</code> - HOURS</li>
+         * <li><code>DAYS</code> - DAYS</li>
+         * </ul>
+         */
         @JsonSetter(value = "units", nulls = Nulls.SKIP)
-        public Builder units(Optional<UnitsEnum> units) {
+        public Builder units(Optional<TimeOffRequestUnits> units) {
             this.units = units;
             return this;
         }
 
-        public Builder units(UnitsEnum units) {
+        public Builder units(TimeOffRequestUnits units) {
             this.units = Optional.ofNullable(units);
             return this;
         }
 
+        /**
+         * <p>The time off quantity measured by the prescribed “units”.</p>
+         */
         @JsonSetter(value = "amount", nulls = Nulls.SKIP)
         public Builder amount(Optional<Double> amount) {
             this.amount = amount;
@@ -334,17 +363,31 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The type of time off request.</p>
+         * <ul>
+         * <li><code>VACATION</code> - VACATION</li>
+         * <li><code>SICK</code> - SICK</li>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>JURY_DUTY</code> - JURY_DUTY</li>
+         * <li><code>VOLUNTEER</code> - VOLUNTEER</li>
+         * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
+         * </ul>
+         */
         @JsonSetter(value = "request_type", nulls = Nulls.SKIP)
-        public Builder requestType(Optional<RequestTypeEnum> requestType) {
+        public Builder requestType(Optional<TimeOffRequestRequestType> requestType) {
             this.requestType = requestType;
             return this;
         }
 
-        public Builder requestType(RequestTypeEnum requestType) {
+        public Builder requestType(TimeOffRequestRequestType requestType) {
             this.requestType = Optional.ofNullable(requestType);
             return this;
         }
 
+        /**
+         * <p>The day and time of the start of the time requested off.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -356,6 +399,9 @@ public final class TimeOffRequest {
             return this;
         }
 
+        /**
+         * <p>The day and time of the end of the time requested off.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;

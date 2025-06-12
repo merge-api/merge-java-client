@@ -60,7 +60,7 @@ public class AsyncRawStagesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Stage>>> list(
             StagesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/stages");
         if (request.getCreatedAfter().isPresent()) {
@@ -199,7 +199,7 @@ public class AsyncRawStagesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Stage>> retrieve(
             String id, StagesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/stages")
                 .addPathSegment(id);
@@ -286,7 +286,7 @@ public class AsyncRawStagesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>>> remoteFieldClassesList(
             StagesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/stages/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -327,6 +327,10 @@ public class AsyncRawStagesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

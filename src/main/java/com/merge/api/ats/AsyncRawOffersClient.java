@@ -57,7 +57,7 @@ public class AsyncRawOffersClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Offer>>> list(
             OffersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offers");
         if (request.getApplicationId().isPresent()) {
@@ -209,7 +209,7 @@ public class AsyncRawOffersClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Offer>> retrieve(
             String id, OffersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offers")
                 .addPathSegment(id);

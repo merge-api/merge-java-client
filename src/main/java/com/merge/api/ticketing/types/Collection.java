@@ -35,13 +35,13 @@ public final class Collection {
 
     private final Optional<String> description;
 
+    private final Optional<CollectionAccessLevel> accessLevel;
+
     private final Optional<CollectionTypeEnum> collectionType;
 
     private final Optional<CollectionParentCollection> parentCollection;
 
     private final Optional<Boolean> remoteWasDeleted;
-
-    private final Optional<AccessLevelEnum> accessLevel;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
@@ -56,10 +56,10 @@ public final class Collection {
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
             Optional<String> description,
+            Optional<CollectionAccessLevel> accessLevel,
             Optional<CollectionTypeEnum> collectionType,
             Optional<CollectionParentCollection> parentCollection,
             Optional<Boolean> remoteWasDeleted,
-            Optional<AccessLevelEnum> accessLevel,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
@@ -69,10 +69,10 @@ public final class Collection {
         this.modifiedAt = modifiedAt;
         this.name = name;
         this.description = description;
+        this.accessLevel = accessLevel;
         this.collectionType = collectionType;
         this.parentCollection = parentCollection;
         this.remoteWasDeleted = remoteWasDeleted;
-        this.accessLevel = accessLevel;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
@@ -124,6 +124,20 @@ public final class Collection {
     }
 
     /**
+     * @return The level of access a User has to the Collection and its sub-objects.
+     * <ul>
+     * <li><code>PRIVATE</code> - PRIVATE</li>
+     * <li><code>COMPANY</code> - COMPANY</li>
+     * <li><code>PUBLIC</code> - PUBLIC</li>
+     * <li><code>PARENT_COLLECTION</code> - PARENT_COLLECTION</li>
+     * </ul>
+     */
+    @JsonProperty("access_level")
+    public Optional<CollectionAccessLevel> getAccessLevel() {
+        return accessLevel;
+    }
+
+    /**
      * @return The collection's type.
      * <ul>
      * <li><code>LIST</code> - LIST</li>
@@ -149,19 +163,6 @@ public final class Collection {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
-    }
-
-    /**
-     * @return The level of access a User has to the Collection and its sub-objects.
-     * <ul>
-     * <li><code>PRIVATE</code> - PRIVATE</li>
-     * <li><code>COMPANY</code> - COMPANY</li>
-     * <li><code>PUBLIC</code> - PUBLIC</li>
-     * </ul>
-     */
-    @JsonProperty("access_level")
-    public Optional<AccessLevelEnum> getAccessLevel() {
-        return accessLevel;
     }
 
     @JsonProperty("field_mappings")
@@ -192,10 +193,10 @@ public final class Collection {
                 && modifiedAt.equals(other.modifiedAt)
                 && name.equals(other.name)
                 && description.equals(other.description)
+                && accessLevel.equals(other.accessLevel)
                 && collectionType.equals(other.collectionType)
                 && parentCollection.equals(other.parentCollection)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
-                && accessLevel.equals(other.accessLevel)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
     }
@@ -209,10 +210,10 @@ public final class Collection {
                 this.modifiedAt,
                 this.name,
                 this.description,
+                this.accessLevel,
                 this.collectionType,
                 this.parentCollection,
                 this.remoteWasDeleted,
-                this.accessLevel,
                 this.fieldMappings,
                 this.remoteData);
     }
@@ -240,13 +241,13 @@ public final class Collection {
 
         private Optional<String> description = Optional.empty();
 
+        private Optional<CollectionAccessLevel> accessLevel = Optional.empty();
+
         private Optional<CollectionTypeEnum> collectionType = Optional.empty();
 
         private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
-
-        private Optional<AccessLevelEnum> accessLevel = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
@@ -264,10 +265,10 @@ public final class Collection {
             modifiedAt(other.getModifiedAt());
             name(other.getName());
             description(other.getDescription());
+            accessLevel(other.getAccessLevel());
             collectionType(other.getCollectionType());
             parentCollection(other.getParentCollection());
             remoteWasDeleted(other.getRemoteWasDeleted());
-            accessLevel(other.getAccessLevel());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
             return this;
@@ -284,6 +285,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -295,6 +299,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -306,6 +313,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -317,6 +327,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The collection's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -328,6 +341,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The collection's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -339,6 +355,33 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The level of access a User has to the Collection and its sub-objects.</p>
+         * <ul>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PARENT_COLLECTION</code> - PARENT_COLLECTION</li>
+         * </ul>
+         */
+        @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
+        public Builder accessLevel(Optional<CollectionAccessLevel> accessLevel) {
+            this.accessLevel = accessLevel;
+            return this;
+        }
+
+        public Builder accessLevel(CollectionAccessLevel accessLevel) {
+            this.accessLevel = Optional.ofNullable(accessLevel);
+            return this;
+        }
+
+        /**
+         * <p>The collection's type.</p>
+         * <ul>
+         * <li><code>LIST</code> - LIST</li>
+         * <li><code>PROJECT</code> - PROJECT</li>
+         * </ul>
+         */
         @JsonSetter(value = "collection_type", nulls = Nulls.SKIP)
         public Builder collectionType(Optional<CollectionTypeEnum> collectionType) {
             this.collectionType = collectionType;
@@ -350,6 +393,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>The parent collection for this collection.</p>
+         */
         @JsonSetter(value = "parent_collection", nulls = Nulls.SKIP)
         public Builder parentCollection(Optional<CollectionParentCollection> parentCollection) {
             this.parentCollection = parentCollection;
@@ -361,6 +407,9 @@ public final class Collection {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
@@ -369,17 +418,6 @@ public final class Collection {
 
         public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
             this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
-            return this;
-        }
-
-        @JsonSetter(value = "access_level", nulls = Nulls.SKIP)
-        public Builder accessLevel(Optional<AccessLevelEnum> accessLevel) {
-            this.accessLevel = accessLevel;
-            return this;
-        }
-
-        public Builder accessLevel(AccessLevelEnum accessLevel) {
-            this.accessLevel = Optional.ofNullable(accessLevel);
             return this;
         }
 
@@ -413,10 +451,10 @@ public final class Collection {
                     modifiedAt,
                     name,
                     description,
+                    accessLevel,
                     collectionType,
                     parentCollection,
                     remoteWasDeleted,
-                    accessLevel,
                     fieldMappings,
                     remoteData,
                     additionalProperties);

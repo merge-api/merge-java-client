@@ -29,7 +29,7 @@ public final class ActivityRequest {
 
     private final Optional<String> body;
 
-    private final Optional<VisibilityEnum> visibility;
+    private final Optional<ActivityRequestVisibility> visibility;
 
     private final Optional<String> candidate;
 
@@ -44,7 +44,7 @@ public final class ActivityRequest {
             Optional<ActivityTypeEnum> activityType,
             Optional<String> subject,
             Optional<String> body,
-            Optional<VisibilityEnum> visibility,
+            Optional<ActivityRequestVisibility> visibility,
             Optional<String> candidate,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -106,7 +106,7 @@ public final class ActivityRequest {
      * </ul>
      */
     @JsonProperty("visibility")
-    public Optional<VisibilityEnum> getVisibility() {
+    public Optional<ActivityRequestVisibility> getVisibility() {
         return visibility;
     }
 
@@ -179,7 +179,7 @@ public final class ActivityRequest {
 
         private Optional<String> body = Optional.empty();
 
-        private Optional<VisibilityEnum> visibility = Optional.empty();
+        private Optional<ActivityRequestVisibility> visibility = Optional.empty();
 
         private Optional<String> candidate = Optional.empty();
 
@@ -204,6 +204,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The user that performed the action.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<ActivityRequestUser> user) {
             this.user = user;
@@ -215,6 +218,14 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's type.</p>
+         * <ul>
+         * <li><code>NOTE</code> - NOTE</li>
+         * <li><code>EMAIL</code> - EMAIL</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
         public Builder activityType(Optional<ActivityTypeEnum> activityType) {
             this.activityType = activityType;
@@ -226,6 +237,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -237,6 +251,9 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -248,13 +265,21 @@ public final class ActivityRequest {
             return this;
         }
 
+        /**
+         * <p>The activity's visibility.</p>
+         * <ul>
+         * <li><code>ADMIN_ONLY</code> - ADMIN_ONLY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * </ul>
+         */
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
-        public Builder visibility(Optional<VisibilityEnum> visibility) {
+        public Builder visibility(Optional<ActivityRequestVisibility> visibility) {
             this.visibility = visibility;
             return this;
         }
 
-        public Builder visibility(VisibilityEnum visibility) {
+        public Builder visibility(ActivityRequestVisibility visibility) {
             this.visibility = Optional.ofNullable(visibility);
             return this;
         }

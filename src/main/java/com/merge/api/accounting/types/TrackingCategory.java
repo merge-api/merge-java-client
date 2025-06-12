@@ -32,9 +32,9 @@ public final class TrackingCategory {
 
     private final Optional<String> name;
 
-    private final Optional<Status7D1Enum> status;
+    private final Optional<TrackingCategoryStatus> status;
 
-    private final Optional<CategoryTypeEnum> categoryType;
+    private final Optional<TrackingCategoryCategoryType> categoryType;
 
     private final Optional<String> parentCategory;
 
@@ -52,8 +52,8 @@ public final class TrackingCategory {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> name,
-            Optional<Status7D1Enum> status,
-            Optional<CategoryTypeEnum> categoryType,
+            Optional<TrackingCategoryStatus> status,
+            Optional<TrackingCategoryCategoryType> categoryType,
             Optional<String> parentCategory,
             Optional<TrackingCategoryCompany> company,
             Optional<Boolean> remoteWasDeleted,
@@ -118,7 +118,7 @@ public final class TrackingCategory {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<Status7D1Enum> getStatus() {
+    public Optional<TrackingCategoryStatus> getStatus() {
         return status;
     }
 
@@ -130,7 +130,7 @@ public final class TrackingCategory {
      * </ul>
      */
     @JsonProperty("category_type")
-    public Optional<CategoryTypeEnum> getCategoryType() {
+    public Optional<TrackingCategoryCategoryType> getCategoryType() {
         return categoryType;
     }
 
@@ -222,9 +222,9 @@ public final class TrackingCategory {
 
         private Optional<String> name = Optional.empty();
 
-        private Optional<Status7D1Enum> status = Optional.empty();
+        private Optional<TrackingCategoryStatus> status = Optional.empty();
 
-        private Optional<CategoryTypeEnum> categoryType = Optional.empty();
+        private Optional<TrackingCategoryCategoryType> categoryType = Optional.empty();
 
         private Optional<String> parentCategory = Optional.empty();
 
@@ -265,6 +265,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -276,6 +279,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -287,6 +293,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -298,6 +307,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The tracking category's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -309,24 +321,38 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The tracking category's status.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>ARCHIVED</code> - ARCHIVED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<Status7D1Enum> status) {
+        public Builder status(Optional<TrackingCategoryStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(Status7D1Enum status) {
+        public Builder status(TrackingCategoryStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }
 
+        /**
+         * <p>The tracking category’s type.</p>
+         * <ul>
+         * <li><code>CLASS</code> - CLASS</li>
+         * <li><code>DEPARTMENT</code> - DEPARTMENT</li>
+         * </ul>
+         */
         @JsonSetter(value = "category_type", nulls = Nulls.SKIP)
-        public Builder categoryType(Optional<CategoryTypeEnum> categoryType) {
+        public Builder categoryType(Optional<TrackingCategoryCategoryType> categoryType) {
             this.categoryType = categoryType;
             return this;
         }
 
-        public Builder categoryType(CategoryTypeEnum categoryType) {
+        public Builder categoryType(TrackingCategoryCategoryType categoryType) {
             this.categoryType = Optional.ofNullable(categoryType);
             return this;
         }
@@ -342,6 +368,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>The company the GeneralLedgerTransaction belongs to.</p>
+         */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public Builder company(Optional<TrackingCategoryCompany> company) {
             this.company = company;
@@ -353,6 +382,9 @@ public final class TrackingCategory {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

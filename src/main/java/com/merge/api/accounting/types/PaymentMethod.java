@@ -32,7 +32,7 @@ public final class PaymentMethod {
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final MethodTypeEnum methodType;
+    private final PaymentMethodMethodType methodType;
 
     private final String name;
 
@@ -51,7 +51,7 @@ public final class PaymentMethod {
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            MethodTypeEnum methodType,
+            PaymentMethodMethodType methodType,
             String name,
             Optional<Boolean> isActive,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -111,7 +111,7 @@ public final class PaymentMethod {
      * </ul>
      */
     @JsonProperty("method_type")
-    public MethodTypeEnum getMethodType() {
+    public PaymentMethodMethodType getMethodType() {
         return methodType;
     }
 
@@ -198,12 +198,24 @@ public final class PaymentMethod {
     }
 
     public interface MethodTypeStage {
-        NameStage methodType(@NotNull MethodTypeEnum methodType);
+        /**
+         * The type of the payment method.
+         *
+         * * `CREDIT_CARD` - CREDIT_CARD
+         * * `DEBIT_CARD` - DEBIT_CARD
+         * * `ACH` - ACH
+         * * `CASH` - CASH
+         * * `CHECK` - CHECK
+         */
+        NameStage methodType(@NotNull PaymentMethodMethodType methodType);
 
         Builder from(PaymentMethod other);
     }
 
     public interface NameStage {
+        /**
+         * The payment method’s name
+         */
         _FinalStage name(@NotNull String name);
     }
 
@@ -214,22 +226,37 @@ public final class PaymentMethod {
 
         _FinalStage id(String id);
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         _FinalStage remoteId(Optional<String> remoteId);
 
         _FinalStage remoteId(String remoteId);
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         _FinalStage createdAt(Optional<OffsetDateTime> createdAt);
 
         _FinalStage createdAt(OffsetDateTime createdAt);
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt);
 
         _FinalStage modifiedAt(OffsetDateTime modifiedAt);
 
+        /**
+         * <p><code>True</code> if the payment method is active, <code>False</code> if not.</p>
+         */
         _FinalStage isActive(Optional<Boolean> isActive);
 
         _FinalStage isActive(Boolean isActive);
 
+        /**
+         * <p>When the third party's payment method was updated.</p>
+         */
         _FinalStage remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt);
 
         _FinalStage remoteUpdatedAt(OffsetDateTime remoteUpdatedAt);
@@ -245,7 +272,7 @@ public final class PaymentMethod {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements MethodTypeStage, NameStage, _FinalStage {
-        private MethodTypeEnum methodType;
+        private PaymentMethodMethodType methodType;
 
         private String name;
 
@@ -286,7 +313,13 @@ public final class PaymentMethod {
         }
 
         /**
-         * <p>The type of the payment method.</p>
+         * The type of the payment method.
+         *
+         * * `CREDIT_CARD` - CREDIT_CARD
+         * * `DEBIT_CARD` - DEBIT_CARD
+         * * `ACH` - ACH
+         * * `CASH` - CASH
+         * * `CHECK` - CHECK<p>The type of the payment method.</p>
          * <ul>
          * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
          * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
@@ -298,13 +331,13 @@ public final class PaymentMethod {
          */
         @java.lang.Override
         @JsonSetter("method_type")
-        public NameStage methodType(@NotNull MethodTypeEnum methodType) {
+        public NameStage methodType(@NotNull PaymentMethodMethodType methodType) {
             this.methodType = methodType;
             return this;
         }
 
         /**
-         * <p>The payment method’s name</p>
+         * The payment method’s name<p>The payment method’s name</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -350,6 +383,9 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p>When the third party's payment method was updated.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
         public _FinalStage remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
@@ -367,6 +403,9 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p><code>True</code> if the payment method is active, <code>False</code> if not.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "is_active", nulls = Nulls.SKIP)
         public _FinalStage isActive(Optional<Boolean> isActive) {
@@ -384,6 +423,9 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt) {
@@ -401,6 +443,9 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
@@ -418,6 +463,9 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public _FinalStage remoteId(Optional<String> remoteId) {

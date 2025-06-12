@@ -37,7 +37,7 @@ public final class ScheduledInterviewRequest {
 
     private final Optional<OffsetDateTime> endAt;
 
-    private final Optional<ScheduledInterviewStatusEnum> status;
+    private final Optional<ScheduledInterviewRequestStatus> status;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -53,7 +53,7 @@ public final class ScheduledInterviewRequest {
             Optional<String> location,
             Optional<OffsetDateTime> startAt,
             Optional<OffsetDateTime> endAt,
-            Optional<ScheduledInterviewStatusEnum> status,
+            Optional<ScheduledInterviewRequestStatus> status,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -135,7 +135,7 @@ public final class ScheduledInterviewRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<ScheduledInterviewStatusEnum> getStatus() {
+    public Optional<ScheduledInterviewRequestStatus> getStatus() {
         return status;
     }
 
@@ -213,7 +213,7 @@ public final class ScheduledInterviewRequest {
 
         private Optional<OffsetDateTime> endAt = Optional.empty();
 
-        private Optional<ScheduledInterviewStatusEnum> status = Optional.empty();
+        private Optional<ScheduledInterviewRequestStatus> status = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -238,6 +238,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>The application being interviewed.</p>
+         */
         @JsonSetter(value = "application", nulls = Nulls.SKIP)
         public Builder application(Optional<ScheduledInterviewRequestApplication> application) {
             this.application = application;
@@ -249,6 +252,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>The stage of the interview.</p>
+         */
         @JsonSetter(value = "job_interview_stage", nulls = Nulls.SKIP)
         public Builder jobInterviewStage(Optional<ScheduledInterviewRequestJobInterviewStage> jobInterviewStage) {
             this.jobInterviewStage = jobInterviewStage;
@@ -260,6 +266,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>The user organizing the interview.</p>
+         */
         @JsonSetter(value = "organizer", nulls = Nulls.SKIP)
         public Builder organizer(Optional<ScheduledInterviewRequestOrganizer> organizer) {
             this.organizer = organizer;
@@ -271,6 +280,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>Array of <code>RemoteUser</code> IDs.</p>
+         */
         @JsonSetter(value = "interviewers", nulls = Nulls.SKIP)
         public Builder interviewers(Optional<List<Optional<ScheduledInterviewRequestInterviewersItem>>> interviewers) {
             this.interviewers = interviewers;
@@ -282,6 +294,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>The interview's location.</p>
+         */
         @JsonSetter(value = "location", nulls = Nulls.SKIP)
         public Builder location(Optional<String> location) {
             this.location = location;
@@ -293,6 +308,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>When the interview was started.</p>
+         */
         @JsonSetter(value = "start_at", nulls = Nulls.SKIP)
         public Builder startAt(Optional<OffsetDateTime> startAt) {
             this.startAt = startAt;
@@ -304,6 +322,9 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>When the interview was ended.</p>
+         */
         @JsonSetter(value = "end_at", nulls = Nulls.SKIP)
         public Builder endAt(Optional<OffsetDateTime> endAt) {
             this.endAt = endAt;
@@ -315,13 +336,21 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        /**
+         * <p>The interview's status.</p>
+         * <ul>
+         * <li><code>SCHEDULED</code> - SCHEDULED</li>
+         * <li><code>AWAITING_FEEDBACK</code> - AWAITING_FEEDBACK</li>
+         * <li><code>COMPLETE</code> - COMPLETE</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<ScheduledInterviewStatusEnum> status) {
+        public Builder status(Optional<ScheduledInterviewRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(ScheduledInterviewStatusEnum status) {
+        public Builder status(ScheduledInterviewRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

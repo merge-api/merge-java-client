@@ -63,7 +63,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Account>> list(
             AccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts");
         if (request.getCreatedAfter().isPresent()) {
@@ -188,7 +188,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<CrmAccountResponse> create(
             CrmAccountEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts");
         if (request.getIsDebugMode().isPresent()) {
@@ -255,7 +255,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<Account> retrieve(
             String id, AccountsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts")
                 .addPathSegment(id);
@@ -324,7 +324,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<CrmAccountResponse> partialUpdate(
             String id, PatchedCrmAccountEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts")
                 .addPathSegment(id);
@@ -384,7 +384,7 @@ public class RawAccountsClient {
      * Returns metadata for <code>CRMAccount</code> PATCHs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts/meta/patch")
                 .addPathSegment(id)
@@ -428,7 +428,7 @@ public class RawAccountsClient {
      * Returns metadata for <code>CRMAccount</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts/meta/post")
                 .build();
@@ -481,7 +481,7 @@ public class RawAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             AccountsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/accounts/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -522,6 +522,10 @@ public class RawAccountsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

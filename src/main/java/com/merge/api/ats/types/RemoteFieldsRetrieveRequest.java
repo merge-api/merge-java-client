@@ -97,6 +97,9 @@ public final class RemoteFieldsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>A comma seperated list of Common Model names. If included, will only return Remote Fields for those Common Models.</p>
+         */
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public Builder commonModels(Optional<String> commonModels) {
             this.commonModels = commonModels;
@@ -108,6 +111,9 @@ public final class RemoteFieldsRetrieveRequest {
             return this;
         }
 
+        /**
+         * <p>If true, will include example values, where available, for remote fields in the 3rd party platform. These examples come from active data from your customers.</p>
+         */
         @JsonSetter(value = "include_example_values", nulls = Nulls.SKIP)
         public Builder includeExampleValues(Optional<String> includeExampleValues) {
             this.includeExampleValues = includeExampleValues;

@@ -52,7 +52,7 @@ public class RawTimeOffBalancesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<TimeOffBalance>> list(
             TimeOffBalancesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off-balances");
         if (request.getCreatedAfter().isPresent()) {
@@ -185,7 +185,7 @@ public class RawTimeOffBalancesClient {
      */
     public MergeApiHttpResponse<TimeOffBalance> retrieve(
             String id, TimeOffBalancesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/time-off-balances")
                 .addPathSegment(id);

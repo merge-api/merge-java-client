@@ -52,7 +52,7 @@ public class RawDepartmentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Department>> list(
             DepartmentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/departments");
         if (request.getCreatedAfter().isPresent()) {
@@ -165,7 +165,7 @@ public class RawDepartmentsClient {
      */
     public MergeApiHttpResponse<Department> retrieve(
             String id, DepartmentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/departments")
                 .addPathSegment(id);

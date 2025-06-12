@@ -59,7 +59,7 @@ public class RawTimesheetEntriesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<TimesheetEntry>> list(
             TimesheetEntriesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/timesheet-entries");
         if (request.getCreatedAfter().isPresent()) {
@@ -193,7 +193,7 @@ public class RawTimesheetEntriesClient {
      */
     public MergeApiHttpResponse<TimesheetEntryResponse> create(
             TimesheetEntryEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/timesheet-entries");
         if (request.getIsDebugMode().isPresent()) {
@@ -261,7 +261,7 @@ public class RawTimesheetEntriesClient {
      */
     public MergeApiHttpResponse<TimesheetEntry> retrieve(
             String id, TimesheetEntriesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/timesheet-entries")
                 .addPathSegment(id);
@@ -322,7 +322,7 @@ public class RawTimesheetEntriesClient {
      * Returns metadata for <code>TimesheetEntry</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/timesheet-entries/meta/post")
                 .build();

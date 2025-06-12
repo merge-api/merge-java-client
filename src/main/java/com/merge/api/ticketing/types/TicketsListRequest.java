@@ -41,6 +41,8 @@ public final class TicketsListRequest {
 
     private final Optional<OffsetDateTime> createdBefore;
 
+    private final Optional<String> creatorId;
+
     private final Optional<String> cursor;
 
     private final Optional<OffsetDateTime> dueAfter;
@@ -99,6 +101,7 @@ public final class TicketsListRequest {
             Optional<String> contactId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
+            Optional<String> creatorId,
             Optional<String> cursor,
             Optional<OffsetDateTime> dueAfter,
             Optional<OffsetDateTime> dueBefore,
@@ -132,6 +135,7 @@ public final class TicketsListRequest {
         this.contactId = contactId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
+        this.creatorId = creatorId;
         this.cursor = cursor;
         this.dueAfter = dueAfter;
         this.dueBefore = dueBefore;
@@ -228,6 +232,14 @@ public final class TicketsListRequest {
     @JsonProperty("created_before")
     public Optional<OffsetDateTime> getCreatedBefore() {
         return createdBefore;
+    }
+
+    /**
+     * @return If provided, will only return tickets created by this creator_id.
+     */
+    @JsonProperty("creator_id")
+    public Optional<String> getCreatorId() {
+        return creatorId;
     }
 
     /**
@@ -441,6 +453,7 @@ public final class TicketsListRequest {
                 && contactId.equals(other.contactId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
+                && creatorId.equals(other.creatorId)
                 && cursor.equals(other.cursor)
                 && dueAfter.equals(other.dueAfter)
                 && dueBefore.equals(other.dueBefore)
@@ -478,6 +491,7 @@ public final class TicketsListRequest {
                 this.contactId,
                 this.createdAfter,
                 this.createdBefore,
+                this.creatorId,
                 this.cursor,
                 this.dueAfter,
                 this.dueBefore,
@@ -531,6 +545,8 @@ public final class TicketsListRequest {
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
         private Optional<OffsetDateTime> createdBefore = Optional.empty();
+
+        private Optional<String> creatorId = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
 
@@ -593,6 +609,7 @@ public final class TicketsListRequest {
             contactId(other.getContactId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
+            creatorId(other.getCreatorId());
             cursor(other.getCursor());
             dueAfter(other.getDueAfter());
             dueBefore(other.getDueBefore());
@@ -619,6 +636,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<TicketsListRequestExpandItem>> expand) {
             this.expand = expand;
@@ -635,6 +655,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets for this account.</p>
+         */
         @JsonSetter(value = "account_id", nulls = Nulls.SKIP)
         public Builder accountId(Optional<String> accountId) {
             this.accountId = accountId;
@@ -646,6 +669,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets assigned to the assignee_ids; multiple assignee_ids can be separated by commas.</p>
+         */
         @JsonSetter(value = "assignee_ids", nulls = Nulls.SKIP)
         public Builder assigneeIds(Optional<String> assigneeIds) {
             this.assigneeIds = assigneeIds;
@@ -657,6 +683,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets assigned to the collection_ids; multiple collection_ids can be separated by commas.</p>
+         */
         @JsonSetter(value = "collection_ids", nulls = Nulls.SKIP)
         public Builder collectionIds(Optional<String> collectionIds) {
             this.collectionIds = collectionIds;
@@ -668,6 +697,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets completed after this datetime.</p>
+         */
         @JsonSetter(value = "completed_after", nulls = Nulls.SKIP)
         public Builder completedAfter(Optional<OffsetDateTime> completedAfter) {
             this.completedAfter = completedAfter;
@@ -679,6 +711,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets completed before this datetime.</p>
+         */
         @JsonSetter(value = "completed_before", nulls = Nulls.SKIP)
         public Builder completedBefore(Optional<OffsetDateTime> completedBefore) {
             this.completedBefore = completedBefore;
@@ -690,6 +725,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets for this contact.</p>
+         */
         @JsonSetter(value = "contact_id", nulls = Nulls.SKIP)
         public Builder contactId(Optional<String> contactId) {
             this.contactId = contactId;
@@ -701,6 +739,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
         @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
         public Builder createdAfter(Optional<OffsetDateTime> createdAfter) {
             this.createdAfter = createdAfter;
@@ -712,6 +753,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
         @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
         public Builder createdBefore(Optional<OffsetDateTime> createdBefore) {
             this.createdBefore = createdBefore;
@@ -723,6 +767,23 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets created by this creator_id.</p>
+         */
+        @JsonSetter(value = "creator_id", nulls = Nulls.SKIP)
+        public Builder creatorId(Optional<String> creatorId) {
+            this.creatorId = creatorId;
+            return this;
+        }
+
+        public Builder creatorId(String creatorId) {
+            this.creatorId = Optional.ofNullable(creatorId);
+            return this;
+        }
+
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -734,6 +795,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets due after this datetime.</p>
+         */
         @JsonSetter(value = "due_after", nulls = Nulls.SKIP)
         public Builder dueAfter(Optional<OffsetDateTime> dueAfter) {
             this.dueAfter = dueAfter;
@@ -745,6 +809,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets due before this datetime.</p>
+         */
         @JsonSetter(value = "due_before", nulls = Nulls.SKIP)
         public Builder dueBefore(Optional<OffsetDateTime> dueBefore) {
             this.dueBefore = dueBefore;
@@ -756,6 +823,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -767,6 +837,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -778,6 +851,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include all remote fields, including fields that Merge did not map to common models, in a normalized format.</p>
+         */
         @JsonSetter(value = "include_remote_fields", nulls = Nulls.SKIP)
         public Builder includeRemoteFields(Optional<Boolean> includeRemoteFields) {
             this.includeRemoteFields = includeRemoteFields;
@@ -789,6 +865,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -800,6 +879,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -811,6 +893,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge before this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
         public Builder modifiedBefore(Optional<OffsetDateTime> modifiedBefore) {
             this.modifiedBefore = modifiedBefore;
@@ -822,6 +907,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -833,6 +921,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return sub tickets of the parent_ticket_id.</p>
+         */
         @JsonSetter(value = "parent_ticket_id", nulls = Nulls.SKIP)
         public Builder parentTicketId(Optional<String> parentTicketId) {
             this.parentTicketId = parentTicketId;
@@ -844,6 +935,15 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets of this priority.</p>
+         * <ul>
+         * <li><code>URGENT</code> - URGENT</li>
+         * <li><code>HIGH</code> - HIGH</li>
+         * <li><code>NORMAL</code> - NORMAL</li>
+         * <li><code>LOW</code> - LOW</li>
+         * </ul>
+         */
         @JsonSetter(value = "priority", nulls = Nulls.SKIP)
         public Builder priority(Optional<TicketsListRequestPriority> priority) {
             this.priority = priority;
@@ -855,6 +955,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets created in the third party platform after this datetime.</p>
+         */
         @JsonSetter(value = "remote_created_after", nulls = Nulls.SKIP)
         public Builder remoteCreatedAfter(Optional<OffsetDateTime> remoteCreatedAfter) {
             this.remoteCreatedAfter = remoteCreatedAfter;
@@ -866,6 +969,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets created in the third party platform before this datetime.</p>
+         */
         @JsonSetter(value = "remote_created_before", nulls = Nulls.SKIP)
         public Builder remoteCreatedBefore(Optional<OffsetDateTime> remoteCreatedBefore) {
             this.remoteCreatedBefore = remoteCreatedBefore;
@@ -877,6 +983,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>Deprecated. Use show_enum_origins.</p>
+         */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<TicketsListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -888,6 +997,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>The API provider's ID for the given object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -899,6 +1011,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets updated in the third party platform after this datetime.</p>
+         */
         @JsonSetter(value = "remote_updated_after", nulls = Nulls.SKIP)
         public Builder remoteUpdatedAfter(Optional<OffsetDateTime> remoteUpdatedAfter) {
             this.remoteUpdatedAfter = remoteUpdatedAfter;
@@ -910,6 +1025,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets updated in the third party platform before this datetime.</p>
+         */
         @JsonSetter(value = "remote_updated_before", nulls = Nulls.SKIP)
         public Builder remoteUpdatedBefore(Optional<OffsetDateTime> remoteUpdatedBefore) {
             this.remoteUpdatedBefore = remoteUpdatedBefore;
@@ -921,6 +1039,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
+         */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
         public Builder showEnumOrigins(Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
@@ -932,6 +1053,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets of this status.</p>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<String> status) {
             this.status = status;
@@ -943,6 +1067,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets matching the tags; multiple tags can be separated by commas.</p>
+         */
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public Builder tags(Optional<String> tags) {
             this.tags = tags;
@@ -954,6 +1081,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets of this type.</p>
+         */
         @JsonSetter(value = "ticket_type", nulls = Nulls.SKIP)
         public Builder ticketType(Optional<String> ticketType) {
             this.ticketType = ticketType;
@@ -965,6 +1095,9 @@ public final class TicketsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return tickets where the URL matches or contains the substring</p>
+         */
         @JsonSetter(value = "ticket_url", nulls = Nulls.SKIP)
         public Builder ticketUrl(Optional<String> ticketUrl) {
             this.ticketUrl = ticketUrl;
@@ -987,6 +1120,7 @@ public final class TicketsListRequest {
                     contactId,
                     createdAfter,
                     createdBefore,
+                    creatorId,
                     cursor,
                     dueAfter,
                     dueBefore,

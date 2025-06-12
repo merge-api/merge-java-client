@@ -59,7 +59,7 @@ public class RawAttachmentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Attachment>> list(
             AttachmentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments");
         if (request.getCandidateId().isPresent()) {
@@ -181,7 +181,7 @@ public class RawAttachmentsClient {
      */
     public MergeApiHttpResponse<AttachmentResponse> create(
             AttachmentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments");
         if (request.getIsDebugMode().isPresent()) {
@@ -249,7 +249,7 @@ public class RawAttachmentsClient {
      */
     public MergeApiHttpResponse<Attachment> retrieve(
             String id, AttachmentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments")
                 .addPathSegment(id);
@@ -318,7 +318,7 @@ public class RawAttachmentsClient {
      * Returns metadata for <code>Attachment</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments/meta/post")
                 .build();

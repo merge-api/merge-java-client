@@ -37,13 +37,13 @@ public final class Dependent {
 
     private final Optional<String> lastName;
 
-    private final Optional<RelationshipEnum> relationship;
+    private final Optional<DependentRelationship> relationship;
 
     private final Optional<String> employee;
 
     private final Optional<OffsetDateTime> dateOfBirth;
 
-    private final Optional<GenderEnum> gender;
+    private final Optional<DependentGender> gender;
 
     private final Optional<String> phoneNumber;
 
@@ -69,10 +69,10 @@ public final class Dependent {
             Optional<String> firstName,
             Optional<String> middleName,
             Optional<String> lastName,
-            Optional<RelationshipEnum> relationship,
+            Optional<DependentRelationship> relationship,
             Optional<String> employee,
             Optional<OffsetDateTime> dateOfBirth,
-            Optional<GenderEnum> gender,
+            Optional<DependentGender> gender,
             Optional<String> phoneNumber,
             Optional<String> homeLocation,
             Optional<Boolean> isStudent,
@@ -164,7 +164,7 @@ public final class Dependent {
      * </ul>
      */
     @JsonProperty("relationship")
-    public Optional<RelationshipEnum> getRelationship() {
+    public Optional<DependentRelationship> getRelationship() {
         return relationship;
     }
 
@@ -195,7 +195,7 @@ public final class Dependent {
      * </ul>
      */
     @JsonProperty("gender")
-    public Optional<GenderEnum> getGender() {
+    public Optional<DependentGender> getGender() {
         return gender;
     }
 
@@ -329,13 +329,13 @@ public final class Dependent {
 
         private Optional<String> lastName = Optional.empty();
 
-        private Optional<RelationshipEnum> relationship = Optional.empty();
+        private Optional<DependentRelationship> relationship = Optional.empty();
 
         private Optional<String> employee = Optional.empty();
 
         private Optional<OffsetDateTime> dateOfBirth = Optional.empty();
 
-        private Optional<GenderEnum> gender = Optional.empty();
+        private Optional<DependentGender> gender = Optional.empty();
 
         private Optional<String> phoneNumber = Optional.empty();
 
@@ -389,6 +389,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -400,6 +403,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -411,6 +417,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -422,6 +431,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependents's first name.</p>
+         */
         @JsonSetter(value = "first_name", nulls = Nulls.SKIP)
         public Builder firstName(Optional<String> firstName) {
             this.firstName = firstName;
@@ -433,6 +445,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependents's middle name.</p>
+         */
         @JsonSetter(value = "middle_name", nulls = Nulls.SKIP)
         public Builder middleName(Optional<String> middleName) {
             this.middleName = middleName;
@@ -444,6 +459,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependents's last name.</p>
+         */
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public Builder lastName(Optional<String> lastName) {
             this.lastName = lastName;
@@ -455,17 +473,28 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependent's relationship to the employee.</p>
+         * <ul>
+         * <li><code>CHILD</code> - CHILD</li>
+         * <li><code>SPOUSE</code> - SPOUSE</li>
+         * <li><code>DOMESTIC_PARTNER</code> - DOMESTIC_PARTNER</li>
+         * </ul>
+         */
         @JsonSetter(value = "relationship", nulls = Nulls.SKIP)
-        public Builder relationship(Optional<RelationshipEnum> relationship) {
+        public Builder relationship(Optional<DependentRelationship> relationship) {
             this.relationship = relationship;
             return this;
         }
 
-        public Builder relationship(RelationshipEnum relationship) {
+        public Builder relationship(DependentRelationship relationship) {
             this.relationship = Optional.ofNullable(relationship);
             return this;
         }
 
+        /**
+         * <p>The employee this person is a dependent of.</p>
+         */
         @JsonSetter(value = "employee", nulls = Nulls.SKIP)
         public Builder employee(Optional<String> employee) {
             this.employee = employee;
@@ -477,6 +506,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependent's date of birth.</p>
+         */
         @JsonSetter(value = "date_of_birth", nulls = Nulls.SKIP)
         public Builder dateOfBirth(Optional<OffsetDateTime> dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
@@ -488,17 +520,30 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependent's gender.</p>
+         * <ul>
+         * <li><code>MALE</code> - MALE</li>
+         * <li><code>FEMALE</code> - FEMALE</li>
+         * <li><code>NON-BINARY</code> - NON-BINARY</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * <li><code>PREFER_NOT_TO_DISCLOSE</code> - PREFER_NOT_TO_DISCLOSE</li>
+         * </ul>
+         */
         @JsonSetter(value = "gender", nulls = Nulls.SKIP)
-        public Builder gender(Optional<GenderEnum> gender) {
+        public Builder gender(Optional<DependentGender> gender) {
             this.gender = gender;
             return this;
         }
 
-        public Builder gender(GenderEnum gender) {
+        public Builder gender(DependentGender gender) {
             this.gender = Optional.ofNullable(gender);
             return this;
         }
 
+        /**
+         * <p>The dependent's phone number.</p>
+         */
         @JsonSetter(value = "phone_number", nulls = Nulls.SKIP)
         public Builder phoneNumber(Optional<String> phoneNumber) {
             this.phoneNumber = phoneNumber;
@@ -510,6 +555,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependents's home address.</p>
+         */
         @JsonSetter(value = "home_location", nulls = Nulls.SKIP)
         public Builder homeLocation(Optional<String> homeLocation) {
             this.homeLocation = homeLocation;
@@ -521,6 +569,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>Whether or not the dependent is a student</p>
+         */
         @JsonSetter(value = "is_student", nulls = Nulls.SKIP)
         public Builder isStudent(Optional<Boolean> isStudent) {
             this.isStudent = isStudent;
@@ -532,6 +583,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>The dependents's social security number.</p>
+         */
         @JsonSetter(value = "ssn", nulls = Nulls.SKIP)
         public Builder ssn(Optional<String> ssn) {
             this.ssn = ssn;
@@ -543,6 +597,9 @@ public final class Dependent {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

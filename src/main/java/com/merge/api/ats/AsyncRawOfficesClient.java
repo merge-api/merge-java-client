@@ -57,7 +57,7 @@ public class AsyncRawOfficesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Office>>> list(
             OfficesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offices");
         if (request.getCreatedAfter().isPresent()) {
@@ -189,7 +189,7 @@ public class AsyncRawOfficesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Office>> retrieve(
             String id, OfficesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/offices")
                 .addPathSegment(id);

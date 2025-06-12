@@ -84,6 +84,9 @@ public final class LinkedAccountCommonModelScopeDeserializerRequest {
             return this;
         }
 
+        /**
+         * <p>The common models you want to update the scopes for</p>
+         */
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public Builder commonModels(List<IndividualCommonModelScopeDeserializerRequest> commonModels) {
             this.commonModels.clear();

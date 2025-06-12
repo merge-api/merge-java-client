@@ -37,7 +37,7 @@ public final class TaskRequest {
 
     private final Optional<OffsetDateTime> dueDate;
 
-    private final Optional<TaskStatusEnum> status;
+    private final Optional<TaskRequestStatus> status;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -55,7 +55,7 @@ public final class TaskRequest {
             Optional<TaskRequestOpportunity> opportunity,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
-            Optional<TaskStatusEnum> status,
+            Optional<TaskRequestStatus> status,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
@@ -138,7 +138,7 @@ public final class TaskRequest {
      * </ul>
      */
     @JsonProperty("status")
-    public Optional<TaskStatusEnum> getStatus() {
+    public Optional<TaskRequestStatus> getStatus() {
         return status;
     }
 
@@ -223,7 +223,7 @@ public final class TaskRequest {
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
 
-        private Optional<TaskStatusEnum> status = Optional.empty();
+        private Optional<TaskRequestStatus> status = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -251,6 +251,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -262,6 +265,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -273,6 +279,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<TaskRequestOwner> owner) {
             this.owner = owner;
@@ -284,6 +293,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's account.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<TaskRequestAccount> account) {
             this.account = account;
@@ -295,6 +307,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's opportunity.</p>
+         */
         @JsonSetter(value = "opportunity", nulls = Nulls.SKIP)
         public Builder opportunity(Optional<TaskRequestOpportunity> opportunity) {
             this.opportunity = opportunity;
@@ -306,6 +321,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>When the task is completed.</p>
+         */
         @JsonSetter(value = "completed_date", nulls = Nulls.SKIP)
         public Builder completedDate(Optional<OffsetDateTime> completedDate) {
             this.completedDate = completedDate;
@@ -317,6 +335,9 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>When the task is due.</p>
+         */
         @JsonSetter(value = "due_date", nulls = Nulls.SKIP)
         public Builder dueDate(Optional<OffsetDateTime> dueDate) {
             this.dueDate = dueDate;
@@ -328,13 +349,20 @@ public final class TaskRequest {
             return this;
         }
 
+        /**
+         * <p>The task's status.</p>
+         * <ul>
+         * <li><code>OPEN</code> - OPEN</li>
+         * <li><code>CLOSED</code> - CLOSED</li>
+         * </ul>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<TaskStatusEnum> status) {
+        public Builder status(Optional<TaskRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(TaskStatusEnum status) {
+        public Builder status(TaskRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

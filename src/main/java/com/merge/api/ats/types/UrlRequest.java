@@ -23,7 +23,7 @@ import java.util.Optional;
 public final class UrlRequest {
     private final Optional<String> value;
 
-    private final Optional<UrlTypeEnum> urlType;
+    private final Optional<UrlRequestUrlType> urlType;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -33,7 +33,7 @@ public final class UrlRequest {
 
     private UrlRequest(
             Optional<String> value,
-            Optional<UrlTypeEnum> urlType,
+            Optional<UrlRequestUrlType> urlType,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
@@ -65,7 +65,7 @@ public final class UrlRequest {
      * </ul>
      */
     @JsonProperty("url_type")
-    public Optional<UrlTypeEnum> getUrlType() {
+    public Optional<UrlRequestUrlType> getUrlType() {
         return urlType;
     }
 
@@ -115,7 +115,7 @@ public final class UrlRequest {
     public static final class Builder {
         private Optional<String> value = Optional.empty();
 
-        private Optional<UrlTypeEnum> urlType = Optional.empty();
+        private Optional<UrlRequestUrlType> urlType = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -134,6 +134,9 @@ public final class UrlRequest {
             return this;
         }
 
+        /**
+         * <p>The site's url.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -145,13 +148,25 @@ public final class UrlRequest {
             return this;
         }
 
+        /**
+         * <p>The type of site.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>COMPANY</code> - COMPANY</li>
+         * <li><code>PORTFOLIO</code> - PORTFOLIO</li>
+         * <li><code>BLOG</code> - BLOG</li>
+         * <li><code>SOCIAL_MEDIA</code> - SOCIAL_MEDIA</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * <li><code>JOB_POSTING</code> - JOB_POSTING</li>
+         * </ul>
+         */
         @JsonSetter(value = "url_type", nulls = Nulls.SKIP)
-        public Builder urlType(Optional<UrlTypeEnum> urlType) {
+        public Builder urlType(Optional<UrlRequestUrlType> urlType) {
             this.urlType = urlType;
             return this;
         }
 
-        public Builder urlType(UrlTypeEnum urlType) {
+        public Builder urlType(UrlRequestUrlType urlType) {
             this.urlType = Optional.ofNullable(urlType);
             return this;
         }

@@ -67,6 +67,8 @@ public final class FieldMappingApiInstanceResponse {
 
     private final Optional<List<FieldMappingApiInstance>> paymentMethod;
 
+    private final Optional<List<FieldMappingApiInstance>> project;
+
     private final Optional<List<FieldMappingApiInstance>> paymentTerm;
 
     private final Map<String, Object> additionalProperties;
@@ -95,6 +97,7 @@ public final class FieldMappingApiInstanceResponse {
             Optional<List<FieldMappingApiInstance>> bankFeedAccount,
             Optional<List<FieldMappingApiInstance>> employee,
             Optional<List<FieldMappingApiInstance>> paymentMethod,
+            Optional<List<FieldMappingApiInstance>> project,
             Optional<List<FieldMappingApiInstance>> paymentTerm,
             Map<String, Object> additionalProperties) {
         this.account = account;
@@ -120,6 +123,7 @@ public final class FieldMappingApiInstanceResponse {
         this.bankFeedAccount = bankFeedAccount;
         this.employee = employee;
         this.paymentMethod = paymentMethod;
+        this.project = project;
         this.paymentTerm = paymentTerm;
         this.additionalProperties = additionalProperties;
     }
@@ -239,6 +243,11 @@ public final class FieldMappingApiInstanceResponse {
         return paymentMethod;
     }
 
+    @JsonProperty("Project")
+    public Optional<List<FieldMappingApiInstance>> getProject() {
+        return project;
+    }
+
     @JsonProperty("PaymentTerm")
     public Optional<List<FieldMappingApiInstance>> getPaymentTerm() {
         return paymentTerm;
@@ -279,6 +288,7 @@ public final class FieldMappingApiInstanceResponse {
                 && bankFeedAccount.equals(other.bankFeedAccount)
                 && employee.equals(other.employee)
                 && paymentMethod.equals(other.paymentMethod)
+                && project.equals(other.project)
                 && paymentTerm.equals(other.paymentTerm);
     }
 
@@ -308,6 +318,7 @@ public final class FieldMappingApiInstanceResponse {
                 this.bankFeedAccount,
                 this.employee,
                 this.paymentMethod,
+                this.project,
                 this.paymentTerm);
     }
 
@@ -368,6 +379,8 @@ public final class FieldMappingApiInstanceResponse {
 
         private Optional<List<FieldMappingApiInstance>> paymentMethod = Optional.empty();
 
+        private Optional<List<FieldMappingApiInstance>> project = Optional.empty();
+
         private Optional<List<FieldMappingApiInstance>> paymentTerm = Optional.empty();
 
         @JsonAnySetter
@@ -399,6 +412,7 @@ public final class FieldMappingApiInstanceResponse {
             bankFeedAccount(other.getBankFeedAccount());
             employee(other.getEmployee());
             paymentMethod(other.getPaymentMethod());
+            project(other.getProject());
             paymentTerm(other.getPaymentTerm());
             return this;
         }
@@ -656,6 +670,17 @@ public final class FieldMappingApiInstanceResponse {
             return this;
         }
 
+        @JsonSetter(value = "Project", nulls = Nulls.SKIP)
+        public Builder project(Optional<List<FieldMappingApiInstance>> project) {
+            this.project = project;
+            return this;
+        }
+
+        public Builder project(List<FieldMappingApiInstance> project) {
+            this.project = Optional.ofNullable(project);
+            return this;
+        }
+
         @JsonSetter(value = "PaymentTerm", nulls = Nulls.SKIP)
         public Builder paymentTerm(Optional<List<FieldMappingApiInstance>> paymentTerm) {
             this.paymentTerm = paymentTerm;
@@ -692,6 +717,7 @@ public final class FieldMappingApiInstanceResponse {
                     bankFeedAccount,
                     employee,
                     paymentMethod,
+                    project,
                     paymentTerm,
                     additionalProperties);
         }

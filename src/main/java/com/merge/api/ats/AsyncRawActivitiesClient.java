@@ -64,7 +64,7 @@ public class AsyncRawActivitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Activity>>> list(
             ActivitiesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/activities");
         if (request.getCreatedAfter().isPresent()) {
@@ -208,7 +208,7 @@ public class AsyncRawActivitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<ActivityResponse>> create(
             ActivityEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/activities");
         if (request.getIsDebugMode().isPresent()) {
@@ -290,7 +290,7 @@ public class AsyncRawActivitiesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Activity>> retrieve(
             String id, ActivitiesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/activities")
                 .addPathSegment(id);
@@ -375,7 +375,7 @@ public class AsyncRawActivitiesClient {
      * Returns metadata for <code>Activity</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/activities/meta/post")
                 .build();

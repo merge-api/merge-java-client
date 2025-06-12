@@ -51,7 +51,7 @@ public class RawSyncStatusClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<SyncStatus>> list(
             SyncStatusListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/sync-status");
         if (request.getCursor().isPresent()) {

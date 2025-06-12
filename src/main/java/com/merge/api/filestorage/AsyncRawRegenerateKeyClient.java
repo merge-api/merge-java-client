@@ -45,7 +45,7 @@ public class AsyncRawRegenerateKeyClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RemoteKey>> create(
             RemoteKeyForRegenerationRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/regenerate-key")
                 .build();

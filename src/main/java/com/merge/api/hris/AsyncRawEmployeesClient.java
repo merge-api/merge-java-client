@@ -66,7 +66,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Employee>>> list(
             EmployeesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employees");
         if (request.getCompanyId().isPresent()) {
@@ -298,7 +298,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<EmployeeResponse>> create(
             EmployeeEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employees");
         if (request.getIsDebugMode().isPresent()) {
@@ -379,7 +379,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Employee>> retrieve(
             String id, EmployeesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employees")
                 .addPathSegment(id);
@@ -473,7 +473,7 @@ public class AsyncRawEmployeesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Void>> ignoreCreate(
             String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employees/ignore")
                 .addPathSegment(modelId)
@@ -535,7 +535,7 @@ public class AsyncRawEmployeesClient {
      * Returns metadata for <code>Employee</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/employees/meta/post")
                 .build();

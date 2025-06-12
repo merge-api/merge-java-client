@@ -34,9 +34,9 @@ public final class RemoteFieldClassForCustomObjectClass {
 
     private final Optional<Boolean> isRequired;
 
-    private final Optional<FieldTypeEnum> fieldType;
+    private final Optional<RemoteFieldClassForCustomObjectClassFieldType> fieldType;
 
-    private final Optional<FieldFormatEnum> fieldFormat;
+    private final Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat;
 
     private final Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices;
 
@@ -51,8 +51,8 @@ public final class RemoteFieldClassForCustomObjectClass {
             Optional<String> remoteKeyName,
             Optional<String> description,
             Optional<Boolean> isRequired,
-            Optional<FieldTypeEnum> fieldType,
-            Optional<FieldFormatEnum> fieldFormat,
+            Optional<RemoteFieldClassForCustomObjectClassFieldType> fieldType,
+            Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat,
             Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices,
             Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema,
             Map<String, Object> additionalProperties) {
@@ -106,12 +106,12 @@ public final class RemoteFieldClassForCustomObjectClass {
     }
 
     @JsonProperty("field_type")
-    public Optional<FieldTypeEnum> getFieldType() {
+    public Optional<RemoteFieldClassForCustomObjectClassFieldType> getFieldType() {
         return fieldType;
     }
 
     @JsonProperty("field_format")
-    public Optional<FieldFormatEnum> getFieldFormat() {
+    public Optional<RemoteFieldClassForCustomObjectClassFieldFormat> getFieldFormat() {
         return fieldFormat;
     }
 
@@ -188,9 +188,9 @@ public final class RemoteFieldClassForCustomObjectClass {
 
         private Optional<Boolean> isRequired = Optional.empty();
 
-        private Optional<FieldTypeEnum> fieldType = Optional.empty();
+        private Optional<RemoteFieldClassForCustomObjectClassFieldType> fieldType = Optional.empty();
 
-        private Optional<FieldFormatEnum> fieldFormat = Optional.empty();
+        private Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat = Optional.empty();
 
         private Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices = Optional.empty();
 
@@ -215,6 +215,9 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -226,6 +229,9 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -282,23 +288,23 @@ public final class RemoteFieldClassForCustomObjectClass {
         }
 
         @JsonSetter(value = "field_type", nulls = Nulls.SKIP)
-        public Builder fieldType(Optional<FieldTypeEnum> fieldType) {
+        public Builder fieldType(Optional<RemoteFieldClassForCustomObjectClassFieldType> fieldType) {
             this.fieldType = fieldType;
             return this;
         }
 
-        public Builder fieldType(FieldTypeEnum fieldType) {
+        public Builder fieldType(RemoteFieldClassForCustomObjectClassFieldType fieldType) {
             this.fieldType = Optional.ofNullable(fieldType);
             return this;
         }
 
         @JsonSetter(value = "field_format", nulls = Nulls.SKIP)
-        public Builder fieldFormat(Optional<FieldFormatEnum> fieldFormat) {
+        public Builder fieldFormat(Optional<RemoteFieldClassForCustomObjectClassFieldFormat> fieldFormat) {
             this.fieldFormat = fieldFormat;
             return this;
         }
 
-        public Builder fieldFormat(FieldFormatEnum fieldFormat) {
+        public Builder fieldFormat(RemoteFieldClassForCustomObjectClassFieldFormat fieldFormat) {
             this.fieldFormat = Optional.ofNullable(fieldFormat);
             return this;
         }

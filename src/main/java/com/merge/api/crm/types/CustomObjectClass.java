@@ -221,6 +221,9 @@ public final class CustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -254,6 +257,9 @@ public final class CustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The custom object class's name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -265,6 +271,9 @@ public final class CustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The custom object class's description.</p>
+         */
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -276,6 +285,9 @@ public final class CustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The custom object class's singular and plural labels.</p>
+         */
         @JsonSetter(value = "labels", nulls = Nulls.SKIP)
         public Builder labels(Optional<Map<String, Optional<String>>> labels) {
             this.labels = labels;
@@ -298,6 +310,9 @@ public final class CustomObjectClass {
             return this;
         }
 
+        /**
+         * <p>The types of associations with other models that the custom object class can have.</p>
+         */
         @JsonSetter(value = "association_types", nulls = Nulls.SKIP)
         public Builder associationTypes(Optional<List<Map<String, JsonNode>>> associationTypes) {
             this.associationTypes = associationTypes;

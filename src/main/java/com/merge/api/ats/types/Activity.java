@@ -35,13 +35,13 @@ public final class Activity {
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
 
-    private final Optional<ActivityTypeEnum> activityType;
+    private final Optional<ActivityActivityType> activityType;
 
     private final Optional<String> subject;
 
     private final Optional<String> body;
 
-    private final Optional<VisibilityEnum> visibility;
+    private final Optional<ActivityVisibility> visibility;
 
     private final Optional<String> candidate;
 
@@ -60,10 +60,10 @@ public final class Activity {
             Optional<OffsetDateTime> modifiedAt,
             Optional<ActivityUser> user,
             Optional<OffsetDateTime> remoteCreatedAt,
-            Optional<ActivityTypeEnum> activityType,
+            Optional<ActivityActivityType> activityType,
             Optional<String> subject,
             Optional<String> body,
-            Optional<VisibilityEnum> visibility,
+            Optional<ActivityVisibility> visibility,
             Optional<String> candidate,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
@@ -140,7 +140,7 @@ public final class Activity {
      * </ul>
      */
     @JsonProperty("activity_type")
-    public Optional<ActivityTypeEnum> getActivityType() {
+    public Optional<ActivityActivityType> getActivityType() {
         return activityType;
     }
 
@@ -169,7 +169,7 @@ public final class Activity {
      * </ul>
      */
     @JsonProperty("visibility")
-    public Optional<VisibilityEnum> getVisibility() {
+    public Optional<ActivityVisibility> getVisibility() {
         return visibility;
     }
 
@@ -266,13 +266,13 @@ public final class Activity {
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
 
-        private Optional<ActivityTypeEnum> activityType = Optional.empty();
+        private Optional<ActivityActivityType> activityType = Optional.empty();
 
         private Optional<String> subject = Optional.empty();
 
         private Optional<String> body = Optional.empty();
 
-        private Optional<VisibilityEnum> visibility = Optional.empty();
+        private Optional<ActivityVisibility> visibility = Optional.empty();
 
         private Optional<String> candidate = Optional.empty();
 
@@ -316,6 +316,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -327,6 +330,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -338,6 +344,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -349,6 +358,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The user that performed the action.</p>
+         */
         @JsonSetter(value = "user", nulls = Nulls.SKIP)
         public Builder user(Optional<ActivityUser> user) {
             this.user = user;
@@ -360,6 +372,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>When the third party's activity was created.</p>
+         */
         @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
         public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
             this.remoteCreatedAt = remoteCreatedAt;
@@ -371,17 +386,28 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's type.</p>
+         * <ul>
+         * <li><code>NOTE</code> - NOTE</li>
+         * <li><code>EMAIL</code> - EMAIL</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "activity_type", nulls = Nulls.SKIP)
-        public Builder activityType(Optional<ActivityTypeEnum> activityType) {
+        public Builder activityType(Optional<ActivityActivityType> activityType) {
             this.activityType = activityType;
             return this;
         }
 
-        public Builder activityType(ActivityTypeEnum activityType) {
+        public Builder activityType(ActivityActivityType activityType) {
             this.activityType = Optional.ofNullable(activityType);
             return this;
         }
 
+        /**
+         * <p>The activity's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -393,6 +419,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's body.</p>
+         */
         @JsonSetter(value = "body", nulls = Nulls.SKIP)
         public Builder body(Optional<String> body) {
             this.body = body;
@@ -404,13 +433,21 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>The activity's visibility.</p>
+         * <ul>
+         * <li><code>ADMIN_ONLY</code> - ADMIN_ONLY</li>
+         * <li><code>PUBLIC</code> - PUBLIC</li>
+         * <li><code>PRIVATE</code> - PRIVATE</li>
+         * </ul>
+         */
         @JsonSetter(value = "visibility", nulls = Nulls.SKIP)
-        public Builder visibility(Optional<VisibilityEnum> visibility) {
+        public Builder visibility(Optional<ActivityVisibility> visibility) {
             this.visibility = visibility;
             return this;
         }
 
-        public Builder visibility(VisibilityEnum visibility) {
+        public Builder visibility(ActivityVisibility visibility) {
             this.visibility = Optional.ofNullable(visibility);
             return this;
         }
@@ -426,6 +463,9 @@ public final class Activity {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

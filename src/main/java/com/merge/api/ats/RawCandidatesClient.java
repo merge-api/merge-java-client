@@ -62,7 +62,7 @@ public class RawCandidatesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Candidate>> list(
             CandidatesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates");
         if (request.getCreatedAfter().isPresent()) {
@@ -188,7 +188,7 @@ public class RawCandidatesClient {
      */
     public MergeApiHttpResponse<CandidateResponse> create(
             CandidateEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates");
         if (request.getIsDebugMode().isPresent()) {
@@ -256,7 +256,7 @@ public class RawCandidatesClient {
      */
     public MergeApiHttpResponse<Candidate> retrieve(
             String id, CandidatesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates")
                 .addPathSegment(id);
@@ -318,7 +318,7 @@ public class RawCandidatesClient {
      */
     public MergeApiHttpResponse<CandidateResponse> partialUpdate(
             String id, PatchedCandidateEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates")
                 .addPathSegment(id);
@@ -380,7 +380,7 @@ public class RawCandidatesClient {
      */
     public MergeApiHttpResponse<Void> ignoreCreate(
             String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates/ignore")
                 .addPathSegment(modelId)
@@ -429,7 +429,7 @@ public class RawCandidatesClient {
      * Returns metadata for <code>Candidate</code> PATCHs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates/meta/patch")
                 .addPathSegment(id)
@@ -473,7 +473,7 @@ public class RawCandidatesClient {
      * Returns metadata for <code>Candidate</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/candidates/meta/post")
                 .build();

@@ -64,12 +64,16 @@ public class AsyncRawAccountsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Account>>> list(
             AccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts");
         if (request.getAccountType().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "account_type", request.getAccountType().get(), false);
+        }
+        if (request.getClassification().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "classification", request.getClassification().get(), false);
         }
         if (request.getCompanyId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -220,7 +224,7 @@ public class AsyncRawAccountsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountResponse>> create(
             AccountEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts");
         if (request.getIsDebugMode().isPresent()) {
@@ -301,7 +305,7 @@ public class AsyncRawAccountsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Account>> retrieve(
             String id, AccountsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts")
                 .addPathSegment(id);
@@ -386,7 +390,7 @@ public class AsyncRawAccountsClient {
      * Returns metadata for <code>Account</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounts/meta/post")
                 .build();

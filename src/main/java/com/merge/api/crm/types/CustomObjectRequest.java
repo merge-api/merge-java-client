@@ -17,22 +17,43 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
 
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CustomObjectRequest.Builder.class)
 public final class CustomObjectRequest {
     private final Map<String, JsonNode> fields;
 
+    private final Optional<Map<String, JsonNode>> integrationParams;
+
+    private final Optional<Map<String, JsonNode>> linkedAccountParams;
+
     private final Map<String, Object> additionalProperties;
 
-    private CustomObjectRequest(Map<String, JsonNode> fields, Map<String, Object> additionalProperties) {
+    private CustomObjectRequest(
+            Map<String, JsonNode> fields,
+            Optional<Map<String, JsonNode>> integrationParams,
+            Optional<Map<String, JsonNode>> linkedAccountParams,
+            Map<String, Object> additionalProperties) {
         this.fields = fields;
+        this.integrationParams = integrationParams;
+        this.linkedAccountParams = linkedAccountParams;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("fields")
     public Map<String, JsonNode> getFields() {
         return fields;
+    }
+
+    @JsonProperty("integration_params")
+    public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonProperty("linked_account_params")
+    public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -47,12 +68,14 @@ public final class CustomObjectRequest {
     }
 
     private boolean equalTo(CustomObjectRequest other) {
-        return fields.equals(other.fields);
+        return fields.equals(other.fields)
+                && integrationParams.equals(other.integrationParams)
+                && linkedAccountParams.equals(other.linkedAccountParams);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.fields);
+        return Objects.hash(this.fields, this.integrationParams, this.linkedAccountParams);
     }
 
     @java.lang.Override
@@ -68,6 +91,10 @@ public final class CustomObjectRequest {
     public static final class Builder {
         private Map<String, JsonNode> fields = new LinkedHashMap<>();
 
+        private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
+
+        private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -75,6 +102,8 @@ public final class CustomObjectRequest {
 
         public Builder from(CustomObjectRequest other) {
             fields(other.getFields());
+            integrationParams(other.getIntegrationParams());
+            linkedAccountParams(other.getLinkedAccountParams());
             return this;
         }
 
@@ -95,8 +124,30 @@ public final class CustomObjectRequest {
             return this;
         }
 
+        @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
+        public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
+            this.integrationParams = integrationParams;
+            return this;
+        }
+
+        public Builder integrationParams(Map<String, JsonNode> integrationParams) {
+            this.integrationParams = Optional.ofNullable(integrationParams);
+            return this;
+        }
+
+        @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
+        public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
+            this.linkedAccountParams = linkedAccountParams;
+            return this;
+        }
+
+        public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
+            this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
         public CustomObjectRequest build() {
-            return new CustomObjectRequest(fields, additionalProperties);
+            return new CustomObjectRequest(fields, integrationParams, linkedAccountParams, additionalProperties);
         }
     }
 }

@@ -68,7 +68,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Attachment>>> list(
             AttachmentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/attachments");
         if (request.getCreatedAfter().isPresent()) {
@@ -209,7 +209,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<TicketingAttachmentResponse>> create(
             TicketingAttachmentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/attachments");
         if (request.getIsDebugMode().isPresent()) {
@@ -291,7 +291,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Attachment>> retrieve(
             String id, AttachmentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/attachments")
                 .addPathSegment(id);
@@ -375,7 +375,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<InputStream>> downloadRetrieve(
             String id, AttachmentsDownloadRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/attachments")
                 .addPathSegment(id)
@@ -442,7 +442,7 @@ public class AsyncRawAttachmentsClient {
      * Returns metadata for <code>TicketingAttachment</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/attachments/meta/post")
                 .build();

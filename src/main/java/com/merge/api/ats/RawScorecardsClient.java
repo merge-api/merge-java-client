@@ -52,7 +52,7 @@ public class RawScorecardsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Scorecard>> list(
             ScorecardsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/scorecards");
         if (request.getApplicationId().isPresent()) {
@@ -189,7 +189,7 @@ public class RawScorecardsClient {
      */
     public MergeApiHttpResponse<Scorecard> retrieve(
             String id, ScorecardsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/scorecards")
                 .addPathSegment(id);

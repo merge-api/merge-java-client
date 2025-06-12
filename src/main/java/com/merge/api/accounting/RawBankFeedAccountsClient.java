@@ -59,7 +59,7 @@ public class RawBankFeedAccountsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<BankFeedAccount>> list(
             BankFeedAccountsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-accounts");
         if (request.getCursor().isPresent()) {
@@ -142,7 +142,7 @@ public class RawBankFeedAccountsClient {
      */
     public MergeApiHttpResponse<BankFeedAccountResponse> create(
             BankFeedAccountEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-accounts");
         if (request.getIsDebugMode().isPresent()) {
@@ -210,7 +210,7 @@ public class RawBankFeedAccountsClient {
      */
     public MergeApiHttpResponse<BankFeedAccount> retrieve(
             String id, BankFeedAccountsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-accounts")
                 .addPathSegment(id);
@@ -267,7 +267,7 @@ public class RawBankFeedAccountsClient {
      * Returns metadata for <code>BankFeedAccount</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-accounts/meta/post")
                 .build();

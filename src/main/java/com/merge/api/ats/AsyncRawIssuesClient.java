@@ -56,7 +56,7 @@ public class AsyncRawIssuesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Issue>>> list(
             IssuesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/issues");
         if (request.getAccountToken().isPresent()) {
@@ -199,7 +199,7 @@ public class AsyncRawIssuesClient {
      * Get a specific issue.
      */
     public CompletableFuture<MergeApiHttpResponse<Issue>> retrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/issues")
                 .addPathSegment(id)

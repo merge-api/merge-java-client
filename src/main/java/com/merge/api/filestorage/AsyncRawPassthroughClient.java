@@ -45,7 +45,7 @@ public class AsyncRawPassthroughClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RemoteResponse>> create(
             DataPassthroughRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/passthrough")
                 .build();

@@ -30,8 +30,6 @@ public final class DownloadRequestMeta {
 
     private final Map<String, JsonNode> headers;
 
-    private final Map<String, JsonNode> body;
-
     private final Map<String, Object> additionalProperties;
 
     private DownloadRequestMeta(
@@ -39,13 +37,11 @@ public final class DownloadRequestMeta {
             String url,
             String method,
             Map<String, JsonNode> headers,
-            Map<String, JsonNode> body,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.url = url;
         this.method = method;
         this.headers = headers;
-        this.body = body;
         this.additionalProperties = additionalProperties;
     }
 
@@ -69,11 +65,6 @@ public final class DownloadRequestMeta {
         return headers;
     }
 
-    @JsonProperty("body")
-    public Map<String, JsonNode> getBody() {
-        return body;
-    }
-
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -89,13 +80,12 @@ public final class DownloadRequestMeta {
         return id.equals(other.id)
                 && url.equals(other.url)
                 && method.equals(other.method)
-                && headers.equals(other.headers)
-                && body.equals(other.body);
+                && headers.equals(other.headers);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.url, this.method, this.headers, this.body);
+        return Objects.hash(this.id, this.url, this.method, this.headers);
     }
 
     @java.lang.Override
@@ -129,12 +119,6 @@ public final class DownloadRequestMeta {
         _FinalStage putAllHeaders(Map<String, JsonNode> headers);
 
         _FinalStage headers(String key, JsonNode value);
-
-        _FinalStage body(Map<String, JsonNode> body);
-
-        _FinalStage putAllBody(Map<String, JsonNode> body);
-
-        _FinalStage body(String key, JsonNode value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -144,8 +128,6 @@ public final class DownloadRequestMeta {
         private String url;
 
         private String method;
-
-        private Map<String, JsonNode> body = new LinkedHashMap<>();
 
         private Map<String, JsonNode> headers = new LinkedHashMap<>();
 
@@ -160,7 +142,6 @@ public final class DownloadRequestMeta {
             url(other.getUrl());
             method(other.getMethod());
             headers(other.getHeaders());
-            body(other.getBody());
             return this;
         }
 
@@ -186,26 +167,6 @@ public final class DownloadRequestMeta {
         }
 
         @java.lang.Override
-        public _FinalStage body(String key, JsonNode value) {
-            this.body.put(key, value);
-            return this;
-        }
-
-        @java.lang.Override
-        public _FinalStage putAllBody(Map<String, JsonNode> body) {
-            this.body.putAll(body);
-            return this;
-        }
-
-        @java.lang.Override
-        @JsonSetter(value = "body", nulls = Nulls.SKIP)
-        public _FinalStage body(Map<String, JsonNode> body) {
-            this.body.clear();
-            this.body.putAll(body);
-            return this;
-        }
-
-        @java.lang.Override
         public _FinalStage headers(String key, JsonNode value) {
             this.headers.put(key, value);
             return this;
@@ -227,7 +188,7 @@ public final class DownloadRequestMeta {
 
         @java.lang.Override
         public DownloadRequestMeta build() {
-            return new DownloadRequestMeta(id, url, method, headers, body, additionalProperties);
+            return new DownloadRequestMeta(id, url, method, headers, additionalProperties);
         }
     }
 }

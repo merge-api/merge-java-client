@@ -52,7 +52,7 @@ public class RawBankInfoClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<BankInfo>> list(
             BankInfoListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/bank-info");
         if (request.getAccountType().isPresent()) {
@@ -193,7 +193,7 @@ public class RawBankInfoClient {
      */
     public MergeApiHttpResponse<BankInfo> retrieve(
             String id, BankInfoRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/bank-info")
                 .addPathSegment(id);

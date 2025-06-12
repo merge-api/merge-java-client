@@ -36,7 +36,7 @@ public class RawAccountDetailsClient {
      * Get details for a linked account.
      */
     public MergeApiHttpResponse<AccountDetails> retrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/account-details")
                 .build();

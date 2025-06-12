@@ -54,7 +54,7 @@ public class RawJobsClient {
      * Returns a list of <code>Job</code> objects.
      */
     public MergeApiHttpResponse<SyncPagingIterable<Job>> list(JobsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs");
         if (request.getCode().isPresent()) {
@@ -190,7 +190,7 @@ public class RawJobsClient {
      * Returns a <code>Job</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<Job> retrieve(String id, JobsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs")
                 .addPathSegment(id);
@@ -269,7 +269,7 @@ public class RawJobsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<ScreeningQuestion>> screeningQuestionsList(
             String jobId, JobsScreeningQuestionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/jobs")
                 .addPathSegment(jobId)

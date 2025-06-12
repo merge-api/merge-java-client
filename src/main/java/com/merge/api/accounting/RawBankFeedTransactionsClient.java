@@ -59,7 +59,7 @@ public class RawBankFeedTransactionsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<BankFeedTransaction>> list(
             BankFeedTransactionsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-transactions");
         if (request.getCreatedAfter().isPresent()) {
@@ -173,7 +173,7 @@ public class RawBankFeedTransactionsClient {
      */
     public MergeApiHttpResponse<BankFeedTransactionResponse> create(
             BankFeedTransactionEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-transactions");
         if (request.getIsDebugMode().isPresent()) {
@@ -241,7 +241,7 @@ public class RawBankFeedTransactionsClient {
      */
     public MergeApiHttpResponse<BankFeedTransaction> retrieve(
             String id, BankFeedTransactionsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-transactions")
                 .addPathSegment(id);
@@ -303,7 +303,7 @@ public class RawBankFeedTransactionsClient {
      * Returns metadata for <code>BankFeedTransaction</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/bank-feed-transactions/meta/post")
                 .build();

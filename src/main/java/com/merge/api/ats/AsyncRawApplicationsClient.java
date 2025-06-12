@@ -67,7 +67,7 @@ public class AsyncRawApplicationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Application>>> list(
             ApplicationsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/applications");
         if (request.getCandidateId().isPresent()) {
@@ -224,7 +224,7 @@ public class AsyncRawApplicationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<ApplicationResponse>> create(
             ApplicationEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/applications");
         if (request.getIsDebugMode().isPresent()) {
@@ -307,7 +307,7 @@ public class AsyncRawApplicationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Application>> retrieve(
             String id, ApplicationsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/applications")
                 .addPathSegment(id);
@@ -391,7 +391,7 @@ public class AsyncRawApplicationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<ApplicationResponse>> changeStageCreate(
             String id, UpdateApplicationStageRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/applications")
                 .addPathSegment(id)
@@ -480,7 +480,7 @@ public class AsyncRawApplicationsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(
             ApplicationsMetaPostRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/applications/meta/post");
         if (request.getApplicationRemoteTemplateId().isPresent()) {

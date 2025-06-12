@@ -142,6 +142,9 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -153,6 +156,9 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        /**
+         * <p>The screening question associated with the candidate’s answer. To determine the data type of the answer, you can expand on the screening question by adding <code>screening_question_answers.question</code> to the <code>expand</code> query parameter.</p>
+         */
         @JsonSetter(value = "question", nulls = Nulls.SKIP)
         public Builder question(Optional<ScreeningQuestionAnswerRequestQuestion> question) {
             this.question = question;
@@ -164,6 +170,9 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        /**
+         * <p>The candidate’s response to the screening question.</p>
+         */
         @JsonSetter(value = "answer", nulls = Nulls.SKIP)
         public Builder answer(Optional<String> answer) {
             this.answer = answer;

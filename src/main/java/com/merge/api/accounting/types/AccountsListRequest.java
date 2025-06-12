@@ -27,6 +27,8 @@ public final class AccountsListRequest {
 
     private final Optional<String> accountType;
 
+    private final Optional<String> classification;
+
     private final Optional<String> companyId;
 
     private final Optional<OffsetDateTime> createdAfter;
@@ -62,6 +64,7 @@ public final class AccountsListRequest {
     private AccountsListRequest(
             Optional<List<String>> expand,
             Optional<String> accountType,
+            Optional<String> classification,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -80,6 +83,7 @@ public final class AccountsListRequest {
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.accountType = accountType;
+        this.classification = classification;
         this.companyId = companyId;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -107,11 +111,19 @@ public final class AccountsListRequest {
     }
 
     /**
-     * @return If provided, will only provide accounts with the passed in enum.
+     * @return If provided, will only return accounts with the passed in enum.
      */
     @JsonProperty("account_type")
     public Optional<String> getAccountType() {
         return accountType;
+    }
+
+    /**
+     * @return If provided, will only return accounts with this classification.
+     */
+    @JsonProperty("classification")
+    public Optional<String> getClassification() {
+        return classification;
     }
 
     /**
@@ -248,6 +260,7 @@ public final class AccountsListRequest {
     private boolean equalTo(AccountsListRequest other) {
         return expand.equals(other.expand)
                 && accountType.equals(other.accountType)
+                && classification.equals(other.classification)
                 && companyId.equals(other.companyId)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
@@ -270,6 +283,7 @@ public final class AccountsListRequest {
         return Objects.hash(
                 this.expand,
                 this.accountType,
+                this.classification,
                 this.companyId,
                 this.createdAfter,
                 this.createdBefore,
@@ -301,6 +315,8 @@ public final class AccountsListRequest {
         private Optional<List<String>> expand = Optional.empty();
 
         private Optional<String> accountType = Optional.empty();
+
+        private Optional<String> classification = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
 
@@ -340,6 +356,7 @@ public final class AccountsListRequest {
         public Builder from(AccountsListRequest other) {
             expand(other.getExpand());
             accountType(other.getAccountType());
+            classification(other.getClassification());
             companyId(other.getCompanyId());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
@@ -358,6 +375,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
+         */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
         public Builder expand(Optional<List<String>> expand) {
             this.expand = expand;
@@ -374,6 +394,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return accounts with the passed in enum.</p>
+         */
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
         public Builder accountType(Optional<String> accountType) {
             this.accountType = accountType;
@@ -385,6 +408,23 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return accounts with this classification.</p>
+         */
+        @JsonSetter(value = "classification", nulls = Nulls.SKIP)
+        public Builder classification(Optional<String> classification) {
+            this.classification = classification;
+            return this;
+        }
+
+        public Builder classification(String classification) {
+            this.classification = Optional.ofNullable(classification);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return accounts for this company.</p>
+         */
         @JsonSetter(value = "company_id", nulls = Nulls.SKIP)
         public Builder companyId(Optional<String> companyId) {
             this.companyId = companyId;
@@ -396,6 +436,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
         @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
         public Builder createdAfter(Optional<OffsetDateTime> createdAfter) {
             this.createdAfter = createdAfter;
@@ -407,6 +450,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
         @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
         public Builder createdBefore(Optional<OffsetDateTime> createdBefore) {
             this.createdBefore = createdBefore;
@@ -418,6 +464,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>The pagination cursor value.</p>
+         */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
         public Builder cursor(Optional<String> cursor) {
             this.cursor = cursor;
@@ -429,6 +478,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "include_deleted_data", nulls = Nulls.SKIP)
         public Builder includeDeletedData(Optional<Boolean> includeDeletedData) {
             this.includeDeletedData = includeDeletedData;
@@ -440,6 +492,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include the original data Merge fetched from the third-party to produce these models.</p>
+         */
         @JsonSetter(value = "include_remote_data", nulls = Nulls.SKIP)
         public Builder includeRemoteData(Optional<Boolean> includeRemoteData) {
             this.includeRemoteData = includeRemoteData;
@@ -451,6 +506,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Whether to include shell records. Shell records are empty records (they may contain some metadata but all other fields are null).</p>
+         */
         @JsonSetter(value = "include_shell_data", nulls = Nulls.SKIP)
         public Builder includeShellData(Optional<Boolean> includeShellData) {
             this.includeShellData = includeShellData;
@@ -462,6 +520,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
         public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
             this.modifiedAfter = modifiedAfter;
@@ -473,6 +534,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, only objects synced by Merge before this date time will be returned.</p>
+         */
         @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
         public Builder modifiedBefore(Optional<OffsetDateTime> modifiedBefore) {
             this.modifiedBefore = modifiedBefore;
@@ -484,6 +548,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return Accounts with this name.</p>
+         */
         @JsonSetter(value = "name", nulls = Nulls.SKIP)
         public Builder name(Optional<String> name) {
             this.name = name;
@@ -495,6 +562,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Number of results to return per page.</p>
+         */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
             this.pageSize = pageSize;
@@ -506,6 +576,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>Deprecated. Use show_enum_origins.</p>
+         */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
         public Builder remoteFields(Optional<AccountsListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
@@ -517,6 +590,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>The API provider's ID for the given object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -528,6 +604,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
+         */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
         public Builder showEnumOrigins(Optional<AccountsListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
@@ -539,6 +618,9 @@ public final class AccountsListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return accounts with this status.</p>
+         */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
         public Builder status(Optional<String> status) {
             this.status = status;
@@ -554,6 +636,7 @@ public final class AccountsListRequest {
             return new AccountsListRequest(
                     expand,
                     accountType,
+                    classification,
                     companyId,
                     createdAfter,
                     createdBefore,

@@ -52,7 +52,7 @@ public class RawBenefitsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Benefit>> list(
             BenefitsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/benefits");
         if (request.getCreatedAfter().isPresent()) {
@@ -173,7 +173,7 @@ public class RawBenefitsClient {
      */
     public MergeApiHttpResponse<Benefit> retrieve(
             String id, BenefitsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/benefits")
                 .addPathSegment(id);

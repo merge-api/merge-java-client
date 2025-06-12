@@ -51,7 +51,7 @@ public class AsyncRawPhoneNumbersClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AccountingPhoneNumber>> retrieve(
             String id, PhoneNumbersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/phone-numbers")
                 .addPathSegment(id);

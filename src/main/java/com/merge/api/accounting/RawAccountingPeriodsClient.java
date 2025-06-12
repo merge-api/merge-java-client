@@ -52,7 +52,7 @@ public class RawAccountingPeriodsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<AccountingPeriod>> list(
             AccountingPeriodsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounting-periods");
         if (request.getCursor().isPresent()) {
@@ -142,7 +142,7 @@ public class RawAccountingPeriodsClient {
      */
     public MergeApiHttpResponse<AccountingPeriod> retrieve(
             String id, AccountingPeriodsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/accounting-periods")
                 .addPathSegment(id);

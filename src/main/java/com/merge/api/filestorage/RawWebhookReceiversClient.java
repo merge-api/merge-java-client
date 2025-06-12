@@ -42,7 +42,7 @@ public class RawWebhookReceiversClient {
      * Returns a list of <code>WebhookReceiver</code> objects.
      */
     public MergeApiHttpResponse<List<WebhookReceiver>> list(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/webhook-receivers")
                 .build();
@@ -87,7 +87,7 @@ public class RawWebhookReceiversClient {
      * Creates a <code>WebhookReceiver</code> object with the given values.
      */
     public MergeApiHttpResponse<WebhookReceiver> create(WebhookReceiverRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/webhook-receivers")
                 .build();

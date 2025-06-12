@@ -22,6 +22,7 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsViewersListRequest;
@@ -66,7 +67,7 @@ public class RawTicketsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Ticket>> list(
             TicketsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets");
         if (request.getAccountId().isPresent()) {
@@ -106,6 +107,10 @@ public class RawTicketsClient {
         if (request.getCreatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "created_before", request.getCreatedBefore().get().toString(), false);
+        }
+        if (request.getCreatorId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "creator_id", request.getCreatorId().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -283,7 +288,7 @@ public class RawTicketsClient {
      * Creates a <code>Ticket</code> object with the given values.
      */
     public MergeApiHttpResponse<TicketResponse> create(TicketEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets");
         if (request.getIsDebugMode().isPresent()) {
@@ -350,7 +355,7 @@ public class RawTicketsClient {
      */
     public MergeApiHttpResponse<Ticket> retrieve(
             String id, TicketsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets")
                 .addPathSegment(id);
@@ -430,7 +435,7 @@ public class RawTicketsClient {
      */
     public MergeApiHttpResponse<TicketResponse> partialUpdate(
             String id, PatchedTicketEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets")
                 .addPathSegment(id);
@@ -499,7 +504,7 @@ public class RawTicketsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Viewer>> viewersList(
             String ticketId, TicketsViewersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets")
                 .addPathSegment(ticketId)
@@ -587,7 +592,7 @@ public class RawTicketsClient {
      * Returns metadata for <code>Ticket</code> PATCHs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets/meta/patch")
                 .addPathSegment(id)
@@ -624,24 +629,39 @@ public class RawTicketsClient {
      * Returns metadata for <code>Ticket</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve() {
-        return metaPostRetrieve(null);
+        return metaPostRetrieve(TicketsMetaPostRetrieveRequest.builder().build());
     }
 
     /**
      * Returns metadata for <code>Ticket</code> POSTs.
      */
-    public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+    public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(TicketsMetaPostRetrieveRequest request) {
+        return metaPostRetrieve(request, null);
+    }
+
+    /**
+     * Returns metadata for <code>Ticket</code> POSTs.
+     */
+    public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(
+            TicketsMetaPostRetrieveRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("ticketing/v1/tickets/meta/post")
-                .build();
-        Request okhttpRequest = new Request.Builder()
-                .url(httpUrl)
+                .addPathSegments("ticketing/v1/tickets/meta/post");
+        if (request.getCollectionId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "collection_id", request.getCollectionId().get(), false);
+        }
+        if (request.getTicketType().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "ticket_type", request.getTicketType().get(), false);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
                 .addHeader("Content-Type", "application/json")
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -684,7 +704,7 @@ public class RawTicketsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             TicketsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/tickets/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -721,6 +741,10 @@ public class RawTicketsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

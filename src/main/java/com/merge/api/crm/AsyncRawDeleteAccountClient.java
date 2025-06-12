@@ -40,7 +40,7 @@ public class AsyncRawDeleteAccountClient {
      * Delete a linked account.
      */
     public CompletableFuture<MergeApiHttpResponse<Void>> delete(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/delete-account")
                 .build();

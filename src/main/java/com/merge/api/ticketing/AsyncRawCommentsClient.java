@@ -64,7 +64,7 @@ public class AsyncRawCommentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Comment>>> list(
             CommentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments");
         if (request.getCreatedAfter().isPresent()) {
@@ -204,7 +204,7 @@ public class AsyncRawCommentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CommentResponse>> create(
             CommentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments");
         if (request.getIsDebugMode().isPresent()) {
@@ -285,7 +285,7 @@ public class AsyncRawCommentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Comment>> retrieve(
             String id, CommentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments")
                 .addPathSegment(id);
@@ -359,7 +359,7 @@ public class AsyncRawCommentsClient {
      * Returns metadata for <code>Comment</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/comments/meta/post")
                 .build();

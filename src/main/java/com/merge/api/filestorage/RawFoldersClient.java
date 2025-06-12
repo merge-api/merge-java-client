@@ -59,7 +59,7 @@ public class RawFoldersClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Folder>> list(
             FoldersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/folders");
         if (request.getCreatedAfter().isPresent()) {
@@ -181,7 +181,7 @@ public class RawFoldersClient {
      */
     public MergeApiHttpResponse<FileStorageFolderResponse> create(
             FileStorageFolderEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/folders");
         if (request.getIsDebugMode().isPresent()) {
@@ -249,7 +249,7 @@ public class RawFoldersClient {
      */
     public MergeApiHttpResponse<Folder> retrieve(
             String id, FoldersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/folders")
                 .addPathSegment(id);
@@ -310,7 +310,7 @@ public class RawFoldersClient {
      * Returns metadata for <code>FileStorageFolder</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/folders/meta/post")
                 .build();

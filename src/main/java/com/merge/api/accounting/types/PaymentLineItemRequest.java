@@ -196,6 +196,9 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -207,6 +210,9 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The amount being applied to the transaction.</p>
+         */
         @JsonSetter(value = "applied_amount", nulls = Nulls.SKIP)
         public Builder appliedAmount(Optional<String> appliedAmount) {
             this.appliedAmount = appliedAmount;
@@ -218,6 +224,9 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The date the payment portion is applied.</p>
+         */
         @JsonSetter(value = "applied_date", nulls = Nulls.SKIP)
         public Builder appliedDate(Optional<OffsetDateTime> appliedDate) {
             this.appliedDate = appliedDate;
@@ -229,6 +238,9 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The Merge ID of the transaction the payment portion is being applied to.</p>
+         */
         @JsonSetter(value = "related_object_id", nulls = Nulls.SKIP)
         public Builder relatedObjectId(Optional<String> relatedObjectId) {
             this.relatedObjectId = relatedObjectId;
@@ -240,6 +252,9 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        /**
+         * <p>The type of transaction the payment portion is being applied to. Possible values include: INVOICE, JOURNAL_ENTRY, or CREDIT_NOTE.</p>
+         */
         @JsonSetter(value = "related_object_type", nulls = Nulls.SKIP)
         public Builder relatedObjectType(Optional<String> relatedObjectType) {
             this.relatedObjectType = relatedObjectType;

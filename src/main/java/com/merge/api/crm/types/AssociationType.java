@@ -39,7 +39,7 @@ public final class AssociationType {
 
     private final Optional<String> displayName;
 
-    private final Optional<CardinalityEnum> cardinality;
+    private final Optional<AssociationTypeCardinality> cardinality;
 
     private final Optional<Boolean> isRequired;
 
@@ -54,7 +54,7 @@ public final class AssociationType {
             Optional<List<AssociationSubType>> targetObjectClasses,
             Optional<String> remoteKeyName,
             Optional<String> displayName,
-            Optional<CardinalityEnum> cardinality,
+            Optional<AssociationTypeCardinality> cardinality,
             Optional<Boolean> isRequired,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -123,7 +123,7 @@ public final class AssociationType {
     }
 
     @JsonProperty("cardinality")
-    public Optional<CardinalityEnum> getCardinality() {
+    public Optional<AssociationTypeCardinality> getCardinality() {
         return cardinality;
     }
 
@@ -198,7 +198,7 @@ public final class AssociationType {
 
         private Optional<String> displayName = Optional.empty();
 
-        private Optional<CardinalityEnum> cardinality = Optional.empty();
+        private Optional<AssociationTypeCardinality> cardinality = Optional.empty();
 
         private Optional<Boolean> isRequired = Optional.empty();
 
@@ -232,6 +232,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -243,6 +246,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -254,6 +260,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -265,6 +274,9 @@ public final class AssociationType {
             return this;
         }
 
+        /**
+         * <p>The class of the source object (Custom Object or Common Model) for the association type.</p>
+         */
         @JsonSetter(value = "source_object_class", nulls = Nulls.SKIP)
         public Builder sourceObjectClass(Optional<Map<String, JsonNode>> sourceObjectClass) {
             this.sourceObjectClass = sourceObjectClass;
@@ -310,12 +322,12 @@ public final class AssociationType {
         }
 
         @JsonSetter(value = "cardinality", nulls = Nulls.SKIP)
-        public Builder cardinality(Optional<CardinalityEnum> cardinality) {
+        public Builder cardinality(Optional<AssociationTypeCardinality> cardinality) {
             this.cardinality = cardinality;
             return this;
         }
 
-        public Builder cardinality(CardinalityEnum cardinality) {
+        public Builder cardinality(AssociationTypeCardinality cardinality) {
             this.cardinality = Optional.ofNullable(cardinality);
             return this;
         }

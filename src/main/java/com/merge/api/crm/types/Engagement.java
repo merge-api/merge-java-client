@@ -37,7 +37,7 @@ public final class Engagement {
 
     private final Optional<String> subject;
 
-    private final Optional<DirectionEnum> direction;
+    private final Optional<EngagementDirection> direction;
 
     private final Optional<EngagementEngagementType> engagementType;
 
@@ -67,7 +67,7 @@ public final class Engagement {
             Optional<EngagementOwner> owner,
             Optional<String> content,
             Optional<String> subject,
-            Optional<DirectionEnum> direction,
+            Optional<EngagementDirection> direction,
             Optional<EngagementEngagementType> engagementType,
             Optional<OffsetDateTime> startTime,
             Optional<OffsetDateTime> endTime,
@@ -159,7 +159,7 @@ public final class Engagement {
      * </ul>
      */
     @JsonProperty("direction")
-    public Optional<DirectionEnum> getDirection() {
+    public Optional<EngagementDirection> getDirection() {
         return direction;
     }
 
@@ -301,7 +301,7 @@ public final class Engagement {
 
         private Optional<String> subject = Optional.empty();
 
-        private Optional<DirectionEnum> direction = Optional.empty();
+        private Optional<EngagementDirection> direction = Optional.empty();
 
         private Optional<EngagementEngagementType> engagementType = Optional.empty();
 
@@ -358,6 +358,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         */
         @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
         public Builder remoteId(Optional<String> remoteId) {
             this.remoteId = remoteId;
@@ -369,6 +372,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -380,6 +386,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -391,6 +400,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The engagement's owner.</p>
+         */
         @JsonSetter(value = "owner", nulls = Nulls.SKIP)
         public Builder owner(Optional<EngagementOwner> owner) {
             this.owner = owner;
@@ -402,6 +414,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The engagement's content.</p>
+         */
         @JsonSetter(value = "content", nulls = Nulls.SKIP)
         public Builder content(Optional<String> content) {
             this.content = content;
@@ -413,6 +428,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The engagement's subject.</p>
+         */
         @JsonSetter(value = "subject", nulls = Nulls.SKIP)
         public Builder subject(Optional<String> subject) {
             this.subject = subject;
@@ -424,17 +442,27 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The engagement's direction.</p>
+         * <ul>
+         * <li><code>INBOUND</code> - INBOUND</li>
+         * <li><code>OUTBOUND</code> - OUTBOUND</li>
+         * </ul>
+         */
         @JsonSetter(value = "direction", nulls = Nulls.SKIP)
-        public Builder direction(Optional<DirectionEnum> direction) {
+        public Builder direction(Optional<EngagementDirection> direction) {
             this.direction = direction;
             return this;
         }
 
-        public Builder direction(DirectionEnum direction) {
+        public Builder direction(EngagementDirection direction) {
             this.direction = Optional.ofNullable(direction);
             return this;
         }
 
+        /**
+         * <p>The engagement type of the engagement.</p>
+         */
         @JsonSetter(value = "engagement_type", nulls = Nulls.SKIP)
         public Builder engagementType(Optional<EngagementEngagementType> engagementType) {
             this.engagementType = engagementType;
@@ -446,6 +474,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The time at which the engagement started.</p>
+         */
         @JsonSetter(value = "start_time", nulls = Nulls.SKIP)
         public Builder startTime(Optional<OffsetDateTime> startTime) {
             this.startTime = startTime;
@@ -457,6 +488,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The time at which the engagement ended.</p>
+         */
         @JsonSetter(value = "end_time", nulls = Nulls.SKIP)
         public Builder endTime(Optional<OffsetDateTime> endTime) {
             this.endTime = endTime;
@@ -468,6 +502,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>The account of the engagement.</p>
+         */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<EngagementAccount> account) {
             this.account = account;
@@ -490,6 +527,9 @@ public final class Engagement {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

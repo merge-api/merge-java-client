@@ -40,7 +40,7 @@ public class RawScopesClient {
      * Get the default permissions for Merge Common Models and fields across all Linked Accounts of a given category. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public MergeApiHttpResponse<CommonModelScopeApi> defaultScopesRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/default-scopes")
                 .build();
@@ -84,7 +84,7 @@ public class RawScopesClient {
      * Get all available permissions for Merge Common Models and fields for a single Linked Account. <a href="https://help.merge.dev/en/articles/5950052-common-model-and-field-scopes">Learn more</a>.
      */
     public MergeApiHttpResponse<CommonModelScopeApi> linkedAccountScopesRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/linked-account-scopes")
                 .build();
@@ -130,7 +130,7 @@ public class RawScopesClient {
      */
     public MergeApiHttpResponse<CommonModelScopeApi> linkedAccountScopesCreate(
             LinkedAccountCommonModelScopeDeserializerRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/linked-account-scopes")
                 .build();

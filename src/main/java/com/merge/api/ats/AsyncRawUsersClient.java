@@ -57,7 +57,7 @@ public class AsyncRawUsersClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<RemoteUser>>> list(
             UsersListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/users");
         if (request.getCreatedAfter().isPresent()) {
@@ -201,7 +201,7 @@ public class AsyncRawUsersClient {
      */
     public CompletableFuture<MergeApiHttpResponse<RemoteUser>> retrieve(
             String id, UsersRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/users")
                 .addPathSegment(id);

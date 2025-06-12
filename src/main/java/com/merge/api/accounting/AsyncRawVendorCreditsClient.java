@@ -65,7 +65,7 @@ public class AsyncRawVendorCreditsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<VendorCredit>>> list(
             VendorCreditsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/vendor-credits");
         if (request.getCompanyId().isPresent()) {
@@ -212,7 +212,7 @@ public class AsyncRawVendorCreditsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<VendorCreditResponse>> create(
             VendorCreditEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/vendor-credits");
         if (request.getIsDebugMode().isPresent()) {
@@ -294,7 +294,7 @@ public class AsyncRawVendorCreditsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<VendorCredit>> retrieve(
             String id, VendorCreditsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/vendor-credits")
                 .addPathSegment(id);
@@ -369,7 +369,7 @@ public class AsyncRawVendorCreditsClient {
      * Returns metadata for <code>VendorCredit</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/vendor-credits/meta/post")
                 .build();

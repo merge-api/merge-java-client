@@ -62,7 +62,7 @@ public class RawContactsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Contact>> list(
             ContactsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts");
         if (request.getCompanyId().isPresent()) {
@@ -210,7 +210,7 @@ public class RawContactsClient {
      * Creates a <code>Contact</code> object with the given values.
      */
     public MergeApiHttpResponse<ContactResponse> create(ContactEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts");
         if (request.getIsDebugMode().isPresent()) {
@@ -277,7 +277,7 @@ public class RawContactsClient {
      */
     public MergeApiHttpResponse<Contact> retrieve(
             String id, ContactsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts")
                 .addPathSegment(id);
@@ -353,7 +353,7 @@ public class RawContactsClient {
      * Returns metadata for <code>Contact</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts/meta/post")
                 .build();
@@ -406,7 +406,7 @@ public class RawContactsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             ContactsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/contacts/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -440,6 +440,10 @@ public class RawContactsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

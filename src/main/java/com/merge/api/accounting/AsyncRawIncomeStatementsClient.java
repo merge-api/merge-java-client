@@ -58,7 +58,7 @@ public class AsyncRawIncomeStatementsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<IncomeStatement>>> list(
             IncomeStatementsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/income-statements");
         if (request.getCompanyId().isPresent()) {
@@ -200,7 +200,7 @@ public class AsyncRawIncomeStatementsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<IncomeStatement>> retrieve(
             String id, IncomeStatementsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/income-statements")
                 .addPathSegment(id);

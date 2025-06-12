@@ -25,7 +25,7 @@ public final class MultipartFormFieldRequest {
 
     private final String data;
 
-    private final Optional<EncodingEnum> encoding;
+    private final Optional<MultipartFormFieldRequestEncoding> encoding;
 
     private final Optional<String> fileName;
 
@@ -36,7 +36,7 @@ public final class MultipartFormFieldRequest {
     private MultipartFormFieldRequest(
             String name,
             String data,
-            Optional<EncodingEnum> encoding,
+            Optional<MultipartFormFieldRequestEncoding> encoding,
             Optional<String> fileName,
             Optional<String> contentType,
             Map<String, Object> additionalProperties) {
@@ -73,7 +73,7 @@ public final class MultipartFormFieldRequest {
      * </ul>
      */
     @JsonProperty("encoding")
-    public Optional<EncodingEnum> getEncoding() {
+    public Optional<MultipartFormFieldRequestEncoding> getEncoding() {
         return encoding;
     }
 
@@ -127,26 +127,46 @@ public final class MultipartFormFieldRequest {
     }
 
     public interface NameStage {
+        /**
+         * The name of the form field
+         */
         DataStage name(@NotNull String name);
 
         Builder from(MultipartFormFieldRequest other);
     }
 
     public interface DataStage {
+        /**
+         * The data for the form field.
+         */
         _FinalStage data(@NotNull String data);
     }
 
     public interface _FinalStage {
         MultipartFormFieldRequest build();
 
-        _FinalStage encoding(Optional<EncodingEnum> encoding);
+        /**
+         * <p>The encoding of the value of <code>data</code>. Defaults to <code>RAW</code> if not defined.</p>
+         * <ul>
+         * <li><code>RAW</code> - RAW</li>
+         * <li><code>BASE64</code> - BASE64</li>
+         * <li><code>GZIP_BASE64</code> - GZIP_BASE64</li>
+         * </ul>
+         */
+        _FinalStage encoding(Optional<MultipartFormFieldRequestEncoding> encoding);
 
-        _FinalStage encoding(EncodingEnum encoding);
+        _FinalStage encoding(MultipartFormFieldRequestEncoding encoding);
 
+        /**
+         * <p>The file name of the form field, if the field is for a file.</p>
+         */
         _FinalStage fileName(Optional<String> fileName);
 
         _FinalStage fileName(String fileName);
 
+        /**
+         * <p>The MIME type of the file, if the field is for a file.</p>
+         */
         _FinalStage contentType(Optional<String> contentType);
 
         _FinalStage contentType(String contentType);
@@ -162,7 +182,7 @@ public final class MultipartFormFieldRequest {
 
         private Optional<String> fileName = Optional.empty();
 
-        private Optional<EncodingEnum> encoding = Optional.empty();
+        private Optional<MultipartFormFieldRequestEncoding> encoding = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -180,7 +200,7 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * <p>The name of the form field</p>
+         * The name of the form field<p>The name of the form field</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -191,7 +211,7 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * <p>The data for the form field.</p>
+         * The data for the form field.<p>The data for the form field.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -211,6 +231,9 @@ public final class MultipartFormFieldRequest {
             return this;
         }
 
+        /**
+         * <p>The MIME type of the file, if the field is for a file.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "content_type", nulls = Nulls.SKIP)
         public _FinalStage contentType(Optional<String> contentType) {
@@ -228,6 +251,9 @@ public final class MultipartFormFieldRequest {
             return this;
         }
 
+        /**
+         * <p>The file name of the form field, if the field is for a file.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "file_name", nulls = Nulls.SKIP)
         public _FinalStage fileName(Optional<String> fileName) {
@@ -245,14 +271,22 @@ public final class MultipartFormFieldRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage encoding(EncodingEnum encoding) {
+        public _FinalStage encoding(MultipartFormFieldRequestEncoding encoding) {
             this.encoding = Optional.ofNullable(encoding);
             return this;
         }
 
+        /**
+         * <p>The encoding of the value of <code>data</code>. Defaults to <code>RAW</code> if not defined.</p>
+         * <ul>
+         * <li><code>RAW</code> - RAW</li>
+         * <li><code>BASE64</code> - BASE64</li>
+         * <li><code>GZIP_BASE64</code> - GZIP_BASE64</li>
+         * </ul>
+         */
         @java.lang.Override
         @JsonSetter(value = "encoding", nulls = Nulls.SKIP)
-        public _FinalStage encoding(Optional<EncodingEnum> encoding) {
+        public _FinalStage encoding(Optional<MultipartFormFieldRequestEncoding> encoding) {
             this.encoding = encoding;
             return this;
         }

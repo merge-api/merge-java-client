@@ -64,7 +64,7 @@ public class RawPaymentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Payment>> list(
             PaymentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments");
         if (request.getAccountId().isPresent()) {
@@ -206,7 +206,7 @@ public class RawPaymentsClient {
      * Creates a <code>Payment</code> object with the given values.
      */
     public MergeApiHttpResponse<PaymentResponse> create(PaymentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments");
         if (request.getIsDebugMode().isPresent()) {
@@ -273,7 +273,7 @@ public class RawPaymentsClient {
      */
     public MergeApiHttpResponse<Payment> retrieve(
             String id, PaymentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments")
                 .addPathSegment(id);
@@ -342,7 +342,7 @@ public class RawPaymentsClient {
      */
     public MergeApiHttpResponse<PaymentResponse> partialUpdate(
             String id, PatchedPaymentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments")
                 .addPathSegment(id);
@@ -412,7 +412,7 @@ public class RawPaymentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> lineItemsRemoteFieldClassesList(
             PaymentsLineItemsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments/line-items/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -446,6 +446,10 @@ public class RawPaymentsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -503,7 +507,7 @@ public class RawPaymentsClient {
      * Returns metadata for <code>Payment</code> PATCHs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments/meta/patch")
                 .addPathSegment(id)
@@ -547,7 +551,7 @@ public class RawPaymentsClient {
      * Returns metadata for <code>Payment</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments/meta/post")
                 .build();
@@ -600,7 +604,7 @@ public class RawPaymentsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             PaymentsRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/payments/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -634,6 +638,10 @@ public class RawPaymentsClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

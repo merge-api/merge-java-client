@@ -66,7 +66,7 @@ public class RawFilesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<File>> list(
             FilesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files");
         if (request.getCreatedAfter().isPresent()) {
@@ -128,6 +128,10 @@ public class RawFilesClient {
         if (request.getName().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "name", request.getName().get(), false);
+        }
+        if (request.getOrderBy().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "order_by", request.getOrderBy().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -192,7 +196,7 @@ public class RawFilesClient {
      */
     public MergeApiHttpResponse<FileStorageFileResponse> create(
             FileStorageFileEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files");
         if (request.getIsDebugMode().isPresent()) {
@@ -259,7 +263,7 @@ public class RawFilesClient {
      * Returns a <code>File</code> object with the given <code>id</code>.
      */
     public MergeApiHttpResponse<File> retrieve(String id, FilesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files")
                 .addPathSegment(id);
@@ -328,7 +332,7 @@ public class RawFilesClient {
      */
     public MergeApiHttpResponse<InputStream> downloadRetrieve(
             String id, FilesDownloadRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files")
                 .addPathSegment(id)
@@ -392,7 +396,7 @@ public class RawFilesClient {
      */
     public MergeApiHttpResponse<DownloadRequestMeta> downloadRequestMetaRetrieve(
             String id, FilesDownloadRequestMetaRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files")
                 .addPathSegment(id)
@@ -451,9 +455,17 @@ public class RawFilesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<DownloadRequestMeta>> downloadRequestMetaList(
             FilesDownloadRequestMetaListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files/download/request-meta");
+        if (request.getCreatedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
+        }
+        if (request.getCreatedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
+        }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
@@ -465,9 +477,21 @@ public class RawFilesClient {
                     request.getIncludeDeletedData().get().toString(),
                     false);
         }
-        if (request.getMimeType().isPresent()) {
+        if (request.getMimeTypes().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "mime_type", request.getMimeType().get(), false);
+                    httpUrl, "mime_types", request.getMimeTypes().get(), false);
+        }
+        if (request.getModifiedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
+        }
+        if (request.getModifiedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
+        }
+        if (request.getOrderBy().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "order_by", request.getOrderBy().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -524,7 +548,7 @@ public class RawFilesClient {
      * Returns metadata for <code>FileStorageFile</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/files/meta/post")
                 .build();

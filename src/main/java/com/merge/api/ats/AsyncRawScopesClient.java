@@ -45,7 +45,7 @@ public class AsyncRawScopesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CommonModelScopeApi>> defaultScopesRetrieve(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/default-scopes")
                 .build();
@@ -103,7 +103,7 @@ public class AsyncRawScopesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CommonModelScopeApi>> linkedAccountScopesRetrieve(
             RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/linked-account-scopes")
                 .build();
@@ -162,7 +162,7 @@ public class AsyncRawScopesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<CommonModelScopeApi>> linkedAccountScopesCreate(
             LinkedAccountCommonModelScopeDeserializerRequest request, RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/linked-account-scopes")
                 .build();

@@ -63,7 +63,7 @@ public class RawExpensesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Expense>> list(
             ExpensesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses");
         if (request.getCompanyId().isPresent()) {
@@ -197,7 +197,7 @@ public class RawExpensesClient {
      * Creates an <code>Expense</code> object with the given values.
      */
     public MergeApiHttpResponse<ExpenseResponse> create(ExpenseEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses");
         if (request.getIsDebugMode().isPresent()) {
@@ -264,7 +264,7 @@ public class RawExpensesClient {
      */
     public MergeApiHttpResponse<Expense> retrieve(
             String id, ExpensesRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses")
                 .addPathSegment(id);
@@ -342,7 +342,7 @@ public class RawExpensesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> linesRemoteFieldClassesList(
             ExpensesLinesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses/lines/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -376,6 +376,10 @@ public class RawExpensesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -433,7 +437,7 @@ public class RawExpensesClient {
      * Returns metadata for <code>Expense</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses/meta/post")
                 .build();
@@ -486,7 +490,7 @@ public class RawExpensesClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<RemoteFieldClass>> remoteFieldClassesList(
             ExpensesRemoteFieldClassesListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/expenses/remote-field-classes");
         if (request.getCursor().isPresent()) {
@@ -520,6 +524,10 @@ public class RawExpensesClient {
                     "is_common_model_field",
                     request.getIsCommonModelField().get().toString(),
                     false);
+        }
+        if (request.getIsCustom().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_custom", request.getIsCustom().get().toString(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

@@ -52,7 +52,7 @@ public class RawGroupsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<Group>> list(
             GroupsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/groups");
         if (request.getCreatedAfter().isPresent()) {
@@ -188,7 +188,7 @@ public class RawGroupsClient {
      */
     public MergeApiHttpResponse<Group> retrieve(
             String id, GroupsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("hris/v1/groups")
                 .addPathSegment(id);

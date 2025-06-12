@@ -59,7 +59,7 @@ public class RawInterviewsClient {
      */
     public MergeApiHttpResponse<SyncPagingIterable<ScheduledInterview>> list(
             InterviewsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/interviews");
         if (request.getApplicationId().isPresent()) {
@@ -196,7 +196,7 @@ public class RawInterviewsClient {
      */
     public MergeApiHttpResponse<ScheduledInterviewResponse> create(
             ScheduledInterviewEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/interviews");
         if (request.getIsDebugMode().isPresent()) {
@@ -265,7 +265,7 @@ public class RawInterviewsClient {
      */
     public MergeApiHttpResponse<ScheduledInterview> retrieve(
             String id, InterviewsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/interviews")
                 .addPathSegment(id);
@@ -334,7 +334,7 @@ public class RawInterviewsClient {
      * Returns metadata for <code>ScheduledInterview</code> POSTs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/interviews/meta/post")
                 .build();

@@ -27,7 +27,7 @@ public final class EmailAddress {
 
     private final Optional<String> value;
 
-    private final Optional<EmailAddressTypeEnum> emailAddressType;
+    private final Optional<EmailAddressEmailAddressType> emailAddressType;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -37,7 +37,7 @@ public final class EmailAddress {
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
             Optional<String> value,
-            Optional<EmailAddressTypeEnum> emailAddressType,
+            Optional<EmailAddressEmailAddressType> emailAddressType,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.createdAt = createdAt;
@@ -81,7 +81,7 @@ public final class EmailAddress {
      * </ul>
      */
     @JsonProperty("email_address_type")
-    public Optional<EmailAddressTypeEnum> getEmailAddressType() {
+    public Optional<EmailAddressEmailAddressType> getEmailAddressType() {
         return emailAddressType;
     }
 
@@ -134,7 +134,7 @@ public final class EmailAddress {
 
         private Optional<String> value = Optional.empty();
 
-        private Optional<EmailAddressTypeEnum> emailAddressType = Optional.empty();
+        private Optional<EmailAddressEmailAddressType> emailAddressType = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -152,6 +152,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was created by Merge.</p>
+         */
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -163,6 +166,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The datetime that this object was modified by Merge.</p>
+         */
         @JsonSetter(value = "modified_at", nulls = Nulls.SKIP)
         public Builder modifiedAt(Optional<OffsetDateTime> modifiedAt) {
             this.modifiedAt = modifiedAt;
@@ -174,6 +180,9 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The email address.</p>
+         */
         @JsonSetter(value = "value", nulls = Nulls.SKIP)
         public Builder value(Optional<String> value) {
             this.value = value;
@@ -185,17 +194,28 @@ public final class EmailAddress {
             return this;
         }
 
+        /**
+         * <p>The type of email address.</p>
+         * <ul>
+         * <li><code>PERSONAL</code> - PERSONAL</li>
+         * <li><code>WORK</code> - WORK</li>
+         * <li><code>OTHER</code> - OTHER</li>
+         * </ul>
+         */
         @JsonSetter(value = "email_address_type", nulls = Nulls.SKIP)
-        public Builder emailAddressType(Optional<EmailAddressTypeEnum> emailAddressType) {
+        public Builder emailAddressType(Optional<EmailAddressEmailAddressType> emailAddressType) {
             this.emailAddressType = emailAddressType;
             return this;
         }
 
-        public Builder emailAddressType(EmailAddressTypeEnum emailAddressType) {
+        public Builder emailAddressType(EmailAddressEmailAddressType emailAddressType) {
             this.emailAddressType = Optional.ofNullable(emailAddressType);
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;

@@ -40,7 +40,7 @@ public class AsyncRawAccountDetailsClient {
      * Get details for a linked account.
      */
     public CompletableFuture<MergeApiHttpResponse<AccountDetails>> retrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/account-details")
                 .build();

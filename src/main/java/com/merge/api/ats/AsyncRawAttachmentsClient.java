@@ -65,7 +65,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<SyncPagingIterable<Attachment>>> list(
             AttachmentsListRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments");
         if (request.getCandidateId().isPresent()) {
@@ -206,7 +206,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AttachmentResponse>> create(
             AttachmentEndpointRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments");
         if (request.getIsDebugMode().isPresent()) {
@@ -288,7 +288,7 @@ public class AsyncRawAttachmentsClient {
      */
     public CompletableFuture<MergeApiHttpResponse<Attachment>> retrieve(
             String id, AttachmentsRetrieveRequest request, RequestOptions requestOptions) {
-        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments")
                 .addPathSegment(id);
@@ -371,7 +371,7 @@ public class AsyncRawAttachmentsClient {
      * Returns metadata for <code>Attachment</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> metaPostRetrieve(RequestOptions requestOptions) {
-        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getApiURL())
+        HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ats/v1/attachments/meta/post")
                 .build();
