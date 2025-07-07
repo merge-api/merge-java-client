@@ -3,28 +3,117 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum VendorCreditsRetrieveRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class VendorCreditsRetrieveRequestExpandItem {
+    public static final VendorCreditsRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new VendorCreditsRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    COMPANY("company"),
+    public static final VendorCreditsRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new VendorCreditsRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    LINES("lines"),
+    public static final VendorCreditsRetrieveRequestExpandItem VENDOR =
+            new VendorCreditsRetrieveRequestExpandItem(Value.VENDOR, "vendor");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final VendorCreditsRetrieveRequestExpandItem LINES =
+            new VendorCreditsRetrieveRequestExpandItem(Value.LINES, "lines");
 
-    VENDOR("vendor");
+    public static final VendorCreditsRetrieveRequestExpandItem COMPANY =
+            new VendorCreditsRetrieveRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    VendorCreditsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    VendorCreditsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof VendorCreditsRetrieveRequestExpandItem
+                        && this.string.equals(((VendorCreditsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case VENDOR:
+                return visitor.visitVendor();
+            case LINES:
+                return visitor.visitLines();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static VendorCreditsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "vendor":
+                return VENDOR;
+            case "lines":
+                return LINES;
+            case "company":
+                return COMPANY;
+            default:
+                return new VendorCreditsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        LINES,
+
+        TRACKING_CATEGORIES,
+
+        VENDOR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitLines();
+
+        T visitTrackingCategories();
+
+        T visitVendor();
+
+        T visitUnknown(String unknownType);
     }
 }

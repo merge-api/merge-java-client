@@ -3,26 +3,106 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EngagementsRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class EngagementsRetrieveRequestExpandItem {
+    public static final EngagementsRetrieveRequestExpandItem CONTACTS =
+            new EngagementsRetrieveRequestExpandItem(Value.CONTACTS, "contacts");
 
-    CONTACTS("contacts"),
+    public static final EngagementsRetrieveRequestExpandItem OWNER =
+            new EngagementsRetrieveRequestExpandItem(Value.OWNER, "owner");
 
-    ENGAGEMENT_TYPE("engagement_type"),
+    public static final EngagementsRetrieveRequestExpandItem ACCOUNT =
+            new EngagementsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    OWNER("owner");
+    public static final EngagementsRetrieveRequestExpandItem ENGAGEMENT_TYPE =
+            new EngagementsRetrieveRequestExpandItem(Value.ENGAGEMENT_TYPE, "engagement_type");
 
-    private final String value;
+    private final Value value;
 
-    EngagementsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    EngagementsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EngagementsRetrieveRequestExpandItem
+                        && this.string.equals(((EngagementsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CONTACTS:
+                return visitor.visitContacts();
+            case OWNER:
+                return visitor.visitOwner();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case ENGAGEMENT_TYPE:
+                return visitor.visitEngagementType();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EngagementsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "contacts":
+                return CONTACTS;
+            case "owner":
+                return OWNER;
+            case "account":
+                return ACCOUNT;
+            case "engagement_type":
+                return ENGAGEMENT_TYPE;
+            default:
+                return new EngagementsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        CONTACTS,
+
+        ENGAGEMENT_TYPE,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitContacts();
+
+        T visitEngagementType();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

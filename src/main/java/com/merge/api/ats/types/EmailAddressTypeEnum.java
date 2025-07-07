@@ -3,24 +3,91 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmailAddressTypeEnum {
-    PERSONAL("PERSONAL"),
+public final class EmailAddressTypeEnum {
+    public static final EmailAddressTypeEnum WORK = new EmailAddressTypeEnum(Value.WORK, "WORK");
 
-    WORK("WORK"),
+    public static final EmailAddressTypeEnum OTHER = new EmailAddressTypeEnum(Value.OTHER, "OTHER");
 
-    OTHER("OTHER");
+    public static final EmailAddressTypeEnum PERSONAL = new EmailAddressTypeEnum(Value.PERSONAL, "PERSONAL");
 
-    private final String value;
+    private final Value value;
 
-    EmailAddressTypeEnum(String value) {
+    private final String string;
+
+    EmailAddressTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmailAddressTypeEnum && this.string.equals(((EmailAddressTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case WORK:
+                return visitor.visitWork();
+            case OTHER:
+                return visitor.visitOther();
+            case PERSONAL:
+                return visitor.visitPersonal();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmailAddressTypeEnum valueOf(String value) {
+        switch (value) {
+            case "WORK":
+                return WORK;
+            case "OTHER":
+                return OTHER;
+            case "PERSONAL":
+                return PERSONAL;
+            default:
+                return new EmailAddressTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PERSONAL,
+
+        WORK,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPersonal();
+
+        T visitWork();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

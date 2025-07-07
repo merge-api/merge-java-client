@@ -3,28 +3,112 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TimeOffListRequestStatus {
-    APPROVED("APPROVED"),
+public final class TimeOffListRequestStatus {
+    public static final TimeOffListRequestStatus CANCELLED = new TimeOffListRequestStatus(Value.CANCELLED, "CANCELLED");
 
-    CANCELLED("CANCELLED"),
+    public static final TimeOffListRequestStatus DELETED = new TimeOffListRequestStatus(Value.DELETED, "DELETED");
 
-    DECLINED("DECLINED"),
+    public static final TimeOffListRequestStatus DECLINED = new TimeOffListRequestStatus(Value.DECLINED, "DECLINED");
 
-    DELETED("DELETED"),
+    public static final TimeOffListRequestStatus APPROVED = new TimeOffListRequestStatus(Value.APPROVED, "APPROVED");
 
-    REQUESTED("REQUESTED");
+    public static final TimeOffListRequestStatus REQUESTED = new TimeOffListRequestStatus(Value.REQUESTED, "REQUESTED");
 
-    private final String value;
+    private final Value value;
 
-    TimeOffListRequestStatus(String value) {
+    private final String string;
+
+    TimeOffListRequestStatus(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TimeOffListRequestStatus
+                        && this.string.equals(((TimeOffListRequestStatus) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CANCELLED:
+                return visitor.visitCancelled();
+            case DELETED:
+                return visitor.visitDeleted();
+            case DECLINED:
+                return visitor.visitDeclined();
+            case APPROVED:
+                return visitor.visitApproved();
+            case REQUESTED:
+                return visitor.visitRequested();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TimeOffListRequestStatus valueOf(String value) {
+        switch (value) {
+            case "CANCELLED":
+                return CANCELLED;
+            case "DELETED":
+                return DELETED;
+            case "DECLINED":
+                return DECLINED;
+            case "APPROVED":
+                return APPROVED;
+            case "REQUESTED":
+                return REQUESTED;
+            default:
+                return new TimeOffListRequestStatus(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPROVED,
+
+        CANCELLED,
+
+        DECLINED,
+
+        DELETED,
+
+        REQUESTED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApproved();
+
+        T visitCancelled();
+
+        T visitDeclined();
+
+        T visitDeleted();
+
+        T visitRequested();
+
+        T visitUnknown(String unknownType);
     }
 }

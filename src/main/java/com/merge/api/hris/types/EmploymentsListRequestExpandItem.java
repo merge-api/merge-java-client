@@ -3,22 +3,84 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmploymentsListRequestExpandItem {
-    EMPLOYEE("employee"),
+public final class EmploymentsListRequestExpandItem {
+    public static final EmploymentsListRequestExpandItem PAY_GROUP =
+            new EmploymentsListRequestExpandItem(Value.PAY_GROUP, "pay_group");
 
-    PAY_GROUP("pay_group");
+    public static final EmploymentsListRequestExpandItem EMPLOYEE =
+            new EmploymentsListRequestExpandItem(Value.EMPLOYEE, "employee");
 
-    private final String value;
+    private final Value value;
 
-    EmploymentsListRequestExpandItem(String value) {
+    private final String string;
+
+    EmploymentsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmploymentsListRequestExpandItem
+                        && this.string.equals(((EmploymentsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PAY_GROUP:
+                return visitor.visitPayGroup();
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmploymentsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "pay_group":
+                return PAY_GROUP;
+            case "employee":
+                return EMPLOYEE;
+            default:
+                return new EmploymentsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EMPLOYEE,
+
+        PAY_GROUP,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEmployee();
+
+        T visitPayGroup();
+
+        T visitUnknown(String unknownType);
     }
 }

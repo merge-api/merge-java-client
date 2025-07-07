@@ -3,24 +3,93 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TasksListRequestExpandItem {
-    ACCOUNT("account"),
+public final class TasksListRequestExpandItem {
+    public static final TasksListRequestExpandItem OWNER = new TasksListRequestExpandItem(Value.OWNER, "owner");
 
-    OPPORTUNITY("opportunity"),
+    public static final TasksListRequestExpandItem OPPORTUNITY =
+            new TasksListRequestExpandItem(Value.OPPORTUNITY, "opportunity");
 
-    OWNER("owner");
+    public static final TasksListRequestExpandItem ACCOUNT = new TasksListRequestExpandItem(Value.ACCOUNT, "account");
 
-    private final String value;
+    private final Value value;
 
-    TasksListRequestExpandItem(String value) {
+    private final String string;
+
+    TasksListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TasksListRequestExpandItem
+                        && this.string.equals(((TasksListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case OPPORTUNITY:
+                return visitor.visitOpportunity();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TasksListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "opportunity":
+                return OPPORTUNITY;
+            case "account":
+                return ACCOUNT;
+            default:
+                return new TasksListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        OPPORTUNITY,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitOpportunity();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

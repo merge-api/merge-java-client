@@ -3,28 +3,115 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum MaritalStatusEnum {
-    SINGLE("SINGLE"),
+public final class MaritalStatusEnum {
+    public static final MaritalStatusEnum QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD = new MaritalStatusEnum(
+            Value.QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD, "QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD");
 
-    MARRIED_FILING_JOINTLY("MARRIED_FILING_JOINTLY"),
+    public static final MaritalStatusEnum SINGLE = new MaritalStatusEnum(Value.SINGLE, "SINGLE");
 
-    MARRIED_FILING_SEPARATELY("MARRIED_FILING_SEPARATELY"),
+    public static final MaritalStatusEnum HEAD_OF_HOUSEHOLD =
+            new MaritalStatusEnum(Value.HEAD_OF_HOUSEHOLD, "HEAD_OF_HOUSEHOLD");
 
-    HEAD_OF_HOUSEHOLD("HEAD_OF_HOUSEHOLD"),
+    public static final MaritalStatusEnum MARRIED_FILING_JOINTLY =
+            new MaritalStatusEnum(Value.MARRIED_FILING_JOINTLY, "MARRIED_FILING_JOINTLY");
 
-    QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD("QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD");
+    public static final MaritalStatusEnum MARRIED_FILING_SEPARATELY =
+            new MaritalStatusEnum(Value.MARRIED_FILING_SEPARATELY, "MARRIED_FILING_SEPARATELY");
 
-    private final String value;
+    private final Value value;
 
-    MaritalStatusEnum(String value) {
+    private final String string;
+
+    MaritalStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof MaritalStatusEnum && this.string.equals(((MaritalStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD:
+                return visitor.visitQualifyingWidowOrWidowerWithDependentChild();
+            case SINGLE:
+                return visitor.visitSingle();
+            case HEAD_OF_HOUSEHOLD:
+                return visitor.visitHeadOfHousehold();
+            case MARRIED_FILING_JOINTLY:
+                return visitor.visitMarriedFilingJointly();
+            case MARRIED_FILING_SEPARATELY:
+                return visitor.visitMarriedFilingSeparately();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static MaritalStatusEnum valueOf(String value) {
+        switch (value) {
+            case "QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD":
+                return QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD;
+            case "SINGLE":
+                return SINGLE;
+            case "HEAD_OF_HOUSEHOLD":
+                return HEAD_OF_HOUSEHOLD;
+            case "MARRIED_FILING_JOINTLY":
+                return MARRIED_FILING_JOINTLY;
+            case "MARRIED_FILING_SEPARATELY":
+                return MARRIED_FILING_SEPARATELY;
+            default:
+                return new MaritalStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        SINGLE,
+
+        MARRIED_FILING_JOINTLY,
+
+        MARRIED_FILING_SEPARATELY,
+
+        HEAD_OF_HOUSEHOLD,
+
+        QUALIFYING_WIDOW_OR_WIDOWER_WITH_DEPENDENT_CHILD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitSingle();
+
+        T visitMarriedFilingJointly();
+
+        T visitMarriedFilingSeparately();
+
+        T visitHeadOfHousehold();
+
+        T visitQualifyingWidowOrWidowerWithDependentChild();
+
+        T visitUnknown(String unknownType);
     }
 }

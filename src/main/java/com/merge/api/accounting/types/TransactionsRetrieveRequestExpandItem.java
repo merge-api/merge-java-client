@@ -3,28 +3,117 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TransactionsRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class TransactionsRetrieveRequestExpandItem {
+    public static final TransactionsRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new TransactionsRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final TransactionsRetrieveRequestExpandItem LINE_ITEMS =
+            new TransactionsRetrieveRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    CONTACT("contact"),
+    public static final TransactionsRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new TransactionsRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    LINE_ITEMS("line_items"),
+    public static final TransactionsRetrieveRequestExpandItem ACCOUNT =
+            new TransactionsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final TransactionsRetrieveRequestExpandItem CONTACT =
+            new TransactionsRetrieveRequestExpandItem(Value.CONTACT, "contact");
 
-    private final String value;
+    private final Value value;
 
-    TransactionsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    TransactionsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TransactionsRetrieveRequestExpandItem
+                        && this.string.equals(((TransactionsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case CONTACT:
+                return visitor.visitContact();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TransactionsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "account":
+                return ACCOUNT;
+            case "contact":
+                return CONTACT;
+            default:
+                return new TransactionsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNTING_PERIOD,
+
+        CONTACT,
+
+        LINE_ITEMS,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountingPeriod();
+
+        T visitContact();
+
+        T visitLineItems();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

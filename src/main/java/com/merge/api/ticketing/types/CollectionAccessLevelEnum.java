@@ -3,26 +3,103 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CollectionAccessLevelEnum {
-    PRIVATE("PRIVATE"),
+public final class CollectionAccessLevelEnum {
+    public static final CollectionAccessLevelEnum PUBLIC = new CollectionAccessLevelEnum(Value.PUBLIC, "PUBLIC");
 
-    COMPANY("COMPANY"),
+    public static final CollectionAccessLevelEnum COMPANY = new CollectionAccessLevelEnum(Value.COMPANY, "COMPANY");
 
-    PUBLIC("PUBLIC"),
+    public static final CollectionAccessLevelEnum PRIVATE = new CollectionAccessLevelEnum(Value.PRIVATE, "PRIVATE");
 
-    PARENT_COLLECTION("PARENT_COLLECTION");
+    public static final CollectionAccessLevelEnum PARENT_COLLECTION =
+            new CollectionAccessLevelEnum(Value.PARENT_COLLECTION, "PARENT_COLLECTION");
 
-    private final String value;
+    private final Value value;
 
-    CollectionAccessLevelEnum(String value) {
+    private final String string;
+
+    CollectionAccessLevelEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CollectionAccessLevelEnum
+                        && this.string.equals(((CollectionAccessLevelEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PUBLIC:
+                return visitor.visitPublic();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PRIVATE:
+                return visitor.visitPrivate();
+            case PARENT_COLLECTION:
+                return visitor.visitParentCollection();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CollectionAccessLevelEnum valueOf(String value) {
+        switch (value) {
+            case "PUBLIC":
+                return PUBLIC;
+            case "COMPANY":
+                return COMPANY;
+            case "PRIVATE":
+                return PRIVATE;
+            case "PARENT_COLLECTION":
+                return PARENT_COLLECTION;
+            default:
+                return new CollectionAccessLevelEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PRIVATE,
+
+        COMPANY,
+
+        PUBLIC,
+
+        PARENT_COLLECTION,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPrivate();
+
+        T visitCompany();
+
+        T visitPublic();
+
+        T visitParentCollection();
+
+        T visitUnknown(String unknownType);
     }
 }

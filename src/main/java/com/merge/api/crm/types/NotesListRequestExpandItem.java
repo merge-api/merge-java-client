@@ -3,26 +3,103 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum NotesListRequestExpandItem {
-    ACCOUNT("account"),
+public final class NotesListRequestExpandItem {
+    public static final NotesListRequestExpandItem OWNER = new NotesListRequestExpandItem(Value.OWNER, "owner");
 
-    CONTACT("contact"),
+    public static final NotesListRequestExpandItem OPPORTUNITY =
+            new NotesListRequestExpandItem(Value.OPPORTUNITY, "opportunity");
 
-    OPPORTUNITY("opportunity"),
+    public static final NotesListRequestExpandItem ACCOUNT = new NotesListRequestExpandItem(Value.ACCOUNT, "account");
 
-    OWNER("owner");
+    public static final NotesListRequestExpandItem CONTACT = new NotesListRequestExpandItem(Value.CONTACT, "contact");
 
-    private final String value;
+    private final Value value;
 
-    NotesListRequestExpandItem(String value) {
+    private final String string;
+
+    NotesListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof NotesListRequestExpandItem
+                        && this.string.equals(((NotesListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case OPPORTUNITY:
+                return visitor.visitOpportunity();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case CONTACT:
+                return visitor.visitContact();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static NotesListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "opportunity":
+                return OPPORTUNITY;
+            case "account":
+                return ACCOUNT;
+            case "contact":
+                return CONTACT;
+            default:
+                return new NotesListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        CONTACT,
+
+        OPPORTUNITY,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitContact();
+
+        T visitOpportunity();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

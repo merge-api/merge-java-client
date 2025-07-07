@@ -3,28 +3,111 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmploymentTypeEnum {
-    FULL_TIME("FULL_TIME"),
+public final class EmploymentTypeEnum {
+    public static final EmploymentTypeEnum INTERN = new EmploymentTypeEnum(Value.INTERN, "INTERN");
 
-    PART_TIME("PART_TIME"),
+    public static final EmploymentTypeEnum FREELANCE = new EmploymentTypeEnum(Value.FREELANCE, "FREELANCE");
 
-    INTERN("INTERN"),
+    public static final EmploymentTypeEnum PART_TIME = new EmploymentTypeEnum(Value.PART_TIME, "PART_TIME");
 
-    CONTRACTOR("CONTRACTOR"),
+    public static final EmploymentTypeEnum FULL_TIME = new EmploymentTypeEnum(Value.FULL_TIME, "FULL_TIME");
 
-    FREELANCE("FREELANCE");
+    public static final EmploymentTypeEnum CONTRACTOR = new EmploymentTypeEnum(Value.CONTRACTOR, "CONTRACTOR");
 
-    private final String value;
+    private final Value value;
 
-    EmploymentTypeEnum(String value) {
+    private final String string;
+
+    EmploymentTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmploymentTypeEnum && this.string.equals(((EmploymentTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case INTERN:
+                return visitor.visitIntern();
+            case FREELANCE:
+                return visitor.visitFreelance();
+            case PART_TIME:
+                return visitor.visitPartTime();
+            case FULL_TIME:
+                return visitor.visitFullTime();
+            case CONTRACTOR:
+                return visitor.visitContractor();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmploymentTypeEnum valueOf(String value) {
+        switch (value) {
+            case "INTERN":
+                return INTERN;
+            case "FREELANCE":
+                return FREELANCE;
+            case "PART_TIME":
+                return PART_TIME;
+            case "FULL_TIME":
+                return FULL_TIME;
+            case "CONTRACTOR":
+                return CONTRACTOR;
+            default:
+                return new EmploymentTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        FULL_TIME,
+
+        PART_TIME,
+
+        INTERN,
+
+        CONTRACTOR,
+
+        FREELANCE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitFullTime();
+
+        T visitPartTime();
+
+        T visitIntern();
+
+        T visitContractor();
+
+        T visitFreelance();
+
+        T visitUnknown(String unknownType);
     }
 }

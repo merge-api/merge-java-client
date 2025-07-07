@@ -3,22 +3,81 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FeedStatusEnum {
-    ACTIVE("ACTIVE"),
+public final class FeedStatusEnum {
+    public static final FeedStatusEnum ACTIVE = new FeedStatusEnum(Value.ACTIVE, "ACTIVE");
 
-    INACTIVE("INACTIVE");
+    public static final FeedStatusEnum INACTIVE = new FeedStatusEnum(Value.INACTIVE, "INACTIVE");
 
-    private final String value;
+    private final Value value;
 
-    FeedStatusEnum(String value) {
+    private final String string;
+
+    FeedStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FeedStatusEnum && this.string.equals(((FeedStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACTIVE:
+                return visitor.visitActive();
+            case INACTIVE:
+                return visitor.visitInactive();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FeedStatusEnum valueOf(String value) {
+        switch (value) {
+            case "ACTIVE":
+                return ACTIVE;
+            case "INACTIVE":
+                return INACTIVE;
+            default:
+                return new FeedStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACTIVE,
+
+        INACTIVE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitActive();
+
+        T visitInactive();
+
+        T visitUnknown(String unknownType);
     }
 }

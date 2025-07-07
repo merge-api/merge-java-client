@@ -3,24 +3,93 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FilesListRequestExpandItem {
-    DRIVE("drive"),
+public final class FilesListRequestExpandItem {
+    public static final FilesListRequestExpandItem FOLDER = new FilesListRequestExpandItem(Value.FOLDER, "folder");
 
-    FOLDER("folder"),
+    public static final FilesListRequestExpandItem PERMISSIONS =
+            new FilesListRequestExpandItem(Value.PERMISSIONS, "permissions");
 
-    PERMISSIONS("permissions");
+    public static final FilesListRequestExpandItem DRIVE = new FilesListRequestExpandItem(Value.DRIVE, "drive");
 
-    private final String value;
+    private final Value value;
 
-    FilesListRequestExpandItem(String value) {
+    private final String string;
+
+    FilesListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FilesListRequestExpandItem
+                        && this.string.equals(((FilesListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case FOLDER:
+                return visitor.visitFolder();
+            case PERMISSIONS:
+                return visitor.visitPermissions();
+            case DRIVE:
+                return visitor.visitDrive();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FilesListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "folder":
+                return FOLDER;
+            case "permissions":
+                return PERMISSIONS;
+            case "drive":
+                return DRIVE;
+            default:
+                return new FilesListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRIVE,
+
+        FOLDER,
+
+        PERMISSIONS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDrive();
+
+        T visitFolder();
+
+        T visitPermissions();
+
+        T visitUnknown(String unknownType);
     }
 }

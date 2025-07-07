@@ -3,42 +3,194 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum InvoicesListRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class InvoicesListRequestExpandItem {
+    public static final InvoicesListRequestExpandItem APPLIED_VENDOR_CREDITS =
+            new InvoicesListRequestExpandItem(Value.APPLIED_VENDOR_CREDITS, "applied_vendor_credits");
 
-    APPLIED_CREDIT_NOTES("applied_credit_notes"),
+    public static final InvoicesListRequestExpandItem ACCOUNTING_PERIOD =
+            new InvoicesListRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    APPLIED_PAYMENTS("applied_payments"),
+    public static final InvoicesListRequestExpandItem LINE_ITEMS =
+            new InvoicesListRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    APPLIED_VENDOR_CREDITS("applied_vendor_credits"),
+    public static final InvoicesListRequestExpandItem PAYMENTS =
+            new InvoicesListRequestExpandItem(Value.PAYMENTS, "payments");
 
-    COMPANY("company"),
+    public static final InvoicesListRequestExpandItem TRACKING_CATEGORIES =
+            new InvoicesListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    CONTACT("contact"),
+    public static final InvoicesListRequestExpandItem PURCHASE_ORDERS =
+            new InvoicesListRequestExpandItem(Value.PURCHASE_ORDERS, "purchase_orders");
 
-    EMPLOYEE("employee"),
+    public static final InvoicesListRequestExpandItem EMPLOYEE =
+            new InvoicesListRequestExpandItem(Value.EMPLOYEE, "employee");
 
-    LINE_ITEMS("line_items"),
+    public static final InvoicesListRequestExpandItem CONTACT =
+            new InvoicesListRequestExpandItem(Value.CONTACT, "contact");
 
-    PAYMENT_TERM("payment_term"),
+    public static final InvoicesListRequestExpandItem PAYMENT_TERM =
+            new InvoicesListRequestExpandItem(Value.PAYMENT_TERM, "payment_term");
 
-    PAYMENTS("payments"),
+    public static final InvoicesListRequestExpandItem APPLIED_PAYMENTS =
+            new InvoicesListRequestExpandItem(Value.APPLIED_PAYMENTS, "applied_payments");
 
-    PURCHASE_ORDERS("purchase_orders"),
+    public static final InvoicesListRequestExpandItem APPLIED_CREDIT_NOTES =
+            new InvoicesListRequestExpandItem(Value.APPLIED_CREDIT_NOTES, "applied_credit_notes");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final InvoicesListRequestExpandItem COMPANY =
+            new InvoicesListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    InvoicesListRequestExpandItem(String value) {
+    private final String string;
+
+    InvoicesListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof InvoicesListRequestExpandItem
+                        && this.string.equals(((InvoicesListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case APPLIED_VENDOR_CREDITS:
+                return visitor.visitAppliedVendorCredits();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case PAYMENTS:
+                return visitor.visitPayments();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case PURCHASE_ORDERS:
+                return visitor.visitPurchaseOrders();
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case CONTACT:
+                return visitor.visitContact();
+            case PAYMENT_TERM:
+                return visitor.visitPaymentTerm();
+            case APPLIED_PAYMENTS:
+                return visitor.visitAppliedPayments();
+            case APPLIED_CREDIT_NOTES:
+                return visitor.visitAppliedCreditNotes();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static InvoicesListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "applied_vendor_credits":
+                return APPLIED_VENDOR_CREDITS;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "payments":
+                return PAYMENTS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "purchase_orders":
+                return PURCHASE_ORDERS;
+            case "employee":
+                return EMPLOYEE;
+            case "contact":
+                return CONTACT;
+            case "payment_term":
+                return PAYMENT_TERM;
+            case "applied_payments":
+                return APPLIED_PAYMENTS;
+            case "applied_credit_notes":
+                return APPLIED_CREDIT_NOTES;
+            case "company":
+                return COMPANY;
+            default:
+                return new InvoicesListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        APPLIED_CREDIT_NOTES,
+
+        APPLIED_PAYMENTS,
+
+        APPLIED_VENDOR_CREDITS,
+
+        COMPANY,
+
+        CONTACT,
+
+        EMPLOYEE,
+
+        LINE_ITEMS,
+
+        PAYMENT_TERM,
+
+        PAYMENTS,
+
+        PURCHASE_ORDERS,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitAppliedCreditNotes();
+
+        T visitAppliedPayments();
+
+        T visitAppliedVendorCredits();
+
+        T visitCompany();
+
+        T visitContact();
+
+        T visitEmployee();
+
+        T visitLineItems();
+
+        T visitPaymentTerm();
+
+        T visitPayments();
+
+        T visitPurchaseOrders();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

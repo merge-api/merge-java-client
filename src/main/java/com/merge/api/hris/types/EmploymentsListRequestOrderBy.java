@@ -3,22 +3,84 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmploymentsListRequestOrderBy {
-    EFFECTIVE_DATE_DESCENDING("-effective_date"),
+public final class EmploymentsListRequestOrderBy {
+    public static final EmploymentsListRequestOrderBy EFFECTIVE_DATE_DESCENDING =
+            new EmploymentsListRequestOrderBy(Value.EFFECTIVE_DATE_DESCENDING, "-effective_date");
 
-    EFFECTIVE_DATE_ASCENDING("effective_date");
+    public static final EmploymentsListRequestOrderBy EFFECTIVE_DATE_ASCENDING =
+            new EmploymentsListRequestOrderBy(Value.EFFECTIVE_DATE_ASCENDING, "effective_date");
 
-    private final String value;
+    private final Value value;
 
-    EmploymentsListRequestOrderBy(String value) {
+    private final String string;
+
+    EmploymentsListRequestOrderBy(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmploymentsListRequestOrderBy
+                        && this.string.equals(((EmploymentsListRequestOrderBy) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case EFFECTIVE_DATE_DESCENDING:
+                return visitor.visitEffectiveDateDescending();
+            case EFFECTIVE_DATE_ASCENDING:
+                return visitor.visitEffectiveDateAscending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmploymentsListRequestOrderBy valueOf(String value) {
+        switch (value) {
+            case "-effective_date":
+                return EFFECTIVE_DATE_DESCENDING;
+            case "effective_date":
+                return EFFECTIVE_DATE_ASCENDING;
+            default:
+                return new EmploymentsListRequestOrderBy(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EFFECTIVE_DATE_DESCENDING,
+
+        EFFECTIVE_DATE_ASCENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEffectiveDateDescending();
+
+        T visitEffectiveDateAscending();
+
+        T visitUnknown(String unknownType);
     }
 }

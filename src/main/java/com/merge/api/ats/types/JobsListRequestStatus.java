@@ -3,28 +3,112 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobsListRequestStatus {
-    ARCHIVED("ARCHIVED"),
+public final class JobsListRequestStatus {
+    public static final JobsListRequestStatus CLOSED = new JobsListRequestStatus(Value.CLOSED, "CLOSED");
 
-    CLOSED("CLOSED"),
+    public static final JobsListRequestStatus DRAFT = new JobsListRequestStatus(Value.DRAFT, "DRAFT");
 
-    DRAFT("DRAFT"),
+    public static final JobsListRequestStatus ARCHIVED = new JobsListRequestStatus(Value.ARCHIVED, "ARCHIVED");
 
-    OPEN("OPEN"),
+    public static final JobsListRequestStatus OPEN = new JobsListRequestStatus(Value.OPEN, "OPEN");
 
-    PENDING("PENDING");
+    public static final JobsListRequestStatus PENDING = new JobsListRequestStatus(Value.PENDING, "PENDING");
 
-    private final String value;
+    private final Value value;
 
-    JobsListRequestStatus(String value) {
+    private final String string;
+
+    JobsListRequestStatus(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobsListRequestStatus
+                        && this.string.equals(((JobsListRequestStatus) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLOSED:
+                return visitor.visitClosed();
+            case DRAFT:
+                return visitor.visitDraft();
+            case ARCHIVED:
+                return visitor.visitArchived();
+            case OPEN:
+                return visitor.visitOpen();
+            case PENDING:
+                return visitor.visitPending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobsListRequestStatus valueOf(String value) {
+        switch (value) {
+            case "CLOSED":
+                return CLOSED;
+            case "DRAFT":
+                return DRAFT;
+            case "ARCHIVED":
+                return ARCHIVED;
+            case "OPEN":
+                return OPEN;
+            case "PENDING":
+                return PENDING;
+            default:
+                return new JobsListRequestStatus(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ARCHIVED,
+
+        CLOSED,
+
+        DRAFT,
+
+        OPEN,
+
+        PENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitArchived();
+
+        T visitClosed();
+
+        T visitDraft();
+
+        T visitOpen();
+
+        T visitPending();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,22 +3,84 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CollectionsViewersListRequestExpandItem {
-    TEAM("team"),
+public final class CollectionsViewersListRequestExpandItem {
+    public static final CollectionsViewersListRequestExpandItem USER =
+            new CollectionsViewersListRequestExpandItem(Value.USER, "user");
 
-    USER("user");
+    public static final CollectionsViewersListRequestExpandItem TEAM =
+            new CollectionsViewersListRequestExpandItem(Value.TEAM, "team");
 
-    private final String value;
+    private final Value value;
 
-    CollectionsViewersListRequestExpandItem(String value) {
+    private final String string;
+
+    CollectionsViewersListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CollectionsViewersListRequestExpandItem
+                        && this.string.equals(((CollectionsViewersListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case USER:
+                return visitor.visitUser();
+            case TEAM:
+                return visitor.visitTeam();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CollectionsViewersListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "user":
+                return USER;
+            case "team":
+                return TEAM;
+            default:
+                return new CollectionsViewersListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        TEAM,
+
+        USER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitTeam();
+
+        T visitUser();
+
+        T visitUnknown(String unknownType);
     }
 }

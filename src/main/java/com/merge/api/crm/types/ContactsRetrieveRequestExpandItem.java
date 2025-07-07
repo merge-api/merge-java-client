@@ -3,22 +3,84 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ContactsRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class ContactsRetrieveRequestExpandItem {
+    public static final ContactsRetrieveRequestExpandItem OWNER =
+            new ContactsRetrieveRequestExpandItem(Value.OWNER, "owner");
 
-    OWNER("owner");
+    public static final ContactsRetrieveRequestExpandItem ACCOUNT =
+            new ContactsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    private final String value;
+    private final Value value;
 
-    ContactsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    ContactsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ContactsRetrieveRequestExpandItem
+                        && this.string.equals(((ContactsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ContactsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "account":
+                return ACCOUNT;
+            default:
+                return new ContactsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,24 +3,90 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobTypeEnum {
-    POSTING("POSTING"),
+public final class JobTypeEnum {
+    public static final JobTypeEnum PROFILE = new JobTypeEnum(Value.PROFILE, "PROFILE");
 
-    REQUISITION("REQUISITION"),
+    public static final JobTypeEnum REQUISITION = new JobTypeEnum(Value.REQUISITION, "REQUISITION");
 
-    PROFILE("PROFILE");
+    public static final JobTypeEnum POSTING = new JobTypeEnum(Value.POSTING, "POSTING");
 
-    private final String value;
+    private final Value value;
 
-    JobTypeEnum(String value) {
+    private final String string;
+
+    JobTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof JobTypeEnum && this.string.equals(((JobTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PROFILE:
+                return visitor.visitProfile();
+            case REQUISITION:
+                return visitor.visitRequisition();
+            case POSTING:
+                return visitor.visitPosting();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobTypeEnum valueOf(String value) {
+        switch (value) {
+            case "PROFILE":
+                return PROFILE;
+            case "REQUISITION":
+                return REQUISITION;
+            case "POSTING":
+                return POSTING;
+            default:
+                return new JobTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        POSTING,
+
+        REQUISITION,
+
+        PROFILE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPosting();
+
+        T visitRequisition();
+
+        T visitProfile();
+
+        T visitUnknown(String unknownType);
     }
 }

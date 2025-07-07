@@ -3,26 +3,107 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum GeneralLedgerTransactionsListRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class GeneralLedgerTransactionsListRequestExpandItem {
+    public static final GeneralLedgerTransactionsListRequestExpandItem GENERAL_LEDGER_TRANSACTION_LINES =
+            new GeneralLedgerTransactionsListRequestExpandItem(
+                    Value.GENERAL_LEDGER_TRANSACTION_LINES, "general_ledger_transaction_lines");
 
-    COMPANY("company"),
+    public static final GeneralLedgerTransactionsListRequestExpandItem ACCOUNTING_PERIOD =
+            new GeneralLedgerTransactionsListRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    GENERAL_LEDGER_TRANSACTION_LINES("general_ledger_transaction_lines"),
+    public static final GeneralLedgerTransactionsListRequestExpandItem TRACKING_CATEGORIES =
+            new GeneralLedgerTransactionsListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final GeneralLedgerTransactionsListRequestExpandItem COMPANY =
+            new GeneralLedgerTransactionsListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    GeneralLedgerTransactionsListRequestExpandItem(String value) {
+    private final String string;
+
+    GeneralLedgerTransactionsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof GeneralLedgerTransactionsListRequestExpandItem
+                        && this.string.equals(((GeneralLedgerTransactionsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case GENERAL_LEDGER_TRANSACTION_LINES:
+                return visitor.visitGeneralLedgerTransactionLines();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static GeneralLedgerTransactionsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "general_ledger_transaction_lines":
+                return GENERAL_LEDGER_TRANSACTION_LINES;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "company":
+                return COMPANY;
+            default:
+                return new GeneralLedgerTransactionsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        GENERAL_LEDGER_TRANSACTION_LINES,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitGeneralLedgerTransactionLines();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,26 +3,101 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CardinalityEnum {
-    ONE_TO_ONE("ONE_TO_ONE"),
+public final class CardinalityEnum {
+    public static final CardinalityEnum MANY_TO_ONE = new CardinalityEnum(Value.MANY_TO_ONE, "MANY_TO_ONE");
 
-    MANY_TO_ONE("MANY_TO_ONE"),
+    public static final CardinalityEnum ONE_TO_ONE = new CardinalityEnum(Value.ONE_TO_ONE, "ONE_TO_ONE");
 
-    MANY_TO_MANY("MANY_TO_MANY"),
+    public static final CardinalityEnum MANY_TO_MANY = new CardinalityEnum(Value.MANY_TO_MANY, "MANY_TO_MANY");
 
-    ONE_TO_MANY("ONE_TO_MANY");
+    public static final CardinalityEnum ONE_TO_MANY = new CardinalityEnum(Value.ONE_TO_MANY, "ONE_TO_MANY");
 
-    private final String value;
+    private final Value value;
 
-    CardinalityEnum(String value) {
+    private final String string;
+
+    CardinalityEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CardinalityEnum && this.string.equals(((CardinalityEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case MANY_TO_ONE:
+                return visitor.visitManyToOne();
+            case ONE_TO_ONE:
+                return visitor.visitOneToOne();
+            case MANY_TO_MANY:
+                return visitor.visitManyToMany();
+            case ONE_TO_MANY:
+                return visitor.visitOneToMany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CardinalityEnum valueOf(String value) {
+        switch (value) {
+            case "MANY_TO_ONE":
+                return MANY_TO_ONE;
+            case "ONE_TO_ONE":
+                return ONE_TO_ONE;
+            case "MANY_TO_MANY":
+                return MANY_TO_MANY;
+            case "ONE_TO_MANY":
+                return ONE_TO_MANY;
+            default:
+                return new CardinalityEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ONE_TO_ONE,
+
+        MANY_TO_ONE,
+
+        MANY_TO_MANY,
+
+        ONE_TO_MANY,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOneToOne();
+
+        T visitManyToOne();
+
+        T visitManyToMany();
+
+        T visitOneToMany();
+
+        T visitUnknown(String unknownType);
     }
 }

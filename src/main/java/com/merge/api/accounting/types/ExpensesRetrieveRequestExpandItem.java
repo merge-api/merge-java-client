@@ -3,30 +3,128 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ExpensesRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class ExpensesRetrieveRequestExpandItem {
+    public static final ExpensesRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new ExpensesRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final ExpensesRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new ExpensesRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    COMPANY("company"),
+    public static final ExpensesRetrieveRequestExpandItem ACCOUNT =
+            new ExpensesRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    CONTACT("contact"),
+    public static final ExpensesRetrieveRequestExpandItem EMPLOYEE =
+            new ExpensesRetrieveRequestExpandItem(Value.EMPLOYEE, "employee");
 
-    EMPLOYEE("employee"),
+    public static final ExpensesRetrieveRequestExpandItem CONTACT =
+            new ExpensesRetrieveRequestExpandItem(Value.CONTACT, "contact");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final ExpensesRetrieveRequestExpandItem COMPANY =
+            new ExpensesRetrieveRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    ExpensesRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    ExpensesRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ExpensesRetrieveRequestExpandItem
+                        && this.string.equals(((ExpensesRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case EMPLOYEE:
+                return visitor.visitEmployee();
+            case CONTACT:
+                return visitor.visitContact();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ExpensesRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "account":
+                return ACCOUNT;
+            case "employee":
+                return EMPLOYEE;
+            case "contact":
+                return CONTACT;
+            case "company":
+                return COMPANY;
+            default:
+                return new ExpensesRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        CONTACT,
+
+        EMPLOYEE,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitContact();
+
+        T visitEmployee();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

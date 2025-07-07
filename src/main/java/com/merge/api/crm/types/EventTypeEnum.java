@@ -3,104 +3,528 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EventTypeEnum {
-    CREATED_REMOTE_PRODUCTION_API_KEY("CREATED_REMOTE_PRODUCTION_API_KEY"),
+public final class EventTypeEnum {
+    public static final EventTypeEnum DISABLED_MERGE_WEBHOOK =
+            new EventTypeEnum(Value.DISABLED_MERGE_WEBHOOK, "DISABLED_MERGE_WEBHOOK");
 
-    DELETED_REMOTE_PRODUCTION_API_KEY("DELETED_REMOTE_PRODUCTION_API_KEY"),
+    public static final EventTypeEnum CHANGED_PERSONAL_INFORMATION =
+            new EventTypeEnum(Value.CHANGED_PERSONAL_INFORMATION, "CHANGED_PERSONAL_INFORMATION");
 
-    CREATED_TEST_API_KEY("CREATED_TEST_API_KEY"),
+    public static final EventTypeEnum CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE = new EventTypeEnum(
+            Value.CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE, "CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE");
 
-    DELETED_TEST_API_KEY("DELETED_TEST_API_KEY"),
+    public static final EventTypeEnum DELETED_REMOTE_PRODUCTION_API_KEY =
+            new EventTypeEnum(Value.DELETED_REMOTE_PRODUCTION_API_KEY, "DELETED_REMOTE_PRODUCTION_API_KEY");
 
-    REGENERATED_PRODUCTION_API_KEY("REGENERATED_PRODUCTION_API_KEY"),
+    public static final EventTypeEnum DELETED_LINKED_ACCOUNT_FIELD_MAPPING =
+            new EventTypeEnum(Value.DELETED_LINKED_ACCOUNT_FIELD_MAPPING, "DELETED_LINKED_ACCOUNT_FIELD_MAPPING");
 
-    REGENERATED_WEBHOOK_SIGNATURE("REGENERATED_WEBHOOK_SIGNATURE"),
+    public static final EventTypeEnum ENABLED_MERGE_WEBHOOK =
+            new EventTypeEnum(Value.ENABLED_MERGE_WEBHOOK, "ENABLED_MERGE_WEBHOOK");
 
-    INVITED_USER("INVITED_USER"),
+    public static final EventTypeEnum DISABLED_INTEGRATION =
+            new EventTypeEnum(Value.DISABLED_INTEGRATION, "DISABLED_INTEGRATION");
 
-    TWO_FACTOR_AUTH_ENABLED("TWO_FACTOR_AUTH_ENABLED"),
+    public static final EventTypeEnum DELETED_DESTINATION =
+            new EventTypeEnum(Value.DELETED_DESTINATION, "DELETED_DESTINATION");
 
-    TWO_FACTOR_AUTH_DISABLED("TWO_FACTOR_AUTH_DISABLED"),
+    public static final EventTypeEnum CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE = new EventTypeEnum(
+            Value.CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE, "CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE");
 
-    DELETED_LINKED_ACCOUNT("DELETED_LINKED_ACCOUNT"),
+    public static final EventTypeEnum DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE = new EventTypeEnum(
+            Value.DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE, "DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE");
 
-    DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT("DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT"),
+    public static final EventTypeEnum CREATED_TEST_API_KEY =
+            new EventTypeEnum(Value.CREATED_TEST_API_KEY, "CREATED_TEST_API_KEY");
 
-    CREATED_DESTINATION("CREATED_DESTINATION"),
+    public static final EventTypeEnum REGENERATED_PRODUCTION_API_KEY =
+            new EventTypeEnum(Value.REGENERATED_PRODUCTION_API_KEY, "REGENERATED_PRODUCTION_API_KEY");
 
-    DELETED_DESTINATION("DELETED_DESTINATION"),
+    public static final EventTypeEnum END_USER_CREDENTIALS_ACCESSED =
+            new EventTypeEnum(Value.END_USER_CREDENTIALS_ACCESSED, "END_USER_CREDENTIALS_ACCESSED");
 
-    CHANGED_DESTINATION("CHANGED_DESTINATION"),
+    public static final EventTypeEnum DISABLED_CATEGORY =
+            new EventTypeEnum(Value.DISABLED_CATEGORY, "DISABLED_CATEGORY");
 
-    CHANGED_SCOPES("CHANGED_SCOPES"),
+    public static final EventTypeEnum DELETED_INTEGRATION_WIDE_FIELD_MAPPING =
+            new EventTypeEnum(Value.DELETED_INTEGRATION_WIDE_FIELD_MAPPING, "DELETED_INTEGRATION_WIDE_FIELD_MAPPING");
 
-    CHANGED_PERSONAL_INFORMATION("CHANGED_PERSONAL_INFORMATION"),
+    public static final EventTypeEnum TWO_FACTOR_AUTH_ENABLED =
+            new EventTypeEnum(Value.TWO_FACTOR_AUTH_ENABLED, "TWO_FACTOR_AUTH_ENABLED");
 
-    CHANGED_ORGANIZATION_SETTINGS("CHANGED_ORGANIZATION_SETTINGS"),
+    public static final EventTypeEnum CHANGED_DESTINATION =
+            new EventTypeEnum(Value.CHANGED_DESTINATION, "CHANGED_DESTINATION");
 
-    ENABLED_INTEGRATION("ENABLED_INTEGRATION"),
+    public static final EventTypeEnum DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION = new EventTypeEnum(
+            Value.DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION, "DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION");
 
-    DISABLED_INTEGRATION("DISABLED_INTEGRATION"),
+    public static final EventTypeEnum TWO_FACTOR_AUTH_DISABLED =
+            new EventTypeEnum(Value.TWO_FACTOR_AUTH_DISABLED, "TWO_FACTOR_AUTH_DISABLED");
 
-    ENABLED_CATEGORY("ENABLED_CATEGORY"),
+    public static final EventTypeEnum ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT = new EventTypeEnum(
+            Value.ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT, "ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT");
 
-    DISABLED_CATEGORY("DISABLED_CATEGORY"),
+    public static final EventTypeEnum FORCED_LINKED_ACCOUNT_RESYNC =
+            new EventTypeEnum(Value.FORCED_LINKED_ACCOUNT_RESYNC, "FORCED_LINKED_ACCOUNT_RESYNC");
 
-    CHANGED_PASSWORD("CHANGED_PASSWORD"),
+    public static final EventTypeEnum CHANGED_ORGANIZATION_SETTINGS =
+            new EventTypeEnum(Value.CHANGED_ORGANIZATION_SETTINGS, "CHANGED_ORGANIZATION_SETTINGS");
 
-    RESET_PASSWORD("RESET_PASSWORD"),
+    public static final EventTypeEnum ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION = new EventTypeEnum(
+            Value.ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION, "ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION");
 
-    ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION("ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION"),
+    public static final EventTypeEnum RESET_PASSWORD = new EventTypeEnum(Value.RESET_PASSWORD, "RESET_PASSWORD");
 
-    ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT("ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT"),
+    public static final EventTypeEnum INVITED_USER = new EventTypeEnum(Value.INVITED_USER, "INVITED_USER");
 
-    DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION("DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION"),
+    public static final EventTypeEnum MERGE_WEBHOOK_TARGET_CHANGED =
+            new EventTypeEnum(Value.MERGE_WEBHOOK_TARGET_CHANGED, "MERGE_WEBHOOK_TARGET_CHANGED");
 
-    DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT("DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT"),
+    public static final EventTypeEnum MUTED_ISSUE = new EventTypeEnum(Value.MUTED_ISSUE, "MUTED_ISSUE");
 
-    CREATED_INTEGRATION_WIDE_FIELD_MAPPING("CREATED_INTEGRATION_WIDE_FIELD_MAPPING"),
+    public static final EventTypeEnum GENERATED_MAGIC_LINK =
+            new EventTypeEnum(Value.GENERATED_MAGIC_LINK, "GENERATED_MAGIC_LINK");
 
-    CREATED_LINKED_ACCOUNT_FIELD_MAPPING("CREATED_LINKED_ACCOUNT_FIELD_MAPPING"),
+    public static final EventTypeEnum CREATED_REMOTE_PRODUCTION_API_KEY =
+            new EventTypeEnum(Value.CREATED_REMOTE_PRODUCTION_API_KEY, "CREATED_REMOTE_PRODUCTION_API_KEY");
 
-    CHANGED_INTEGRATION_WIDE_FIELD_MAPPING("CHANGED_INTEGRATION_WIDE_FIELD_MAPPING"),
+    public static final EventTypeEnum DELETED_LINKED_ACCOUNT =
+            new EventTypeEnum(Value.DELETED_LINKED_ACCOUNT, "DELETED_LINKED_ACCOUNT");
 
-    CHANGED_LINKED_ACCOUNT_FIELD_MAPPING("CHANGED_LINKED_ACCOUNT_FIELD_MAPPING"),
+    public static final EventTypeEnum CHANGED_SCOPES = new EventTypeEnum(Value.CHANGED_SCOPES, "CHANGED_SCOPES");
 
-    DELETED_INTEGRATION_WIDE_FIELD_MAPPING("DELETED_INTEGRATION_WIDE_FIELD_MAPPING"),
+    public static final EventTypeEnum CHANGED_INTEGRATION_WIDE_FIELD_MAPPING =
+            new EventTypeEnum(Value.CHANGED_INTEGRATION_WIDE_FIELD_MAPPING, "CHANGED_INTEGRATION_WIDE_FIELD_MAPPING");
 
-    DELETED_LINKED_ACCOUNT_FIELD_MAPPING("DELETED_LINKED_ACCOUNT_FIELD_MAPPING"),
+    public static final EventTypeEnum DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT = new EventTypeEnum(
+            Value.DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT, "DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT");
 
-    CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE("CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE"),
+    public static final EventTypeEnum REGENERATED_WEBHOOK_SIGNATURE =
+            new EventTypeEnum(Value.REGENERATED_WEBHOOK_SIGNATURE, "REGENERATED_WEBHOOK_SIGNATURE");
 
-    CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE("CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE"),
+    public static final EventTypeEnum CHANGED_PASSWORD = new EventTypeEnum(Value.CHANGED_PASSWORD, "CHANGED_PASSWORD");
 
-    DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE("DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE"),
+    public static final EventTypeEnum DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT = new EventTypeEnum(
+            Value.DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT, "DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT");
 
-    FORCED_LINKED_ACCOUNT_RESYNC("FORCED_LINKED_ACCOUNT_RESYNC"),
+    public static final EventTypeEnum CREATED_INTEGRATION_WIDE_FIELD_MAPPING =
+            new EventTypeEnum(Value.CREATED_INTEGRATION_WIDE_FIELD_MAPPING, "CREATED_INTEGRATION_WIDE_FIELD_MAPPING");
 
-    MUTED_ISSUE("MUTED_ISSUE"),
+    public static final EventTypeEnum CREATED_LINKED_ACCOUNT_FIELD_MAPPING =
+            new EventTypeEnum(Value.CREATED_LINKED_ACCOUNT_FIELD_MAPPING, "CREATED_LINKED_ACCOUNT_FIELD_MAPPING");
 
-    GENERATED_MAGIC_LINK("GENERATED_MAGIC_LINK"),
+    public static final EventTypeEnum ENABLED_INTEGRATION =
+            new EventTypeEnum(Value.ENABLED_INTEGRATION, "ENABLED_INTEGRATION");
 
-    ENABLED_MERGE_WEBHOOK("ENABLED_MERGE_WEBHOOK"),
+    public static final EventTypeEnum DELETED_TEST_API_KEY =
+            new EventTypeEnum(Value.DELETED_TEST_API_KEY, "DELETED_TEST_API_KEY");
 
-    DISABLED_MERGE_WEBHOOK("DISABLED_MERGE_WEBHOOK"),
+    public static final EventTypeEnum ENABLED_CATEGORY = new EventTypeEnum(Value.ENABLED_CATEGORY, "ENABLED_CATEGORY");
 
-    MERGE_WEBHOOK_TARGET_CHANGED("MERGE_WEBHOOK_TARGET_CHANGED"),
+    public static final EventTypeEnum CREATED_DESTINATION =
+            new EventTypeEnum(Value.CREATED_DESTINATION, "CREATED_DESTINATION");
 
-    END_USER_CREDENTIALS_ACCESSED("END_USER_CREDENTIALS_ACCESSED");
+    public static final EventTypeEnum CHANGED_LINKED_ACCOUNT_FIELD_MAPPING =
+            new EventTypeEnum(Value.CHANGED_LINKED_ACCOUNT_FIELD_MAPPING, "CHANGED_LINKED_ACCOUNT_FIELD_MAPPING");
 
-    private final String value;
+    private final Value value;
 
-    EventTypeEnum(String value) {
+    private final String string;
+
+    EventTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EventTypeEnum && this.string.equals(((EventTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DISABLED_MERGE_WEBHOOK:
+                return visitor.visitDisabledMergeWebhook();
+            case CHANGED_PERSONAL_INFORMATION:
+                return visitor.visitChangedPersonalInformation();
+            case CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE:
+                return visitor.visitCreatedLinkedAccountCommonModelOverride();
+            case DELETED_REMOTE_PRODUCTION_API_KEY:
+                return visitor.visitDeletedRemoteProductionApiKey();
+            case DELETED_LINKED_ACCOUNT_FIELD_MAPPING:
+                return visitor.visitDeletedLinkedAccountFieldMapping();
+            case ENABLED_MERGE_WEBHOOK:
+                return visitor.visitEnabledMergeWebhook();
+            case DISABLED_INTEGRATION:
+                return visitor.visitDisabledIntegration();
+            case DELETED_DESTINATION:
+                return visitor.visitDeletedDestination();
+            case CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE:
+                return visitor.visitChangedLinkedAccountCommonModelOverride();
+            case DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE:
+                return visitor.visitDeletedLinkedAccountCommonModelOverride();
+            case CREATED_TEST_API_KEY:
+                return visitor.visitCreatedTestApiKey();
+            case REGENERATED_PRODUCTION_API_KEY:
+                return visitor.visitRegeneratedProductionApiKey();
+            case END_USER_CREDENTIALS_ACCESSED:
+                return visitor.visitEndUserCredentialsAccessed();
+            case DISABLED_CATEGORY:
+                return visitor.visitDisabledCategory();
+            case DELETED_INTEGRATION_WIDE_FIELD_MAPPING:
+                return visitor.visitDeletedIntegrationWideFieldMapping();
+            case TWO_FACTOR_AUTH_ENABLED:
+                return visitor.visitTwoFactorAuthEnabled();
+            case CHANGED_DESTINATION:
+                return visitor.visitChangedDestination();
+            case DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION:
+                return visitor.visitDisabledRedactUnmappedDataForOrganization();
+            case TWO_FACTOR_AUTH_DISABLED:
+                return visitor.visitTwoFactorAuthDisabled();
+            case ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT:
+                return visitor.visitEnabledRedactUnmappedDataForLinkedAccount();
+            case FORCED_LINKED_ACCOUNT_RESYNC:
+                return visitor.visitForcedLinkedAccountResync();
+            case CHANGED_ORGANIZATION_SETTINGS:
+                return visitor.visitChangedOrganizationSettings();
+            case ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION:
+                return visitor.visitEnabledRedactUnmappedDataForOrganization();
+            case RESET_PASSWORD:
+                return visitor.visitResetPassword();
+            case INVITED_USER:
+                return visitor.visitInvitedUser();
+            case MERGE_WEBHOOK_TARGET_CHANGED:
+                return visitor.visitMergeWebhookTargetChanged();
+            case MUTED_ISSUE:
+                return visitor.visitMutedIssue();
+            case GENERATED_MAGIC_LINK:
+                return visitor.visitGeneratedMagicLink();
+            case CREATED_REMOTE_PRODUCTION_API_KEY:
+                return visitor.visitCreatedRemoteProductionApiKey();
+            case DELETED_LINKED_ACCOUNT:
+                return visitor.visitDeletedLinkedAccount();
+            case CHANGED_SCOPES:
+                return visitor.visitChangedScopes();
+            case CHANGED_INTEGRATION_WIDE_FIELD_MAPPING:
+                return visitor.visitChangedIntegrationWideFieldMapping();
+            case DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT:
+                return visitor.visitDeletedAllCommonModelsForLinkedAccount();
+            case REGENERATED_WEBHOOK_SIGNATURE:
+                return visitor.visitRegeneratedWebhookSignature();
+            case CHANGED_PASSWORD:
+                return visitor.visitChangedPassword();
+            case DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT:
+                return visitor.visitDisabledRedactUnmappedDataForLinkedAccount();
+            case CREATED_INTEGRATION_WIDE_FIELD_MAPPING:
+                return visitor.visitCreatedIntegrationWideFieldMapping();
+            case CREATED_LINKED_ACCOUNT_FIELD_MAPPING:
+                return visitor.visitCreatedLinkedAccountFieldMapping();
+            case ENABLED_INTEGRATION:
+                return visitor.visitEnabledIntegration();
+            case DELETED_TEST_API_KEY:
+                return visitor.visitDeletedTestApiKey();
+            case ENABLED_CATEGORY:
+                return visitor.visitEnabledCategory();
+            case CREATED_DESTINATION:
+                return visitor.visitCreatedDestination();
+            case CHANGED_LINKED_ACCOUNT_FIELD_MAPPING:
+                return visitor.visitChangedLinkedAccountFieldMapping();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EventTypeEnum valueOf(String value) {
+        switch (value) {
+            case "DISABLED_MERGE_WEBHOOK":
+                return DISABLED_MERGE_WEBHOOK;
+            case "CHANGED_PERSONAL_INFORMATION":
+                return CHANGED_PERSONAL_INFORMATION;
+            case "CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE":
+                return CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE;
+            case "DELETED_REMOTE_PRODUCTION_API_KEY":
+                return DELETED_REMOTE_PRODUCTION_API_KEY;
+            case "DELETED_LINKED_ACCOUNT_FIELD_MAPPING":
+                return DELETED_LINKED_ACCOUNT_FIELD_MAPPING;
+            case "ENABLED_MERGE_WEBHOOK":
+                return ENABLED_MERGE_WEBHOOK;
+            case "DISABLED_INTEGRATION":
+                return DISABLED_INTEGRATION;
+            case "DELETED_DESTINATION":
+                return DELETED_DESTINATION;
+            case "CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE":
+                return CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE;
+            case "DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE":
+                return DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE;
+            case "CREATED_TEST_API_KEY":
+                return CREATED_TEST_API_KEY;
+            case "REGENERATED_PRODUCTION_API_KEY":
+                return REGENERATED_PRODUCTION_API_KEY;
+            case "END_USER_CREDENTIALS_ACCESSED":
+                return END_USER_CREDENTIALS_ACCESSED;
+            case "DISABLED_CATEGORY":
+                return DISABLED_CATEGORY;
+            case "DELETED_INTEGRATION_WIDE_FIELD_MAPPING":
+                return DELETED_INTEGRATION_WIDE_FIELD_MAPPING;
+            case "TWO_FACTOR_AUTH_ENABLED":
+                return TWO_FACTOR_AUTH_ENABLED;
+            case "CHANGED_DESTINATION":
+                return CHANGED_DESTINATION;
+            case "DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION":
+                return DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION;
+            case "TWO_FACTOR_AUTH_DISABLED":
+                return TWO_FACTOR_AUTH_DISABLED;
+            case "ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT":
+                return ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT;
+            case "FORCED_LINKED_ACCOUNT_RESYNC":
+                return FORCED_LINKED_ACCOUNT_RESYNC;
+            case "CHANGED_ORGANIZATION_SETTINGS":
+                return CHANGED_ORGANIZATION_SETTINGS;
+            case "ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION":
+                return ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION;
+            case "RESET_PASSWORD":
+                return RESET_PASSWORD;
+            case "INVITED_USER":
+                return INVITED_USER;
+            case "MERGE_WEBHOOK_TARGET_CHANGED":
+                return MERGE_WEBHOOK_TARGET_CHANGED;
+            case "MUTED_ISSUE":
+                return MUTED_ISSUE;
+            case "GENERATED_MAGIC_LINK":
+                return GENERATED_MAGIC_LINK;
+            case "CREATED_REMOTE_PRODUCTION_API_KEY":
+                return CREATED_REMOTE_PRODUCTION_API_KEY;
+            case "DELETED_LINKED_ACCOUNT":
+                return DELETED_LINKED_ACCOUNT;
+            case "CHANGED_SCOPES":
+                return CHANGED_SCOPES;
+            case "CHANGED_INTEGRATION_WIDE_FIELD_MAPPING":
+                return CHANGED_INTEGRATION_WIDE_FIELD_MAPPING;
+            case "DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT":
+                return DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT;
+            case "REGENERATED_WEBHOOK_SIGNATURE":
+                return REGENERATED_WEBHOOK_SIGNATURE;
+            case "CHANGED_PASSWORD":
+                return CHANGED_PASSWORD;
+            case "DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT":
+                return DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT;
+            case "CREATED_INTEGRATION_WIDE_FIELD_MAPPING":
+                return CREATED_INTEGRATION_WIDE_FIELD_MAPPING;
+            case "CREATED_LINKED_ACCOUNT_FIELD_MAPPING":
+                return CREATED_LINKED_ACCOUNT_FIELD_MAPPING;
+            case "ENABLED_INTEGRATION":
+                return ENABLED_INTEGRATION;
+            case "DELETED_TEST_API_KEY":
+                return DELETED_TEST_API_KEY;
+            case "ENABLED_CATEGORY":
+                return ENABLED_CATEGORY;
+            case "CREATED_DESTINATION":
+                return CREATED_DESTINATION;
+            case "CHANGED_LINKED_ACCOUNT_FIELD_MAPPING":
+                return CHANGED_LINKED_ACCOUNT_FIELD_MAPPING;
+            default:
+                return new EventTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CREATED_REMOTE_PRODUCTION_API_KEY,
+
+        DELETED_REMOTE_PRODUCTION_API_KEY,
+
+        CREATED_TEST_API_KEY,
+
+        DELETED_TEST_API_KEY,
+
+        REGENERATED_PRODUCTION_API_KEY,
+
+        REGENERATED_WEBHOOK_SIGNATURE,
+
+        INVITED_USER,
+
+        TWO_FACTOR_AUTH_ENABLED,
+
+        TWO_FACTOR_AUTH_DISABLED,
+
+        DELETED_LINKED_ACCOUNT,
+
+        DELETED_ALL_COMMON_MODELS_FOR_LINKED_ACCOUNT,
+
+        CREATED_DESTINATION,
+
+        DELETED_DESTINATION,
+
+        CHANGED_DESTINATION,
+
+        CHANGED_SCOPES,
+
+        CHANGED_PERSONAL_INFORMATION,
+
+        CHANGED_ORGANIZATION_SETTINGS,
+
+        ENABLED_INTEGRATION,
+
+        DISABLED_INTEGRATION,
+
+        ENABLED_CATEGORY,
+
+        DISABLED_CATEGORY,
+
+        CHANGED_PASSWORD,
+
+        RESET_PASSWORD,
+
+        ENABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION,
+
+        ENABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT,
+
+        DISABLED_REDACT_UNMAPPED_DATA_FOR_ORGANIZATION,
+
+        DISABLED_REDACT_UNMAPPED_DATA_FOR_LINKED_ACCOUNT,
+
+        CREATED_INTEGRATION_WIDE_FIELD_MAPPING,
+
+        CREATED_LINKED_ACCOUNT_FIELD_MAPPING,
+
+        CHANGED_INTEGRATION_WIDE_FIELD_MAPPING,
+
+        CHANGED_LINKED_ACCOUNT_FIELD_MAPPING,
+
+        DELETED_INTEGRATION_WIDE_FIELD_MAPPING,
+
+        DELETED_LINKED_ACCOUNT_FIELD_MAPPING,
+
+        CREATED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE,
+
+        CHANGED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE,
+
+        DELETED_LINKED_ACCOUNT_COMMON_MODEL_OVERRIDE,
+
+        FORCED_LINKED_ACCOUNT_RESYNC,
+
+        MUTED_ISSUE,
+
+        GENERATED_MAGIC_LINK,
+
+        ENABLED_MERGE_WEBHOOK,
+
+        DISABLED_MERGE_WEBHOOK,
+
+        MERGE_WEBHOOK_TARGET_CHANGED,
+
+        END_USER_CREDENTIALS_ACCESSED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCreatedRemoteProductionApiKey();
+
+        T visitDeletedRemoteProductionApiKey();
+
+        T visitCreatedTestApiKey();
+
+        T visitDeletedTestApiKey();
+
+        T visitRegeneratedProductionApiKey();
+
+        T visitRegeneratedWebhookSignature();
+
+        T visitInvitedUser();
+
+        T visitTwoFactorAuthEnabled();
+
+        T visitTwoFactorAuthDisabled();
+
+        T visitDeletedLinkedAccount();
+
+        T visitDeletedAllCommonModelsForLinkedAccount();
+
+        T visitCreatedDestination();
+
+        T visitDeletedDestination();
+
+        T visitChangedDestination();
+
+        T visitChangedScopes();
+
+        T visitChangedPersonalInformation();
+
+        T visitChangedOrganizationSettings();
+
+        T visitEnabledIntegration();
+
+        T visitDisabledIntegration();
+
+        T visitEnabledCategory();
+
+        T visitDisabledCategory();
+
+        T visitChangedPassword();
+
+        T visitResetPassword();
+
+        T visitEnabledRedactUnmappedDataForOrganization();
+
+        T visitEnabledRedactUnmappedDataForLinkedAccount();
+
+        T visitDisabledRedactUnmappedDataForOrganization();
+
+        T visitDisabledRedactUnmappedDataForLinkedAccount();
+
+        T visitCreatedIntegrationWideFieldMapping();
+
+        T visitCreatedLinkedAccountFieldMapping();
+
+        T visitChangedIntegrationWideFieldMapping();
+
+        T visitChangedLinkedAccountFieldMapping();
+
+        T visitDeletedIntegrationWideFieldMapping();
+
+        T visitDeletedLinkedAccountFieldMapping();
+
+        T visitCreatedLinkedAccountCommonModelOverride();
+
+        T visitChangedLinkedAccountCommonModelOverride();
+
+        T visitDeletedLinkedAccountCommonModelOverride();
+
+        T visitForcedLinkedAccountResync();
+
+        T visitMutedIssue();
+
+        T visitGeneratedMagicLink();
+
+        T visitEnabledMergeWebhook();
+
+        T visitDisabledMergeWebhook();
+
+        T visitMergeWebhookTargetChanged();
+
+        T visitEndUserCredentialsAccessed();
+
+        T visitUnknown(String unknownType);
     }
 }

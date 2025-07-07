@@ -3,34 +3,148 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EthnicityEnum {
-    AMERICAN_INDIAN_OR_ALASKA_NATIVE("AMERICAN_INDIAN_OR_ALASKA_NATIVE"),
+public final class EthnicityEnum {
+    public static final EthnicityEnum AMERICAN_INDIAN_OR_ALASKA_NATIVE =
+            new EthnicityEnum(Value.AMERICAN_INDIAN_OR_ALASKA_NATIVE, "AMERICAN_INDIAN_OR_ALASKA_NATIVE");
 
-    ASIAN_OR_INDIAN_SUBCONTINENT("ASIAN_OR_INDIAN_SUBCONTINENT"),
+    public static final EthnicityEnum NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER = new EthnicityEnum(
+            Value.NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER, "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER");
 
-    BLACK_OR_AFRICAN_AMERICAN("BLACK_OR_AFRICAN_AMERICAN"),
+    public static final EthnicityEnum HISPANIC_OR_LATINO =
+            new EthnicityEnum(Value.HISPANIC_OR_LATINO, "HISPANIC_OR_LATINO");
 
-    HISPANIC_OR_LATINO("HISPANIC_OR_LATINO"),
+    public static final EthnicityEnum BLACK_OR_AFRICAN_AMERICAN =
+            new EthnicityEnum(Value.BLACK_OR_AFRICAN_AMERICAN, "BLACK_OR_AFRICAN_AMERICAN");
 
-    NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER("NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER"),
+    public static final EthnicityEnum TWO_OR_MORE_RACES =
+            new EthnicityEnum(Value.TWO_OR_MORE_RACES, "TWO_OR_MORE_RACES");
 
-    TWO_OR_MORE_RACES("TWO_OR_MORE_RACES"),
+    public static final EthnicityEnum ASIAN_OR_INDIAN_SUBCONTINENT =
+            new EthnicityEnum(Value.ASIAN_OR_INDIAN_SUBCONTINENT, "ASIAN_OR_INDIAN_SUBCONTINENT");
 
-    WHITE("WHITE"),
+    public static final EthnicityEnum WHITE = new EthnicityEnum(Value.WHITE, "WHITE");
 
-    PREFER_NOT_TO_DISCLOSE("PREFER_NOT_TO_DISCLOSE");
+    public static final EthnicityEnum PREFER_NOT_TO_DISCLOSE =
+            new EthnicityEnum(Value.PREFER_NOT_TO_DISCLOSE, "PREFER_NOT_TO_DISCLOSE");
 
-    private final String value;
+    private final Value value;
 
-    EthnicityEnum(String value) {
+    private final String string;
+
+    EthnicityEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EthnicityEnum && this.string.equals(((EthnicityEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case AMERICAN_INDIAN_OR_ALASKA_NATIVE:
+                return visitor.visitAmericanIndianOrAlaskaNative();
+            case NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER:
+                return visitor.visitNativeHawaiianOrOtherPacificIslander();
+            case HISPANIC_OR_LATINO:
+                return visitor.visitHispanicOrLatino();
+            case BLACK_OR_AFRICAN_AMERICAN:
+                return visitor.visitBlackOrAfricanAmerican();
+            case TWO_OR_MORE_RACES:
+                return visitor.visitTwoOrMoreRaces();
+            case ASIAN_OR_INDIAN_SUBCONTINENT:
+                return visitor.visitAsianOrIndianSubcontinent();
+            case WHITE:
+                return visitor.visitWhite();
+            case PREFER_NOT_TO_DISCLOSE:
+                return visitor.visitPreferNotToDisclose();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EthnicityEnum valueOf(String value) {
+        switch (value) {
+            case "AMERICAN_INDIAN_OR_ALASKA_NATIVE":
+                return AMERICAN_INDIAN_OR_ALASKA_NATIVE;
+            case "NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER":
+                return NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER;
+            case "HISPANIC_OR_LATINO":
+                return HISPANIC_OR_LATINO;
+            case "BLACK_OR_AFRICAN_AMERICAN":
+                return BLACK_OR_AFRICAN_AMERICAN;
+            case "TWO_OR_MORE_RACES":
+                return TWO_OR_MORE_RACES;
+            case "ASIAN_OR_INDIAN_SUBCONTINENT":
+                return ASIAN_OR_INDIAN_SUBCONTINENT;
+            case "WHITE":
+                return WHITE;
+            case "PREFER_NOT_TO_DISCLOSE":
+                return PREFER_NOT_TO_DISCLOSE;
+            default:
+                return new EthnicityEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        AMERICAN_INDIAN_OR_ALASKA_NATIVE,
+
+        ASIAN_OR_INDIAN_SUBCONTINENT,
+
+        BLACK_OR_AFRICAN_AMERICAN,
+
+        HISPANIC_OR_LATINO,
+
+        NATIVE_HAWAIIAN_OR_OTHER_PACIFIC_ISLANDER,
+
+        TWO_OR_MORE_RACES,
+
+        WHITE,
+
+        PREFER_NOT_TO_DISCLOSE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAmericanIndianOrAlaskaNative();
+
+        T visitAsianOrIndianSubcontinent();
+
+        T visitBlackOrAfricanAmerican();
+
+        T visitHispanicOrLatino();
+
+        T visitNativeHawaiianOrOtherPacificIslander();
+
+        T visitTwoOrMoreRaces();
+
+        T visitWhite();
+
+        T visitPreferNotToDisclose();
+
+        T visitUnknown(String unknownType);
     }
 }

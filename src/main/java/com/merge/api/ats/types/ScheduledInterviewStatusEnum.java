@@ -3,24 +3,95 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ScheduledInterviewStatusEnum {
-    SCHEDULED("SCHEDULED"),
+public final class ScheduledInterviewStatusEnum {
+    public static final ScheduledInterviewStatusEnum SCHEDULED =
+            new ScheduledInterviewStatusEnum(Value.SCHEDULED, "SCHEDULED");
 
-    AWAITING_FEEDBACK("AWAITING_FEEDBACK"),
+    public static final ScheduledInterviewStatusEnum AWAITING_FEEDBACK =
+            new ScheduledInterviewStatusEnum(Value.AWAITING_FEEDBACK, "AWAITING_FEEDBACK");
 
-    COMPLETE("COMPLETE");
+    public static final ScheduledInterviewStatusEnum COMPLETE =
+            new ScheduledInterviewStatusEnum(Value.COMPLETE, "COMPLETE");
 
-    private final String value;
+    private final Value value;
 
-    ScheduledInterviewStatusEnum(String value) {
+    private final String string;
+
+    ScheduledInterviewStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ScheduledInterviewStatusEnum
+                        && this.string.equals(((ScheduledInterviewStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SCHEDULED:
+                return visitor.visitScheduled();
+            case AWAITING_FEEDBACK:
+                return visitor.visitAwaitingFeedback();
+            case COMPLETE:
+                return visitor.visitComplete();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ScheduledInterviewStatusEnum valueOf(String value) {
+        switch (value) {
+            case "SCHEDULED":
+                return SCHEDULED;
+            case "AWAITING_FEEDBACK":
+                return AWAITING_FEEDBACK;
+            case "COMPLETE":
+                return COMPLETE;
+            default:
+                return new ScheduledInterviewStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        SCHEDULED,
+
+        AWAITING_FEEDBACK,
+
+        COMPLETE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitScheduled();
+
+        T visitAwaitingFeedback();
+
+        T visitComplete();
+
+        T visitUnknown(String unknownType);
     }
 }

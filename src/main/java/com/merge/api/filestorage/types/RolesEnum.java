@@ -3,24 +3,90 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RolesEnum {
-    READ("READ"),
+public final class RolesEnum {
+    public static final RolesEnum OWNER = new RolesEnum(Value.OWNER, "OWNER");
 
-    WRITE("WRITE"),
+    public static final RolesEnum READ = new RolesEnum(Value.READ, "READ");
 
-    OWNER("OWNER");
+    public static final RolesEnum WRITE = new RolesEnum(Value.WRITE, "WRITE");
 
-    private final String value;
+    private final Value value;
 
-    RolesEnum(String value) {
+    private final String string;
+
+    RolesEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof RolesEnum && this.string.equals(((RolesEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case READ:
+                return visitor.visitRead();
+            case WRITE:
+                return visitor.visitWrite();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RolesEnum valueOf(String value) {
+        switch (value) {
+            case "OWNER":
+                return OWNER;
+            case "READ":
+                return READ;
+            case "WRITE":
+                return WRITE;
+            default:
+                return new RolesEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        READ,
+
+        WRITE,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRead();
+
+        T visitWrite();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

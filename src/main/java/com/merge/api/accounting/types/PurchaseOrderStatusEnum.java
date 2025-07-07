@@ -3,28 +3,113 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PurchaseOrderStatusEnum {
-    DRAFT("DRAFT"),
+public final class PurchaseOrderStatusEnum {
+    public static final PurchaseOrderStatusEnum AUTHORIZED =
+            new PurchaseOrderStatusEnum(Value.AUTHORIZED, "AUTHORIZED");
 
-    SUBMITTED("SUBMITTED"),
+    public static final PurchaseOrderStatusEnum SUBMITTED = new PurchaseOrderStatusEnum(Value.SUBMITTED, "SUBMITTED");
 
-    AUTHORIZED("AUTHORIZED"),
+    public static final PurchaseOrderStatusEnum DELETED = new PurchaseOrderStatusEnum(Value.DELETED, "DELETED");
 
-    BILLED("BILLED"),
+    public static final PurchaseOrderStatusEnum DRAFT = new PurchaseOrderStatusEnum(Value.DRAFT, "DRAFT");
 
-    DELETED("DELETED");
+    public static final PurchaseOrderStatusEnum BILLED = new PurchaseOrderStatusEnum(Value.BILLED, "BILLED");
 
-    private final String value;
+    private final Value value;
 
-    PurchaseOrderStatusEnum(String value) {
+    private final String string;
+
+    PurchaseOrderStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PurchaseOrderStatusEnum
+                        && this.string.equals(((PurchaseOrderStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case AUTHORIZED:
+                return visitor.visitAuthorized();
+            case SUBMITTED:
+                return visitor.visitSubmitted();
+            case DELETED:
+                return visitor.visitDeleted();
+            case DRAFT:
+                return visitor.visitDraft();
+            case BILLED:
+                return visitor.visitBilled();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PurchaseOrderStatusEnum valueOf(String value) {
+        switch (value) {
+            case "AUTHORIZED":
+                return AUTHORIZED;
+            case "SUBMITTED":
+                return SUBMITTED;
+            case "DELETED":
+                return DELETED;
+            case "DRAFT":
+                return DRAFT;
+            case "BILLED":
+                return BILLED;
+            default:
+                return new PurchaseOrderStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRAFT,
+
+        SUBMITTED,
+
+        AUTHORIZED,
+
+        BILLED,
+
+        DELETED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDraft();
+
+        T visitSubmitted();
+
+        T visitAuthorized();
+
+        T visitBilled();
+
+        T visitDeleted();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,44 +3,204 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AccountAccountTypeEnum {
-    BANK("BANK"),
+public final class AccountAccountTypeEnum {
+    public static final AccountAccountTypeEnum OTHER_ASSET =
+            new AccountAccountTypeEnum(Value.OTHER_ASSET, "OTHER_ASSET");
 
-    CREDIT_CARD("CREDIT_CARD"),
+    public static final AccountAccountTypeEnum OTHER_INCOME =
+            new AccountAccountTypeEnum(Value.OTHER_INCOME, "OTHER_INCOME");
 
-    ACCOUNTS_PAYABLE("ACCOUNTS_PAYABLE"),
+    public static final AccountAccountTypeEnum FIXED_ASSET =
+            new AccountAccountTypeEnum(Value.FIXED_ASSET, "FIXED_ASSET");
 
-    ACCOUNTS_RECEIVABLE("ACCOUNTS_RECEIVABLE"),
+    public static final AccountAccountTypeEnum OTHER_CURRENT_ASSET =
+            new AccountAccountTypeEnum(Value.OTHER_CURRENT_ASSET, "OTHER_CURRENT_ASSET");
 
-    FIXED_ASSET("FIXED_ASSET"),
+    public static final AccountAccountTypeEnum LONG_TERM_LIABILITY =
+            new AccountAccountTypeEnum(Value.LONG_TERM_LIABILITY, "LONG_TERM_LIABILITY");
 
-    OTHER_ASSET("OTHER_ASSET"),
+    public static final AccountAccountTypeEnum OTHER_CURRENT_LIABILITY =
+            new AccountAccountTypeEnum(Value.OTHER_CURRENT_LIABILITY, "OTHER_CURRENT_LIABILITY");
 
-    OTHER_CURRENT_ASSET("OTHER_CURRENT_ASSET"),
+    public static final AccountAccountTypeEnum OTHER_EXPENSE =
+            new AccountAccountTypeEnum(Value.OTHER_EXPENSE, "OTHER_EXPENSE");
 
-    OTHER_EXPENSE("OTHER_EXPENSE"),
+    public static final AccountAccountTypeEnum NON_POSTING =
+            new AccountAccountTypeEnum(Value.NON_POSTING, "NON_POSTING");
 
-    OTHER_INCOME("OTHER_INCOME"),
+    public static final AccountAccountTypeEnum ACCOUNTS_PAYABLE =
+            new AccountAccountTypeEnum(Value.ACCOUNTS_PAYABLE, "ACCOUNTS_PAYABLE");
 
-    COST_OF_GOODS_SOLD("COST_OF_GOODS_SOLD"),
+    public static final AccountAccountTypeEnum COST_OF_GOODS_SOLD =
+            new AccountAccountTypeEnum(Value.COST_OF_GOODS_SOLD, "COST_OF_GOODS_SOLD");
 
-    OTHER_CURRENT_LIABILITY("OTHER_CURRENT_LIABILITY"),
+    public static final AccountAccountTypeEnum BANK = new AccountAccountTypeEnum(Value.BANK, "BANK");
 
-    LONG_TERM_LIABILITY("LONG_TERM_LIABILITY"),
+    public static final AccountAccountTypeEnum CREDIT_CARD =
+            new AccountAccountTypeEnum(Value.CREDIT_CARD, "CREDIT_CARD");
 
-    NON_POSTING("NON_POSTING");
+    public static final AccountAccountTypeEnum ACCOUNTS_RECEIVABLE =
+            new AccountAccountTypeEnum(Value.ACCOUNTS_RECEIVABLE, "ACCOUNTS_RECEIVABLE");
 
-    private final String value;
+    private final Value value;
 
-    AccountAccountTypeEnum(String value) {
+    private final String string;
+
+    AccountAccountTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AccountAccountTypeEnum
+                        && this.string.equals(((AccountAccountTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OTHER_ASSET:
+                return visitor.visitOtherAsset();
+            case OTHER_INCOME:
+                return visitor.visitOtherIncome();
+            case FIXED_ASSET:
+                return visitor.visitFixedAsset();
+            case OTHER_CURRENT_ASSET:
+                return visitor.visitOtherCurrentAsset();
+            case LONG_TERM_LIABILITY:
+                return visitor.visitLongTermLiability();
+            case OTHER_CURRENT_LIABILITY:
+                return visitor.visitOtherCurrentLiability();
+            case OTHER_EXPENSE:
+                return visitor.visitOtherExpense();
+            case NON_POSTING:
+                return visitor.visitNonPosting();
+            case ACCOUNTS_PAYABLE:
+                return visitor.visitAccountsPayable();
+            case COST_OF_GOODS_SOLD:
+                return visitor.visitCostOfGoodsSold();
+            case BANK:
+                return visitor.visitBank();
+            case CREDIT_CARD:
+                return visitor.visitCreditCard();
+            case ACCOUNTS_RECEIVABLE:
+                return visitor.visitAccountsReceivable();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AccountAccountTypeEnum valueOf(String value) {
+        switch (value) {
+            case "OTHER_ASSET":
+                return OTHER_ASSET;
+            case "OTHER_INCOME":
+                return OTHER_INCOME;
+            case "FIXED_ASSET":
+                return FIXED_ASSET;
+            case "OTHER_CURRENT_ASSET":
+                return OTHER_CURRENT_ASSET;
+            case "LONG_TERM_LIABILITY":
+                return LONG_TERM_LIABILITY;
+            case "OTHER_CURRENT_LIABILITY":
+                return OTHER_CURRENT_LIABILITY;
+            case "OTHER_EXPENSE":
+                return OTHER_EXPENSE;
+            case "NON_POSTING":
+                return NON_POSTING;
+            case "ACCOUNTS_PAYABLE":
+                return ACCOUNTS_PAYABLE;
+            case "COST_OF_GOODS_SOLD":
+                return COST_OF_GOODS_SOLD;
+            case "BANK":
+                return BANK;
+            case "CREDIT_CARD":
+                return CREDIT_CARD;
+            case "ACCOUNTS_RECEIVABLE":
+                return ACCOUNTS_RECEIVABLE;
+            default:
+                return new AccountAccountTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        BANK,
+
+        CREDIT_CARD,
+
+        ACCOUNTS_PAYABLE,
+
+        ACCOUNTS_RECEIVABLE,
+
+        FIXED_ASSET,
+
+        OTHER_ASSET,
+
+        OTHER_CURRENT_ASSET,
+
+        OTHER_EXPENSE,
+
+        OTHER_INCOME,
+
+        COST_OF_GOODS_SOLD,
+
+        OTHER_CURRENT_LIABILITY,
+
+        LONG_TERM_LIABILITY,
+
+        NON_POSTING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitBank();
+
+        T visitCreditCard();
+
+        T visitAccountsPayable();
+
+        T visitAccountsReceivable();
+
+        T visitFixedAsset();
+
+        T visitOtherAsset();
+
+        T visitOtherCurrentAsset();
+
+        T visitOtherExpense();
+
+        T visitOtherIncome();
+
+        T visitCostOfGoodsSold();
+
+        T visitOtherCurrentLiability();
+
+        T visitLongTermLiability();
+
+        T visitNonPosting();
+
+        T visitUnknown(String unknownType);
     }
 }

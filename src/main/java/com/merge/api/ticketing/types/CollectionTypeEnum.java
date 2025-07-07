@@ -3,22 +3,81 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CollectionTypeEnum {
-    LIST("LIST"),
+public final class CollectionTypeEnum {
+    public static final CollectionTypeEnum LIST = new CollectionTypeEnum(Value.LIST, "LIST");
 
-    PROJECT("PROJECT");
+    public static final CollectionTypeEnum PROJECT = new CollectionTypeEnum(Value.PROJECT, "PROJECT");
 
-    private final String value;
+    private final Value value;
 
-    CollectionTypeEnum(String value) {
+    private final String string;
+
+    CollectionTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CollectionTypeEnum && this.string.equals(((CollectionTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case LIST:
+                return visitor.visitList();
+            case PROJECT:
+                return visitor.visitProject();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CollectionTypeEnum valueOf(String value) {
+        switch (value) {
+            case "LIST":
+                return LIST;
+            case "PROJECT":
+                return PROJECT;
+            default:
+                return new CollectionTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        LIST,
+
+        PROJECT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitList();
+
+        T visitProject();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,22 +3,82 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UsersListRequestExpandItem {
-    ROLES("roles"),
+public final class UsersListRequestExpandItem {
+    public static final UsersListRequestExpandItem TEAMS = new UsersListRequestExpandItem(Value.TEAMS, "teams");
 
-    TEAMS("teams");
+    public static final UsersListRequestExpandItem ROLES = new UsersListRequestExpandItem(Value.ROLES, "roles");
 
-    private final String value;
+    private final Value value;
 
-    UsersListRequestExpandItem(String value) {
+    private final String string;
+
+    UsersListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof UsersListRequestExpandItem
+                        && this.string.equals(((UsersListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case TEAMS:
+                return visitor.visitTeams();
+            case ROLES:
+                return visitor.visitRoles();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static UsersListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "teams":
+                return TEAMS;
+            case "roles":
+                return ROLES;
+            default:
+                return new UsersListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ROLES,
+
+        TEAMS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRoles();
+
+        T visitTeams();
+
+        T visitUnknown(String unknownType);
     }
 }
