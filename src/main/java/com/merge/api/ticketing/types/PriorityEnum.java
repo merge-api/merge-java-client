@@ -3,26 +3,100 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PriorityEnum {
-    URGENT("URGENT"),
+public final class PriorityEnum {
+    public static final PriorityEnum URGENT = new PriorityEnum(Value.URGENT, "URGENT");
 
-    HIGH("HIGH"),
+    public static final PriorityEnum NORMAL = new PriorityEnum(Value.NORMAL, "NORMAL");
 
-    NORMAL("NORMAL"),
+    public static final PriorityEnum LOW = new PriorityEnum(Value.LOW, "LOW");
 
-    LOW("LOW");
+    public static final PriorityEnum HIGH = new PriorityEnum(Value.HIGH, "HIGH");
 
-    private final String value;
+    private final Value value;
 
-    PriorityEnum(String value) {
+    private final String string;
+
+    PriorityEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof PriorityEnum && this.string.equals(((PriorityEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case URGENT:
+                return visitor.visitUrgent();
+            case NORMAL:
+                return visitor.visitNormal();
+            case LOW:
+                return visitor.visitLow();
+            case HIGH:
+                return visitor.visitHigh();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PriorityEnum valueOf(String value) {
+        switch (value) {
+            case "URGENT":
+                return URGENT;
+            case "NORMAL":
+                return NORMAL;
+            case "LOW":
+                return LOW;
+            case "HIGH":
+                return HIGH;
+            default:
+                return new PriorityEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        URGENT,
+
+        HIGH,
+
+        NORMAL,
+
+        LOW,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitUrgent();
+
+        T visitHigh();
+
+        T visitNormal();
+
+        T visitLow();
+
+        T visitUnknown(String unknownType);
     }
 }

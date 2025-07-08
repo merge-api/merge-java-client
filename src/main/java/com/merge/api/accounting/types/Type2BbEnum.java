@@ -3,26 +3,100 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum Type2BbEnum {
-    INVENTORY("INVENTORY"),
+public final class Type2BbEnum {
+    public static final Type2BbEnum NON_INVENTORY = new Type2BbEnum(Value.NON_INVENTORY, "NON_INVENTORY");
 
-    NON_INVENTORY("NON_INVENTORY"),
+    public static final Type2BbEnum INVENTORY = new Type2BbEnum(Value.INVENTORY, "INVENTORY");
 
-    SERVICE("SERVICE"),
+    public static final Type2BbEnum SERVICE = new Type2BbEnum(Value.SERVICE, "SERVICE");
 
-    UNKNOWN("UNKNOWN");
+    public static final Type2BbEnum UNKNOWN = new Type2BbEnum(Value.UNKNOWN, "UNKNOWN");
 
-    private final String value;
+    private final Value value;
 
-    Type2BbEnum(String value) {
+    private final String string;
+
+    Type2BbEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof Type2BbEnum && this.string.equals(((Type2BbEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case NON_INVENTORY:
+                return visitor.visitNonInventory();
+            case INVENTORY:
+                return visitor.visitInventory();
+            case SERVICE:
+                return visitor.visitService();
+            case UNKNOWN:
+                return visitor.visitUnknown();
+            case _UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static Type2BbEnum valueOf(String value) {
+        switch (value) {
+            case "NON_INVENTORY":
+                return NON_INVENTORY;
+            case "INVENTORY":
+                return INVENTORY;
+            case "SERVICE":
+                return SERVICE;
+            case "UNKNOWN":
+                return UNKNOWN;
+            default:
+                return new Type2BbEnum(Value._UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        INVENTORY,
+
+        NON_INVENTORY,
+
+        SERVICE,
+
+        UNKNOWN,
+
+        _UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitInventory();
+
+        T visitNonInventory();
+
+        T visitService();
+
+        T visitUnknown();
+
+        T visitUnknown(String unknownType);
     }
 }

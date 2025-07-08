@@ -44,7 +44,7 @@ java {
 
 group = 'dev.merge'
 
-version = '3.0.0'
+version = '4.0.0'
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
@@ -71,7 +71,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '3.0.0'
+            version = '4.0.0'
             from components.java
             pom {
                 licenses {

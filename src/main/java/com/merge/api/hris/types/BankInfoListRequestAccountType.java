@@ -3,22 +3,84 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BankInfoListRequestAccountType {
-    CHECKING("CHECKING"),
+public final class BankInfoListRequestAccountType {
+    public static final BankInfoListRequestAccountType SAVINGS =
+            new BankInfoListRequestAccountType(Value.SAVINGS, "SAVINGS");
 
-    SAVINGS("SAVINGS");
+    public static final BankInfoListRequestAccountType CHECKING =
+            new BankInfoListRequestAccountType(Value.CHECKING, "CHECKING");
 
-    private final String value;
+    private final Value value;
 
-    BankInfoListRequestAccountType(String value) {
+    private final String string;
+
+    BankInfoListRequestAccountType(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof BankInfoListRequestAccountType
+                        && this.string.equals(((BankInfoListRequestAccountType) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SAVINGS:
+                return visitor.visitSavings();
+            case CHECKING:
+                return visitor.visitChecking();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static BankInfoListRequestAccountType valueOf(String value) {
+        switch (value) {
+            case "SAVINGS":
+                return SAVINGS;
+            case "CHECKING":
+                return CHECKING;
+            default:
+                return new BankInfoListRequestAccountType(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CHECKING,
+
+        SAVINGS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitChecking();
+
+        T visitSavings();
+
+        T visitUnknown(String unknownType);
     }
 }

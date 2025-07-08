@@ -3,22 +3,82 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum UsersRetrieveRequestExpandItem {
-    ROLES("roles"),
+public final class UsersRetrieveRequestExpandItem {
+    public static final UsersRetrieveRequestExpandItem TEAMS = new UsersRetrieveRequestExpandItem(Value.TEAMS, "teams");
 
-    TEAMS("teams");
+    public static final UsersRetrieveRequestExpandItem ROLES = new UsersRetrieveRequestExpandItem(Value.ROLES, "roles");
 
-    private final String value;
+    private final Value value;
 
-    UsersRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    UsersRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof UsersRetrieveRequestExpandItem
+                        && this.string.equals(((UsersRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case TEAMS:
+                return visitor.visitTeams();
+            case ROLES:
+                return visitor.visitRoles();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static UsersRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "teams":
+                return TEAMS;
+            case "roles":
+                return ROLES;
+            default:
+                return new UsersRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ROLES,
+
+        TEAMS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRoles();
+
+        T visitTeams();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,26 +3,102 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FlsaStatusEnum {
-    EXEMPT("EXEMPT"),
+public final class FlsaStatusEnum {
+    public static final FlsaStatusEnum SALARIED_NONEXEMPT =
+            new FlsaStatusEnum(Value.SALARIED_NONEXEMPT, "SALARIED_NONEXEMPT");
 
-    SALARIED_NONEXEMPT("SALARIED_NONEXEMPT"),
+    public static final FlsaStatusEnum OWNER = new FlsaStatusEnum(Value.OWNER, "OWNER");
 
-    NONEXEMPT("NONEXEMPT"),
+    public static final FlsaStatusEnum EXEMPT = new FlsaStatusEnum(Value.EXEMPT, "EXEMPT");
 
-    OWNER("OWNER");
+    public static final FlsaStatusEnum NONEXEMPT = new FlsaStatusEnum(Value.NONEXEMPT, "NONEXEMPT");
 
-    private final String value;
+    private final Value value;
 
-    FlsaStatusEnum(String value) {
+    private final String string;
+
+    FlsaStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FlsaStatusEnum && this.string.equals(((FlsaStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case SALARIED_NONEXEMPT:
+                return visitor.visitSalariedNonexempt();
+            case OWNER:
+                return visitor.visitOwner();
+            case EXEMPT:
+                return visitor.visitExempt();
+            case NONEXEMPT:
+                return visitor.visitNonexempt();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FlsaStatusEnum valueOf(String value) {
+        switch (value) {
+            case "SALARIED_NONEXEMPT":
+                return SALARIED_NONEXEMPT;
+            case "OWNER":
+                return OWNER;
+            case "EXEMPT":
+                return EXEMPT;
+            case "NONEXEMPT":
+                return NONEXEMPT;
+            default:
+                return new FlsaStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EXEMPT,
+
+        SALARIED_NONEXEMPT,
+
+        NONEXEMPT,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitExempt();
+
+        T visitSalariedNonexempt();
+
+        T visitNonexempt();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

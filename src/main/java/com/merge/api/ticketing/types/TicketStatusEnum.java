@@ -3,26 +3,101 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketStatusEnum {
-    OPEN("OPEN"),
+public final class TicketStatusEnum {
+    public static final TicketStatusEnum CLOSED = new TicketStatusEnum(Value.CLOSED, "CLOSED");
 
-    CLOSED("CLOSED"),
+    public static final TicketStatusEnum IN_PROGRESS = new TicketStatusEnum(Value.IN_PROGRESS, "IN_PROGRESS");
 
-    IN_PROGRESS("IN_PROGRESS"),
+    public static final TicketStatusEnum OPEN = new TicketStatusEnum(Value.OPEN, "OPEN");
 
-    ON_HOLD("ON_HOLD");
+    public static final TicketStatusEnum ON_HOLD = new TicketStatusEnum(Value.ON_HOLD, "ON_HOLD");
 
-    private final String value;
+    private final Value value;
 
-    TicketStatusEnum(String value) {
+    private final String string;
+
+    TicketStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketStatusEnum && this.string.equals(((TicketStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLOSED:
+                return visitor.visitClosed();
+            case IN_PROGRESS:
+                return visitor.visitInProgress();
+            case OPEN:
+                return visitor.visitOpen();
+            case ON_HOLD:
+                return visitor.visitOnHold();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketStatusEnum valueOf(String value) {
+        switch (value) {
+            case "CLOSED":
+                return CLOSED;
+            case "IN_PROGRESS":
+                return IN_PROGRESS;
+            case "OPEN":
+                return OPEN;
+            case "ON_HOLD":
+                return ON_HOLD;
+            default:
+                return new TicketStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        OPEN,
+
+        CLOSED,
+
+        IN_PROGRESS,
+
+        ON_HOLD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOpen();
+
+        T visitClosed();
+
+        T visitInProgress();
+
+        T visitOnHold();
+
+        T visitUnknown(String unknownType);
     }
 }

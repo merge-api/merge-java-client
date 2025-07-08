@@ -3,28 +3,111 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PhoneNumberTypeEnum {
-    HOME("HOME"),
+public final class PhoneNumberTypeEnum {
+    public static final PhoneNumberTypeEnum WORK = new PhoneNumberTypeEnum(Value.WORK, "WORK");
 
-    WORK("WORK"),
+    public static final PhoneNumberTypeEnum SKYPE = new PhoneNumberTypeEnum(Value.SKYPE, "SKYPE");
 
-    MOBILE("MOBILE"),
+    public static final PhoneNumberTypeEnum HOME = new PhoneNumberTypeEnum(Value.HOME, "HOME");
 
-    SKYPE("SKYPE"),
+    public static final PhoneNumberTypeEnum OTHER = new PhoneNumberTypeEnum(Value.OTHER, "OTHER");
 
-    OTHER("OTHER");
+    public static final PhoneNumberTypeEnum MOBILE = new PhoneNumberTypeEnum(Value.MOBILE, "MOBILE");
 
-    private final String value;
+    private final Value value;
 
-    PhoneNumberTypeEnum(String value) {
+    private final String string;
+
+    PhoneNumberTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PhoneNumberTypeEnum && this.string.equals(((PhoneNumberTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case WORK:
+                return visitor.visitWork();
+            case SKYPE:
+                return visitor.visitSkype();
+            case HOME:
+                return visitor.visitHome();
+            case OTHER:
+                return visitor.visitOther();
+            case MOBILE:
+                return visitor.visitMobile();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PhoneNumberTypeEnum valueOf(String value) {
+        switch (value) {
+            case "WORK":
+                return WORK;
+            case "SKYPE":
+                return SKYPE;
+            case "HOME":
+                return HOME;
+            case "OTHER":
+                return OTHER;
+            case "MOBILE":
+                return MOBILE;
+            default:
+                return new PhoneNumberTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        HOME,
+
+        WORK,
+
+        MOBILE,
+
+        SKYPE,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitHome();
+
+        T visitWork();
+
+        T visitMobile();
+
+        T visitSkype();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

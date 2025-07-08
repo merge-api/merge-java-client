@@ -3,24 +3,95 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ScorecardsRetrieveRequestExpandItem {
-    APPLICATION("application"),
+public final class ScorecardsRetrieveRequestExpandItem {
+    public static final ScorecardsRetrieveRequestExpandItem INTERVIEW =
+            new ScorecardsRetrieveRequestExpandItem(Value.INTERVIEW, "interview");
 
-    INTERVIEW("interview"),
+    public static final ScorecardsRetrieveRequestExpandItem APPLICATION =
+            new ScorecardsRetrieveRequestExpandItem(Value.APPLICATION, "application");
 
-    INTERVIEWER("interviewer");
+    public static final ScorecardsRetrieveRequestExpandItem INTERVIEWER =
+            new ScorecardsRetrieveRequestExpandItem(Value.INTERVIEWER, "interviewer");
 
-    private final String value;
+    private final Value value;
 
-    ScorecardsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    ScorecardsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ScorecardsRetrieveRequestExpandItem
+                        && this.string.equals(((ScorecardsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case INTERVIEW:
+                return visitor.visitInterview();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case INTERVIEWER:
+                return visitor.visitInterviewer();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ScorecardsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "interview":
+                return INTERVIEW;
+            case "application":
+                return APPLICATION;
+            case "interviewer":
+                return INTERVIEWER;
+            default:
+                return new ScorecardsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        INTERVIEW,
+
+        INTERVIEWER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitInterview();
+
+        T visitInterviewer();
+
+        T visitUnknown(String unknownType);
     }
 }

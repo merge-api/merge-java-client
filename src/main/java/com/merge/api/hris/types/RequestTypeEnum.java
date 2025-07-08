@@ -3,30 +3,121 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RequestTypeEnum {
-    VACATION("VACATION"),
+public final class RequestTypeEnum {
+    public static final RequestTypeEnum VACATION = new RequestTypeEnum(Value.VACATION, "VACATION");
 
-    SICK("SICK"),
+    public static final RequestTypeEnum VOLUNTEER = new RequestTypeEnum(Value.VOLUNTEER, "VOLUNTEER");
 
-    PERSONAL("PERSONAL"),
+    public static final RequestTypeEnum JURY_DUTY = new RequestTypeEnum(Value.JURY_DUTY, "JURY_DUTY");
 
-    JURY_DUTY("JURY_DUTY"),
+    public static final RequestTypeEnum BEREAVEMENT = new RequestTypeEnum(Value.BEREAVEMENT, "BEREAVEMENT");
 
-    VOLUNTEER("VOLUNTEER"),
+    public static final RequestTypeEnum SICK = new RequestTypeEnum(Value.SICK, "SICK");
 
-    BEREAVEMENT("BEREAVEMENT");
+    public static final RequestTypeEnum PERSONAL = new RequestTypeEnum(Value.PERSONAL, "PERSONAL");
 
-    private final String value;
+    private final Value value;
 
-    RequestTypeEnum(String value) {
+    private final String string;
+
+    RequestTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof RequestTypeEnum && this.string.equals(((RequestTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case VACATION:
+                return visitor.visitVacation();
+            case VOLUNTEER:
+                return visitor.visitVolunteer();
+            case JURY_DUTY:
+                return visitor.visitJuryDuty();
+            case BEREAVEMENT:
+                return visitor.visitBereavement();
+            case SICK:
+                return visitor.visitSick();
+            case PERSONAL:
+                return visitor.visitPersonal();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RequestTypeEnum valueOf(String value) {
+        switch (value) {
+            case "VACATION":
+                return VACATION;
+            case "VOLUNTEER":
+                return VOLUNTEER;
+            case "JURY_DUTY":
+                return JURY_DUTY;
+            case "BEREAVEMENT":
+                return BEREAVEMENT;
+            case "SICK":
+                return SICK;
+            case "PERSONAL":
+                return PERSONAL;
+            default:
+                return new RequestTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        VACATION,
+
+        SICK,
+
+        PERSONAL,
+
+        JURY_DUTY,
+
+        VOLUNTEER,
+
+        BEREAVEMENT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitVacation();
+
+        T visitSick();
+
+        T visitPersonal();
+
+        T visitJuryDuty();
+
+        T visitVolunteer();
+
+        T visitBereavement();
+
+        T visitUnknown(String unknownType);
     }
 }

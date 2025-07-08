@@ -3,32 +3,139 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CreditNotesRetrieveRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class CreditNotesRetrieveRequestExpandItem {
+    public static final CreditNotesRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new CreditNotesRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    APPLIED_PAYMENTS("applied_payments"),
+    public static final CreditNotesRetrieveRequestExpandItem LINE_ITEMS =
+            new CreditNotesRetrieveRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    COMPANY("company"),
+    public static final CreditNotesRetrieveRequestExpandItem PAYMENTS =
+            new CreditNotesRetrieveRequestExpandItem(Value.PAYMENTS, "payments");
 
-    CONTACT("contact"),
+    public static final CreditNotesRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new CreditNotesRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    LINE_ITEMS("line_items"),
+    public static final CreditNotesRetrieveRequestExpandItem CONTACT =
+            new CreditNotesRetrieveRequestExpandItem(Value.CONTACT, "contact");
 
-    PAYMENTS("payments"),
+    public static final CreditNotesRetrieveRequestExpandItem APPLIED_PAYMENTS =
+            new CreditNotesRetrieveRequestExpandItem(Value.APPLIED_PAYMENTS, "applied_payments");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final CreditNotesRetrieveRequestExpandItem COMPANY =
+            new CreditNotesRetrieveRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    CreditNotesRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    CreditNotesRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CreditNotesRetrieveRequestExpandItem
+                        && this.string.equals(((CreditNotesRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case PAYMENTS:
+                return visitor.visitPayments();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case CONTACT:
+                return visitor.visitContact();
+            case APPLIED_PAYMENTS:
+                return visitor.visitAppliedPayments();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CreditNotesRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "payments":
+                return PAYMENTS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "contact":
+                return CONTACT;
+            case "applied_payments":
+                return APPLIED_PAYMENTS;
+            case "company":
+                return COMPANY;
+            default:
+                return new CreditNotesRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS,
+
+        COMPANY,
+
+        CONTACT,
+
+        LINE_ITEMS,
+
+        PAYMENTS,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitAppliedPayments();
+
+        T visitCompany();
+
+        T visitContact();
+
+        T visitLineItems();
+
+        T visitPayments();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

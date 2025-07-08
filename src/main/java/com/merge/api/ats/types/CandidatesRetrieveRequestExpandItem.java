@@ -3,22 +3,84 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CandidatesRetrieveRequestExpandItem {
-    APPLICATIONS("applications"),
+public final class CandidatesRetrieveRequestExpandItem {
+    public static final CandidatesRetrieveRequestExpandItem APPLICATIONS =
+            new CandidatesRetrieveRequestExpandItem(Value.APPLICATIONS, "applications");
 
-    ATTACHMENTS("attachments");
+    public static final CandidatesRetrieveRequestExpandItem ATTACHMENTS =
+            new CandidatesRetrieveRequestExpandItem(Value.ATTACHMENTS, "attachments");
 
-    private final String value;
+    private final Value value;
 
-    CandidatesRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    CandidatesRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CandidatesRetrieveRequestExpandItem
+                        && this.string.equals(((CandidatesRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case APPLICATIONS:
+                return visitor.visitApplications();
+            case ATTACHMENTS:
+                return visitor.visitAttachments();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CandidatesRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "applications":
+                return APPLICATIONS;
+            case "attachments":
+                return ATTACHMENTS;
+            default:
+                return new CandidatesRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATIONS,
+
+        ATTACHMENTS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplications();
+
+        T visitAttachments();
+
+        T visitUnknown(String unknownType);
     }
 }

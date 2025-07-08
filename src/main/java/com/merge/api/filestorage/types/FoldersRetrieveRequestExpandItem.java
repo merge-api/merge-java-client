@@ -3,24 +3,95 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FoldersRetrieveRequestExpandItem {
-    DRIVE("drive"),
+public final class FoldersRetrieveRequestExpandItem {
+    public static final FoldersRetrieveRequestExpandItem PERMISSIONS =
+            new FoldersRetrieveRequestExpandItem(Value.PERMISSIONS, "permissions");
 
-    PARENT_FOLDER("parent_folder"),
+    public static final FoldersRetrieveRequestExpandItem DRIVE =
+            new FoldersRetrieveRequestExpandItem(Value.DRIVE, "drive");
 
-    PERMISSIONS("permissions");
+    public static final FoldersRetrieveRequestExpandItem PARENT_FOLDER =
+            new FoldersRetrieveRequestExpandItem(Value.PARENT_FOLDER, "parent_folder");
 
-    private final String value;
+    private final Value value;
 
-    FoldersRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    FoldersRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FoldersRetrieveRequestExpandItem
+                        && this.string.equals(((FoldersRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PERMISSIONS:
+                return visitor.visitPermissions();
+            case DRIVE:
+                return visitor.visitDrive();
+            case PARENT_FOLDER:
+                return visitor.visitParentFolder();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FoldersRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "permissions":
+                return PERMISSIONS;
+            case "drive":
+                return DRIVE;
+            case "parent_folder":
+                return PARENT_FOLDER;
+            default:
+                return new FoldersRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DRIVE,
+
+        PARENT_FOLDER,
+
+        PERMISSIONS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDrive();
+
+        T visitParentFolder();
+
+        T visitPermissions();
+
+        T visitUnknown(String unknownType);
     }
 }

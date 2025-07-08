@@ -3,22 +3,84 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum SelectiveSyncConfigurationsUsageEnum {
-    IN_NEXT_SYNC("IN_NEXT_SYNC"),
+public final class SelectiveSyncConfigurationsUsageEnum {
+    public static final SelectiveSyncConfigurationsUsageEnum IN_NEXT_SYNC =
+            new SelectiveSyncConfigurationsUsageEnum(Value.IN_NEXT_SYNC, "IN_NEXT_SYNC");
 
-    IN_LAST_SYNC("IN_LAST_SYNC");
+    public static final SelectiveSyncConfigurationsUsageEnum IN_LAST_SYNC =
+            new SelectiveSyncConfigurationsUsageEnum(Value.IN_LAST_SYNC, "IN_LAST_SYNC");
 
-    private final String value;
+    private final Value value;
 
-    SelectiveSyncConfigurationsUsageEnum(String value) {
+    private final String string;
+
+    SelectiveSyncConfigurationsUsageEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof SelectiveSyncConfigurationsUsageEnum
+                        && this.string.equals(((SelectiveSyncConfigurationsUsageEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case IN_NEXT_SYNC:
+                return visitor.visitInNextSync();
+            case IN_LAST_SYNC:
+                return visitor.visitInLastSync();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static SelectiveSyncConfigurationsUsageEnum valueOf(String value) {
+        switch (value) {
+            case "IN_NEXT_SYNC":
+                return IN_NEXT_SYNC;
+            case "IN_LAST_SYNC":
+                return IN_LAST_SYNC;
+            default:
+                return new SelectiveSyncConfigurationsUsageEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        IN_NEXT_SYNC,
+
+        IN_LAST_SYNC,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitInNextSync();
+
+        T visitInLastSync();
+
+        T visitUnknown(String unknownType);
     }
 }

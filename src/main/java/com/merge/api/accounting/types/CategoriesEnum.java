@@ -3,32 +3,131 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CategoriesEnum {
-    HRIS("hris"),
+public final class CategoriesEnum {
+    public static final CategoriesEnum HRIS = new CategoriesEnum(Value.HRIS, "hris");
 
-    ATS("ats"),
+    public static final CategoriesEnum TICKETING = new CategoriesEnum(Value.TICKETING, "ticketing");
 
-    ACCOUNTING("accounting"),
+    public static final CategoriesEnum CRM = new CategoriesEnum(Value.CRM, "crm");
 
-    TICKETING("ticketing"),
+    public static final CategoriesEnum FILESTORAGE = new CategoriesEnum(Value.FILESTORAGE, "filestorage");
 
-    CRM("crm"),
+    public static final CategoriesEnum ACCOUNTING = new CategoriesEnum(Value.ACCOUNTING, "accounting");
 
-    MKTG("mktg"),
+    public static final CategoriesEnum MKTG = new CategoriesEnum(Value.MKTG, "mktg");
 
-    FILESTORAGE("filestorage");
+    public static final CategoriesEnum ATS = new CategoriesEnum(Value.ATS, "ats");
 
-    private final String value;
+    private final Value value;
 
-    CategoriesEnum(String value) {
+    private final String string;
+
+    CategoriesEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CategoriesEnum && this.string.equals(((CategoriesEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case HRIS:
+                return visitor.visitHris();
+            case TICKETING:
+                return visitor.visitTicketing();
+            case CRM:
+                return visitor.visitCrm();
+            case FILESTORAGE:
+                return visitor.visitFilestorage();
+            case ACCOUNTING:
+                return visitor.visitAccounting();
+            case MKTG:
+                return visitor.visitMktg();
+            case ATS:
+                return visitor.visitAts();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CategoriesEnum valueOf(String value) {
+        switch (value) {
+            case "hris":
+                return HRIS;
+            case "ticketing":
+                return TICKETING;
+            case "crm":
+                return CRM;
+            case "filestorage":
+                return FILESTORAGE;
+            case "accounting":
+                return ACCOUNTING;
+            case "mktg":
+                return MKTG;
+            case "ats":
+                return ATS;
+            default:
+                return new CategoriesEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        HRIS,
+
+        ATS,
+
+        ACCOUNTING,
+
+        TICKETING,
+
+        CRM,
+
+        MKTG,
+
+        FILESTORAGE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitHris();
+
+        T visitAts();
+
+        T visitAccounting();
+
+        T visitTicketing();
+
+        T visitCrm();
+
+        T visitMktg();
+
+        T visitFilestorage();
+
+        T visitUnknown(String unknownType);
     }
 }

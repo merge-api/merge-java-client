@@ -3,30 +3,120 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RoleEnum {
-    ADMIN("ADMIN"),
+public final class RoleEnum {
+    public static final RoleEnum API = new RoleEnum(Value.API, "API");
 
-    DEVELOPER("DEVELOPER"),
+    public static final RoleEnum DEVELOPER = new RoleEnum(Value.DEVELOPER, "DEVELOPER");
 
-    MEMBER("MEMBER"),
+    public static final RoleEnum MERGE_TEAM = new RoleEnum(Value.MERGE_TEAM, "MERGE_TEAM");
 
-    API("API"),
+    public static final RoleEnum MEMBER = new RoleEnum(Value.MEMBER, "MEMBER");
 
-    SYSTEM("SYSTEM"),
+    public static final RoleEnum SYSTEM = new RoleEnum(Value.SYSTEM, "SYSTEM");
 
-    MERGE_TEAM("MERGE_TEAM");
+    public static final RoleEnum ADMIN = new RoleEnum(Value.ADMIN, "ADMIN");
 
-    private final String value;
+    private final Value value;
 
-    RoleEnum(String value) {
+    private final String string;
+
+    RoleEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof RoleEnum && this.string.equals(((RoleEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case API:
+                return visitor.visitApi();
+            case DEVELOPER:
+                return visitor.visitDeveloper();
+            case MERGE_TEAM:
+                return visitor.visitMergeTeam();
+            case MEMBER:
+                return visitor.visitMember();
+            case SYSTEM:
+                return visitor.visitSystem();
+            case ADMIN:
+                return visitor.visitAdmin();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RoleEnum valueOf(String value) {
+        switch (value) {
+            case "API":
+                return API;
+            case "DEVELOPER":
+                return DEVELOPER;
+            case "MERGE_TEAM":
+                return MERGE_TEAM;
+            case "MEMBER":
+                return MEMBER;
+            case "SYSTEM":
+                return SYSTEM;
+            case "ADMIN":
+                return ADMIN;
+            default:
+                return new RoleEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ADMIN,
+
+        DEVELOPER,
+
+        MEMBER,
+
+        API,
+
+        SYSTEM,
+
+        MERGE_TEAM,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAdmin();
+
+        T visitDeveloper();
+
+        T visitMember();
+
+        T visitApi();
+
+        T visitSystem();
+
+        T visitMergeTeam();
+
+        T visitUnknown(String unknownType);
     }
 }

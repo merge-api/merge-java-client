@@ -3,22 +3,81 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PostingStatusEnum {
-    UNPOSTED("UNPOSTED"),
+public final class PostingStatusEnum {
+    public static final PostingStatusEnum UNPOSTED = new PostingStatusEnum(Value.UNPOSTED, "UNPOSTED");
 
-    POSTED("POSTED");
+    public static final PostingStatusEnum POSTED = new PostingStatusEnum(Value.POSTED, "POSTED");
 
-    private final String value;
+    private final Value value;
 
-    PostingStatusEnum(String value) {
+    private final String string;
+
+    PostingStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PostingStatusEnum && this.string.equals(((PostingStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case UNPOSTED:
+                return visitor.visitUnposted();
+            case POSTED:
+                return visitor.visitPosted();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PostingStatusEnum valueOf(String value) {
+        switch (value) {
+            case "UNPOSTED":
+                return UNPOSTED;
+            case "POSTED":
+                return POSTED;
+            default:
+                return new PostingStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        UNPOSTED,
+
+        POSTED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitUnposted();
+
+        T visitPosted();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,630 +3,3122 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TransactionCurrencyEnum {
-    XUA("XUA"),
+public final class TransactionCurrencyEnum {
+    public static final TransactionCurrencyEnum PES = new TransactionCurrencyEnum(Value.PES, "PES");
 
-    AFN("AFN"),
+    public static final TransactionCurrencyEnum UAK = new TransactionCurrencyEnum(Value.UAK, "UAK");
 
-    AFA("AFA"),
+    public static final TransactionCurrencyEnum PHP = new TransactionCurrencyEnum(Value.PHP, "PHP");
 
-    ALL("ALL"),
+    public static final TransactionCurrencyEnum XAU = new TransactionCurrencyEnum(Value.XAU, "XAU");
 
-    ALK("ALK"),
+    public static final TransactionCurrencyEnum XCD = new TransactionCurrencyEnum(Value.XCD, "XCD");
 
-    DZD("DZD"),
+    public static final TransactionCurrencyEnum MVR = new TransactionCurrencyEnum(Value.MVR, "MVR");
 
-    ADP("ADP"),
+    public static final TransactionCurrencyEnum ARP = new TransactionCurrencyEnum(Value.ARP, "ARP");
 
-    AOA("AOA"),
+    public static final TransactionCurrencyEnum JOD = new TransactionCurrencyEnum(Value.JOD, "JOD");
 
-    AOK("AOK"),
+    public static final TransactionCurrencyEnum XDR = new TransactionCurrencyEnum(Value.XDR, "XDR");
 
-    AON("AON"),
+    public static final TransactionCurrencyEnum HKD = new TransactionCurrencyEnum(Value.HKD, "HKD");
 
-    AOR("AOR"),
+    public static final TransactionCurrencyEnum INR = new TransactionCurrencyEnum(Value.INR, "INR");
 
-    ARA("ARA"),
+    public static final TransactionCurrencyEnum THB = new TransactionCurrencyEnum(Value.THB, "THB");
 
-    ARS("ARS"),
+    public static final TransactionCurrencyEnum GWP = new TransactionCurrencyEnum(Value.GWP, "GWP");
 
-    ARM("ARM"),
+    public static final TransactionCurrencyEnum XXX = new TransactionCurrencyEnum(Value.XXX, "XXX");
 
-    ARP("ARP"),
+    public static final TransactionCurrencyEnum ITL = new TransactionCurrencyEnum(Value.ITL, "ITL");
 
-    ARL("ARL"),
+    public static final TransactionCurrencyEnum STN = new TransactionCurrencyEnum(Value.STN, "STN");
 
-    AMD("AMD"),
+    public static final TransactionCurrencyEnum CAD = new TransactionCurrencyEnum(Value.CAD, "CAD");
 
-    AWG("AWG"),
+    public static final TransactionCurrencyEnum ESP = new TransactionCurrencyEnum(Value.ESP, "ESP");
 
-    AUD("AUD"),
+    public static final TransactionCurrencyEnum XPF = new TransactionCurrencyEnum(Value.XPF, "XPF");
 
-    ATS("ATS"),
+    public static final TransactionCurrencyEnum MAF = new TransactionCurrencyEnum(Value.MAF, "MAF");
 
-    AZN("AZN"),
+    public static final TransactionCurrencyEnum COP = new TransactionCurrencyEnum(Value.COP, "COP");
 
-    AZM("AZM"),
+    public static final TransactionCurrencyEnum MDC = new TransactionCurrencyEnum(Value.MDC, "MDC");
 
-    BSD("BSD"),
+    public static final TransactionCurrencyEnum ZAR = new TransactionCurrencyEnum(Value.ZAR, "ZAR");
 
-    BHD("BHD"),
+    public static final TransactionCurrencyEnum MRO = new TransactionCurrencyEnum(Value.MRO, "MRO");
 
-    BDT("BDT"),
+    public static final TransactionCurrencyEnum VEB = new TransactionCurrencyEnum(Value.VEB, "VEB");
 
-    BBD("BBD"),
+    public static final TransactionCurrencyEnum LSL = new TransactionCurrencyEnum(Value.LSL, "LSL");
 
-    BYN("BYN"),
+    public static final TransactionCurrencyEnum SKK = new TransactionCurrencyEnum(Value.SKK, "SKK");
 
-    BYB("BYB"),
+    public static final TransactionCurrencyEnum VUV = new TransactionCurrencyEnum(Value.VUV, "VUV");
 
-    BYR("BYR"),
+    public static final TransactionCurrencyEnum XBB = new TransactionCurrencyEnum(Value.XBB, "XBB");
 
-    BEF("BEF"),
+    public static final TransactionCurrencyEnum TND = new TransactionCurrencyEnum(Value.TND, "TND");
 
-    BEC("BEC"),
+    public static final TransactionCurrencyEnum CSK = new TransactionCurrencyEnum(Value.CSK, "CSK");
 
-    BEL("BEL"),
+    public static final TransactionCurrencyEnum IMP = new TransactionCurrencyEnum(Value.IMP, "IMP");
 
-    BZD("BZD"),
+    public static final TransactionCurrencyEnum AOK = new TransactionCurrencyEnum(Value.AOK, "AOK");
 
-    BMD("BMD"),
+    public static final TransactionCurrencyEnum GIP = new TransactionCurrencyEnum(Value.GIP, "GIP");
 
-    BTN("BTN"),
+    public static final TransactionCurrencyEnum ISJ = new TransactionCurrencyEnum(Value.ISJ, "ISJ");
 
-    BOB("BOB"),
+    public static final TransactionCurrencyEnum BMD = new TransactionCurrencyEnum(Value.BMD, "BMD");
 
-    BOL("BOL"),
+    public static final TransactionCurrencyEnum LUC = new TransactionCurrencyEnum(Value.LUC, "LUC");
 
-    BOV("BOV"),
+    public static final TransactionCurrencyEnum BGN = new TransactionCurrencyEnum(Value.BGN, "BGN");
 
-    BOP("BOP"),
+    public static final TransactionCurrencyEnum ARL = new TransactionCurrencyEnum(Value.ARL, "ARL");
 
-    BAM("BAM"),
+    public static final TransactionCurrencyEnum SSP = new TransactionCurrencyEnum(Value.SSP, "SSP");
 
-    BAD("BAD"),
+    public static final TransactionCurrencyEnum MNT = new TransactionCurrencyEnum(Value.MNT, "MNT");
 
-    BAN("BAN"),
+    public static final TransactionCurrencyEnum SLL = new TransactionCurrencyEnum(Value.SLL, "SLL");
 
-    BWP("BWP"),
+    public static final TransactionCurrencyEnum ATS = new TransactionCurrencyEnum(Value.ATS, "ATS");
 
-    BRC("BRC"),
+    public static final TransactionCurrencyEnum XFU = new TransactionCurrencyEnum(Value.XFU, "XFU");
 
-    BRZ("BRZ"),
+    public static final TransactionCurrencyEnum XRE = new TransactionCurrencyEnum(Value.XRE, "XRE");
 
-    BRE("BRE"),
+    public static final TransactionCurrencyEnum BAD = new TransactionCurrencyEnum(Value.BAD, "BAD");
 
-    BRR("BRR"),
+    public static final TransactionCurrencyEnum AZM = new TransactionCurrencyEnum(Value.AZM, "AZM");
 
-    BRN("BRN"),
+    public static final TransactionCurrencyEnum BRL = new TransactionCurrencyEnum(Value.BRL, "BRL");
 
-    BRB("BRB"),
+    public static final TransactionCurrencyEnum AZN = new TransactionCurrencyEnum(Value.AZN, "AZN");
 
-    BRL("BRL"),
+    public static final TransactionCurrencyEnum TWD = new TransactionCurrencyEnum(Value.TWD, "TWD");
 
-    GBP("GBP"),
+    public static final TransactionCurrencyEnum NOK = new TransactionCurrencyEnum(Value.NOK, "NOK");
 
-    BND("BND"),
+    public static final TransactionCurrencyEnum SIT = new TransactionCurrencyEnum(Value.SIT, "SIT");
 
-    BGL("BGL"),
+    public static final TransactionCurrencyEnum KZT = new TransactionCurrencyEnum(Value.KZT, "KZT");
 
-    BGN("BGN"),
+    public static final TransactionCurrencyEnum GQE = new TransactionCurrencyEnum(Value.GQE, "GQE");
 
-    BGO("BGO"),
+    public static final TransactionCurrencyEnum ILR = new TransactionCurrencyEnum(Value.ILR, "ILR");
 
-    BGM("BGM"),
+    public static final TransactionCurrencyEnum GHS = new TransactionCurrencyEnum(Value.GHS, "GHS");
 
-    BUK("BUK"),
+    public static final TransactionCurrencyEnum VNN = new TransactionCurrencyEnum(Value.VNN, "VNN");
 
-    BIF("BIF"),
+    public static final TransactionCurrencyEnum COU = new TransactionCurrencyEnum(Value.COU, "COU");
 
-    XPF("XPF"),
+    public static final TransactionCurrencyEnum CDF = new TransactionCurrencyEnum(Value.CDF, "CDF");
 
-    KHR("KHR"),
+    public static final TransactionCurrencyEnum EGP = new TransactionCurrencyEnum(Value.EGP, "EGP");
 
-    CAD("CAD"),
+    public static final TransactionCurrencyEnum KPW = new TransactionCurrencyEnum(Value.KPW, "KPW");
 
-    CVE("CVE"),
+    public static final TransactionCurrencyEnum VEF = new TransactionCurrencyEnum(Value.VEF, "VEF");
 
-    KYD("KYD"),
+    public static final TransactionCurrencyEnum XBC = new TransactionCurrencyEnum(Value.XBC, "XBC");
 
-    XAF("XAF"),
+    public static final TransactionCurrencyEnum SDG = new TransactionCurrencyEnum(Value.SDG, "SDG");
 
-    CLE("CLE"),
+    public static final TransactionCurrencyEnum GRD = new TransactionCurrencyEnum(Value.GRD, "GRD");
 
-    CLP("CLP"),
+    public static final TransactionCurrencyEnum MDL = new TransactionCurrencyEnum(Value.MDL, "MDL");
 
-    CLF("CLF"),
+    public static final TransactionCurrencyEnum BEF = new TransactionCurrencyEnum(Value.BEF, "BEF");
 
-    CNX("CNX"),
+    public static final TransactionCurrencyEnum SBD = new TransactionCurrencyEnum(Value.SBD, "SBD");
 
-    CNY("CNY"),
+    public static final TransactionCurrencyEnum AUD = new TransactionCurrencyEnum(Value.AUD, "AUD");
 
-    CNH("CNH"),
+    public static final TransactionCurrencyEnum BRE = new TransactionCurrencyEnum(Value.BRE, "BRE");
 
-    COP("COP"),
+    public static final TransactionCurrencyEnum ISK = new TransactionCurrencyEnum(Value.ISK, "ISK");
 
-    COU("COU"),
+    public static final TransactionCurrencyEnum HTG = new TransactionCurrencyEnum(Value.HTG, "HTG");
 
-    KMF("KMF"),
+    public static final TransactionCurrencyEnum KGS = new TransactionCurrencyEnum(Value.KGS, "KGS");
 
-    CDF("CDF"),
+    public static final TransactionCurrencyEnum AON = new TransactionCurrencyEnum(Value.AON, "AON");
 
-    CRC("CRC"),
+    public static final TransactionCurrencyEnum BGM = new TransactionCurrencyEnum(Value.BGM, "BGM");
 
-    HRD("HRD"),
+    public static final TransactionCurrencyEnum HRD = new TransactionCurrencyEnum(Value.HRD, "HRD");
 
-    HRK("HRK"),
+    public static final TransactionCurrencyEnum UYW = new TransactionCurrencyEnum(Value.UYW, "UYW");
 
-    CUC("CUC"),
+    public static final TransactionCurrencyEnum KES = new TransactionCurrencyEnum(Value.KES, "KES");
 
-    CUP("CUP"),
+    public static final TransactionCurrencyEnum SDP = new TransactionCurrencyEnum(Value.SDP, "SDP");
 
-    CYP("CYP"),
+    public static final TransactionCurrencyEnum PLZ = new TransactionCurrencyEnum(Value.PLZ, "PLZ");
 
-    CZK("CZK"),
+    public static final TransactionCurrencyEnum CLP = new TransactionCurrencyEnum(Value.CLP, "CLP");
 
-    CSK("CSK"),
+    public static final TransactionCurrencyEnum KHR = new TransactionCurrencyEnum(Value.KHR, "KHR");
 
-    DKK("DKK"),
+    public static final TransactionCurrencyEnum NGN = new TransactionCurrencyEnum(Value.NGN, "NGN");
 
-    DJF("DJF"),
+    public static final TransactionCurrencyEnum NZD = new TransactionCurrencyEnum(Value.NZD, "NZD");
 
-    DOP("DOP"),
+    public static final TransactionCurrencyEnum HRK = new TransactionCurrencyEnum(Value.HRK, "HRK");
 
-    NLG("NLG"),
+    public static final TransactionCurrencyEnum IDR = new TransactionCurrencyEnum(Value.IDR, "IDR");
 
-    XCD("XCD"),
+    public static final TransactionCurrencyEnum MYR = new TransactionCurrencyEnum(Value.MYR, "MYR");
 
-    DDM("DDM"),
+    public static final TransactionCurrencyEnum BWP = new TransactionCurrencyEnum(Value.BWP, "BWP");
 
-    ECS("ECS"),
+    public static final TransactionCurrencyEnum BIF = new TransactionCurrencyEnum(Value.BIF, "BIF");
 
-    ECV("ECV"),
+    public static final TransactionCurrencyEnum PKR = new TransactionCurrencyEnum(Value.PKR, "PKR");
 
-    EGP("EGP"),
+    public static final TransactionCurrencyEnum ZWD = new TransactionCurrencyEnum(Value.ZWD, "ZWD");
 
-    GQE("GQE"),
+    public static final TransactionCurrencyEnum FJD = new TransactionCurrencyEnum(Value.FJD, "FJD");
 
-    ERN("ERN"),
+    public static final TransactionCurrencyEnum MGA = new TransactionCurrencyEnum(Value.MGA, "MGA");
 
-    EEK("EEK"),
+    public static final TransactionCurrencyEnum PGK = new TransactionCurrencyEnum(Value.PGK, "PGK");
 
-    ETB("ETB"),
+    public static final TransactionCurrencyEnum JPY = new TransactionCurrencyEnum(Value.JPY, "JPY");
 
-    EUR("EUR"),
+    public static final TransactionCurrencyEnum GYD = new TransactionCurrencyEnum(Value.GYD, "GYD");
 
-    XBA("XBA"),
+    public static final TransactionCurrencyEnum NIC = new TransactionCurrencyEnum(Value.NIC, "NIC");
 
-    XEU("XEU"),
+    public static final TransactionCurrencyEnum SOS = new TransactionCurrencyEnum(Value.SOS, "SOS");
 
-    XBB("XBB"),
+    public static final TransactionCurrencyEnum LKR = new TransactionCurrencyEnum(Value.LKR, "LKR");
 
-    XBC("XBC"),
+    public static final TransactionCurrencyEnum MKN = new TransactionCurrencyEnum(Value.MKN, "MKN");
 
-    XBD("XBD"),
+    public static final TransactionCurrencyEnum MLF = new TransactionCurrencyEnum(Value.MLF, "MLF");
 
-    FKP("FKP"),
+    public static final TransactionCurrencyEnum KMF = new TransactionCurrencyEnum(Value.KMF, "KMF");
 
-    FJD("FJD"),
+    public static final TransactionCurrencyEnum HNL = new TransactionCurrencyEnum(Value.HNL, "HNL");
 
-    FIM("FIM"),
+    public static final TransactionCurrencyEnum GHC = new TransactionCurrencyEnum(Value.GHC, "GHC");
 
-    FRF("FRF"),
+    public static final TransactionCurrencyEnum GWE = new TransactionCurrencyEnum(Value.GWE, "GWE");
 
-    XFO("XFO"),
+    public static final TransactionCurrencyEnum TJS = new TransactionCurrencyEnum(Value.TJS, "TJS");
 
-    XFU("XFU"),
+    public static final TransactionCurrencyEnum SCR = new TransactionCurrencyEnum(Value.SCR, "SCR");
 
-    GMD("GMD"),
+    public static final TransactionCurrencyEnum PEN = new TransactionCurrencyEnum(Value.PEN, "PEN");
 
-    GEK("GEK"),
+    public static final TransactionCurrencyEnum USD = new TransactionCurrencyEnum(Value.USD, "USD");
 
-    GEL("GEL"),
+    public static final TransactionCurrencyEnum LBP = new TransactionCurrencyEnum(Value.LBP, "LBP");
 
-    DEM("DEM"),
+    public static final TransactionCurrencyEnum GEL = new TransactionCurrencyEnum(Value.GEL, "GEL");
 
-    GHS("GHS"),
+    public static final TransactionCurrencyEnum MTL = new TransactionCurrencyEnum(Value.MTL, "MTL");
 
-    GHC("GHC"),
+    public static final TransactionCurrencyEnum SRD = new TransactionCurrencyEnum(Value.SRD, "SRD");
 
-    GIP("GIP"),
+    public static final TransactionCurrencyEnum XSU = new TransactionCurrencyEnum(Value.XSU, "XSU");
 
-    XAU("XAU"),
+    public static final TransactionCurrencyEnum MWK = new TransactionCurrencyEnum(Value.MWK, "MWK");
 
-    GRD("GRD"),
+    public static final TransactionCurrencyEnum VES = new TransactionCurrencyEnum(Value.VES, "VES");
 
-    GTQ("GTQ"),
+    public static final TransactionCurrencyEnum BND = new TransactionCurrencyEnum(Value.BND, "BND");
 
-    GWP("GWP"),
+    public static final TransactionCurrencyEnum AOA = new TransactionCurrencyEnum(Value.AOA, "AOA");
 
-    GNF("GNF"),
+    public static final TransactionCurrencyEnum ZMW = new TransactionCurrencyEnum(Value.ZMW, "ZMW");
 
-    GNS("GNS"),
+    public static final TransactionCurrencyEnum CNX = new TransactionCurrencyEnum(Value.CNX, "CNX");
 
-    GYD("GYD"),
+    public static final TransactionCurrencyEnum ILP = new TransactionCurrencyEnum(Value.ILP, "ILP");
 
-    HTG("HTG"),
+    public static final TransactionCurrencyEnum SYP = new TransactionCurrencyEnum(Value.SYP, "SYP");
 
-    HNL("HNL"),
+    public static final TransactionCurrencyEnum JMD = new TransactionCurrencyEnum(Value.JMD, "JMD");
 
-    HKD("HKD"),
+    public static final TransactionCurrencyEnum UYI = new TransactionCurrencyEnum(Value.UYI, "UYI");
 
-    HUF("HUF"),
+    public static final TransactionCurrencyEnum BRR = new TransactionCurrencyEnum(Value.BRR, "BRR");
 
-    IMP("IMP"),
+    public static final TransactionCurrencyEnum XAF = new TransactionCurrencyEnum(Value.XAF, "XAF");
 
-    ISK("ISK"),
+    public static final TransactionCurrencyEnum FIM = new TransactionCurrencyEnum(Value.FIM, "FIM");
 
-    ISJ("ISJ"),
+    public static final TransactionCurrencyEnum CZK = new TransactionCurrencyEnum(Value.CZK, "CZK");
 
-    INR("INR"),
+    public static final TransactionCurrencyEnum AED = new TransactionCurrencyEnum(Value.AED, "AED");
 
-    IDR("IDR"),
+    public static final TransactionCurrencyEnum USS = new TransactionCurrencyEnum(Value.USS, "USS");
 
-    IRR("IRR"),
+    public static final TransactionCurrencyEnum EEK = new TransactionCurrencyEnum(Value.EEK, "EEK");
 
-    IQD("IQD"),
+    public static final TransactionCurrencyEnum CVE = new TransactionCurrencyEnum(Value.CVE, "CVE");
 
-    IEP("IEP"),
+    public static final TransactionCurrencyEnum CNH = new TransactionCurrencyEnum(Value.CNH, "CNH");
 
-    ILS("ILS"),
+    public static final TransactionCurrencyEnum QAR = new TransactionCurrencyEnum(Value.QAR, "QAR");
 
-    ILP("ILP"),
+    public static final TransactionCurrencyEnum TOP = new TransactionCurrencyEnum(Value.TOP, "TOP");
 
-    ILR("ILR"),
+    public static final TransactionCurrencyEnum ZWL = new TransactionCurrencyEnum(Value.ZWL, "ZWL");
 
-    ITL("ITL"),
+    public static final TransactionCurrencyEnum TJR = new TransactionCurrencyEnum(Value.TJR, "TJR");
 
-    JMD("JMD"),
+    public static final TransactionCurrencyEnum UYP = new TransactionCurrencyEnum(Value.UYP, "UYP");
 
-    JPY("JPY"),
+    public static final TransactionCurrencyEnum BRC = new TransactionCurrencyEnum(Value.BRC, "BRC");
 
-    JOD("JOD"),
+    public static final TransactionCurrencyEnum BRZ = new TransactionCurrencyEnum(Value.BRZ, "BRZ");
 
-    KZT("KZT"),
+    public static final TransactionCurrencyEnum ERN = new TransactionCurrencyEnum(Value.ERN, "ERN");
 
-    KES("KES"),
+    public static final TransactionCurrencyEnum ZRN = new TransactionCurrencyEnum(Value.ZRN, "ZRN");
 
-    KWD("KWD"),
+    public static final TransactionCurrencyEnum SUR = new TransactionCurrencyEnum(Value.SUR, "SUR");
 
-    KGS("KGS"),
+    public static final TransactionCurrencyEnum RHD = new TransactionCurrencyEnum(Value.RHD, "RHD");
 
-    LAK("LAK"),
+    public static final TransactionCurrencyEnum RWF = new TransactionCurrencyEnum(Value.RWF, "RWF");
 
-    LVL("LVL"),
+    public static final TransactionCurrencyEnum BGO = new TransactionCurrencyEnum(Value.BGO, "BGO");
 
-    LVR("LVR"),
+    public static final TransactionCurrencyEnum GEK = new TransactionCurrencyEnum(Value.GEK, "GEK");
 
-    LBP("LBP"),
+    public static final TransactionCurrencyEnum BOL = new TransactionCurrencyEnum(Value.BOL, "BOL");
 
-    LSL("LSL"),
+    public static final TransactionCurrencyEnum SAR = new TransactionCurrencyEnum(Value.SAR, "SAR");
 
-    LRD("LRD"),
+    public static final TransactionCurrencyEnum MVP = new TransactionCurrencyEnum(Value.MVP, "MVP");
 
-    LYD("LYD"),
+    public static final TransactionCurrencyEnum BTN = new TransactionCurrencyEnum(Value.BTN, "BTN");
 
-    LTL("LTL"),
+    public static final TransactionCurrencyEnum ZAL = new TransactionCurrencyEnum(Value.ZAL, "ZAL");
 
-    LTT("LTT"),
+    public static final TransactionCurrencyEnum TZS = new TransactionCurrencyEnum(Value.TZS, "TZS");
 
-    LUL("LUL"),
+    public static final TransactionCurrencyEnum DJF = new TransactionCurrencyEnum(Value.DJF, "DJF");
 
-    LUC("LUC"),
+    public static final TransactionCurrencyEnum GTQ = new TransactionCurrencyEnum(Value.GTQ, "GTQ");
 
-    LUF("LUF"),
+    public static final TransactionCurrencyEnum ECS = new TransactionCurrencyEnum(Value.ECS, "ECS");
 
-    MOP("MOP"),
+    public static final TransactionCurrencyEnum CHF = new TransactionCurrencyEnum(Value.CHF, "CHF");
 
-    MKD("MKD"),
+    public static final TransactionCurrencyEnum ANG = new TransactionCurrencyEnum(Value.ANG, "ANG");
 
-    MKN("MKN"),
+    public static final TransactionCurrencyEnum BSD = new TransactionCurrencyEnum(Value.BSD, "BSD");
 
-    MGA("MGA"),
+    public static final TransactionCurrencyEnum LTT = new TransactionCurrencyEnum(Value.LTT, "LTT");
 
-    MGF("MGF"),
+    public static final TransactionCurrencyEnum MAD = new TransactionCurrencyEnum(Value.MAD, "MAD");
 
-    MWK("MWK"),
+    public static final TransactionCurrencyEnum XPD = new TransactionCurrencyEnum(Value.XPD, "XPD");
 
-    MYR("MYR"),
+    public static final TransactionCurrencyEnum MOP = new TransactionCurrencyEnum(Value.MOP, "MOP");
 
-    MVR("MVR"),
+    public static final TransactionCurrencyEnum BYB = new TransactionCurrencyEnum(Value.BYB, "BYB");
 
-    MVP("MVP"),
+    public static final TransactionCurrencyEnum LYD = new TransactionCurrencyEnum(Value.LYD, "LYD");
 
-    MLF("MLF"),
+    public static final TransactionCurrencyEnum XTS = new TransactionCurrencyEnum(Value.XTS, "XTS");
 
-    MTL("MTL"),
+    public static final TransactionCurrencyEnum KWD = new TransactionCurrencyEnum(Value.KWD, "KWD");
 
-    MTP("MTP"),
+    public static final TransactionCurrencyEnum BAN = new TransactionCurrencyEnum(Value.BAN, "BAN");
 
-    MRU("MRU"),
+    public static final TransactionCurrencyEnum SVC = new TransactionCurrencyEnum(Value.SVC, "SVC");
 
-    MRO("MRO"),
+    public static final TransactionCurrencyEnum ALL = new TransactionCurrencyEnum(Value.ALL, "ALL");
 
-    MUR("MUR"),
+    public static final TransactionCurrencyEnum SHP = new TransactionCurrencyEnum(Value.SHP, "SHP");
 
-    MXV("MXV"),
+    public static final TransactionCurrencyEnum MGF = new TransactionCurrencyEnum(Value.MGF, "MGF");
 
-    MXN("MXN"),
+    public static final TransactionCurrencyEnum MRU = new TransactionCurrencyEnum(Value.MRU, "MRU");
 
-    MXP("MXP"),
+    public static final TransactionCurrencyEnum BRB = new TransactionCurrencyEnum(Value.BRB, "BRB");
 
-    MDC("MDC"),
+    public static final TransactionCurrencyEnum CUP = new TransactionCurrencyEnum(Value.CUP, "CUP");
 
-    MDL("MDL"),
+    public static final TransactionCurrencyEnum LRD = new TransactionCurrencyEnum(Value.LRD, "LRD");
 
-    MCF("MCF"),
+    public static final TransactionCurrencyEnum MUR = new TransactionCurrencyEnum(Value.MUR, "MUR");
 
-    MNT("MNT"),
+    public static final TransactionCurrencyEnum PAB = new TransactionCurrencyEnum(Value.PAB, "PAB");
 
-    MAD("MAD"),
+    public static final TransactionCurrencyEnum KRH = new TransactionCurrencyEnum(Value.KRH, "KRH");
 
-    MAF("MAF"),
+    public static final TransactionCurrencyEnum XBD = new TransactionCurrencyEnum(Value.XBD, "XBD");
 
-    MZE("MZE"),
+    public static final TransactionCurrencyEnum YER = new TransactionCurrencyEnum(Value.YER, "YER");
 
-    MZN("MZN"),
+    public static final TransactionCurrencyEnum AFA = new TransactionCurrencyEnum(Value.AFA, "AFA");
 
-    MZM("MZM"),
+    public static final TransactionCurrencyEnum BGL = new TransactionCurrencyEnum(Value.BGL, "BGL");
 
-    MMK("MMK"),
+    public static final TransactionCurrencyEnum STD = new TransactionCurrencyEnum(Value.STD, "STD");
 
-    NAD("NAD"),
+    public static final TransactionCurrencyEnum NPR = new TransactionCurrencyEnum(Value.NPR, "NPR");
 
-    NPR("NPR"),
+    public static final TransactionCurrencyEnum XPT = new TransactionCurrencyEnum(Value.XPT, "XPT");
 
-    ANG("ANG"),
+    public static final TransactionCurrencyEnum UGX = new TransactionCurrencyEnum(Value.UGX, "UGX");
 
-    TWD("TWD"),
+    public static final TransactionCurrencyEnum YUR = new TransactionCurrencyEnum(Value.YUR, "YUR");
 
-    NZD("NZD"),
+    public static final TransactionCurrencyEnum TTD = new TransactionCurrencyEnum(Value.TTD, "TTD");
 
-    NIO("NIO"),
+    public static final TransactionCurrencyEnum BYR = new TransactionCurrencyEnum(Value.BYR, "BYR");
 
-    NIC("NIC"),
+    public static final TransactionCurrencyEnum EUR = new TransactionCurrencyEnum(Value.EUR, "EUR");
 
-    NGN("NGN"),
+    public static final TransactionCurrencyEnum SEK = new TransactionCurrencyEnum(Value.SEK, "SEK");
 
-    KPW("KPW"),
+    public static final TransactionCurrencyEnum KYD = new TransactionCurrencyEnum(Value.KYD, "KYD");
 
-    NOK("NOK"),
+    public static final TransactionCurrencyEnum GNF = new TransactionCurrencyEnum(Value.GNF, "GNF");
 
-    OMR("OMR"),
+    public static final TransactionCurrencyEnum BUK = new TransactionCurrencyEnum(Value.BUK, "BUK");
 
-    PKR("PKR"),
+    public static final TransactionCurrencyEnum AFN = new TransactionCurrencyEnum(Value.AFN, "AFN");
 
-    XPD("XPD"),
+    public static final TransactionCurrencyEnum CNY = new TransactionCurrencyEnum(Value.CNY, "CNY");
 
-    PAB("PAB"),
+    public static final TransactionCurrencyEnum PYG = new TransactionCurrencyEnum(Value.PYG, "PYG");
 
-    PGK("PGK"),
+    public static final TransactionCurrencyEnum CSD = new TransactionCurrencyEnum(Value.CSD, "CSD");
 
-    PYG("PYG"),
+    public static final TransactionCurrencyEnum BOV = new TransactionCurrencyEnum(Value.BOV, "BOV");
 
-    PEI("PEI"),
+    public static final TransactionCurrencyEnum XAG = new TransactionCurrencyEnum(Value.XAG, "XAG");
 
-    PEN("PEN"),
+    public static final TransactionCurrencyEnum ARA = new TransactionCurrencyEnum(Value.ARA, "ARA");
 
-    PES("PES"),
+    public static final TransactionCurrencyEnum DEM = new TransactionCurrencyEnum(Value.DEM, "DEM");
 
-    PHP("PHP"),
+    public static final TransactionCurrencyEnum BOB = new TransactionCurrencyEnum(Value.BOB, "BOB");
 
-    XPT("XPT"),
+    public static final TransactionCurrencyEnum ALK = new TransactionCurrencyEnum(Value.ALK, "ALK");
 
-    PLN("PLN"),
+    public static final TransactionCurrencyEnum IEP = new TransactionCurrencyEnum(Value.IEP, "IEP");
 
-    PLZ("PLZ"),
+    public static final TransactionCurrencyEnum XEU = new TransactionCurrencyEnum(Value.XEU, "XEU");
 
-    PTE("PTE"),
+    public static final TransactionCurrencyEnum AWG = new TransactionCurrencyEnum(Value.AWG, "AWG");
 
-    GWE("GWE"),
+    public static final TransactionCurrencyEnum DKK = new TransactionCurrencyEnum(Value.DKK, "DKK");
 
-    QAR("QAR"),
+    public static final TransactionCurrencyEnum IQD = new TransactionCurrencyEnum(Value.IQD, "IQD");
 
-    XRE("XRE"),
+    public static final TransactionCurrencyEnum MXP = new TransactionCurrencyEnum(Value.MXP, "MXP");
 
-    RHD("RHD"),
+    public static final TransactionCurrencyEnum TVD = new TransactionCurrencyEnum(Value.TVD, "TVD");
 
-    RON("RON"),
+    public static final TransactionCurrencyEnum ZWN = new TransactionCurrencyEnum(Value.ZWN, "ZWN");
 
-    ROL("ROL"),
+    public static final TransactionCurrencyEnum XOF = new TransactionCurrencyEnum(Value.XOF, "XOF");
 
-    RUB("RUB"),
+    public static final TransactionCurrencyEnum WST = new TransactionCurrencyEnum(Value.WST, "WST");
 
-    RUR("RUR"),
+    public static final TransactionCurrencyEnum UAH = new TransactionCurrencyEnum(Value.UAH, "UAH");
 
-    RWF("RWF"),
+    public static final TransactionCurrencyEnum BYN = new TransactionCurrencyEnum(Value.BYN, "BYN");
 
-    SVC("SVC"),
+    public static final TransactionCurrencyEnum LUF = new TransactionCurrencyEnum(Value.LUF, "LUF");
 
-    WST("WST"),
+    public static final TransactionCurrencyEnum ZWR = new TransactionCurrencyEnum(Value.ZWR, "ZWR");
 
-    SAR("SAR"),
+    public static final TransactionCurrencyEnum ARM = new TransactionCurrencyEnum(Value.ARM, "ARM");
 
-    RSD("RSD"),
+    public static final TransactionCurrencyEnum KRO = new TransactionCurrencyEnum(Value.KRO, "KRO");
 
-    CSD("CSD"),
+    public static final TransactionCurrencyEnum AOR = new TransactionCurrencyEnum(Value.AOR, "AOR");
 
-    SCR("SCR"),
+    public static final TransactionCurrencyEnum ROL = new TransactionCurrencyEnum(Value.ROL, "ROL");
 
-    SLL("SLL"),
+    public static final TransactionCurrencyEnum DDM = new TransactionCurrencyEnum(Value.DDM, "DDM");
 
-    XAG("XAG"),
+    public static final TransactionCurrencyEnum CHE = new TransactionCurrencyEnum(Value.CHE, "CHE");
 
-    SGD("SGD"),
+    public static final TransactionCurrencyEnum CUC = new TransactionCurrencyEnum(Value.CUC, "CUC");
 
-    SKK("SKK"),
+    public static final TransactionCurrencyEnum RON = new TransactionCurrencyEnum(Value.RON, "RON");
 
-    SIT("SIT"),
+    public static final TransactionCurrencyEnum MKD = new TransactionCurrencyEnum(Value.MKD, "MKD");
 
-    SBD("SBD"),
+    public static final TransactionCurrencyEnum HUF = new TransactionCurrencyEnum(Value.HUF, "HUF");
 
-    SOS("SOS"),
+    public static final TransactionCurrencyEnum ARS = new TransactionCurrencyEnum(Value.ARS, "ARS");
 
-    ZAR("ZAR"),
+    public static final TransactionCurrencyEnum CYP = new TransactionCurrencyEnum(Value.CYP, "CYP");
 
-    ZAL("ZAL"),
+    public static final TransactionCurrencyEnum ECV = new TransactionCurrencyEnum(Value.ECV, "ECV");
 
-    KRH("KRH"),
+    public static final TransactionCurrencyEnum DZD = new TransactionCurrencyEnum(Value.DZD, "DZD");
 
-    KRW("KRW"),
+    public static final TransactionCurrencyEnum PTE = new TransactionCurrencyEnum(Value.PTE, "PTE");
 
-    KRO("KRO"),
+    public static final TransactionCurrencyEnum FKP = new TransactionCurrencyEnum(Value.FKP, "FKP");
 
-    SSP("SSP"),
+    public static final TransactionCurrencyEnum KRW = new TransactionCurrencyEnum(Value.KRW, "KRW");
 
-    SUR("SUR"),
+    public static final TransactionCurrencyEnum YUD = new TransactionCurrencyEnum(Value.YUD, "YUD");
 
-    ESP("ESP"),
+    public static final TransactionCurrencyEnum ZRZ = new TransactionCurrencyEnum(Value.ZRZ, "ZRZ");
 
-    ESA("ESA"),
+    public static final TransactionCurrencyEnum BBD = new TransactionCurrencyEnum(Value.BBD, "BBD");
 
-    ESB("ESB"),
+    public static final TransactionCurrencyEnum DOP = new TransactionCurrencyEnum(Value.DOP, "DOP");
 
-    XDR("XDR"),
+    public static final TransactionCurrencyEnum SDD = new TransactionCurrencyEnum(Value.SDD, "SDD");
 
-    LKR("LKR"),
+    public static final TransactionCurrencyEnum TRL = new TransactionCurrencyEnum(Value.TRL, "TRL");
 
-    SHP("SHP"),
+    public static final TransactionCurrencyEnum AMD = new TransactionCurrencyEnum(Value.AMD, "AMD");
 
-    XSU("XSU"),
+    public static final TransactionCurrencyEnum BEC = new TransactionCurrencyEnum(Value.BEC, "BEC");
 
-    SDD("SDD"),
+    public static final TransactionCurrencyEnum ESA = new TransactionCurrencyEnum(Value.ESA, "ESA");
 
-    SDG("SDG"),
+    public static final TransactionCurrencyEnum LVL = new TransactionCurrencyEnum(Value.LVL, "LVL");
 
-    SDP("SDP"),
+    public static final TransactionCurrencyEnum CLF = new TransactionCurrencyEnum(Value.CLF, "CLF");
 
-    SRD("SRD"),
+    public static final TransactionCurrencyEnum ZMK = new TransactionCurrencyEnum(Value.ZMK, "ZMK");
 
-    SRG("SRG"),
+    public static final TransactionCurrencyEnum IRR = new TransactionCurrencyEnum(Value.IRR, "IRR");
 
-    SZL("SZL"),
+    public static final TransactionCurrencyEnum YUN = new TransactionCurrencyEnum(Value.YUN, "YUN");
 
-    SEK("SEK"),
+    public static final TransactionCurrencyEnum BHD = new TransactionCurrencyEnum(Value.BHD, "BHD");
 
-    CHF("CHF"),
+    public static final TransactionCurrencyEnum LVR = new TransactionCurrencyEnum(Value.LVR, "LVR");
 
-    SYP("SYP"),
+    public static final TransactionCurrencyEnum CHW = new TransactionCurrencyEnum(Value.CHW, "CHW");
 
-    STN("STN"),
+    public static final TransactionCurrencyEnum RUB = new TransactionCurrencyEnum(Value.RUB, "RUB");
 
-    STD("STD"),
+    public static final TransactionCurrencyEnum UYU = new TransactionCurrencyEnum(Value.UYU, "UYU");
 
-    TVD("TVD"),
+    public static final TransactionCurrencyEnum TMT = new TransactionCurrencyEnum(Value.TMT, "TMT");
 
-    TJR("TJR"),
+    public static final TransactionCurrencyEnum BEL = new TransactionCurrencyEnum(Value.BEL, "BEL");
 
-    TJS("TJS"),
+    public static final TransactionCurrencyEnum NIO = new TransactionCurrencyEnum(Value.NIO, "NIO");
 
-    TZS("TZS"),
+    public static final TransactionCurrencyEnum XUA = new TransactionCurrencyEnum(Value.XUA, "XUA");
 
-    XTS("XTS"),
+    public static final TransactionCurrencyEnum ETB = new TransactionCurrencyEnum(Value.ETB, "ETB");
 
-    THB("THB"),
+    public static final TransactionCurrencyEnum MXV = new TransactionCurrencyEnum(Value.MXV, "MXV");
 
-    XXX("XXX"),
+    public static final TransactionCurrencyEnum VND = new TransactionCurrencyEnum(Value.VND, "VND");
 
-    TPE("TPE"),
+    public static final TransactionCurrencyEnum MCF = new TransactionCurrencyEnum(Value.MCF, "MCF");
 
-    TOP("TOP"),
+    public static final TransactionCurrencyEnum MZE = new TransactionCurrencyEnum(Value.MZE, "MZE");
 
-    TTD("TTD"),
+    public static final TransactionCurrencyEnum BOP = new TransactionCurrencyEnum(Value.BOP, "BOP");
 
-    TND("TND"),
+    public static final TransactionCurrencyEnum SRG = new TransactionCurrencyEnum(Value.SRG, "SRG");
 
-    TRY("TRY"),
+    public static final TransactionCurrencyEnum BRN = new TransactionCurrencyEnum(Value.BRN, "BRN");
 
-    TRL("TRL"),
+    public static final TransactionCurrencyEnum MTP = new TransactionCurrencyEnum(Value.MTP, "MTP");
 
-    TMT("TMT"),
+    public static final TransactionCurrencyEnum LUL = new TransactionCurrencyEnum(Value.LUL, "LUL");
 
-    TMM("TMM"),
+    public static final TransactionCurrencyEnum MMK = new TransactionCurrencyEnum(Value.MMK, "MMK");
 
-    USD("USD"),
+    public static final TransactionCurrencyEnum RSD = new TransactionCurrencyEnum(Value.RSD, "RSD");
 
-    USN("USN"),
+    public static final TransactionCurrencyEnum UZS = new TransactionCurrencyEnum(Value.UZS, "UZS");
 
-    USS("USS"),
+    public static final TransactionCurrencyEnum USN = new TransactionCurrencyEnum(Value.USN, "USN");
 
-    UGX("UGX"),
+    public static final TransactionCurrencyEnum LAK = new TransactionCurrencyEnum(Value.LAK, "LAK");
 
-    UGS("UGS"),
+    public static final TransactionCurrencyEnum NAD = new TransactionCurrencyEnum(Value.NAD, "NAD");
 
-    UAH("UAH"),
+    public static final TransactionCurrencyEnum ILS = new TransactionCurrencyEnum(Value.ILS, "ILS");
 
-    UAK("UAK"),
+    public static final TransactionCurrencyEnum MZM = new TransactionCurrencyEnum(Value.MZM, "MZM");
 
-    AED("AED"),
+    public static final TransactionCurrencyEnum MZN = new TransactionCurrencyEnum(Value.MZN, "MZN");
 
-    UYW("UYW"),
+    public static final TransactionCurrencyEnum TPE = new TransactionCurrencyEnum(Value.TPE, "TPE");
 
-    UYU("UYU"),
+    public static final TransactionCurrencyEnum BAM = new TransactionCurrencyEnum(Value.BAM, "BAM");
 
-    UYP("UYP"),
+    public static final TransactionCurrencyEnum PLN = new TransactionCurrencyEnum(Value.PLN, "PLN");
 
-    UYI("UYI"),
+    public static final TransactionCurrencyEnum SZL = new TransactionCurrencyEnum(Value.SZL, "SZL");
 
-    UZS("UZS"),
+    public static final TransactionCurrencyEnum XBA = new TransactionCurrencyEnum(Value.XBA, "XBA");
 
-    VUV("VUV"),
+    public static final TransactionCurrencyEnum PEI = new TransactionCurrencyEnum(Value.PEI, "PEI");
 
-    VES("VES"),
+    public static final TransactionCurrencyEnum ADP = new TransactionCurrencyEnum(Value.ADP, "ADP");
 
-    VEB("VEB"),
+    public static final TransactionCurrencyEnum FRF = new TransactionCurrencyEnum(Value.FRF, "FRF");
 
-    VEF("VEF"),
+    public static final TransactionCurrencyEnum CLE = new TransactionCurrencyEnum(Value.CLE, "CLE");
 
-    VND("VND"),
+    public static final TransactionCurrencyEnum RUR = new TransactionCurrencyEnum(Value.RUR, "RUR");
 
-    VNN("VNN"),
+    public static final TransactionCurrencyEnum ESB = new TransactionCurrencyEnum(Value.ESB, "ESB");
 
-    CHE("CHE"),
+    public static final TransactionCurrencyEnum TMM = new TransactionCurrencyEnum(Value.TMM, "TMM");
 
-    CHW("CHW"),
+    public static final TransactionCurrencyEnum MXN = new TransactionCurrencyEnum(Value.MXN, "MXN");
 
-    XOF("XOF"),
+    public static final TransactionCurrencyEnum YDD = new TransactionCurrencyEnum(Value.YDD, "YDD");
 
-    YDD("YDD"),
+    public static final TransactionCurrencyEnum SGD = new TransactionCurrencyEnum(Value.SGD, "SGD");
 
-    YER("YER"),
+    public static final TransactionCurrencyEnum XFO = new TransactionCurrencyEnum(Value.XFO, "XFO");
 
-    YUN("YUN"),
+    public static final TransactionCurrencyEnum GMD = new TransactionCurrencyEnum(Value.GMD, "GMD");
 
-    YUD("YUD"),
+    public static final TransactionCurrencyEnum UGS = new TransactionCurrencyEnum(Value.UGS, "UGS");
 
-    YUM("YUM"),
+    public static final TransactionCurrencyEnum YUM = new TransactionCurrencyEnum(Value.YUM, "YUM");
 
-    YUR("YUR"),
+    public static final TransactionCurrencyEnum GNS = new TransactionCurrencyEnum(Value.GNS, "GNS");
 
-    ZWN("ZWN"),
+    public static final TransactionCurrencyEnum LTL = new TransactionCurrencyEnum(Value.LTL, "LTL");
 
-    ZRN("ZRN"),
+    public static final TransactionCurrencyEnum NLG = new TransactionCurrencyEnum(Value.NLG, "NLG");
 
-    ZRZ("ZRZ"),
+    public static final TransactionCurrencyEnum BZD = new TransactionCurrencyEnum(Value.BZD, "BZD");
 
-    ZMW("ZMW"),
+    public static final TransactionCurrencyEnum CRC = new TransactionCurrencyEnum(Value.CRC, "CRC");
 
-    ZMK("ZMK"),
+    public static final TransactionCurrencyEnum TRY = new TransactionCurrencyEnum(Value.TRY, "TRY");
 
-    ZWD("ZWD"),
+    public static final TransactionCurrencyEnum OMR = new TransactionCurrencyEnum(Value.OMR, "OMR");
 
-    ZWR("ZWR"),
+    public static final TransactionCurrencyEnum BDT = new TransactionCurrencyEnum(Value.BDT, "BDT");
 
-    ZWL("ZWL");
+    public static final TransactionCurrencyEnum GBP = new TransactionCurrencyEnum(Value.GBP, "GBP");
 
-    private final String value;
+    private final Value value;
 
-    TransactionCurrencyEnum(String value) {
+    private final String string;
+
+    TransactionCurrencyEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TransactionCurrencyEnum
+                        && this.string.equals(((TransactionCurrencyEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PES:
+                return visitor.visitPes();
+            case UAK:
+                return visitor.visitUak();
+            case PHP:
+                return visitor.visitPhp();
+            case XAU:
+                return visitor.visitXau();
+            case XCD:
+                return visitor.visitXcd();
+            case MVR:
+                return visitor.visitMvr();
+            case ARP:
+                return visitor.visitArp();
+            case JOD:
+                return visitor.visitJod();
+            case XDR:
+                return visitor.visitXdr();
+            case HKD:
+                return visitor.visitHkd();
+            case INR:
+                return visitor.visitInr();
+            case THB:
+                return visitor.visitThb();
+            case GWP:
+                return visitor.visitGwp();
+            case XXX:
+                return visitor.visitXxx();
+            case ITL:
+                return visitor.visitItl();
+            case STN:
+                return visitor.visitStn();
+            case CAD:
+                return visitor.visitCad();
+            case ESP:
+                return visitor.visitEsp();
+            case XPF:
+                return visitor.visitXpf();
+            case MAF:
+                return visitor.visitMaf();
+            case COP:
+                return visitor.visitCop();
+            case MDC:
+                return visitor.visitMdc();
+            case ZAR:
+                return visitor.visitZar();
+            case MRO:
+                return visitor.visitMro();
+            case VEB:
+                return visitor.visitVeb();
+            case LSL:
+                return visitor.visitLsl();
+            case SKK:
+                return visitor.visitSkk();
+            case VUV:
+                return visitor.visitVuv();
+            case XBB:
+                return visitor.visitXbb();
+            case TND:
+                return visitor.visitTnd();
+            case CSK:
+                return visitor.visitCsk();
+            case IMP:
+                return visitor.visitImp();
+            case AOK:
+                return visitor.visitAok();
+            case GIP:
+                return visitor.visitGip();
+            case ISJ:
+                return visitor.visitIsj();
+            case BMD:
+                return visitor.visitBmd();
+            case LUC:
+                return visitor.visitLuc();
+            case BGN:
+                return visitor.visitBgn();
+            case ARL:
+                return visitor.visitArl();
+            case SSP:
+                return visitor.visitSsp();
+            case MNT:
+                return visitor.visitMnt();
+            case SLL:
+                return visitor.visitSll();
+            case ATS:
+                return visitor.visitAts();
+            case XFU:
+                return visitor.visitXfu();
+            case XRE:
+                return visitor.visitXre();
+            case BAD:
+                return visitor.visitBad();
+            case AZM:
+                return visitor.visitAzm();
+            case BRL:
+                return visitor.visitBrl();
+            case AZN:
+                return visitor.visitAzn();
+            case TWD:
+                return visitor.visitTwd();
+            case NOK:
+                return visitor.visitNok();
+            case SIT:
+                return visitor.visitSit();
+            case KZT:
+                return visitor.visitKzt();
+            case GQE:
+                return visitor.visitGqe();
+            case ILR:
+                return visitor.visitIlr();
+            case GHS:
+                return visitor.visitGhs();
+            case VNN:
+                return visitor.visitVnn();
+            case COU:
+                return visitor.visitCou();
+            case CDF:
+                return visitor.visitCdf();
+            case EGP:
+                return visitor.visitEgp();
+            case KPW:
+                return visitor.visitKpw();
+            case VEF:
+                return visitor.visitVef();
+            case XBC:
+                return visitor.visitXbc();
+            case SDG:
+                return visitor.visitSdg();
+            case GRD:
+                return visitor.visitGrd();
+            case MDL:
+                return visitor.visitMdl();
+            case BEF:
+                return visitor.visitBef();
+            case SBD:
+                return visitor.visitSbd();
+            case AUD:
+                return visitor.visitAud();
+            case BRE:
+                return visitor.visitBre();
+            case ISK:
+                return visitor.visitIsk();
+            case HTG:
+                return visitor.visitHtg();
+            case KGS:
+                return visitor.visitKgs();
+            case AON:
+                return visitor.visitAon();
+            case BGM:
+                return visitor.visitBgm();
+            case HRD:
+                return visitor.visitHrd();
+            case UYW:
+                return visitor.visitUyw();
+            case KES:
+                return visitor.visitKes();
+            case SDP:
+                return visitor.visitSdp();
+            case PLZ:
+                return visitor.visitPlz();
+            case CLP:
+                return visitor.visitClp();
+            case KHR:
+                return visitor.visitKhr();
+            case NGN:
+                return visitor.visitNgn();
+            case NZD:
+                return visitor.visitNzd();
+            case HRK:
+                return visitor.visitHrk();
+            case IDR:
+                return visitor.visitIdr();
+            case MYR:
+                return visitor.visitMyr();
+            case BWP:
+                return visitor.visitBwp();
+            case BIF:
+                return visitor.visitBif();
+            case PKR:
+                return visitor.visitPkr();
+            case ZWD:
+                return visitor.visitZwd();
+            case FJD:
+                return visitor.visitFjd();
+            case MGA:
+                return visitor.visitMga();
+            case PGK:
+                return visitor.visitPgk();
+            case JPY:
+                return visitor.visitJpy();
+            case GYD:
+                return visitor.visitGyd();
+            case NIC:
+                return visitor.visitNic();
+            case SOS:
+                return visitor.visitSos();
+            case LKR:
+                return visitor.visitLkr();
+            case MKN:
+                return visitor.visitMkn();
+            case MLF:
+                return visitor.visitMlf();
+            case KMF:
+                return visitor.visitKmf();
+            case HNL:
+                return visitor.visitHnl();
+            case GHC:
+                return visitor.visitGhc();
+            case GWE:
+                return visitor.visitGwe();
+            case TJS:
+                return visitor.visitTjs();
+            case SCR:
+                return visitor.visitScr();
+            case PEN:
+                return visitor.visitPen();
+            case USD:
+                return visitor.visitUsd();
+            case LBP:
+                return visitor.visitLbp();
+            case GEL:
+                return visitor.visitGel();
+            case MTL:
+                return visitor.visitMtl();
+            case SRD:
+                return visitor.visitSrd();
+            case XSU:
+                return visitor.visitXsu();
+            case MWK:
+                return visitor.visitMwk();
+            case VES:
+                return visitor.visitVes();
+            case BND:
+                return visitor.visitBnd();
+            case AOA:
+                return visitor.visitAoa();
+            case ZMW:
+                return visitor.visitZmw();
+            case CNX:
+                return visitor.visitCnx();
+            case ILP:
+                return visitor.visitIlp();
+            case SYP:
+                return visitor.visitSyp();
+            case JMD:
+                return visitor.visitJmd();
+            case UYI:
+                return visitor.visitUyi();
+            case BRR:
+                return visitor.visitBrr();
+            case XAF:
+                return visitor.visitXaf();
+            case FIM:
+                return visitor.visitFim();
+            case CZK:
+                return visitor.visitCzk();
+            case AED:
+                return visitor.visitAed();
+            case USS:
+                return visitor.visitUss();
+            case EEK:
+                return visitor.visitEek();
+            case CVE:
+                return visitor.visitCve();
+            case CNH:
+                return visitor.visitCnh();
+            case QAR:
+                return visitor.visitQar();
+            case TOP:
+                return visitor.visitTop();
+            case ZWL:
+                return visitor.visitZwl();
+            case TJR:
+                return visitor.visitTjr();
+            case UYP:
+                return visitor.visitUyp();
+            case BRC:
+                return visitor.visitBrc();
+            case BRZ:
+                return visitor.visitBrz();
+            case ERN:
+                return visitor.visitErn();
+            case ZRN:
+                return visitor.visitZrn();
+            case SUR:
+                return visitor.visitSur();
+            case RHD:
+                return visitor.visitRhd();
+            case RWF:
+                return visitor.visitRwf();
+            case BGO:
+                return visitor.visitBgo();
+            case GEK:
+                return visitor.visitGek();
+            case BOL:
+                return visitor.visitBol();
+            case SAR:
+                return visitor.visitSar();
+            case MVP:
+                return visitor.visitMvp();
+            case BTN:
+                return visitor.visitBtn();
+            case ZAL:
+                return visitor.visitZal();
+            case TZS:
+                return visitor.visitTzs();
+            case DJF:
+                return visitor.visitDjf();
+            case GTQ:
+                return visitor.visitGtq();
+            case ECS:
+                return visitor.visitEcs();
+            case CHF:
+                return visitor.visitChf();
+            case ANG:
+                return visitor.visitAng();
+            case BSD:
+                return visitor.visitBsd();
+            case LTT:
+                return visitor.visitLtt();
+            case MAD:
+                return visitor.visitMad();
+            case XPD:
+                return visitor.visitXpd();
+            case MOP:
+                return visitor.visitMop();
+            case BYB:
+                return visitor.visitByb();
+            case LYD:
+                return visitor.visitLyd();
+            case XTS:
+                return visitor.visitXts();
+            case KWD:
+                return visitor.visitKwd();
+            case BAN:
+                return visitor.visitBan();
+            case SVC:
+                return visitor.visitSvc();
+            case ALL:
+                return visitor.visitAll();
+            case SHP:
+                return visitor.visitShp();
+            case MGF:
+                return visitor.visitMgf();
+            case MRU:
+                return visitor.visitMru();
+            case BRB:
+                return visitor.visitBrb();
+            case CUP:
+                return visitor.visitCup();
+            case LRD:
+                return visitor.visitLrd();
+            case MUR:
+                return visitor.visitMur();
+            case PAB:
+                return visitor.visitPab();
+            case KRH:
+                return visitor.visitKrh();
+            case XBD:
+                return visitor.visitXbd();
+            case YER:
+                return visitor.visitYer();
+            case AFA:
+                return visitor.visitAfa();
+            case BGL:
+                return visitor.visitBgl();
+            case STD:
+                return visitor.visitStd();
+            case NPR:
+                return visitor.visitNpr();
+            case XPT:
+                return visitor.visitXpt();
+            case UGX:
+                return visitor.visitUgx();
+            case YUR:
+                return visitor.visitYur();
+            case TTD:
+                return visitor.visitTtd();
+            case BYR:
+                return visitor.visitByr();
+            case EUR:
+                return visitor.visitEur();
+            case SEK:
+                return visitor.visitSek();
+            case KYD:
+                return visitor.visitKyd();
+            case GNF:
+                return visitor.visitGnf();
+            case BUK:
+                return visitor.visitBuk();
+            case AFN:
+                return visitor.visitAfn();
+            case CNY:
+                return visitor.visitCny();
+            case PYG:
+                return visitor.visitPyg();
+            case CSD:
+                return visitor.visitCsd();
+            case BOV:
+                return visitor.visitBov();
+            case XAG:
+                return visitor.visitXag();
+            case ARA:
+                return visitor.visitAra();
+            case DEM:
+                return visitor.visitDem();
+            case BOB:
+                return visitor.visitBob();
+            case ALK:
+                return visitor.visitAlk();
+            case IEP:
+                return visitor.visitIep();
+            case XEU:
+                return visitor.visitXeu();
+            case AWG:
+                return visitor.visitAwg();
+            case DKK:
+                return visitor.visitDkk();
+            case IQD:
+                return visitor.visitIqd();
+            case MXP:
+                return visitor.visitMxp();
+            case TVD:
+                return visitor.visitTvd();
+            case ZWN:
+                return visitor.visitZwn();
+            case XOF:
+                return visitor.visitXof();
+            case WST:
+                return visitor.visitWst();
+            case UAH:
+                return visitor.visitUah();
+            case BYN:
+                return visitor.visitByn();
+            case LUF:
+                return visitor.visitLuf();
+            case ZWR:
+                return visitor.visitZwr();
+            case ARM:
+                return visitor.visitArm();
+            case KRO:
+                return visitor.visitKro();
+            case AOR:
+                return visitor.visitAor();
+            case ROL:
+                return visitor.visitRol();
+            case DDM:
+                return visitor.visitDdm();
+            case CHE:
+                return visitor.visitChe();
+            case CUC:
+                return visitor.visitCuc();
+            case RON:
+                return visitor.visitRon();
+            case MKD:
+                return visitor.visitMkd();
+            case HUF:
+                return visitor.visitHuf();
+            case ARS:
+                return visitor.visitArs();
+            case CYP:
+                return visitor.visitCyp();
+            case ECV:
+                return visitor.visitEcv();
+            case DZD:
+                return visitor.visitDzd();
+            case PTE:
+                return visitor.visitPte();
+            case FKP:
+                return visitor.visitFkp();
+            case KRW:
+                return visitor.visitKrw();
+            case YUD:
+                return visitor.visitYud();
+            case ZRZ:
+                return visitor.visitZrz();
+            case BBD:
+                return visitor.visitBbd();
+            case DOP:
+                return visitor.visitDop();
+            case SDD:
+                return visitor.visitSdd();
+            case TRL:
+                return visitor.visitTrl();
+            case AMD:
+                return visitor.visitAmd();
+            case BEC:
+                return visitor.visitBec();
+            case ESA:
+                return visitor.visitEsa();
+            case LVL:
+                return visitor.visitLvl();
+            case CLF:
+                return visitor.visitClf();
+            case ZMK:
+                return visitor.visitZmk();
+            case IRR:
+                return visitor.visitIrr();
+            case YUN:
+                return visitor.visitYun();
+            case BHD:
+                return visitor.visitBhd();
+            case LVR:
+                return visitor.visitLvr();
+            case CHW:
+                return visitor.visitChw();
+            case RUB:
+                return visitor.visitRub();
+            case UYU:
+                return visitor.visitUyu();
+            case TMT:
+                return visitor.visitTmt();
+            case BEL:
+                return visitor.visitBel();
+            case NIO:
+                return visitor.visitNio();
+            case XUA:
+                return visitor.visitXua();
+            case ETB:
+                return visitor.visitEtb();
+            case MXV:
+                return visitor.visitMxv();
+            case VND:
+                return visitor.visitVnd();
+            case MCF:
+                return visitor.visitMcf();
+            case MZE:
+                return visitor.visitMze();
+            case BOP:
+                return visitor.visitBop();
+            case SRG:
+                return visitor.visitSrg();
+            case BRN:
+                return visitor.visitBrn();
+            case MTP:
+                return visitor.visitMtp();
+            case LUL:
+                return visitor.visitLul();
+            case MMK:
+                return visitor.visitMmk();
+            case RSD:
+                return visitor.visitRsd();
+            case UZS:
+                return visitor.visitUzs();
+            case USN:
+                return visitor.visitUsn();
+            case LAK:
+                return visitor.visitLak();
+            case NAD:
+                return visitor.visitNad();
+            case ILS:
+                return visitor.visitIls();
+            case MZM:
+                return visitor.visitMzm();
+            case MZN:
+                return visitor.visitMzn();
+            case TPE:
+                return visitor.visitTpe();
+            case BAM:
+                return visitor.visitBam();
+            case PLN:
+                return visitor.visitPln();
+            case SZL:
+                return visitor.visitSzl();
+            case XBA:
+                return visitor.visitXba();
+            case PEI:
+                return visitor.visitPei();
+            case ADP:
+                return visitor.visitAdp();
+            case FRF:
+                return visitor.visitFrf();
+            case CLE:
+                return visitor.visitCle();
+            case RUR:
+                return visitor.visitRur();
+            case ESB:
+                return visitor.visitEsb();
+            case TMM:
+                return visitor.visitTmm();
+            case MXN:
+                return visitor.visitMxn();
+            case YDD:
+                return visitor.visitYdd();
+            case SGD:
+                return visitor.visitSgd();
+            case XFO:
+                return visitor.visitXfo();
+            case GMD:
+                return visitor.visitGmd();
+            case UGS:
+                return visitor.visitUgs();
+            case YUM:
+                return visitor.visitYum();
+            case GNS:
+                return visitor.visitGns();
+            case LTL:
+                return visitor.visitLtl();
+            case NLG:
+                return visitor.visitNlg();
+            case BZD:
+                return visitor.visitBzd();
+            case CRC:
+                return visitor.visitCrc();
+            case TRY:
+                return visitor.visitTry();
+            case OMR:
+                return visitor.visitOmr();
+            case BDT:
+                return visitor.visitBdt();
+            case GBP:
+                return visitor.visitGbp();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TransactionCurrencyEnum valueOf(String value) {
+        switch (value) {
+            case "PES":
+                return PES;
+            case "UAK":
+                return UAK;
+            case "PHP":
+                return PHP;
+            case "XAU":
+                return XAU;
+            case "XCD":
+                return XCD;
+            case "MVR":
+                return MVR;
+            case "ARP":
+                return ARP;
+            case "JOD":
+                return JOD;
+            case "XDR":
+                return XDR;
+            case "HKD":
+                return HKD;
+            case "INR":
+                return INR;
+            case "THB":
+                return THB;
+            case "GWP":
+                return GWP;
+            case "XXX":
+                return XXX;
+            case "ITL":
+                return ITL;
+            case "STN":
+                return STN;
+            case "CAD":
+                return CAD;
+            case "ESP":
+                return ESP;
+            case "XPF":
+                return XPF;
+            case "MAF":
+                return MAF;
+            case "COP":
+                return COP;
+            case "MDC":
+                return MDC;
+            case "ZAR":
+                return ZAR;
+            case "MRO":
+                return MRO;
+            case "VEB":
+                return VEB;
+            case "LSL":
+                return LSL;
+            case "SKK":
+                return SKK;
+            case "VUV":
+                return VUV;
+            case "XBB":
+                return XBB;
+            case "TND":
+                return TND;
+            case "CSK":
+                return CSK;
+            case "IMP":
+                return IMP;
+            case "AOK":
+                return AOK;
+            case "GIP":
+                return GIP;
+            case "ISJ":
+                return ISJ;
+            case "BMD":
+                return BMD;
+            case "LUC":
+                return LUC;
+            case "BGN":
+                return BGN;
+            case "ARL":
+                return ARL;
+            case "SSP":
+                return SSP;
+            case "MNT":
+                return MNT;
+            case "SLL":
+                return SLL;
+            case "ATS":
+                return ATS;
+            case "XFU":
+                return XFU;
+            case "XRE":
+                return XRE;
+            case "BAD":
+                return BAD;
+            case "AZM":
+                return AZM;
+            case "BRL":
+                return BRL;
+            case "AZN":
+                return AZN;
+            case "TWD":
+                return TWD;
+            case "NOK":
+                return NOK;
+            case "SIT":
+                return SIT;
+            case "KZT":
+                return KZT;
+            case "GQE":
+                return GQE;
+            case "ILR":
+                return ILR;
+            case "GHS":
+                return GHS;
+            case "VNN":
+                return VNN;
+            case "COU":
+                return COU;
+            case "CDF":
+                return CDF;
+            case "EGP":
+                return EGP;
+            case "KPW":
+                return KPW;
+            case "VEF":
+                return VEF;
+            case "XBC":
+                return XBC;
+            case "SDG":
+                return SDG;
+            case "GRD":
+                return GRD;
+            case "MDL":
+                return MDL;
+            case "BEF":
+                return BEF;
+            case "SBD":
+                return SBD;
+            case "AUD":
+                return AUD;
+            case "BRE":
+                return BRE;
+            case "ISK":
+                return ISK;
+            case "HTG":
+                return HTG;
+            case "KGS":
+                return KGS;
+            case "AON":
+                return AON;
+            case "BGM":
+                return BGM;
+            case "HRD":
+                return HRD;
+            case "UYW":
+                return UYW;
+            case "KES":
+                return KES;
+            case "SDP":
+                return SDP;
+            case "PLZ":
+                return PLZ;
+            case "CLP":
+                return CLP;
+            case "KHR":
+                return KHR;
+            case "NGN":
+                return NGN;
+            case "NZD":
+                return NZD;
+            case "HRK":
+                return HRK;
+            case "IDR":
+                return IDR;
+            case "MYR":
+                return MYR;
+            case "BWP":
+                return BWP;
+            case "BIF":
+                return BIF;
+            case "PKR":
+                return PKR;
+            case "ZWD":
+                return ZWD;
+            case "FJD":
+                return FJD;
+            case "MGA":
+                return MGA;
+            case "PGK":
+                return PGK;
+            case "JPY":
+                return JPY;
+            case "GYD":
+                return GYD;
+            case "NIC":
+                return NIC;
+            case "SOS":
+                return SOS;
+            case "LKR":
+                return LKR;
+            case "MKN":
+                return MKN;
+            case "MLF":
+                return MLF;
+            case "KMF":
+                return KMF;
+            case "HNL":
+                return HNL;
+            case "GHC":
+                return GHC;
+            case "GWE":
+                return GWE;
+            case "TJS":
+                return TJS;
+            case "SCR":
+                return SCR;
+            case "PEN":
+                return PEN;
+            case "USD":
+                return USD;
+            case "LBP":
+                return LBP;
+            case "GEL":
+                return GEL;
+            case "MTL":
+                return MTL;
+            case "SRD":
+                return SRD;
+            case "XSU":
+                return XSU;
+            case "MWK":
+                return MWK;
+            case "VES":
+                return VES;
+            case "BND":
+                return BND;
+            case "AOA":
+                return AOA;
+            case "ZMW":
+                return ZMW;
+            case "CNX":
+                return CNX;
+            case "ILP":
+                return ILP;
+            case "SYP":
+                return SYP;
+            case "JMD":
+                return JMD;
+            case "UYI":
+                return UYI;
+            case "BRR":
+                return BRR;
+            case "XAF":
+                return XAF;
+            case "FIM":
+                return FIM;
+            case "CZK":
+                return CZK;
+            case "AED":
+                return AED;
+            case "USS":
+                return USS;
+            case "EEK":
+                return EEK;
+            case "CVE":
+                return CVE;
+            case "CNH":
+                return CNH;
+            case "QAR":
+                return QAR;
+            case "TOP":
+                return TOP;
+            case "ZWL":
+                return ZWL;
+            case "TJR":
+                return TJR;
+            case "UYP":
+                return UYP;
+            case "BRC":
+                return BRC;
+            case "BRZ":
+                return BRZ;
+            case "ERN":
+                return ERN;
+            case "ZRN":
+                return ZRN;
+            case "SUR":
+                return SUR;
+            case "RHD":
+                return RHD;
+            case "RWF":
+                return RWF;
+            case "BGO":
+                return BGO;
+            case "GEK":
+                return GEK;
+            case "BOL":
+                return BOL;
+            case "SAR":
+                return SAR;
+            case "MVP":
+                return MVP;
+            case "BTN":
+                return BTN;
+            case "ZAL":
+                return ZAL;
+            case "TZS":
+                return TZS;
+            case "DJF":
+                return DJF;
+            case "GTQ":
+                return GTQ;
+            case "ECS":
+                return ECS;
+            case "CHF":
+                return CHF;
+            case "ANG":
+                return ANG;
+            case "BSD":
+                return BSD;
+            case "LTT":
+                return LTT;
+            case "MAD":
+                return MAD;
+            case "XPD":
+                return XPD;
+            case "MOP":
+                return MOP;
+            case "BYB":
+                return BYB;
+            case "LYD":
+                return LYD;
+            case "XTS":
+                return XTS;
+            case "KWD":
+                return KWD;
+            case "BAN":
+                return BAN;
+            case "SVC":
+                return SVC;
+            case "ALL":
+                return ALL;
+            case "SHP":
+                return SHP;
+            case "MGF":
+                return MGF;
+            case "MRU":
+                return MRU;
+            case "BRB":
+                return BRB;
+            case "CUP":
+                return CUP;
+            case "LRD":
+                return LRD;
+            case "MUR":
+                return MUR;
+            case "PAB":
+                return PAB;
+            case "KRH":
+                return KRH;
+            case "XBD":
+                return XBD;
+            case "YER":
+                return YER;
+            case "AFA":
+                return AFA;
+            case "BGL":
+                return BGL;
+            case "STD":
+                return STD;
+            case "NPR":
+                return NPR;
+            case "XPT":
+                return XPT;
+            case "UGX":
+                return UGX;
+            case "YUR":
+                return YUR;
+            case "TTD":
+                return TTD;
+            case "BYR":
+                return BYR;
+            case "EUR":
+                return EUR;
+            case "SEK":
+                return SEK;
+            case "KYD":
+                return KYD;
+            case "GNF":
+                return GNF;
+            case "BUK":
+                return BUK;
+            case "AFN":
+                return AFN;
+            case "CNY":
+                return CNY;
+            case "PYG":
+                return PYG;
+            case "CSD":
+                return CSD;
+            case "BOV":
+                return BOV;
+            case "XAG":
+                return XAG;
+            case "ARA":
+                return ARA;
+            case "DEM":
+                return DEM;
+            case "BOB":
+                return BOB;
+            case "ALK":
+                return ALK;
+            case "IEP":
+                return IEP;
+            case "XEU":
+                return XEU;
+            case "AWG":
+                return AWG;
+            case "DKK":
+                return DKK;
+            case "IQD":
+                return IQD;
+            case "MXP":
+                return MXP;
+            case "TVD":
+                return TVD;
+            case "ZWN":
+                return ZWN;
+            case "XOF":
+                return XOF;
+            case "WST":
+                return WST;
+            case "UAH":
+                return UAH;
+            case "BYN":
+                return BYN;
+            case "LUF":
+                return LUF;
+            case "ZWR":
+                return ZWR;
+            case "ARM":
+                return ARM;
+            case "KRO":
+                return KRO;
+            case "AOR":
+                return AOR;
+            case "ROL":
+                return ROL;
+            case "DDM":
+                return DDM;
+            case "CHE":
+                return CHE;
+            case "CUC":
+                return CUC;
+            case "RON":
+                return RON;
+            case "MKD":
+                return MKD;
+            case "HUF":
+                return HUF;
+            case "ARS":
+                return ARS;
+            case "CYP":
+                return CYP;
+            case "ECV":
+                return ECV;
+            case "DZD":
+                return DZD;
+            case "PTE":
+                return PTE;
+            case "FKP":
+                return FKP;
+            case "KRW":
+                return KRW;
+            case "YUD":
+                return YUD;
+            case "ZRZ":
+                return ZRZ;
+            case "BBD":
+                return BBD;
+            case "DOP":
+                return DOP;
+            case "SDD":
+                return SDD;
+            case "TRL":
+                return TRL;
+            case "AMD":
+                return AMD;
+            case "BEC":
+                return BEC;
+            case "ESA":
+                return ESA;
+            case "LVL":
+                return LVL;
+            case "CLF":
+                return CLF;
+            case "ZMK":
+                return ZMK;
+            case "IRR":
+                return IRR;
+            case "YUN":
+                return YUN;
+            case "BHD":
+                return BHD;
+            case "LVR":
+                return LVR;
+            case "CHW":
+                return CHW;
+            case "RUB":
+                return RUB;
+            case "UYU":
+                return UYU;
+            case "TMT":
+                return TMT;
+            case "BEL":
+                return BEL;
+            case "NIO":
+                return NIO;
+            case "XUA":
+                return XUA;
+            case "ETB":
+                return ETB;
+            case "MXV":
+                return MXV;
+            case "VND":
+                return VND;
+            case "MCF":
+                return MCF;
+            case "MZE":
+                return MZE;
+            case "BOP":
+                return BOP;
+            case "SRG":
+                return SRG;
+            case "BRN":
+                return BRN;
+            case "MTP":
+                return MTP;
+            case "LUL":
+                return LUL;
+            case "MMK":
+                return MMK;
+            case "RSD":
+                return RSD;
+            case "UZS":
+                return UZS;
+            case "USN":
+                return USN;
+            case "LAK":
+                return LAK;
+            case "NAD":
+                return NAD;
+            case "ILS":
+                return ILS;
+            case "MZM":
+                return MZM;
+            case "MZN":
+                return MZN;
+            case "TPE":
+                return TPE;
+            case "BAM":
+                return BAM;
+            case "PLN":
+                return PLN;
+            case "SZL":
+                return SZL;
+            case "XBA":
+                return XBA;
+            case "PEI":
+                return PEI;
+            case "ADP":
+                return ADP;
+            case "FRF":
+                return FRF;
+            case "CLE":
+                return CLE;
+            case "RUR":
+                return RUR;
+            case "ESB":
+                return ESB;
+            case "TMM":
+                return TMM;
+            case "MXN":
+                return MXN;
+            case "YDD":
+                return YDD;
+            case "SGD":
+                return SGD;
+            case "XFO":
+                return XFO;
+            case "GMD":
+                return GMD;
+            case "UGS":
+                return UGS;
+            case "YUM":
+                return YUM;
+            case "GNS":
+                return GNS;
+            case "LTL":
+                return LTL;
+            case "NLG":
+                return NLG;
+            case "BZD":
+                return BZD;
+            case "CRC":
+                return CRC;
+            case "TRY":
+                return TRY;
+            case "OMR":
+                return OMR;
+            case "BDT":
+                return BDT;
+            case "GBP":
+                return GBP;
+            default:
+                return new TransactionCurrencyEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        XUA,
+
+        AFN,
+
+        AFA,
+
+        ALL,
+
+        ALK,
+
+        DZD,
+
+        ADP,
+
+        AOA,
+
+        AOK,
+
+        AON,
+
+        AOR,
+
+        ARA,
+
+        ARS,
+
+        ARM,
+
+        ARP,
+
+        ARL,
+
+        AMD,
+
+        AWG,
+
+        AUD,
+
+        ATS,
+
+        AZN,
+
+        AZM,
+
+        BSD,
+
+        BHD,
+
+        BDT,
+
+        BBD,
+
+        BYN,
+
+        BYB,
+
+        BYR,
+
+        BEF,
+
+        BEC,
+
+        BEL,
+
+        BZD,
+
+        BMD,
+
+        BTN,
+
+        BOB,
+
+        BOL,
+
+        BOV,
+
+        BOP,
+
+        BAM,
+
+        BAD,
+
+        BAN,
+
+        BWP,
+
+        BRC,
+
+        BRZ,
+
+        BRE,
+
+        BRR,
+
+        BRN,
+
+        BRB,
+
+        BRL,
+
+        GBP,
+
+        BND,
+
+        BGL,
+
+        BGN,
+
+        BGO,
+
+        BGM,
+
+        BUK,
+
+        BIF,
+
+        XPF,
+
+        KHR,
+
+        CAD,
+
+        CVE,
+
+        KYD,
+
+        XAF,
+
+        CLE,
+
+        CLP,
+
+        CLF,
+
+        CNX,
+
+        CNY,
+
+        CNH,
+
+        COP,
+
+        COU,
+
+        KMF,
+
+        CDF,
+
+        CRC,
+
+        HRD,
+
+        HRK,
+
+        CUC,
+
+        CUP,
+
+        CYP,
+
+        CZK,
+
+        CSK,
+
+        DKK,
+
+        DJF,
+
+        DOP,
+
+        NLG,
+
+        XCD,
+
+        DDM,
+
+        ECS,
+
+        ECV,
+
+        EGP,
+
+        GQE,
+
+        ERN,
+
+        EEK,
+
+        ETB,
+
+        EUR,
+
+        XBA,
+
+        XEU,
+
+        XBB,
+
+        XBC,
+
+        XBD,
+
+        FKP,
+
+        FJD,
+
+        FIM,
+
+        FRF,
+
+        XFO,
+
+        XFU,
+
+        GMD,
+
+        GEK,
+
+        GEL,
+
+        DEM,
+
+        GHS,
+
+        GHC,
+
+        GIP,
+
+        XAU,
+
+        GRD,
+
+        GTQ,
+
+        GWP,
+
+        GNF,
+
+        GNS,
+
+        GYD,
+
+        HTG,
+
+        HNL,
+
+        HKD,
+
+        HUF,
+
+        IMP,
+
+        ISK,
+
+        ISJ,
+
+        INR,
+
+        IDR,
+
+        IRR,
+
+        IQD,
+
+        IEP,
+
+        ILS,
+
+        ILP,
+
+        ILR,
+
+        ITL,
+
+        JMD,
+
+        JPY,
+
+        JOD,
+
+        KZT,
+
+        KES,
+
+        KWD,
+
+        KGS,
+
+        LAK,
+
+        LVL,
+
+        LVR,
+
+        LBP,
+
+        LSL,
+
+        LRD,
+
+        LYD,
+
+        LTL,
+
+        LTT,
+
+        LUL,
+
+        LUC,
+
+        LUF,
+
+        MOP,
+
+        MKD,
+
+        MKN,
+
+        MGA,
+
+        MGF,
+
+        MWK,
+
+        MYR,
+
+        MVR,
+
+        MVP,
+
+        MLF,
+
+        MTL,
+
+        MTP,
+
+        MRU,
+
+        MRO,
+
+        MUR,
+
+        MXV,
+
+        MXN,
+
+        MXP,
+
+        MDC,
+
+        MDL,
+
+        MCF,
+
+        MNT,
+
+        MAD,
+
+        MAF,
+
+        MZE,
+
+        MZN,
+
+        MZM,
+
+        MMK,
+
+        NAD,
+
+        NPR,
+
+        ANG,
+
+        TWD,
+
+        NZD,
+
+        NIO,
+
+        NIC,
+
+        NGN,
+
+        KPW,
+
+        NOK,
+
+        OMR,
+
+        PKR,
+
+        XPD,
+
+        PAB,
+
+        PGK,
+
+        PYG,
+
+        PEI,
+
+        PEN,
+
+        PES,
+
+        PHP,
+
+        XPT,
+
+        PLN,
+
+        PLZ,
+
+        PTE,
+
+        GWE,
+
+        QAR,
+
+        XRE,
+
+        RHD,
+
+        RON,
+
+        ROL,
+
+        RUB,
+
+        RUR,
+
+        RWF,
+
+        SVC,
+
+        WST,
+
+        SAR,
+
+        RSD,
+
+        CSD,
+
+        SCR,
+
+        SLL,
+
+        XAG,
+
+        SGD,
+
+        SKK,
+
+        SIT,
+
+        SBD,
+
+        SOS,
+
+        ZAR,
+
+        ZAL,
+
+        KRH,
+
+        KRW,
+
+        KRO,
+
+        SSP,
+
+        SUR,
+
+        ESP,
+
+        ESA,
+
+        ESB,
+
+        XDR,
+
+        LKR,
+
+        SHP,
+
+        XSU,
+
+        SDD,
+
+        SDG,
+
+        SDP,
+
+        SRD,
+
+        SRG,
+
+        SZL,
+
+        SEK,
+
+        CHF,
+
+        SYP,
+
+        STN,
+
+        STD,
+
+        TVD,
+
+        TJR,
+
+        TJS,
+
+        TZS,
+
+        XTS,
+
+        THB,
+
+        XXX,
+
+        TPE,
+
+        TOP,
+
+        TTD,
+
+        TND,
+
+        TRY,
+
+        TRL,
+
+        TMT,
+
+        TMM,
+
+        USD,
+
+        USN,
+
+        USS,
+
+        UGX,
+
+        UGS,
+
+        UAH,
+
+        UAK,
+
+        AED,
+
+        UYW,
+
+        UYU,
+
+        UYP,
+
+        UYI,
+
+        UZS,
+
+        VUV,
+
+        VES,
+
+        VEB,
+
+        VEF,
+
+        VND,
+
+        VNN,
+
+        CHE,
+
+        CHW,
+
+        XOF,
+
+        YDD,
+
+        YER,
+
+        YUN,
+
+        YUD,
+
+        YUM,
+
+        YUR,
+
+        ZWN,
+
+        ZRN,
+
+        ZRZ,
+
+        ZMW,
+
+        ZMK,
+
+        ZWD,
+
+        ZWR,
+
+        ZWL,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitXua();
+
+        T visitAfn();
+
+        T visitAfa();
+
+        T visitAll();
+
+        T visitAlk();
+
+        T visitDzd();
+
+        T visitAdp();
+
+        T visitAoa();
+
+        T visitAok();
+
+        T visitAon();
+
+        T visitAor();
+
+        T visitAra();
+
+        T visitArs();
+
+        T visitArm();
+
+        T visitArp();
+
+        T visitArl();
+
+        T visitAmd();
+
+        T visitAwg();
+
+        T visitAud();
+
+        T visitAts();
+
+        T visitAzn();
+
+        T visitAzm();
+
+        T visitBsd();
+
+        T visitBhd();
+
+        T visitBdt();
+
+        T visitBbd();
+
+        T visitByn();
+
+        T visitByb();
+
+        T visitByr();
+
+        T visitBef();
+
+        T visitBec();
+
+        T visitBel();
+
+        T visitBzd();
+
+        T visitBmd();
+
+        T visitBtn();
+
+        T visitBob();
+
+        T visitBol();
+
+        T visitBov();
+
+        T visitBop();
+
+        T visitBam();
+
+        T visitBad();
+
+        T visitBan();
+
+        T visitBwp();
+
+        T visitBrc();
+
+        T visitBrz();
+
+        T visitBre();
+
+        T visitBrr();
+
+        T visitBrn();
+
+        T visitBrb();
+
+        T visitBrl();
+
+        T visitGbp();
+
+        T visitBnd();
+
+        T visitBgl();
+
+        T visitBgn();
+
+        T visitBgo();
+
+        T visitBgm();
+
+        T visitBuk();
+
+        T visitBif();
+
+        T visitXpf();
+
+        T visitKhr();
+
+        T visitCad();
+
+        T visitCve();
+
+        T visitKyd();
+
+        T visitXaf();
+
+        T visitCle();
+
+        T visitClp();
+
+        T visitClf();
+
+        T visitCnx();
+
+        T visitCny();
+
+        T visitCnh();
+
+        T visitCop();
+
+        T visitCou();
+
+        T visitKmf();
+
+        T visitCdf();
+
+        T visitCrc();
+
+        T visitHrd();
+
+        T visitHrk();
+
+        T visitCuc();
+
+        T visitCup();
+
+        T visitCyp();
+
+        T visitCzk();
+
+        T visitCsk();
+
+        T visitDkk();
+
+        T visitDjf();
+
+        T visitDop();
+
+        T visitNlg();
+
+        T visitXcd();
+
+        T visitDdm();
+
+        T visitEcs();
+
+        T visitEcv();
+
+        T visitEgp();
+
+        T visitGqe();
+
+        T visitErn();
+
+        T visitEek();
+
+        T visitEtb();
+
+        T visitEur();
+
+        T visitXba();
+
+        T visitXeu();
+
+        T visitXbb();
+
+        T visitXbc();
+
+        T visitXbd();
+
+        T visitFkp();
+
+        T visitFjd();
+
+        T visitFim();
+
+        T visitFrf();
+
+        T visitXfo();
+
+        T visitXfu();
+
+        T visitGmd();
+
+        T visitGek();
+
+        T visitGel();
+
+        T visitDem();
+
+        T visitGhs();
+
+        T visitGhc();
+
+        T visitGip();
+
+        T visitXau();
+
+        T visitGrd();
+
+        T visitGtq();
+
+        T visitGwp();
+
+        T visitGnf();
+
+        T visitGns();
+
+        T visitGyd();
+
+        T visitHtg();
+
+        T visitHnl();
+
+        T visitHkd();
+
+        T visitHuf();
+
+        T visitImp();
+
+        T visitIsk();
+
+        T visitIsj();
+
+        T visitInr();
+
+        T visitIdr();
+
+        T visitIrr();
+
+        T visitIqd();
+
+        T visitIep();
+
+        T visitIls();
+
+        T visitIlp();
+
+        T visitIlr();
+
+        T visitItl();
+
+        T visitJmd();
+
+        T visitJpy();
+
+        T visitJod();
+
+        T visitKzt();
+
+        T visitKes();
+
+        T visitKwd();
+
+        T visitKgs();
+
+        T visitLak();
+
+        T visitLvl();
+
+        T visitLvr();
+
+        T visitLbp();
+
+        T visitLsl();
+
+        T visitLrd();
+
+        T visitLyd();
+
+        T visitLtl();
+
+        T visitLtt();
+
+        T visitLul();
+
+        T visitLuc();
+
+        T visitLuf();
+
+        T visitMop();
+
+        T visitMkd();
+
+        T visitMkn();
+
+        T visitMga();
+
+        T visitMgf();
+
+        T visitMwk();
+
+        T visitMyr();
+
+        T visitMvr();
+
+        T visitMvp();
+
+        T visitMlf();
+
+        T visitMtl();
+
+        T visitMtp();
+
+        T visitMru();
+
+        T visitMro();
+
+        T visitMur();
+
+        T visitMxv();
+
+        T visitMxn();
+
+        T visitMxp();
+
+        T visitMdc();
+
+        T visitMdl();
+
+        T visitMcf();
+
+        T visitMnt();
+
+        T visitMad();
+
+        T visitMaf();
+
+        T visitMze();
+
+        T visitMzn();
+
+        T visitMzm();
+
+        T visitMmk();
+
+        T visitNad();
+
+        T visitNpr();
+
+        T visitAng();
+
+        T visitTwd();
+
+        T visitNzd();
+
+        T visitNio();
+
+        T visitNic();
+
+        T visitNgn();
+
+        T visitKpw();
+
+        T visitNok();
+
+        T visitOmr();
+
+        T visitPkr();
+
+        T visitXpd();
+
+        T visitPab();
+
+        T visitPgk();
+
+        T visitPyg();
+
+        T visitPei();
+
+        T visitPen();
+
+        T visitPes();
+
+        T visitPhp();
+
+        T visitXpt();
+
+        T visitPln();
+
+        T visitPlz();
+
+        T visitPte();
+
+        T visitGwe();
+
+        T visitQar();
+
+        T visitXre();
+
+        T visitRhd();
+
+        T visitRon();
+
+        T visitRol();
+
+        T visitRub();
+
+        T visitRur();
+
+        T visitRwf();
+
+        T visitSvc();
+
+        T visitWst();
+
+        T visitSar();
+
+        T visitRsd();
+
+        T visitCsd();
+
+        T visitScr();
+
+        T visitSll();
+
+        T visitXag();
+
+        T visitSgd();
+
+        T visitSkk();
+
+        T visitSit();
+
+        T visitSbd();
+
+        T visitSos();
+
+        T visitZar();
+
+        T visitZal();
+
+        T visitKrh();
+
+        T visitKrw();
+
+        T visitKro();
+
+        T visitSsp();
+
+        T visitSur();
+
+        T visitEsp();
+
+        T visitEsa();
+
+        T visitEsb();
+
+        T visitXdr();
+
+        T visitLkr();
+
+        T visitShp();
+
+        T visitXsu();
+
+        T visitSdd();
+
+        T visitSdg();
+
+        T visitSdp();
+
+        T visitSrd();
+
+        T visitSrg();
+
+        T visitSzl();
+
+        T visitSek();
+
+        T visitChf();
+
+        T visitSyp();
+
+        T visitStn();
+
+        T visitStd();
+
+        T visitTvd();
+
+        T visitTjr();
+
+        T visitTjs();
+
+        T visitTzs();
+
+        T visitXts();
+
+        T visitThb();
+
+        T visitXxx();
+
+        T visitTpe();
+
+        T visitTop();
+
+        T visitTtd();
+
+        T visitTnd();
+
+        T visitTry();
+
+        T visitTrl();
+
+        T visitTmt();
+
+        T visitTmm();
+
+        T visitUsd();
+
+        T visitUsn();
+
+        T visitUss();
+
+        T visitUgx();
+
+        T visitUgs();
+
+        T visitUah();
+
+        T visitUak();
+
+        T visitAed();
+
+        T visitUyw();
+
+        T visitUyu();
+
+        T visitUyp();
+
+        T visitUyi();
+
+        T visitUzs();
+
+        T visitVuv();
+
+        T visitVes();
+
+        T visitVeb();
+
+        T visitVef();
+
+        T visitVnd();
+
+        T visitVnn();
+
+        T visitChe();
+
+        T visitChw();
+
+        T visitXof();
+
+        T visitYdd();
+
+        T visitYer();
+
+        T visitYun();
+
+        T visitYud();
+
+        T visitYum();
+
+        T visitYur();
+
+        T visitZwn();
+
+        T visitZrn();
+
+        T visitZrz();
+
+        T visitZmw();
+
+        T visitZmk();
+
+        T visitZwd();
+
+        T visitZwr();
+
+        T visitZwl();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,24 +3,94 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum LeadsListRequestExpandItem {
-    CONVERTED_ACCOUNT("converted_account"),
+public final class LeadsListRequestExpandItem {
+    public static final LeadsListRequestExpandItem OWNER = new LeadsListRequestExpandItem(Value.OWNER, "owner");
 
-    CONVERTED_CONTACT("converted_contact"),
+    public static final LeadsListRequestExpandItem CONVERTED_ACCOUNT =
+            new LeadsListRequestExpandItem(Value.CONVERTED_ACCOUNT, "converted_account");
 
-    OWNER("owner");
+    public static final LeadsListRequestExpandItem CONVERTED_CONTACT =
+            new LeadsListRequestExpandItem(Value.CONVERTED_CONTACT, "converted_contact");
 
-    private final String value;
+    private final Value value;
 
-    LeadsListRequestExpandItem(String value) {
+    private final String string;
+
+    LeadsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof LeadsListRequestExpandItem
+                        && this.string.equals(((LeadsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case CONVERTED_ACCOUNT:
+                return visitor.visitConvertedAccount();
+            case CONVERTED_CONTACT:
+                return visitor.visitConvertedContact();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static LeadsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "converted_account":
+                return CONVERTED_ACCOUNT;
+            case "converted_contact":
+                return CONVERTED_CONTACT;
+            default:
+                return new LeadsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CONVERTED_ACCOUNT,
+
+        CONVERTED_CONTACT,
+
+        OWNER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitConvertedAccount();
+
+        T visitConvertedContact();
+
+        T visitOwner();
+
+        T visitUnknown(String unknownType);
     }
 }

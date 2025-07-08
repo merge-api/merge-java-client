@@ -3,30 +3,128 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JournalEntriesListRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class JournalEntriesListRequestExpandItem {
+    public static final JournalEntriesListRequestExpandItem ACCOUNTING_PERIOD =
+            new JournalEntriesListRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    APPLIED_PAYMENTS("applied_payments"),
+    public static final JournalEntriesListRequestExpandItem PAYMENTS =
+            new JournalEntriesListRequestExpandItem(Value.PAYMENTS, "payments");
 
-    COMPANY("company"),
+    public static final JournalEntriesListRequestExpandItem TRACKING_CATEGORIES =
+            new JournalEntriesListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    LINES("lines"),
+    public static final JournalEntriesListRequestExpandItem APPLIED_PAYMENTS =
+            new JournalEntriesListRequestExpandItem(Value.APPLIED_PAYMENTS, "applied_payments");
 
-    PAYMENTS("payments"),
+    public static final JournalEntriesListRequestExpandItem LINES =
+            new JournalEntriesListRequestExpandItem(Value.LINES, "lines");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final JournalEntriesListRequestExpandItem COMPANY =
+            new JournalEntriesListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    JournalEntriesListRequestExpandItem(String value) {
+    private final String string;
+
+    JournalEntriesListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JournalEntriesListRequestExpandItem
+                        && this.string.equals(((JournalEntriesListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case PAYMENTS:
+                return visitor.visitPayments();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case APPLIED_PAYMENTS:
+                return visitor.visitAppliedPayments();
+            case LINES:
+                return visitor.visitLines();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JournalEntriesListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "payments":
+                return PAYMENTS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "applied_payments":
+                return APPLIED_PAYMENTS;
+            case "lines":
+                return LINES;
+            case "company":
+                return COMPANY;
+            default:
+                return new JournalEntriesListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        APPLIED_PAYMENTS,
+
+        COMPANY,
+
+        LINES,
+
+        PAYMENTS,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitAppliedPayments();
+
+        T visitCompany();
+
+        T visitLines();
+
+        T visitPayments();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,28 +3,117 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum JobsRetrieveRequestExpandItem {
-    DEPARTMENTS("departments"),
+public final class JobsRetrieveRequestExpandItem {
+    public static final JobsRetrieveRequestExpandItem JOB_POSTINGS =
+            new JobsRetrieveRequestExpandItem(Value.JOB_POSTINGS, "job_postings");
 
-    HIRING_MANAGERS("hiring_managers"),
+    public static final JobsRetrieveRequestExpandItem DEPARTMENTS =
+            new JobsRetrieveRequestExpandItem(Value.DEPARTMENTS, "departments");
 
-    JOB_POSTINGS("job_postings"),
+    public static final JobsRetrieveRequestExpandItem HIRING_MANAGERS =
+            new JobsRetrieveRequestExpandItem(Value.HIRING_MANAGERS, "hiring_managers");
 
-    OFFICES("offices"),
+    public static final JobsRetrieveRequestExpandItem RECRUITERS =
+            new JobsRetrieveRequestExpandItem(Value.RECRUITERS, "recruiters");
 
-    RECRUITERS("recruiters");
+    public static final JobsRetrieveRequestExpandItem OFFICES =
+            new JobsRetrieveRequestExpandItem(Value.OFFICES, "offices");
 
-    private final String value;
+    private final Value value;
 
-    JobsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    JobsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof JobsRetrieveRequestExpandItem
+                        && this.string.equals(((JobsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case JOB_POSTINGS:
+                return visitor.visitJobPostings();
+            case DEPARTMENTS:
+                return visitor.visitDepartments();
+            case HIRING_MANAGERS:
+                return visitor.visitHiringManagers();
+            case RECRUITERS:
+                return visitor.visitRecruiters();
+            case OFFICES:
+                return visitor.visitOffices();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static JobsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "job_postings":
+                return JOB_POSTINGS;
+            case "departments":
+                return DEPARTMENTS;
+            case "hiring_managers":
+                return HIRING_MANAGERS;
+            case "recruiters":
+                return RECRUITERS;
+            case "offices":
+                return OFFICES;
+            default:
+                return new JobsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        DEPARTMENTS,
+
+        HIRING_MANAGERS,
+
+        JOB_POSTINGS,
+
+        OFFICES,
+
+        RECRUITERS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitDepartments();
+
+        T visitHiringManagers();
+
+        T visitJobPostings();
+
+        T visitOffices();
+
+        T visitRecruiters();
+
+        T visitUnknown(String unknownType);
     }
 }

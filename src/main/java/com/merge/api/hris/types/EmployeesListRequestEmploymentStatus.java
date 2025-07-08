@@ -3,24 +3,95 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmployeesListRequestEmploymentStatus {
-    ACTIVE("ACTIVE"),
+public final class EmployeesListRequestEmploymentStatus {
+    public static final EmployeesListRequestEmploymentStatus ACTIVE =
+            new EmployeesListRequestEmploymentStatus(Value.ACTIVE, "ACTIVE");
 
-    INACTIVE("INACTIVE"),
+    public static final EmployeesListRequestEmploymentStatus INACTIVE =
+            new EmployeesListRequestEmploymentStatus(Value.INACTIVE, "INACTIVE");
 
-    PENDING("PENDING");
+    public static final EmployeesListRequestEmploymentStatus PENDING =
+            new EmployeesListRequestEmploymentStatus(Value.PENDING, "PENDING");
 
-    private final String value;
+    private final Value value;
 
-    EmployeesListRequestEmploymentStatus(String value) {
+    private final String string;
+
+    EmployeesListRequestEmploymentStatus(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmployeesListRequestEmploymentStatus
+                        && this.string.equals(((EmployeesListRequestEmploymentStatus) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACTIVE:
+                return visitor.visitActive();
+            case INACTIVE:
+                return visitor.visitInactive();
+            case PENDING:
+                return visitor.visitPending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmployeesListRequestEmploymentStatus valueOf(String value) {
+        switch (value) {
+            case "ACTIVE":
+                return ACTIVE;
+            case "INACTIVE":
+                return INACTIVE;
+            case "PENDING":
+                return PENDING;
+            default:
+                return new EmployeesListRequestEmploymentStatus(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACTIVE,
+
+        INACTIVE,
+
+        PENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitActive();
+
+        T visitInactive();
+
+        T visitPending();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,30 +3,121 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum StatusFd5Enum {
-    SYNCING("SYNCING"),
+public final class StatusFd5Enum {
+    public static final StatusFd5Enum DISABLED = new StatusFd5Enum(Value.DISABLED, "DISABLED");
 
-    DONE("DONE"),
+    public static final StatusFd5Enum SYNCING = new StatusFd5Enum(Value.SYNCING, "SYNCING");
 
-    FAILED("FAILED"),
+    public static final StatusFd5Enum PAUSED = new StatusFd5Enum(Value.PAUSED, "PAUSED");
 
-    DISABLED("DISABLED"),
+    public static final StatusFd5Enum DONE = new StatusFd5Enum(Value.DONE, "DONE");
 
-    PAUSED("PAUSED"),
+    public static final StatusFd5Enum FAILED = new StatusFd5Enum(Value.FAILED, "FAILED");
 
-    PARTIALLY_SYNCED("PARTIALLY_SYNCED");
+    public static final StatusFd5Enum PARTIALLY_SYNCED = new StatusFd5Enum(Value.PARTIALLY_SYNCED, "PARTIALLY_SYNCED");
 
-    private final String value;
+    private final Value value;
 
-    StatusFd5Enum(String value) {
+    private final String string;
+
+    StatusFd5Enum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof StatusFd5Enum && this.string.equals(((StatusFd5Enum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DISABLED:
+                return visitor.visitDisabled();
+            case SYNCING:
+                return visitor.visitSyncing();
+            case PAUSED:
+                return visitor.visitPaused();
+            case DONE:
+                return visitor.visitDone();
+            case FAILED:
+                return visitor.visitFailed();
+            case PARTIALLY_SYNCED:
+                return visitor.visitPartiallySynced();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static StatusFd5Enum valueOf(String value) {
+        switch (value) {
+            case "DISABLED":
+                return DISABLED;
+            case "SYNCING":
+                return SYNCING;
+            case "PAUSED":
+                return PAUSED;
+            case "DONE":
+                return DONE;
+            case "FAILED":
+                return FAILED;
+            case "PARTIALLY_SYNCED":
+                return PARTIALLY_SYNCED;
+            default:
+                return new StatusFd5Enum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        SYNCING,
+
+        DONE,
+
+        FAILED,
+
+        DISABLED,
+
+        PAUSED,
+
+        PARTIALLY_SYNCED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitSyncing();
+
+        T visitDone();
+
+        T visitFailed();
+
+        T visitDisabled();
+
+        T visitPaused();
+
+        T visitPartiallySynced();
+
+        T visitUnknown(String unknownType);
     }
 }

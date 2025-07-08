@@ -3,24 +3,94 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CommentsListRequestExpandItem {
-    CONTACT("contact"),
+public final class CommentsListRequestExpandItem {
+    public static final CommentsListRequestExpandItem TICKET =
+            new CommentsListRequestExpandItem(Value.TICKET, "ticket");
 
-    TICKET("ticket"),
+    public static final CommentsListRequestExpandItem USER = new CommentsListRequestExpandItem(Value.USER, "user");
 
-    USER("user");
+    public static final CommentsListRequestExpandItem CONTACT =
+            new CommentsListRequestExpandItem(Value.CONTACT, "contact");
 
-    private final String value;
+    private final Value value;
 
-    CommentsListRequestExpandItem(String value) {
+    private final String string;
+
+    CommentsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CommentsListRequestExpandItem
+                        && this.string.equals(((CommentsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case TICKET:
+                return visitor.visitTicket();
+            case USER:
+                return visitor.visitUser();
+            case CONTACT:
+                return visitor.visitContact();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CommentsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "ticket":
+                return TICKET;
+            case "user":
+                return USER;
+            case "contact":
+                return CONTACT;
+            default:
+                return new CommentsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CONTACT,
+
+        TICKET,
+
+        USER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitContact();
+
+        T visitTicket();
+
+        T visitUser();
+
+        T visitUnknown(String unknownType);
     }
 }
