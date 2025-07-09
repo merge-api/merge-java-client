@@ -3,32 +3,139 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PaymentsRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class PaymentsRetrieveRequestExpandItem {
+    public static final PaymentsRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new PaymentsRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final PaymentsRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new PaymentsRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    APPLIED_TO_LINES("applied_to_lines"),
+    public static final PaymentsRetrieveRequestExpandItem ACCOUNT =
+            new PaymentsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    COMPANY("company"),
+    public static final PaymentsRetrieveRequestExpandItem APPLIED_TO_LINES =
+            new PaymentsRetrieveRequestExpandItem(Value.APPLIED_TO_LINES, "applied_to_lines");
 
-    CONTACT("contact"),
+    public static final PaymentsRetrieveRequestExpandItem CONTACT =
+            new PaymentsRetrieveRequestExpandItem(Value.CONTACT, "contact");
 
-    PAYMENT_METHOD("payment_method"),
+    public static final PaymentsRetrieveRequestExpandItem PAYMENT_METHOD =
+            new PaymentsRetrieveRequestExpandItem(Value.PAYMENT_METHOD, "payment_method");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final PaymentsRetrieveRequestExpandItem COMPANY =
+            new PaymentsRetrieveRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    PaymentsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    PaymentsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PaymentsRetrieveRequestExpandItem
+                        && this.string.equals(((PaymentsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case APPLIED_TO_LINES:
+                return visitor.visitAppliedToLines();
+            case CONTACT:
+                return visitor.visitContact();
+            case PAYMENT_METHOD:
+                return visitor.visitPaymentMethod();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PaymentsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "account":
+                return ACCOUNT;
+            case "applied_to_lines":
+                return APPLIED_TO_LINES;
+            case "contact":
+                return CONTACT;
+            case "payment_method":
+                return PAYMENT_METHOD;
+            case "company":
+                return COMPANY;
+            default:
+                return new PaymentsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES,
+
+        COMPANY,
+
+        CONTACT,
+
+        PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountingPeriod();
+
+        T visitAppliedToLines();
+
+        T visitCompany();
+
+        T visitContact();
+
+        T visitPaymentMethod();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,32 +3,139 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PurchaseOrdersListRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class PurchaseOrdersListRequestExpandItem {
+    public static final PurchaseOrdersListRequestExpandItem DELIVERY_ADDRESS =
+            new PurchaseOrdersListRequestExpandItem(Value.DELIVERY_ADDRESS, "delivery_address");
 
-    COMPANY("company"),
+    public static final PurchaseOrdersListRequestExpandItem ACCOUNTING_PERIOD =
+            new PurchaseOrdersListRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    DELIVERY_ADDRESS("delivery_address"),
+    public static final PurchaseOrdersListRequestExpandItem LINE_ITEMS =
+            new PurchaseOrdersListRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    LINE_ITEMS("line_items"),
+    public static final PurchaseOrdersListRequestExpandItem TRACKING_CATEGORIES =
+            new PurchaseOrdersListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    PAYMENT_TERM("payment_term"),
+    public static final PurchaseOrdersListRequestExpandItem VENDOR =
+            new PurchaseOrdersListRequestExpandItem(Value.VENDOR, "vendor");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final PurchaseOrdersListRequestExpandItem PAYMENT_TERM =
+            new PurchaseOrdersListRequestExpandItem(Value.PAYMENT_TERM, "payment_term");
 
-    VENDOR("vendor");
+    public static final PurchaseOrdersListRequestExpandItem COMPANY =
+            new PurchaseOrdersListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    PurchaseOrdersListRequestExpandItem(String value) {
+    private final String string;
+
+    PurchaseOrdersListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PurchaseOrdersListRequestExpandItem
+                        && this.string.equals(((PurchaseOrdersListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DELIVERY_ADDRESS:
+                return visitor.visitDeliveryAddress();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case VENDOR:
+                return visitor.visitVendor();
+            case PAYMENT_TERM:
+                return visitor.visitPaymentTerm();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PurchaseOrdersListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "delivery_address":
+                return DELIVERY_ADDRESS;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "vendor":
+                return VENDOR;
+            case "payment_term":
+                return PAYMENT_TERM;
+            case "company":
+                return COMPANY;
+            default:
+                return new PurchaseOrdersListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        DELIVERY_ADDRESS,
+
+        LINE_ITEMS,
+
+        PAYMENT_TERM,
+
+        TRACKING_CATEGORIES,
+
+        VENDOR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitDeliveryAddress();
+
+        T visitLineItems();
+
+        T visitPaymentTerm();
+
+        T visitTrackingCategories();
+
+        T visitVendor();
+
+        T visitUnknown(String unknownType);
     }
 }

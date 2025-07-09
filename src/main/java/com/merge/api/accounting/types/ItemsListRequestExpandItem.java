@@ -3,28 +3,116 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ItemsListRequestExpandItem {
-    COMPANY("company"),
+public final class ItemsListRequestExpandItem {
+    public static final ItemsListRequestExpandItem PURCHASE_ACCOUNT =
+            new ItemsListRequestExpandItem(Value.PURCHASE_ACCOUNT, "purchase_account");
 
-    PURCHASE_ACCOUNT("purchase_account"),
+    public static final ItemsListRequestExpandItem SALES_TAX_RATE =
+            new ItemsListRequestExpandItem(Value.SALES_TAX_RATE, "sales_tax_rate");
 
-    PURCHASE_TAX_RATE("purchase_tax_rate"),
+    public static final ItemsListRequestExpandItem PURCHASE_TAX_RATE =
+            new ItemsListRequestExpandItem(Value.PURCHASE_TAX_RATE, "purchase_tax_rate");
 
-    SALES_ACCOUNT("sales_account"),
+    public static final ItemsListRequestExpandItem SALES_ACCOUNT =
+            new ItemsListRequestExpandItem(Value.SALES_ACCOUNT, "sales_account");
 
-    SALES_TAX_RATE("sales_tax_rate");
+    public static final ItemsListRequestExpandItem COMPANY = new ItemsListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    ItemsListRequestExpandItem(String value) {
+    private final String string;
+
+    ItemsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ItemsListRequestExpandItem
+                        && this.string.equals(((ItemsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PURCHASE_ACCOUNT:
+                return visitor.visitPurchaseAccount();
+            case SALES_TAX_RATE:
+                return visitor.visitSalesTaxRate();
+            case PURCHASE_TAX_RATE:
+                return visitor.visitPurchaseTaxRate();
+            case SALES_ACCOUNT:
+                return visitor.visitSalesAccount();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ItemsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "purchase_account":
+                return PURCHASE_ACCOUNT;
+            case "sales_tax_rate":
+                return SALES_TAX_RATE;
+            case "purchase_tax_rate":
+                return PURCHASE_TAX_RATE;
+            case "sales_account":
+                return SALES_ACCOUNT;
+            case "company":
+                return COMPANY;
+            default:
+                return new ItemsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COMPANY,
+
+        PURCHASE_ACCOUNT,
+
+        PURCHASE_TAX_RATE,
+
+        SALES_ACCOUNT,
+
+        SALES_TAX_RATE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCompany();
+
+        T visitPurchaseAccount();
+
+        T visitPurchaseTaxRate();
+
+        T visitSalesAccount();
+
+        T visitSalesTaxRate();
+
+        T visitUnknown(String unknownType);
     }
 }

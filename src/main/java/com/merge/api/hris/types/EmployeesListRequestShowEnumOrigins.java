@@ -3,48 +3,234 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmployeesListRequestShowEnumOrigins {
-    EMPLOYMENT_STATUS("employment_status"),
+public final class EmployeesListRequestShowEnumOrigins {
+    public static final EmployeesListRequestShowEnumOrigins GENDER =
+            new EmployeesListRequestShowEnumOrigins(Value.GENDER, "gender");
 
-    EMPLOYMENT_STATUS_ETHNICITY("employment_status,ethnicity"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS, "employment_status,gender,marital_status");
 
-    EMPLOYMENT_STATUS_ETHNICITY_GENDER("employment_status,ethnicity,gender"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS,
+                    "employment_status,ethnicity,gender,marital_status");
 
-    EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS("employment_status,ethnicity,gender,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_STATUS_MARITAL_STATUS, "employment_status,marital_status");
 
-    EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS("employment_status,ethnicity,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins ETHNICITY_GENDER =
+            new EmployeesListRequestShowEnumOrigins(Value.ETHNICITY_GENDER, "ethnicity,gender");
 
-    EMPLOYMENT_STATUS_GENDER("employment_status,gender"),
+    public static final EmployeesListRequestShowEnumOrigins GENDER_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(Value.GENDER_MARITAL_STATUS, "gender,marital_status");
 
-    EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS("employment_status,gender,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_ETHNICITY =
+            new EmployeesListRequestShowEnumOrigins(Value.EMPLOYMENT_STATUS_ETHNICITY, "employment_status,ethnicity");
 
-    EMPLOYMENT_STATUS_MARITAL_STATUS("employment_status,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins ETHNICITY =
+            new EmployeesListRequestShowEnumOrigins(Value.ETHNICITY, "ethnicity");
 
-    ETHNICITY("ethnicity"),
+    public static final EmployeesListRequestShowEnumOrigins MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(Value.MARITAL_STATUS, "marital_status");
 
-    ETHNICITY_GENDER("ethnicity,gender"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS =
+            new EmployeesListRequestShowEnumOrigins(Value.EMPLOYMENT_STATUS, "employment_status");
 
-    ETHNICITY_GENDER_MARITAL_STATUS("ethnicity,gender,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS, "employment_status,ethnicity,marital_status");
 
-    ETHNICITY_MARITAL_STATUS("ethnicity,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_GENDER =
+            new EmployeesListRequestShowEnumOrigins(Value.EMPLOYMENT_STATUS_GENDER, "employment_status,gender");
 
-    GENDER("gender"),
+    public static final EmployeesListRequestShowEnumOrigins ETHNICITY_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(Value.ETHNICITY_MARITAL_STATUS, "ethnicity,marital_status");
 
-    GENDER_MARITAL_STATUS("gender,marital_status"),
+    public static final EmployeesListRequestShowEnumOrigins EMPLOYMENT_STATUS_ETHNICITY_GENDER =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_STATUS_ETHNICITY_GENDER, "employment_status,ethnicity,gender");
 
-    MARITAL_STATUS("marital_status");
+    public static final EmployeesListRequestShowEnumOrigins ETHNICITY_GENDER_MARITAL_STATUS =
+            new EmployeesListRequestShowEnumOrigins(
+                    Value.ETHNICITY_GENDER_MARITAL_STATUS, "ethnicity,gender,marital_status");
 
-    private final String value;
+    private final Value value;
 
-    EmployeesListRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    EmployeesListRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmployeesListRequestShowEnumOrigins
+                        && this.string.equals(((EmployeesListRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case GENDER:
+                return visitor.visitGender();
+            case EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS:
+                return visitor.visitEmploymentStatusGenderMaritalStatus();
+            case EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS:
+                return visitor.visitEmploymentStatusEthnicityGenderMaritalStatus();
+            case EMPLOYMENT_STATUS_MARITAL_STATUS:
+                return visitor.visitEmploymentStatusMaritalStatus();
+            case ETHNICITY_GENDER:
+                return visitor.visitEthnicityGender();
+            case GENDER_MARITAL_STATUS:
+                return visitor.visitGenderMaritalStatus();
+            case EMPLOYMENT_STATUS_ETHNICITY:
+                return visitor.visitEmploymentStatusEthnicity();
+            case ETHNICITY:
+                return visitor.visitEthnicity();
+            case MARITAL_STATUS:
+                return visitor.visitMaritalStatus();
+            case EMPLOYMENT_STATUS:
+                return visitor.visitEmploymentStatus();
+            case EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS:
+                return visitor.visitEmploymentStatusEthnicityMaritalStatus();
+            case EMPLOYMENT_STATUS_GENDER:
+                return visitor.visitEmploymentStatusGender();
+            case ETHNICITY_MARITAL_STATUS:
+                return visitor.visitEthnicityMaritalStatus();
+            case EMPLOYMENT_STATUS_ETHNICITY_GENDER:
+                return visitor.visitEmploymentStatusEthnicityGender();
+            case ETHNICITY_GENDER_MARITAL_STATUS:
+                return visitor.visitEthnicityGenderMaritalStatus();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmployeesListRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "gender":
+                return GENDER;
+            case "employment_status,gender,marital_status":
+                return EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS;
+            case "employment_status,ethnicity,gender,marital_status":
+                return EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS;
+            case "employment_status,marital_status":
+                return EMPLOYMENT_STATUS_MARITAL_STATUS;
+            case "ethnicity,gender":
+                return ETHNICITY_GENDER;
+            case "gender,marital_status":
+                return GENDER_MARITAL_STATUS;
+            case "employment_status,ethnicity":
+                return EMPLOYMENT_STATUS_ETHNICITY;
+            case "ethnicity":
+                return ETHNICITY;
+            case "marital_status":
+                return MARITAL_STATUS;
+            case "employment_status":
+                return EMPLOYMENT_STATUS;
+            case "employment_status,ethnicity,marital_status":
+                return EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS;
+            case "employment_status,gender":
+                return EMPLOYMENT_STATUS_GENDER;
+            case "ethnicity,marital_status":
+                return ETHNICITY_MARITAL_STATUS;
+            case "employment_status,ethnicity,gender":
+                return EMPLOYMENT_STATUS_ETHNICITY_GENDER;
+            case "ethnicity,gender,marital_status":
+                return ETHNICITY_GENDER_MARITAL_STATUS;
+            default:
+                return new EmployeesListRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EMPLOYMENT_STATUS,
+
+        EMPLOYMENT_STATUS_ETHNICITY,
+
+        EMPLOYMENT_STATUS_ETHNICITY_GENDER,
+
+        EMPLOYMENT_STATUS_ETHNICITY_GENDER_MARITAL_STATUS,
+
+        EMPLOYMENT_STATUS_ETHNICITY_MARITAL_STATUS,
+
+        EMPLOYMENT_STATUS_GENDER,
+
+        EMPLOYMENT_STATUS_GENDER_MARITAL_STATUS,
+
+        EMPLOYMENT_STATUS_MARITAL_STATUS,
+
+        ETHNICITY,
+
+        ETHNICITY_GENDER,
+
+        ETHNICITY_GENDER_MARITAL_STATUS,
+
+        ETHNICITY_MARITAL_STATUS,
+
+        GENDER,
+
+        GENDER_MARITAL_STATUS,
+
+        MARITAL_STATUS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEmploymentStatus();
+
+        T visitEmploymentStatusEthnicity();
+
+        T visitEmploymentStatusEthnicityGender();
+
+        T visitEmploymentStatusEthnicityGenderMaritalStatus();
+
+        T visitEmploymentStatusEthnicityMaritalStatus();
+
+        T visitEmploymentStatusGender();
+
+        T visitEmploymentStatusGenderMaritalStatus();
+
+        T visitEmploymentStatusMaritalStatus();
+
+        T visitEthnicity();
+
+        T visitEthnicityGender();
+
+        T visitEthnicityGenderMaritalStatus();
+
+        T visitEthnicityMaritalStatus();
+
+        T visitGender();
+
+        T visitGenderMaritalStatus();
+
+        T visitMaritalStatus();
+
+        T visitUnknown(String unknownType);
     }
 }

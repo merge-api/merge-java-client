@@ -3,24 +3,95 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum LocationsListRequestShowEnumOrigins {
-    COUNTRY("country"),
+public final class LocationsListRequestShowEnumOrigins {
+    public static final LocationsListRequestShowEnumOrigins COUNTRY =
+            new LocationsListRequestShowEnumOrigins(Value.COUNTRY, "country");
 
-    COUNTRY_LOCATION_TYPE("country,location_type"),
+    public static final LocationsListRequestShowEnumOrigins LOCATION_TYPE =
+            new LocationsListRequestShowEnumOrigins(Value.LOCATION_TYPE, "location_type");
 
-    LOCATION_TYPE("location_type");
+    public static final LocationsListRequestShowEnumOrigins COUNTRY_LOCATION_TYPE =
+            new LocationsListRequestShowEnumOrigins(Value.COUNTRY_LOCATION_TYPE, "country,location_type");
 
-    private final String value;
+    private final Value value;
 
-    LocationsListRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    LocationsListRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof LocationsListRequestShowEnumOrigins
+                        && this.string.equals(((LocationsListRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case COUNTRY:
+                return visitor.visitCountry();
+            case LOCATION_TYPE:
+                return visitor.visitLocationType();
+            case COUNTRY_LOCATION_TYPE:
+                return visitor.visitCountryLocationType();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static LocationsListRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "country":
+                return COUNTRY;
+            case "location_type":
+                return LOCATION_TYPE;
+            case "country,location_type":
+                return COUNTRY_LOCATION_TYPE;
+            default:
+                return new LocationsListRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COUNTRY,
+
+        COUNTRY_LOCATION_TYPE,
+
+        LOCATION_TYPE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCountry();
+
+        T visitCountryLocationType();
+
+        T visitLocationType();
+
+        T visitUnknown(String unknownType);
     }
 }

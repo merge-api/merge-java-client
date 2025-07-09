@@ -3,24 +3,95 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum CreditNotesRetrieveRequestShowEnumOrigins {
-    STATUS("status"),
+public final class CreditNotesRetrieveRequestShowEnumOrigins {
+    public static final CreditNotesRetrieveRequestShowEnumOrigins STATUS =
+            new CreditNotesRetrieveRequestShowEnumOrigins(Value.STATUS, "status");
 
-    STATUS_TYPE("status,type"),
+    public static final CreditNotesRetrieveRequestShowEnumOrigins STATUS_TYPE =
+            new CreditNotesRetrieveRequestShowEnumOrigins(Value.STATUS_TYPE, "status,type");
 
-    TYPE("type");
+    public static final CreditNotesRetrieveRequestShowEnumOrigins TYPE =
+            new CreditNotesRetrieveRequestShowEnumOrigins(Value.TYPE, "type");
 
-    private final String value;
+    private final Value value;
 
-    CreditNotesRetrieveRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    CreditNotesRetrieveRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof CreditNotesRetrieveRequestShowEnumOrigins
+                        && this.string.equals(((CreditNotesRetrieveRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case STATUS:
+                return visitor.visitStatus();
+            case STATUS_TYPE:
+                return visitor.visitStatusType();
+            case TYPE:
+                return visitor.visitType();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static CreditNotesRetrieveRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "status":
+                return STATUS;
+            case "status,type":
+                return STATUS_TYPE;
+            case "type":
+                return TYPE;
+            default:
+                return new CreditNotesRetrieveRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        STATUS,
+
+        STATUS_TYPE,
+
+        TYPE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitStatus();
+
+        T visitStatusType();
+
+        T visitType();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,26 +3,101 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum AttachmentTypeEnum {
-    RESUME("RESUME"),
+public final class AttachmentTypeEnum {
+    public static final AttachmentTypeEnum COVER_LETTER = new AttachmentTypeEnum(Value.COVER_LETTER, "COVER_LETTER");
 
-    COVER_LETTER("COVER_LETTER"),
+    public static final AttachmentTypeEnum RESUME = new AttachmentTypeEnum(Value.RESUME, "RESUME");
 
-    OFFER_LETTER("OFFER_LETTER"),
+    public static final AttachmentTypeEnum OTHER = new AttachmentTypeEnum(Value.OTHER, "OTHER");
 
-    OTHER("OTHER");
+    public static final AttachmentTypeEnum OFFER_LETTER = new AttachmentTypeEnum(Value.OFFER_LETTER, "OFFER_LETTER");
 
-    private final String value;
+    private final Value value;
 
-    AttachmentTypeEnum(String value) {
+    private final String string;
+
+    AttachmentTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof AttachmentTypeEnum && this.string.equals(((AttachmentTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case COVER_LETTER:
+                return visitor.visitCoverLetter();
+            case RESUME:
+                return visitor.visitResume();
+            case OTHER:
+                return visitor.visitOther();
+            case OFFER_LETTER:
+                return visitor.visitOfferLetter();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static AttachmentTypeEnum valueOf(String value) {
+        switch (value) {
+            case "COVER_LETTER":
+                return COVER_LETTER;
+            case "RESUME":
+                return RESUME;
+            case "OTHER":
+                return OTHER;
+            case "OFFER_LETTER":
+                return OFFER_LETTER;
+            default:
+                return new AttachmentTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        RESUME,
+
+        COVER_LETTER,
+
+        OFFER_LETTER,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitResume();
+
+        T visitCoverLetter();
+
+        T visitOfferLetter();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

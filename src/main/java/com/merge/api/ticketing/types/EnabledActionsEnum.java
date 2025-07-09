@@ -3,22 +3,81 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EnabledActionsEnum {
-    READ("READ"),
+public final class EnabledActionsEnum {
+    public static final EnabledActionsEnum READ = new EnabledActionsEnum(Value.READ, "READ");
 
-    WRITE("WRITE");
+    public static final EnabledActionsEnum WRITE = new EnabledActionsEnum(Value.WRITE, "WRITE");
 
-    private final String value;
+    private final Value value;
 
-    EnabledActionsEnum(String value) {
+    private final String string;
+
+    EnabledActionsEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EnabledActionsEnum && this.string.equals(((EnabledActionsEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case READ:
+                return visitor.visitRead();
+            case WRITE:
+                return visitor.visitWrite();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EnabledActionsEnum valueOf(String value) {
+        switch (value) {
+            case "READ":
+                return READ;
+            case "WRITE":
+                return WRITE;
+            default:
+                return new EnabledActionsEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        READ,
+
+        WRITE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRead();
+
+        T visitWrite();
+
+        T visitUnknown(String unknownType);
     }
 }

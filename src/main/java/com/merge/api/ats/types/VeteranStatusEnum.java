@@ -3,25 +3,96 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum VeteranStatusEnum {
-    I_AM_NOT_A_PROTECTED_VETERAN("I_AM_NOT_A_PROTECTED_VETERAN"),
+public final class VeteranStatusEnum {
+    public static final VeteranStatusEnum I_DONT_WISH_TO_ANSWER =
+            new VeteranStatusEnum(Value.I_DONT_WISH_TO_ANSWER, "I_DONT_WISH_TO_ANSWER");
 
-    I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN(
-            "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN"),
+    public static final VeteranStatusEnum I_AM_NOT_A_PROTECTED_VETERAN =
+            new VeteranStatusEnum(Value.I_AM_NOT_A_PROTECTED_VETERAN, "I_AM_NOT_A_PROTECTED_VETERAN");
 
-    I_DONT_WISH_TO_ANSWER("I_DONT_WISH_TO_ANSWER");
+    public static final VeteranStatusEnum I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN =
+            new VeteranStatusEnum(
+                    Value.I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN,
+                    "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN");
 
-    private final String value;
+    private final Value value;
 
-    VeteranStatusEnum(String value) {
+    private final String string;
+
+    VeteranStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof VeteranStatusEnum && this.string.equals(((VeteranStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case I_DONT_WISH_TO_ANSWER:
+                return visitor.visitIDontWishToAnswer();
+            case I_AM_NOT_A_PROTECTED_VETERAN:
+                return visitor.visitIAmNotAProtectedVeteran();
+            case I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN:
+                return visitor.visitIIdentifyAsOneOrMoreOfTheClassificationsOfAProtectedVeteran();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static VeteranStatusEnum valueOf(String value) {
+        switch (value) {
+            case "I_DONT_WISH_TO_ANSWER":
+                return I_DONT_WISH_TO_ANSWER;
+            case "I_AM_NOT_A_PROTECTED_VETERAN":
+                return I_AM_NOT_A_PROTECTED_VETERAN;
+            case "I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN":
+                return I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN;
+            default:
+                return new VeteranStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        I_AM_NOT_A_PROTECTED_VETERAN,
+
+        I_IDENTIFY_AS_ONE_OR_MORE_OF_THE_CLASSIFICATIONS_OF_A_PROTECTED_VETERAN,
+
+        I_DONT_WISH_TO_ANSWER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitIAmNotAProtectedVeteran();
+
+        T visitIIdentifyAsOneOrMoreOfTheClassificationsOfAProtectedVeteran();
+
+        T visitIDontWishToAnswer();
+
+        T visitUnknown(String unknownType);
     }
 }

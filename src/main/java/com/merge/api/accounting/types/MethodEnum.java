@@ -3,32 +3,130 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum MethodEnum {
-    GET("GET"),
+public final class MethodEnum {
+    public static final MethodEnum OPTIONS = new MethodEnum(Value.OPTIONS, "OPTIONS");
 
-    OPTIONS("OPTIONS"),
+    public static final MethodEnum PATCH = new MethodEnum(Value.PATCH, "PATCH");
 
-    HEAD("HEAD"),
+    public static final MethodEnum DELETE = new MethodEnum(Value.DELETE, "DELETE");
 
-    POST("POST"),
+    public static final MethodEnum GET = new MethodEnum(Value.GET, "GET");
 
-    PUT("PUT"),
+    public static final MethodEnum PUT = new MethodEnum(Value.PUT, "PUT");
 
-    PATCH("PATCH"),
+    public static final MethodEnum HEAD = new MethodEnum(Value.HEAD, "HEAD");
 
-    DELETE("DELETE");
+    public static final MethodEnum POST = new MethodEnum(Value.POST, "POST");
 
-    private final String value;
+    private final Value value;
 
-    MethodEnum(String value) {
+    private final String string;
+
+    MethodEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof MethodEnum && this.string.equals(((MethodEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OPTIONS:
+                return visitor.visitOptions();
+            case PATCH:
+                return visitor.visitPatch();
+            case DELETE:
+                return visitor.visitDelete();
+            case GET:
+                return visitor.visitGet();
+            case PUT:
+                return visitor.visitPut();
+            case HEAD:
+                return visitor.visitHead();
+            case POST:
+                return visitor.visitPost();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static MethodEnum valueOf(String value) {
+        switch (value) {
+            case "OPTIONS":
+                return OPTIONS;
+            case "PATCH":
+                return PATCH;
+            case "DELETE":
+                return DELETE;
+            case "GET":
+                return GET;
+            case "PUT":
+                return PUT;
+            case "HEAD":
+                return HEAD;
+            case "POST":
+                return POST;
+            default:
+                return new MethodEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        GET,
+
+        OPTIONS,
+
+        HEAD,
+
+        POST,
+
+        PUT,
+
+        PATCH,
+
+        DELETE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitGet();
+
+        T visitOptions();
+
+        T visitHead();
+
+        T visitPost();
+
+        T visitPut();
+
+        T visitPatch();
+
+        T visitDelete();
+
+        T visitUnknown(String unknownType);
     }
 }

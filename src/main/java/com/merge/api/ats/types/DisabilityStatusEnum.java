@@ -3,24 +3,96 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum DisabilityStatusEnum {
-    YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY("YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY"),
+public final class DisabilityStatusEnum {
+    public static final DisabilityStatusEnum I_DONT_WISH_TO_ANSWER =
+            new DisabilityStatusEnum(Value.I_DONT_WISH_TO_ANSWER, "I_DONT_WISH_TO_ANSWER");
 
-    NO_I_DONT_HAVE_A_DISABILITY("NO_I_DONT_HAVE_A_DISABILITY"),
+    public static final DisabilityStatusEnum YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY =
+            new DisabilityStatusEnum(
+                    Value.YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY,
+                    "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY");
 
-    I_DONT_WISH_TO_ANSWER("I_DONT_WISH_TO_ANSWER");
+    public static final DisabilityStatusEnum NO_I_DONT_HAVE_A_DISABILITY =
+            new DisabilityStatusEnum(Value.NO_I_DONT_HAVE_A_DISABILITY, "NO_I_DONT_HAVE_A_DISABILITY");
 
-    private final String value;
+    private final Value value;
 
-    DisabilityStatusEnum(String value) {
+    private final String string;
+
+    DisabilityStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof DisabilityStatusEnum && this.string.equals(((DisabilityStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case I_DONT_WISH_TO_ANSWER:
+                return visitor.visitIDontWishToAnswer();
+            case YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY:
+                return visitor.visitYesIHaveADisabilityOrPreviouslyHadADisability();
+            case NO_I_DONT_HAVE_A_DISABILITY:
+                return visitor.visitNoIDontHaveADisability();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static DisabilityStatusEnum valueOf(String value) {
+        switch (value) {
+            case "I_DONT_WISH_TO_ANSWER":
+                return I_DONT_WISH_TO_ANSWER;
+            case "YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY":
+                return YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY;
+            case "NO_I_DONT_HAVE_A_DISABILITY":
+                return NO_I_DONT_HAVE_A_DISABILITY;
+            default:
+                return new DisabilityStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        YES_I_HAVE_A_DISABILITY_OR_PREVIOUSLY_HAD_A_DISABILITY,
+
+        NO_I_DONT_HAVE_A_DISABILITY,
+
+        I_DONT_WISH_TO_ANSWER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitYesIHaveADisabilityOrPreviouslyHadADisability();
+
+        T visitNoIDontHaveADisability();
+
+        T visitIDontWishToAnswer();
+
+        T visitUnknown(String unknownType);
     }
 }

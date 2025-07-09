@@ -3,22 +3,83 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OffersListRequestExpandItem {
-    APPLICATION("application"),
+public final class OffersListRequestExpandItem {
+    public static final OffersListRequestExpandItem CREATOR = new OffersListRequestExpandItem(Value.CREATOR, "creator");
 
-    CREATOR("creator");
+    public static final OffersListRequestExpandItem APPLICATION =
+            new OffersListRequestExpandItem(Value.APPLICATION, "application");
 
-    private final String value;
+    private final Value value;
 
-    OffersListRequestExpandItem(String value) {
+    private final String string;
+
+    OffersListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OffersListRequestExpandItem
+                        && this.string.equals(((OffersListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CREATOR:
+                return visitor.visitCreator();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OffersListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "creator":
+                return CREATOR;
+            case "application":
+                return APPLICATION;
+            default:
+                return new OffersListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        CREATOR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitCreator();
+
+        T visitUnknown(String unknownType);
     }
 }

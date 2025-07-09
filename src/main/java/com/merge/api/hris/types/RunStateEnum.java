@@ -3,28 +3,110 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RunStateEnum {
-    PAID("PAID"),
+public final class RunStateEnum {
+    public static final RunStateEnum CLOSED = new RunStateEnum(Value.CLOSED, "CLOSED");
 
-    DRAFT("DRAFT"),
+    public static final RunStateEnum DRAFT = new RunStateEnum(Value.DRAFT, "DRAFT");
 
-    APPROVED("APPROVED"),
+    public static final RunStateEnum PAID = new RunStateEnum(Value.PAID, "PAID");
 
-    FAILED("FAILED"),
+    public static final RunStateEnum APPROVED = new RunStateEnum(Value.APPROVED, "APPROVED");
 
-    CLOSED("CLOSED");
+    public static final RunStateEnum FAILED = new RunStateEnum(Value.FAILED, "FAILED");
 
-    private final String value;
+    private final Value value;
 
-    RunStateEnum(String value) {
+    private final String string;
+
+    RunStateEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof RunStateEnum && this.string.equals(((RunStateEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CLOSED:
+                return visitor.visitClosed();
+            case DRAFT:
+                return visitor.visitDraft();
+            case PAID:
+                return visitor.visitPaid();
+            case APPROVED:
+                return visitor.visitApproved();
+            case FAILED:
+                return visitor.visitFailed();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RunStateEnum valueOf(String value) {
+        switch (value) {
+            case "CLOSED":
+                return CLOSED;
+            case "DRAFT":
+                return DRAFT;
+            case "PAID":
+                return PAID;
+            case "APPROVED":
+                return APPROVED;
+            case "FAILED":
+                return FAILED;
+            default:
+                return new RunStateEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        PAID,
+
+        DRAFT,
+
+        APPROVED,
+
+        FAILED,
+
+        CLOSED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitPaid();
+
+        T visitDraft();
+
+        T visitApproved();
+
+        T visitFailed();
+
+        T visitClosed();
+
+        T visitUnknown(String unknownType);
     }
 }

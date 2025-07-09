@@ -3,22 +3,84 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum GroupsRetrieveRequestExpandItem {
-    CHILD_GROUPS("child_groups"),
+public final class GroupsRetrieveRequestExpandItem {
+    public static final GroupsRetrieveRequestExpandItem CHILD_GROUPS =
+            new GroupsRetrieveRequestExpandItem(Value.CHILD_GROUPS, "child_groups");
 
-    USERS("users");
+    public static final GroupsRetrieveRequestExpandItem USERS =
+            new GroupsRetrieveRequestExpandItem(Value.USERS, "users");
 
-    private final String value;
+    private final Value value;
 
-    GroupsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    GroupsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof GroupsRetrieveRequestExpandItem
+                        && this.string.equals(((GroupsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CHILD_GROUPS:
+                return visitor.visitChildGroups();
+            case USERS:
+                return visitor.visitUsers();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static GroupsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "child_groups":
+                return CHILD_GROUPS;
+            case "users":
+                return USERS;
+            default:
+                return new GroupsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CHILD_GROUPS,
+
+        USERS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitChildGroups();
+
+        T visitUsers();
+
+        T visitUnknown(String unknownType);
     }
 }

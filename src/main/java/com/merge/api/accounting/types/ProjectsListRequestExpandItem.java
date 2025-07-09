@@ -3,22 +3,84 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum ProjectsListRequestExpandItem {
-    COMPANY("company"),
+public final class ProjectsListRequestExpandItem {
+    public static final ProjectsListRequestExpandItem CONTACT =
+            new ProjectsListRequestExpandItem(Value.CONTACT, "contact");
 
-    CONTACT("contact");
+    public static final ProjectsListRequestExpandItem COMPANY =
+            new ProjectsListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    ProjectsListRequestExpandItem(String value) {
+    private final String string;
+
+    ProjectsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof ProjectsListRequestExpandItem
+                        && this.string.equals(((ProjectsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CONTACT:
+                return visitor.visitContact();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static ProjectsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "contact":
+                return CONTACT;
+            case "company":
+                return COMPANY;
+            default:
+                return new ProjectsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        COMPANY,
+
+        CONTACT,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCompany();
+
+        T visitContact();
+
+        T visitUnknown(String unknownType);
     }
 }

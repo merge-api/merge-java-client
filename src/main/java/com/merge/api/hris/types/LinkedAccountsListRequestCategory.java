@@ -3,32 +3,137 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum LinkedAccountsListRequestCategory {
-    ACCOUNTING("accounting"),
+public final class LinkedAccountsListRequestCategory {
+    public static final LinkedAccountsListRequestCategory HRIS =
+            new LinkedAccountsListRequestCategory(Value.HRIS, "hris");
 
-    ATS("ats"),
+    public static final LinkedAccountsListRequestCategory TICKETING =
+            new LinkedAccountsListRequestCategory(Value.TICKETING, "ticketing");
 
-    CRM("crm"),
+    public static final LinkedAccountsListRequestCategory CRM = new LinkedAccountsListRequestCategory(Value.CRM, "crm");
 
-    FILESTORAGE("filestorage"),
+    public static final LinkedAccountsListRequestCategory FILESTORAGE =
+            new LinkedAccountsListRequestCategory(Value.FILESTORAGE, "filestorage");
 
-    HRIS("hris"),
+    public static final LinkedAccountsListRequestCategory ACCOUNTING =
+            new LinkedAccountsListRequestCategory(Value.ACCOUNTING, "accounting");
 
-    MKTG("mktg"),
+    public static final LinkedAccountsListRequestCategory MKTG =
+            new LinkedAccountsListRequestCategory(Value.MKTG, "mktg");
 
-    TICKETING("ticketing");
+    public static final LinkedAccountsListRequestCategory ATS = new LinkedAccountsListRequestCategory(Value.ATS, "ats");
 
-    private final String value;
+    private final Value value;
 
-    LinkedAccountsListRequestCategory(String value) {
+    private final String string;
+
+    LinkedAccountsListRequestCategory(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof LinkedAccountsListRequestCategory
+                        && this.string.equals(((LinkedAccountsListRequestCategory) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case HRIS:
+                return visitor.visitHris();
+            case TICKETING:
+                return visitor.visitTicketing();
+            case CRM:
+                return visitor.visitCrm();
+            case FILESTORAGE:
+                return visitor.visitFilestorage();
+            case ACCOUNTING:
+                return visitor.visitAccounting();
+            case MKTG:
+                return visitor.visitMktg();
+            case ATS:
+                return visitor.visitAts();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static LinkedAccountsListRequestCategory valueOf(String value) {
+        switch (value) {
+            case "hris":
+                return HRIS;
+            case "ticketing":
+                return TICKETING;
+            case "crm":
+                return CRM;
+            case "filestorage":
+                return FILESTORAGE;
+            case "accounting":
+                return ACCOUNTING;
+            case "mktg":
+                return MKTG;
+            case "ats":
+                return ATS;
+            default:
+                return new LinkedAccountsListRequestCategory(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING,
+
+        ATS,
+
+        CRM,
+
+        FILESTORAGE,
+
+        HRIS,
+
+        MKTG,
+
+        TICKETING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccounting();
+
+        T visitAts();
+
+        T visitCrm();
+
+        T visitFilestorage();
+
+        T visitHris();
+
+        T visitMktg();
+
+        T visitTicketing();
+
+        T visitUnknown(String unknownType);
     }
 }

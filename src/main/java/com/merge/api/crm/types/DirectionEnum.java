@@ -3,22 +3,81 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum DirectionEnum {
-    INBOUND("INBOUND"),
+public final class DirectionEnum {
+    public static final DirectionEnum OUTBOUND = new DirectionEnum(Value.OUTBOUND, "OUTBOUND");
 
-    OUTBOUND("OUTBOUND");
+    public static final DirectionEnum INBOUND = new DirectionEnum(Value.INBOUND, "INBOUND");
 
-    private final String value;
+    private final Value value;
 
-    DirectionEnum(String value) {
+    private final String string;
+
+    DirectionEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof DirectionEnum && this.string.equals(((DirectionEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OUTBOUND:
+                return visitor.visitOutbound();
+            case INBOUND:
+                return visitor.visitInbound();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static DirectionEnum valueOf(String value) {
+        switch (value) {
+            case "OUTBOUND":
+                return OUTBOUND;
+            case "INBOUND":
+                return INBOUND;
+            default:
+                return new DirectionEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        INBOUND,
+
+        OUTBOUND,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitInbound();
+
+        T visitOutbound();
+
+        T visitUnknown(String unknownType);
     }
 }

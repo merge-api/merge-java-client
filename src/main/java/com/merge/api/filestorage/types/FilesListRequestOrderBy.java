@@ -3,26 +3,106 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum FilesListRequestOrderBy {
-    CREATED_AT_DESCENDING("-created_at"),
+public final class FilesListRequestOrderBy {
+    public static final FilesListRequestOrderBy CREATED_AT_ASCENDING =
+            new FilesListRequestOrderBy(Value.CREATED_AT_ASCENDING, "created_at");
 
-    MODIFIED_AT_DESCENDING("-modified_at"),
+    public static final FilesListRequestOrderBy MODIFIED_AT_ASCENDING =
+            new FilesListRequestOrderBy(Value.MODIFIED_AT_ASCENDING, "modified_at");
 
-    CREATED_AT_ASCENDING("created_at"),
+    public static final FilesListRequestOrderBy CREATED_AT_DESCENDING =
+            new FilesListRequestOrderBy(Value.CREATED_AT_DESCENDING, "-created_at");
 
-    MODIFIED_AT_ASCENDING("modified_at");
+    public static final FilesListRequestOrderBy MODIFIED_AT_DESCENDING =
+            new FilesListRequestOrderBy(Value.MODIFIED_AT_DESCENDING, "-modified_at");
 
-    private final String value;
+    private final Value value;
 
-    FilesListRequestOrderBy(String value) {
+    private final String string;
+
+    FilesListRequestOrderBy(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof FilesListRequestOrderBy
+                        && this.string.equals(((FilesListRequestOrderBy) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CREATED_AT_ASCENDING:
+                return visitor.visitCreatedAtAscending();
+            case MODIFIED_AT_ASCENDING:
+                return visitor.visitModifiedAtAscending();
+            case CREATED_AT_DESCENDING:
+                return visitor.visitCreatedAtDescending();
+            case MODIFIED_AT_DESCENDING:
+                return visitor.visitModifiedAtDescending();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static FilesListRequestOrderBy valueOf(String value) {
+        switch (value) {
+            case "created_at":
+                return CREATED_AT_ASCENDING;
+            case "modified_at":
+                return MODIFIED_AT_ASCENDING;
+            case "-created_at":
+                return CREATED_AT_DESCENDING;
+            case "-modified_at":
+                return MODIFIED_AT_DESCENDING;
+            default:
+                return new FilesListRequestOrderBy(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        CREATED_AT_DESCENDING,
+
+        MODIFIED_AT_DESCENDING,
+
+        CREATED_AT_ASCENDING,
+
+        MODIFIED_AT_ASCENDING,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitCreatedAtDescending();
+
+        T visitModifiedAtDescending();
+
+        T visitCreatedAtAscending();
+
+        T visitModifiedAtAscending();
+
+        T visitUnknown(String unknownType);
     }
 }

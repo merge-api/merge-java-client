@@ -3,22 +3,81 @@
  */
 package com.merge.api.filestorage.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum IssueStatusEnum {
-    ONGOING("ONGOING"),
+public final class IssueStatusEnum {
+    public static final IssueStatusEnum ONGOING = new IssueStatusEnum(Value.ONGOING, "ONGOING");
 
-    RESOLVED("RESOLVED");
+    public static final IssueStatusEnum RESOLVED = new IssueStatusEnum(Value.RESOLVED, "RESOLVED");
 
-    private final String value;
+    private final Value value;
 
-    IssueStatusEnum(String value) {
+    private final String string;
+
+    IssueStatusEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof IssueStatusEnum && this.string.equals(((IssueStatusEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ONGOING:
+                return visitor.visitOngoing();
+            case RESOLVED:
+                return visitor.visitResolved();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static IssueStatusEnum valueOf(String value) {
+        switch (value) {
+            case "ONGOING":
+                return ONGOING;
+            case "RESOLVED":
+                return RESOLVED;
+            default:
+                return new IssueStatusEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ONGOING,
+
+        RESOLVED,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitOngoing();
+
+        T visitResolved();
+
+        T visitUnknown(String unknownType);
     }
 }

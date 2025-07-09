@@ -3,24 +3,95 @@
  */
 package com.merge.api.crm.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum OpportunitiesListRequestExpandItem {
-    ACCOUNT("account"),
+public final class OpportunitiesListRequestExpandItem {
+    public static final OpportunitiesListRequestExpandItem OWNER =
+            new OpportunitiesListRequestExpandItem(Value.OWNER, "owner");
 
-    OWNER("owner"),
+    public static final OpportunitiesListRequestExpandItem ACCOUNT =
+            new OpportunitiesListRequestExpandItem(Value.ACCOUNT, "account");
 
-    STAGE("stage");
+    public static final OpportunitiesListRequestExpandItem STAGE =
+            new OpportunitiesListRequestExpandItem(Value.STAGE, "stage");
 
-    private final String value;
+    private final Value value;
 
-    OpportunitiesListRequestExpandItem(String value) {
+    private final String string;
+
+    OpportunitiesListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof OpportunitiesListRequestExpandItem
+                        && this.string.equals(((OpportunitiesListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case OWNER:
+                return visitor.visitOwner();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case STAGE:
+                return visitor.visitStage();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static OpportunitiesListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "owner":
+                return OWNER;
+            case "account":
+                return ACCOUNT;
+            case "stage":
+                return STAGE;
+            default:
+                return new OpportunitiesListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        OWNER,
+
+        STAGE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitOwner();
+
+        T visitStage();
+
+        T visitUnknown(String unknownType);
     }
 }

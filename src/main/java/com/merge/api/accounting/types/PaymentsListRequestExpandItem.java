@@ -3,32 +3,139 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PaymentsListRequestExpandItem {
-    ACCOUNT("account"),
+public final class PaymentsListRequestExpandItem {
+    public static final PaymentsListRequestExpandItem ACCOUNTING_PERIOD =
+            new PaymentsListRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    ACCOUNTING_PERIOD("accounting_period"),
+    public static final PaymentsListRequestExpandItem TRACKING_CATEGORIES =
+            new PaymentsListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    APPLIED_TO_LINES("applied_to_lines"),
+    public static final PaymentsListRequestExpandItem ACCOUNT =
+            new PaymentsListRequestExpandItem(Value.ACCOUNT, "account");
 
-    COMPANY("company"),
+    public static final PaymentsListRequestExpandItem APPLIED_TO_LINES =
+            new PaymentsListRequestExpandItem(Value.APPLIED_TO_LINES, "applied_to_lines");
 
-    CONTACT("contact"),
+    public static final PaymentsListRequestExpandItem CONTACT =
+            new PaymentsListRequestExpandItem(Value.CONTACT, "contact");
 
-    PAYMENT_METHOD("payment_method"),
+    public static final PaymentsListRequestExpandItem PAYMENT_METHOD =
+            new PaymentsListRequestExpandItem(Value.PAYMENT_METHOD, "payment_method");
 
-    TRACKING_CATEGORIES("tracking_categories");
+    public static final PaymentsListRequestExpandItem COMPANY =
+            new PaymentsListRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    PaymentsListRequestExpandItem(String value) {
+    private final String string;
+
+    PaymentsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PaymentsListRequestExpandItem
+                        && this.string.equals(((PaymentsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case APPLIED_TO_LINES:
+                return visitor.visitAppliedToLines();
+            case CONTACT:
+                return visitor.visitContact();
+            case PAYMENT_METHOD:
+                return visitor.visitPaymentMethod();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PaymentsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "account":
+                return ACCOUNT;
+            case "applied_to_lines":
+                return APPLIED_TO_LINES;
+            case "contact":
+                return CONTACT;
+            case "payment_method":
+                return PAYMENT_METHOD;
+            case "company":
+                return COMPANY;
+            default:
+                return new PaymentsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ACCOUNTING_PERIOD,
+
+        APPLIED_TO_LINES,
+
+        COMPANY,
+
+        CONTACT,
+
+        PAYMENT_METHOD,
+
+        TRACKING_CATEGORIES,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAccountingPeriod();
+
+        T visitAppliedToLines();
+
+        T visitCompany();
+
+        T visitContact();
+
+        T visitPaymentMethod();
+
+        T visitTrackingCategories();
+
+        T visitUnknown(String unknownType);
     }
 }

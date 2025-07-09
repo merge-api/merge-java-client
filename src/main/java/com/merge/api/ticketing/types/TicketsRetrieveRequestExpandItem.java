@@ -3,34 +3,150 @@
  */
 package com.merge.api.ticketing.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum TicketsRetrieveRequestExpandItem {
-    ACCOUNT("account"),
+public final class TicketsRetrieveRequestExpandItem {
+    public static final TicketsRetrieveRequestExpandItem CREATOR =
+            new TicketsRetrieveRequestExpandItem(Value.CREATOR, "creator");
 
-    ASSIGNED_TEAMS("assigned_teams"),
+    public static final TicketsRetrieveRequestExpandItem ATTACHMENTS =
+            new TicketsRetrieveRequestExpandItem(Value.ATTACHMENTS, "attachments");
 
-    ASSIGNEES("assignees"),
+    public static final TicketsRetrieveRequestExpandItem ACCOUNT =
+            new TicketsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
-    ATTACHMENTS("attachments"),
+    public static final TicketsRetrieveRequestExpandItem ASSIGNED_TEAMS =
+            new TicketsRetrieveRequestExpandItem(Value.ASSIGNED_TEAMS, "assigned_teams");
 
-    COLLECTIONS("collections"),
+    public static final TicketsRetrieveRequestExpandItem COLLECTIONS =
+            new TicketsRetrieveRequestExpandItem(Value.COLLECTIONS, "collections");
 
-    CONTACT("contact"),
+    public static final TicketsRetrieveRequestExpandItem CONTACT =
+            new TicketsRetrieveRequestExpandItem(Value.CONTACT, "contact");
 
-    CREATOR("creator"),
+    public static final TicketsRetrieveRequestExpandItem ASSIGNEES =
+            new TicketsRetrieveRequestExpandItem(Value.ASSIGNEES, "assignees");
 
-    PARENT_TICKET("parent_ticket");
+    public static final TicketsRetrieveRequestExpandItem PARENT_TICKET =
+            new TicketsRetrieveRequestExpandItem(Value.PARENT_TICKET, "parent_ticket");
 
-    private final String value;
+    private final Value value;
 
-    TicketsRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    TicketsRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof TicketsRetrieveRequestExpandItem
+                        && this.string.equals(((TicketsRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CREATOR:
+                return visitor.visitCreator();
+            case ATTACHMENTS:
+                return visitor.visitAttachments();
+            case ACCOUNT:
+                return visitor.visitAccount();
+            case ASSIGNED_TEAMS:
+                return visitor.visitAssignedTeams();
+            case COLLECTIONS:
+                return visitor.visitCollections();
+            case CONTACT:
+                return visitor.visitContact();
+            case ASSIGNEES:
+                return visitor.visitAssignees();
+            case PARENT_TICKET:
+                return visitor.visitParentTicket();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static TicketsRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "creator":
+                return CREATOR;
+            case "attachments":
+                return ATTACHMENTS;
+            case "account":
+                return ACCOUNT;
+            case "assigned_teams":
+                return ASSIGNED_TEAMS;
+            case "collections":
+                return COLLECTIONS;
+            case "contact":
+                return CONTACT;
+            case "assignees":
+                return ASSIGNEES;
+            case "parent_ticket":
+                return PARENT_TICKET;
+            default:
+                return new TicketsRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNT,
+
+        ASSIGNED_TEAMS,
+
+        ASSIGNEES,
+
+        ATTACHMENTS,
+
+        COLLECTIONS,
+
+        CONTACT,
+
+        CREATOR,
+
+        PARENT_TICKET,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccount();
+
+        T visitAssignedTeams();
+
+        T visitAssignees();
+
+        T visitAttachments();
+
+        T visitCollections();
+
+        T visitContact();
+
+        T visitCreator();
+
+        T visitParentTicket();
+
+        T visitUnknown(String unknownType);
     }
 }

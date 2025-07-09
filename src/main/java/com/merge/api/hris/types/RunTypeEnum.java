@@ -3,28 +3,110 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum RunTypeEnum {
-    REGULAR("REGULAR"),
+public final class RunTypeEnum {
+    public static final RunTypeEnum CORRECTION = new RunTypeEnum(Value.CORRECTION, "CORRECTION");
 
-    OFF_CYCLE("OFF_CYCLE"),
+    public static final RunTypeEnum REGULAR = new RunTypeEnum(Value.REGULAR, "REGULAR");
 
-    CORRECTION("CORRECTION"),
+    public static final RunTypeEnum SIGN_ON_BONUS = new RunTypeEnum(Value.SIGN_ON_BONUS, "SIGN_ON_BONUS");
 
-    TERMINATION("TERMINATION"),
+    public static final RunTypeEnum OFF_CYCLE = new RunTypeEnum(Value.OFF_CYCLE, "OFF_CYCLE");
 
-    SIGN_ON_BONUS("SIGN_ON_BONUS");
+    public static final RunTypeEnum TERMINATION = new RunTypeEnum(Value.TERMINATION, "TERMINATION");
 
-    private final String value;
+    private final Value value;
 
-    RunTypeEnum(String value) {
+    private final String string;
+
+    RunTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other) || (other instanceof RunTypeEnum && this.string.equals(((RunTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case CORRECTION:
+                return visitor.visitCorrection();
+            case REGULAR:
+                return visitor.visitRegular();
+            case SIGN_ON_BONUS:
+                return visitor.visitSignOnBonus();
+            case OFF_CYCLE:
+                return visitor.visitOffCycle();
+            case TERMINATION:
+                return visitor.visitTermination();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static RunTypeEnum valueOf(String value) {
+        switch (value) {
+            case "CORRECTION":
+                return CORRECTION;
+            case "REGULAR":
+                return REGULAR;
+            case "SIGN_ON_BONUS":
+                return SIGN_ON_BONUS;
+            case "OFF_CYCLE":
+                return OFF_CYCLE;
+            case "TERMINATION":
+                return TERMINATION;
+            default:
+                return new RunTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        REGULAR,
+
+        OFF_CYCLE,
+
+        CORRECTION,
+
+        TERMINATION,
+
+        SIGN_ON_BONUS,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitRegular();
+
+        T visitOffCycle();
+
+        T visitCorrection();
+
+        T visitTermination();
+
+        T visitSignOnBonus();
+
+        T visitUnknown(String unknownType);
     }
 }

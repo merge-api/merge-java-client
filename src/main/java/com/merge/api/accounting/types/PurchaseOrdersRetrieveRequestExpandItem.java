@@ -3,32 +3,139 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PurchaseOrdersRetrieveRequestExpandItem {
-    ACCOUNTING_PERIOD("accounting_period"),
+public final class PurchaseOrdersRetrieveRequestExpandItem {
+    public static final PurchaseOrdersRetrieveRequestExpandItem DELIVERY_ADDRESS =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.DELIVERY_ADDRESS, "delivery_address");
 
-    COMPANY("company"),
+    public static final PurchaseOrdersRetrieveRequestExpandItem ACCOUNTING_PERIOD =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.ACCOUNTING_PERIOD, "accounting_period");
 
-    DELIVERY_ADDRESS("delivery_address"),
+    public static final PurchaseOrdersRetrieveRequestExpandItem LINE_ITEMS =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    LINE_ITEMS("line_items"),
+    public static final PurchaseOrdersRetrieveRequestExpandItem TRACKING_CATEGORIES =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
 
-    PAYMENT_TERM("payment_term"),
+    public static final PurchaseOrdersRetrieveRequestExpandItem VENDOR =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.VENDOR, "vendor");
 
-    TRACKING_CATEGORIES("tracking_categories"),
+    public static final PurchaseOrdersRetrieveRequestExpandItem PAYMENT_TERM =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.PAYMENT_TERM, "payment_term");
 
-    VENDOR("vendor");
+    public static final PurchaseOrdersRetrieveRequestExpandItem COMPANY =
+            new PurchaseOrdersRetrieveRequestExpandItem(Value.COMPANY, "company");
 
-    private final String value;
+    private final Value value;
 
-    PurchaseOrdersRetrieveRequestExpandItem(String value) {
+    private final String string;
+
+    PurchaseOrdersRetrieveRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PurchaseOrdersRetrieveRequestExpandItem
+                        && this.string.equals(((PurchaseOrdersRetrieveRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case DELIVERY_ADDRESS:
+                return visitor.visitDeliveryAddress();
+            case ACCOUNTING_PERIOD:
+                return visitor.visitAccountingPeriod();
+            case LINE_ITEMS:
+                return visitor.visitLineItems();
+            case TRACKING_CATEGORIES:
+                return visitor.visitTrackingCategories();
+            case VENDOR:
+                return visitor.visitVendor();
+            case PAYMENT_TERM:
+                return visitor.visitPaymentTerm();
+            case COMPANY:
+                return visitor.visitCompany();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PurchaseOrdersRetrieveRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "delivery_address":
+                return DELIVERY_ADDRESS;
+            case "accounting_period":
+                return ACCOUNTING_PERIOD;
+            case "line_items":
+                return LINE_ITEMS;
+            case "tracking_categories":
+                return TRACKING_CATEGORIES;
+            case "vendor":
+                return VENDOR;
+            case "payment_term":
+                return PAYMENT_TERM;
+            case "company":
+                return COMPANY;
+            default:
+                return new PurchaseOrdersRetrieveRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTING_PERIOD,
+
+        COMPANY,
+
+        DELIVERY_ADDRESS,
+
+        LINE_ITEMS,
+
+        PAYMENT_TERM,
+
+        TRACKING_CATEGORIES,
+
+        VENDOR,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountingPeriod();
+
+        T visitCompany();
+
+        T visitDeliveryAddress();
+
+        T visitLineItems();
+
+        T visitPaymentTerm();
+
+        T visitTrackingCategories();
+
+        T visitVendor();
+
+        T visitUnknown(String unknownType);
     }
 }

@@ -3,28 +3,112 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum BenefitPlanTypeEnum {
-    MEDICAL("MEDICAL"),
+public final class BenefitPlanTypeEnum {
+    public static final BenefitPlanTypeEnum MEDICAL = new BenefitPlanTypeEnum(Value.MEDICAL, "MEDICAL");
 
-    HEALTH_SAVINGS("HEALTH_SAVINGS"),
+    public static final BenefitPlanTypeEnum OTHER = new BenefitPlanTypeEnum(Value.OTHER, "OTHER");
 
-    INSURANCE("INSURANCE"),
+    public static final BenefitPlanTypeEnum INSURANCE = new BenefitPlanTypeEnum(Value.INSURANCE, "INSURANCE");
 
-    RETIREMENT("RETIREMENT"),
+    public static final BenefitPlanTypeEnum HEALTH_SAVINGS =
+            new BenefitPlanTypeEnum(Value.HEALTH_SAVINGS, "HEALTH_SAVINGS");
 
-    OTHER("OTHER");
+    public static final BenefitPlanTypeEnum RETIREMENT = new BenefitPlanTypeEnum(Value.RETIREMENT, "RETIREMENT");
 
-    private final String value;
+    private final Value value;
 
-    BenefitPlanTypeEnum(String value) {
+    private final String string;
+
+    BenefitPlanTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof BenefitPlanTypeEnum && this.string.equals(((BenefitPlanTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case MEDICAL:
+                return visitor.visitMedical();
+            case OTHER:
+                return visitor.visitOther();
+            case INSURANCE:
+                return visitor.visitInsurance();
+            case HEALTH_SAVINGS:
+                return visitor.visitHealthSavings();
+            case RETIREMENT:
+                return visitor.visitRetirement();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static BenefitPlanTypeEnum valueOf(String value) {
+        switch (value) {
+            case "MEDICAL":
+                return MEDICAL;
+            case "OTHER":
+                return OTHER;
+            case "INSURANCE":
+                return INSURANCE;
+            case "HEALTH_SAVINGS":
+                return HEALTH_SAVINGS;
+            case "RETIREMENT":
+                return RETIREMENT;
+            default:
+                return new BenefitPlanTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        MEDICAL,
+
+        HEALTH_SAVINGS,
+
+        INSURANCE,
+
+        RETIREMENT,
+
+        OTHER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitMedical();
+
+        T visitHealthSavings();
+
+        T visitInsurance();
+
+        T visitRetirement();
+
+        T visitOther();
+
+        T visitUnknown(String unknownType);
     }
 }

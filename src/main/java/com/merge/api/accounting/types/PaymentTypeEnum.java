@@ -3,22 +3,83 @@
  */
 package com.merge.api.accounting.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum PaymentTypeEnum {
-    ACCOUNTS_PAYABLE("ACCOUNTS_PAYABLE"),
+public final class PaymentTypeEnum {
+    public static final PaymentTypeEnum ACCOUNTS_PAYABLE =
+            new PaymentTypeEnum(Value.ACCOUNTS_PAYABLE, "ACCOUNTS_PAYABLE");
 
-    ACCOUNTS_RECEIVABLE("ACCOUNTS_RECEIVABLE");
+    public static final PaymentTypeEnum ACCOUNTS_RECEIVABLE =
+            new PaymentTypeEnum(Value.ACCOUNTS_RECEIVABLE, "ACCOUNTS_RECEIVABLE");
 
-    private final String value;
+    private final Value value;
 
-    PaymentTypeEnum(String value) {
+    private final String string;
+
+    PaymentTypeEnum(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof PaymentTypeEnum && this.string.equals(((PaymentTypeEnum) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case ACCOUNTS_PAYABLE:
+                return visitor.visitAccountsPayable();
+            case ACCOUNTS_RECEIVABLE:
+                return visitor.visitAccountsReceivable();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static PaymentTypeEnum valueOf(String value) {
+        switch (value) {
+            case "ACCOUNTS_PAYABLE":
+                return ACCOUNTS_PAYABLE;
+            case "ACCOUNTS_RECEIVABLE":
+                return ACCOUNTS_RECEIVABLE;
+            default:
+                return new PaymentTypeEnum(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        ACCOUNTS_PAYABLE,
+
+        ACCOUNTS_RECEIVABLE,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitAccountsPayable();
+
+        T visitAccountsReceivable();
+
+        T visitUnknown(String unknownType);
     }
 }

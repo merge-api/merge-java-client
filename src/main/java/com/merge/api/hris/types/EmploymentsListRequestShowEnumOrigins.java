@@ -3,48 +3,234 @@
  */
 package com.merge.api.hris.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum EmploymentsListRequestShowEnumOrigins {
-    EMPLOYMENT_TYPE("employment_type"),
+public final class EmploymentsListRequestShowEnumOrigins {
+    public static final EmploymentsListRequestShowEnumOrigins PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(Value.PAY_PERIOD, "pay_period");
 
-    EMPLOYMENT_TYPE_FLSA_STATUS("employment_type,flsa_status"),
+    public static final EmploymentsListRequestShowEnumOrigins FLSA_STATUS =
+            new EmploymentsListRequestShowEnumOrigins(Value.FLSA_STATUS, "flsa_status");
 
-    EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY("employment_type,flsa_status,pay_frequency"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_PAY_FREQUENCY =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_TYPE_PAY_FREQUENCY, "employment_type,pay_frequency");
 
-    EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD("employment_type,flsa_status,pay_frequency,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_FLSA_STATUS =
+            new EmploymentsListRequestShowEnumOrigins(Value.EMPLOYMENT_TYPE_FLSA_STATUS, "employment_type,flsa_status");
 
-    EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD("employment_type,flsa_status,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins PAY_FREQUENCY =
+            new EmploymentsListRequestShowEnumOrigins(Value.PAY_FREQUENCY, "pay_frequency");
 
-    EMPLOYMENT_TYPE_PAY_FREQUENCY("employment_type,pay_frequency"),
+    public static final EmploymentsListRequestShowEnumOrigins FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD, "flsa_status,pay_frequency,pay_period");
 
-    EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD("employment_type,pay_frequency,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD,
+                    "employment_type,flsa_status,pay_frequency,pay_period");
 
-    EMPLOYMENT_TYPE_PAY_PERIOD("employment_type,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD, "employment_type,flsa_status,pay_period");
 
-    FLSA_STATUS("flsa_status"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(Value.EMPLOYMENT_TYPE_PAY_PERIOD, "employment_type,pay_period");
 
-    FLSA_STATUS_PAY_FREQUENCY("flsa_status,pay_frequency"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE =
+            new EmploymentsListRequestShowEnumOrigins(Value.EMPLOYMENT_TYPE, "employment_type");
 
-    FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD("flsa_status,pay_frequency,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY, "employment_type,flsa_status,pay_frequency");
 
-    FLSA_STATUS_PAY_PERIOD("flsa_status,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins PAY_FREQUENCY_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(Value.PAY_FREQUENCY_PAY_PERIOD, "pay_frequency,pay_period");
 
-    PAY_FREQUENCY("pay_frequency"),
+    public static final EmploymentsListRequestShowEnumOrigins FLSA_STATUS_PAY_FREQUENCY =
+            new EmploymentsListRequestShowEnumOrigins(Value.FLSA_STATUS_PAY_FREQUENCY, "flsa_status,pay_frequency");
 
-    PAY_FREQUENCY_PAY_PERIOD("pay_frequency,pay_period"),
+    public static final EmploymentsListRequestShowEnumOrigins EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(
+                    Value.EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD, "employment_type,pay_frequency,pay_period");
 
-    PAY_PERIOD("pay_period");
+    public static final EmploymentsListRequestShowEnumOrigins FLSA_STATUS_PAY_PERIOD =
+            new EmploymentsListRequestShowEnumOrigins(Value.FLSA_STATUS_PAY_PERIOD, "flsa_status,pay_period");
 
-    private final String value;
+    private final Value value;
 
-    EmploymentsListRequestShowEnumOrigins(String value) {
+    private final String string;
+
+    EmploymentsListRequestShowEnumOrigins(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof EmploymentsListRequestShowEnumOrigins
+                        && this.string.equals(((EmploymentsListRequestShowEnumOrigins) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case PAY_PERIOD:
+                return visitor.visitPayPeriod();
+            case FLSA_STATUS:
+                return visitor.visitFlsaStatus();
+            case EMPLOYMENT_TYPE_PAY_FREQUENCY:
+                return visitor.visitEmploymentTypePayFrequency();
+            case EMPLOYMENT_TYPE_FLSA_STATUS:
+                return visitor.visitEmploymentTypeFlsaStatus();
+            case PAY_FREQUENCY:
+                return visitor.visitPayFrequency();
+            case FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD:
+                return visitor.visitFlsaStatusPayFrequencyPayPeriod();
+            case EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD:
+                return visitor.visitEmploymentTypeFlsaStatusPayFrequencyPayPeriod();
+            case EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD:
+                return visitor.visitEmploymentTypeFlsaStatusPayPeriod();
+            case EMPLOYMENT_TYPE_PAY_PERIOD:
+                return visitor.visitEmploymentTypePayPeriod();
+            case EMPLOYMENT_TYPE:
+                return visitor.visitEmploymentType();
+            case EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY:
+                return visitor.visitEmploymentTypeFlsaStatusPayFrequency();
+            case PAY_FREQUENCY_PAY_PERIOD:
+                return visitor.visitPayFrequencyPayPeriod();
+            case FLSA_STATUS_PAY_FREQUENCY:
+                return visitor.visitFlsaStatusPayFrequency();
+            case EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD:
+                return visitor.visitEmploymentTypePayFrequencyPayPeriod();
+            case FLSA_STATUS_PAY_PERIOD:
+                return visitor.visitFlsaStatusPayPeriod();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static EmploymentsListRequestShowEnumOrigins valueOf(String value) {
+        switch (value) {
+            case "pay_period":
+                return PAY_PERIOD;
+            case "flsa_status":
+                return FLSA_STATUS;
+            case "employment_type,pay_frequency":
+                return EMPLOYMENT_TYPE_PAY_FREQUENCY;
+            case "employment_type,flsa_status":
+                return EMPLOYMENT_TYPE_FLSA_STATUS;
+            case "pay_frequency":
+                return PAY_FREQUENCY;
+            case "flsa_status,pay_frequency,pay_period":
+                return FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD;
+            case "employment_type,flsa_status,pay_frequency,pay_period":
+                return EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD;
+            case "employment_type,flsa_status,pay_period":
+                return EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD;
+            case "employment_type,pay_period":
+                return EMPLOYMENT_TYPE_PAY_PERIOD;
+            case "employment_type":
+                return EMPLOYMENT_TYPE;
+            case "employment_type,flsa_status,pay_frequency":
+                return EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY;
+            case "pay_frequency,pay_period":
+                return PAY_FREQUENCY_PAY_PERIOD;
+            case "flsa_status,pay_frequency":
+                return FLSA_STATUS_PAY_FREQUENCY;
+            case "employment_type,pay_frequency,pay_period":
+                return EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD;
+            case "flsa_status,pay_period":
+                return FLSA_STATUS_PAY_PERIOD;
+            default:
+                return new EmploymentsListRequestShowEnumOrigins(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        EMPLOYMENT_TYPE,
+
+        EMPLOYMENT_TYPE_FLSA_STATUS,
+
+        EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY,
+
+        EMPLOYMENT_TYPE_FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD,
+
+        EMPLOYMENT_TYPE_FLSA_STATUS_PAY_PERIOD,
+
+        EMPLOYMENT_TYPE_PAY_FREQUENCY,
+
+        EMPLOYMENT_TYPE_PAY_FREQUENCY_PAY_PERIOD,
+
+        EMPLOYMENT_TYPE_PAY_PERIOD,
+
+        FLSA_STATUS,
+
+        FLSA_STATUS_PAY_FREQUENCY,
+
+        FLSA_STATUS_PAY_FREQUENCY_PAY_PERIOD,
+
+        FLSA_STATUS_PAY_PERIOD,
+
+        PAY_FREQUENCY,
+
+        PAY_FREQUENCY_PAY_PERIOD,
+
+        PAY_PERIOD,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitEmploymentType();
+
+        T visitEmploymentTypeFlsaStatus();
+
+        T visitEmploymentTypeFlsaStatusPayFrequency();
+
+        T visitEmploymentTypeFlsaStatusPayFrequencyPayPeriod();
+
+        T visitEmploymentTypeFlsaStatusPayPeriod();
+
+        T visitEmploymentTypePayFrequency();
+
+        T visitEmploymentTypePayFrequencyPayPeriod();
+
+        T visitEmploymentTypePayPeriod();
+
+        T visitFlsaStatus();
+
+        T visitFlsaStatusPayFrequency();
+
+        T visitFlsaStatusPayFrequencyPayPeriod();
+
+        T visitFlsaStatusPayPeriod();
+
+        T visitPayFrequency();
+
+        T visitPayFrequencyPayPeriod();
+
+        T visitPayPeriod();
+
+        T visitUnknown(String unknownType);
     }
 }

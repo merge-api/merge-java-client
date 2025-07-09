@@ -3,26 +3,106 @@
  */
 package com.merge.api.ats.types;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
-public enum InterviewsListRequestExpandItem {
-    APPLICATION("application"),
+public final class InterviewsListRequestExpandItem {
+    public static final InterviewsListRequestExpandItem JOB_INTERVIEW_STAGE =
+            new InterviewsListRequestExpandItem(Value.JOB_INTERVIEW_STAGE, "job_interview_stage");
 
-    INTERVIEWERS("interviewers"),
+    public static final InterviewsListRequestExpandItem APPLICATION =
+            new InterviewsListRequestExpandItem(Value.APPLICATION, "application");
 
-    JOB_INTERVIEW_STAGE("job_interview_stage"),
+    public static final InterviewsListRequestExpandItem ORGANIZER =
+            new InterviewsListRequestExpandItem(Value.ORGANIZER, "organizer");
 
-    ORGANIZER("organizer");
+    public static final InterviewsListRequestExpandItem INTERVIEWERS =
+            new InterviewsListRequestExpandItem(Value.INTERVIEWERS, "interviewers");
 
-    private final String value;
+    private final Value value;
 
-    InterviewsListRequestExpandItem(String value) {
+    private final String string;
+
+    InterviewsListRequestExpandItem(Value value, String string) {
         this.value = value;
+        this.string = string;
     }
 
-    @JsonValue
+    public Value getEnumValue() {
+        return value;
+    }
+
     @java.lang.Override
+    @JsonValue
     public String toString() {
-        return this.value;
+        return this.string;
+    }
+
+    @java.lang.Override
+    public boolean equals(Object other) {
+        return (this == other)
+                || (other instanceof InterviewsListRequestExpandItem
+                        && this.string.equals(((InterviewsListRequestExpandItem) other).string));
+    }
+
+    @java.lang.Override
+    public int hashCode() {
+        return this.string.hashCode();
+    }
+
+    public <T> T visit(Visitor<T> visitor) {
+        switch (value) {
+            case JOB_INTERVIEW_STAGE:
+                return visitor.visitJobInterviewStage();
+            case APPLICATION:
+                return visitor.visitApplication();
+            case ORGANIZER:
+                return visitor.visitOrganizer();
+            case INTERVIEWERS:
+                return visitor.visitInterviewers();
+            case UNKNOWN:
+            default:
+                return visitor.visitUnknown(string);
+        }
+    }
+
+    @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
+    public static InterviewsListRequestExpandItem valueOf(String value) {
+        switch (value) {
+            case "job_interview_stage":
+                return JOB_INTERVIEW_STAGE;
+            case "application":
+                return APPLICATION;
+            case "organizer":
+                return ORGANIZER;
+            case "interviewers":
+                return INTERVIEWERS;
+            default:
+                return new InterviewsListRequestExpandItem(Value.UNKNOWN, value);
+        }
+    }
+
+    public enum Value {
+        APPLICATION,
+
+        INTERVIEWERS,
+
+        JOB_INTERVIEW_STAGE,
+
+        ORGANIZER,
+
+        UNKNOWN
+    }
+
+    public interface Visitor<T> {
+        T visitApplication();
+
+        T visitInterviewers();
+
+        T visitJobInterviewStage();
+
+        T visitOrganizer();
+
+        T visitUnknown(String unknownType);
     }
 }
