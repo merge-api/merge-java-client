@@ -214,8 +214,4 @@ otherwise they would be overwritten upon the next generated release. Feel free t
 a proof of concept, but know that we will not be able to merge it as-is. We suggest opening
 an issue first to discuss with us!
 
-On the other hand, contributions to the README are always very welcome!
-## Staged Builders
-The generated builders all follow the staged builder pattern. Read more [here](https://immutables.github.io/immutable.html#staged-builder). 
-
-Staged builders only allow you to build the object once all required properties have been specified. For example, to build an `ApplicationEndpointRequest` the Merge SDK will require that you specify the `model` and `remoteUserId` properties. 
+On the other hand, contributions to the README are always very welcome! 
