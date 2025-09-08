@@ -82,14 +82,14 @@ public class AsyncRawIssuesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "first_incident_time_after",
-                    request.getFirstIncidentTimeAfter().get().toString(),
+                    request.getFirstIncidentTimeAfter().get(),
                     false);
         }
         if (request.getFirstIncidentTimeBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "first_incident_time_before",
-                    request.getFirstIncidentTimeBefore().get().toString(),
+                    request.getFirstIncidentTimeBefore().get(),
                     false);
         }
         if (request.getIncludeMuted().isPresent()) {
@@ -104,14 +104,14 @@ public class AsyncRawIssuesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "last_incident_time_after",
-                    request.getLastIncidentTimeAfter().get().toString(),
+                    request.getLastIncidentTimeAfter().get(),
                     false);
         }
         if (request.getLastIncidentTimeBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "last_incident_time_before",
-                    request.getLastIncidentTimeBefore().get().toString(),
+                    request.getLastIncidentTimeBefore().get(),
                     false);
         }
         if (request.getLinkedAccountId().isPresent()) {
@@ -120,7 +120,7 @@ public class AsyncRawIssuesClient {
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getStartDate().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -128,13 +128,12 @@ public class AsyncRawIssuesClient {
         }
         if (request.getStatus().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "status", request.getStatus().get().toString(), false);
+                    httpUrl, "status", request.getStatus().get(), false);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -208,7 +207,6 @@ public class AsyncRawIssuesClient {
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();

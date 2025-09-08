@@ -199,13 +199,14 @@ public final class PaymentMethod {
 
     public interface MethodTypeStage {
         /**
-         * The type of the payment method.
-         *
-         * * `CREDIT_CARD` - CREDIT_CARD
-         * * `DEBIT_CARD` - DEBIT_CARD
-         * * `ACH` - ACH
-         * * `CASH` - CASH
-         * * `CHECK` - CHECK
+         * <p>The type of the payment method.</p>
+         * <ul>
+         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
+         * <li><code>ACH</code> - ACH</li>
+         * <li><code>CASH</code> - CASH</li>
+         * <li><code>CHECK</code> - CHECK</li>
+         * </ul>
          */
         NameStage methodType(@NotNull PaymentMethodMethodType methodType);
 
@@ -214,7 +215,7 @@ public final class PaymentMethod {
 
     public interface NameStage {
         /**
-         * The payment method’s name
+         * <p>The payment method’s name</p>
          */
         _FinalStage name(@NotNull String name);
     }
@@ -313,13 +314,15 @@ public final class PaymentMethod {
         }
 
         /**
-         * The type of the payment method.
-         *
-         * * `CREDIT_CARD` - CREDIT_CARD
-         * * `DEBIT_CARD` - DEBIT_CARD
-         * * `ACH` - ACH
-         * * `CASH` - CASH
-         * * `CHECK` - CHECK<p>The type of the payment method.</p>
+         * <p>The type of the payment method.</p>
+         * <ul>
+         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
+         * <li><code>ACH</code> - ACH</li>
+         * <li><code>CASH</code> - CASH</li>
+         * <li><code>CHECK</code> - CHECK</li>
+         * </ul>
+         * <p>The type of the payment method.</p>
          * <ul>
          * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
          * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
@@ -337,7 +340,8 @@ public final class PaymentMethod {
         }
 
         /**
-         * The payment method’s name<p>The payment method’s name</p>
+         * <p>The payment method’s name</p>
+         * <p>The payment method’s name</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

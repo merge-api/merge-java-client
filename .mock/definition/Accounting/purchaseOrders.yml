@@ -123,7 +123,10 @@ service:
         type: accountingRoot.PaginatedPurchaseOrderList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -226,7 +229,8 @@ service:
         type: accountingRoot.PurchaseOrderResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             model: {}
           response:
@@ -372,7 +376,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: 0048ea5b-911e-4dff-9364-92070dea62ff
@@ -402,7 +407,6 @@ service:
                   quantity: 10
                   item: 0958cbc6-6040-430a-848e-aafacbadf4ae
                   account: account
-                  tracking_category: tracking_category
                   tracking_categories:
                     - f1214c24-2702-4617-b74b-3ddecfc0d384
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
@@ -425,7 +429,6 @@ service:
                   quantity: 10
                   item: 249c9faa-3045-4a31-953b-8f22d3613301
                   account: account
-                  tracking_category: tracking_category
                   tracking_categories:
                     - f1214c24-2702-4617-b74b-3ddecfc0d384
                     - 9b840d2-686a-465a-8a8e-7b028498f8e4
@@ -514,7 +517,10 @@ service:
         type: accountingRoot.PaginatedRemoteFieldClassList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -542,7 +548,8 @@ service:
         type: accountingRoot.MetaResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:
@@ -767,7 +774,10 @@ service:
         type: accountingRoot.PaginatedRemoteFieldClassList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw

@@ -1,8 +1,9 @@
 # Merge Java Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fmerge-api%2Fmerge-java-client)
+[![Maven Central](https://img.shields.io/maven-central/v/dev.merge/merge-java-client)](https://central.sonatype.com/artifact/dev.merge/merge-java-client)
 
-The Merge Java library provides convenient access to the Merge API from Java.
+The Merge Java library provides convenient access to the Merge APIs from Java.
 
 ## Documentation
 
@@ -12,23 +13,23 @@ API documentation is available at [here](https://docs.merge.dev/basics/authentic
 
 ### Gradle
 
-Add the dependency in your `build.gradle`:
+Add the dependency in your `build.gradle` file:
 
 ```groovy
 dependencies {
-    implementation 'dev.merge:merge-java-client:0.x.x'
+  implementation 'dev.merge:merge-java-client'
 }
 ```
 
 ### Maven
 
-Add the dependency in your `pom.xml`:
+Add the dependency in your `pom.xml` file:
 
 ```xml
 <dependency>
-    <groupId>dev.merge</groupId>
-    <artifactId>merge-java-client</artifactId>
-    <version>0.x.x</version>
+  <groupId>dev.merge</groupId>
+  <artifactId>merge-java-client</artifactId>
+  <version>4.0.0</version>
 </dependency>
 ```
 
@@ -74,29 +75,12 @@ Instantiate and use the client with the following:
 package com.example.usage;
 
 import com.merge.api.MergeApiClient;
-import com.merge.api.ats.types.ActivityEndpointRequest;
-import com.merge.api.ats.types.ActivityRequest;
 
-public class Example {
-    public static void main(String[] args) {
-        MergeApiClient client = MergeApiClient
-            .builder()
-            .apiKey("<token>")
-            .build();
+MergeApiClient client = MergeApiClient
+    .builder()
+    .build();
 
-        client.ats().activities().create(
-            ActivityEndpointRequest
-                .builder()
-                .model(
-                    ActivityRequest
-                        .builder()
-                        .build()
-                )
-                .remoteUserId("remote_user_id")
-                .build()
-        );
-    }
-}
+client.ats().accountDetails().retrieve(...);
 ```
 
 ## Environments
@@ -134,7 +118,7 @@ When the API returns a non-success status code (4xx or 5xx response), an API exc
 import com.merge.api.core.ApiError;
 
 try {
-    client.ats().activities().create(...);
+    client.ats().accountDetails().retrieve(...);
 } catch (ApiError e) {
     // Do something with the API exception...
 }
@@ -197,11 +181,37 @@ MergeApiClient client = MergeApiClient
     .build();
 
 // Request level
-client.ats().activities().create(
+client.ats().accountDetails().retrieve(
     ...,
     RequestOptions
         .builder()
         .timeout(10)
+        .build()
+);
+```
+
+### Custom Headers
+
+The SDK allows you to add custom headers to requests. You can configure headers at the client level or at the request level.
+
+```java
+import com.merge.api.MergeApiClient;
+import com.merge.api.core.RequestOptions;
+
+// Client level
+MergeApiClient client = MergeApiClient
+    .builder()
+    .addHeader("X-Custom-Header", "custom-value")
+    .addHeader("X-Request-Id", "abc-123")
+    .build();
+;
+
+// Request level
+client.ats().accountDetails().retrieve(
+    ...,
+    RequestOptions
+        .builder()
+        .addHeader("X-Request-Header", "request-value")
         .build()
 );
 ```
@@ -215,3 +225,6 @@ a proof of concept, but know that we will not be able to merge it as-is. We sugg
 an issue first to discuss with us!
 
 On the other hand, contributions to the README are always very welcome!
+## Reference
+
+A full reference for this library is available [here](https://github.com/merge-api/merge-java-client/blob/HEAD/./reference.md).

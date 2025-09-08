@@ -100,7 +100,9 @@ public final class LinkedAccountCommonModelScopeDeserializerRequest {
         }
 
         public Builder addAllCommonModels(List<IndividualCommonModelScopeDeserializerRequest> commonModels) {
-            this.commonModels.addAll(commonModels);
+            if (commonModels != null) {
+                this.commonModels.addAll(commonModels);
+            }
             return this;
         }
 

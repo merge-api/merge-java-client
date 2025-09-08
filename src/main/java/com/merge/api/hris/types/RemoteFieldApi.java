@@ -248,7 +248,9 @@ public final class RemoteFieldApi {
 
         @java.lang.Override
         public _FinalStage putAllSchema(Map<String, JsonNode> schema) {
-            this.schema.putAll(schema);
+            if (schema != null) {
+                this.schema.putAll(schema);
+            }
             return this;
         }
 

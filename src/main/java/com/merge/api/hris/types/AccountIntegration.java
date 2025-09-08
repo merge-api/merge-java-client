@@ -197,7 +197,7 @@ public final class AccountIntegration {
 
     public interface NameStage {
         /**
-         * Company name.
+         * <p>Company name.</p>
          */
         _FinalStage name(@NotNull String name);
 
@@ -311,7 +311,8 @@ public final class AccountIntegration {
         }
 
         /**
-         * Company name.<p>Company name.</p>
+         * <p>Company name.</p>
+         * <p>Company name.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

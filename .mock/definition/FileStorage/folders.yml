@@ -102,7 +102,10 @@ service:
         type: fileStorageRoot.PaginatedFolderList
         status-code: 200
       examples:
-        - headers: {}
+        - query-parameters:
+            cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               next: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
@@ -158,7 +161,8 @@ service:
         type: fileStorageRoot.FileStorageFolderResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             model: {}
           response:
@@ -242,7 +246,8 @@ service:
       examples:
         - path-parameters:
             id: id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               id: e021f7a7-74fc-4487-8e12-14180c92d3b7
@@ -280,7 +285,8 @@ service:
         type: fileStorageRoot.MetaResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               request_schema:

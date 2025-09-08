@@ -252,10 +252,11 @@ public final class Employee {
 
     public interface StatusStage {
         /**
-         * The employee's status in the accounting system.
-         *
-         * * `ACTIVE` - ACTIVE
-         * * `INACTIVE` - INACTIVE
+         * <p>The employee's status in the accounting system.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>INACTIVE</code> - INACTIVE</li>
+         * </ul>
          */
         _FinalStage status(@NotNull EmployeeStatus status);
 
@@ -403,10 +404,12 @@ public final class Employee {
         }
 
         /**
-         * The employee's status in the accounting system.
-         *
-         * * `ACTIVE` - ACTIVE
-         * * `INACTIVE` - INACTIVE<p>The employee's status in the accounting system.</p>
+         * <p>The employee's status in the accounting system.</p>
+         * <ul>
+         * <li><code>ACTIVE</code> - ACTIVE</li>
+         * <li><code>INACTIVE</code> - INACTIVE</li>
+         * </ul>
+         * <p>The employee's status in the accounting system.</p>
          * <ul>
          * <li><code>ACTIVE</code> - ACTIVE</li>
          * <li><code>INACTIVE</code> - INACTIVE</li>

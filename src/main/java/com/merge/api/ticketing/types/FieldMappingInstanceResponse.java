@@ -170,7 +170,9 @@ public final class FieldMappingInstanceResponse {
 
         @java.lang.Override
         public _FinalStage addAllErrors(List<ErrorValidationProblem> errors) {
-            this.errors.addAll(errors);
+            if (errors != null) {
+                this.errors.addAll(errors);
+            }
             return this;
         }
 
@@ -190,7 +192,9 @@ public final class FieldMappingInstanceResponse {
 
         @java.lang.Override
         public _FinalStage addAllWarnings(List<WarningValidationProblem> warnings) {
-            this.warnings.addAll(warnings);
+            if (warnings != null) {
+                this.warnings.addAll(warnings);
+            }
             return this;
         }
 

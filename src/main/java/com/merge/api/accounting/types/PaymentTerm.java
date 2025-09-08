@@ -220,7 +220,7 @@ public final class PaymentTerm {
 
     public interface NameStage {
         /**
-         * The name of the payment term.
+         * <p>The name of the payment term.</p>
          */
         _FinalStage name(@NotNull String name);
 
@@ -348,7 +348,8 @@ public final class PaymentTerm {
         }
 
         /**
-         * The name of the payment term.<p>The name of the payment term.</p>
+         * <p>The name of the payment term.</p>
+         * <p>The name of the payment term.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

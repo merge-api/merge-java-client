@@ -250,7 +250,7 @@ public final class EndUserDetailsRequest {
 
     public interface EndUserEmailAddressStage {
         /**
-         * Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.
+         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
          */
         EndUserOrganizationNameStage endUserEmailAddress(@NotNull String endUserEmailAddress);
 
@@ -259,14 +259,14 @@ public final class EndUserDetailsRequest {
 
     public interface EndUserOrganizationNameStage {
         /**
-         * Your end user's organization.
+         * <p>Your end user's organization.</p>
          */
         EndUserOriginIdStage endUserOrganizationName(@NotNull String endUserOrganizationName);
     }
 
     public interface EndUserOriginIdStage {
         /**
-         * This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.
+         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
          */
         _FinalStage endUserOriginId(@NotNull String endUserOriginId);
     }
@@ -408,7 +408,8 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.<p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
+         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
+         * <p>Your end user's email address. This is purely for identification purposes - setting this value will not cause any emails to be sent.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -419,7 +420,8 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * Your end user's organization.<p>Your end user's organization.</p>
+         * <p>Your end user's organization.</p>
+         * <p>Your end user's organization.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -430,7 +432,8 @@ public final class EndUserDetailsRequest {
         }
 
         /**
-         * This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.<p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
+         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
+         * <p>This unique identifier typically represents the ID for your end user in your product's database. This value must be distinct from other Linked Accounts' unique identifiers.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -637,7 +640,9 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage addAllCategories(List<CategoriesEnum> categories) {
-            this.categories.addAll(categories);
+            if (categories != null) {
+                this.categories.addAll(categories);
+            }
             return this;
         }
 

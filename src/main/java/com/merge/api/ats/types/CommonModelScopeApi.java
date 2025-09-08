@@ -98,7 +98,9 @@ public final class CommonModelScopeApi {
         }
 
         public Builder addAllCommonModels(List<IndividualCommonModelScopeDeserializer> commonModels) {
-            this.commonModels.addAll(commonModels);
+            if (commonModels != null) {
+                this.commonModels.addAll(commonModels);
+            }
             return this;
         }
 

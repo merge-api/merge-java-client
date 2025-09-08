@@ -62,7 +62,7 @@ public class AsyncRawLinkedAccountsClient {
                 .addPathSegments("ticketing/v1/linked-accounts");
         if (request.getCategory().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "category", request.getCategory().get().toString(), false);
+                    httpUrl, "category", request.getCategory().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -103,7 +103,7 @@ public class AsyncRawLinkedAccountsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_duplicates",
-                    request.getIncludeDuplicates().get().toString(),
+                    request.getIncludeDuplicates().get(),
                     false);
         }
         if (request.getIntegrationName().isPresent()) {
@@ -116,7 +116,7 @@ public class AsyncRawLinkedAccountsClient {
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getStatus().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -126,7 +126,6 @@ public class AsyncRawLinkedAccountsClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();

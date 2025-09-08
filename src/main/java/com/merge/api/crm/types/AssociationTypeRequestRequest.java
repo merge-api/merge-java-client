@@ -241,7 +241,9 @@ public final class AssociationTypeRequestRequest {
 
         @java.lang.Override
         public _FinalStage addAllTargetObjectClasses(List<ObjectClassDescriptionRequest> targetObjectClasses) {
-            this.targetObjectClasses.addAll(targetObjectClasses);
+            if (targetObjectClasses != null) {
+                this.targetObjectClasses.addAll(targetObjectClasses);
+            }
             return this;
         }
 

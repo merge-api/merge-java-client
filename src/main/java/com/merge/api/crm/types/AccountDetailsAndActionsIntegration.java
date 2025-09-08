@@ -293,7 +293,9 @@ public final class AccountDetailsAndActionsIntegration {
 
         @java.lang.Override
         public _FinalStage addAllCategories(List<CategoriesEnum> categories) {
-            this.categories.addAll(categories);
+            if (categories != null) {
+                this.categories.addAll(categories);
+            }
             return this;
         }
 

@@ -216,7 +216,9 @@ public final class MetaResponse {
 
         @java.lang.Override
         public _FinalStage putAllRequestSchema(Map<String, JsonNode> requestSchema) {
-            this.requestSchema.putAll(requestSchema);
+            if (requestSchema != null) {
+                this.requestSchema.putAll(requestSchema);
+            }
             return this;
         }
 

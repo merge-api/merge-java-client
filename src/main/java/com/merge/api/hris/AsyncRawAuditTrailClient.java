@@ -74,7 +74,7 @@ public class AsyncRawAuditTrailClient {
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getStartDate().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -88,7 +88,6 @@ public class AsyncRawAuditTrailClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();

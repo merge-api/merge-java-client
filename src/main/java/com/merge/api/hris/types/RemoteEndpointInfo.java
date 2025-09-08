@@ -145,7 +145,9 @@ public final class RemoteEndpointInfo {
 
         @java.lang.Override
         public _FinalStage addAllFieldTraversalPath(List<JsonNode> fieldTraversalPath) {
-            this.fieldTraversalPath.addAll(fieldTraversalPath);
+            if (fieldTraversalPath != null) {
+                this.fieldTraversalPath.addAll(fieldTraversalPath);
+            }
             return this;
         }
 

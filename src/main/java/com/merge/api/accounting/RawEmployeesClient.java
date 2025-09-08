@@ -63,36 +63,32 @@ public class RawEmployeesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString(),
+                    request.getIncludeDeletedData().get(),
                     false);
         }
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -154,25 +150,21 @@ public class RawEmployeesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
