@@ -66,11 +66,11 @@ public class AsyncRawEeocsClient {
         }
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_after", request.getCreatedAfter().get().toString(), false);
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
         }
         if (request.getCreatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_before", request.getCreatedBefore().get().toString(), false);
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -80,41 +80,35 @@ public class AsyncRawEeocsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString(),
+                    request.getIncludeDeletedData().get(),
                     false);
         }
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getModifiedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "modified_after", request.getModifiedAfter().get().toString(), false);
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
         }
         if (request.getModifiedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "modified_before",
-                    request.getModifiedBefore().get().toString(),
-                    false);
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getRemoteId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -122,20 +116,16 @@ public class AsyncRawEeocsClient {
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -216,36 +206,29 @@ public class AsyncRawEeocsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();

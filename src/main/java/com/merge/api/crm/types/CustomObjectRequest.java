@@ -115,7 +115,9 @@ public final class CustomObjectRequest {
         }
 
         public Builder putAllFields(Map<String, JsonNode> fields) {
-            this.fields.putAll(fields);
+            if (fields != null) {
+                this.fields.putAll(fields);
+            }
             return this;
         }
 

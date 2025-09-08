@@ -5,16 +5,25 @@ package com.merge.api;
 
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Environment;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import okhttp3.OkHttpClient;
 
-public final class MergeApiClientBuilder {
-    private ClientOptions.Builder clientOptionsBuilder = ClientOptions.builder();
+public class MergeApiClientBuilder {
+    private Optional<Integer> timeout = Optional.empty();
+
+    private Optional<Integer> maxRetries = Optional.empty();
+
+    private final Map<String, String> customHeaders = new HashMap<>();
 
     private String apiKey = null;
 
     private String accountToken = null;
 
     private Environment environment = Environment.PRODUCTION;
+
+    private OkHttpClient httpClient;
 
     /**
      * Sets apiKey
@@ -46,7 +55,7 @@ public final class MergeApiClientBuilder {
      * Sets the timeout (in seconds) for the client. Defaults to 60 seconds.
      */
     public MergeApiClientBuilder timeout(int timeout) {
-        this.clientOptionsBuilder.timeout(timeout);
+        this.timeout = Optional.of(timeout);
         return this;
     }
 
@@ -54,7 +63,7 @@ public final class MergeApiClientBuilder {
      * Sets the maximum number of retries for the client. Defaults to 2 retries.
      */
     public MergeApiClientBuilder maxRetries(int maxRetries) {
-        this.clientOptionsBuilder.maxRetries(maxRetries);
+        this.maxRetries = Optional.of(maxRetries);
         return this;
     }
 
@@ -62,19 +71,167 @@ public final class MergeApiClientBuilder {
      * Sets the underlying OkHttp client
      */
     public MergeApiClientBuilder httpClient(OkHttpClient httpClient) {
-        this.clientOptionsBuilder.httpClient(httpClient);
+        this.httpClient = httpClient;
         return this;
     }
+
+    /**
+     * Add a custom header to be sent with all requests.
+     * For headers that need to be computed dynamically or conditionally, use the setAdditional() method override instead.
+     *
+     * @param name The header name
+     * @param value The header value
+     * @return This builder for method chaining
+     */
+    public MergeApiClientBuilder addHeader(String name, String value) {
+        this.customHeaders.put(name, value);
+        return this;
+    }
+
+    protected ClientOptions buildClientOptions() {
+        ClientOptions.Builder builder = ClientOptions.builder();
+        setEnvironment(builder);
+        setAuthentication(builder);
+        setCustomHeaders(builder);
+        setHttpClient(builder);
+        setTimeouts(builder);
+        setRetries(builder);
+        for (Map.Entry<String, String> header : this.customHeaders.entrySet()) {
+            builder.addHeader(header.getKey(), header.getValue());
+        }
+        setAdditional(builder);
+        return builder.build();
+    }
+
+    /**
+     * Sets the environment configuration for the client.
+     * Override this method to modify URLs or add environment-specific logic.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     */
+    protected void setEnvironment(ClientOptions.Builder builder) {
+        builder.environment(this.environment);
+    }
+
+    /**
+     * Override this method to customize authentication.
+     * This method is called during client options construction to set up authentication headers.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     *
+     * Example:
+     * <pre>{@code
+     * &#64;Override
+     * protected void setAuthentication(ClientOptions.Builder builder) {
+     *     super.setAuthentication(builder); // Keep existing auth
+     *     builder.addHeader("X-API-Key", this.apiKey);
+     * }
+     * }</pre>
+     */
+    protected void setAuthentication(ClientOptions.Builder builder) {
+        if (this.apiKey != null) {
+            builder.addHeader("Authorization", "Bearer " + this.apiKey);
+        }
+    }
+
+    /**
+     * Override this method to add or modify custom headers.
+     * This method is called during client options construction to set up custom headers defined in the API.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     *
+     * Example:
+     * <pre>{@code
+     * &#64;Override
+     * protected void setCustomHeaders(ClientOptions.Builder builder) {
+     *     super.setCustomHeaders(builder); // Keep existing headers
+     *     builder.addHeader("X-Trace-ID", generateTraceId());
+     * }
+     * }</pre>
+     */
+    protected void setCustomHeaders(ClientOptions.Builder builder) {
+        if (this.accountToken != null) {
+            builder.addHeader("X-Account-Token", this.accountToken);
+        }
+    }
+
+    /**
+     * Sets the request timeout configuration.
+     * Override this method to customize timeout behavior.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     */
+    protected void setTimeouts(ClientOptions.Builder builder) {
+        if (this.timeout.isPresent()) {
+            builder.timeout(this.timeout.get());
+        }
+    }
+
+    /**
+     * Sets the retry configuration for failed requests.
+     * Override this method to implement custom retry strategies.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     */
+    protected void setRetries(ClientOptions.Builder builder) {
+        if (this.maxRetries.isPresent()) {
+            builder.maxRetries(this.maxRetries.get());
+        }
+    }
+
+    /**
+     * Sets the OkHttp client configuration.
+     * Override this method to customize HTTP client behavior (interceptors, connection pools, etc).
+     *
+     * @param builder The ClientOptions.Builder to configure
+     */
+    protected void setHttpClient(ClientOptions.Builder builder) {
+        if (this.httpClient != null) {
+            builder.httpClient(this.httpClient);
+        }
+    }
+
+    /**
+     * Override this method to add any additional configuration to the client.
+     * This method is called at the end of the configuration chain, allowing you to add
+     * custom headers, modify settings, or perform any other client customization.
+     *
+     * @param builder The ClientOptions.Builder to configure
+     *
+     * Example:
+     * <pre>{@code
+     * &#64;Override
+     * protected void setAdditional(ClientOptions.Builder builder) {
+     *     builder.addHeader("X-Request-ID", () -&gt; UUID.randomUUID().toString());
+     *     builder.addHeader("X-Client-Version", "1.0.0");
+     * }
+     * }</pre>
+     */
+    protected void setAdditional(ClientOptions.Builder builder) {}
+
+    /**
+     * Override this method to add custom validation logic before the client is built.
+     * This method is called at the beginning of the build() method to ensure the configuration is valid.
+     * Throw an exception to prevent client creation if validation fails.
+     *
+     * Example:
+     * <pre>{@code
+     * &#64;Override
+     * protected void validateConfiguration() {
+     *     super.validateConfiguration(); // Run parent validations
+     *     if (tenantId == null || tenantId.isEmpty()) {
+     *         throw new IllegalStateException("tenantId is required");
+     *     }
+     * }
+     * }</pre>
+     */
+    protected void validateConfiguration() {}
 
     public MergeApiClient build() {
         if (apiKey == null) {
             throw new RuntimeException("Please provide apiKey");
         }
-        this.clientOptionsBuilder.addHeader("Authorization", "Bearer " + this.apiKey);
-        if (accountToken != null) {
-            this.clientOptionsBuilder.addHeader("X-Account-Token", this.accountToken);
-        }
-        clientOptionsBuilder.environment(this.environment);
-        return new MergeApiClient(clientOptionsBuilder.build());
+        validateConfiguration();
+        return new MergeApiClient(buildClientOptions());
     }
 }

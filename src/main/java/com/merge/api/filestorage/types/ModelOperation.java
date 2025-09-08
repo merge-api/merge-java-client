@@ -159,7 +159,9 @@ public final class ModelOperation {
 
         @java.lang.Override
         public _FinalStage addAllSupportedFields(List<String> supportedFields) {
-            this.supportedFields.addAll(supportedFields);
+            if (supportedFields != null) {
+                this.supportedFields.addAll(supportedFields);
+            }
             return this;
         }
 
@@ -179,7 +181,9 @@ public final class ModelOperation {
 
         @java.lang.Override
         public _FinalStage addAllRequiredPostParameters(List<String> requiredPostParameters) {
-            this.requiredPostParameters.addAll(requiredPostParameters);
+            if (requiredPostParameters != null) {
+                this.requiredPostParameters.addAll(requiredPostParameters);
+            }
             return this;
         }
 
@@ -199,7 +203,9 @@ public final class ModelOperation {
 
         @java.lang.Override
         public _FinalStage addAllAvailableOperations(List<String> availableOperations) {
-            this.availableOperations.addAll(availableOperations);
+            if (availableOperations != null) {
+                this.availableOperations.addAll(availableOperations);
+            }
             return this;
         }
 

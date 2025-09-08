@@ -314,7 +314,9 @@ public final class Group {
         }
 
         public Builder addAllUsers(List<String> users) {
-            this.users.addAll(users);
+            if (users != null) {
+                this.users.addAll(users);
+            }
             return this;
         }
 

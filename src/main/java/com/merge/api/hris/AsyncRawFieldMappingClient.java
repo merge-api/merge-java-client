@@ -69,14 +69,13 @@ public class AsyncRawFieldMappingClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "exclude_remote_field_metadata",
-                    request.getExcludeRemoteFieldMetadata().get().toString(),
+                    request.getExcludeRemoteFieldMetadata().get(),
                     false);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -135,7 +134,7 @@ public class AsyncRawFieldMappingClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "exclude_remote_field_metadata",
-                    request.getExcludeRemoteFieldMetadata().get().toString(),
+                    request.getExcludeRemoteFieldMetadata().get(),
                     false);
         }
         Map<String, Object> properties = new HashMap<>();
@@ -217,7 +216,6 @@ public class AsyncRawFieldMappingClient {
                 .url(httpUrl)
                 .method("DELETE", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();
@@ -371,7 +369,6 @@ public class AsyncRawFieldMappingClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -430,7 +427,6 @@ public class AsyncRawFieldMappingClient {
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();

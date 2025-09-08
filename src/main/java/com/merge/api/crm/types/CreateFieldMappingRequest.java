@@ -159,7 +159,7 @@ public final class CreateFieldMappingRequest {
 
     public interface TargetFieldNameStage {
         /**
-         * The name of the target field you want this remote field to map to.
+         * <p>The name of the target field you want this remote field to map to.</p>
          */
         TargetFieldDescriptionStage targetFieldName(@NotNull String targetFieldName);
 
@@ -168,28 +168,28 @@ public final class CreateFieldMappingRequest {
 
     public interface TargetFieldDescriptionStage {
         /**
-         * The description of the target field you want this remote field to map to.
+         * <p>The description of the target field you want this remote field to map to.</p>
          */
         RemoteMethodStage targetFieldDescription(@NotNull String targetFieldDescription);
     }
 
     public interface RemoteMethodStage {
         /**
-         * The method of the remote endpoint where the remote field is coming from.
+         * <p>The method of the remote endpoint where the remote field is coming from.</p>
          */
         RemoteUrlPathStage remoteMethod(@NotNull String remoteMethod);
     }
 
     public interface RemoteUrlPathStage {
         /**
-         * The path of the remote endpoint where the remote field is coming from.
+         * <p>The path of the remote endpoint where the remote field is coming from.</p>
          */
         CommonModelNameStage remoteUrlPath(@NotNull String remoteUrlPath);
     }
 
     public interface CommonModelNameStage {
         /**
-         * The name of the Common Model that the remote field corresponds to in a given category.
+         * <p>The name of the Common Model that the remote field corresponds to in a given category.</p>
          */
         _FinalStage commonModelName(@NotNull String commonModelName);
     }
@@ -254,7 +254,8 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * The name of the target field you want this remote field to map to.<p>The name of the target field you want this remote field to map to.</p>
+         * <p>The name of the target field you want this remote field to map to.</p>
+         * <p>The name of the target field you want this remote field to map to.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -265,7 +266,8 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * The description of the target field you want this remote field to map to.<p>The description of the target field you want this remote field to map to.</p>
+         * <p>The description of the target field you want this remote field to map to.</p>
+         * <p>The description of the target field you want this remote field to map to.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -276,7 +278,8 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * The method of the remote endpoint where the remote field is coming from.<p>The method of the remote endpoint where the remote field is coming from.</p>
+         * <p>The method of the remote endpoint where the remote field is coming from.</p>
+         * <p>The method of the remote endpoint where the remote field is coming from.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -287,7 +290,8 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * The path of the remote endpoint where the remote field is coming from.<p>The path of the remote endpoint where the remote field is coming from.</p>
+         * <p>The path of the remote endpoint where the remote field is coming from.</p>
+         * <p>The path of the remote endpoint where the remote field is coming from.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -298,7 +302,8 @@ public final class CreateFieldMappingRequest {
         }
 
         /**
-         * The name of the Common Model that the remote field corresponds to in a given category.<p>The name of the Common Model that the remote field corresponds to in a given category.</p>
+         * <p>The name of the Common Model that the remote field corresponds to in a given category.</p>
+         * <p>The name of the Common Model that the remote field corresponds to in a given category.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -314,7 +319,9 @@ public final class CreateFieldMappingRequest {
          */
         @java.lang.Override
         public _FinalStage addAllRemoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
-            this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
+            if (remoteFieldTraversalPath != null) {
+                this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
+            }
             return this;
         }
 

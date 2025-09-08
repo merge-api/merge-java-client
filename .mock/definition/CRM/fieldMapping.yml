@@ -30,7 +30,8 @@ service:
         type: crmRoot.FieldMappingApiInstanceResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Account:
@@ -245,7 +246,8 @@ service:
         type: crmRoot.FieldMappingInstanceResponse
         status-code: 201
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           request:
             target_field_name: example_target_field_name
             target_field_description: this is a example description of the target field
@@ -312,7 +314,8 @@ service:
       examples:
         - path-parameters:
             field_mapping_id: field_mapping_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               model:
@@ -394,7 +397,8 @@ service:
       examples:
         - path-parameters:
             field_mapping_id: field_mapping_id
-          headers: {}
+          headers:
+            X-Account-Token: X-Account-Token
           request: {}
           response:
             body:
@@ -465,7 +469,8 @@ service:
         type: crmRoot.RemoteFieldApiResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Account:
@@ -611,7 +616,8 @@ service:
         type: crmRoot.ExternalTargetFieldApiResponse
         status-code: 200
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
           response:
             body:
               Account:

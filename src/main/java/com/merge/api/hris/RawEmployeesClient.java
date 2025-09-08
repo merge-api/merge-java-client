@@ -70,11 +70,11 @@ public class RawEmployeesClient {
         }
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_after", request.getCreatedAfter().get().toString(), false);
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
         }
         if (request.getCreatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_before", request.getCreatedBefore().get().toString(), false);
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -86,10 +86,7 @@ public class RawEmployeesClient {
         }
         if (request.getEmploymentStatus().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "employment_status",
-                    request.getEmploymentStatus().get().toString(),
-                    false);
+                    httpUrl, "employment_status", request.getEmploymentStatus().get(), false);
         }
         if (request.getEmploymentType().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -111,29 +108,26 @@ public class RawEmployeesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString(),
+                    request.getIncludeDeletedData().get(),
                     false);
         }
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeSensitiveFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_sensitive_fields",
-                    request.getIncludeSensitiveFields().get().toString(),
+                    request.getIncludeSensitiveFields().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getJobTitle().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -149,18 +143,15 @@ public class RawEmployeesClient {
         }
         if (request.getModifiedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "modified_after", request.getModifiedAfter().get().toString(), false);
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
         }
         if (request.getModifiedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "modified_before",
-                    request.getModifiedBefore().get().toString(),
-                    false);
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getPayGroupId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -172,7 +163,7 @@ public class RawEmployeesClient {
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getRemoteId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -180,18 +171,15 @@ public class RawEmployeesClient {
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getStartedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "started_after", request.getStartedAfter().get().toString(), false);
+                    httpUrl, "started_after", request.getStartedAfter().get(), false);
         }
         if (request.getStartedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "started_before", request.getStartedBefore().get().toString(), false);
+                    httpUrl, "started_before", request.getStartedBefore().get(), false);
         }
         if (request.getTeamId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -199,17 +187,11 @@ public class RawEmployeesClient {
         }
         if (request.getTerminatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "terminated_after",
-                    request.getTerminatedAfter().get().toString(),
-                    false);
+                    httpUrl, "terminated_after", request.getTerminatedAfter().get(), false);
         }
         if (request.getTerminatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "terminated_before",
-                    request.getTerminatedBefore().get().toString(),
-                    false);
+                    httpUrl, "terminated_before", request.getTerminatedBefore().get(), false);
         }
         if (request.getWorkEmail().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -221,13 +203,12 @@ public class RawEmployeesClient {
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -279,11 +260,11 @@ public class RawEmployeesClient {
                 .addPathSegments("hris/v1/employees");
         if (request.getIsDebugMode().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "is_debug_mode", request.getIsDebugMode().get().toString(), false);
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get(), false);
         }
         if (request.getRunAsync().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "run_async", request.getRunAsync().get().toString(), false);
+                    httpUrl, "run_async", request.getRunAsync().get(), false);
         }
         Map<String, Object> properties = new HashMap<>();
         properties.put("model", request.getModel());
@@ -349,43 +330,36 @@ public class RawEmployeesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeSensitiveFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_sensitive_fields",
-                    request.getIncludeSensitiveFields().get().toString(),
+                    request.getIncludeSensitiveFields().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -478,7 +452,6 @@ public class RawEmployeesClient {
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();

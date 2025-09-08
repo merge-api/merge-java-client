@@ -67,7 +67,7 @@ public final class GenerateRemoteKeyRequest {
 
     public interface NameStage {
         /**
-         * The name of the remote key
+         * <p>The name of the remote key</p>
          */
         _FinalStage name(@NotNull String name);
 
@@ -94,7 +94,8 @@ public final class GenerateRemoteKeyRequest {
         }
 
         /**
-         * The name of the remote key<p>The name of the remote key</p>
+         * <p>The name of the remote key</p>
+         * <p>The name of the remote key</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

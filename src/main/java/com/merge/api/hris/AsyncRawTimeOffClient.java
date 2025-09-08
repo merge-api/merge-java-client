@@ -73,11 +73,11 @@ public class AsyncRawTimeOffClient {
         }
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_after", request.getCreatedAfter().get().toString(), false);
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
         }
         if (request.getCreatedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "created_before", request.getCreatedBefore().get().toString(), false);
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
         }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -89,51 +89,45 @@ public class AsyncRawTimeOffClient {
         }
         if (request.getEndedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "ended_after", request.getEndedAfter().get().toString(), false);
+                    httpUrl, "ended_after", request.getEndedAfter().get(), false);
         }
         if (request.getEndedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "ended_before", request.getEndedBefore().get().toString(), false);
+                    httpUrl, "ended_before", request.getEndedBefore().get(), false);
         }
         if (request.getIncludeDeletedData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_deleted_data",
-                    request.getIncludeDeletedData().get().toString(),
+                    request.getIncludeDeletedData().get(),
                     false);
         }
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getModifiedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "modified_after", request.getModifiedAfter().get().toString(), false);
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
         }
         if (request.getModifiedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "modified_before",
-                    request.getModifiedBefore().get().toString(),
-                    false);
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "page_size", request.getPageSize().get().toString(), false);
+                    httpUrl, "page_size", request.getPageSize().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getRemoteId().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -141,36 +135,32 @@ public class AsyncRawTimeOffClient {
         }
         if (request.getRequestType().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "request_type", request.getRequestType().get().toString(), false);
+                    httpUrl, "request_type", request.getRequestType().get(), false);
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getStartedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "started_after", request.getStartedAfter().get().toString(), false);
+                    httpUrl, "started_after", request.getStartedAfter().get(), false);
         }
         if (request.getStartedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "started_before", request.getStartedBefore().get().toString(), false);
+                    httpUrl, "started_before", request.getStartedBefore().get(), false);
         }
         if (request.getStatus().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "status", request.getStatus().get().toString(), false);
+                    httpUrl, "status", request.getStatus().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -241,11 +231,11 @@ public class AsyncRawTimeOffClient {
                 .addPathSegments("hris/v1/time-off");
         if (request.getIsDebugMode().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "is_debug_mode", request.getIsDebugMode().get().toString(), false);
+                    httpUrl, "is_debug_mode", request.getIsDebugMode().get(), false);
         }
         if (request.getRunAsync().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "run_async", request.getRunAsync().get().toString(), false);
+                    httpUrl, "run_async", request.getRunAsync().get(), false);
         }
         Map<String, Object> properties = new HashMap<>();
         properties.put("model", request.getModel());
@@ -325,36 +315,29 @@ public class AsyncRawTimeOffClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "remote_fields", request.getRemoteFields().get().toString(), false);
+                    httpUrl, "remote_fields", request.getRemoteFields().get(), false);
         }
         if (request.getShowEnumOrigins().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "show_enum_origins",
-                    request.getShowEnumOrigins().get().toString(),
-                    false);
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl, "expand", request.getExpand().get().toString(), false);
+                    httpUrl, "expand", request.getExpand().get(), true);
         }
         Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
@@ -410,7 +393,6 @@ public class AsyncRawTimeOffClient {
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json")
                 .build();
         OkHttpClient client = clientOptions.httpClient();

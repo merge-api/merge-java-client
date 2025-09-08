@@ -139,7 +139,9 @@ public final class CommonModelScopesBodyRequest {
 
         @java.lang.Override
         public _FinalStage addAllDisabledFields(List<String> disabledFields) {
-            this.disabledFields.addAll(disabledFields);
+            if (disabledFields != null) {
+                this.disabledFields.addAll(disabledFields);
+            }
             return this;
         }
 
@@ -159,7 +161,9 @@ public final class CommonModelScopesBodyRequest {
 
         @java.lang.Override
         public _FinalStage addAllEnabledActions(List<EnabledActionsEnum> enabledActions) {
-            this.enabledActions.addAll(enabledActions);
+            if (enabledActions != null) {
+                this.enabledActions.addAll(enabledActions);
+            }
             return this;
         }
 

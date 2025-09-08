@@ -58,15 +58,12 @@ public class AsyncRawAddressesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
                     "include_remote_data",
-                    request.getIncludeRemoteData().get().toString(),
+                    request.getIncludeRemoteData().get(),
                     false);
         }
         if (request.getIncludeShellData().isPresent()) {
             QueryStringMapper.addQueryParameter(
-                    httpUrl,
-                    "include_shell_data",
-                    request.getIncludeShellData().get().toString(),
-                    false);
+                    httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
         if (request.getRemoteFields().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -80,7 +77,6 @@ public class AsyncRawAddressesClient {
                 .url(httpUrl.build())
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Content-Type", "application/json")
                 .addHeader("Accept", "application/json");
         Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();

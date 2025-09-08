@@ -128,7 +128,7 @@ public final class MultipartFormFieldRequest {
 
     public interface NameStage {
         /**
-         * The name of the form field
+         * <p>The name of the form field</p>
          */
         DataStage name(@NotNull String name);
 
@@ -137,7 +137,7 @@ public final class MultipartFormFieldRequest {
 
     public interface DataStage {
         /**
-         * The data for the form field.
+         * <p>The data for the form field.</p>
          */
         _FinalStage data(@NotNull String data);
     }
@@ -200,7 +200,8 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * The name of the form field<p>The name of the form field</p>
+         * <p>The name of the form field</p>
+         * <p>The name of the form field</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
@@ -211,7 +212,8 @@ public final class MultipartFormFieldRequest {
         }
 
         /**
-         * The data for the form field.<p>The data for the form field.</p>
+         * <p>The data for the form field.</p>
+         * <p>The data for the form field.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

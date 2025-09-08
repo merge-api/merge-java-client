@@ -10,6 +10,7 @@ service:
       source:
         openapi: filestorage_v3.yml
       examples:
-        - headers: {}
+        - headers:
+            X-Account-Token: X-Account-Token
   source:
     openapi: filestorage_v3.yml

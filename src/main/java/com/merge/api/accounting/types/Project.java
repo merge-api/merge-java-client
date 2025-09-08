@@ -192,7 +192,7 @@ public final class Project {
 
     public interface NameStage {
         /**
-         * The project’s name
+         * <p>The project’s name</p>
          */
         _FinalStage name(@NotNull String name);
 
@@ -300,7 +300,8 @@ public final class Project {
         }
 
         /**
-         * The project’s name<p>The project’s name</p>
+         * <p>The project’s name</p>
+         * <p>The project’s name</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

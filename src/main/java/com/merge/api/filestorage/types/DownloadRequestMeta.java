@@ -174,7 +174,9 @@ public final class DownloadRequestMeta {
 
         @java.lang.Override
         public _FinalStage putAllHeaders(Map<String, JsonNode> headers) {
-            this.headers.putAll(headers);
+            if (headers != null) {
+                this.headers.putAll(headers);
+            }
             return this;
         }
 

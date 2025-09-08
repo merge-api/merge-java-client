@@ -78,7 +78,7 @@ public final class RemoteData {
 
     public interface PathStage {
         /**
-         * The third-party API path that is being called.
+         * <p>The third-party API path that is being called.</p>
          */
         _FinalStage path(@NotNull String path);
 
@@ -112,7 +112,8 @@ public final class RemoteData {
         }
 
         /**
-         * The third-party API path that is being called.<p>The third-party API path that is being called.</p>
+         * <p>The third-party API path that is being called.</p>
+         * <p>The third-party API path that is being called.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override

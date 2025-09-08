@@ -172,7 +172,7 @@ public final class DataPassthroughRequest {
 
     public interface PathStage {
         /**
-         * The path of the request in the third party's platform.
+         * <p>The path of the request in the third party's platform.</p>
          */
         _FinalStage path(@NotNull String path);
     }
@@ -264,7 +264,8 @@ public final class DataPassthroughRequest {
         }
 
         /**
-         * The path of the request in the third party's platform.<p>The path of the request in the third party's platform.</p>
+         * <p>The path of the request in the third party's platform.</p>
+         * <p>The path of the request in the third party's platform.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
