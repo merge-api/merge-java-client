@@ -154,6 +154,7 @@ public class RawAssociationsClient {
                         new SyncPagingIterable<Association>(
                                 startingAfter.isPresent(),
                                 result,
+                                parsedResponse,
                                 () -> customObjectClassesCustomObjectsAssociationsList(
                                                 customObjectClassId, objectId, nextRequest, requestOptions)
                                         .body()),
@@ -174,17 +175,17 @@ public class RawAssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public MergeApiHttpResponse<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
-            String targetObjectId) {
+            String targetObjectId,
+            String associationTypeId) {
         return customObjectClassesCustomObjectsAssociationsUpdate(
-                associationTypeId,
                 sourceClassId,
                 sourceObjectId,
                 targetClassId,
                 targetObjectId,
+                associationTypeId,
                 CustomObjectClassesCustomObjectsAssociationsUpdateRequest.builder()
                         .build());
     }
@@ -193,25 +194,25 @@ public class RawAssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public MergeApiHttpResponse<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request) {
         return customObjectClassesCustomObjectsAssociationsUpdate(
-                associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, request, null);
+                sourceClassId, sourceObjectId, targetClassId, targetObjectId, associationTypeId, request, null);
     }
 
     /**
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public MergeApiHttpResponse<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request,
             RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())

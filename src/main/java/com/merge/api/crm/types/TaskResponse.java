@@ -186,7 +186,9 @@ public final class TaskResponse {
         @JsonSetter(value = "errors", nulls = Nulls.SKIP)
         public _FinalStage errors(List<ErrorValidationProblem> errors) {
             this.errors.clear();
-            this.errors.addAll(errors);
+            if (errors != null) {
+                this.errors.addAll(errors);
+            }
             return this;
         }
 
@@ -208,7 +210,9 @@ public final class TaskResponse {
         @JsonSetter(value = "warnings", nulls = Nulls.SKIP)
         public _FinalStage warnings(List<WarningValidationProblem> warnings) {
             this.warnings.clear();
-            this.warnings.addAll(warnings);
+            if (warnings != null) {
+                this.warnings.addAll(warnings);
+            }
             return this;
         }
 

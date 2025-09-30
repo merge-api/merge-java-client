@@ -130,7 +130,7 @@ public class AsyncRawTagsClient {
                                 .build();
                         List<Tag> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Tag>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Tag>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

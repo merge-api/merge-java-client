@@ -154,16 +154,17 @@ public class AsyncRawAssociationTypesClient {
                         List<AssociationType> result =
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<AssociationType>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return customObjectClassesAssociationTypesList(
-                                                        customObjectClassId, nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<AssociationType>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return customObjectClassesAssociationTypesList(
+                                                                customObjectClassId, nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

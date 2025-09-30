@@ -258,7 +258,9 @@ public final class RemoteFieldApi {
         @JsonSetter(value = "schema", nulls = Nulls.SKIP)
         public _FinalStage schema(Map<String, JsonNode> schema) {
             this.schema.clear();
-            this.schema.putAll(schema);
+            if (schema != null) {
+                this.schema.putAll(schema);
+            }
             return this;
         }
 

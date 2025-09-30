@@ -20,7 +20,8 @@ service:
     list:
       path: /accounting/v1/company-info
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `CompanyInfo` objects.
       pagination:
         cursor: $request.cursor
@@ -88,7 +89,16 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            page_size: 1
+            remote_id: remote_id
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -108,6 +118,8 @@ service:
                   currency:
                     key: value
                   remote_created_at: '2020-03-31T00:00:00Z'
+                  urls:
+                    - null
                   addresses:
                     - created_at: '2021-09-15T00:00:00Z'
                       modified_at: '2021-10-16T00:00:00Z'
@@ -133,7 +145,8 @@ service:
     retrieve:
       path: /accounting/v1/company-info/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a `CompanyInfo` object with the given `id`.
       source:
         openapi: accounting_v3.yml
@@ -165,6 +178,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_shell_data: true
           headers:
             X-Account-Token: X-Account-Token
           response:

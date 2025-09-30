@@ -7,7 +7,8 @@ service:
     list:
       path: /ticketing/v1/contacts
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Contact` objects.
       pagination:
         cursor: $request.cursor
@@ -75,7 +76,16 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            page_size: 1
+            remote_id: remote_id
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -103,7 +113,8 @@ service:
     create:
       path: /ticketing/v1/contacts
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Creates a `Contact` object with the given values.
       source:
         openapi: ticketing_v3.yml
@@ -127,7 +138,10 @@ service:
         type: ticketingRoot.TicketingContactResponse
         status-code: 201
       examples:
-        - headers:
+        - query-parameters:
+            is_debug_mode: true
+            run_async: true
+          headers:
             X-Account-Token: X-Account-Token
           request:
             model: {}
@@ -174,7 +188,8 @@ service:
     retrieve:
       path: /ticketing/v1/contacts/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a `Contact` object with the given `id`.
       source:
         openapi: ticketing_v3.yml
@@ -206,6 +221,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_shell_data: true
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -232,7 +250,8 @@ service:
     metaPostRetrieve:
       path: /ticketing/v1/contacts/meta/post
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `TicketingContact` POSTs.
       source:
         openapi: ticketing_v3.yml

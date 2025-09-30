@@ -175,7 +175,9 @@ public final class ModelOperation {
         @JsonSetter(value = "supported_fields", nulls = Nulls.SKIP)
         public _FinalStage supportedFields(List<String> supportedFields) {
             this.supportedFields.clear();
-            this.supportedFields.addAll(supportedFields);
+            if (supportedFields != null) {
+                this.supportedFields.addAll(supportedFields);
+            }
             return this;
         }
 
@@ -197,7 +199,9 @@ public final class ModelOperation {
         @JsonSetter(value = "required_post_parameters", nulls = Nulls.SKIP)
         public _FinalStage requiredPostParameters(List<String> requiredPostParameters) {
             this.requiredPostParameters.clear();
-            this.requiredPostParameters.addAll(requiredPostParameters);
+            if (requiredPostParameters != null) {
+                this.requiredPostParameters.addAll(requiredPostParameters);
+            }
             return this;
         }
 
@@ -219,7 +223,9 @@ public final class ModelOperation {
         @JsonSetter(value = "available_operations", nulls = Nulls.SKIP)
         public _FinalStage availableOperations(List<String> availableOperations) {
             this.availableOperations.clear();
-            this.availableOperations.addAll(availableOperations);
+            if (availableOperations != null) {
+                this.availableOperations.addAll(availableOperations);
+            }
             return this;
         }
 

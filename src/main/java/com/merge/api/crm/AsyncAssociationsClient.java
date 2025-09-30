@@ -68,14 +68,14 @@ public class AsyncAssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public CompletableFuture<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
-            String targetObjectId) {
+            String targetObjectId,
+            String associationTypeId) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId)
+                        sourceClassId, sourceObjectId, targetClassId, targetObjectId, associationTypeId)
                 .thenApply(response -> response.body());
     }
 
@@ -83,15 +83,15 @@ public class AsyncAssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public CompletableFuture<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, request)
+                        sourceClassId, sourceObjectId, targetClassId, targetObjectId, associationTypeId, request)
                 .thenApply(response -> response.body());
     }
 
@@ -99,20 +99,20 @@ public class AsyncAssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public CompletableFuture<Association> customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request,
             RequestOptions requestOptions) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId,
                         sourceClassId,
                         sourceObjectId,
                         targetClassId,
                         targetObjectId,
+                        associationTypeId,
                         request,
                         requestOptions)
                 .thenApply(response -> response.body());

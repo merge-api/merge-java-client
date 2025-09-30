@@ -155,7 +155,7 @@ public class AsyncRawItemsClient {
                                 .build();
                         List<Item> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Item>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Item>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

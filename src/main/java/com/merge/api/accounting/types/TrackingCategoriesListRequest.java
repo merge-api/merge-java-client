@@ -25,7 +25,7 @@ import java.util.Optional;
 public final class TrackingCategoriesListRequest {
     private final Optional<List<String>> expand;
 
-    private final Optional<String> categoryType;
+    private final Optional<TrackingCategoriesListRequestCategoryType> categoryType;
 
     private final Optional<String> companyId;
 
@@ -55,13 +55,13 @@ public final class TrackingCategoriesListRequest {
 
     private final Optional<String> showEnumOrigins;
 
-    private final Optional<String> status;
+    private final Optional<TrackingCategoriesListRequestStatus> status;
 
     private final Map<String, Object> additionalProperties;
 
     private TrackingCategoriesListRequest(
             Optional<List<String>> expand,
-            Optional<String> categoryType,
+            Optional<TrackingCategoriesListRequestCategoryType> categoryType,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -76,7 +76,7 @@ public final class TrackingCategoriesListRequest {
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
-            Optional<String> status,
+            Optional<TrackingCategoriesListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.categoryType = categoryType;
@@ -110,7 +110,7 @@ public final class TrackingCategoriesListRequest {
      * @return If provided, will only return tracking categories with this type.
      */
     @JsonProperty("category_type")
-    public Optional<String> getCategoryType() {
+    public Optional<TrackingCategoriesListRequestCategoryType> getCategoryType() {
         return categoryType;
     }
 
@@ -230,7 +230,7 @@ public final class TrackingCategoriesListRequest {
      * @return If provided, will only return tracking categories with this status.
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<TrackingCategoriesListRequestStatus> getStatus() {
         return status;
     }
 
@@ -300,7 +300,7 @@ public final class TrackingCategoriesListRequest {
     public static final class Builder {
         private Optional<List<String>> expand = Optional.empty();
 
-        private Optional<String> categoryType = Optional.empty();
+        private Optional<TrackingCategoriesListRequestCategoryType> categoryType = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
 
@@ -330,7 +330,7 @@ public final class TrackingCategoriesListRequest {
 
         private Optional<String> showEnumOrigins = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<TrackingCategoriesListRequestStatus> status = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -381,12 +381,12 @@ public final class TrackingCategoriesListRequest {
          * <p>If provided, will only return tracking categories with this type.</p>
          */
         @JsonSetter(value = "category_type", nulls = Nulls.SKIP)
-        public Builder categoryType(Optional<String> categoryType) {
+        public Builder categoryType(Optional<TrackingCategoriesListRequestCategoryType> categoryType) {
             this.categoryType = categoryType;
             return this;
         }
 
-        public Builder categoryType(String categoryType) {
+        public Builder categoryType(TrackingCategoriesListRequestCategoryType categoryType) {
             this.categoryType = Optional.ofNullable(categoryType);
             return this;
         }
@@ -591,12 +591,12 @@ public final class TrackingCategoriesListRequest {
          * <p>If provided, will only return tracking categories with this status.</p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<TrackingCategoriesListRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(TrackingCategoriesListRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

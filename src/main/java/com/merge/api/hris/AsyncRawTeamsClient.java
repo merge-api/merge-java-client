@@ -139,7 +139,7 @@ public class AsyncRawTeamsClient {
                                 .build();
                         List<Team> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Team>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Team>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

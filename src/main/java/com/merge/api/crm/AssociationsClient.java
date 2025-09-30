@@ -67,14 +67,14 @@ public class AssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public Association customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
-            String targetObjectId) {
+            String targetObjectId,
+            String associationTypeId) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId)
+                        sourceClassId, sourceObjectId, targetClassId, targetObjectId, associationTypeId)
                 .body();
     }
 
@@ -82,15 +82,15 @@ public class AssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public Association customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId, sourceClassId, sourceObjectId, targetClassId, targetObjectId, request)
+                        sourceClassId, sourceObjectId, targetClassId, targetObjectId, associationTypeId, request)
                 .body();
     }
 
@@ -98,20 +98,20 @@ public class AssociationsClient {
      * Creates an Association between <code>source_object_id</code> and <code>target_object_id</code> of type <code>association_type_id</code>.
      */
     public Association customObjectClassesCustomObjectsAssociationsUpdate(
-            String associationTypeId,
             String sourceClassId,
             String sourceObjectId,
             String targetClassId,
             String targetObjectId,
+            String associationTypeId,
             CustomObjectClassesCustomObjectsAssociationsUpdateRequest request,
             RequestOptions requestOptions) {
         return this.rawClient
                 .customObjectClassesCustomObjectsAssociationsUpdate(
-                        associationTypeId,
                         sourceClassId,
                         sourceObjectId,
                         targetClassId,
                         targetObjectId,
+                        associationTypeId,
                         request,
                         requestOptions)
                 .body();

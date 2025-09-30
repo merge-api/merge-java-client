@@ -134,15 +134,16 @@ public class AsyncRawProjectsClient {
                                 .build();
                         List<Project> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Project>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return list(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<Project>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return list(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
@@ -320,7 +321,7 @@ public class AsyncRawProjectsClient {
                                 .build();
                         List<User> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<User>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<User>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return usersList(parentId, nextRequest, requestOptions)
                                                 .get()

@@ -81,7 +81,7 @@ public final class TicketsListRequest {
 
     private final Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins;
 
-    private final Optional<String> status;
+    private final Optional<TicketsListRequestStatus> status;
 
     private final Optional<String> tags;
 
@@ -121,7 +121,7 @@ public final class TicketsListRequest {
             Optional<OffsetDateTime> remoteUpdatedAfter,
             Optional<OffsetDateTime> remoteUpdatedBefore,
             Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins,
-            Optional<String> status,
+            Optional<TicketsListRequestStatus> status,
             Optional<String> tags,
             Optional<String> ticketType,
             Optional<String> ticketUrl,
@@ -404,7 +404,7 @@ public final class TicketsListRequest {
      * @return If provided, will only return tickets of this status.
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<TicketsListRequestStatus> getStatus() {
         return status;
     }
 
@@ -586,7 +586,7 @@ public final class TicketsListRequest {
 
         private Optional<TicketsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<TicketsListRequestStatus> status = Optional.empty();
 
         private Optional<String> tags = Optional.empty();
 
@@ -1057,12 +1057,12 @@ public final class TicketsListRequest {
          * <p>If provided, will only return tickets of this status.</p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<TicketsListRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(TicketsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

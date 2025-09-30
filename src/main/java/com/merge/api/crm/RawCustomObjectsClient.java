@@ -150,7 +150,10 @@ public class RawCustomObjectsClient {
                 List<CustomObject> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<CustomObject>(
-                                startingAfter.isPresent(), result, () -> customObjectClassesCustomObjectsList(
+                                startingAfter.isPresent(),
+                                result,
+                                parsedResponse,
+                                () -> customObjectClassesCustomObjectsList(
                                                 customObjectClassId, nextRequest, requestOptions)
                                         .body()),
                         response);
@@ -453,6 +456,7 @@ public class RawCustomObjectsClient {
                         new SyncPagingIterable<RemoteFieldClass>(
                                 startingAfter.isPresent(),
                                 result,
+                                parsedResponse,
                                 () -> customObjectClassesCustomObjectsRemoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),

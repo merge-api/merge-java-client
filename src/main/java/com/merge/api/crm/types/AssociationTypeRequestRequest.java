@@ -257,7 +257,9 @@ public final class AssociationTypeRequestRequest {
         @JsonSetter(value = "target_object_classes", nulls = Nulls.SKIP)
         public _FinalStage targetObjectClasses(List<ObjectClassDescriptionRequest> targetObjectClasses) {
             this.targetObjectClasses.clear();
-            this.targetObjectClasses.addAll(targetObjectClasses);
+            if (targetObjectClasses != null) {
+                this.targetObjectClasses.addAll(targetObjectClasses);
+            }
             return this;
         }
 

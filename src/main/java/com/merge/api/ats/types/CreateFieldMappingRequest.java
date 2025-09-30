@@ -342,7 +342,9 @@ public final class CreateFieldMappingRequest {
         @JsonSetter(value = "remote_field_traversal_path", nulls = Nulls.SKIP)
         public _FinalStage remoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath) {
             this.remoteFieldTraversalPath.clear();
-            this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
+            if (remoteFieldTraversalPath != null) {
+                this.remoteFieldTraversalPath.addAll(remoteFieldTraversalPath);
+            }
             return this;
         }
 

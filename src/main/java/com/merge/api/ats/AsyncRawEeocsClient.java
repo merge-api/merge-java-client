@@ -147,7 +147,7 @@ public class AsyncRawEeocsClient {
                                 .build();
                         List<Eeoc> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Eeoc>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Eeoc>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

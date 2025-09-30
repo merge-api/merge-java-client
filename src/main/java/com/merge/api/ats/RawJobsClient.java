@@ -149,9 +149,9 @@ public class RawJobsClient {
                         .build();
                 List<Job> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Job>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Job>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
@@ -316,7 +316,7 @@ public class RawJobsClient {
                 List<ScreeningQuestion> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<ScreeningQuestion>(
-                                startingAfter.isPresent(), result, () -> screeningQuestionsList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> screeningQuestionsList(
                                                 jobId, nextRequest, requestOptions)
                                         .body()),
                         response);
