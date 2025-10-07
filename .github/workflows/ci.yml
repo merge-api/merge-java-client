@@ -36,6 +36,10 @@ jobs:
 
       - name: Test
         run: ./gradlew test
+        env:
+          MERGE_API_KEY_FILESTORAGE: ${{ secrets.MERGE_API_KEY_FILESTORAGE }}
+          MERGE_ACCOUNT_TOKEN_FILESTORAGE: ${{ secrets.MERGE_ACCOUNT_TOKEN_FILESTORAGE }}
+
   publish:
     needs: [ compile, test ]
     if: github.event_name == 'push' && contains(github.ref, 'refs/tags/')
