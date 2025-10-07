@@ -6,12 +6,9 @@ import com.merge.api.filestorage.types.Folder;
 import com.merge.api.filestorage.types.PaginatedFolderList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.condition.EnabledIfEnvironmentVariable;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@EnabledIfEnvironmentVariable(named = "MERGE_API_KEY_FILESTORAGE", matches = ".+")
-@EnabledIfEnvironmentVariable(named = "MERGE_ACCOUNT_TOKEN_FILESTORAGE", matches = ".+")
 public class CursorPaginationIntegrationTest {
 
     private MergeApiClient client;
