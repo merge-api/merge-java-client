@@ -1,6 +1,6 @@
 package com.merge.api.integration;
 
-import com.merge.api.MergeApi;
+import com.merge.api.MergeApiClient;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.filestorage.types.Folder;
 import com.merge.api.filestorage.types.PaginatedFolderList;
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @EnabledIfEnvironmentVariable(named = "MERGE_ACCOUNT_TOKEN_FILESTORAGE", matches = ".+")
 public class CursorPaginationIntegrationTest {
 
-    private MergeApi client;
+    private MergeApiClient client;
 
     @BeforeEach
     void setUp() {
@@ -24,7 +24,7 @@ public class CursorPaginationIntegrationTest {
         assertNotNull(apiKey, "MERGE_API_KEY environment variable must be set");
         assertNotNull(accountToken, "MERGE_ACCOUNT_TOKEN environment variable must be set");
 
-        client = MergeApi.builder()
+        client = MergeApiClient.builder()
                 .apiKey(apiKey)
                 .accountToken(accountToken)
                 .build();
@@ -32,7 +32,7 @@ public class CursorPaginationIntegrationTest {
 
     @Test
     void testCursorPaginationWithFileStorageFolders() {
-        SyncPagingIterable<Folder> folders = client.filestorage().folders().list();
+        SyncPagingIterable<Folder> folders = client.fileStorage().folders().list();
 
         assertNotNull(folders, "Folders list should not be null");
 
@@ -44,10 +44,10 @@ public class CursorPaginationIntegrationTest {
             PaginatedFolderList paginatedResponse = (PaginatedFolderList) response;
 
             // Test cursor pagination metadata access
-            if (paginatedResponse.getNext() != null) {
-                assertNotNull(paginatedResponse.getNext(),
+            paginatedResponse.getNext().ifPresent(nextCursor -> {
+                assertNotNull(nextCursor,
                     "Cursor token should be available for pagination");
-            }
+            });
 
             // Test that we can access results
             assertNotNull(paginatedResponse.getResults(),
@@ -73,7 +73,7 @@ public class CursorPaginationIntegrationTest {
 
     @Test
     void testStatelessPaginationWithCursor() {
-        SyncPagingIterable<Folder> firstPage = client.filestorage().folders().list();
+        SyncPagingIterable<Folder> firstPage = client.fileStorage().folders().list();
 
         // Get the first page response to extract cursor
         firstPage.getResponse().ifPresent(response -> {
@@ -83,9 +83,7 @@ public class CursorPaginationIntegrationTest {
             PaginatedFolderList paginatedResponse = (PaginatedFolderList) response;
 
             // If there's a next cursor, test stateless pagination
-            if (paginatedResponse.getNext() != null && !paginatedResponse.getNext().isEmpty()) {
-                String nextCursor = paginatedResponse.getNext();
-
+            paginatedResponse.getNext().ifPresent(nextCursor -> {
                 // This demonstrates how a user would implement stateless pagination
                 // by using the cursor token from the response
                 assertNotNull(nextCursor, "Next cursor should be available");
@@ -94,13 +92,13 @@ public class CursorPaginationIntegrationTest {
                 // Note: In a real implementation, you would use this cursor
                 // to make subsequent requests with the cursor parameter
                 System.out.println("Successfully extracted cursor token: " + nextCursor.substring(0, Math.min(10, nextCursor.length())) + "...");
-            }
+            });
         });
     }
 
     @Test
     void testPaginationMetadataAccess() {
-        SyncPagingIterable<Folder> folders = client.filestorage().folders().list();
+        SyncPagingIterable<Folder> folders = client.fileStorage().folders().list();
 
         // Test that getResponse() provides access to full API response
         assertTrue(folders.getResponse().isPresent(),
@@ -112,9 +110,14 @@ public class CursorPaginationIntegrationTest {
                 PaginatedFolderList paginatedResponse = (PaginatedFolderList) response;
 
                 // Test access to pagination metadata
-                // These fields may be null if no pagination is needed
-                String next = paginatedResponse.getNext();
-                String previous = paginatedResponse.getPrevious();
+                // These fields may be Optional.empty() if no pagination is needed
+                paginatedResponse.getNext().ifPresent(next -> {
+                    assertNotNull(next, "Next cursor should not be null if present");
+                });
+                
+                paginatedResponse.getPrevious().ifPresent(previous -> {
+                    assertNotNull(previous, "Previous cursor should not be null if present");
+                });
 
                 // At minimum, results should be accessible
                 assertNotNull(paginatedResponse.getResults(),
