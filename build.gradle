@@ -9,7 +9,7 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-        url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+        url 'https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/'
     }
 }
 
@@ -48,7 +48,7 @@ java {
 
 group = 'dev.merge'
 
-version = '4.1.0'
+version = '5.0.0'
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
@@ -83,7 +83,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '4.1.0'
+            version = '5.0.0'
             from components.java
             pom {
                 name = 'merge'
