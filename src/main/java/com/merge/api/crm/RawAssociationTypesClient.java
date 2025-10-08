@@ -144,7 +144,10 @@ public class RawAssociationTypesClient {
                 List<AssociationType> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<AssociationType>(
-                                startingAfter.isPresent(), result, () -> customObjectClassesAssociationTypesList(
+                                startingAfter.isPresent(),
+                                result,
+                                parsedResponse,
+                                () -> customObjectClassesAssociationTypesList(
                                                 customObjectClassId, nextRequest, requestOptions)
                                         .body()),
                         response);

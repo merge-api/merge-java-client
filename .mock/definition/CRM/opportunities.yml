@@ -29,7 +29,8 @@ service:
     list:
       path: /crm/v1/opportunities
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Opportunity` objects.
       pagination:
         cursor: $request.cursor
@@ -138,7 +139,24 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            account_id: account_id
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            owner_id: owner_id
+            page_size: 1
+            remote_created_after: '2024-01-15T09:30:00Z'
+            remote_fields: status
+            remote_id: remote_id
+            show_enum_origins: status
+            stage_id: stage_id
+            status: LOST
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -175,7 +193,8 @@ service:
     create:
       path: /crm/v1/opportunities
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Creates an `Opportunity` object with the given values.
       source:
         openapi: crm_v3.yml
@@ -199,7 +218,10 @@ service:
         type: crmRoot.OpportunityResponse
         status-code: 201
       examples:
-        - headers:
+        - query-parameters:
+            is_debug_mode: true
+            run_async: true
+          headers:
             X-Account-Token: X-Account-Token
           request:
             model: {}
@@ -255,7 +277,8 @@ service:
     retrieve:
       path: /crm/v1/opportunities/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns an `Opportunity` object with the given `id`.
       source:
         openapi: crm_v3.yml
@@ -302,6 +325,12 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            remote_fields: status
+            show_enum_origins: status
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -337,7 +366,8 @@ service:
     partialUpdate:
       path: /crm/v1/opportunities/{id}
       method: PATCH
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Updates an `Opportunity` object with the given `id`.
       source:
         openapi: crm_v3.yml
@@ -365,6 +395,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            is_debug_mode: true
+            run_async: true
           headers:
             X-Account-Token: X-Account-Token
           request:
@@ -421,7 +454,8 @@ service:
     metaPatchRetrieve:
       path: /crm/v1/opportunities/meta/patch/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Opportunity` PATCHs.
       source:
         openapi: crm_v3.yml
@@ -610,7 +644,8 @@ service:
     metaPostRetrieve:
       path: /crm/v1/opportunities/meta/post
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Opportunity` POSTs.
       source:
         openapi: crm_v3.yml
@@ -795,7 +830,8 @@ service:
     remoteFieldClassesList:
       path: /crm/v1/opportunities/remote-field-classes
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `RemoteFieldClass` objects.
       pagination:
         cursor: $request.cursor
@@ -852,6 +888,13 @@ service:
       examples:
         - query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            is_common_model_field: true
+            is_custom: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:

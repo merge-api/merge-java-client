@@ -253,15 +253,16 @@ public class AsyncRawTicketsClient {
                                 .build();
                         List<Ticket> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Ticket>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return list(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<Ticket>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return list(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
@@ -608,15 +609,16 @@ public class AsyncRawTicketsClient {
                                 .build();
                         List<Viewer> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Viewer>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return viewersList(ticketId, nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<Viewer>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return viewersList(ticketId, nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
@@ -862,15 +864,16 @@ public class AsyncRawTicketsClient {
                         List<RemoteFieldClass> result =
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<RemoteFieldClass>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return remoteFieldClassesList(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<RemoteFieldClass>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return remoteFieldClassesList(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

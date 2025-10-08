@@ -127,9 +127,9 @@ public class RawDrivesClient {
                         .build();
                 List<Drive> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Drive>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Drive>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";

@@ -116,15 +116,16 @@ public class AsyncRawPaymentTermsClient {
                                 .build();
                         List<PaymentTerm> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<PaymentTerm>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return list(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<PaymentTerm>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return list(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

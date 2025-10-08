@@ -168,7 +168,7 @@ public class AsyncRawNotesClient {
                                 .build();
                         List<Note> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Note>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Note>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()
@@ -510,15 +510,16 @@ public class AsyncRawNotesClient {
                         List<RemoteFieldClass> result =
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<RemoteFieldClass>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return remoteFieldClassesList(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<RemoteFieldClass>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return remoteFieldClassesList(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

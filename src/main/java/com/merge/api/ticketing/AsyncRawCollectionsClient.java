@@ -158,15 +158,16 @@ public class AsyncRawCollectionsClient {
                                 .build();
                         List<Collection> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Collection>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return list(nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<Collection>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return list(nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
@@ -270,15 +271,16 @@ public class AsyncRawCollectionsClient {
                                 .build();
                         List<Viewer> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Viewer>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return viewersList(collectionId, nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<Viewer>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return viewersList(collectionId, nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

@@ -110,7 +110,9 @@ public final class CustomObjectRequest {
         @JsonSetter(value = "fields", nulls = Nulls.SKIP)
         public Builder fields(Map<String, JsonNode> fields) {
             this.fields.clear();
-            this.fields.putAll(fields);
+            if (fields != null) {
+                this.fields.putAll(fields);
+            }
             return this;
         }
 

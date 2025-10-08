@@ -151,7 +151,7 @@ public class AsyncRawOffersClient {
                                 .build();
                         List<Offer> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Offer>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Offer>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

@@ -145,9 +145,9 @@ public class RawTasksClient {
                         .build();
                 List<Task> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Task>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Task>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
@@ -528,7 +528,7 @@ public class RawTasksClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, () -> remoteFieldClassesList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);

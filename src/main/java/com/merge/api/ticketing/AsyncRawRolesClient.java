@@ -131,7 +131,7 @@ public class AsyncRawRolesClient {
                                 .build();
                         List<Role> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Role>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Role>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

@@ -154,7 +154,7 @@ public class AsyncRawGroupsClient {
                                 .build();
                         List<Group> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Group>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Group>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

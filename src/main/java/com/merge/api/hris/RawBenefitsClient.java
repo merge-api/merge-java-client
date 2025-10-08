@@ -131,9 +131,9 @@ public class RawBenefitsClient {
                         .build();
                 List<Benefit> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Benefit>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Benefit>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";

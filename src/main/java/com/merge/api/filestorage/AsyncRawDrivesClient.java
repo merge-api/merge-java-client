@@ -135,7 +135,7 @@ public class AsyncRawDrivesClient {
                                 .build();
                         List<Drive> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Drive>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Drive>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

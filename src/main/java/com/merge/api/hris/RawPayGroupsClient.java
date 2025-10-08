@@ -123,9 +123,9 @@ public class RawPayGroupsClient {
                         .build();
                 List<PayGroup> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<PayGroup>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<PayGroup>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";

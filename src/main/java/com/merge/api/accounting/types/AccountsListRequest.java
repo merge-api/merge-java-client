@@ -27,7 +27,7 @@ public final class AccountsListRequest {
 
     private final Optional<String> accountType;
 
-    private final Optional<String> classification;
+    private final Optional<AccountsListRequestClassification> classification;
 
     private final Optional<String> companyId;
 
@@ -57,14 +57,14 @@ public final class AccountsListRequest {
 
     private final Optional<AccountsListRequestShowEnumOrigins> showEnumOrigins;
 
-    private final Optional<String> status;
+    private final Optional<AccountsListRequestStatus> status;
 
     private final Map<String, Object> additionalProperties;
 
     private AccountsListRequest(
             Optional<List<String>> expand,
             Optional<String> accountType,
-            Optional<String> classification,
+            Optional<AccountsListRequestClassification> classification,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -79,7 +79,7 @@ public final class AccountsListRequest {
             Optional<AccountsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
             Optional<AccountsListRequestShowEnumOrigins> showEnumOrigins,
-            Optional<String> status,
+            Optional<AccountsListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.accountType = accountType;
@@ -122,7 +122,7 @@ public final class AccountsListRequest {
      * @return If provided, will only return accounts with this classification.
      */
     @JsonProperty("classification")
-    public Optional<String> getClassification() {
+    public Optional<AccountsListRequestClassification> getClassification() {
         return classification;
     }
 
@@ -242,7 +242,7 @@ public final class AccountsListRequest {
      * @return If provided, will only return accounts with this status.
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<AccountsListRequestStatus> getStatus() {
         return status;
     }
 
@@ -316,7 +316,7 @@ public final class AccountsListRequest {
 
         private Optional<String> accountType = Optional.empty();
 
-        private Optional<String> classification = Optional.empty();
+        private Optional<AccountsListRequestClassification> classification = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
 
@@ -346,7 +346,7 @@ public final class AccountsListRequest {
 
         private Optional<AccountsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<AccountsListRequestStatus> status = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -412,12 +412,12 @@ public final class AccountsListRequest {
          * <p>If provided, will only return accounts with this classification.</p>
          */
         @JsonSetter(value = "classification", nulls = Nulls.SKIP)
-        public Builder classification(Optional<String> classification) {
+        public Builder classification(Optional<AccountsListRequestClassification> classification) {
             this.classification = classification;
             return this;
         }
 
-        public Builder classification(String classification) {
+        public Builder classification(AccountsListRequestClassification classification) {
             this.classification = Optional.ofNullable(classification);
             return this;
         }
@@ -622,12 +622,12 @@ public final class AccountsListRequest {
          * <p>If provided, will only return accounts with this status.</p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<AccountsListRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(AccountsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

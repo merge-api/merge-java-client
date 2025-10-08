@@ -1,3 +1,18 @@
+types:
+  CollectionsListRequestCollectionType:
+    enum:
+      - value: ''
+        name: EMPTY
+      - LIST
+      - PROJECT
+    source:
+      openapi: ticketing_v3.yml
+  CollectionsViewersListRequestExpandItem:
+    enum:
+      - team
+      - user
+    source:
+      openapi: ticketing_v3.yml
 imports:
   ticketingRoot: __package__.yml
 service:
@@ -7,7 +22,8 @@ service:
     list:
       path: /ticketing/v1/collections
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Collection` objects.
       pagination:
         cursor: $request.cursor
@@ -19,7 +35,7 @@ service:
         name: CollectionsListRequest
         query-parameters:
           collection_type:
-            type: optional<string>
+            type: optional<CollectionsListRequestCollectionType>
             docs: If provided, will only return collections of the given type.
           created_after:
             type: optional<datetime>
@@ -93,7 +109,20 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            collection_type: ''
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            page_size: 1
+            parent_collection_id: parent_collection_id
+            remote_fields: collection_type
+            remote_id: remote_id
+            show_enum_origins: collection_type
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -121,7 +150,8 @@ service:
     viewersList:
       path: /ticketing/v1/collections/{collection_id}/viewers
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: >-
         Returns a list of `Viewer` objects that point to a User id or Team id
         that is either an assignee or viewer on a `Collection` with the given
@@ -177,6 +207,10 @@ service:
             collection_id: collection_id
           query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -193,7 +227,8 @@ service:
     retrieve:
       path: /ticketing/v1/collections/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a `Collection` object with the given `id`.
       source:
         openapi: ticketing_v3.yml
@@ -235,6 +270,11 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_shell_data: true
+            remote_fields: collection_type
+            show_enum_origins: collection_type
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -260,10 +300,3 @@ service:
                     key: value
   source:
     openapi: ticketing_v3.yml
-types:
-  CollectionsViewersListRequestExpandItem:
-    enum:
-      - team
-      - user
-    source:
-      openapi: ticketing_v3.yml

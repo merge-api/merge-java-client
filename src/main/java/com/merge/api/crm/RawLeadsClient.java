@@ -170,9 +170,9 @@ public class RawLeadsClient {
                         .build();
                 List<Lead> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Lead>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Lead>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
@@ -449,7 +449,7 @@ public class RawLeadsClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, () -> remoteFieldClassesList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);

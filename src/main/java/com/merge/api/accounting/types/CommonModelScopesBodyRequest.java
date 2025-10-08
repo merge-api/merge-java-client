@@ -155,7 +155,9 @@ public final class CommonModelScopesBodyRequest {
         @JsonSetter(value = "disabled_fields", nulls = Nulls.SKIP)
         public _FinalStage disabledFields(List<String> disabledFields) {
             this.disabledFields.clear();
-            this.disabledFields.addAll(disabledFields);
+            if (disabledFields != null) {
+                this.disabledFields.addAll(disabledFields);
+            }
             return this;
         }
 
@@ -177,7 +179,9 @@ public final class CommonModelScopesBodyRequest {
         @JsonSetter(value = "enabled_actions", nulls = Nulls.SKIP)
         public _FinalStage enabledActions(List<EnabledActionsEnum> enabledActions) {
             this.enabledActions.clear();
-            this.enabledActions.addAll(enabledActions);
+            if (enabledActions != null) {
+                this.enabledActions.addAll(enabledActions);
+            }
             return this;
         }
 

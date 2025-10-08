@@ -30,7 +30,8 @@ service:
     list:
       path: /accounting/v1/payments
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Payment` objects.
       pagination:
         cursor: $request.cursor
@@ -120,7 +121,22 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            account_id: account_id
+            company_id: company_id
+            contact_id: contact_id
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            page_size: 1
+            remote_id: remote_id
+            transaction_date_after: '2024-01-15T09:30:00Z'
+            transaction_date_before: '2024-01-15T09:30:00Z'
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -179,7 +195,8 @@ service:
     create:
       path: /accounting/v1/payments
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Creates a `Payment` object with the given values.
       source:
         openapi: accounting_v3.yml
@@ -203,7 +220,10 @@ service:
         type: accountingRoot.PaymentResponse
         status-code: 201
       examples:
-        - headers:
+        - query-parameters:
+            is_debug_mode: true
+            run_async: true
+          headers:
             X-Account-Token: X-Account-Token
           request:
             model: {}
@@ -281,7 +301,8 @@ service:
     retrieve:
       path: /accounting/v1/payments/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a `Payment` object with the given `id`.
       source:
         openapi: accounting_v3.yml
@@ -318,6 +339,10 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -375,7 +400,8 @@ service:
     partialUpdate:
       path: /accounting/v1/payments/{id}
       method: PATCH
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Updates a `Payment` object with the given `id`.
       source:
         openapi: accounting_v3.yml
@@ -403,6 +429,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            is_debug_mode: true
+            run_async: true
           headers:
             X-Account-Token: X-Account-Token
           request:
@@ -481,7 +510,8 @@ service:
     lineItemsRemoteFieldClassesList:
       path: /accounting/v1/payments/line-items/remote-field-classes
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `RemoteFieldClass` objects.
       pagination:
         cursor: $request.cursor
@@ -533,6 +563,12 @@ service:
       examples:
         - query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            is_common_model_field: true
+            is_custom: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -553,7 +589,8 @@ service:
     metaPatchRetrieve:
       path: /accounting/v1/payments/meta/patch/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Payment` PATCHs.
       source:
         openapi: accounting_v3.yml
@@ -742,7 +779,8 @@ service:
     metaPostRetrieve:
       path: /accounting/v1/payments/meta/post
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Payment` POSTs.
       source:
         openapi: accounting_v3.yml
@@ -927,7 +965,8 @@ service:
     remoteFieldClassesList:
       path: /accounting/v1/payments/remote-field-classes
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `RemoteFieldClass` objects.
       pagination:
         cursor: $request.cursor
@@ -979,6 +1018,12 @@ service:
       examples:
         - query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            is_common_model_field: true
+            is_custom: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:

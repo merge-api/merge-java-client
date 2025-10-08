@@ -142,7 +142,8 @@ public class RawGeneralLedgerTransactionsClient {
                         parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<GeneralLedgerTransaction>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }

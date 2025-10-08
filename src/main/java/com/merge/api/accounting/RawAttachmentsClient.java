@@ -135,7 +135,8 @@ public class RawAttachmentsClient {
                 List<AccountingAttachment> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<AccountingAttachment>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }

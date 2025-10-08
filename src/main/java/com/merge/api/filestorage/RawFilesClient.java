@@ -161,9 +161,9 @@ public class RawFilesClient {
                         .build();
                 List<File> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<File>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<File>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
@@ -504,7 +504,7 @@ public class RawFilesClient {
                 List<DownloadRequestMeta> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<DownloadRequestMeta>(
-                                startingAfter.isPresent(), result, () -> downloadRequestMetaList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> downloadRequestMetaList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);

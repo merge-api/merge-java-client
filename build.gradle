@@ -21,6 +21,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
+    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
 }
 
 
@@ -47,7 +48,7 @@ java {
 
 group = 'dev.merge'
 
-version = '4.0.0'
+version = '5.0.0'
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
@@ -70,6 +71,10 @@ test {
     useJUnitPlatform()
     testLogging {
         showStandardStreams = true
+        events "passed", "skipped", "failed"
+        exceptionFormat "short"
+        showExceptions true
+        showCauses true
     }
 }
 
@@ -78,7 +83,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '4.0.0'
+            version = '5.0.0'
             from components.java
             pom {
                 name = 'merge'

@@ -124,7 +124,8 @@ public class RawEmployerBenefitsClient {
                 List<EmployerBenefit> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<EmployerBenefit>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }

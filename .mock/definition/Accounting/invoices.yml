@@ -56,7 +56,8 @@ service:
     list:
       path: /accounting/v1/invoices
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Invoice` objects.
       pagination:
         cursor: $request.cursor
@@ -174,7 +175,26 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            company_id: company_id
+            contact_id: contact_id
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            issue_date_after: '2024-01-15T09:30:00Z'
+            issue_date_before: '2024-01-15T09:30:00Z'
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            number: number
+            page_size: 1
+            remote_fields: type
+            remote_id: remote_id
+            show_enum_origins: type
+            status: DRAFT
+            type: ACCOUNTS_PAYABLE
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -268,7 +288,8 @@ service:
     create:
       path: /accounting/v1/invoices
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: |-
         Creates an `Invoice` object with the given values.
                     Including a `PurchaseOrder` id in the `purchase_orders` property will generate an Accounts Payable Invoice from the specified Purchase Order(s).
@@ -295,7 +316,10 @@ service:
         type: accountingRoot.InvoiceResponse
         status-code: 201
       examples:
-        - headers:
+        - query-parameters:
+            is_debug_mode: true
+            run_async: true
+          headers:
             X-Account-Token: X-Account-Token
           request:
             model: {}
@@ -408,7 +432,8 @@ service:
     retrieve:
       path: /accounting/v1/invoices/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns an `Invoice` object with the given `id`.
       source:
         openapi: accounting_v3.yml
@@ -455,6 +480,12 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_remote_fields: true
+            include_shell_data: true
+            remote_fields: type
+            show_enum_origins: type
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -559,7 +590,8 @@ service:
     partialUpdate:
       path: /accounting/v1/invoices/{id}
       method: PATCH
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Updates an `Invoice` object with the given `id`.
       source:
         openapi: accounting_v3.yml
@@ -587,6 +619,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            is_debug_mode: true
+            run_async: true
           headers:
             X-Account-Token: X-Account-Token
           request:
@@ -700,7 +735,8 @@ service:
     lineItemsRemoteFieldClassesList:
       path: /accounting/v1/invoices/line-items/remote-field-classes
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `RemoteFieldClass` objects.
       pagination:
         cursor: $request.cursor
@@ -752,6 +788,12 @@ service:
       examples:
         - query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            is_common_model_field: true
+            is_custom: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -772,7 +814,8 @@ service:
     metaPatchRetrieve:
       path: /accounting/v1/invoices/meta/patch/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Invoice` PATCHs.
       source:
         openapi: accounting_v3.yml
@@ -961,7 +1004,8 @@ service:
     metaPostRetrieve:
       path: /accounting/v1/invoices/meta/post
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Invoice` POSTs.
       source:
         openapi: accounting_v3.yml
@@ -1146,7 +1190,8 @@ service:
     remoteFieldClassesList:
       path: /accounting/v1/invoices/remote-field-classes
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `RemoteFieldClass` objects.
       pagination:
         cursor: $request.cursor
@@ -1198,6 +1243,12 @@ service:
       examples:
         - query-parameters:
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            is_common_model_field: true
+            is_custom: true
+            page_size: 1
           headers:
             X-Account-Token: X-Account-Token
           response:

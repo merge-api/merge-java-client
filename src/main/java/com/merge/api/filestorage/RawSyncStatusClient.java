@@ -85,7 +85,8 @@ public class RawSyncStatusClient {
                 List<SyncStatus> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<SyncStatus>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }

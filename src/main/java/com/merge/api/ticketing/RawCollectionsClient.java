@@ -150,7 +150,8 @@ public class RawCollectionsClient {
                 List<Collection> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<Collection>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }
@@ -242,9 +243,10 @@ public class RawCollectionsClient {
                         .build();
                 List<Viewer> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Viewer>(startingAfter.isPresent(), result, () -> viewersList(
-                                        collectionId, nextRequest, requestOptions)
-                                .body()),
+                        new SyncPagingIterable<Viewer>(
+                                startingAfter.isPresent(), result, parsedResponse, () -> viewersList(
+                                                collectionId, nextRequest, requestOptions)
+                                        .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";

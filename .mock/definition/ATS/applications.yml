@@ -34,7 +34,8 @@ service:
     list:
       path: /ats/v1/applications
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns a list of `Application` objects.
       pagination:
         cursor: $request.cursor
@@ -124,7 +125,22 @@ service:
         status-code: 200
       examples:
         - query-parameters:
+            candidate_id: candidate_id
+            created_after: '2024-01-15T09:30:00Z'
+            created_before: '2024-01-15T09:30:00Z'
+            credited_to_id: credited_to_id
+            current_stage_id: current_stage_id
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            include_deleted_data: true
+            include_remote_data: true
+            include_shell_data: true
+            job_id: job_id
+            modified_after: '2024-01-15T09:30:00Z'
+            modified_before: '2024-01-15T09:30:00Z'
+            page_size: 1
+            reject_reason_id: reject_reason_id
+            remote_id: remote_id
+            source: source
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -162,7 +178,8 @@ service:
     create:
       path: /ats/v1/applications
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: >
         Creates an `Application` object with the given values.
 
@@ -198,7 +215,10 @@ service:
         type: atsRoot.ApplicationResponse
         status-code: 201
       examples:
-        - headers:
+        - query-parameters:
+            is_debug_mode: true
+            run_async: true
+          headers:
             X-Account-Token: X-Account-Token
           request:
             model: {}
@@ -256,7 +276,8 @@ service:
     retrieve:
       path: /ats/v1/applications/{id}
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns an `Application` object with the given `id`.
       source:
         openapi: ats_v3.yml
@@ -288,6 +309,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            include_remote_data: true
+            include_shell_data: true
           headers:
             X-Account-Token: X-Account-Token
           response:
@@ -322,7 +346,8 @@ service:
     changeStageCreate:
       path: /ats/v1/applications/{id}/change-stage
       method: POST
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Updates the `current_stage` field of an `Application` object
       source:
         openapi: ats_v3.yml
@@ -358,6 +383,9 @@ service:
       examples:
         - path-parameters:
             id: id
+          query-parameters:
+            is_debug_mode: true
+            run_async: true
           headers:
             X-Account-Token: X-Account-Token
           request: {}
@@ -414,7 +442,8 @@ service:
     metaPostRetrieve:
       path: /ats/v1/applications/meta/post
       method: GET
-      auth: true
+      auth:
+        - tokenAuth: []
       docs: Returns metadata for `Application` POSTs.
       source:
         openapi: ats_v3.yml
@@ -431,7 +460,9 @@ service:
         type: atsRoot.MetaResponse
         status-code: 200
       examples:
-        - headers:
+        - query-parameters:
+            application_remote_template_id: application_remote_template_id
+          headers:
             X-Account-Token: X-Account-Token
           response:
             body:

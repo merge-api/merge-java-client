@@ -11,3 +11,5 @@ src/main/java/com/merge/legacy
 # added to QueryStringMapper.java. Once that is fixed, we can remove this file from
 # .fernignore.
 src/main/java/com/merge/api/core/QueryStringMapper.java
+
+src/test/java/com/merge/api/integration/CursorPaginationIntegrationTest.java

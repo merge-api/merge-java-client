@@ -155,7 +155,7 @@ public class AsyncRawIssuesClient {
                                 .build();
                         List<Issue> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Issue>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Issue>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()

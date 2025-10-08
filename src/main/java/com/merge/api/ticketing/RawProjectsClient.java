@@ -126,9 +126,9 @@ public class RawProjectsClient {
                         .build();
                 List<Project> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Project>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
-                                        .body()),
+                        new SyncPagingIterable<Project>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
             String responseBodyString = responseBody != null ? responseBody.string() : "{}";
@@ -279,7 +279,7 @@ public class RawProjectsClient {
                         .build();
                 List<User> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<User>(startingAfter.isPresent(), result, () -> usersList(
+                        new SyncPagingIterable<User>(startingAfter.isPresent(), result, parsedResponse, () -> usersList(
                                         parentId, nextRequest, requestOptions)
                                 .body()),
                         response);

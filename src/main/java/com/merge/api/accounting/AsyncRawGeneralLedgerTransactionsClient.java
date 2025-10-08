@@ -152,7 +152,7 @@ public class AsyncRawGeneralLedgerTransactionsClient {
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<GeneralLedgerTransaction>(
-                                        startingAfter.isPresent(), result, () -> {
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()

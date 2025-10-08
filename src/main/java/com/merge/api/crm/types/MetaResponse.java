@@ -226,7 +226,9 @@ public final class MetaResponse {
         @JsonSetter(value = "request_schema", nulls = Nulls.SKIP)
         public _FinalStage requestSchema(Map<String, JsonNode> requestSchema) {
             this.requestSchema.clear();
-            this.requestSchema.putAll(requestSchema);
+            if (requestSchema != null) {
+                this.requestSchema.putAll(requestSchema);
+            }
             return this;
         }
 

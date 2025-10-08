@@ -184,7 +184,9 @@ public final class DownloadRequestMeta {
         @JsonSetter(value = "headers", nulls = Nulls.SKIP)
         public _FinalStage headers(Map<String, JsonNode> headers) {
             this.headers.clear();
-            this.headers.putAll(headers);
+            if (headers != null) {
+                this.headers.putAll(headers);
+            }
             return this;
         }
 

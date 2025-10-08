@@ -177,7 +177,8 @@ public class RawOpportunitiesClient {
                 List<Opportunity> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<Opportunity>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }
@@ -573,7 +574,7 @@ public class RawOpportunitiesClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, () -> remoteFieldClassesList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);

@@ -166,7 +166,8 @@ public class RawPurchaseOrdersClient {
                 List<PurchaseOrder> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<PurchaseOrder>(
-                                startingAfter.isPresent(), result, () -> list(nextRequest, requestOptions)
+                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }
@@ -407,8 +408,10 @@ public class RawPurchaseOrdersClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, () -> lineItemsRemoteFieldClassesList(
-                                                nextRequest, requestOptions)
+                                startingAfter.isPresent(),
+                                result,
+                                parsedResponse,
+                                () -> lineItemsRemoteFieldClassesList(nextRequest, requestOptions)
                                         .body()),
                         response);
             }
@@ -550,7 +553,7 @@ public class RawPurchaseOrdersClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, () -> remoteFieldClassesList(
+                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);

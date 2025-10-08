@@ -25,7 +25,7 @@ import java.util.Optional;
 public final class CollectionsListRequest {
     private final Optional<List<String>> expand;
 
-    private final Optional<String> collectionType;
+    private final Optional<CollectionsListRequestCollectionType> collectionType;
 
     private final Optional<OffsetDateTime> createdAfter;
 
@@ -57,7 +57,7 @@ public final class CollectionsListRequest {
 
     private CollectionsListRequest(
             Optional<List<String>> expand,
-            Optional<String> collectionType,
+            Optional<CollectionsListRequestCollectionType> collectionType,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
@@ -102,7 +102,7 @@ public final class CollectionsListRequest {
      * @return If provided, will only return collections of the given type.
      */
     @JsonProperty("collection_type")
-    public Optional<String> getCollectionType() {
+    public Optional<CollectionsListRequestCollectionType> getCollectionType() {
         return collectionType;
     }
 
@@ -272,7 +272,7 @@ public final class CollectionsListRequest {
     public static final class Builder {
         private Optional<List<String>> expand = Optional.empty();
 
-        private Optional<String> collectionType = Optional.empty();
+        private Optional<CollectionsListRequestCollectionType> collectionType = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
@@ -347,12 +347,12 @@ public final class CollectionsListRequest {
          * <p>If provided, will only return collections of the given type.</p>
          */
         @JsonSetter(value = "collection_type", nulls = Nulls.SKIP)
-        public Builder collectionType(Optional<String> collectionType) {
+        public Builder collectionType(Optional<CollectionsListRequestCollectionType> collectionType) {
             this.collectionType = collectionType;
             return this;
         }
 
-        public Builder collectionType(String collectionType) {
+        public Builder collectionType(CollectionsListRequestCollectionType collectionType) {
             this.collectionType = Optional.ofNullable(collectionType);
             return this;
         }

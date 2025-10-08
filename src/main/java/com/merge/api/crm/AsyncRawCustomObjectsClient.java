@@ -159,16 +159,17 @@ public class AsyncRawCustomObjectsClient {
                                         .build();
                         List<CustomObject> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<CustomObject>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return customObjectClassesCustomObjectsList(
-                                                        customObjectClassId, nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<CustomObject>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return customObjectClassesCustomObjectsList(
+                                                                customObjectClassId, nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }
@@ -523,16 +524,17 @@ public class AsyncRawCustomObjectsClient {
                         List<RemoteFieldClass> result =
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<RemoteFieldClass>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return customObjectClassesCustomObjectsRemoteFieldClassesList(
-                                                        nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<RemoteFieldClass>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return customObjectClassesCustomObjectsRemoteFieldClassesList(
+                                                                nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

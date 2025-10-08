@@ -158,7 +158,7 @@ public class AsyncRawJobsClient {
                                 .build();
                         List<Job> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Job>(startingAfter.isPresent(), result, () -> {
+                                new SyncPagingIterable<Job>(startingAfter.isPresent(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()
@@ -360,15 +360,16 @@ public class AsyncRawJobsClient {
                         List<ScreeningQuestion> result =
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<ScreeningQuestion>(startingAfter.isPresent(), result, () -> {
-                                    try {
-                                        return screeningQuestionsList(jobId, nextRequest, requestOptions)
-                                                .get()
-                                                .body();
-                                    } catch (InterruptedException | ExecutionException e) {
-                                        throw new RuntimeException(e);
-                                    }
-                                }),
+                                new SyncPagingIterable<ScreeningQuestion>(
+                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                            try {
+                                                return screeningQuestionsList(jobId, nextRequest, requestOptions)
+                                                        .get()
+                                                        .body();
+                                            } catch (InterruptedException | ExecutionException e) {
+                                                throw new RuntimeException(e);
+                                            }
+                                        }),
                                 response));
                         return;
                     }

@@ -61,7 +61,7 @@ public final class ContactsListRequest {
 
     private final Optional<String> showEnumOrigins;
 
-    private final Optional<String> status;
+    private final Optional<ContactsListRequestStatus> status;
 
     private final Map<String, Object> additionalProperties;
 
@@ -85,7 +85,7 @@ public final class ContactsListRequest {
             Optional<String> remoteFields,
             Optional<String> remoteId,
             Optional<String> showEnumOrigins,
-            Optional<String> status,
+            Optional<ContactsListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.companyId = companyId;
@@ -266,7 +266,7 @@ public final class ContactsListRequest {
      * @return If provided, will only return Contacts that match this status.
      */
     @JsonProperty("status")
-    public Optional<String> getStatus() {
+    public Optional<ContactsListRequestStatus> getStatus() {
         return status;
     }
 
@@ -378,7 +378,7 @@ public final class ContactsListRequest {
 
         private Optional<String> showEnumOrigins = Optional.empty();
 
-        private Optional<String> status = Optional.empty();
+        private Optional<ContactsListRequestStatus> status = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -684,12 +684,12 @@ public final class ContactsListRequest {
          * <p>If provided, will only return Contacts that match this status.</p>
          */
         @JsonSetter(value = "status", nulls = Nulls.SKIP)
-        public Builder status(Optional<String> status) {
+        public Builder status(Optional<ContactsListRequestStatus> status) {
             this.status = status;
             return this;
         }
 
-        public Builder status(String status) {
+        public Builder status(ContactsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
             return this;
         }

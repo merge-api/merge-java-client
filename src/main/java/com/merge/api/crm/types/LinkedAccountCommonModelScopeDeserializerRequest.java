@@ -90,7 +90,9 @@ public final class LinkedAccountCommonModelScopeDeserializerRequest {
         @JsonSetter(value = "common_models", nulls = Nulls.SKIP)
         public Builder commonModels(List<IndividualCommonModelScopeDeserializerRequest> commonModels) {
             this.commonModels.clear();
-            this.commonModels.addAll(commonModels);
+            if (commonModels != null) {
+                this.commonModels.addAll(commonModels);
+            }
             return this;
         }
 

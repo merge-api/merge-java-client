@@ -161,7 +161,9 @@ public final class RemoteEndpointInfo {
         @JsonSetter(value = "field_traversal_path", nulls = Nulls.SKIP)
         public _FinalStage fieldTraversalPath(List<JsonNode> fieldTraversalPath) {
             this.fieldTraversalPath.clear();
-            this.fieldTraversalPath.addAll(fieldTraversalPath);
+            if (fieldTraversalPath != null) {
+                this.fieldTraversalPath.addAll(fieldTraversalPath);
+            }
             return this;
         }
 
