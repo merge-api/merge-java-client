@@ -100,6 +100,10 @@ public class RawCollectionsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "modified_before", request.getModifiedBefore().get(), false);
         }
+        if (request.getName().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "name", request.getName().get(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get(), false);

@@ -29,7 +29,7 @@ Add the dependency in your `pom.xml` file:
 <dependency>
   <groupId>dev.merge</groupId>
   <artifactId>merge-java-client</artifactId>
-  <version>4.1.0</version>
+  <version>5.0.1</version>
 </dependency>
 ```
 

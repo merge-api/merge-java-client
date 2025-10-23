@@ -31,6 +31,8 @@ public final class ContactsListRequest {
 
     private final Optional<String> cursor;
 
+    private final Optional<String> emailAddress;
+
     private final Optional<Boolean> includeDeletedData;
 
     private final Optional<Boolean> includeRemoteData;
@@ -52,6 +54,7 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
+            Optional<String> emailAddress,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
@@ -64,6 +67,7 @@ public final class ContactsListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
+        this.emailAddress = emailAddress;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -104,6 +108,14 @@ public final class ContactsListRequest {
     @JsonProperty("cursor")
     public Optional<String> getCursor() {
         return cursor;
+    }
+
+    /**
+     * @return If provided, will only return Contacts that match this email.
+     */
+    @JsonProperty("email_address")
+    public Optional<String> getEmailAddress() {
+        return emailAddress;
     }
 
     /**
@@ -178,6 +190,7 @@ public final class ContactsListRequest {
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
+                && emailAddress.equals(other.emailAddress)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
@@ -194,6 +207,7 @@ public final class ContactsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
+                this.emailAddress,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
@@ -222,6 +236,8 @@ public final class ContactsListRequest {
 
         private Optional<String> cursor = Optional.empty();
 
+        private Optional<String> emailAddress = Optional.empty();
+
         private Optional<Boolean> includeDeletedData = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
@@ -246,6 +262,7 @@ public final class ContactsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
+            emailAddress(other.getEmailAddress());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
@@ -314,6 +331,20 @@ public final class ContactsListRequest {
 
         public Builder cursor(String cursor) {
             this.cursor = Optional.ofNullable(cursor);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return Contacts that match this email.</p>
+         */
+        @JsonSetter(value = "email_address", nulls = Nulls.SKIP)
+        public Builder emailAddress(Optional<String> emailAddress) {
+            this.emailAddress = emailAddress;
+            return this;
+        }
+
+        public Builder emailAddress(String emailAddress) {
+            this.emailAddress = Optional.ofNullable(emailAddress);
             return this;
         }
 
@@ -421,6 +452,7 @@ public final class ContactsListRequest {
                     createdAfter,
                     createdBefore,
                     cursor,
+                    emailAddress,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,

@@ -82,6 +82,9 @@ service:
             docs: >-
               If provided, only objects synced by Merge before this date time
               will be returned.
+          name:
+            type: optional<string>
+            docs: If provided, will only return collections with this name.
           page_size:
             type: optional<integer>
             docs: Number of results to return per page.
@@ -118,6 +121,7 @@ service:
             include_shell_data: true
             modified_after: '2024-01-15T09:30:00Z'
             modified_before: '2024-01-15T09:30:00Z'
+            name: name
             page_size: 1
             parent_collection_id: parent_collection_id
             remote_fields: collection_type
@@ -139,6 +143,9 @@ service:
                   access_level: PRIVATE
                   collection_type: LIST
                   parent_collection: parent_collection
+                  collection_url: https://example.com
+                  remote_created_at: '2022-01-01T00:00:00Z'
+                  remote_updated_at: '2022-01-01T00:00:00Z'
                   remote_was_deleted: true
                   field_mappings:
                     organization_defined_targets:
@@ -288,6 +295,9 @@ service:
               access_level: PRIVATE
               collection_type: LIST
               parent_collection: parent_collection
+              collection_url: https://example.com
+              remote_created_at: '2022-01-01T00:00:00Z'
+              remote_updated_at: '2022-01-01T00:00:00Z'
               remote_was_deleted: true
               field_mappings:
                 organization_defined_targets:

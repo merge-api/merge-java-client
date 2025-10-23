@@ -48,7 +48,7 @@ java {
 
 group = 'dev.merge'
 
-version = '5.0.0'
+version = '5.0.1'
 
 jar {
     dependsOn(":generatePomFileForMavenPublication")
@@ -71,10 +71,6 @@ test {
     useJUnitPlatform()
     testLogging {
         showStandardStreams = true
-        events "passed", "skipped", "failed"
-        exceptionFormat "short"
-        showExceptions true
-        showCauses true
     }
 }
 
@@ -83,7 +79,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.merge'
             artifactId = 'merge-java-client'
-            version = '5.0.0'
+            version = '5.0.1'
             from components.java
             pom {
                 name = 'merge'

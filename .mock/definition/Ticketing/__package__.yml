@@ -829,6 +829,18 @@ types:
       parent_collection:
         type: optional<CollectionParentCollection>
         docs: The parent collection for this collection.
+      collection_url:
+        type: optional<string>
+        docs: The 3rd party url of the Collection.
+        validation:
+          format: uri
+          maxLength: 2000
+      remote_created_at:
+        type: optional<datetime>
+        docs: When the third party's collection was created.
+      remote_updated_at:
+        type: optional<datetime>
+        docs: When the third party's collection was updated.
       remote_was_deleted:
         type: optional<boolean>
         docs: >-
@@ -2274,6 +2286,7 @@ types:
       remote_key_name: optional<string>
       description: optional<string>
       is_custom: optional<boolean>
+      is_common_model_field: optional<boolean>
       is_required: optional<boolean>
       field_type: optional<FieldTypeEnum>
       field_format: optional<FieldFormatEnum>

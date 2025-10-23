@@ -43,6 +43,8 @@ public final class TicketsListRequest {
 
     private final Optional<String> creatorId;
 
+    private final Optional<String> creatorIds;
+
     private final Optional<String> cursor;
 
     private final Optional<OffsetDateTime> dueAfter;
@@ -60,6 +62,8 @@ public final class TicketsListRequest {
     private final Optional<OffsetDateTime> modifiedAfter;
 
     private final Optional<OffsetDateTime> modifiedBefore;
+
+    private final Optional<String> name;
 
     private final Optional<Integer> pageSize;
 
@@ -102,6 +106,7 @@ public final class TicketsListRequest {
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> creatorId,
+            Optional<String> creatorIds,
             Optional<String> cursor,
             Optional<OffsetDateTime> dueAfter,
             Optional<OffsetDateTime> dueBefore,
@@ -111,6 +116,7 @@ public final class TicketsListRequest {
             Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<Integer> pageSize,
             Optional<String> parentTicketId,
             Optional<TicketsListRequestPriority> priority,
@@ -136,6 +142,7 @@ public final class TicketsListRequest {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.creatorId = creatorId;
+        this.creatorIds = creatorIds;
         this.cursor = cursor;
         this.dueAfter = dueAfter;
         this.dueBefore = dueBefore;
@@ -145,6 +152,7 @@ public final class TicketsListRequest {
         this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.pageSize = pageSize;
         this.parentTicketId = parentTicketId;
         this.priority = priority;
@@ -243,6 +251,14 @@ public final class TicketsListRequest {
     }
 
     /**
+     * @return If provided, will only return tickets created by the creator_ids; multiple creator_ids can be separated by commas.
+     */
+    @JsonProperty("creator_ids")
+    public Optional<String> getCreatorIds() {
+        return creatorIds;
+    }
+
+    /**
      * @return The pagination cursor value.
      */
     @JsonProperty("cursor")
@@ -312,6 +328,14 @@ public final class TicketsListRequest {
     @JsonProperty("modified_before")
     public Optional<OffsetDateTime> getModifiedBefore() {
         return modifiedBefore;
+    }
+
+    /**
+     * @return If provided, will only return tickets with this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
     }
 
     /**
@@ -454,6 +478,7 @@ public final class TicketsListRequest {
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && creatorId.equals(other.creatorId)
+                && creatorIds.equals(other.creatorIds)
                 && cursor.equals(other.cursor)
                 && dueAfter.equals(other.dueAfter)
                 && dueBefore.equals(other.dueBefore)
@@ -463,6 +488,7 @@ public final class TicketsListRequest {
                 && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && pageSize.equals(other.pageSize)
                 && parentTicketId.equals(other.parentTicketId)
                 && priority.equals(other.priority)
@@ -492,6 +518,7 @@ public final class TicketsListRequest {
                 this.createdAfter,
                 this.createdBefore,
                 this.creatorId,
+                this.creatorIds,
                 this.cursor,
                 this.dueAfter,
                 this.dueBefore,
@@ -501,6 +528,7 @@ public final class TicketsListRequest {
                 this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.pageSize,
                 this.parentTicketId,
                 this.priority,
@@ -548,6 +576,8 @@ public final class TicketsListRequest {
 
         private Optional<String> creatorId = Optional.empty();
 
+        private Optional<String> creatorIds = Optional.empty();
+
         private Optional<String> cursor = Optional.empty();
 
         private Optional<OffsetDateTime> dueAfter = Optional.empty();
@@ -565,6 +595,8 @@ public final class TicketsListRequest {
         private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
+
+        private Optional<String> name = Optional.empty();
 
         private Optional<Integer> pageSize = Optional.empty();
 
@@ -610,6 +642,7 @@ public final class TicketsListRequest {
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             creatorId(other.getCreatorId());
+            creatorIds(other.getCreatorIds());
             cursor(other.getCursor());
             dueAfter(other.getDueAfter());
             dueBefore(other.getDueBefore());
@@ -619,6 +652,7 @@ public final class TicketsListRequest {
             includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             pageSize(other.getPageSize());
             parentTicketId(other.getParentTicketId());
             priority(other.getPriority());
@@ -782,6 +816,20 @@ public final class TicketsListRequest {
         }
 
         /**
+         * <p>If provided, will only return tickets created by the creator_ids; multiple creator_ids can be separated by commas.</p>
+         */
+        @JsonSetter(value = "creator_ids", nulls = Nulls.SKIP)
+        public Builder creatorIds(Optional<String> creatorIds) {
+            this.creatorIds = creatorIds;
+            return this;
+        }
+
+        public Builder creatorIds(String creatorIds) {
+            this.creatorIds = Optional.ofNullable(creatorIds);
+            return this;
+        }
+
+        /**
          * <p>The pagination cursor value.</p>
          */
         @JsonSetter(value = "cursor", nulls = Nulls.SKIP)
@@ -904,6 +952,20 @@ public final class TicketsListRequest {
 
         public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
             this.modifiedBefore = Optional.ofNullable(modifiedBefore);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return tickets with this name.</p>
+         */
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.ofNullable(name);
             return this;
         }
 
@@ -1121,6 +1183,7 @@ public final class TicketsListRequest {
                     createdAfter,
                     createdBefore,
                     creatorId,
+                    creatorIds,
                     cursor,
                     dueAfter,
                     dueBefore,
@@ -1130,6 +1193,7 @@ public final class TicketsListRequest {
                     includeShellData,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     pageSize,
                     parentTicketId,
                     priority,

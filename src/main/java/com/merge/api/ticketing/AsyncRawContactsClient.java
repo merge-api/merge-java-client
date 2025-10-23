@@ -79,6 +79,10 @@ public class AsyncRawContactsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
         }
+        if (request.getEmailAddress().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "email_address", request.getEmailAddress().get(), false);
+        }
         if (request.getIncludeDeletedData().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl,
