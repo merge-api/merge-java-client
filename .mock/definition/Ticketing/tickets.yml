@@ -166,6 +166,11 @@ service:
           creator_id:
             type: optional<string>
             docs: If provided, will only return tickets created by this creator_id.
+          creator_ids:
+            type: optional<string>
+            docs: >-
+              If provided, will only return tickets created by the creator_ids;
+              multiple creator_ids can be separated by commas.
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
@@ -214,6 +219,9 @@ service:
             docs: >-
               If provided, only objects synced by Merge before this date time
               will be returned.
+          name:
+            type: optional<string>
+            docs: If provided, will only return tickets with this name.
           page_size:
             type: optional<integer>
             docs: Number of results to return per page.
@@ -295,6 +303,7 @@ service:
             created_after: '2024-01-15T09:30:00Z'
             created_before: '2024-01-15T09:30:00Z'
             creator_id: creator_id
+            creator_ids: creator_ids
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
             due_after: '2024-01-15T09:30:00Z'
             due_before: '2024-01-15T09:30:00Z'
@@ -304,6 +313,7 @@ service:
             include_shell_data: true
             modified_after: '2024-01-15T09:30:00Z'
             modified_before: '2024-01-15T09:30:00Z'
+            name: name
             page_size: 1
             parent_ticket_id: parent_ticket_id
             priority: HIGH
@@ -1239,6 +1249,7 @@ service:
                   remote_key_name: remote_key_name
                   description: description
                   is_custom: true
+                  is_common_model_field: true
                   is_required: true
                   field_type: string
                   field_format: string

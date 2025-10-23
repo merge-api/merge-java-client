@@ -746,6 +746,12 @@ paths:
           format: date-time
         description: If provided, only objects synced by Merge before this date time
           will be returned.
+      - in: query
+        name: name
+        schema:
+          type: string
+          nullable: true
+        description: If provided, will only return collections with this name.
       - name: page_size
         required: false
         in: query
@@ -1263,6 +1269,12 @@ paths:
           CursorExample:
             value: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
             summary: Cursor Example
+      - in: query
+        name: email_address
+        schema:
+          type: string
+          nullable: true
+        description: If provided, will only return Contacts that match this email.
       - in: query
         name: expand
         schema:
@@ -2929,6 +2941,12 @@ paths:
           CreatorId:
             summary: creator_id
       - in: query
+        name: creator_ids
+        schema:
+          type: string
+        description: If provided, will only return tickets created by the creator_ids;
+          multiple creator_ids can be separated by commas.
+      - in: query
         name: cursor
         schema:
           type: string
@@ -3015,6 +3033,12 @@ paths:
           format: date-time
         description: If provided, only objects synced by Merge before this date time
           will be returned.
+      - in: query
+        name: name
+        schema:
+          type: string
+          nullable: true
+        description: If provided, will only return tickets with this name.
       - name: page_size
         required: false
         in: query
@@ -4660,6 +4684,25 @@ components:
           description: The parent collection for this collection.
           example: 25782302-5be1-4d78-8f46-2a5db72204ef
           x-merge-expands-to: Collection
+        collection_url:
+          type: string
+          format: uri
+          nullable: true
+          description: The 3rd party url of the Collection.
+          maxLength: 2000
+          example: https://example.com
+        remote_created_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the third party's collection was created.
+          example: '2022-01-01T00:00:00Z'
+        remote_updated_at:
+          type: string
+          format: date-time
+          nullable: true
+          description: When the third party's collection was updated.
+          example: '2022-01-01T00:00:00Z'
         remote_was_deleted:
           type: boolean
           description: Indicates whether or not this object has been deleted in the
@@ -7081,6 +7124,8 @@ components:
         description:
           type: string
         is_custom:
+          type: boolean
+        is_common_model_field:
           type: boolean
         is_required:
           type: boolean

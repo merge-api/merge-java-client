@@ -41,6 +41,12 @@ public final class Collection {
 
     private final Optional<CollectionParentCollection> parentCollection;
 
+    private final Optional<String> collectionUrl;
+
+    private final Optional<OffsetDateTime> remoteCreatedAt;
+
+    private final Optional<OffsetDateTime> remoteUpdatedAt;
+
     private final Optional<Boolean> remoteWasDeleted;
 
     private final Optional<Map<String, JsonNode>> fieldMappings;
@@ -59,6 +65,9 @@ public final class Collection {
             Optional<CollectionAccessLevel> accessLevel,
             Optional<CollectionTypeEnum> collectionType,
             Optional<CollectionParentCollection> parentCollection,
+            Optional<String> collectionUrl,
+            Optional<OffsetDateTime> remoteCreatedAt,
+            Optional<OffsetDateTime> remoteUpdatedAt,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -72,6 +81,9 @@ public final class Collection {
         this.accessLevel = accessLevel;
         this.collectionType = collectionType;
         this.parentCollection = parentCollection;
+        this.collectionUrl = collectionUrl;
+        this.remoteCreatedAt = remoteCreatedAt;
+        this.remoteUpdatedAt = remoteUpdatedAt;
         this.remoteWasDeleted = remoteWasDeleted;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
@@ -158,6 +170,30 @@ public final class Collection {
     }
 
     /**
+     * @return The 3rd party url of the Collection.
+     */
+    @JsonProperty("collection_url")
+    public Optional<String> getCollectionUrl() {
+        return collectionUrl;
+    }
+
+    /**
+     * @return When the third party's collection was created.
+     */
+    @JsonProperty("remote_created_at")
+    public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    /**
+     * @return When the third party's collection was updated.
+     */
+    @JsonProperty("remote_updated_at")
+    public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    /**
      * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
      */
     @JsonProperty("remote_was_deleted")
@@ -196,6 +232,9 @@ public final class Collection {
                 && accessLevel.equals(other.accessLevel)
                 && collectionType.equals(other.collectionType)
                 && parentCollection.equals(other.parentCollection)
+                && collectionUrl.equals(other.collectionUrl)
+                && remoteCreatedAt.equals(other.remoteCreatedAt)
+                && remoteUpdatedAt.equals(other.remoteUpdatedAt)
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && fieldMappings.equals(other.fieldMappings)
                 && remoteData.equals(other.remoteData);
@@ -213,6 +252,9 @@ public final class Collection {
                 this.accessLevel,
                 this.collectionType,
                 this.parentCollection,
+                this.collectionUrl,
+                this.remoteCreatedAt,
+                this.remoteUpdatedAt,
                 this.remoteWasDeleted,
                 this.fieldMappings,
                 this.remoteData);
@@ -247,6 +289,12 @@ public final class Collection {
 
         private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
+        private Optional<String> collectionUrl = Optional.empty();
+
+        private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
+
+        private Optional<OffsetDateTime> remoteUpdatedAt = Optional.empty();
+
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
@@ -268,6 +316,9 @@ public final class Collection {
             accessLevel(other.getAccessLevel());
             collectionType(other.getCollectionType());
             parentCollection(other.getParentCollection());
+            collectionUrl(other.getCollectionUrl());
+            remoteCreatedAt(other.getRemoteCreatedAt());
+            remoteUpdatedAt(other.getRemoteUpdatedAt());
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
@@ -408,6 +459,48 @@ public final class Collection {
         }
 
         /**
+         * <p>The 3rd party url of the Collection.</p>
+         */
+        @JsonSetter(value = "collection_url", nulls = Nulls.SKIP)
+        public Builder collectionUrl(Optional<String> collectionUrl) {
+            this.collectionUrl = collectionUrl;
+            return this;
+        }
+
+        public Builder collectionUrl(String collectionUrl) {
+            this.collectionUrl = Optional.ofNullable(collectionUrl);
+            return this;
+        }
+
+        /**
+         * <p>When the third party's collection was created.</p>
+         */
+        @JsonSetter(value = "remote_created_at", nulls = Nulls.SKIP)
+        public Builder remoteCreatedAt(Optional<OffsetDateTime> remoteCreatedAt) {
+            this.remoteCreatedAt = remoteCreatedAt;
+            return this;
+        }
+
+        public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
+            this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        /**
+         * <p>When the third party's collection was updated.</p>
+         */
+        @JsonSetter(value = "remote_updated_at", nulls = Nulls.SKIP)
+        public Builder remoteUpdatedAt(Optional<OffsetDateTime> remoteUpdatedAt) {
+            this.remoteUpdatedAt = remoteUpdatedAt;
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
+            this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
@@ -454,6 +547,9 @@ public final class Collection {
                     accessLevel,
                     collectionType,
                     parentCollection,
+                    collectionUrl,
+                    remoteCreatedAt,
+                    remoteUpdatedAt,
                     remoteWasDeleted,
                     fieldMappings,
                     remoteData,

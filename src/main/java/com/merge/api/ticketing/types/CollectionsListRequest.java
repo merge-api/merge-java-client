@@ -43,6 +43,8 @@ public final class CollectionsListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> name;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> parentCollectionId;
@@ -66,6 +68,7 @@ public final class CollectionsListRequest {
             Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<Integer> pageSize,
             Optional<String> parentCollectionId,
             Optional<String> remoteFields,
@@ -82,6 +85,7 @@ public final class CollectionsListRequest {
         this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.pageSize = pageSize;
         this.parentCollectionId = parentCollectionId;
         this.remoteFields = remoteFields;
@@ -171,6 +175,14 @@ public final class CollectionsListRequest {
     }
 
     /**
+     * @return If provided, will only return collections with this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
      * @return Number of results to return per page.
      */
     @JsonProperty("page_size")
@@ -232,6 +244,7 @@ public final class CollectionsListRequest {
                 && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && pageSize.equals(other.pageSize)
                 && parentCollectionId.equals(other.parentCollectionId)
                 && remoteFields.equals(other.remoteFields)
@@ -252,6 +265,7 @@ public final class CollectionsListRequest {
                 this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.pageSize,
                 this.parentCollectionId,
                 this.remoteFields,
@@ -290,6 +304,8 @@ public final class CollectionsListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> name = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<String> parentCollectionId = Optional.empty();
@@ -316,6 +332,7 @@ public final class CollectionsListRequest {
             includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             pageSize(other.getPageSize());
             parentCollectionId(other.getParentCollectionId());
             remoteFields(other.getRemoteFields());
@@ -470,6 +487,20 @@ public final class CollectionsListRequest {
         }
 
         /**
+         * <p>If provided, will only return collections with this name.</p>
+         */
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
          * <p>Number of results to return per page.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
@@ -551,6 +582,7 @@ public final class CollectionsListRequest {
                     includeShellData,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     pageSize,
                     parentCollectionId,
                     remoteFields,

@@ -111,6 +111,10 @@ public class AsyncRawTicketsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "creator_id", request.getCreatorId().get(), false);
         }
+        if (request.getCreatorIds().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "creator_ids", request.getCreatorIds().get(), false);
+        }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
@@ -155,6 +159,10 @@ public class AsyncRawTicketsClient {
         if (request.getModifiedBefore().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "modified_before", request.getModifiedBefore().get(), false);
+        }
+        if (request.getName().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "name", request.getName().get(), false);
         }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(

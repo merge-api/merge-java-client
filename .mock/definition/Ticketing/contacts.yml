@@ -30,6 +30,9 @@ service:
           cursor:
             type: optional<string>
             docs: The pagination cursor value.
+          email_address:
+            type: optional<string>
+            docs: If provided, will only return Contacts that match this email.
           expand:
             type: optional<literal<"account">>
             allow-multiple: true
@@ -79,6 +82,7 @@ service:
             created_after: '2024-01-15T09:30:00Z'
             created_before: '2024-01-15T09:30:00Z'
             cursor: cD0yMDIxLTAxLTA2KzAzJTNBMjQlM0E1My40MzQzMjYlMkIwMCUzQTAw
+            email_address: email_address
             include_deleted_data: true
             include_remote_data: true
             include_shell_data: true
