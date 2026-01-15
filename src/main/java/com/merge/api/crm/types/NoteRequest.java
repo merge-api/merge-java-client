@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -64,56 +67,119 @@ public final class NoteRequest {
     /**
      * @return The note's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<NoteRequestOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The note's content.
      */
-    @JsonProperty("content")
+    @JsonIgnore
     public Optional<String> getContent() {
+        if (content == null) {
+            return Optional.empty();
+        }
         return content;
     }
 
     /**
      * @return The note's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<NoteRequestContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The note's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<NoteRequestAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The note's opportunity.
      */
-    @JsonProperty("opportunity")
+    @JsonIgnore
     public Optional<NoteRequestOpportunity> getOpportunity() {
+        if (opportunity == null) {
+            return Optional.empty();
+        }
         return opportunity;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<NoteRequestOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content")
+    private Optional<String> _getContent() {
+        return content;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<NoteRequestContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<NoteRequestAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("opportunity")
+    private Optional<NoteRequestOpportunity> _getOpportunity() {
+        return opportunity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -209,6 +275,17 @@ public final class NoteRequest {
             return this;
         }
 
+        public Builder owner(Nullable<NoteRequestOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The note's content.</p>
          */
@@ -220,6 +297,17 @@ public final class NoteRequest {
 
         public Builder content(String content) {
             this.content = Optional.ofNullable(content);
+            return this;
+        }
+
+        public Builder content(Nullable<String> content) {
+            if (content.isNull()) {
+                this.content = null;
+            } else if (content.isEmpty()) {
+                this.content = Optional.empty();
+            } else {
+                this.content = Optional.of(content.get());
+            }
             return this;
         }
 
@@ -237,6 +325,17 @@ public final class NoteRequest {
             return this;
         }
 
+        public Builder contact(Nullable<NoteRequestContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The note's account.</p>
          */
@@ -248,6 +347,17 @@ public final class NoteRequest {
 
         public Builder account(NoteRequestAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<NoteRequestAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -265,6 +375,17 @@ public final class NoteRequest {
             return this;
         }
 
+        public Builder opportunity(Nullable<NoteRequestOpportunity> opportunity) {
+            if (opportunity.isNull()) {
+                this.opportunity = null;
+            } else if (opportunity.isEmpty()) {
+                this.opportunity = Optional.empty();
+            } else {
+                this.opportunity = Optional.of(opportunity.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -276,6 +397,17 @@ public final class NoteRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -284,6 +416,17 @@ public final class NoteRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

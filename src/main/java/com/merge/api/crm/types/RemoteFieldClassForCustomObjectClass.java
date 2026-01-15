@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -85,18 +88,27 @@ public final class RemoteFieldClassForCustomObjectClass {
         return modifiedAt;
     }
 
-    @JsonProperty("display_name")
+    @JsonIgnore
     public Optional<String> getDisplayName() {
+        if (displayName == null) {
+            return Optional.empty();
+        }
         return displayName;
     }
 
-    @JsonProperty("remote_key_name")
+    @JsonIgnore
     public Optional<String> getRemoteKeyName() {
+        if (remoteKeyName == null) {
+            return Optional.empty();
+        }
         return remoteKeyName;
     }
 
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -115,13 +127,49 @@ public final class RemoteFieldClassForCustomObjectClass {
         return fieldFormat;
     }
 
-    @JsonProperty("field_choices")
+    @JsonIgnore
     public Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> getFieldChoices() {
+        if (fieldChoices == null) {
+            return Optional.empty();
+        }
         return fieldChoices;
     }
 
-    @JsonProperty("item_schema")
+    @JsonIgnore
     public Optional<RemoteFieldClassForCustomObjectClassItemSchema> getItemSchema() {
+        if (itemSchema == null) {
+            return Optional.empty();
+        }
+        return itemSchema;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("display_name")
+    private Optional<String> _getDisplayName() {
+        return displayName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_key_name")
+    private Optional<String> _getRemoteKeyName() {
+        return remoteKeyName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_choices")
+    private Optional<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> _getFieldChoices() {
+        return fieldChoices;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item_schema")
+    private Optional<RemoteFieldClassForCustomObjectClassItemSchema> _getItemSchema() {
         return itemSchema;
     }
 
@@ -254,6 +302,17 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
+        public Builder displayName(Nullable<String> displayName) {
+            if (displayName.isNull()) {
+                this.displayName = null;
+            } else if (displayName.isEmpty()) {
+                this.displayName = Optional.empty();
+            } else {
+                this.displayName = Optional.of(displayName.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_key_name", nulls = Nulls.SKIP)
         public Builder remoteKeyName(Optional<String> remoteKeyName) {
             this.remoteKeyName = remoteKeyName;
@@ -265,6 +324,17 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
+        public Builder remoteKeyName(Nullable<String> remoteKeyName) {
+            if (remoteKeyName.isNull()) {
+                this.remoteKeyName = null;
+            } else if (remoteKeyName.isEmpty()) {
+                this.remoteKeyName = Optional.empty();
+            } else {
+                this.remoteKeyName = Optional.of(remoteKeyName.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -273,6 +343,17 @@ public final class RemoteFieldClassForCustomObjectClass {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -320,6 +401,17 @@ public final class RemoteFieldClassForCustomObjectClass {
             return this;
         }
 
+        public Builder fieldChoices(Nullable<List<RemoteFieldClassForCustomObjectClassFieldChoicesItem>> fieldChoices) {
+            if (fieldChoices.isNull()) {
+                this.fieldChoices = null;
+            } else if (fieldChoices.isEmpty()) {
+                this.fieldChoices = Optional.empty();
+            } else {
+                this.fieldChoices = Optional.of(fieldChoices.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item_schema", nulls = Nulls.SKIP)
         public Builder itemSchema(Optional<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema) {
             this.itemSchema = itemSchema;
@@ -328,6 +420,17 @@ public final class RemoteFieldClassForCustomObjectClass {
 
         public Builder itemSchema(RemoteFieldClassForCustomObjectClassItemSchema itemSchema) {
             this.itemSchema = Optional.ofNullable(itemSchema);
+            return this;
+        }
+
+        public Builder itemSchema(Nullable<RemoteFieldClassForCustomObjectClassItemSchema> itemSchema) {
+            if (itemSchema.isNull()) {
+                this.itemSchema = null;
+            } else if (itemSchema.isEmpty()) {
+                this.itemSchema = Optional.empty();
+            } else {
+                this.itemSchema = Optional.of(itemSchema.get());
+            }
             return this;
         }
 

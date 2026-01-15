@@ -18,7 +18,6 @@ import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -106,10 +105,11 @@ public class AsyncRawPaymentTermsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        PaginatedPaymentTermList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedPaymentTermList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                        PaginatedPaymentTermList parsedResponse =
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedPaymentTermList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         PaymentTermsListRequest nextRequest = PaymentTermsListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -117,7 +117,7 @@ public class AsyncRawPaymentTermsClient {
                         List<PaymentTerm> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<PaymentTerm>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()
@@ -129,12 +129,9 @@ public class AsyncRawPaymentTermsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -203,18 +200,15 @@ public class AsyncRawPaymentTermsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaymentTerm.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaymentTerm.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

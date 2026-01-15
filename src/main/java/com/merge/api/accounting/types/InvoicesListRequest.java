@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -55,11 +58,11 @@ public final class InvoicesListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<InvoicesListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<InvoicesListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Optional<InvoicesListRequestStatus> status;
 
@@ -84,9 +87,9 @@ public final class InvoicesListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> number,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<InvoicesListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<InvoicesListRequestShowEnumOrigins> showEnumOrigins,
             Optional<InvoicesListRequestStatus> status,
             Optional<InvoicesListRequestType> type,
             Map<String, Object> additionalProperties) {
@@ -197,16 +200,22 @@ public final class InvoicesListRequest {
     /**
      * @return If provided, will only return objects created after this datetime.
      */
-    @JsonProperty("issue_date_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDateAfter() {
+        if (issueDateAfter == null) {
+            return Optional.empty();
+        }
         return issueDateAfter;
     }
 
     /**
      * @return If provided, will only return objects created before this datetime.
      */
-    @JsonProperty("issue_date_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDateBefore() {
+        if (issueDateBefore == null) {
+            return Optional.empty();
+        }
         return issueDateBefore;
     }
 
@@ -229,8 +238,11 @@ public final class InvoicesListRequest {
     /**
      * @return If provided, will only return Invoices with this number.
      */
-    @JsonProperty("number")
+    @JsonIgnore
     public Optional<String> getNumber() {
+        if (number == null) {
+            return Optional.empty();
+        }
         return number;
     }
 
@@ -246,15 +258,18 @@ public final class InvoicesListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<InvoicesListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -262,7 +277,7 @@ public final class InvoicesListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<InvoicesListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -277,8 +292,11 @@ public final class InvoicesListRequest {
      * <li><code>VOID</code> - VOID</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<InvoicesListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -289,8 +307,47 @@ public final class InvoicesListRequest {
      * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<InvoicesListRequestType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date_after")
+    private Optional<OffsetDateTime> _getIssueDateAfter() {
+        return issueDateAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date_before")
+    private Optional<OffsetDateTime> _getIssueDateBefore() {
+        return issueDateBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("number")
+    private Optional<String> _getNumber() {
+        return number;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<InvoicesListRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<InvoicesListRequestType> _getType() {
         return type;
     }
 
@@ -398,11 +455,11 @@ public final class InvoicesListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<InvoicesListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<InvoicesListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         private Optional<InvoicesListRequestStatus> status = Optional.empty();
 
@@ -597,6 +654,17 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        public Builder issueDateAfter(Nullable<OffsetDateTime> issueDateAfter) {
+            if (issueDateAfter.isNull()) {
+                this.issueDateAfter = null;
+            } else if (issueDateAfter.isEmpty()) {
+                this.issueDateAfter = Optional.empty();
+            } else {
+                this.issueDateAfter = Optional.of(issueDateAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return objects created before this datetime.</p>
          */
@@ -608,6 +676,17 @@ public final class InvoicesListRequest {
 
         public Builder issueDateBefore(OffsetDateTime issueDateBefore) {
             this.issueDateBefore = Optional.ofNullable(issueDateBefore);
+            return this;
+        }
+
+        public Builder issueDateBefore(Nullable<OffsetDateTime> issueDateBefore) {
+            if (issueDateBefore.isNull()) {
+                this.issueDateBefore = null;
+            } else if (issueDateBefore.isEmpty()) {
+                this.issueDateBefore = Optional.empty();
+            } else {
+                this.issueDateBefore = Optional.of(issueDateBefore.get());
+            }
             return this;
         }
 
@@ -653,6 +732,17 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        public Builder number(Nullable<String> number) {
+            if (number.isNull()) {
+                this.number = null;
+            } else if (number.isEmpty()) {
+                this.number = Optional.empty();
+            } else {
+                this.number = Optional.of(number.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Number of results to return per page.</p>
          */
@@ -671,12 +761,12 @@ public final class InvoicesListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<InvoicesListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(InvoicesListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -695,16 +785,27 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<InvoicesListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(InvoicesListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
@@ -731,6 +832,17 @@ public final class InvoicesListRequest {
             return this;
         }
 
+        public Builder status(Nullable<InvoicesListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return Invoices with this type.</p>
          * <ul>
@@ -746,6 +858,17 @@ public final class InvoicesListRequest {
 
         public Builder type(InvoicesListRequestType type) {
             this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Nullable<InvoicesListRequestType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
             return this;
         }
 

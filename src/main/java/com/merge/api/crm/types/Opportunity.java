@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -110,8 +113,11 @@ public final class Opportunity {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -134,48 +140,66 @@ public final class Opportunity {
     /**
      * @return The opportunity's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The opportunity's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The opportunity's amount.
      */
-    @JsonProperty("amount")
+    @JsonIgnore
     public Optional<Integer> getAmount() {
+        if (amount == null) {
+            return Optional.empty();
+        }
         return amount;
     }
 
     /**
      * @return The opportunity's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<OpportunityOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The account of the opportunity.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<OpportunityAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The stage of the opportunity.
      */
-    @JsonProperty("stage")
+    @JsonIgnore
     public Optional<OpportunityStage> getStage() {
+        if (stage == null) {
+            return Optional.empty();
+        }
         return stage;
     }
 
@@ -187,32 +211,44 @@ public final class Opportunity {
      * <li><code>LOST</code> - LOST</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<OpportunityStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return When the opportunity's last activity occurred.
      */
-    @JsonProperty("last_activity_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastActivityAt() {
+        if (lastActivityAt == null) {
+            return Optional.empty();
+        }
         return lastActivityAt;
     }
 
     /**
      * @return When the opportunity was closed.
      */
-    @JsonProperty("close_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCloseDate() {
+        if (closeDate == null) {
+            return Optional.empty();
+        }
         return closeDate;
     }
 
     /**
      * @return When the third party's opportunity was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
@@ -224,19 +260,103 @@ public final class Opportunity {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("amount")
+    private Optional<Integer> _getAmount() {
+        return amount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<OpportunityOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<OpportunityAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("stage")
+    private Optional<OpportunityStage> _getStage() {
+        return stage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<OpportunityStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_activity_at")
+    private Optional<OffsetDateTime> _getLastActivityAt() {
+        return lastActivityAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("close_date")
+    private Optional<OffsetDateTime> _getCloseDate() {
+        return closeDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -393,6 +513,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -435,6 +566,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The opportunity's description.</p>
          */
@@ -446,6 +588,17 @@ public final class Opportunity {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -463,6 +616,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder amount(Nullable<Integer> amount) {
+            if (amount.isNull()) {
+                this.amount = null;
+            } else if (amount.isEmpty()) {
+                this.amount = Optional.empty();
+            } else {
+                this.amount = Optional.of(amount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The opportunity's owner.</p>
          */
@@ -474,6 +638,17 @@ public final class Opportunity {
 
         public Builder owner(OpportunityOwner owner) {
             this.owner = Optional.ofNullable(owner);
+            return this;
+        }
+
+        public Builder owner(Nullable<OpportunityOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
             return this;
         }
 
@@ -491,6 +666,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder account(Nullable<OpportunityAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The stage of the opportunity.</p>
          */
@@ -502,6 +688,17 @@ public final class Opportunity {
 
         public Builder stage(OpportunityStage stage) {
             this.stage = Optional.ofNullable(stage);
+            return this;
+        }
+
+        public Builder stage(Nullable<OpportunityStage> stage) {
+            if (stage.isNull()) {
+                this.stage = null;
+            } else if (stage.isEmpty()) {
+                this.stage = Optional.empty();
+            } else {
+                this.stage = Optional.of(stage.get());
+            }
             return this;
         }
 
@@ -524,6 +721,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder status(Nullable<OpportunityStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the opportunity's last activity occurred.</p>
          */
@@ -535,6 +743,17 @@ public final class Opportunity {
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
             this.lastActivityAt = Optional.ofNullable(lastActivityAt);
+            return this;
+        }
+
+        public Builder lastActivityAt(Nullable<OffsetDateTime> lastActivityAt) {
+            if (lastActivityAt.isNull()) {
+                this.lastActivityAt = null;
+            } else if (lastActivityAt.isEmpty()) {
+                this.lastActivityAt = Optional.empty();
+            } else {
+                this.lastActivityAt = Optional.of(lastActivityAt.get());
+            }
             return this;
         }
 
@@ -552,6 +771,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder closeDate(Nullable<OffsetDateTime> closeDate) {
+            if (closeDate.isNull()) {
+                this.closeDate = null;
+            } else if (closeDate.isEmpty()) {
+                this.closeDate = Optional.empty();
+            } else {
+                this.closeDate = Optional.of(closeDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's opportunity was created.</p>
          */
@@ -563,6 +793,17 @@ public final class Opportunity {
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
             this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
             return this;
         }
 
@@ -591,6 +832,17 @@ public final class Opportunity {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -599,6 +851,17 @@ public final class Opportunity {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

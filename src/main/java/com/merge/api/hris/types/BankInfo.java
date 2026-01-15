@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -90,8 +93,11 @@ public final class BankInfo {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -114,32 +120,44 @@ public final class BankInfo {
     /**
      * @return The employee with this bank account.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<BankInfoEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The account number.
      */
-    @JsonProperty("account_number")
+    @JsonIgnore
     public Optional<String> getAccountNumber() {
+        if (accountNumber == null) {
+            return Optional.empty();
+        }
         return accountNumber;
     }
 
     /**
      * @return The routing number.
      */
-    @JsonProperty("routing_number")
+    @JsonIgnore
     public Optional<String> getRoutingNumber() {
+        if (routingNumber == null) {
+            return Optional.empty();
+        }
         return routingNumber;
     }
 
     /**
      * @return The bank name.
      */
-    @JsonProperty("bank_name")
+    @JsonIgnore
     public Optional<String> getBankName() {
+        if (bankName == null) {
+            return Optional.empty();
+        }
         return bankName;
     }
 
@@ -150,16 +168,22 @@ public final class BankInfo {
      * <li><code>CHECKING</code> - CHECKING</li>
      * </ul>
      */
-    @JsonProperty("account_type")
+    @JsonIgnore
     public Optional<BankInfoAccountType> getAccountType() {
+        if (accountType == null) {
+            return Optional.empty();
+        }
         return accountType;
     }
 
     /**
      * @return When the matching bank object was created in the third party system.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
@@ -171,13 +195,73 @@ public final class BankInfo {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<BankInfoEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account_number")
+    private Optional<String> _getAccountNumber() {
+        return accountNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("routing_number")
+    private Optional<String> _getRoutingNumber() {
+        return routingNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("bank_name")
+    private Optional<String> _getBankName() {
+        return bankName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account_type")
+    private Optional<BankInfoAccountType> _getAccountType() {
+        return accountType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -310,6 +394,17 @@ public final class BankInfo {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -352,6 +447,17 @@ public final class BankInfo {
             return this;
         }
 
+        public Builder employee(Nullable<BankInfoEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account number.</p>
          */
@@ -363,6 +469,17 @@ public final class BankInfo {
 
         public Builder accountNumber(String accountNumber) {
             this.accountNumber = Optional.ofNullable(accountNumber);
+            return this;
+        }
+
+        public Builder accountNumber(Nullable<String> accountNumber) {
+            if (accountNumber.isNull()) {
+                this.accountNumber = null;
+            } else if (accountNumber.isEmpty()) {
+                this.accountNumber = Optional.empty();
+            } else {
+                this.accountNumber = Optional.of(accountNumber.get());
+            }
             return this;
         }
 
@@ -380,6 +497,17 @@ public final class BankInfo {
             return this;
         }
 
+        public Builder routingNumber(Nullable<String> routingNumber) {
+            if (routingNumber.isNull()) {
+                this.routingNumber = null;
+            } else if (routingNumber.isEmpty()) {
+                this.routingNumber = Optional.empty();
+            } else {
+                this.routingNumber = Optional.of(routingNumber.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The bank name.</p>
          */
@@ -391,6 +519,17 @@ public final class BankInfo {
 
         public Builder bankName(String bankName) {
             this.bankName = Optional.ofNullable(bankName);
+            return this;
+        }
+
+        public Builder bankName(Nullable<String> bankName) {
+            if (bankName.isNull()) {
+                this.bankName = null;
+            } else if (bankName.isEmpty()) {
+                this.bankName = Optional.empty();
+            } else {
+                this.bankName = Optional.of(bankName.get());
+            }
             return this;
         }
 
@@ -412,6 +551,17 @@ public final class BankInfo {
             return this;
         }
 
+        public Builder accountType(Nullable<BankInfoAccountType> accountType) {
+            if (accountType.isNull()) {
+                this.accountType = null;
+            } else if (accountType.isEmpty()) {
+                this.accountType = Optional.empty();
+            } else {
+                this.accountType = Optional.of(accountType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the matching bank object was created in the third party system.</p>
          */
@@ -423,6 +573,17 @@ public final class BankInfo {
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
             this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
             return this;
         }
 
@@ -451,6 +612,17 @@ public final class BankInfo {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -459,6 +631,17 @@ public final class BankInfo {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

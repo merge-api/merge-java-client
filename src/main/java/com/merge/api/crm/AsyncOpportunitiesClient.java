@@ -8,6 +8,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.crm.types.MetaResponse;
 import com.merge.api.crm.types.OpportunitiesListRequest;
+import com.merge.api.crm.types.OpportunitiesMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.OpportunitiesRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.OpportunitiesRetrieveRequest;
 import com.merge.api.crm.types.Opportunity;
@@ -118,8 +119,16 @@ public class AsyncOpportunitiesClient {
     /**
      * Returns metadata for <code>Opportunity</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, OpportunitiesMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Opportunity</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, OpportunitiesMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

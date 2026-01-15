@@ -17,7 +17,6 @@ import com.merge.api.crm.types.PaginatedAuditLogEventList;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -99,10 +98,11 @@ public class AsyncRawAuditTrailClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedAuditLogEventList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedAuditLogEventList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                responseBodyString, PaginatedAuditLogEventList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         AuditTrailListRequest nextRequest = AuditTrailListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -110,7 +110,7 @@ public class AsyncRawAuditTrailClient {
                         List<AuditLogEvent> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<AuditLogEvent>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()
@@ -122,12 +122,9 @@ public class AsyncRawAuditTrailClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

@@ -5,12 +5,15 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -69,16 +72,22 @@ public final class AuditLogEvent {
     /**
      * @return The User's full name at the time of this Event occurring.
      */
-    @JsonProperty("user_name")
+    @JsonIgnore
     public Optional<String> getUserName() {
+        if (userName == null) {
+            return Optional.empty();
+        }
         return userName;
     }
 
     /**
      * @return The User's email at the time of this Event occurring.
      */
-    @JsonProperty("user_email")
+    @JsonIgnore
     public Optional<String> getUserEmail() {
+        if (userEmail == null) {
+            return Optional.empty();
+        }
         return userEmail;
     }
 
@@ -164,6 +173,18 @@ public final class AuditLogEvent {
     @JsonProperty("created_at")
     public Optional<OffsetDateTime> getCreatedAt() {
         return createdAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user_name")
+    private Optional<String> _getUserName() {
+        return userName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user_email")
+    private Optional<String> _getUserEmail() {
+        return userEmail;
     }
 
     @java.lang.Override
@@ -301,12 +322,16 @@ public final class AuditLogEvent {
 
         _FinalStage userName(String userName);
 
+        _FinalStage userName(Nullable<String> userName);
+
         /**
          * <p>The User's email at the time of this Event occurring.</p>
          */
         _FinalStage userEmail(Optional<String> userEmail);
 
         _FinalStage userEmail(String userEmail);
+
+        _FinalStage userEmail(Nullable<String> userEmail);
 
         _FinalStage createdAt(Optional<OffsetDateTime> createdAt);
 
@@ -512,6 +537,22 @@ public final class AuditLogEvent {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage userEmail(Nullable<String> userEmail) {
+            if (userEmail.isNull()) {
+                this.userEmail = null;
+            } else if (userEmail.isEmpty()) {
+                this.userEmail = Optional.empty();
+            } else {
+                this.userEmail = Optional.of(userEmail.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The User's email at the time of this Event occurring.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage userEmail(String userEmail) {
             this.userEmail = Optional.ofNullable(userEmail);
             return this;
@@ -524,6 +565,22 @@ public final class AuditLogEvent {
         @JsonSetter(value = "user_email", nulls = Nulls.SKIP)
         public _FinalStage userEmail(Optional<String> userEmail) {
             this.userEmail = userEmail;
+            return this;
+        }
+
+        /**
+         * <p>The User's full name at the time of this Event occurring.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage userName(Nullable<String> userName) {
+            if (userName.isNull()) {
+                this.userName = null;
+            } else if (userName.isEmpty()) {
+                this.userName = Optional.empty();
+            } else {
+                this.userName = Optional.of(userName.get());
+            }
             return this;
         }
 

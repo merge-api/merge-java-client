@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -86,8 +89,11 @@ public final class PayrollRun {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -117,8 +123,11 @@ public final class PayrollRun {
      * <li><code>CLOSED</code> - CLOSED</li>
      * </ul>
      */
-    @JsonProperty("run_state")
+    @JsonIgnore
     public Optional<PayrollRunRunState> getRunState() {
+        if (runState == null) {
+            return Optional.empty();
+        }
         return runState;
     }
 
@@ -132,32 +141,44 @@ public final class PayrollRun {
      * <li><code>SIGN_ON_BONUS</code> - SIGN_ON_BONUS</li>
      * </ul>
      */
-    @JsonProperty("run_type")
+    @JsonIgnore
     public Optional<PayrollRunRunType> getRunType() {
+        if (runType == null) {
+            return Optional.empty();
+        }
         return runType;
     }
 
     /**
      * @return The day and time the payroll run started.
      */
-    @JsonProperty("start_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartDate() {
+        if (startDate == null) {
+            return Optional.empty();
+        }
         return startDate;
     }
 
     /**
      * @return The day and time the payroll run ended.
      */
-    @JsonProperty("end_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndDate() {
+        if (endDate == null) {
+            return Optional.empty();
+        }
         return endDate;
     }
 
     /**
      * @return The day and time the payroll run was checked.
      */
-    @JsonProperty("check_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCheckDate() {
+        if (checkDate == null) {
+            return Optional.empty();
+        }
         return checkDate;
     }
 
@@ -169,13 +190,67 @@ public final class PayrollRun {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("run_state")
+    private Optional<PayrollRunRunState> _getRunState() {
+        return runState;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("run_type")
+    private Optional<PayrollRunRunType> _getRunType() {
+        return runType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_date")
+    private Optional<OffsetDateTime> _getStartDate() {
+        return startDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_date")
+    private Optional<OffsetDateTime> _getEndDate() {
+        return endDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("check_date")
+    private Optional<OffsetDateTime> _getCheckDate() {
+        return checkDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -303,6 +378,17 @@ public final class PayrollRun {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -352,6 +438,17 @@ public final class PayrollRun {
             return this;
         }
 
+        public Builder runState(Nullable<PayrollRunRunState> runState) {
+            if (runState.isNull()) {
+                this.runState = null;
+            } else if (runState.isEmpty()) {
+                this.runState = Optional.empty();
+            } else {
+                this.runState = Optional.of(runState.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The type of the payroll run</p>
          * <ul>
@@ -373,6 +470,17 @@ public final class PayrollRun {
             return this;
         }
 
+        public Builder runType(Nullable<PayrollRunRunType> runType) {
+            if (runType.isNull()) {
+                this.runType = null;
+            } else if (runType.isEmpty()) {
+                this.runType = Optional.empty();
+            } else {
+                this.runType = Optional.of(runType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the payroll run started.</p>
          */
@@ -384,6 +492,17 @@ public final class PayrollRun {
 
         public Builder startDate(OffsetDateTime startDate) {
             this.startDate = Optional.ofNullable(startDate);
+            return this;
+        }
+
+        public Builder startDate(Nullable<OffsetDateTime> startDate) {
+            if (startDate.isNull()) {
+                this.startDate = null;
+            } else if (startDate.isEmpty()) {
+                this.startDate = Optional.empty();
+            } else {
+                this.startDate = Optional.of(startDate.get());
+            }
             return this;
         }
 
@@ -401,6 +520,17 @@ public final class PayrollRun {
             return this;
         }
 
+        public Builder endDate(Nullable<OffsetDateTime> endDate) {
+            if (endDate.isNull()) {
+                this.endDate = null;
+            } else if (endDate.isEmpty()) {
+                this.endDate = Optional.empty();
+            } else {
+                this.endDate = Optional.of(endDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the payroll run was checked.</p>
          */
@@ -412,6 +542,17 @@ public final class PayrollRun {
 
         public Builder checkDate(OffsetDateTime checkDate) {
             this.checkDate = Optional.ofNullable(checkDate);
+            return this;
+        }
+
+        public Builder checkDate(Nullable<OffsetDateTime> checkDate) {
+            if (checkDate.isNull()) {
+                this.checkDate = null;
+            } else if (checkDate.isEmpty()) {
+                this.checkDate = Optional.empty();
+            } else {
+                this.checkDate = Optional.of(checkDate.get());
+            }
             return this;
         }
 
@@ -440,6 +581,17 @@ public final class PayrollRun {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -448,6 +600,17 @@ public final class PayrollRun {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

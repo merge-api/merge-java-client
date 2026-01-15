@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,34 +54,79 @@ public final class AccountingAttachmentRequest {
     /**
      * @return The attachment's name.
      */
-    @JsonProperty("file_name")
+    @JsonIgnore
     public Optional<String> getFileName() {
+        if (fileName == null) {
+            return Optional.empty();
+        }
         return fileName;
     }
 
     /**
      * @return The attachment's url.
      */
-    @JsonProperty("file_url")
+    @JsonIgnore
     public Optional<String> getFileUrl() {
+        if (fileUrl == null) {
+            return Optional.empty();
+        }
         return fileUrl;
     }
 
     /**
      * @return The company the accounting attachment belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_name")
+    private Optional<String> _getFileName() {
+        return fileName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_url")
+    private Optional<String> _getFileUrl() {
+        return fileUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -156,6 +204,17 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        public Builder fileName(Nullable<String> fileName) {
+            if (fileName.isNull()) {
+                this.fileName = null;
+            } else if (fileName.isEmpty()) {
+                this.fileName = Optional.empty();
+            } else {
+                this.fileName = Optional.of(fileName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The attachment's url.</p>
          */
@@ -167,6 +226,17 @@ public final class AccountingAttachmentRequest {
 
         public Builder fileUrl(String fileUrl) {
             this.fileUrl = Optional.ofNullable(fileUrl);
+            return this;
+        }
+
+        public Builder fileUrl(Nullable<String> fileUrl) {
+            if (fileUrl.isNull()) {
+                this.fileUrl = null;
+            } else if (fileUrl.isEmpty()) {
+                this.fileUrl = Optional.empty();
+            } else {
+                this.fileUrl = Optional.of(fileUrl.get());
+            }
             return this;
         }
 
@@ -184,6 +254,17 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -195,6 +276,17 @@ public final class AccountingAttachmentRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -203,6 +295,17 @@ public final class AccountingAttachmentRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

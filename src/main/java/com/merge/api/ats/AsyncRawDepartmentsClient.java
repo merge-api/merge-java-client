@@ -18,7 +18,6 @@ import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -122,10 +121,11 @@ public class AsyncRawDepartmentsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        PaginatedDepartmentList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedDepartmentList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                        PaginatedDepartmentList parsedResponse =
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedDepartmentList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         DepartmentsListRequest nextRequest = DepartmentsListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -133,7 +133,7 @@ public class AsyncRawDepartmentsClient {
                         List<Department> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<Department>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()
@@ -145,12 +145,9 @@ public class AsyncRawDepartmentsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -214,18 +211,15 @@ public class AsyncRawDepartmentsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Department.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Department.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

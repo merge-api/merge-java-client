@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -47,11 +50,11 @@ public final class JobsListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<JobsListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<JobsListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Optional<JobsListRequestStatus> status;
 
@@ -70,9 +73,9 @@ public final class JobsListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> offices,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<JobsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<JobsListRequestShowEnumOrigins> showEnumOrigins,
             Optional<JobsListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
@@ -105,8 +108,11 @@ public final class JobsListRequest {
     /**
      * @return If provided, will only return jobs with this code.
      */
-    @JsonProperty("code")
+    @JsonIgnore
     public Optional<String> getCode() {
+        if (code == null) {
+            return Optional.empty();
+        }
         return code;
     }
 
@@ -194,15 +200,18 @@ public final class JobsListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<JobsListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -210,7 +219,7 @@ public final class JobsListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<JobsListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -224,8 +233,29 @@ public final class JobsListRequest {
      * <li><code>PENDING</code> - PENDING</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<JobsListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("code")
+    private Optional<String> _getCode() {
+        return code;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<JobsListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -315,11 +345,11 @@ public final class JobsListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<JobsListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<JobsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         private Optional<JobsListRequestStatus> status = Optional.empty();
 
@@ -378,6 +408,17 @@ public final class JobsListRequest {
 
         public Builder code(String code) {
             this.code = Optional.ofNullable(code);
+            return this;
+        }
+
+        public Builder code(Nullable<String> code) {
+            if (code.isNull()) {
+                this.code = null;
+            } else if (code.isEmpty()) {
+                this.code = Optional.empty();
+            } else {
+                this.code = Optional.of(code.get());
+            }
             return this;
         }
 
@@ -525,12 +566,12 @@ public final class JobsListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<JobsListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(JobsListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -549,16 +590,27 @@ public final class JobsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<JobsListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(JobsListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
@@ -581,6 +633,17 @@ public final class JobsListRequest {
 
         public Builder status(JobsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<JobsListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

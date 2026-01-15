@@ -6,6 +6,7 @@ package com.merge.api.hris;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.hris.types.AccountToken;
+import com.merge.api.hris.types.AccountTokenRetrieveRequest;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncAccountTokenClient {
@@ -35,7 +36,15 @@ public class AsyncAccountTokenClient {
     /**
      * Returns the account token for the end user with the provided public token.
      */
-    public CompletableFuture<AccountToken> retrieve(String publicToken, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(publicToken, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<AccountToken> retrieve(String publicToken, AccountTokenRetrieveRequest request) {
+        return this.rawClient.retrieve(publicToken, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns the account token for the end user with the provided public token.
+     */
+    public CompletableFuture<AccountToken> retrieve(
+            String publicToken, AccountTokenRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(publicToken, request, requestOptions).thenApply(response -> response.body());
     }
 }

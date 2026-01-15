@@ -24,10 +24,7 @@ import com.merge.api.crm.types.PaginatedRemoteFieldClassList;
 import com.merge.api.crm.types.RemoteFieldClass;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -168,17 +165,18 @@ public class AsyncRawLeadsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedLeadList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedLeadList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedLeadList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         LeadsListRequest nextRequest = LeadsListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
                                 .build();
                         List<Lead> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Lead>(startingAfter.isPresent(), result, parsedResponse, () -> {
+                                new SyncPagingIterable<Lead>(!startingAfter.isEmpty(), result, parsedResponse, () -> {
                                     try {
                                         return list(nextRequest, requestOptions)
                                                 .get()
@@ -190,12 +188,9 @@ public class AsyncRawLeadsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -233,12 +228,10 @@ public class AsyncRawLeadsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -258,18 +251,15 @@ public class AsyncRawLeadsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), LeadResponse.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LeadResponse.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -344,17 +334,15 @@ public class AsyncRawLeadsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Lead.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Lead.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -399,18 +387,15 @@ public class AsyncRawLeadsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -509,10 +494,11 @@ public class AsyncRawLeadsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedRemoteFieldClassList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedRemoteFieldClassList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                responseBodyString, PaginatedRemoteFieldClassList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         LeadsRemoteFieldClassesListRequest nextRequest = LeadsRemoteFieldClassesListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -521,7 +507,7 @@ public class AsyncRawLeadsClient {
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<RemoteFieldClass>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return remoteFieldClassesList(nextRequest, requestOptions)
                                                         .get()
@@ -533,12 +519,9 @@ public class AsyncRawLeadsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

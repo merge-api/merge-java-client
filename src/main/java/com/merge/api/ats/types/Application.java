@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -106,8 +109,11 @@ public final class Application {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -130,32 +136,44 @@ public final class Application {
     /**
      * @return The candidate applying.
      */
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<ApplicationCandidate> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
     /**
      * @return The job being applied for.
      */
-    @JsonProperty("job")
+    @JsonIgnore
     public Optional<ApplicationJob> getJob() {
+        if (job == null) {
+            return Optional.empty();
+        }
         return job;
     }
 
     /**
      * @return When the application was submitted.
      */
-    @JsonProperty("applied_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getAppliedAt() {
+        if (appliedAt == null) {
+            return Optional.empty();
+        }
         return appliedAt;
     }
 
     /**
      * @return When the application was rejected.
      */
-    @JsonProperty("rejected_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRejectedAt() {
+        if (rejectedAt == null) {
+            return Optional.empty();
+        }
         return rejectedAt;
     }
 
@@ -167,16 +185,22 @@ public final class Application {
     /**
      * @return The application's source.
      */
-    @JsonProperty("source")
+    @JsonIgnore
     public Optional<String> getSource() {
+        if (source == null) {
+            return Optional.empty();
+        }
         return source;
     }
 
     /**
      * @return The user credited for this application.
      */
-    @JsonProperty("credited_to")
+    @JsonIgnore
     public Optional<ApplicationCreditedTo> getCreditedTo() {
+        if (creditedTo == null) {
+            return Optional.empty();
+        }
         return creditedTo;
     }
 
@@ -188,16 +212,22 @@ public final class Application {
     /**
      * @return The application's current stage.
      */
-    @JsonProperty("current_stage")
+    @JsonIgnore
     public Optional<ApplicationCurrentStage> getCurrentStage() {
+        if (currentStage == null) {
+            return Optional.empty();
+        }
         return currentStage;
     }
 
     /**
      * @return The application's reason for rejection.
      */
-    @JsonProperty("reject_reason")
+    @JsonIgnore
     public Optional<ApplicationRejectReason> getRejectReason() {
+        if (rejectReason == null) {
+            return Optional.empty();
+        }
         return rejectReason;
     }
 
@@ -209,13 +239,85 @@ public final class Application {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<ApplicationCandidate> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job")
+    private Optional<ApplicationJob> _getJob() {
+        return job;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_at")
+    private Optional<OffsetDateTime> _getAppliedAt() {
+        return appliedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("rejected_at")
+    private Optional<OffsetDateTime> _getRejectedAt() {
+        return rejectedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source")
+    private Optional<String> _getSource() {
+        return source;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("credited_to")
+    private Optional<ApplicationCreditedTo> _getCreditedTo() {
+        return creditedTo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("current_stage")
+    private Optional<ApplicationCurrentStage> _getCurrentStage() {
+        return currentStage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("reject_reason")
+    private Optional<ApplicationRejectReason> _getRejectReason() {
+        return rejectReason;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -368,6 +470,17 @@ public final class Application {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -410,6 +523,17 @@ public final class Application {
             return this;
         }
 
+        public Builder candidate(Nullable<ApplicationCandidate> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The job being applied for.</p>
          */
@@ -421,6 +545,17 @@ public final class Application {
 
         public Builder job(ApplicationJob job) {
             this.job = Optional.ofNullable(job);
+            return this;
+        }
+
+        public Builder job(Nullable<ApplicationJob> job) {
+            if (job.isNull()) {
+                this.job = null;
+            } else if (job.isEmpty()) {
+                this.job = Optional.empty();
+            } else {
+                this.job = Optional.of(job.get());
+            }
             return this;
         }
 
@@ -438,6 +573,17 @@ public final class Application {
             return this;
         }
 
+        public Builder appliedAt(Nullable<OffsetDateTime> appliedAt) {
+            if (appliedAt.isNull()) {
+                this.appliedAt = null;
+            } else if (appliedAt.isEmpty()) {
+                this.appliedAt = Optional.empty();
+            } else {
+                this.appliedAt = Optional.of(appliedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the application was rejected.</p>
          */
@@ -449,6 +595,17 @@ public final class Application {
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
             this.rejectedAt = Optional.ofNullable(rejectedAt);
+            return this;
+        }
+
+        public Builder rejectedAt(Nullable<OffsetDateTime> rejectedAt) {
+            if (rejectedAt.isNull()) {
+                this.rejectedAt = null;
+            } else if (rejectedAt.isEmpty()) {
+                this.rejectedAt = Optional.empty();
+            } else {
+                this.rejectedAt = Optional.of(rejectedAt.get());
+            }
             return this;
         }
 
@@ -477,6 +634,17 @@ public final class Application {
             return this;
         }
 
+        public Builder source(Nullable<String> source) {
+            if (source.isNull()) {
+                this.source = null;
+            } else if (source.isEmpty()) {
+                this.source = Optional.empty();
+            } else {
+                this.source = Optional.of(source.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user credited for this application.</p>
          */
@@ -488,6 +656,17 @@ public final class Application {
 
         public Builder creditedTo(ApplicationCreditedTo creditedTo) {
             this.creditedTo = Optional.ofNullable(creditedTo);
+            return this;
+        }
+
+        public Builder creditedTo(Nullable<ApplicationCreditedTo> creditedTo) {
+            if (creditedTo.isNull()) {
+                this.creditedTo = null;
+            } else if (creditedTo.isEmpty()) {
+                this.creditedTo = Optional.empty();
+            } else {
+                this.creditedTo = Optional.of(creditedTo.get());
+            }
             return this;
         }
 
@@ -518,6 +697,17 @@ public final class Application {
             return this;
         }
 
+        public Builder currentStage(Nullable<ApplicationCurrentStage> currentStage) {
+            if (currentStage.isNull()) {
+                this.currentStage = null;
+            } else if (currentStage.isEmpty()) {
+                this.currentStage = Optional.empty();
+            } else {
+                this.currentStage = Optional.of(currentStage.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The application's reason for rejection.</p>
          */
@@ -529,6 +719,17 @@ public final class Application {
 
         public Builder rejectReason(ApplicationRejectReason rejectReason) {
             this.rejectReason = Optional.ofNullable(rejectReason);
+            return this;
+        }
+
+        public Builder rejectReason(Nullable<ApplicationRejectReason> rejectReason) {
+            if (rejectReason.isNull()) {
+                this.rejectReason = null;
+            } else if (rejectReason.isEmpty()) {
+                this.rejectReason = Optional.empty();
+            } else {
+                this.rejectReason = Optional.of(rejectReason.get());
+            }
             return this;
         }
 
@@ -557,6 +758,17 @@ public final class Application {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -565,6 +777,17 @@ public final class Application {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

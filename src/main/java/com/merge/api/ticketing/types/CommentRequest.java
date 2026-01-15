@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,58 +66,130 @@ public final class CommentRequest {
     /**
      * @return The author of the Comment, if the author is a User. If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<CommentRequestUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
         return user;
     }
 
     /**
      * @return The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<CommentRequestContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The comment's text body.
      */
-    @JsonProperty("body")
+    @JsonIgnore
     public Optional<String> getBody() {
+        if (body == null) {
+            return Optional.empty();
+        }
         return body;
     }
 
     /**
      * @return The comment's text body formatted as html.
      */
-    @JsonProperty("html_body")
+    @JsonIgnore
     public Optional<String> getHtmlBody() {
+        if (htmlBody == null) {
+            return Optional.empty();
+        }
         return htmlBody;
     }
 
     /**
      * @return The ticket associated with the comment.
      */
-    @JsonProperty("ticket")
+    @JsonIgnore
     public Optional<CommentRequestTicket> getTicket() {
+        if (ticket == null) {
+            return Optional.empty();
+        }
         return ticket;
     }
 
     /**
      * @return Whether or not the comment is internal.
      */
-    @JsonProperty("is_private")
+    @JsonIgnore
     public Optional<Boolean> getIsPrivate() {
+        if (isPrivate == null) {
+            return Optional.empty();
+        }
         return isPrivate;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<CommentRequestUser> _getUser() {
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<CommentRequestContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("body")
+    private Optional<String> _getBody() {
+        return body;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("html_body")
+    private Optional<String> _getHtmlBody() {
+        return htmlBody;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket")
+    private Optional<CommentRequestTicket> _getTicket() {
+        return ticket;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_private")
+    private Optional<Boolean> _getIsPrivate() {
+        return isPrivate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -211,6 +286,17 @@ public final class CommentRequest {
             return this;
         }
 
+        public Builder user(Nullable<CommentRequestUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The author of the Comment, if the author is a Contact.If the third party does not support specifying an author, we will append &quot;[Posted on behalf of {name}]&quot; to the comment.</p>
          */
@@ -222,6 +308,17 @@ public final class CommentRequest {
 
         public Builder contact(CommentRequestContact contact) {
             this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        public Builder contact(Nullable<CommentRequestContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
             return this;
         }
 
@@ -239,6 +336,17 @@ public final class CommentRequest {
             return this;
         }
 
+        public Builder body(Nullable<String> body) {
+            if (body.isNull()) {
+                this.body = null;
+            } else if (body.isEmpty()) {
+                this.body = Optional.empty();
+            } else {
+                this.body = Optional.of(body.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The comment's text body formatted as html.</p>
          */
@@ -250,6 +358,17 @@ public final class CommentRequest {
 
         public Builder htmlBody(String htmlBody) {
             this.htmlBody = Optional.ofNullable(htmlBody);
+            return this;
+        }
+
+        public Builder htmlBody(Nullable<String> htmlBody) {
+            if (htmlBody.isNull()) {
+                this.htmlBody = null;
+            } else if (htmlBody.isEmpty()) {
+                this.htmlBody = Optional.empty();
+            } else {
+                this.htmlBody = Optional.of(htmlBody.get());
+            }
             return this;
         }
 
@@ -267,6 +386,17 @@ public final class CommentRequest {
             return this;
         }
 
+        public Builder ticket(Nullable<CommentRequestTicket> ticket) {
+            if (ticket.isNull()) {
+                this.ticket = null;
+            } else if (ticket.isEmpty()) {
+                this.ticket = Optional.empty();
+            } else {
+                this.ticket = Optional.of(ticket.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether or not the comment is internal.</p>
          */
@@ -281,6 +411,17 @@ public final class CommentRequest {
             return this;
         }
 
+        public Builder isPrivate(Nullable<Boolean> isPrivate) {
+            if (isPrivate.isNull()) {
+                this.isPrivate = null;
+            } else if (isPrivate.isEmpty()) {
+                this.isPrivate = Optional.empty();
+            } else {
+                this.isPrivate = Optional.of(isPrivate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -292,6 +433,17 @@ public final class CommentRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -300,6 +452,17 @@ public final class CommentRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

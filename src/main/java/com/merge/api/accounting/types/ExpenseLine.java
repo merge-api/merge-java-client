@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -109,8 +112,11 @@ public final class ExpenseLine {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -133,21 +139,30 @@ public final class ExpenseLine {
     /**
      * @return The line's item.
      */
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<ExpenseLineItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
     /**
      * @return The line's net amount.
      */
-    @JsonProperty("net_amount")
+    @JsonIgnore
     public Optional<Double> getNetAmount() {
+        if (netAmount == null) {
+            return Optional.empty();
+        }
         return netAmount;
     }
 
-    @JsonProperty("tracking_category")
+    @JsonIgnore
     public Optional<ExpenseLineTrackingCategory> getTrackingCategory() {
+        if (trackingCategory == null) {
+            return Optional.empty();
+        }
         return trackingCategory;
     }
 
@@ -162,16 +177,22 @@ public final class ExpenseLine {
     /**
      * @return The company the expense belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The employee this overall transaction relates to.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<ExpenseLineEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
@@ -486,53 +507,74 @@ public final class ExpenseLine {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<TransactionCurrencyEnum> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The expense's payment account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<ExpenseLineAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The expense's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<ExpenseLineContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
-    @JsonProperty("project")
+    @JsonIgnore
     public Optional<ExpenseLineProject> getProject() {
+        if (project == null) {
+            return Optional.empty();
+        }
         return project;
     }
 
     /**
      * @return The description of the item that was purchased by the company.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The expense line item's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The tax rate that applies to this line item.
      */
-    @JsonProperty("tax_rate")
+    @JsonIgnore
     public Optional<String> getTaxRate() {
+        if (taxRate == null) {
+            return Optional.empty();
+        }
         return taxRate;
     }
 
@@ -542,6 +584,84 @@ public final class ExpenseLine {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<ExpenseLineItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("net_amount")
+    private Optional<Double> _getNetAmount() {
+        return netAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tracking_category")
+    private Optional<ExpenseLineTrackingCategory> _getTrackingCategory() {
+        return trackingCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<ExpenseLineEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<TransactionCurrencyEnum> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<ExpenseLineAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<ExpenseLineContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("project")
+    private Optional<ExpenseLineProject> _getProject() {
+        return project;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_rate")
+    private Optional<String> _getTaxRate() {
+        return taxRate;
     }
 
     @java.lang.Override
@@ -698,6 +818,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -740,6 +871,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder item(Nullable<ExpenseLineItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The line's net amount.</p>
          */
@@ -754,6 +896,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder netAmount(Nullable<Double> netAmount) {
+            if (netAmount.isNull()) {
+                this.netAmount = null;
+            } else if (netAmount.isEmpty()) {
+                this.netAmount = Optional.empty();
+            } else {
+                this.netAmount = Optional.of(netAmount.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<ExpenseLineTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -762,6 +915,17 @@ public final class ExpenseLine {
 
         public Builder trackingCategory(ExpenseLineTrackingCategory trackingCategory) {
             this.trackingCategory = Optional.ofNullable(trackingCategory);
+            return this;
+        }
+
+        public Builder trackingCategory(Nullable<ExpenseLineTrackingCategory> trackingCategory) {
+            if (trackingCategory.isNull()) {
+                this.trackingCategory = null;
+            } else if (trackingCategory.isEmpty()) {
+                this.trackingCategory = Optional.empty();
+            } else {
+                this.trackingCategory = Optional.of(trackingCategory.get());
+            }
             return this;
         }
 
@@ -794,6 +958,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The employee this overall transaction relates to.</p>
          */
@@ -805,6 +980,17 @@ public final class ExpenseLine {
 
         public Builder employee(ExpenseLineEmployee employee) {
             this.employee = Optional.ofNullable(employee);
+            return this;
+        }
+
+        public Builder employee(Nullable<ExpenseLineEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
             return this;
         }
 
@@ -1130,6 +1316,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder currency(Nullable<TransactionCurrencyEnum> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The expense's payment account.</p>
          */
@@ -1141,6 +1338,17 @@ public final class ExpenseLine {
 
         public Builder account(ExpenseLineAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<ExpenseLineAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -1158,6 +1366,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder contact(Nullable<ExpenseLineContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "project", nulls = Nulls.SKIP)
         public Builder project(Optional<ExpenseLineProject> project) {
             this.project = project;
@@ -1166,6 +1385,17 @@ public final class ExpenseLine {
 
         public Builder project(ExpenseLineProject project) {
             this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        public Builder project(Nullable<ExpenseLineProject> project) {
+            if (project.isNull()) {
+                this.project = null;
+            } else if (project.isEmpty()) {
+                this.project = Optional.empty();
+            } else {
+                this.project = Optional.of(project.get());
+            }
             return this;
         }
 
@@ -1183,6 +1413,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The expense line item's exchange rate.</p>
          */
@@ -1197,6 +1438,17 @@ public final class ExpenseLine {
             return this;
         }
 
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The tax rate that applies to this line item.</p>
          */
@@ -1208,6 +1460,17 @@ public final class ExpenseLine {
 
         public Builder taxRate(String taxRate) {
             this.taxRate = Optional.ofNullable(taxRate);
+            return this;
+        }
+
+        public Builder taxRate(Nullable<String> taxRate) {
+            if (taxRate.isNull()) {
+                this.taxRate = null;
+            } else if (taxRate.isEmpty()) {
+                this.taxRate = Optional.empty();
+            } else {
+                this.taxRate = Optional.of(taxRate.get());
+            }
             return this;
         }
 

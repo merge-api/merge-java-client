@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -77,48 +80,66 @@ public final class AccountRequest {
     /**
      * @return The account's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<AccountRequestOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The account's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The account's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The account's industry.
      */
-    @JsonProperty("industry")
+    @JsonIgnore
     public Optional<String> getIndustry() {
+        if (industry == null) {
+            return Optional.empty();
+        }
         return industry;
     }
 
     /**
      * @return The account's website.
      */
-    @JsonProperty("website")
+    @JsonIgnore
     public Optional<String> getWebsite() {
+        if (website == null) {
+            return Optional.empty();
+        }
         return website;
     }
 
     /**
      * @return The account's number of employees.
      */
-    @JsonProperty("number_of_employees")
+    @JsonIgnore
     public Optional<Integer> getNumberOfEmployees() {
+        if (numberOfEmployees == null) {
+            return Optional.empty();
+        }
         return numberOfEmployees;
     }
 
@@ -130,24 +151,87 @@ public final class AccountRequest {
     /**
      * @return The last date (either most recent or furthest in the future) of when an activity occurs in an account.
      */
-    @JsonProperty("last_activity_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastActivityAt() {
+        if (lastActivityAt == null) {
+            return Optional.empty();
+        }
         return lastActivityAt;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<AccountRequestOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("industry")
+    private Optional<String> _getIndustry() {
+        return industry;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("website")
+    private Optional<String> _getWebsite() {
+        return website;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("number_of_employees")
+    private Optional<Integer> _getNumberOfEmployees() {
+        return numberOfEmployees;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_activity_at")
+    private Optional<OffsetDateTime> _getLastActivityAt() {
+        return lastActivityAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -258,6 +342,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder owner(Nullable<AccountRequestOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's name.</p>
          */
@@ -269,6 +364,17 @@ public final class AccountRequest {
 
         public Builder name(String name) {
             this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
             return this;
         }
 
@@ -286,6 +392,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's industry.</p>
          */
@@ -297,6 +414,17 @@ public final class AccountRequest {
 
         public Builder industry(String industry) {
             this.industry = Optional.ofNullable(industry);
+            return this;
+        }
+
+        public Builder industry(Nullable<String> industry) {
+            if (industry.isNull()) {
+                this.industry = null;
+            } else if (industry.isEmpty()) {
+                this.industry = Optional.empty();
+            } else {
+                this.industry = Optional.of(industry.get());
+            }
             return this;
         }
 
@@ -314,6 +442,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder website(Nullable<String> website) {
+            if (website.isNull()) {
+                this.website = null;
+            } else if (website.isEmpty()) {
+                this.website = Optional.empty();
+            } else {
+                this.website = Optional.of(website.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's number of employees.</p>
          */
@@ -325,6 +464,17 @@ public final class AccountRequest {
 
         public Builder numberOfEmployees(Integer numberOfEmployees) {
             this.numberOfEmployees = Optional.ofNullable(numberOfEmployees);
+            return this;
+        }
+
+        public Builder numberOfEmployees(Nullable<Integer> numberOfEmployees) {
+            if (numberOfEmployees.isNull()) {
+                this.numberOfEmployees = null;
+            } else if (numberOfEmployees.isEmpty()) {
+                this.numberOfEmployees = Optional.empty();
+            } else {
+                this.numberOfEmployees = Optional.of(numberOfEmployees.get());
+            }
             return this;
         }
 
@@ -353,6 +503,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder lastActivityAt(Nullable<OffsetDateTime> lastActivityAt) {
+            if (lastActivityAt.isNull()) {
+                this.lastActivityAt = null;
+            } else if (lastActivityAt.isEmpty()) {
+                this.lastActivityAt = Optional.empty();
+            } else {
+                this.lastActivityAt = Optional.of(lastActivityAt.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -364,6 +525,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -372,6 +544,17 @@ public final class AccountRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

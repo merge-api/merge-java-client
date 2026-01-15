@@ -21,14 +21,12 @@ import com.merge.api.crm.types.Task;
 import com.merge.api.crm.types.TaskEndpointRequest;
 import com.merge.api.crm.types.TaskResponse;
 import com.merge.api.crm.types.TasksListRequest;
+import com.merge.api.crm.types.TasksMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.TasksRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.TasksRetrieveRequest;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -135,27 +133,24 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedTaskList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedTaskList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedTaskList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 TasksListRequest nextRequest = TasksListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
                         .build();
                 List<Task> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Task>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                        new SyncPagingIterable<Task>(!startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                         nextRequest, requestOptions)
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -183,12 +178,10 @@ public class RawTasksClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -205,16 +198,13 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TaskResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaskResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -276,16 +266,13 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Task.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Task.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -315,12 +302,10 @@ public class RawTasksClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -337,16 +322,13 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), TaskResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, TaskResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -356,40 +338,45 @@ public class RawTasksClient {
      * Returns metadata for <code>Task</code> PATCHs.
      */
     public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id) {
-        return metaPatchRetrieve(id, null);
+        return metaPatchRetrieve(id, TasksMetaPatchRetrieveRequest.builder().build());
     }
 
     /**
      * Returns metadata for <code>Task</code> PATCHs.
      */
-    public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
+    public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(String id, TasksMetaPatchRetrieveRequest request) {
+        return metaPatchRetrieve(id, request, null);
+    }
+
+    /**
+     * Returns metadata for <code>Task</code> PATCHs.
+     */
+    public MergeApiHttpResponse<MetaResponse> metaPatchRetrieve(
+            String id, TasksMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/tasks/meta/patch")
                 .addPathSegment(id)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -422,16 +409,13 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -517,10 +501,11 @@ public class RawTasksClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedRemoteFieldClassList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedRemoteFieldClassList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 TasksRemoteFieldClassesListRequest nextRequest = TasksRemoteFieldClassesListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
@@ -528,17 +513,13 @@ public class RawTasksClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
+                                !startingAfter.isEmpty(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
