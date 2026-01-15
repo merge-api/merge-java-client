@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -102,8 +105,11 @@ public final class Task {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -126,56 +132,77 @@ public final class Task {
     /**
      * @return The task's subject.
      */
-    @JsonProperty("subject")
+    @JsonIgnore
     public Optional<String> getSubject() {
+        if (subject == null) {
+            return Optional.empty();
+        }
         return subject;
     }
 
     /**
      * @return The task's content.
      */
-    @JsonProperty("content")
+    @JsonIgnore
     public Optional<String> getContent() {
+        if (content == null) {
+            return Optional.empty();
+        }
         return content;
     }
 
     /**
      * @return The task's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<TaskOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The task's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<TaskAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The task's opportunity.
      */
-    @JsonProperty("opportunity")
+    @JsonIgnore
     public Optional<TaskOpportunity> getOpportunity() {
+        if (opportunity == null) {
+            return Optional.empty();
+        }
         return opportunity;
     }
 
     /**
      * @return When the task is completed.
      */
-    @JsonProperty("completed_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedDate() {
+        if (completedDate == null) {
+            return Optional.empty();
+        }
         return completedDate;
     }
 
     /**
      * @return When the task is due.
      */
-    @JsonProperty("due_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueDate() {
+        if (dueDate == null) {
+            return Optional.empty();
+        }
         return dueDate;
     }
 
@@ -186,8 +213,11 @@ public final class Task {
      * <li><code>CLOSED</code> - CLOSED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TaskStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -199,19 +229,91 @@ public final class Task {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("subject")
+    private Optional<String> _getSubject() {
+        return subject;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content")
+    private Optional<String> _getContent() {
+        return content;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<TaskOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<TaskAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("opportunity")
+    private Optional<TaskOpportunity> _getOpportunity() {
+        return opportunity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_date")
+    private Optional<OffsetDateTime> _getCompletedDate() {
+        return completedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_date")
+    private Optional<OffsetDateTime> _getDueDate() {
+        return dueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TaskStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -358,6 +460,17 @@ public final class Task {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -400,6 +513,17 @@ public final class Task {
             return this;
         }
 
+        public Builder subject(Nullable<String> subject) {
+            if (subject.isNull()) {
+                this.subject = null;
+            } else if (subject.isEmpty()) {
+                this.subject = Optional.empty();
+            } else {
+                this.subject = Optional.of(subject.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The task's content.</p>
          */
@@ -411,6 +535,17 @@ public final class Task {
 
         public Builder content(String content) {
             this.content = Optional.ofNullable(content);
+            return this;
+        }
+
+        public Builder content(Nullable<String> content) {
+            if (content.isNull()) {
+                this.content = null;
+            } else if (content.isEmpty()) {
+                this.content = Optional.empty();
+            } else {
+                this.content = Optional.of(content.get());
+            }
             return this;
         }
 
@@ -428,6 +563,17 @@ public final class Task {
             return this;
         }
 
+        public Builder owner(Nullable<TaskOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The task's account.</p>
          */
@@ -439,6 +585,17 @@ public final class Task {
 
         public Builder account(TaskAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<TaskAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -456,6 +613,17 @@ public final class Task {
             return this;
         }
 
+        public Builder opportunity(Nullable<TaskOpportunity> opportunity) {
+            if (opportunity.isNull()) {
+                this.opportunity = null;
+            } else if (opportunity.isEmpty()) {
+                this.opportunity = Optional.empty();
+            } else {
+                this.opportunity = Optional.of(opportunity.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the task is completed.</p>
          */
@@ -470,6 +638,17 @@ public final class Task {
             return this;
         }
 
+        public Builder completedDate(Nullable<OffsetDateTime> completedDate) {
+            if (completedDate.isNull()) {
+                this.completedDate = null;
+            } else if (completedDate.isEmpty()) {
+                this.completedDate = Optional.empty();
+            } else {
+                this.completedDate = Optional.of(completedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the task is due.</p>
          */
@@ -481,6 +660,17 @@ public final class Task {
 
         public Builder dueDate(OffsetDateTime dueDate) {
             this.dueDate = Optional.ofNullable(dueDate);
+            return this;
+        }
+
+        public Builder dueDate(Nullable<OffsetDateTime> dueDate) {
+            if (dueDate.isNull()) {
+                this.dueDate = null;
+            } else if (dueDate.isEmpty()) {
+                this.dueDate = Optional.empty();
+            } else {
+                this.dueDate = Optional.of(dueDate.get());
+            }
             return this;
         }
 
@@ -499,6 +689,17 @@ public final class Task {
 
         public Builder status(TaskStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<TaskStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 
@@ -527,6 +728,17 @@ public final class Task {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -535,6 +747,17 @@ public final class Task {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

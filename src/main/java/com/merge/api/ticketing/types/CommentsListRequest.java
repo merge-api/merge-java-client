@@ -5,12 +5,15 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -165,16 +168,22 @@ public final class CommentsListRequest {
     /**
      * @return If provided, will only return Comments created in the third party platform after this datetime.
      */
-    @JsonProperty("remote_created_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        if (remoteCreatedAfter == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAfter;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -184,6 +193,18 @@ public final class CommentsListRequest {
     @JsonProperty("ticket_id")
     public Optional<String> getTicketId() {
         return ticketId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_after")
+    private Optional<OffsetDateTime> _getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -449,6 +470,17 @@ public final class CommentsListRequest {
             return this;
         }
 
+        public Builder remoteCreatedAfter(Nullable<OffsetDateTime> remoteCreatedAfter) {
+            if (remoteCreatedAfter.isNull()) {
+                this.remoteCreatedAfter = null;
+            } else if (remoteCreatedAfter.isEmpty()) {
+                this.remoteCreatedAfter = Optional.empty();
+            } else {
+                this.remoteCreatedAfter = Optional.of(remoteCreatedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The API provider's ID for the given object.</p>
          */
@@ -460,6 +492,17 @@ public final class CommentsListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

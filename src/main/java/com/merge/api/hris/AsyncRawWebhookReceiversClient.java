@@ -48,7 +48,7 @@ public class AsyncRawWebhookReceiversClient {
     public CompletableFuture<MergeApiHttpResponse<List<WebhookReceiver>>> list(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/webhook-receivers")
+                .addPathSegments("webhook-receivers")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -65,19 +65,17 @@ public class AsyncRawWebhookReceiversClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), new TypeReference<List<WebhookReceiver>>() {}),
+                                        responseBodyString, new TypeReference<List<WebhookReceiver>>() {}),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -106,7 +104,7 @@ public class AsyncRawWebhookReceiversClient {
             WebhookReceiverRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/webhook-receivers")
+                .addPathSegments("webhook-receivers")
                 .build();
         RequestBody body;
         try {
@@ -131,18 +129,16 @@ public class AsyncRawWebhookReceiversClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), WebhookReceiver.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, WebhookReceiver.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

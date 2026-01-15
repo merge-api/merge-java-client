@@ -4,6 +4,7 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.AsyncPostTask;
+import com.merge.api.accounting.types.AsyncTasksRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import java.util.concurrent.CompletableFuture;
@@ -35,7 +36,15 @@ public class AsyncAsyncTasksClient {
     /**
      * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
      */
-    public CompletableFuture<AsyncPostTask> retrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<AsyncPostTask> retrieve(String id, AsyncTasksRetrieveRequest request) {
+        return this.rawClient.retrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<AsyncPostTask> retrieve(
+            String id, AsyncTasksRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

@@ -6,9 +6,9 @@ package com.merge.api.crm;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
-import com.merge.api.crm.types.IgnoreCommonModelRequest;
 import com.merge.api.crm.types.RemoteFieldClass;
 import com.merge.api.crm.types.User;
+import com.merge.api.crm.types.UsersIgnoreCreateRequest;
 import com.merge.api.crm.types.UsersListRequest;
 import com.merge.api.crm.types.UsersRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.UsersRetrieveRequest;
@@ -75,14 +75,14 @@ public class UsersClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public void ignoreCreate(String modelId, UsersIgnoreCreateRequest request) {
         this.rawClient.ignoreCreate(modelId, request).body();
     }
 
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+    public void ignoreCreate(String modelId, UsersIgnoreCreateRequest request, RequestOptions requestOptions) {
         this.rawClient.ignoreCreate(modelId, request, requestOptions).body();
     }
 

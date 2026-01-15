@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -93,48 +96,66 @@ public final class LeadRequest {
     /**
      * @return The lead's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<LeadRequestOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The lead's source.
      */
-    @JsonProperty("lead_source")
+    @JsonIgnore
     public Optional<String> getLeadSource() {
+        if (leadSource == null) {
+            return Optional.empty();
+        }
         return leadSource;
     }
 
     /**
      * @return The lead's title.
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
     /**
      * @return The lead's company.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The lead's first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
     /**
      * @return The lead's last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
@@ -156,40 +177,121 @@ public final class LeadRequest {
     /**
      * @return When the lead was converted.
      */
-    @JsonProperty("converted_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getConvertedDate() {
+        if (convertedDate == null) {
+            return Optional.empty();
+        }
         return convertedDate;
     }
 
     /**
      * @return The contact of the converted lead.
      */
-    @JsonProperty("converted_contact")
+    @JsonIgnore
     public Optional<LeadRequestConvertedContact> getConvertedContact() {
+        if (convertedContact == null) {
+            return Optional.empty();
+        }
         return convertedContact;
     }
 
     /**
      * @return The account of the converted lead.
      */
-    @JsonProperty("converted_account")
+    @JsonIgnore
     public Optional<LeadRequestConvertedAccount> getConvertedAccount() {
+        if (convertedAccount == null) {
+            return Optional.empty();
+        }
         return convertedAccount;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<LeadRequestOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("lead_source")
+    private Optional<String> _getLeadSource() {
+        return leadSource;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_date")
+    private Optional<OffsetDateTime> _getConvertedDate() {
+        return convertedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_contact")
+    private Optional<LeadRequestConvertedContact> _getConvertedContact() {
+        return convertedContact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_account")
+    private Optional<LeadRequestConvertedAccount> _getConvertedAccount() {
+        return convertedAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -320,6 +422,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder owner(Nullable<LeadRequestOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's source.</p>
          */
@@ -331,6 +444,17 @@ public final class LeadRequest {
 
         public Builder leadSource(String leadSource) {
             this.leadSource = Optional.ofNullable(leadSource);
+            return this;
+        }
+
+        public Builder leadSource(Nullable<String> leadSource) {
+            if (leadSource.isNull()) {
+                this.leadSource = null;
+            } else if (leadSource.isEmpty()) {
+                this.leadSource = Optional.empty();
+            } else {
+                this.leadSource = Optional.of(leadSource.get());
+            }
             return this;
         }
 
@@ -348,6 +472,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's company.</p>
          */
@@ -359,6 +494,17 @@ public final class LeadRequest {
 
         public Builder company(String company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -376,6 +522,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's last name.</p>
          */
@@ -387,6 +544,17 @@ public final class LeadRequest {
 
         public Builder lastName(String lastName) {
             this.lastName = Optional.ofNullable(lastName);
+            return this;
+        }
+
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
             return this;
         }
 
@@ -437,6 +605,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder convertedDate(Nullable<OffsetDateTime> convertedDate) {
+            if (convertedDate.isNull()) {
+                this.convertedDate = null;
+            } else if (convertedDate.isEmpty()) {
+                this.convertedDate = Optional.empty();
+            } else {
+                this.convertedDate = Optional.of(convertedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The contact of the converted lead.</p>
          */
@@ -448,6 +627,17 @@ public final class LeadRequest {
 
         public Builder convertedContact(LeadRequestConvertedContact convertedContact) {
             this.convertedContact = Optional.ofNullable(convertedContact);
+            return this;
+        }
+
+        public Builder convertedContact(Nullable<LeadRequestConvertedContact> convertedContact) {
+            if (convertedContact.isNull()) {
+                this.convertedContact = null;
+            } else if (convertedContact.isEmpty()) {
+                this.convertedContact = Optional.empty();
+            } else {
+                this.convertedContact = Optional.of(convertedContact.get());
+            }
             return this;
         }
 
@@ -465,6 +655,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder convertedAccount(Nullable<LeadRequestConvertedAccount> convertedAccount) {
+            if (convertedAccount.isNull()) {
+                this.convertedAccount = null;
+            } else if (convertedAccount.isEmpty()) {
+                this.convertedAccount = Optional.empty();
+            } else {
+                this.convertedAccount = Optional.of(convertedAccount.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -476,6 +677,17 @@ public final class LeadRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -484,6 +696,17 @@ public final class LeadRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

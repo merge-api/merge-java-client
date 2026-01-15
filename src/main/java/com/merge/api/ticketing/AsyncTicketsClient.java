@@ -13,6 +13,7 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsMetaPatchRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
@@ -143,8 +144,16 @@ public class AsyncTicketsClient {
     /**
      * Returns metadata for <code>Ticket</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, TicketsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Ticket</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, TicketsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

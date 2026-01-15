@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -80,16 +83,34 @@ public final class MultipartFormFieldRequest {
     /**
      * @return The file name of the form field, if the field is for a file.
      */
-    @JsonProperty("file_name")
+    @JsonIgnore
     public Optional<String> getFileName() {
+        if (fileName == null) {
+            return Optional.empty();
+        }
         return fileName;
     }
 
     /**
      * @return The MIME type of the file, if the field is for a file.
      */
-    @JsonProperty("content_type")
+    @JsonIgnore
     public Optional<String> getContentType() {
+        if (contentType == null) {
+            return Optional.empty();
+        }
+        return contentType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_name")
+    private Optional<String> _getFileName() {
+        return fileName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content_type")
+    private Optional<String> _getContentType() {
         return contentType;
     }
 
@@ -164,12 +185,16 @@ public final class MultipartFormFieldRequest {
 
         _FinalStage fileName(String fileName);
 
+        _FinalStage fileName(Nullable<String> fileName);
+
         /**
          * <p>The MIME type of the file, if the field is for a file.</p>
          */
         _FinalStage contentType(Optional<String> contentType);
 
         _FinalStage contentType(String contentType);
+
+        _FinalStage contentType(Nullable<String> contentType);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -228,6 +253,22 @@ public final class MultipartFormFieldRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage contentType(Nullable<String> contentType) {
+            if (contentType.isNull()) {
+                this.contentType = null;
+            } else if (contentType.isEmpty()) {
+                this.contentType = Optional.empty();
+            } else {
+                this.contentType = Optional.of(contentType.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The MIME type of the file, if the field is for a file.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage contentType(String contentType) {
             this.contentType = Optional.ofNullable(contentType);
             return this;
@@ -240,6 +281,22 @@ public final class MultipartFormFieldRequest {
         @JsonSetter(value = "content_type", nulls = Nulls.SKIP)
         public _FinalStage contentType(Optional<String> contentType) {
             this.contentType = contentType;
+            return this;
+        }
+
+        /**
+         * <p>The file name of the form field, if the field is for a file.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage fileName(Nullable<String> fileName) {
+            if (fileName.isNull()) {
+                this.fileName = null;
+            } else if (fileName.isEmpty()) {
+                this.fileName = Optional.empty();
+            } else {
+                this.fileName = Optional.of(fileName.get());
+            }
             return this;
         }
 

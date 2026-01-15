@@ -18,7 +18,6 @@ import com.merge.api.hris.types.PaginatedBenefitList;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -54,7 +53,7 @@ public class RawBenefitsClient {
             BenefitsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/benefits");
+                .addPathSegments("benefits");
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "created_after", request.getCreatedAfter().get(), false);
@@ -121,27 +120,24 @@ public class RawBenefitsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedBenefitList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedBenefitList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedBenefitList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 BenefitsListRequest nextRequest = BenefitsListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
                         .build();
                 List<Benefit> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Benefit>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                        new SyncPagingIterable<Benefit>(!startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                         nextRequest, requestOptions)
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -168,7 +164,7 @@ public class RawBenefitsClient {
             String id, BenefitsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/benefits")
+                .addPathSegments("benefits")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -197,16 +193,13 @@ public class RawBenefitsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Benefit.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Benefit.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

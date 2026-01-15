@@ -12,6 +12,7 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.filestorage.types.AsyncPassthroughReciept;
+import com.merge.api.filestorage.types.AsyncPassthroughRetrieveRequest;
 import com.merge.api.filestorage.types.AsyncPassthroughRetrieveResponse;
 import com.merge.api.filestorage.types.DataPassthroughRequest;
 import java.io.IOException;
@@ -66,17 +67,14 @@ public class RawAsyncPassthroughClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), AsyncPassthroughReciept.class),
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AsyncPassthroughReciept.class),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -86,43 +84,49 @@ public class RawAsyncPassthroughClient {
      * Retrieves data from earlier async-passthrough POST request
      */
     public MergeApiHttpResponse<AsyncPassthroughRetrieveResponse> retrieve(String asyncPassthroughReceiptId) {
-        return retrieve(asyncPassthroughReceiptId, null);
+        return retrieve(
+                asyncPassthroughReceiptId,
+                AsyncPassthroughRetrieveRequest.builder().build());
     }
 
     /**
      * Retrieves data from earlier async-passthrough POST request
      */
     public MergeApiHttpResponse<AsyncPassthroughRetrieveResponse> retrieve(
-            String asyncPassthroughReceiptId, RequestOptions requestOptions) {
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request) {
+        return retrieve(asyncPassthroughReceiptId, request, null);
+    }
+
+    /**
+     * Retrieves data from earlier async-passthrough POST request
+     */
+    public MergeApiHttpResponse<AsyncPassthroughRetrieveResponse> retrieve(
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("filestorage/v1/async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), AsyncPassthroughRetrieveResponse.class),
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AsyncPassthroughRetrieveResponse.class),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

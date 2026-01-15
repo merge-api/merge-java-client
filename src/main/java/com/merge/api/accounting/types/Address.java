@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -92,45 +95,66 @@ public final class Address {
      * <li><code>SHIPPING</code> - SHIPPING</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<AddressType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return Line 1 of the address's street.
      */
-    @JsonProperty("street_1")
+    @JsonIgnore
     public Optional<String> getStreet1() {
+        if (street1 == null) {
+            return Optional.empty();
+        }
         return street1;
     }
 
     /**
      * @return Line 2 of the address's street.
      */
-    @JsonProperty("street_2")
+    @JsonIgnore
     public Optional<String> getStreet2() {
+        if (street2 == null) {
+            return Optional.empty();
+        }
         return street2;
     }
 
     /**
      * @return The address's city.
      */
-    @JsonProperty("city")
+    @JsonIgnore
     public Optional<String> getCity() {
+        if (city == null) {
+            return Optional.empty();
+        }
         return city;
     }
 
-    @JsonProperty("state")
+    /**
+     * @return The address's state or region.
+     */
+    @JsonIgnore
     public Optional<JsonNode> getState() {
+        if (state == null) {
+            return Optional.empty();
+        }
         return state;
     }
 
     /**
      * @return The address's state or region.
      */
-    @JsonProperty("country_subdivision")
+    @JsonIgnore
     public Optional<String> getCountrySubdivision() {
+        if (countrySubdivision == null) {
+            return Optional.empty();
+        }
         return countrySubdivision;
     }
 
@@ -388,16 +412,70 @@ public final class Address {
      * <li><code>ZW</code> - Zimbabwe</li>
      * </ul>
      */
-    @JsonProperty("country")
+    @JsonIgnore
     public Optional<AddressCountry> getCountry() {
+        if (country == null) {
+            return Optional.empty();
+        }
         return country;
     }
 
     /**
      * @return The address's zip code.
      */
-    @JsonProperty("zip_code")
+    @JsonIgnore
     public Optional<String> getZipCode() {
+        if (zipCode == null) {
+            return Optional.empty();
+        }
+        return zipCode;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<AddressType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_1")
+    private Optional<String> _getStreet1() {
+        return street1;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_2")
+    private Optional<String> _getStreet2() {
+        return street2;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("city")
+    private Optional<String> _getCity() {
+        return city;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("state")
+    private Optional<JsonNode> _getState() {
+        return state;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("country_subdivision")
+    private Optional<String> _getCountrySubdivision() {
+        return countrySubdivision;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("country")
+    private Optional<AddressCountry> _getCountry() {
+        return country;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("zip_code")
+    private Optional<String> _getZipCode() {
         return zipCode;
     }
 
@@ -536,6 +614,17 @@ public final class Address {
             return this;
         }
 
+        public Builder type(Nullable<AddressType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Line 1 of the address's street.</p>
          */
@@ -547,6 +636,17 @@ public final class Address {
 
         public Builder street1(String street1) {
             this.street1 = Optional.ofNullable(street1);
+            return this;
+        }
+
+        public Builder street1(Nullable<String> street1) {
+            if (street1.isNull()) {
+                this.street1 = null;
+            } else if (street1.isEmpty()) {
+                this.street1 = Optional.empty();
+            } else {
+                this.street1 = Optional.of(street1.get());
+            }
             return this;
         }
 
@@ -564,6 +664,17 @@ public final class Address {
             return this;
         }
 
+        public Builder street2(Nullable<String> street2) {
+            if (street2.isNull()) {
+                this.street2 = null;
+            } else if (street2.isEmpty()) {
+                this.street2 = Optional.empty();
+            } else {
+                this.street2 = Optional.of(street2.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's city.</p>
          */
@@ -578,6 +689,20 @@ public final class Address {
             return this;
         }
 
+        public Builder city(Nullable<String> city) {
+            if (city.isNull()) {
+                this.city = null;
+            } else if (city.isEmpty()) {
+                this.city = Optional.empty();
+            } else {
+                this.city = Optional.of(city.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The address's state or region.</p>
+         */
         @JsonSetter(value = "state", nulls = Nulls.SKIP)
         public Builder state(Optional<JsonNode> state) {
             this.state = state;
@@ -586,6 +711,17 @@ public final class Address {
 
         public Builder state(JsonNode state) {
             this.state = Optional.ofNullable(state);
+            return this;
+        }
+
+        public Builder state(Nullable<JsonNode> state) {
+            if (state.isNull()) {
+                this.state = null;
+            } else if (state.isEmpty()) {
+                this.state = Optional.empty();
+            } else {
+                this.state = Optional.of(state.get());
+            }
             return this;
         }
 
@@ -600,6 +736,17 @@ public final class Address {
 
         public Builder countrySubdivision(String countrySubdivision) {
             this.countrySubdivision = Optional.ofNullable(countrySubdivision);
+            return this;
+        }
+
+        public Builder countrySubdivision(Nullable<String> countrySubdivision) {
+            if (countrySubdivision.isNull()) {
+                this.countrySubdivision = null;
+            } else if (countrySubdivision.isEmpty()) {
+                this.countrySubdivision = Optional.empty();
+            } else {
+                this.countrySubdivision = Optional.of(countrySubdivision.get());
+            }
             return this;
         }
 
@@ -868,6 +1015,17 @@ public final class Address {
             return this;
         }
 
+        public Builder country(Nullable<AddressCountry> country) {
+            if (country.isNull()) {
+                this.country = null;
+            } else if (country.isEmpty()) {
+                this.country = Optional.empty();
+            } else {
+                this.country = Optional.of(country.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's zip code.</p>
          */
@@ -879,6 +1037,17 @@ public final class Address {
 
         public Builder zipCode(String zipCode) {
             this.zipCode = Optional.ofNullable(zipCode);
+            return this;
+        }
+
+        public Builder zipCode(Nullable<String> zipCode) {
+            if (zipCode.isNull()) {
+                this.zipCode = null;
+            } else if (zipCode.isEmpty()) {
+                this.zipCode = Optional.empty();
+            } else {
+                this.zipCode = Optional.of(zipCode.get());
+            }
             return this;
         }
 

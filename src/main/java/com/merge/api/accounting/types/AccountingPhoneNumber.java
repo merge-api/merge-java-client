@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -63,16 +66,34 @@ public final class AccountingPhoneNumber {
     /**
      * @return The phone number.
      */
-    @JsonProperty("number")
+    @JsonIgnore
     public Optional<String> getNumber() {
+        if (number == null) {
+            return Optional.empty();
+        }
         return number;
     }
 
     /**
      * @return The phone number's type.
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<String> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("number")
+    private Optional<String> _getNumber() {
+        return number;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<String> _getType() {
         return type;
     }
 
@@ -173,6 +194,17 @@ public final class AccountingPhoneNumber {
             return this;
         }
 
+        public Builder number(Nullable<String> number) {
+            if (number.isNull()) {
+                this.number = null;
+            } else if (number.isEmpty()) {
+                this.number = Optional.empty();
+            } else {
+                this.number = Optional.of(number.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The phone number's type.</p>
          */
@@ -184,6 +216,17 @@ public final class AccountingPhoneNumber {
 
         public Builder type(String type) {
             this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Nullable<String> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
             return this;
         }
 

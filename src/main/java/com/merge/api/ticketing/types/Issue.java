@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -90,13 +93,19 @@ public final class Issue {
         return endUser;
     }
 
-    @JsonProperty("first_incident_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getFirstIncidentTime() {
+        if (firstIncidentTime == null) {
+            return Optional.empty();
+        }
         return firstIncidentTime;
     }
 
-    @JsonProperty("last_incident_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastIncidentTime() {
+        if (lastIncidentTime == null) {
+            return Optional.empty();
+        }
         return lastIncidentTime;
     }
 
@@ -108,6 +117,18 @@ public final class Issue {
     @JsonProperty("error_details")
     public Optional<List<String>> getErrorDetails() {
         return errorDetails;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_incident_time")
+    private Optional<OffsetDateTime> _getFirstIncidentTime() {
+        return firstIncidentTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_incident_time")
+    private Optional<OffsetDateTime> _getLastIncidentTime() {
+        return lastIncidentTime;
     }
 
     @java.lang.Override
@@ -186,9 +207,13 @@ public final class Issue {
 
         _FinalStage firstIncidentTime(OffsetDateTime firstIncidentTime);
 
+        _FinalStage firstIncidentTime(Nullable<OffsetDateTime> firstIncidentTime);
+
         _FinalStage lastIncidentTime(Optional<OffsetDateTime> lastIncidentTime);
 
         _FinalStage lastIncidentTime(OffsetDateTime lastIncidentTime);
+
+        _FinalStage lastIncidentTime(Nullable<OffsetDateTime> lastIncidentTime);
 
         _FinalStage isMuted(Optional<Boolean> isMuted);
 
@@ -269,6 +294,18 @@ public final class Issue {
         }
 
         @java.lang.Override
+        public _FinalStage lastIncidentTime(Nullable<OffsetDateTime> lastIncidentTime) {
+            if (lastIncidentTime.isNull()) {
+                this.lastIncidentTime = null;
+            } else if (lastIncidentTime.isEmpty()) {
+                this.lastIncidentTime = Optional.empty();
+            } else {
+                this.lastIncidentTime = Optional.of(lastIncidentTime.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage lastIncidentTime(OffsetDateTime lastIncidentTime) {
             this.lastIncidentTime = Optional.ofNullable(lastIncidentTime);
             return this;
@@ -278,6 +315,18 @@ public final class Issue {
         @JsonSetter(value = "last_incident_time", nulls = Nulls.SKIP)
         public _FinalStage lastIncidentTime(Optional<OffsetDateTime> lastIncidentTime) {
             this.lastIncidentTime = lastIncidentTime;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage firstIncidentTime(Nullable<OffsetDateTime> firstIncidentTime) {
+            if (firstIncidentTime.isNull()) {
+                this.firstIncidentTime = null;
+            } else if (firstIncidentTime.isEmpty()) {
+                this.firstIncidentTime = Optional.empty();
+            } else {
+                this.firstIncidentTime = Optional.of(firstIncidentTime.get());
+            }
             return this;
         }
 

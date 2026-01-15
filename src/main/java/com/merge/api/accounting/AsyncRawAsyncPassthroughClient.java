@@ -5,6 +5,7 @@ package com.merge.api.accounting;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.merge.api.accounting.types.AsyncPassthroughReciept;
+import com.merge.api.accounting.types.AsyncPassthroughRetrieveRequest;
 import com.merge.api.accounting.types.AsyncPassthroughRetrieveResponse;
 import com.merge.api.accounting.types.DataPassthroughRequest;
 import com.merge.api.core.ApiError;
@@ -73,19 +74,16 @@ public class AsyncRawAsyncPassthroughClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), AsyncPassthroughReciept.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AsyncPassthroughReciept.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -105,25 +103,35 @@ public class AsyncRawAsyncPassthroughClient {
      */
     public CompletableFuture<MergeApiHttpResponse<AsyncPassthroughRetrieveResponse>> retrieve(
             String asyncPassthroughReceiptId) {
-        return retrieve(asyncPassthroughReceiptId, null);
+        return retrieve(
+                asyncPassthroughReceiptId,
+                AsyncPassthroughRetrieveRequest.builder().build());
     }
 
     /**
      * Retrieves data from earlier async-passthrough POST request
      */
     public CompletableFuture<MergeApiHttpResponse<AsyncPassthroughRetrieveResponse>> retrieve(
-            String asyncPassthroughReceiptId, RequestOptions requestOptions) {
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request) {
+        return retrieve(asyncPassthroughReceiptId, request, null);
+    }
+
+    /**
+     * Retrieves data from earlier async-passthrough POST request
+     */
+    public CompletableFuture<MergeApiHttpResponse<AsyncPassthroughRetrieveResponse>> retrieve(
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/async-passthrough")
                 .addPathSegment(asyncPassthroughReceiptId)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -133,19 +141,17 @@ public class AsyncRawAsyncPassthroughClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), AsyncPassthroughRetrieveResponse.class),
+                                        responseBodyString, AsyncPassthroughRetrieveResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

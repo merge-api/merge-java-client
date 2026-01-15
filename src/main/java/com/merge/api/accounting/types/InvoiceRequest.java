@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -141,64 +144,88 @@ public final class InvoiceRequest {
      * <li><code>ACCOUNTS_PAYABLE</code> - ACCOUNTS_PAYABLE</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<InvoiceRequestType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return The invoice's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<InvoiceRequestContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The invoice's number.
      */
-    @JsonProperty("number")
+    @JsonIgnore
     public Optional<String> getNumber() {
+        if (number == null) {
+            return Optional.empty();
+        }
         return number;
     }
 
     /**
      * @return The invoice's issue date.
      */
-    @JsonProperty("issue_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDate() {
+        if (issueDate == null) {
+            return Optional.empty();
+        }
         return issueDate;
     }
 
     /**
      * @return The invoice's due date.
      */
-    @JsonProperty("due_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueDate() {
+        if (dueDate == null) {
+            return Optional.empty();
+        }
         return dueDate;
     }
 
     /**
      * @return The invoice's paid date.
      */
-    @JsonProperty("paid_on_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getPaidOnDate() {
+        if (paidOnDate == null) {
+            return Optional.empty();
+        }
         return paidOnDate;
     }
 
     /**
      * @return The employee this overall transaction relates to.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<InvoiceRequestEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The invoice's private note.
      */
-    @JsonProperty("memo")
+    @JsonIgnore
     public Optional<String> getMemo() {
+        if (memo == null) {
+            return Optional.empty();
+        }
         return memo;
     }
 
@@ -213,16 +240,22 @@ public final class InvoiceRequest {
      * <li><code>VOID</code> - VOID</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<InvoiceRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The company the invoice belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<InvoiceRequestCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -537,72 +570,99 @@ public final class InvoiceRequest {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<InvoiceRequestCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The invoice's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The total discounts applied to the total cost.
      */
-    @JsonProperty("total_discount")
+    @JsonIgnore
     public Optional<Double> getTotalDiscount() {
+        if (totalDiscount == null) {
+            return Optional.empty();
+        }
         return totalDiscount;
     }
 
     /**
      * @return The total amount being paid before taxes.
      */
-    @JsonProperty("sub_total")
+    @JsonIgnore
     public Optional<Double> getSubTotal() {
+        if (subTotal == null) {
+            return Optional.empty();
+        }
         return subTotal;
     }
 
     /**
      * @return The payment term that applies to this transaction.
      */
-    @JsonProperty("payment_term")
+    @JsonIgnore
     public Optional<InvoiceRequestPaymentTerm> getPaymentTerm() {
+        if (paymentTerm == null) {
+            return Optional.empty();
+        }
         return paymentTerm;
     }
 
     /**
      * @return The total amount being paid in taxes.
      */
-    @JsonProperty("total_tax_amount")
+    @JsonIgnore
     public Optional<Double> getTotalTaxAmount() {
+        if (totalTaxAmount == null) {
+            return Optional.empty();
+        }
         return totalTaxAmount;
     }
 
     /**
      * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
      */
-    @JsonProperty("inclusive_of_tax")
+    @JsonIgnore
     public Optional<Boolean> getInclusiveOfTax() {
+        if (inclusiveOfTax == null) {
+            return Optional.empty();
+        }
         return inclusiveOfTax;
     }
 
     /**
      * @return The invoice's total amount.
      */
-    @JsonProperty("total_amount")
+    @JsonIgnore
     public Optional<Double> getTotalAmount() {
+        if (totalAmount == null) {
+            return Optional.empty();
+        }
         return totalAmount;
     }
 
     /**
      * @return The invoice's remaining balance.
      */
-    @JsonProperty("balance")
+    @JsonIgnore
     public Optional<Double> getBalance() {
+        if (balance == null) {
+            return Optional.empty();
+        }
         return balance;
     }
 
@@ -629,19 +689,151 @@ public final class InvoiceRequest {
         return purchaseOrders;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<InvoiceRequestType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<InvoiceRequestContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("number")
+    private Optional<String> _getNumber() {
+        return number;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date")
+    private Optional<OffsetDateTime> _getIssueDate() {
+        return issueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_date")
+    private Optional<OffsetDateTime> _getDueDate() {
+        return dueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("paid_on_date")
+    private Optional<OffsetDateTime> _getPaidOnDate() {
+        return paidOnDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<InvoiceRequestEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("memo")
+    private Optional<String> _getMemo() {
+        return memo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<InvoiceRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<InvoiceRequestCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<InvoiceRequestCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_discount")
+    private Optional<Double> _getTotalDiscount() {
+        return totalDiscount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("sub_total")
+    private Optional<Double> _getSubTotal() {
+        return subTotal;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("payment_term")
+    private Optional<InvoiceRequestPaymentTerm> _getPaymentTerm() {
+        return paymentTerm;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_tax_amount")
+    private Optional<Double> _getTotalTaxAmount() {
+        return totalTaxAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("inclusive_of_tax")
+    private Optional<Boolean> _getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_amount")
+    private Optional<Double> _getTotalAmount() {
+        return totalAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("balance")
+    private Optional<Double> _getBalance() {
+        return balance;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -831,6 +1023,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder type(Nullable<InvoiceRequestType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's contact.</p>
          */
@@ -842,6 +1045,17 @@ public final class InvoiceRequest {
 
         public Builder contact(InvoiceRequestContact contact) {
             this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        public Builder contact(Nullable<InvoiceRequestContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
             return this;
         }
 
@@ -859,6 +1073,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder number(Nullable<String> number) {
+            if (number.isNull()) {
+                this.number = null;
+            } else if (number.isEmpty()) {
+                this.number = Optional.empty();
+            } else {
+                this.number = Optional.of(number.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's issue date.</p>
          */
@@ -870,6 +1095,17 @@ public final class InvoiceRequest {
 
         public Builder issueDate(OffsetDateTime issueDate) {
             this.issueDate = Optional.ofNullable(issueDate);
+            return this;
+        }
+
+        public Builder issueDate(Nullable<OffsetDateTime> issueDate) {
+            if (issueDate.isNull()) {
+                this.issueDate = null;
+            } else if (issueDate.isEmpty()) {
+                this.issueDate = Optional.empty();
+            } else {
+                this.issueDate = Optional.of(issueDate.get());
+            }
             return this;
         }
 
@@ -887,6 +1123,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder dueDate(Nullable<OffsetDateTime> dueDate) {
+            if (dueDate.isNull()) {
+                this.dueDate = null;
+            } else if (dueDate.isEmpty()) {
+                this.dueDate = Optional.empty();
+            } else {
+                this.dueDate = Optional.of(dueDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's paid date.</p>
          */
@@ -898,6 +1145,17 @@ public final class InvoiceRequest {
 
         public Builder paidOnDate(OffsetDateTime paidOnDate) {
             this.paidOnDate = Optional.ofNullable(paidOnDate);
+            return this;
+        }
+
+        public Builder paidOnDate(Nullable<OffsetDateTime> paidOnDate) {
+            if (paidOnDate.isNull()) {
+                this.paidOnDate = null;
+            } else if (paidOnDate.isEmpty()) {
+                this.paidOnDate = Optional.empty();
+            } else {
+                this.paidOnDate = Optional.of(paidOnDate.get());
+            }
             return this;
         }
 
@@ -915,6 +1173,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder employee(Nullable<InvoiceRequestEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's private note.</p>
          */
@@ -926,6 +1195,17 @@ public final class InvoiceRequest {
 
         public Builder memo(String memo) {
             this.memo = Optional.ofNullable(memo);
+            return this;
+        }
+
+        public Builder memo(Nullable<String> memo) {
+            if (memo.isNull()) {
+                this.memo = null;
+            } else if (memo.isEmpty()) {
+                this.memo = Optional.empty();
+            } else {
+                this.memo = Optional.of(memo.get());
+            }
             return this;
         }
 
@@ -951,6 +1231,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder status(Nullable<InvoiceRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the invoice belongs to.</p>
          */
@@ -962,6 +1253,17 @@ public final class InvoiceRequest {
 
         public Builder company(InvoiceRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<InvoiceRequestCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -1287,6 +1589,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder currency(Nullable<InvoiceRequestCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's exchange rate.</p>
          */
@@ -1298,6 +1611,17 @@ public final class InvoiceRequest {
 
         public Builder exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
+            return this;
+        }
+
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
             return this;
         }
 
@@ -1315,6 +1639,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder totalDiscount(Nullable<Double> totalDiscount) {
+            if (totalDiscount.isNull()) {
+                this.totalDiscount = null;
+            } else if (totalDiscount.isEmpty()) {
+                this.totalDiscount = Optional.empty();
+            } else {
+                this.totalDiscount = Optional.of(totalDiscount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The total amount being paid before taxes.</p>
          */
@@ -1326,6 +1661,17 @@ public final class InvoiceRequest {
 
         public Builder subTotal(Double subTotal) {
             this.subTotal = Optional.ofNullable(subTotal);
+            return this;
+        }
+
+        public Builder subTotal(Nullable<Double> subTotal) {
+            if (subTotal.isNull()) {
+                this.subTotal = null;
+            } else if (subTotal.isEmpty()) {
+                this.subTotal = Optional.empty();
+            } else {
+                this.subTotal = Optional.of(subTotal.get());
+            }
             return this;
         }
 
@@ -1343,6 +1689,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder paymentTerm(Nullable<InvoiceRequestPaymentTerm> paymentTerm) {
+            if (paymentTerm.isNull()) {
+                this.paymentTerm = null;
+            } else if (paymentTerm.isEmpty()) {
+                this.paymentTerm = Optional.empty();
+            } else {
+                this.paymentTerm = Optional.of(paymentTerm.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The total amount being paid in taxes.</p>
          */
@@ -1354,6 +1711,17 @@ public final class InvoiceRequest {
 
         public Builder totalTaxAmount(Double totalTaxAmount) {
             this.totalTaxAmount = Optional.ofNullable(totalTaxAmount);
+            return this;
+        }
+
+        public Builder totalTaxAmount(Nullable<Double> totalTaxAmount) {
+            if (totalTaxAmount.isNull()) {
+                this.totalTaxAmount = null;
+            } else if (totalTaxAmount.isEmpty()) {
+                this.totalTaxAmount = Optional.empty();
+            } else {
+                this.totalTaxAmount = Optional.of(totalTaxAmount.get());
+            }
             return this;
         }
 
@@ -1371,6 +1739,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder inclusiveOfTax(Nullable<Boolean> inclusiveOfTax) {
+            if (inclusiveOfTax.isNull()) {
+                this.inclusiveOfTax = null;
+            } else if (inclusiveOfTax.isEmpty()) {
+                this.inclusiveOfTax = Optional.empty();
+            } else {
+                this.inclusiveOfTax = Optional.of(inclusiveOfTax.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's total amount.</p>
          */
@@ -1385,6 +1764,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder totalAmount(Nullable<Double> totalAmount) {
+            if (totalAmount.isNull()) {
+                this.totalAmount = null;
+            } else if (totalAmount.isEmpty()) {
+                this.totalAmount = Optional.empty();
+            } else {
+                this.totalAmount = Optional.of(totalAmount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The invoice's remaining balance.</p>
          */
@@ -1396,6 +1786,17 @@ public final class InvoiceRequest {
 
         public Builder balance(Double balance) {
             this.balance = Optional.ofNullable(balance);
+            return this;
+        }
+
+        public Builder balance(Nullable<Double> balance) {
+            if (balance.isNull()) {
+                this.balance = null;
+            } else if (balance.isEmpty()) {
+                this.balance = Optional.empty();
+            } else {
+                this.balance = Optional.of(balance.get());
+            }
             return this;
         }
 
@@ -1458,6 +1859,17 @@ public final class InvoiceRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -1466,6 +1878,17 @@ public final class InvoiceRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -59,8 +62,11 @@ public final class CreditNoteApplyLineForCreditNote {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -80,24 +86,33 @@ public final class CreditNoteApplyLineForCreditNote {
         return modifiedAt;
     }
 
-    @JsonProperty("invoice")
+    @JsonIgnore
     public Optional<CreditNoteApplyLineForCreditNoteInvoice> getInvoice() {
+        if (invoice == null) {
+            return Optional.empty();
+        }
         return invoice;
     }
 
     /**
      * @return Date that the credit note is applied to the invoice.
      */
-    @JsonProperty("applied_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getAppliedDate() {
+        if (appliedDate == null) {
+            return Optional.empty();
+        }
         return appliedDate;
     }
 
     /**
      * @return The amount of the Credit Note applied to the invoice.
      */
-    @JsonProperty("applied_amount")
+    @JsonIgnore
     public Optional<String> getAppliedAmount() {
+        if (appliedAmount == null) {
+            return Optional.empty();
+        }
         return appliedAmount;
     }
 
@@ -107,6 +122,30 @@ public final class CreditNoteApplyLineForCreditNote {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("invoice")
+    private Optional<CreditNoteApplyLineForCreditNoteInvoice> _getInvoice() {
+        return invoice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_date")
+    private Optional<OffsetDateTime> _getAppliedDate() {
+        return appliedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_amount")
+    private Optional<String> _getAppliedAmount() {
+        return appliedAmount;
     }
 
     @java.lang.Override
@@ -197,6 +236,17 @@ public final class CreditNoteApplyLineForCreditNote {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -236,6 +286,17 @@ public final class CreditNoteApplyLineForCreditNote {
             return this;
         }
 
+        public Builder invoice(Nullable<CreditNoteApplyLineForCreditNoteInvoice> invoice) {
+            if (invoice.isNull()) {
+                this.invoice = null;
+            } else if (invoice.isEmpty()) {
+                this.invoice = Optional.empty();
+            } else {
+                this.invoice = Optional.of(invoice.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Date that the credit note is applied to the invoice.</p>
          */
@@ -250,6 +311,17 @@ public final class CreditNoteApplyLineForCreditNote {
             return this;
         }
 
+        public Builder appliedDate(Nullable<OffsetDateTime> appliedDate) {
+            if (appliedDate.isNull()) {
+                this.appliedDate = null;
+            } else if (appliedDate.isEmpty()) {
+                this.appliedDate = Optional.empty();
+            } else {
+                this.appliedDate = Optional.of(appliedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The amount of the Credit Note applied to the invoice.</p>
          */
@@ -261,6 +333,17 @@ public final class CreditNoteApplyLineForCreditNote {
 
         public Builder appliedAmount(String appliedAmount) {
             this.appliedAmount = Optional.ofNullable(appliedAmount);
+            return this;
+        }
+
+        public Builder appliedAmount(Nullable<String> appliedAmount) {
+            if (appliedAmount.isNull()) {
+                this.appliedAmount = null;
+            } else if (appliedAmount.isEmpty()) {
+                this.appliedAmount = Optional.empty();
+            } else {
+                this.appliedAmount = Optional.of(appliedAmount.get());
+            }
             return this;
         }
 

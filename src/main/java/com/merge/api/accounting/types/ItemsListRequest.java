@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -45,11 +48,11 @@ public final class ItemsListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<ItemsListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<ItemsListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
@@ -65,9 +68,9 @@ public final class ItemsListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<ItemsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<ItemsListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.companyId = companyId;
@@ -178,15 +181,18 @@ public final class ItemsListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<ItemsListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -194,8 +200,14 @@ public final class ItemsListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<ItemsListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -278,11 +290,11 @@ public final class ItemsListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<ItemsListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<ItemsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -470,12 +482,12 @@ public final class ItemsListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<ItemsListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(ItemsListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -494,16 +506,27 @@ public final class ItemsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<ItemsListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(ItemsListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

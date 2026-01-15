@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -67,8 +70,11 @@ public final class Url {
     /**
      * @return The site's url.
      */
-    @JsonProperty("value")
+    @JsonIgnore
     public Optional<String> getValue() {
+        if (value == null) {
+            return Optional.empty();
+        }
         return value;
     }
 
@@ -84,8 +90,11 @@ public final class Url {
      * <li><code>JOB_POSTING</code> - JOB_POSTING</li>
      * </ul>
      */
-    @JsonProperty("url_type")
+    @JsonIgnore
     public Optional<UrlUrlType> getUrlType() {
+        if (urlType == null) {
+            return Optional.empty();
+        }
         return urlType;
     }
 
@@ -95,6 +104,18 @@ public final class Url {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("value")
+    private Optional<String> _getValue() {
+        return value;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("url_type")
+    private Optional<UrlUrlType> _getUrlType() {
+        return urlType;
     }
 
     @java.lang.Override
@@ -198,6 +219,17 @@ public final class Url {
             return this;
         }
 
+        public Builder value(Nullable<String> value) {
+            if (value.isNull()) {
+                this.value = null;
+            } else if (value.isEmpty()) {
+                this.value = Optional.empty();
+            } else {
+                this.value = Optional.of(value.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The type of site.</p>
          * <ul>
@@ -218,6 +250,17 @@ public final class Url {
 
         public Builder urlType(UrlUrlType urlType) {
             this.urlType = Optional.ofNullable(urlType);
+            return this;
+        }
+
+        public Builder urlType(Nullable<UrlUrlType> urlType) {
+            if (urlType.isNull()) {
+                this.urlType = null;
+            } else if (urlType.isEmpty()) {
+                this.urlType = Optional.empty();
+            } else {
+                this.urlType = Optional.of(urlType.get());
+            }
             return this;
         }
 

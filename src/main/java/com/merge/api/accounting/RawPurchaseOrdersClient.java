@@ -25,10 +25,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -155,10 +152,11 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedPurchaseOrderList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedPurchaseOrderList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedPurchaseOrderList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 PurchaseOrdersListRequest nextRequest = PurchaseOrdersListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
@@ -166,17 +164,13 @@ public class RawPurchaseOrdersClient {
                 List<PurchaseOrder> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<PurchaseOrder>(
-                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                !startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -205,12 +199,10 @@ public class RawPurchaseOrdersClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -227,17 +219,13 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PurchaseOrderResponse.class),
-                        response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PurchaseOrderResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -308,16 +296,13 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PurchaseOrder.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PurchaseOrder.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -396,10 +381,11 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedRemoteFieldClassList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedRemoteFieldClassList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 PurchaseOrdersLineItemsRemoteFieldClassesListRequest nextRequest =
                         PurchaseOrdersLineItemsRemoteFieldClassesListRequest.builder()
                                 .from(request)
@@ -408,19 +394,13 @@ public class RawPurchaseOrdersClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(),
-                                result,
-                                parsedResponse,
-                                () -> lineItemsRemoteFieldClassesList(nextRequest, requestOptions)
+                                !startingAfter.isEmpty(), result, parsedResponse, () -> lineItemsRemoteFieldClassesList(
+                                                nextRequest, requestOptions)
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -453,16 +433,13 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -541,10 +518,11 @@ public class RawPurchaseOrdersClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedRemoteFieldClassList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedRemoteFieldClassList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedRemoteFieldClassList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 PurchaseOrdersRemoteFieldClassesListRequest nextRequest =
                         PurchaseOrdersRemoteFieldClassesListRequest.builder()
                                 .from(request)
@@ -553,17 +531,13 @@ public class RawPurchaseOrdersClient {
                 List<RemoteFieldClass> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<RemoteFieldClass>(
-                                startingAfter.isPresent(), result, parsedResponse, () -> remoteFieldClassesList(
+                                !startingAfter.isEmpty(), result, parsedResponse, () -> remoteFieldClassesList(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

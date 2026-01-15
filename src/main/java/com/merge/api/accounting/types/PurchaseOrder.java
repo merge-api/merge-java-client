@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -146,8 +149,11 @@ public final class PurchaseOrder {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -177,80 +183,110 @@ public final class PurchaseOrder {
      * <li><code>DELETED</code> - DELETED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<PurchaseOrderStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The purchase order's issue date.
      */
-    @JsonProperty("issue_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDate() {
+        if (issueDate == null) {
+            return Optional.empty();
+        }
         return issueDate;
     }
 
     /**
      * @return The human-readable number of the purchase order.
      */
-    @JsonProperty("purchase_order_number")
+    @JsonIgnore
     public Optional<String> getPurchaseOrderNumber() {
+        if (purchaseOrderNumber == null) {
+            return Optional.empty();
+        }
         return purchaseOrderNumber;
     }
 
     /**
      * @return The purchase order's delivery date.
      */
-    @JsonProperty("delivery_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDeliveryDate() {
+        if (deliveryDate == null) {
+            return Optional.empty();
+        }
         return deliveryDate;
     }
 
     /**
      * @return The purchase order's delivery address.
      */
-    @JsonProperty("delivery_address")
+    @JsonIgnore
     public Optional<PurchaseOrderDeliveryAddress> getDeliveryAddress() {
+        if (deliveryAddress == null) {
+            return Optional.empty();
+        }
         return deliveryAddress;
     }
 
     /**
      * @return The contact making the purchase order.
      */
-    @JsonProperty("customer")
+    @JsonIgnore
     public Optional<String> getCustomer() {
+        if (customer == null) {
+            return Optional.empty();
+        }
         return customer;
     }
 
     /**
      * @return The party fulfilling the purchase order.
      */
-    @JsonProperty("vendor")
+    @JsonIgnore
     public Optional<PurchaseOrderVendor> getVendor() {
+        if (vendor == null) {
+            return Optional.empty();
+        }
         return vendor;
     }
 
     /**
      * @return A memo attached to the purchase order.
      */
-    @JsonProperty("memo")
+    @JsonIgnore
     public Optional<String> getMemo() {
+        if (memo == null) {
+            return Optional.empty();
+        }
         return memo;
     }
 
     /**
      * @return The company the purchase order belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<PurchaseOrderCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The purchase order's total amount.
      */
-    @JsonProperty("total_amount")
+    @JsonIgnore
     public Optional<Double> getTotalAmount() {
+        if (totalAmount == null) {
+            return Optional.empty();
+        }
         return totalAmount;
     }
 
@@ -565,24 +601,33 @@ public final class PurchaseOrder {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<PurchaseOrderCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The purchase order's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The payment term that applies to this transaction.
      */
-    @JsonProperty("payment_term")
+    @JsonIgnore
     public Optional<PurchaseOrderPaymentTerm> getPaymentTerm() {
+        if (paymentTerm == null) {
+            return Optional.empty();
+        }
         return paymentTerm;
     }
 
@@ -594,8 +639,11 @@ public final class PurchaseOrder {
     /**
      * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
      */
-    @JsonProperty("inclusive_of_tax")
+    @JsonIgnore
     public Optional<Boolean> getInclusiveOfTax() {
+        if (inclusiveOfTax == null) {
+            return Optional.empty();
+        }
         return inclusiveOfTax;
     }
 
@@ -607,24 +655,33 @@ public final class PurchaseOrder {
     /**
      * @return The accounting period that the PurchaseOrder was generated in.
      */
-    @JsonProperty("accounting_period")
+    @JsonIgnore
     public Optional<PurchaseOrderAccountingPeriod> getAccountingPeriod() {
+        if (accountingPeriod == null) {
+            return Optional.empty();
+        }
         return accountingPeriod;
     }
 
     /**
      * @return When the third party's purchase order note was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's purchase order note was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
@@ -636,19 +693,145 @@ public final class PurchaseOrder {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<PurchaseOrderStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date")
+    private Optional<OffsetDateTime> _getIssueDate() {
+        return issueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_order_number")
+    private Optional<String> _getPurchaseOrderNumber() {
+        return purchaseOrderNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("delivery_date")
+    private Optional<OffsetDateTime> _getDeliveryDate() {
+        return deliveryDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("delivery_address")
+    private Optional<PurchaseOrderDeliveryAddress> _getDeliveryAddress() {
+        return deliveryAddress;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("customer")
+    private Optional<String> _getCustomer() {
+        return customer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("vendor")
+    private Optional<PurchaseOrderVendor> _getVendor() {
+        return vendor;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("memo")
+    private Optional<String> _getMemo() {
+        return memo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<PurchaseOrderCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_amount")
+    private Optional<Double> _getTotalAmount() {
+        return totalAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<PurchaseOrderCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("payment_term")
+    private Optional<PurchaseOrderPaymentTerm> _getPaymentTerm() {
+        return paymentTerm;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("inclusive_of_tax")
+    private Optional<Boolean> _getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("accounting_period")
+    private Optional<PurchaseOrderAccountingPeriod> _getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -850,6 +1033,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -899,6 +1093,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder status(Nullable<PurchaseOrderStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order's issue date.</p>
          */
@@ -910,6 +1115,17 @@ public final class PurchaseOrder {
 
         public Builder issueDate(OffsetDateTime issueDate) {
             this.issueDate = Optional.ofNullable(issueDate);
+            return this;
+        }
+
+        public Builder issueDate(Nullable<OffsetDateTime> issueDate) {
+            if (issueDate.isNull()) {
+                this.issueDate = null;
+            } else if (issueDate.isEmpty()) {
+                this.issueDate = Optional.empty();
+            } else {
+                this.issueDate = Optional.of(issueDate.get());
+            }
             return this;
         }
 
@@ -927,6 +1143,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder purchaseOrderNumber(Nullable<String> purchaseOrderNumber) {
+            if (purchaseOrderNumber.isNull()) {
+                this.purchaseOrderNumber = null;
+            } else if (purchaseOrderNumber.isEmpty()) {
+                this.purchaseOrderNumber = Optional.empty();
+            } else {
+                this.purchaseOrderNumber = Optional.of(purchaseOrderNumber.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order's delivery date.</p>
          */
@@ -938,6 +1165,17 @@ public final class PurchaseOrder {
 
         public Builder deliveryDate(OffsetDateTime deliveryDate) {
             this.deliveryDate = Optional.ofNullable(deliveryDate);
+            return this;
+        }
+
+        public Builder deliveryDate(Nullable<OffsetDateTime> deliveryDate) {
+            if (deliveryDate.isNull()) {
+                this.deliveryDate = null;
+            } else if (deliveryDate.isEmpty()) {
+                this.deliveryDate = Optional.empty();
+            } else {
+                this.deliveryDate = Optional.of(deliveryDate.get());
+            }
             return this;
         }
 
@@ -955,6 +1193,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder deliveryAddress(Nullable<PurchaseOrderDeliveryAddress> deliveryAddress) {
+            if (deliveryAddress.isNull()) {
+                this.deliveryAddress = null;
+            } else if (deliveryAddress.isEmpty()) {
+                this.deliveryAddress = Optional.empty();
+            } else {
+                this.deliveryAddress = Optional.of(deliveryAddress.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The contact making the purchase order.</p>
          */
@@ -966,6 +1215,17 @@ public final class PurchaseOrder {
 
         public Builder customer(String customer) {
             this.customer = Optional.ofNullable(customer);
+            return this;
+        }
+
+        public Builder customer(Nullable<String> customer) {
+            if (customer.isNull()) {
+                this.customer = null;
+            } else if (customer.isEmpty()) {
+                this.customer = Optional.empty();
+            } else {
+                this.customer = Optional.of(customer.get());
+            }
             return this;
         }
 
@@ -983,6 +1243,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder vendor(Nullable<PurchaseOrderVendor> vendor) {
+            if (vendor.isNull()) {
+                this.vendor = null;
+            } else if (vendor.isEmpty()) {
+                this.vendor = Optional.empty();
+            } else {
+                this.vendor = Optional.of(vendor.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A memo attached to the purchase order.</p>
          */
@@ -994,6 +1265,17 @@ public final class PurchaseOrder {
 
         public Builder memo(String memo) {
             this.memo = Optional.ofNullable(memo);
+            return this;
+        }
+
+        public Builder memo(Nullable<String> memo) {
+            if (memo.isNull()) {
+                this.memo = null;
+            } else if (memo.isEmpty()) {
+                this.memo = Optional.empty();
+            } else {
+                this.memo = Optional.of(memo.get());
+            }
             return this;
         }
 
@@ -1011,6 +1293,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder company(Nullable<PurchaseOrderCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order's total amount.</p>
          */
@@ -1022,6 +1315,17 @@ public final class PurchaseOrder {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        public Builder totalAmount(Nullable<Double> totalAmount) {
+            if (totalAmount.isNull()) {
+                this.totalAmount = null;
+            } else if (totalAmount.isEmpty()) {
+                this.totalAmount = Optional.empty();
+            } else {
+                this.totalAmount = Optional.of(totalAmount.get());
+            }
             return this;
         }
 
@@ -1347,6 +1651,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder currency(Nullable<PurchaseOrderCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order's exchange rate.</p>
          */
@@ -1361,6 +1676,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The payment term that applies to this transaction.</p>
          */
@@ -1372,6 +1698,17 @@ public final class PurchaseOrder {
 
         public Builder paymentTerm(PurchaseOrderPaymentTerm paymentTerm) {
             this.paymentTerm = Optional.ofNullable(paymentTerm);
+            return this;
+        }
+
+        public Builder paymentTerm(Nullable<PurchaseOrderPaymentTerm> paymentTerm) {
+            if (paymentTerm.isNull()) {
+                this.paymentTerm = null;
+            } else if (paymentTerm.isEmpty()) {
+                this.paymentTerm = Optional.empty();
+            } else {
+                this.paymentTerm = Optional.of(paymentTerm.get());
+            }
             return this;
         }
 
@@ -1397,6 +1734,17 @@ public final class PurchaseOrder {
 
         public Builder inclusiveOfTax(Boolean inclusiveOfTax) {
             this.inclusiveOfTax = Optional.ofNullable(inclusiveOfTax);
+            return this;
+        }
+
+        public Builder inclusiveOfTax(Nullable<Boolean> inclusiveOfTax) {
+            if (inclusiveOfTax.isNull()) {
+                this.inclusiveOfTax = null;
+            } else if (inclusiveOfTax.isEmpty()) {
+                this.inclusiveOfTax = Optional.empty();
+            } else {
+                this.inclusiveOfTax = Optional.of(inclusiveOfTax.get());
+            }
             return this;
         }
 
@@ -1426,6 +1774,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder accountingPeriod(Nullable<PurchaseOrderAccountingPeriod> accountingPeriod) {
+            if (accountingPeriod.isNull()) {
+                this.accountingPeriod = null;
+            } else if (accountingPeriod.isEmpty()) {
+                this.accountingPeriod = Optional.empty();
+            } else {
+                this.accountingPeriod = Optional.of(accountingPeriod.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's purchase order note was created.</p>
          */
@@ -1440,6 +1799,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's purchase order note was updated.</p>
          */
@@ -1451,6 +1821,17 @@ public final class PurchaseOrder {
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
             this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -1479,6 +1860,17 @@ public final class PurchaseOrder {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -1487,6 +1879,17 @@ public final class PurchaseOrder {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

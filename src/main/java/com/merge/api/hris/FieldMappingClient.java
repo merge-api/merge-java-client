@@ -9,6 +9,7 @@ import com.merge.api.hris.types.CreateFieldMappingRequest;
 import com.merge.api.hris.types.ExternalTargetFieldApiResponse;
 import com.merge.api.hris.types.FieldMappingApiInstanceResponse;
 import com.merge.api.hris.types.FieldMappingInstanceResponse;
+import com.merge.api.hris.types.FieldMappingsDestroyRequest;
 import com.merge.api.hris.types.FieldMappingsRetrieveRequest;
 import com.merge.api.hris.types.PatchedEditFieldMappingRequest;
 import com.merge.api.hris.types.RemoteFieldApiResponse;
@@ -78,9 +79,18 @@ public class FieldMappingClient {
     /**
      * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync <strong>ALL</strong> data from start.
      */
-    public FieldMappingInstanceResponse fieldMappingsDestroy(String fieldMappingId, RequestOptions requestOptions) {
+    public FieldMappingInstanceResponse fieldMappingsDestroy(
+            String fieldMappingId, FieldMappingsDestroyRequest request) {
+        return this.rawClient.fieldMappingsDestroy(fieldMappingId, request).body();
+    }
+
+    /**
+     * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync <strong>ALL</strong> data from start.
+     */
+    public FieldMappingInstanceResponse fieldMappingsDestroy(
+            String fieldMappingId, FieldMappingsDestroyRequest request, RequestOptions requestOptions) {
         return this.rawClient
-                .fieldMappingsDestroy(fieldMappingId, requestOptions)
+                .fieldMappingsDestroy(fieldMappingId, request, requestOptions)
                 .body();
     }
 

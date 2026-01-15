@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -126,8 +129,11 @@ public final class InvoiceLineItem {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -150,53 +156,74 @@ public final class InvoiceLineItem {
     /**
      * @return The line item's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The line item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<Double> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The line item's quantity.
      */
-    @JsonProperty("quantity")
+    @JsonIgnore
     public Optional<Double> getQuantity() {
+        if (quantity == null) {
+            return Optional.empty();
+        }
         return quantity;
     }
 
     /**
      * @return The line item's total amount.
      */
-    @JsonProperty("total_amount")
+    @JsonIgnore
     public Optional<Double> getTotalAmount() {
+        if (totalAmount == null) {
+            return Optional.empty();
+        }
         return totalAmount;
     }
 
     /**
      * @return The employee this overall transaction relates to.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<InvoiceLineItemEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
-    @JsonProperty("project")
+    @JsonIgnore
     public Optional<InvoiceLineItemProject> getProject() {
+        if (project == null) {
+            return Optional.empty();
+        }
         return project;
     }
 
     /**
      * @return The invoice's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<InvoiceLineItemContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
@@ -511,39 +538,57 @@ public final class InvoiceLineItem {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<InvoiceLineItemCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The line item's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<InvoiceLineItemItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<InvoiceLineItemAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The tax rate that applies to this line item.
      */
-    @JsonProperty("tax_rate")
+    @JsonIgnore
     public Optional<String> getTaxRate() {
+        if (taxRate == null) {
+            return Optional.empty();
+        }
         return taxRate;
     }
 
-    @JsonProperty("tracking_category")
+    @JsonIgnore
     public Optional<InvoiceLineItemTrackingCategory> getTrackingCategory() {
+        if (trackingCategory == null) {
+            return Optional.empty();
+        }
         return trackingCategory;
     }
 
@@ -558,8 +603,11 @@ public final class InvoiceLineItem {
     /**
      * @return The company the invoice belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -571,14 +619,113 @@ public final class InvoiceLineItem {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<Double> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("quantity")
+    private Optional<Double> _getQuantity() {
+        return quantity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_amount")
+    private Optional<Double> _getTotalAmount() {
+        return totalAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<InvoiceLineItemEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("project")
+    private Optional<InvoiceLineItemProject> _getProject() {
+        return project;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<InvoiceLineItemContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<InvoiceLineItemCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<InvoiceLineItemItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<InvoiceLineItemAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_rate")
+    private Optional<String> _getTaxRate() {
+        return taxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tracking_category")
+    private Optional<InvoiceLineItemTrackingCategory> _getTrackingCategory() {
+        return trackingCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
     }
 
     @java.lang.Override
@@ -755,6 +902,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -797,6 +955,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The line item's unit price.</p>
          */
@@ -808,6 +977,17 @@ public final class InvoiceLineItem {
 
         public Builder unitPrice(Double unitPrice) {
             this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(Nullable<Double> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
             return this;
         }
 
@@ -825,6 +1005,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder quantity(Nullable<Double> quantity) {
+            if (quantity.isNull()) {
+                this.quantity = null;
+            } else if (quantity.isEmpty()) {
+                this.quantity = Optional.empty();
+            } else {
+                this.quantity = Optional.of(quantity.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The line item's total amount.</p>
          */
@@ -836,6 +1027,17 @@ public final class InvoiceLineItem {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        public Builder totalAmount(Nullable<Double> totalAmount) {
+            if (totalAmount.isNull()) {
+                this.totalAmount = null;
+            } else if (totalAmount.isEmpty()) {
+                this.totalAmount = Optional.empty();
+            } else {
+                this.totalAmount = Optional.of(totalAmount.get());
+            }
             return this;
         }
 
@@ -853,6 +1055,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder employee(Nullable<InvoiceLineItemEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "project", nulls = Nulls.SKIP)
         public Builder project(Optional<InvoiceLineItemProject> project) {
             this.project = project;
@@ -861,6 +1074,17 @@ public final class InvoiceLineItem {
 
         public Builder project(InvoiceLineItemProject project) {
             this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        public Builder project(Nullable<InvoiceLineItemProject> project) {
+            if (project.isNull()) {
+                this.project = null;
+            } else if (project.isEmpty()) {
+                this.project = Optional.empty();
+            } else {
+                this.project = Optional.of(project.get());
+            }
             return this;
         }
 
@@ -875,6 +1099,17 @@ public final class InvoiceLineItem {
 
         public Builder contact(InvoiceLineItemContact contact) {
             this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        public Builder contact(Nullable<InvoiceLineItemContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
             return this;
         }
 
@@ -1200,6 +1435,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder currency(Nullable<InvoiceLineItemCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The line item's exchange rate.</p>
          */
@@ -1214,6 +1460,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
         public Builder item(Optional<InvoiceLineItemItem> item) {
             this.item = item;
@@ -1225,6 +1482,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder item(Nullable<InvoiceLineItemItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
         public Builder account(Optional<InvoiceLineItemAccount> account) {
             this.account = account;
@@ -1233,6 +1501,17 @@ public final class InvoiceLineItem {
 
         public Builder account(InvoiceLineItemAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<InvoiceLineItemAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -1250,6 +1529,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder taxRate(Nullable<String> taxRate) {
+            if (taxRate.isNull()) {
+                this.taxRate = null;
+            } else if (taxRate.isEmpty()) {
+                this.taxRate = Optional.empty();
+            } else {
+                this.taxRate = Optional.of(taxRate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "tracking_category", nulls = Nulls.SKIP)
         public Builder trackingCategory(Optional<InvoiceLineItemTrackingCategory> trackingCategory) {
             this.trackingCategory = trackingCategory;
@@ -1258,6 +1548,17 @@ public final class InvoiceLineItem {
 
         public Builder trackingCategory(InvoiceLineItemTrackingCategory trackingCategory) {
             this.trackingCategory = Optional.ofNullable(trackingCategory);
+            return this;
+        }
+
+        public Builder trackingCategory(Nullable<InvoiceLineItemTrackingCategory> trackingCategory) {
+            if (trackingCategory.isNull()) {
+                this.trackingCategory = null;
+            } else if (trackingCategory.isEmpty()) {
+                this.trackingCategory = Optional.empty();
+            } else {
+                this.trackingCategory = Optional.of(trackingCategory.get());
+            }
             return this;
         }
 
@@ -1290,6 +1591,17 @@ public final class InvoiceLineItem {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
@@ -1312,6 +1624,17 @@ public final class InvoiceLineItem {
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
+            return this;
+        }
+
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
             return this;
         }
 

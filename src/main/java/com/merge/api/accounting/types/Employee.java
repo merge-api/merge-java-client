@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -95,8 +98,11 @@ public final class Employee {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -119,48 +125,66 @@ public final class Employee {
     /**
      * @return The employee's first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
     /**
      * @return The employee's last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
     /**
      * @return <code>True</code> if the employee is a contractor, <code>False</code> if not.
      */
-    @JsonProperty("is_contractor")
+    @JsonIgnore
     public Optional<Boolean> getIsContractor() {
+        if (isContractor == null) {
+            return Optional.empty();
+        }
         return isContractor;
     }
 
     /**
      * @return The employee's internal identification number.
      */
-    @JsonProperty("employee_number")
+    @JsonIgnore
     public Optional<String> getEmployeeNumber() {
+        if (employeeNumber == null) {
+            return Optional.empty();
+        }
         return employeeNumber;
     }
 
     /**
      * @return The employee's email address.
      */
-    @JsonProperty("email_address")
+    @JsonIgnore
     public Optional<String> getEmailAddress() {
+        if (emailAddress == null) {
+            return Optional.empty();
+        }
         return emailAddress;
     }
 
     /**
      * @return The subsidiary that the employee belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<EmployeeCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -184,13 +208,73 @@ public final class Employee {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_contractor")
+    private Optional<Boolean> _getIsContractor() {
+        return isContractor;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee_number")
+    private Optional<String> _getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email_address")
+    private Optional<String> _getEmailAddress() {
+        return emailAddress;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<EmployeeCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -277,6 +361,8 @@ public final class Employee {
 
         _FinalStage remoteId(String remoteId);
 
+        _FinalStage remoteId(Nullable<String> remoteId);
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -298,12 +384,16 @@ public final class Employee {
 
         _FinalStage firstName(String firstName);
 
+        _FinalStage firstName(Nullable<String> firstName);
+
         /**
          * <p>The employee's last name.</p>
          */
         _FinalStage lastName(Optional<String> lastName);
 
         _FinalStage lastName(String lastName);
+
+        _FinalStage lastName(Nullable<String> lastName);
 
         /**
          * <p><code>True</code> if the employee is a contractor, <code>False</code> if not.</p>
@@ -312,12 +402,16 @@ public final class Employee {
 
         _FinalStage isContractor(Boolean isContractor);
 
+        _FinalStage isContractor(Nullable<Boolean> isContractor);
+
         /**
          * <p>The employee's internal identification number.</p>
          */
         _FinalStage employeeNumber(Optional<String> employeeNumber);
 
         _FinalStage employeeNumber(String employeeNumber);
+
+        _FinalStage employeeNumber(Nullable<String> employeeNumber);
 
         /**
          * <p>The employee's email address.</p>
@@ -326,12 +420,16 @@ public final class Employee {
 
         _FinalStage emailAddress(String emailAddress);
 
+        _FinalStage emailAddress(Nullable<String> emailAddress);
+
         /**
          * <p>The subsidiary that the employee belongs to.</p>
          */
         _FinalStage company(Optional<EmployeeCompany> company);
 
         _FinalStage company(EmployeeCompany company);
+
+        _FinalStage company(Nullable<EmployeeCompany> company);
 
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
@@ -344,9 +442,13 @@ public final class Employee {
 
         _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
 
+        _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings);
+
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
         _FinalStage remoteData(List<RemoteData> remoteData);
+
+        _FinalStage remoteData(Nullable<List<RemoteData>> remoteData);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -424,6 +526,18 @@ public final class Employee {
         }
 
         @java.lang.Override
+        public _FinalStage remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
             return this;
@@ -433,6 +547,18 @@ public final class Employee {
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public _FinalStage remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
             return this;
         }
 
@@ -474,6 +600,22 @@ public final class Employee {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage company(Nullable<EmployeeCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The subsidiary that the employee belongs to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage company(EmployeeCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
@@ -486,6 +628,22 @@ public final class Employee {
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public _FinalStage company(Optional<EmployeeCompany> company) {
             this.company = company;
+            return this;
+        }
+
+        /**
+         * <p>The employee's email address.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage emailAddress(Nullable<String> emailAddress) {
+            if (emailAddress.isNull()) {
+                this.emailAddress = null;
+            } else if (emailAddress.isEmpty()) {
+                this.emailAddress = Optional.empty();
+            } else {
+                this.emailAddress = Optional.of(emailAddress.get());
+            }
             return this;
         }
 
@@ -514,6 +672,22 @@ public final class Employee {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage employeeNumber(Nullable<String> employeeNumber) {
+            if (employeeNumber.isNull()) {
+                this.employeeNumber = null;
+            } else if (employeeNumber.isEmpty()) {
+                this.employeeNumber = Optional.empty();
+            } else {
+                this.employeeNumber = Optional.of(employeeNumber.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The employee's internal identification number.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage employeeNumber(String employeeNumber) {
             this.employeeNumber = Optional.ofNullable(employeeNumber);
             return this;
@@ -526,6 +700,22 @@ public final class Employee {
         @JsonSetter(value = "employee_number", nulls = Nulls.SKIP)
         public _FinalStage employeeNumber(Optional<String> employeeNumber) {
             this.employeeNumber = employeeNumber;
+            return this;
+        }
+
+        /**
+         * <p><code>True</code> if the employee is a contractor, <code>False</code> if not.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isContractor(Nullable<Boolean> isContractor) {
+            if (isContractor.isNull()) {
+                this.isContractor = null;
+            } else if (isContractor.isEmpty()) {
+                this.isContractor = Optional.empty();
+            } else {
+                this.isContractor = Optional.of(isContractor.get());
+            }
             return this;
         }
 
@@ -554,6 +744,22 @@ public final class Employee {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The employee's last name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage lastName(String lastName) {
             this.lastName = Optional.ofNullable(lastName);
             return this;
@@ -566,6 +772,22 @@ public final class Employee {
         @JsonSetter(value = "last_name", nulls = Nulls.SKIP)
         public _FinalStage lastName(Optional<String> lastName) {
             this.lastName = lastName;
+            return this;
+        }
+
+        /**
+         * <p>The employee's first name.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
             return this;
         }
 
@@ -626,6 +848,22 @@ public final class Employee {
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

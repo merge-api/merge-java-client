@@ -22,7 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = EmployeesListRequest.Builder.class)
 public final class EmployeesListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<EmployeesListRequestExpandItem>> expand;
 
     private final Optional<String> cursor;
 
@@ -37,7 +37,7 @@ public final class EmployeesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private EmployeesListRequest(
-            Optional<List<String>> expand,
+            Optional<List<EmployeesListRequestExpandItem>> expand,
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
@@ -57,7 +57,7 @@ public final class EmployeesListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<EmployeesListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -143,7 +143,7 @@ public final class EmployeesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<EmployeesListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<String> cursor = Optional.empty();
 
@@ -174,17 +174,17 @@ public final class EmployeesListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<EmployeesListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<EmployeesListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(EmployeesListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }

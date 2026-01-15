@@ -6,9 +6,10 @@ package com.merge.api.ats;
 import com.merge.api.ats.types.Candidate;
 import com.merge.api.ats.types.CandidateEndpointRequest;
 import com.merge.api.ats.types.CandidateResponse;
+import com.merge.api.ats.types.CandidatesIgnoreCreateRequest;
 import com.merge.api.ats.types.CandidatesListRequest;
+import com.merge.api.ats.types.CandidatesMetaPatchRetrieveRequest;
 import com.merge.api.ats.types.CandidatesRetrieveRequest;
-import com.merge.api.ats.types.IgnoreCommonModelRequest;
 import com.merge.api.ats.types.MetaResponse;
 import com.merge.api.ats.types.PatchedCandidateEndpointRequest;
 import com.merge.api.core.ClientOptions;
@@ -110,7 +111,7 @@ public class AsyncCandidatesClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public CompletableFuture<Void> ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public CompletableFuture<Void> ignoreCreate(String modelId, CandidatesIgnoreCreateRequest request) {
         return this.rawClient.ignoreCreate(modelId, request).thenApply(response -> response.body());
     }
 
@@ -118,7 +119,7 @@ public class AsyncCandidatesClient {
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
     public CompletableFuture<Void> ignoreCreate(
-            String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+            String modelId, CandidatesIgnoreCreateRequest request, RequestOptions requestOptions) {
         return this.rawClient.ignoreCreate(modelId, request, requestOptions).thenApply(response -> response.body());
     }
 
@@ -132,8 +133,16 @@ public class AsyncCandidatesClient {
     /**
      * Returns metadata for <code>Candidate</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, CandidatesMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Candidate</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, CandidatesMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**
