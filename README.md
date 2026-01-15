@@ -177,7 +177,7 @@ import com.merge.api.core.RequestOptions;
 // Client level
 MergeApiClient client = MergeApiClient
     .builder()
-    .timeout(10)
+    .timeout(50)
     .build();
 
 // Request level
@@ -185,7 +185,7 @@ client.ats().accountDetails().retrieve(
     ...,
     RequestOptions
         .builder()
-        .timeout(10)
+        .timeout(50)
         .build()
 );
 ```
