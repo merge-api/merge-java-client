@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -90,8 +93,11 @@ public final class Eeoc {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -114,16 +120,22 @@ public final class Eeoc {
     /**
      * @return The candidate being represented.
      */
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<EeocCandidate> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
     /**
      * @return When the information was submitted.
      */
-    @JsonProperty("submitted_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getSubmittedAt() {
+        if (submittedAt == null) {
+            return Optional.empty();
+        }
         return submittedAt;
     }
 
@@ -140,8 +152,11 @@ public final class Eeoc {
      * <li><code>DECLINE_TO_SELF_IDENTIFY</code> - DECLINE_TO_SELF_IDENTIFY</li>
      * </ul>
      */
-    @JsonProperty("race")
+    @JsonIgnore
     public Optional<EeocRace> getRace() {
+        if (race == null) {
+            return Optional.empty();
+        }
         return race;
     }
 
@@ -155,8 +170,11 @@ public final class Eeoc {
      * <li><code>DECLINE_TO_SELF_IDENTIFY</code> - DECLINE_TO_SELF_IDENTIFY</li>
      * </ul>
      */
-    @JsonProperty("gender")
+    @JsonIgnore
     public Optional<EeocGender> getGender() {
+        if (gender == null) {
+            return Optional.empty();
+        }
         return gender;
     }
 
@@ -168,8 +186,11 @@ public final class Eeoc {
      * <li><code>I_DONT_WISH_TO_ANSWER</code> - I_DONT_WISH_TO_ANSWER</li>
      * </ul>
      */
-    @JsonProperty("veteran_status")
+    @JsonIgnore
     public Optional<EeocVeteranStatus> getVeteranStatus() {
+        if (veteranStatus == null) {
+            return Optional.empty();
+        }
         return veteranStatus;
     }
 
@@ -181,8 +202,11 @@ public final class Eeoc {
      * <li><code>I_DONT_WISH_TO_ANSWER</code> - I_DONT_WISH_TO_ANSWER</li>
      * </ul>
      */
-    @JsonProperty("disability_status")
+    @JsonIgnore
     public Optional<EeocDisabilityStatus> getDisabilityStatus() {
+        if (disabilityStatus == null) {
+            return Optional.empty();
+        }
         return disabilityStatus;
     }
 
@@ -194,13 +218,73 @@ public final class Eeoc {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<EeocCandidate> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("submitted_at")
+    private Optional<OffsetDateTime> _getSubmittedAt() {
+        return submittedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("race")
+    private Optional<EeocRace> _getRace() {
+        return race;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("gender")
+    private Optional<EeocGender> _getGender() {
+        return gender;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("veteran_status")
+    private Optional<EeocVeteranStatus> _getVeteranStatus() {
+        return veteranStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("disability_status")
+    private Optional<EeocDisabilityStatus> _getDisabilityStatus() {
+        return disabilityStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -333,6 +417,17 @@ public final class Eeoc {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -375,6 +470,17 @@ public final class Eeoc {
             return this;
         }
 
+        public Builder candidate(Nullable<EeocCandidate> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the information was submitted.</p>
          */
@@ -386,6 +492,17 @@ public final class Eeoc {
 
         public Builder submittedAt(OffsetDateTime submittedAt) {
             this.submittedAt = Optional.ofNullable(submittedAt);
+            return this;
+        }
+
+        public Builder submittedAt(Nullable<OffsetDateTime> submittedAt) {
+            if (submittedAt.isNull()) {
+                this.submittedAt = null;
+            } else if (submittedAt.isEmpty()) {
+                this.submittedAt = Optional.empty();
+            } else {
+                this.submittedAt = Optional.of(submittedAt.get());
+            }
             return this;
         }
 
@@ -413,6 +530,17 @@ public final class Eeoc {
             return this;
         }
 
+        public Builder race(Nullable<EeocRace> race) {
+            if (race.isNull()) {
+                this.race = null;
+            } else if (race.isEmpty()) {
+                this.race = Optional.empty();
+            } else {
+                this.race = Optional.of(race.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's gender.</p>
          * <ul>
@@ -431,6 +559,17 @@ public final class Eeoc {
 
         public Builder gender(EeocGender gender) {
             this.gender = Optional.ofNullable(gender);
+            return this;
+        }
+
+        public Builder gender(Nullable<EeocGender> gender) {
+            if (gender.isNull()) {
+                this.gender = null;
+            } else if (gender.isEmpty()) {
+                this.gender = Optional.empty();
+            } else {
+                this.gender = Optional.of(gender.get());
+            }
             return this;
         }
 
@@ -453,6 +592,17 @@ public final class Eeoc {
             return this;
         }
 
+        public Builder veteranStatus(Nullable<EeocVeteranStatus> veteranStatus) {
+            if (veteranStatus.isNull()) {
+                this.veteranStatus = null;
+            } else if (veteranStatus.isEmpty()) {
+                this.veteranStatus = Optional.empty();
+            } else {
+                this.veteranStatus = Optional.of(veteranStatus.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's disability status.</p>
          * <ul>
@@ -469,6 +619,17 @@ public final class Eeoc {
 
         public Builder disabilityStatus(EeocDisabilityStatus disabilityStatus) {
             this.disabilityStatus = Optional.ofNullable(disabilityStatus);
+            return this;
+        }
+
+        public Builder disabilityStatus(Nullable<EeocDisabilityStatus> disabilityStatus) {
+            if (disabilityStatus.isNull()) {
+                this.disabilityStatus = null;
+            } else if (disabilityStatus.isEmpty()) {
+                this.disabilityStatus = Optional.empty();
+            } else {
+                this.disabilityStatus = Optional.of(disabilityStatus.get());
+            }
             return this;
         }
 
@@ -497,6 +658,17 @@ public final class Eeoc {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -505,6 +677,17 @@ public final class Eeoc {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

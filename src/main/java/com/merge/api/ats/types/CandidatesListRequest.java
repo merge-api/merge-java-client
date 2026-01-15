@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -133,8 +136,11 @@ public final class CandidatesListRequest {
     /**
      * @return If provided, will only return candidates with this first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
@@ -165,8 +171,11 @@ public final class CandidatesListRequest {
     /**
      * @return If provided, will only return candidates with this last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
@@ -197,8 +206,11 @@ public final class CandidatesListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -208,6 +220,24 @@ public final class CandidatesListRequest {
     @JsonProperty("tags")
     public Optional<String> getTags() {
         return tags;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -413,6 +443,17 @@ public final class CandidatesListRequest {
             return this;
         }
 
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
@@ -469,6 +510,17 @@ public final class CandidatesListRequest {
             return this;
         }
 
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
          */
@@ -522,6 +574,17 @@ public final class CandidatesListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

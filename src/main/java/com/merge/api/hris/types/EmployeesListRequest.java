@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -205,8 +208,11 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return employees with this display name.
      */
-    @JsonProperty("display_full_name")
+    @JsonIgnore
     public Optional<String> getDisplayFullName() {
+        if (displayFullName == null) {
+            return Optional.empty();
+        }
         return displayFullName;
     }
 
@@ -218,8 +224,11 @@ public final class EmployeesListRequest {
      * <li><code>INACTIVE</code> - INACTIVE</li>
      * </ul>
      */
-    @JsonProperty("employment_status")
+    @JsonIgnore
     public Optional<EmployeesListRequestEmploymentStatus> getEmploymentStatus() {
+        if (employmentStatus == null) {
+            return Optional.empty();
+        }
         return employmentStatus;
     }
 
@@ -234,8 +243,11 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return employees with this first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
@@ -298,8 +310,11 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return employees with this last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
@@ -346,8 +361,11 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return Employees with this personal email
      */
-    @JsonProperty("personal_email")
+    @JsonIgnore
     public Optional<String> getPersonalEmail() {
+        if (personalEmail == null) {
+            return Optional.empty();
+        }
         return personalEmail;
     }
 
@@ -362,8 +380,11 @@ public final class EmployeesListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -378,16 +399,22 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return employees that started after this datetime.
      */
-    @JsonProperty("started_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedAfter() {
+        if (startedAfter == null) {
+            return Optional.empty();
+        }
         return startedAfter;
     }
 
     /**
      * @return If provided, will only return employees that started before this datetime.
      */
-    @JsonProperty("started_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedBefore() {
+        if (startedBefore == null) {
+            return Optional.empty();
+        }
         return startedBefore;
     }
 
@@ -402,24 +429,33 @@ public final class EmployeesListRequest {
     /**
      * @return If provided, will only return employees that were terminated after this datetime.
      */
-    @JsonProperty("terminated_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTerminatedAfter() {
+        if (terminatedAfter == null) {
+            return Optional.empty();
+        }
         return terminatedAfter;
     }
 
     /**
      * @return If provided, will only return employees that were terminated before this datetime.
      */
-    @JsonProperty("terminated_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTerminatedBefore() {
+        if (terminatedBefore == null) {
+            return Optional.empty();
+        }
         return terminatedBefore;
     }
 
     /**
      * @return If provided, will only return Employees with this work email
      */
-    @JsonProperty("work_email")
+    @JsonIgnore
     public Optional<String> getWorkEmail() {
+        if (workEmail == null) {
+            return Optional.empty();
+        }
         return workEmail;
     }
 
@@ -429,6 +465,72 @@ public final class EmployeesListRequest {
     @JsonProperty("work_location_id")
     public Optional<String> getWorkLocationId() {
         return workLocationId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("display_full_name")
+    private Optional<String> _getDisplayFullName() {
+        return displayFullName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employment_status")
+    private Optional<EmployeesListRequestEmploymentStatus> _getEmploymentStatus() {
+        return employmentStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("personal_email")
+    private Optional<String> _getPersonalEmail() {
+        return personalEmail;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_after")
+    private Optional<OffsetDateTime> _getStartedAfter() {
+        return startedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_before")
+    private Optional<OffsetDateTime> _getStartedBefore() {
+        return startedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("terminated_after")
+    private Optional<OffsetDateTime> _getTerminatedAfter() {
+        return terminatedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("terminated_before")
+    private Optional<OffsetDateTime> _getTerminatedBefore() {
+        return terminatedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("work_email")
+    private Optional<String> _getWorkEmail() {
+        return workEmail;
     }
 
     @java.lang.Override
@@ -724,6 +826,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder displayFullName(Nullable<String> displayFullName) {
+            if (displayFullName.isNull()) {
+                this.displayFullName = null;
+            } else if (displayFullName.isEmpty()) {
+                this.displayFullName = Optional.empty();
+            } else {
+                this.displayFullName = Optional.of(displayFullName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return employees with this employment status.</p>
          * <ul>
@@ -740,6 +853,17 @@ public final class EmployeesListRequest {
 
         public Builder employmentStatus(EmployeesListRequestEmploymentStatus employmentStatus) {
             this.employmentStatus = Optional.ofNullable(employmentStatus);
+            return this;
+        }
+
+        public Builder employmentStatus(Nullable<EmployeesListRequestEmploymentStatus> employmentStatus) {
+            if (employmentStatus.isNull()) {
+                this.employmentStatus = null;
+            } else if (employmentStatus.isEmpty()) {
+                this.employmentStatus = Optional.empty();
+            } else {
+                this.employmentStatus = Optional.of(employmentStatus.get());
+            }
             return this;
         }
 
@@ -768,6 +892,17 @@ public final class EmployeesListRequest {
 
         public Builder firstName(String firstName) {
             this.firstName = Optional.ofNullable(firstName);
+            return this;
+        }
+
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
             return this;
         }
 
@@ -883,6 +1018,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return employees for this manager.</p>
          */
@@ -967,6 +1113,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder personalEmail(Nullable<String> personalEmail) {
+            if (personalEmail.isNull()) {
+                this.personalEmail = null;
+            } else if (personalEmail.isEmpty()) {
+                this.personalEmail = Optional.empty();
+            } else {
+                this.personalEmail = Optional.of(personalEmail.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Deprecated. Use show_enum_origins.</p>
          */
@@ -992,6 +1149,17 @@ public final class EmployeesListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 
@@ -1023,6 +1191,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder startedAfter(Nullable<OffsetDateTime> startedAfter) {
+            if (startedAfter.isNull()) {
+                this.startedAfter = null;
+            } else if (startedAfter.isEmpty()) {
+                this.startedAfter = Optional.empty();
+            } else {
+                this.startedAfter = Optional.of(startedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return employees that started before this datetime.</p>
          */
@@ -1034,6 +1213,17 @@ public final class EmployeesListRequest {
 
         public Builder startedBefore(OffsetDateTime startedBefore) {
             this.startedBefore = Optional.ofNullable(startedBefore);
+            return this;
+        }
+
+        public Builder startedBefore(Nullable<OffsetDateTime> startedBefore) {
+            if (startedBefore.isNull()) {
+                this.startedBefore = null;
+            } else if (startedBefore.isEmpty()) {
+                this.startedBefore = Optional.empty();
+            } else {
+                this.startedBefore = Optional.of(startedBefore.get());
+            }
             return this;
         }
 
@@ -1065,6 +1255,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder terminatedAfter(Nullable<OffsetDateTime> terminatedAfter) {
+            if (terminatedAfter.isNull()) {
+                this.terminatedAfter = null;
+            } else if (terminatedAfter.isEmpty()) {
+                this.terminatedAfter = Optional.empty();
+            } else {
+                this.terminatedAfter = Optional.of(terminatedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return employees that were terminated before this datetime.</p>
          */
@@ -1079,6 +1280,17 @@ public final class EmployeesListRequest {
             return this;
         }
 
+        public Builder terminatedBefore(Nullable<OffsetDateTime> terminatedBefore) {
+            if (terminatedBefore.isNull()) {
+                this.terminatedBefore = null;
+            } else if (terminatedBefore.isEmpty()) {
+                this.terminatedBefore = Optional.empty();
+            } else {
+                this.terminatedBefore = Optional.of(terminatedBefore.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return Employees with this work email</p>
          */
@@ -1090,6 +1302,17 @@ public final class EmployeesListRequest {
 
         public Builder workEmail(String workEmail) {
             this.workEmail = Optional.ofNullable(workEmail);
+            return this;
+        }
+
+        public Builder workEmail(Nullable<String> workEmail) {
+            if (workEmail.isNull()) {
+                this.workEmail = null;
+            } else if (workEmail.isEmpty()) {
+                this.workEmail = Optional.empty();
+            } else {
+                this.workEmail = Optional.of(workEmail.get());
+            }
             return this;
         }
 

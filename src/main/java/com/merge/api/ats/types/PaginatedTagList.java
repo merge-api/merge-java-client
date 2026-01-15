@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -40,19 +43,37 @@ public final class PaginatedTagList {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("next")
+    @JsonIgnore
     public Optional<String> getNext() {
+        if (next == null) {
+            return Optional.empty();
+        }
         return next;
     }
 
-    @JsonProperty("previous")
+    @JsonIgnore
     public Optional<String> getPrevious() {
+        if (previous == null) {
+            return Optional.empty();
+        }
         return previous;
     }
 
     @JsonProperty("results")
     public Optional<List<Tag>> getResults() {
         return results;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("next")
+    private Optional<String> _getNext() {
+        return next;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("previous")
+    private Optional<String> _getPrevious() {
+        return previous;
     }
 
     @java.lang.Override
@@ -115,6 +136,17 @@ public final class PaginatedTagList {
             return this;
         }
 
+        public Builder next(Nullable<String> next) {
+            if (next.isNull()) {
+                this.next = null;
+            } else if (next.isEmpty()) {
+                this.next = Optional.empty();
+            } else {
+                this.next = Optional.of(next.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "previous", nulls = Nulls.SKIP)
         public Builder previous(Optional<String> previous) {
             this.previous = previous;
@@ -123,6 +155,17 @@ public final class PaginatedTagList {
 
         public Builder previous(String previous) {
             this.previous = Optional.ofNullable(previous);
+            return this;
+        }
+
+        public Builder previous(Nullable<String> previous) {
+            if (previous.isNull()) {
+                this.previous = null;
+            } else if (previous.isEmpty()) {
+                this.previous = Optional.empty();
+            } else {
+                this.previous = Optional.of(previous.get());
+            }
             return this;
         }
 

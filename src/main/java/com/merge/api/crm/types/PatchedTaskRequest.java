@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -77,56 +80,77 @@ public final class PatchedTaskRequest {
     /**
      * @return The task's subject.
      */
-    @JsonProperty("subject")
+    @JsonIgnore
     public Optional<String> getSubject() {
+        if (subject == null) {
+            return Optional.empty();
+        }
         return subject;
     }
 
     /**
      * @return The task's content.
      */
-    @JsonProperty("content")
+    @JsonIgnore
     public Optional<String> getContent() {
+        if (content == null) {
+            return Optional.empty();
+        }
         return content;
     }
 
     /**
      * @return The task's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<String> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The task's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<String> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The task's opportunity.
      */
-    @JsonProperty("opportunity")
+    @JsonIgnore
     public Optional<String> getOpportunity() {
+        if (opportunity == null) {
+            return Optional.empty();
+        }
         return opportunity;
     }
 
     /**
      * @return When the task is completed.
      */
-    @JsonProperty("completed_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedDate() {
+        if (completedDate == null) {
+            return Optional.empty();
+        }
         return completedDate;
     }
 
     /**
      * @return When the task is due.
      */
-    @JsonProperty("due_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueDate() {
+        if (dueDate == null) {
+            return Optional.empty();
+        }
         return dueDate;
     }
 
@@ -137,24 +161,93 @@ public final class PatchedTaskRequest {
      * <li><code>CLOSED</code> - CLOSED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<PatchedTaskRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("subject")
+    private Optional<String> _getSubject() {
+        return subject;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content")
+    private Optional<String> _getContent() {
+        return content;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<String> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<String> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("opportunity")
+    private Optional<String> _getOpportunity() {
+        return opportunity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_date")
+    private Optional<OffsetDateTime> _getCompletedDate() {
+        return completedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_date")
+    private Optional<OffsetDateTime> _getDueDate() {
+        return dueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<PatchedTaskRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -265,6 +358,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder subject(Nullable<String> subject) {
+            if (subject.isNull()) {
+                this.subject = null;
+            } else if (subject.isEmpty()) {
+                this.subject = Optional.empty();
+            } else {
+                this.subject = Optional.of(subject.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The task's content.</p>
          */
@@ -276,6 +380,17 @@ public final class PatchedTaskRequest {
 
         public Builder content(String content) {
             this.content = Optional.ofNullable(content);
+            return this;
+        }
+
+        public Builder content(Nullable<String> content) {
+            if (content.isNull()) {
+                this.content = null;
+            } else if (content.isEmpty()) {
+                this.content = Optional.empty();
+            } else {
+                this.content = Optional.of(content.get());
+            }
             return this;
         }
 
@@ -293,6 +408,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder owner(Nullable<String> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The task's account.</p>
          */
@@ -304,6 +430,17 @@ public final class PatchedTaskRequest {
 
         public Builder account(String account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<String> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -321,6 +458,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder opportunity(Nullable<String> opportunity) {
+            if (opportunity.isNull()) {
+                this.opportunity = null;
+            } else if (opportunity.isEmpty()) {
+                this.opportunity = Optional.empty();
+            } else {
+                this.opportunity = Optional.of(opportunity.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the task is completed.</p>
          */
@@ -335,6 +483,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder completedDate(Nullable<OffsetDateTime> completedDate) {
+            if (completedDate.isNull()) {
+                this.completedDate = null;
+            } else if (completedDate.isEmpty()) {
+                this.completedDate = Optional.empty();
+            } else {
+                this.completedDate = Optional.of(completedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the task is due.</p>
          */
@@ -346,6 +505,17 @@ public final class PatchedTaskRequest {
 
         public Builder dueDate(OffsetDateTime dueDate) {
             this.dueDate = Optional.ofNullable(dueDate);
+            return this;
+        }
+
+        public Builder dueDate(Nullable<OffsetDateTime> dueDate) {
+            if (dueDate.isNull()) {
+                this.dueDate = null;
+            } else if (dueDate.isEmpty()) {
+                this.dueDate = Optional.empty();
+            } else {
+                this.dueDate = Optional.of(dueDate.get());
+            }
             return this;
         }
 
@@ -367,6 +537,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder status(Nullable<PatchedTaskRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -378,6 +559,17 @@ public final class PatchedTaskRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -386,6 +578,17 @@ public final class PatchedTaskRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

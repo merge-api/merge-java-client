@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -74,8 +77,11 @@ public final class CustomObjectClass {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -92,16 +98,22 @@ public final class CustomObjectClass {
     /**
      * @return The custom object class's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The custom object class's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -121,8 +133,35 @@ public final class CustomObjectClass {
     /**
      * @return The types of associations with other models that the custom object class can have.
      */
-    @JsonProperty("association_types")
+    @JsonIgnore
     public Optional<List<Map<String, JsonNode>>> getAssociationTypes() {
+        if (associationTypes == null) {
+            return Optional.empty();
+        }
+        return associationTypes;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("association_types")
+    private Optional<List<Map<String, JsonNode>>> _getAssociationTypes() {
         return associationTypes;
     }
 
@@ -235,6 +274,17 @@ public final class CustomObjectClass {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public Builder createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
@@ -271,6 +321,17 @@ public final class CustomObjectClass {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The custom object class's description.</p>
          */
@@ -282,6 +343,17 @@ public final class CustomObjectClass {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -321,6 +393,17 @@ public final class CustomObjectClass {
 
         public Builder associationTypes(List<Map<String, JsonNode>> associationTypes) {
             this.associationTypes = Optional.ofNullable(associationTypes);
+            return this;
+        }
+
+        public Builder associationTypes(Nullable<List<Map<String, JsonNode>>> associationTypes) {
+            if (associationTypes.isNull()) {
+                this.associationTypes = null;
+            } else if (associationTypes.isEmpty()) {
+                this.associationTypes = Optional.empty();
+            } else {
+                this.associationTypes = Optional.of(associationTypes.get());
+            }
             return this;
         }
 

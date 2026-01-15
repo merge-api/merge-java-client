@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,8 +94,11 @@ public final class LinkedAccountsListRequest {
      * <li><code>filestorage</code> - filestorage</li>
      * </ul>
      */
-    @JsonProperty("category")
+    @JsonIgnore
     public Optional<LinkedAccountsListRequestCategory> getCategory() {
+        if (category == null) {
+            return Optional.empty();
+        }
         return category;
     }
 
@@ -187,6 +193,12 @@ public final class LinkedAccountsListRequest {
     @JsonProperty("status")
     public Optional<String> getStatus() {
         return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("category")
+    private Optional<LinkedAccountsListRequestCategory> _getCategory() {
+        return category;
     }
 
     @java.lang.Override
@@ -313,6 +325,17 @@ public final class LinkedAccountsListRequest {
 
         public Builder category(LinkedAccountsListRequestCategory category) {
             this.category = Optional.ofNullable(category);
+            return this;
+        }
+
+        public Builder category(Nullable<LinkedAccountsListRequestCategory> category) {
+            if (category.isNull()) {
+                this.category = null;
+            } else if (category.isEmpty()) {
+                this.category = Optional.empty();
+            } else {
+                this.category = Optional.of(category.get());
+            }
             return this;
         }
 

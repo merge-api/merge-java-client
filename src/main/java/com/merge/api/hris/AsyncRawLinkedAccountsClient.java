@@ -17,7 +17,6 @@ import com.merge.api.hris.types.PaginatedAccountDetailsAndActionsList;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -59,7 +58,7 @@ public class AsyncRawLinkedAccountsClient {
             LinkedAccountsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/linked-accounts");
+                .addPathSegments("linked-accounts");
         if (request.getCategory().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "category", request.getCategory().get(), false);
@@ -138,10 +137,11 @@ public class AsyncRawLinkedAccountsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedAccountDetailsAndActionsList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedAccountDetailsAndActionsList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                responseBodyString, PaginatedAccountDetailsAndActionsList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         LinkedAccountsListRequest nextRequest = LinkedAccountsListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -150,7 +150,7 @@ public class AsyncRawLinkedAccountsClient {
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<AccountDetailsAndActions>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()
@@ -162,12 +162,9 @@ public class AsyncRawLinkedAccountsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

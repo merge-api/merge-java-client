@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -64,8 +67,11 @@ public final class ScreeningQuestionAnswer {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -88,16 +94,22 @@ public final class ScreeningQuestionAnswer {
     /**
      * @return The screening question associated with the candidate’s answer. To determine the data type of the answer, you can expand on the screening question by adding <code>screening_question_answers.question</code> to the <code>expand</code> query parameter.
      */
-    @JsonProperty("question")
+    @JsonIgnore
     public Optional<ScreeningQuestionAnswerQuestion> getQuestion() {
+        if (question == null) {
+            return Optional.empty();
+        }
         return question;
     }
 
     /**
      * @return The candidate’s response to the screening question.
      */
-    @JsonProperty("answer")
+    @JsonIgnore
     public Optional<String> getAnswer() {
+        if (answer == null) {
+            return Optional.empty();
+        }
         return answer;
     }
 
@@ -107,6 +119,24 @@ public final class ScreeningQuestionAnswer {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("question")
+    private Optional<ScreeningQuestionAnswerQuestion> _getQuestion() {
+        return question;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("answer")
+    private Optional<String> _getAnswer() {
+        return answer;
     }
 
     @java.lang.Override
@@ -208,6 +238,17 @@ public final class ScreeningQuestionAnswer {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -250,6 +291,17 @@ public final class ScreeningQuestionAnswer {
             return this;
         }
 
+        public Builder question(Nullable<ScreeningQuestionAnswerQuestion> question) {
+            if (question.isNull()) {
+                this.question = null;
+            } else if (question.isEmpty()) {
+                this.question = Optional.empty();
+            } else {
+                this.question = Optional.of(question.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate’s response to the screening question.</p>
          */
@@ -261,6 +313,17 @@ public final class ScreeningQuestionAnswer {
 
         public Builder answer(String answer) {
             this.answer = Optional.ofNullable(answer);
+            return this;
+        }
+
+        public Builder answer(Nullable<String> answer) {
+            if (answer.isNull()) {
+                this.answer = null;
+            } else if (answer.isEmpty()) {
+                this.answer = Optional.empty();
+            } else {
+                this.answer = Optional.of(answer.get());
+            }
             return this;
         }
 

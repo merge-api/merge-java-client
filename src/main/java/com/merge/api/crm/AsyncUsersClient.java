@@ -6,9 +6,9 @@ package com.merge.api.crm;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
-import com.merge.api.crm.types.IgnoreCommonModelRequest;
 import com.merge.api.crm.types.RemoteFieldClass;
 import com.merge.api.crm.types.User;
+import com.merge.api.crm.types.UsersIgnoreCreateRequest;
 import com.merge.api.crm.types.UsersListRequest;
 import com.merge.api.crm.types.UsersRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.UsersRetrieveRequest;
@@ -76,7 +76,7 @@ public class AsyncUsersClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public CompletableFuture<Void> ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public CompletableFuture<Void> ignoreCreate(String modelId, UsersIgnoreCreateRequest request) {
         return this.rawClient.ignoreCreate(modelId, request).thenApply(response -> response.body());
     }
 
@@ -84,7 +84,7 @@ public class AsyncUsersClient {
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
     public CompletableFuture<Void> ignoreCreate(
-            String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+            String modelId, UsersIgnoreCreateRequest request, RequestOptions requestOptions) {
         return this.rawClient.ignoreCreate(modelId, request, requestOptions).thenApply(response -> response.body());
     }
 

@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -106,8 +109,11 @@ public final class ScheduledInterview {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -130,24 +136,33 @@ public final class ScheduledInterview {
     /**
      * @return The application being interviewed.
      */
-    @JsonProperty("application")
+    @JsonIgnore
     public Optional<ScheduledInterviewApplication> getApplication() {
+        if (application == null) {
+            return Optional.empty();
+        }
         return application;
     }
 
     /**
      * @return The stage of the interview.
      */
-    @JsonProperty("job_interview_stage")
+    @JsonIgnore
     public Optional<ScheduledInterviewJobInterviewStage> getJobInterviewStage() {
+        if (jobInterviewStage == null) {
+            return Optional.empty();
+        }
         return jobInterviewStage;
     }
 
     /**
      * @return The user organizing the interview.
      */
-    @JsonProperty("organizer")
+    @JsonIgnore
     public Optional<ScheduledInterviewOrganizer> getOrganizer() {
+        if (organizer == null) {
+            return Optional.empty();
+        }
         return organizer;
     }
 
@@ -162,40 +177,55 @@ public final class ScheduledInterview {
     /**
      * @return The interview's location.
      */
-    @JsonProperty("location")
+    @JsonIgnore
     public Optional<String> getLocation() {
+        if (location == null) {
+            return Optional.empty();
+        }
         return location;
     }
 
     /**
      * @return When the interview was started.
      */
-    @JsonProperty("start_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartAt() {
+        if (startAt == null) {
+            return Optional.empty();
+        }
         return startAt;
     }
 
     /**
      * @return When the interview was ended.
      */
-    @JsonProperty("end_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndAt() {
+        if (endAt == null) {
+            return Optional.empty();
+        }
         return endAt;
     }
 
     /**
      * @return When the third party's interview was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's interview was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
@@ -207,8 +237,11 @@ public final class ScheduledInterview {
      * <li><code>COMPLETE</code> - COMPLETE</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<ScheduledInterviewStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -220,13 +253,91 @@ public final class ScheduledInterview {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("application")
+    private Optional<ScheduledInterviewApplication> _getApplication() {
+        return application;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job_interview_stage")
+    private Optional<ScheduledInterviewJobInterviewStage> _getJobInterviewStage() {
+        return jobInterviewStage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("organizer")
+    private Optional<ScheduledInterviewOrganizer> _getOrganizer() {
+        return organizer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("location")
+    private Optional<String> _getLocation() {
+        return location;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_at")
+    private Optional<OffsetDateTime> _getStartAt() {
+        return startAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_at")
+    private Optional<OffsetDateTime> _getEndAt() {
+        return endAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<ScheduledInterviewStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -379,6 +490,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -421,6 +543,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder application(Nullable<ScheduledInterviewApplication> application) {
+            if (application.isNull()) {
+                this.application = null;
+            } else if (application.isEmpty()) {
+                this.application = Optional.empty();
+            } else {
+                this.application = Optional.of(application.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The stage of the interview.</p>
          */
@@ -435,6 +568,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder jobInterviewStage(Nullable<ScheduledInterviewJobInterviewStage> jobInterviewStage) {
+            if (jobInterviewStage.isNull()) {
+                this.jobInterviewStage = null;
+            } else if (jobInterviewStage.isEmpty()) {
+                this.jobInterviewStage = Optional.empty();
+            } else {
+                this.jobInterviewStage = Optional.of(jobInterviewStage.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user organizing the interview.</p>
          */
@@ -446,6 +590,17 @@ public final class ScheduledInterview {
 
         public Builder organizer(ScheduledInterviewOrganizer organizer) {
             this.organizer = Optional.ofNullable(organizer);
+            return this;
+        }
+
+        public Builder organizer(Nullable<ScheduledInterviewOrganizer> organizer) {
+            if (organizer.isNull()) {
+                this.organizer = null;
+            } else if (organizer.isEmpty()) {
+                this.organizer = Optional.empty();
+            } else {
+                this.organizer = Optional.of(organizer.get());
+            }
             return this;
         }
 
@@ -477,6 +632,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder location(Nullable<String> location) {
+            if (location.isNull()) {
+                this.location = null;
+            } else if (location.isEmpty()) {
+                this.location = Optional.empty();
+            } else {
+                this.location = Optional.of(location.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the interview was started.</p>
          */
@@ -488,6 +654,17 @@ public final class ScheduledInterview {
 
         public Builder startAt(OffsetDateTime startAt) {
             this.startAt = Optional.ofNullable(startAt);
+            return this;
+        }
+
+        public Builder startAt(Nullable<OffsetDateTime> startAt) {
+            if (startAt.isNull()) {
+                this.startAt = null;
+            } else if (startAt.isEmpty()) {
+                this.startAt = Optional.empty();
+            } else {
+                this.startAt = Optional.of(startAt.get());
+            }
             return this;
         }
 
@@ -505,6 +682,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder endAt(Nullable<OffsetDateTime> endAt) {
+            if (endAt.isNull()) {
+                this.endAt = null;
+            } else if (endAt.isEmpty()) {
+                this.endAt = Optional.empty();
+            } else {
+                this.endAt = Optional.of(endAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's interview was created.</p>
          */
@@ -519,6 +707,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's interview was updated.</p>
          */
@@ -530,6 +729,17 @@ public final class ScheduledInterview {
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
             this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -549,6 +759,17 @@ public final class ScheduledInterview {
 
         public Builder status(ScheduledInterviewStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<ScheduledInterviewStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 
@@ -577,6 +798,17 @@ public final class ScheduledInterview {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -585,6 +817,17 @@ public final class ScheduledInterview {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

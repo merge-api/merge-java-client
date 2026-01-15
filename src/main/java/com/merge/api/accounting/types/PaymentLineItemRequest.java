@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -65,24 +68,33 @@ public final class PaymentLineItemRequest {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
     /**
      * @return The amount being applied to the transaction.
      */
-    @JsonProperty("applied_amount")
+    @JsonIgnore
     public Optional<String> getAppliedAmount() {
+        if (appliedAmount == null) {
+            return Optional.empty();
+        }
         return appliedAmount;
     }
 
     /**
      * @return The date the payment portion is applied.
      */
-    @JsonProperty("applied_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getAppliedDate() {
+        if (appliedDate == null) {
+            return Optional.empty();
+        }
         return appliedDate;
     }
 
@@ -102,19 +114,55 @@ public final class PaymentLineItemRequest {
         return relatedObjectType;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_amount")
+    private Optional<String> _getAppliedAmount() {
+        return appliedAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_date")
+    private Optional<OffsetDateTime> _getAppliedDate() {
+        return appliedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -210,6 +258,17 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The amount being applied to the transaction.</p>
          */
@@ -224,6 +283,17 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        public Builder appliedAmount(Nullable<String> appliedAmount) {
+            if (appliedAmount.isNull()) {
+                this.appliedAmount = null;
+            } else if (appliedAmount.isEmpty()) {
+                this.appliedAmount = Optional.empty();
+            } else {
+                this.appliedAmount = Optional.of(appliedAmount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The date the payment portion is applied.</p>
          */
@@ -235,6 +305,17 @@ public final class PaymentLineItemRequest {
 
         public Builder appliedDate(OffsetDateTime appliedDate) {
             this.appliedDate = Optional.ofNullable(appliedDate);
+            return this;
+        }
+
+        public Builder appliedDate(Nullable<OffsetDateTime> appliedDate) {
+            if (appliedDate.isNull()) {
+                this.appliedDate = null;
+            } else if (appliedDate.isEmpty()) {
+                this.appliedDate = Optional.empty();
+            } else {
+                this.appliedDate = Optional.of(appliedDate.get());
+            }
             return this;
         }
 
@@ -277,6 +358,17 @@ public final class PaymentLineItemRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -285,6 +377,17 @@ public final class PaymentLineItemRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 
