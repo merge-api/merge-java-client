@@ -4,6 +4,7 @@
 package com.merge.api.ats;
 
 import com.merge.api.ats.types.AsyncPassthroughReciept;
+import com.merge.api.ats.types.AsyncPassthroughRetrieveRequest;
 import com.merge.api.ats.types.AsyncPassthroughRetrieveResponse;
 import com.merge.api.ats.types.DataPassthroughRequest;
 import com.merge.api.core.ClientOptions;
@@ -53,9 +54,17 @@ public class AsyncAsyncPassthroughClient {
      * Retrieves data from earlier async-passthrough POST request
      */
     public CompletableFuture<AsyncPassthroughRetrieveResponse> retrieve(
-            String asyncPassthroughReceiptId, RequestOptions requestOptions) {
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request) {
+        return this.rawClient.retrieve(asyncPassthroughReceiptId, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Retrieves data from earlier async-passthrough POST request
+     */
+    public CompletableFuture<AsyncPassthroughRetrieveResponse> retrieve(
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient
-                .retrieve(asyncPassthroughReceiptId, requestOptions)
+                .retrieve(asyncPassthroughReceiptId, request, requestOptions)
                 .thenApply(response -> response.body());
     }
 }

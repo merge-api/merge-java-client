@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -102,8 +105,11 @@ public final class Location {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -126,56 +132,77 @@ public final class Location {
     /**
      * @return The location's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The location's phone number.
      */
-    @JsonProperty("phone_number")
+    @JsonIgnore
     public Optional<String> getPhoneNumber() {
+        if (phoneNumber == null) {
+            return Optional.empty();
+        }
         return phoneNumber;
     }
 
     /**
      * @return Line 1 of the location's street address.
      */
-    @JsonProperty("street_1")
+    @JsonIgnore
     public Optional<String> getStreet1() {
+        if (street1 == null) {
+            return Optional.empty();
+        }
         return street1;
     }
 
     /**
      * @return Line 2 of the location's street address.
      */
-    @JsonProperty("street_2")
+    @JsonIgnore
     public Optional<String> getStreet2() {
+        if (street2 == null) {
+            return Optional.empty();
+        }
         return street2;
     }
 
     /**
      * @return The location's city.
      */
-    @JsonProperty("city")
+    @JsonIgnore
     public Optional<String> getCity() {
+        if (city == null) {
+            return Optional.empty();
+        }
         return city;
     }
 
     /**
      * @return The location's state. Represents a region if outside of the US.
      */
-    @JsonProperty("state")
+    @JsonIgnore
     public Optional<String> getState() {
+        if (state == null) {
+            return Optional.empty();
+        }
         return state;
     }
 
     /**
      * @return The location's zip code or postal code.
      */
-    @JsonProperty("zip_code")
+    @JsonIgnore
     public Optional<String> getZipCode() {
+        if (zipCode == null) {
+            return Optional.empty();
+        }
         return zipCode;
     }
 
@@ -433,8 +460,11 @@ public final class Location {
      * <li><code>ZW</code> - Zimbabwe</li>
      * </ul>
      */
-    @JsonProperty("country")
+    @JsonIgnore
     public Optional<LocationCountry> getCountry() {
+        if (country == null) {
+            return Optional.empty();
+        }
         return country;
     }
 
@@ -445,8 +475,11 @@ public final class Location {
      * <li><code>WORK</code> - WORK</li>
      * </ul>
      */
-    @JsonProperty("location_type")
+    @JsonIgnore
     public Optional<LocationLocationType> getLocationType() {
+        if (locationType == null) {
+            return Optional.empty();
+        }
         return locationType;
     }
 
@@ -458,13 +491,91 @@ public final class Location {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("phone_number")
+    private Optional<String> _getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_1")
+    private Optional<String> _getStreet1() {
+        return street1;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_2")
+    private Optional<String> _getStreet2() {
+        return street2;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("city")
+    private Optional<String> _getCity() {
+        return city;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("state")
+    private Optional<String> _getState() {
+        return state;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("zip_code")
+    private Optional<String> _getZipCode() {
+        return zipCode;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("country")
+    private Optional<LocationCountry> _getCountry() {
+        return country;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("location_type")
+    private Optional<LocationLocationType> _getLocationType() {
+        return locationType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -612,6 +723,17 @@ public final class Location {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -654,6 +776,17 @@ public final class Location {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The location's phone number.</p>
          */
@@ -665,6 +798,17 @@ public final class Location {
 
         public Builder phoneNumber(String phoneNumber) {
             this.phoneNumber = Optional.ofNullable(phoneNumber);
+            return this;
+        }
+
+        public Builder phoneNumber(Nullable<String> phoneNumber) {
+            if (phoneNumber.isNull()) {
+                this.phoneNumber = null;
+            } else if (phoneNumber.isEmpty()) {
+                this.phoneNumber = Optional.empty();
+            } else {
+                this.phoneNumber = Optional.of(phoneNumber.get());
+            }
             return this;
         }
 
@@ -682,6 +826,17 @@ public final class Location {
             return this;
         }
 
+        public Builder street1(Nullable<String> street1) {
+            if (street1.isNull()) {
+                this.street1 = null;
+            } else if (street1.isEmpty()) {
+                this.street1 = Optional.empty();
+            } else {
+                this.street1 = Optional.of(street1.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Line 2 of the location's street address.</p>
          */
@@ -693,6 +848,17 @@ public final class Location {
 
         public Builder street2(String street2) {
             this.street2 = Optional.ofNullable(street2);
+            return this;
+        }
+
+        public Builder street2(Nullable<String> street2) {
+            if (street2.isNull()) {
+                this.street2 = null;
+            } else if (street2.isEmpty()) {
+                this.street2 = Optional.empty();
+            } else {
+                this.street2 = Optional.of(street2.get());
+            }
             return this;
         }
 
@@ -710,6 +876,17 @@ public final class Location {
             return this;
         }
 
+        public Builder city(Nullable<String> city) {
+            if (city.isNull()) {
+                this.city = null;
+            } else if (city.isEmpty()) {
+                this.city = Optional.empty();
+            } else {
+                this.city = Optional.of(city.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The location's state. Represents a region if outside of the US.</p>
          */
@@ -724,6 +901,17 @@ public final class Location {
             return this;
         }
 
+        public Builder state(Nullable<String> state) {
+            if (state.isNull()) {
+                this.state = null;
+            } else if (state.isEmpty()) {
+                this.state = Optional.empty();
+            } else {
+                this.state = Optional.of(state.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The location's zip code or postal code.</p>
          */
@@ -735,6 +923,17 @@ public final class Location {
 
         public Builder zipCode(String zipCode) {
             this.zipCode = Optional.ofNullable(zipCode);
+            return this;
+        }
+
+        public Builder zipCode(Nullable<String> zipCode) {
+            if (zipCode.isNull()) {
+                this.zipCode = null;
+            } else if (zipCode.isEmpty()) {
+                this.zipCode = Optional.empty();
+            } else {
+                this.zipCode = Optional.of(zipCode.get());
+            }
             return this;
         }
 
@@ -1003,6 +1202,17 @@ public final class Location {
             return this;
         }
 
+        public Builder country(Nullable<LocationCountry> country) {
+            if (country.isNull()) {
+                this.country = null;
+            } else if (country.isEmpty()) {
+                this.country = Optional.empty();
+            } else {
+                this.country = Optional.of(country.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The location's type. Can be either WORK or HOME</p>
          * <ul>
@@ -1018,6 +1228,17 @@ public final class Location {
 
         public Builder locationType(LocationLocationType locationType) {
             this.locationType = Optional.ofNullable(locationType);
+            return this;
+        }
+
+        public Builder locationType(Nullable<LocationLocationType> locationType) {
+            if (locationType.isNull()) {
+                this.locationType = null;
+            } else if (locationType.isEmpty()) {
+                this.locationType = Optional.empty();
+            } else {
+                this.locationType = Optional.of(locationType.get());
+            }
             return this;
         }
 
@@ -1046,6 +1267,17 @@ public final class Location {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -1054,6 +1286,17 @@ public final class Location {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

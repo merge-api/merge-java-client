@@ -5,6 +5,7 @@ package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.Issue;
 import com.merge.api.accounting.types.IssuesListRequest;
+import com.merge.api.accounting.types.IssuesRetrieveRequest;
 import com.merge.api.accounting.types.PaginatedIssueList;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
@@ -17,7 +18,6 @@ import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -137,27 +137,24 @@ public class RawIssuesClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedIssueList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedIssueList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedIssueList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 IssuesListRequest nextRequest = IssuesListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
                         .build();
                 List<Issue> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        new SyncPagingIterable<Issue>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                        new SyncPagingIterable<Issue>(!startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                         nextRequest, requestOptions)
                                 .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -167,40 +164,45 @@ public class RawIssuesClient {
      * Get a specific issue.
      */
     public MergeApiHttpResponse<Issue> retrieve(String id) {
-        return retrieve(id, null);
+        return retrieve(id, IssuesRetrieveRequest.builder().build());
     }
 
     /**
      * Get a specific issue.
      */
-    public MergeApiHttpResponse<Issue> retrieve(String id, RequestOptions requestOptions) {
+    public MergeApiHttpResponse<Issue> retrieve(String id, IssuesRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    /**
+     * Get a specific issue.
+     */
+    public MergeApiHttpResponse<Issue> retrieve(
+            String id, IssuesRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/issues")
                 .addPathSegment(id)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Issue.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Issue.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

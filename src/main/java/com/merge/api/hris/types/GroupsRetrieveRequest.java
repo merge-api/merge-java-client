@@ -24,17 +24,17 @@ public final class GroupsRetrieveRequest {
 
     private final Optional<Boolean> includeShellData;
 
-    private final Optional<String> remoteFields;
+    private final Optional<GroupsRetrieveRequestRemoteFields> remoteFields;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<GroupsRetrieveRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
     private GroupsRetrieveRequest(
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
-            Optional<String> remoteFields,
-            Optional<String> showEnumOrigins,
+            Optional<GroupsRetrieveRequestRemoteFields> remoteFields,
+            Optional<GroupsRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
@@ -63,7 +63,7 @@ public final class GroupsRetrieveRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<GroupsRetrieveRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
@@ -71,7 +71,7 @@ public final class GroupsRetrieveRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<GroupsRetrieveRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -113,9 +113,9 @@ public final class GroupsRetrieveRequest {
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<GroupsRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<GroupsRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -162,12 +162,12 @@ public final class GroupsRetrieveRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<GroupsRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(GroupsRetrieveRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -176,12 +176,12 @@ public final class GroupsRetrieveRequest {
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<GroupsRetrieveRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(GroupsRetrieveRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

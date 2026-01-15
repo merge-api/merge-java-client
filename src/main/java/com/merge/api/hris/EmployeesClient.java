@@ -9,9 +9,9 @@ import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.hris.types.Employee;
 import com.merge.api.hris.types.EmployeeEndpointRequest;
 import com.merge.api.hris.types.EmployeeResponse;
+import com.merge.api.hris.types.EmployeesIgnoreCreateRequest;
 import com.merge.api.hris.types.EmployeesListRequest;
 import com.merge.api.hris.types.EmployeesRetrieveRequest;
-import com.merge.api.hris.types.IgnoreCommonModelRequest;
 import com.merge.api.hris.types.MetaResponse;
 
 public class EmployeesClient {
@@ -90,14 +90,14 @@ public class EmployeesClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public void ignoreCreate(String modelId, EmployeesIgnoreCreateRequest request) {
         this.rawClient.ignoreCreate(modelId, request).body();
     }
 
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+    public void ignoreCreate(String modelId, EmployeesIgnoreCreateRequest request, RequestOptions requestOptions) {
         this.rawClient.ignoreCreate(modelId, request, requestOptions).body();
     }
 

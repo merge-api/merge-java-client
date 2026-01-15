@@ -18,7 +18,6 @@ import com.merge.api.hris.types.PaginatedEmployeePayrollRunList;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -54,7 +53,7 @@ public class RawEmployeePayrollRunsClient {
             EmployeePayrollRunsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/employee-payroll-runs");
+                .addPathSegments("employee-payroll-runs");
         if (request.getCreatedAfter().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "created_after", request.getCreatedAfter().get(), false);
@@ -141,10 +140,11 @@ public class RawEmployeePayrollRunsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-                PaginatedEmployeePayrollRunList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                        responseBody.string(), PaginatedEmployeePayrollRunList.class);
-                Optional<String> startingAfter = parsedResponse.getNext();
+                PaginatedEmployeePayrollRunList parsedResponse =
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedEmployeePayrollRunList.class);
+                String startingAfter = parsedResponse.getNext().orElse(null);
                 EmployeePayrollRunsListRequest nextRequest = EmployeePayrollRunsListRequest.builder()
                         .from(request)
                         .cursor(startingAfter)
@@ -152,17 +152,13 @@ public class RawEmployeePayrollRunsClient {
                 List<EmployeePayrollRun> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
                         new SyncPagingIterable<EmployeePayrollRun>(
-                                startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                !startingAfter.isEmpty(), result, parsedResponse, () -> list(
                                                 nextRequest, requestOptions)
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -189,7 +185,7 @@ public class RawEmployeePayrollRunsClient {
             String id, EmployeePayrollRunsRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/employee-payroll-runs")
+                .addPathSegments("employee-payroll-runs")
                 .addPathSegment(id);
         if (request.getIncludeRemoteData().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -218,16 +214,13 @@ public class RawEmployeePayrollRunsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), EmployeePayrollRun.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, EmployeePayrollRun.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

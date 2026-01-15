@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -80,40 +83,55 @@ public final class BankFeedAccountRequest {
     /**
      * @return The unique identifier of the source account from our customer’s platform.
      */
-    @JsonProperty("source_account_id")
+    @JsonIgnore
     public Optional<String> getSourceAccountId() {
+        if (sourceAccountId == null) {
+            return Optional.empty();
+        }
         return sourceAccountId;
     }
 
     /**
      * @return The unique identifier of the target account from the third party software.
      */
-    @JsonProperty("target_account_id")
+    @JsonIgnore
     public Optional<String> getTargetAccountId() {
+        if (targetAccountId == null) {
+            return Optional.empty();
+        }
         return targetAccountId;
     }
 
     /**
      * @return The name of the source account as stored in our customer’s platform.
      */
-    @JsonProperty("source_account_name")
+    @JsonIgnore
     public Optional<String> getSourceAccountName() {
+        if (sourceAccountName == null) {
+            return Optional.empty();
+        }
         return sourceAccountName;
     }
 
     /**
      * @return The human-readable account number of the source account as stored in our customer’s platform.
      */
-    @JsonProperty("source_account_number")
+    @JsonIgnore
     public Optional<String> getSourceAccountNumber() {
+        if (sourceAccountNumber == null) {
+            return Optional.empty();
+        }
         return sourceAccountNumber;
     }
 
     /**
      * @return The name of the target account from the third party software.
      */
-    @JsonProperty("target_account_name")
+    @JsonIgnore
     public Optional<String> getTargetAccountName() {
+        if (targetAccountName == null) {
+            return Optional.empty();
+        }
         return targetAccountName;
     }
 
@@ -428,8 +446,11 @@ public final class BankFeedAccountRequest {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<BankFeedAccountRequestCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
@@ -440,24 +461,33 @@ public final class BankFeedAccountRequest {
      * <li><code>INACTIVE</code> - INACTIVE</li>
      * </ul>
      */
-    @JsonProperty("feed_status")
+    @JsonIgnore
     public Optional<BankFeedAccountRequestFeedStatus> getFeedStatus() {
+        if (feedStatus == null) {
+            return Optional.empty();
+        }
         return feedStatus;
     }
 
     /**
      * @return The start date of the bank feed’s transactions.
      */
-    @JsonProperty("feed_start_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getFeedStartDate() {
+        if (feedStartDate == null) {
+            return Optional.empty();
+        }
         return feedStartDate;
     }
 
     /**
      * @return The current balance of funds in the source account.
      */
-    @JsonProperty("source_account_balance")
+    @JsonIgnore
     public Optional<Double> getSourceAccountBalance() {
+        if (sourceAccountBalance == null) {
+            return Optional.empty();
+        }
         return sourceAccountBalance;
     }
 
@@ -468,18 +498,99 @@ public final class BankFeedAccountRequest {
      * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
      * </ul>
      */
-    @JsonProperty("account_type")
+    @JsonIgnore
     public Optional<BankFeedAccountRequestAccountType> getAccountType() {
+        if (accountType == null) {
+            return Optional.empty();
+        }
         return accountType;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source_account_id")
+    private Optional<String> _getSourceAccountId() {
+        return sourceAccountId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("target_account_id")
+    private Optional<String> _getTargetAccountId() {
+        return targetAccountId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source_account_name")
+    private Optional<String> _getSourceAccountName() {
+        return sourceAccountName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source_account_number")
+    private Optional<String> _getSourceAccountNumber() {
+        return sourceAccountNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("target_account_name")
+    private Optional<String> _getTargetAccountName() {
+        return targetAccountName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<BankFeedAccountRequestCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("feed_status")
+    private Optional<BankFeedAccountRequestFeedStatus> _getFeedStatus() {
+        return feedStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("feed_start_date")
+    private Optional<OffsetDateTime> _getFeedStartDate() {
+        return feedStartDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source_account_balance")
+    private Optional<Double> _getSourceAccountBalance() {
+        return sourceAccountBalance;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account_type")
+    private Optional<BankFeedAccountRequestAccountType> _getAccountType() {
+        return accountType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -596,6 +707,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder sourceAccountId(Nullable<String> sourceAccountId) {
+            if (sourceAccountId.isNull()) {
+                this.sourceAccountId = null;
+            } else if (sourceAccountId.isEmpty()) {
+                this.sourceAccountId = Optional.empty();
+            } else {
+                this.sourceAccountId = Optional.of(sourceAccountId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The unique identifier of the target account from the third party software.</p>
          */
@@ -607,6 +729,17 @@ public final class BankFeedAccountRequest {
 
         public Builder targetAccountId(String targetAccountId) {
             this.targetAccountId = Optional.ofNullable(targetAccountId);
+            return this;
+        }
+
+        public Builder targetAccountId(Nullable<String> targetAccountId) {
+            if (targetAccountId.isNull()) {
+                this.targetAccountId = null;
+            } else if (targetAccountId.isEmpty()) {
+                this.targetAccountId = Optional.empty();
+            } else {
+                this.targetAccountId = Optional.of(targetAccountId.get());
+            }
             return this;
         }
 
@@ -624,6 +757,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder sourceAccountName(Nullable<String> sourceAccountName) {
+            if (sourceAccountName.isNull()) {
+                this.sourceAccountName = null;
+            } else if (sourceAccountName.isEmpty()) {
+                this.sourceAccountName = Optional.empty();
+            } else {
+                this.sourceAccountName = Optional.of(sourceAccountName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The human-readable account number of the source account as stored in our customer’s platform.</p>
          */
@@ -638,6 +782,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder sourceAccountNumber(Nullable<String> sourceAccountNumber) {
+            if (sourceAccountNumber.isNull()) {
+                this.sourceAccountNumber = null;
+            } else if (sourceAccountNumber.isEmpty()) {
+                this.sourceAccountNumber = Optional.empty();
+            } else {
+                this.sourceAccountNumber = Optional.of(sourceAccountNumber.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The name of the target account from the third party software.</p>
          */
@@ -649,6 +804,17 @@ public final class BankFeedAccountRequest {
 
         public Builder targetAccountName(String targetAccountName) {
             this.targetAccountName = Optional.ofNullable(targetAccountName);
+            return this;
+        }
+
+        public Builder targetAccountName(Nullable<String> targetAccountName) {
+            if (targetAccountName.isNull()) {
+                this.targetAccountName = null;
+            } else if (targetAccountName.isEmpty()) {
+                this.targetAccountName = Optional.empty();
+            } else {
+                this.targetAccountName = Optional.of(targetAccountName.get());
+            }
             return this;
         }
 
@@ -974,6 +1140,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder currency(Nullable<BankFeedAccountRequestCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The status of the bank feed.</p>
          * <ul>
@@ -992,6 +1169,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder feedStatus(Nullable<BankFeedAccountRequestFeedStatus> feedStatus) {
+            if (feedStatus.isNull()) {
+                this.feedStatus = null;
+            } else if (feedStatus.isEmpty()) {
+                this.feedStatus = Optional.empty();
+            } else {
+                this.feedStatus = Optional.of(feedStatus.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The start date of the bank feed’s transactions.</p>
          */
@@ -1006,6 +1194,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder feedStartDate(Nullable<OffsetDateTime> feedStartDate) {
+            if (feedStartDate.isNull()) {
+                this.feedStartDate = null;
+            } else if (feedStartDate.isEmpty()) {
+                this.feedStartDate = Optional.empty();
+            } else {
+                this.feedStartDate = Optional.of(feedStartDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The current balance of funds in the source account.</p>
          */
@@ -1017,6 +1216,17 @@ public final class BankFeedAccountRequest {
 
         public Builder sourceAccountBalance(Double sourceAccountBalance) {
             this.sourceAccountBalance = Optional.ofNullable(sourceAccountBalance);
+            return this;
+        }
+
+        public Builder sourceAccountBalance(Nullable<Double> sourceAccountBalance) {
+            if (sourceAccountBalance.isNull()) {
+                this.sourceAccountBalance = null;
+            } else if (sourceAccountBalance.isEmpty()) {
+                this.sourceAccountBalance = Optional.empty();
+            } else {
+                this.sourceAccountBalance = Optional.of(sourceAccountBalance.get());
+            }
             return this;
         }
 
@@ -1038,6 +1248,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder accountType(Nullable<BankFeedAccountRequestAccountType> accountType) {
+            if (accountType.isNull()) {
+                this.accountType = null;
+            } else if (accountType.isEmpty()) {
+                this.accountType = Optional.empty();
+            } else {
+                this.accountType = Optional.of(accountType.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -1049,6 +1270,17 @@ public final class BankFeedAccountRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -1057,6 +1289,17 @@ public final class BankFeedAccountRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

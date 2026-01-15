@@ -8,6 +8,7 @@ import com.merge.api.accounting.types.InvoiceEndpointRequest;
 import com.merge.api.accounting.types.InvoiceResponse;
 import com.merge.api.accounting.types.InvoicesLineItemsRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.InvoicesListRequest;
+import com.merge.api.accounting.types.InvoicesMetaPatchRetrieveRequest;
 import com.merge.api.accounting.types.InvoicesRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.InvoicesRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
@@ -145,8 +146,16 @@ public class AsyncInvoicesClient {
     /**
      * Returns metadata for <code>Invoice</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, InvoicesMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Invoice</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, InvoicesMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

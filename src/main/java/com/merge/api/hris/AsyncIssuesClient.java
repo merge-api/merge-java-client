@@ -8,6 +8,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.hris.types.Issue;
 import com.merge.api.hris.types.IssuesListRequest;
+import com.merge.api.hris.types.IssuesRetrieveRequest;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncIssuesClient {
@@ -58,7 +59,14 @@ public class AsyncIssuesClient {
     /**
      * Get a specific issue.
      */
-    public CompletableFuture<Issue> retrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<Issue> retrieve(String id, IssuesRetrieveRequest request) {
+        return this.rawClient.retrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a specific issue.
+     */
+    public CompletableFuture<Issue> retrieve(String id, IssuesRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

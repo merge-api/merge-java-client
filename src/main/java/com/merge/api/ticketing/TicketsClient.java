@@ -13,6 +13,7 @@ import com.merge.api.ticketing.types.Ticket;
 import com.merge.api.ticketing.types.TicketEndpointRequest;
 import com.merge.api.ticketing.types.TicketResponse;
 import com.merge.api.ticketing.types.TicketsListRequest;
+import com.merge.api.ticketing.types.TicketsMetaPatchRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsMetaPostRetrieveRequest;
 import com.merge.api.ticketing.types.TicketsRemoteFieldClassesListRequest;
 import com.merge.api.ticketing.types.TicketsRetrieveRequest;
@@ -139,8 +140,16 @@ public class TicketsClient {
     /**
      * Returns metadata for <code>Ticket</code> PATCHs.
      */
-    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
+    public MetaResponse metaPatchRetrieve(String id, TicketsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata for <code>Ticket</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(
+            String id, TicketsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).body();
     }
 
     /**

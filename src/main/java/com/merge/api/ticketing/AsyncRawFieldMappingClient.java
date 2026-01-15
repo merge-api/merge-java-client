@@ -16,13 +16,12 @@ import com.merge.api.ticketing.types.CreateFieldMappingRequest;
 import com.merge.api.ticketing.types.ExternalTargetFieldApiResponse;
 import com.merge.api.ticketing.types.FieldMappingApiInstanceResponse;
 import com.merge.api.ticketing.types.FieldMappingInstanceResponse;
+import com.merge.api.ticketing.types.FieldMappingsDestroyRequest;
 import com.merge.api.ticketing.types.FieldMappingsRetrieveRequest;
 import com.merge.api.ticketing.types.PatchedEditFieldMappingRequest;
 import com.merge.api.ticketing.types.RemoteFieldApiResponse;
 import com.merge.api.ticketing.types.RemoteFieldsRetrieveRequest;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -87,19 +86,17 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), FieldMappingApiInstanceResponse.class),
+                                        responseBodyString, FieldMappingApiInstanceResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -137,17 +134,10 @@ public class AsyncRawFieldMappingClient {
                     request.getExcludeRemoteFieldMetadata().get(),
                     false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("target_field_name", request.getTargetFieldName());
-        properties.put("target_field_description", request.getTargetFieldDescription());
-        properties.put("remote_field_traversal_path", request.getRemoteFieldTraversalPath());
-        properties.put("remote_method", request.getRemoteMethod());
-        properties.put("remote_url_path", request.getRemoteUrlPath());
-        properties.put("common_model_name", request.getCommonModelName());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -167,19 +157,17 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), FieldMappingInstanceResponse.class),
+                                        responseBodyString, FieldMappingInstanceResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -199,25 +187,34 @@ public class AsyncRawFieldMappingClient {
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsDestroy(
             String fieldMappingId) {
-        return fieldMappingsDestroy(fieldMappingId, null);
+        return fieldMappingsDestroy(
+                fieldMappingId, FieldMappingsDestroyRequest.builder().build());
     }
 
     /**
      * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync <strong>ALL</strong> data from start.
      */
     public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsDestroy(
-            String fieldMappingId, RequestOptions requestOptions) {
+            String fieldMappingId, FieldMappingsDestroyRequest request) {
+        return fieldMappingsDestroy(fieldMappingId, request, null);
+    }
+
+    /**
+     * Deletes Field Mappings for a Linked Account. All data related to this Field Mapping will be deleted and these changes will be reflected after the next scheduled sync. This will cause the next sync for this Linked Account to sync <strong>ALL</strong> data from start.
+     */
+    public CompletableFuture<MergeApiHttpResponse<FieldMappingInstanceResponse>> fieldMappingsDestroy(
+            String fieldMappingId, FieldMappingsDestroyRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("ticketing/v1/field-mappings")
                 .addPathSegment(fieldMappingId)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("DELETE", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -227,19 +224,17 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), FieldMappingInstanceResponse.class),
+                                        responseBodyString, FieldMappingInstanceResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -304,19 +299,17 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), FieldMappingInstanceResponse.class),
+                                        responseBodyString, FieldMappingInstanceResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -380,19 +373,16 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), RemoteFieldApiResponse.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, RemoteFieldApiResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -438,19 +428,17 @@ public class AsyncRawFieldMappingClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), ExternalTargetFieldApiResponse.class),
+                                        responseBodyString, ExternalTargetFieldApiResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

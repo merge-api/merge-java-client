@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -221,16 +224,34 @@ public final class ApplicationsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
     /**
      * @return If provided, will only return applications with this source.
      */
-    @JsonProperty("source")
+    @JsonIgnore
     public Optional<String> getSource() {
+        if (source == null) {
+            return Optional.empty();
+        }
+        return source;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source")
+    private Optional<String> _getSource() {
         return source;
     }
 
@@ -587,6 +608,17 @@ public final class ApplicationsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return applications with this source.</p>
          */
@@ -598,6 +630,17 @@ public final class ApplicationsListRequest {
 
         public Builder source(String source) {
             this.source = Optional.ofNullable(source);
+            return this;
+        }
+
+        public Builder source(Nullable<String> source) {
+            if (source.isNull()) {
+                this.source = null;
+            } else if (source.isEmpty()) {
+                this.source = Optional.empty();
+            } else {
+                this.source = Optional.of(source.get());
+            }
             return this;
         }
 

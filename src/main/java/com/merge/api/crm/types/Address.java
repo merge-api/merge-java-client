@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -83,40 +86,55 @@ public final class Address {
     /**
      * @return Line 1 of the address's street.
      */
-    @JsonProperty("street_1")
+    @JsonIgnore
     public Optional<String> getStreet1() {
+        if (street1 == null) {
+            return Optional.empty();
+        }
         return street1;
     }
 
     /**
      * @return Line 2 of the address's street.
      */
-    @JsonProperty("street_2")
+    @JsonIgnore
     public Optional<String> getStreet2() {
+        if (street2 == null) {
+            return Optional.empty();
+        }
         return street2;
     }
 
     /**
      * @return The address's city.
      */
-    @JsonProperty("city")
+    @JsonIgnore
     public Optional<String> getCity() {
+        if (city == null) {
+            return Optional.empty();
+        }
         return city;
     }
 
     /**
      * @return The address's state.
      */
-    @JsonProperty("state")
+    @JsonIgnore
     public Optional<String> getState() {
+        if (state == null) {
+            return Optional.empty();
+        }
         return state;
     }
 
     /**
      * @return The address's postal code.
      */
-    @JsonProperty("postal_code")
+    @JsonIgnore
     public Optional<String> getPostalCode() {
+        if (postalCode == null) {
+            return Optional.empty();
+        }
         return postalCode;
     }
 
@@ -374,8 +392,11 @@ public final class Address {
      * <li><code>ZW</code> - Zimbabwe</li>
      * </ul>
      */
-    @JsonProperty("country")
+    @JsonIgnore
     public Optional<AddressCountry> getCountry() {
+        if (country == null) {
+            return Optional.empty();
+        }
         return country;
     }
 
@@ -386,8 +407,53 @@ public final class Address {
      * <li><code>SHIPPING</code> - SHIPPING</li>
      * </ul>
      */
-    @JsonProperty("address_type")
+    @JsonIgnore
     public Optional<AddressAddressType> getAddressType() {
+        if (addressType == null) {
+            return Optional.empty();
+        }
+        return addressType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_1")
+    private Optional<String> _getStreet1() {
+        return street1;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_2")
+    private Optional<String> _getStreet2() {
+        return street2;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("city")
+    private Optional<String> _getCity() {
+        return city;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("state")
+    private Optional<String> _getState() {
+        return state;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("postal_code")
+    private Optional<String> _getPostalCode() {
+        return postalCode;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("country")
+    private Optional<AddressCountry> _getCountry() {
+        return country;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("address_type")
+    private Optional<AddressAddressType> _getAddressType() {
         return addressType;
     }
 
@@ -517,6 +583,17 @@ public final class Address {
             return this;
         }
 
+        public Builder street1(Nullable<String> street1) {
+            if (street1.isNull()) {
+                this.street1 = null;
+            } else if (street1.isEmpty()) {
+                this.street1 = Optional.empty();
+            } else {
+                this.street1 = Optional.of(street1.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Line 2 of the address's street.</p>
          */
@@ -528,6 +605,17 @@ public final class Address {
 
         public Builder street2(String street2) {
             this.street2 = Optional.ofNullable(street2);
+            return this;
+        }
+
+        public Builder street2(Nullable<String> street2) {
+            if (street2.isNull()) {
+                this.street2 = null;
+            } else if (street2.isEmpty()) {
+                this.street2 = Optional.empty();
+            } else {
+                this.street2 = Optional.of(street2.get());
+            }
             return this;
         }
 
@@ -545,6 +633,17 @@ public final class Address {
             return this;
         }
 
+        public Builder city(Nullable<String> city) {
+            if (city.isNull()) {
+                this.city = null;
+            } else if (city.isEmpty()) {
+                this.city = Optional.empty();
+            } else {
+                this.city = Optional.of(city.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's state.</p>
          */
@@ -559,6 +658,17 @@ public final class Address {
             return this;
         }
 
+        public Builder state(Nullable<String> state) {
+            if (state.isNull()) {
+                this.state = null;
+            } else if (state.isEmpty()) {
+                this.state = Optional.empty();
+            } else {
+                this.state = Optional.of(state.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's postal code.</p>
          */
@@ -570,6 +680,17 @@ public final class Address {
 
         public Builder postalCode(String postalCode) {
             this.postalCode = Optional.ofNullable(postalCode);
+            return this;
+        }
+
+        public Builder postalCode(Nullable<String> postalCode) {
+            if (postalCode.isNull()) {
+                this.postalCode = null;
+            } else if (postalCode.isEmpty()) {
+                this.postalCode = Optional.empty();
+            } else {
+                this.postalCode = Optional.of(postalCode.get());
+            }
             return this;
         }
 
@@ -838,6 +959,17 @@ public final class Address {
             return this;
         }
 
+        public Builder country(Nullable<AddressCountry> country) {
+            if (country.isNull()) {
+                this.country = null;
+            } else if (country.isEmpty()) {
+                this.country = Optional.empty();
+            } else {
+                this.country = Optional.of(country.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address type.</p>
          * <ul>
@@ -853,6 +985,17 @@ public final class Address {
 
         public Builder addressType(AddressAddressType addressType) {
             this.addressType = Optional.ofNullable(addressType);
+            return this;
+        }
+
+        public Builder addressType(Nullable<AddressAddressType> addressType) {
+            if (addressType.isNull()) {
+                this.addressType = null;
+            } else if (addressType.isEmpty()) {
+                this.addressType = Optional.empty();
+            } else {
+                this.addressType = Optional.of(addressType.get());
+            }
             return this;
         }
 
