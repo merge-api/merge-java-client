@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -122,8 +125,11 @@ public final class Payment {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -146,32 +152,44 @@ public final class Payment {
     /**
      * @return The payment's transaction date.
      */
-    @JsonProperty("transaction_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTransactionDate() {
+        if (transactionDate == null) {
+            return Optional.empty();
+        }
         return transactionDate;
     }
 
     /**
      * @return The supplier, or customer involved in the payment.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<PaymentContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The supplier’s or customer’s account in which the payment is made.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<PaymentAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The method which this payment was made by.
      */
-    @JsonProperty("payment_method")
+    @JsonIgnore
     public Optional<PaymentPaymentMethod> getPaymentMethod() {
+        if (paymentMethod == null) {
+            return Optional.empty();
+        }
         return paymentMethod;
     }
 
@@ -486,32 +504,44 @@ public final class Payment {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<PaymentCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The payment's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The company the payment belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<PaymentCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The total amount of money being paid to the supplier, or customer, after taxes.
      */
-    @JsonProperty("total_amount")
+    @JsonIgnore
     public Optional<Double> getTotalAmount() {
+        if (totalAmount == null) {
+            return Optional.empty();
+        }
         return totalAmount;
     }
 
@@ -522,8 +552,11 @@ public final class Payment {
      * <li><code>ACCOUNTS_RECEIVABLE</code> - ACCOUNTS_RECEIVABLE</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<PaymentType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
@@ -535,8 +568,11 @@ public final class Payment {
     /**
      * @return The accounting period that the Payment was generated in.
      */
-    @JsonProperty("accounting_period")
+    @JsonIgnore
     public Optional<PaymentAccountingPeriod> getAccountingPeriod() {
+        if (accountingPeriod == null) {
+            return Optional.empty();
+        }
         return accountingPeriod;
     }
 
@@ -551,8 +587,11 @@ public final class Payment {
     /**
      * @return When the third party's payment entry was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
@@ -564,19 +603,109 @@ public final class Payment {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_date")
+    private Optional<OffsetDateTime> _getTransactionDate() {
+        return transactionDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<PaymentContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<PaymentAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("payment_method")
+    private Optional<PaymentPaymentMethod> _getPaymentMethod() {
+        return paymentMethod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<PaymentCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<PaymentCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_amount")
+    private Optional<Double> _getTotalAmount() {
+        return totalAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<PaymentType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("accounting_period")
+    private Optional<PaymentAccountingPeriod> _getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -748,6 +877,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -790,6 +930,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder transactionDate(Nullable<OffsetDateTime> transactionDate) {
+            if (transactionDate.isNull()) {
+                this.transactionDate = null;
+            } else if (transactionDate.isEmpty()) {
+                this.transactionDate = Optional.empty();
+            } else {
+                this.transactionDate = Optional.of(transactionDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The supplier, or customer involved in the payment.</p>
          */
@@ -801,6 +952,17 @@ public final class Payment {
 
         public Builder contact(PaymentContact contact) {
             this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        public Builder contact(Nullable<PaymentContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
             return this;
         }
 
@@ -818,6 +980,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder account(Nullable<PaymentAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The method which this payment was made by.</p>
          */
@@ -829,6 +1002,17 @@ public final class Payment {
 
         public Builder paymentMethod(PaymentPaymentMethod paymentMethod) {
             this.paymentMethod = Optional.ofNullable(paymentMethod);
+            return this;
+        }
+
+        public Builder paymentMethod(Nullable<PaymentPaymentMethod> paymentMethod) {
+            if (paymentMethod.isNull()) {
+                this.paymentMethod = null;
+            } else if (paymentMethod.isEmpty()) {
+                this.paymentMethod = Optional.empty();
+            } else {
+                this.paymentMethod = Optional.of(paymentMethod.get());
+            }
             return this;
         }
 
@@ -1154,6 +1338,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder currency(Nullable<PaymentCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The payment's exchange rate.</p>
          */
@@ -1165,6 +1360,17 @@ public final class Payment {
 
         public Builder exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
+            return this;
+        }
+
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
             return this;
         }
 
@@ -1182,6 +1388,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder company(Nullable<PaymentCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The total amount of money being paid to the supplier, or customer, after taxes.</p>
          */
@@ -1193,6 +1410,17 @@ public final class Payment {
 
         public Builder totalAmount(Double totalAmount) {
             this.totalAmount = Optional.ofNullable(totalAmount);
+            return this;
+        }
+
+        public Builder totalAmount(Nullable<Double> totalAmount) {
+            if (totalAmount.isNull()) {
+                this.totalAmount = null;
+            } else if (totalAmount.isEmpty()) {
+                this.totalAmount = Optional.empty();
+            } else {
+                this.totalAmount = Optional.of(totalAmount.get());
+            }
             return this;
         }
 
@@ -1211,6 +1439,17 @@ public final class Payment {
 
         public Builder type(PaymentType type) {
             this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Nullable<PaymentType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
             return this;
         }
 
@@ -1236,6 +1475,17 @@ public final class Payment {
 
         public Builder accountingPeriod(PaymentAccountingPeriod accountingPeriod) {
             this.accountingPeriod = Optional.ofNullable(accountingPeriod);
+            return this;
+        }
+
+        public Builder accountingPeriod(Nullable<PaymentAccountingPeriod> accountingPeriod) {
+            if (accountingPeriod.isNull()) {
+                this.accountingPeriod = null;
+            } else if (accountingPeriod.isEmpty()) {
+                this.accountingPeriod = Optional.empty();
+            } else {
+                this.accountingPeriod = Optional.of(accountingPeriod.get());
+            }
             return this;
         }
 
@@ -1267,6 +1517,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
@@ -1292,6 +1553,17 @@ public final class Payment {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -1300,6 +1572,17 @@ public final class Payment {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

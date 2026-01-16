@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -87,8 +90,11 @@ public final class PaymentTerm {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -127,42 +133,102 @@ public final class PaymentTerm {
     /**
      * @return The subsidiary that the payment term belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<PaymentTermCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The number of days after the invoice date that payment is due.
      */
-    @JsonProperty("days_until_due")
+    @JsonIgnore
     public Optional<Integer> getDaysUntilDue() {
+        if (daysUntilDue == null) {
+            return Optional.empty();
+        }
         return daysUntilDue;
     }
 
     /**
      * @return The number of days the invoice must be paid before discounts expire.
      */
-    @JsonProperty("discount_days")
+    @JsonIgnore
     public Optional<Integer> getDiscountDays() {
+        if (discountDays == null) {
+            return Optional.empty();
+        }
         return discountDays;
     }
 
     /**
      * @return When the third party's payment term was modified.
      */
-    @JsonProperty("remote_last_modified_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteLastModifiedAt() {
+        if (remoteLastModifiedAt == null) {
+            return Optional.empty();
+        }
         return remoteLastModifiedAt;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<PaymentTermCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("days_until_due")
+    private Optional<Integer> _getDaysUntilDue() {
+        return daysUntilDue;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("discount_days")
+    private Optional<Integer> _getDiscountDays() {
+        return discountDays;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_last_modified_at")
+    private Optional<OffsetDateTime> _getRemoteLastModifiedAt() {
+        return remoteLastModifiedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -241,6 +307,8 @@ public final class PaymentTerm {
 
         _FinalStage remoteId(String remoteId);
 
+        _FinalStage remoteId(Nullable<String> remoteId);
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -269,12 +337,16 @@ public final class PaymentTerm {
 
         _FinalStage company(PaymentTermCompany company);
 
+        _FinalStage company(Nullable<PaymentTermCompany> company);
+
         /**
          * <p>The number of days after the invoice date that payment is due.</p>
          */
         _FinalStage daysUntilDue(Optional<Integer> daysUntilDue);
 
         _FinalStage daysUntilDue(Integer daysUntilDue);
+
+        _FinalStage daysUntilDue(Nullable<Integer> daysUntilDue);
 
         /**
          * <p>The number of days the invoice must be paid before discounts expire.</p>
@@ -283,6 +355,8 @@ public final class PaymentTerm {
 
         _FinalStage discountDays(Integer discountDays);
 
+        _FinalStage discountDays(Nullable<Integer> discountDays);
+
         /**
          * <p>When the third party's payment term was modified.</p>
          */
@@ -290,13 +364,19 @@ public final class PaymentTerm {
 
         _FinalStage remoteLastModifiedAt(OffsetDateTime remoteLastModifiedAt);
 
+        _FinalStage remoteLastModifiedAt(Nullable<OffsetDateTime> remoteLastModifiedAt);
+
         _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
 
         _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
 
+        _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings);
+
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
         _FinalStage remoteData(List<RemoteData> remoteData);
+
+        _FinalStage remoteData(Nullable<List<RemoteData>> remoteData);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -360,6 +440,18 @@ public final class PaymentTerm {
         }
 
         @java.lang.Override
+        public _FinalStage remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
             return this;
@@ -373,6 +465,18 @@ public final class PaymentTerm {
         }
 
         @java.lang.Override
+        public _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
@@ -382,6 +486,22 @@ public final class PaymentTerm {
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
+            return this;
+        }
+
+        /**
+         * <p>When the third party's payment term was modified.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteLastModifiedAt(Nullable<OffsetDateTime> remoteLastModifiedAt) {
+            if (remoteLastModifiedAt.isNull()) {
+                this.remoteLastModifiedAt = null;
+            } else if (remoteLastModifiedAt.isEmpty()) {
+                this.remoteLastModifiedAt = Optional.empty();
+            } else {
+                this.remoteLastModifiedAt = Optional.of(remoteLastModifiedAt.get());
+            }
             return this;
         }
 
@@ -410,6 +530,22 @@ public final class PaymentTerm {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage discountDays(Nullable<Integer> discountDays) {
+            if (discountDays.isNull()) {
+                this.discountDays = null;
+            } else if (discountDays.isEmpty()) {
+                this.discountDays = Optional.empty();
+            } else {
+                this.discountDays = Optional.of(discountDays.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The number of days the invoice must be paid before discounts expire.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage discountDays(Integer discountDays) {
             this.discountDays = Optional.ofNullable(discountDays);
             return this;
@@ -430,6 +566,22 @@ public final class PaymentTerm {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage daysUntilDue(Nullable<Integer> daysUntilDue) {
+            if (daysUntilDue.isNull()) {
+                this.daysUntilDue = null;
+            } else if (daysUntilDue.isEmpty()) {
+                this.daysUntilDue = Optional.empty();
+            } else {
+                this.daysUntilDue = Optional.of(daysUntilDue.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The number of days after the invoice date that payment is due.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage daysUntilDue(Integer daysUntilDue) {
             this.daysUntilDue = Optional.ofNullable(daysUntilDue);
             return this;
@@ -442,6 +594,22 @@ public final class PaymentTerm {
         @JsonSetter(value = "days_until_due", nulls = Nulls.SKIP)
         public _FinalStage daysUntilDue(Optional<Integer> daysUntilDue) {
             this.daysUntilDue = daysUntilDue;
+            return this;
+        }
+
+        /**
+         * <p>The subsidiary that the payment term belongs to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage company(Nullable<PaymentTermCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -522,6 +690,22 @@ public final class PaymentTerm {
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

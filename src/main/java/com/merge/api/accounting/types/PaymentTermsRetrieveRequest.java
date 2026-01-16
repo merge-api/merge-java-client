@@ -22,7 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaymentTermsRetrieveRequest.Builder.class)
 public final class PaymentTermsRetrieveRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<PaymentTermsRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
@@ -31,7 +31,7 @@ public final class PaymentTermsRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private PaymentTermsRetrieveRequest(
-            Optional<List<String>> expand,
+            Optional<List<PaymentTermsRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
@@ -45,7 +45,7 @@ public final class PaymentTermsRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<PaymentTermsRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -98,7 +98,7 @@ public final class PaymentTermsRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<PaymentTermsRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
@@ -120,17 +120,17 @@ public final class PaymentTermsRetrieveRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<PaymentTermsRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<PaymentTermsRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(PaymentTermsRetrieveRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }

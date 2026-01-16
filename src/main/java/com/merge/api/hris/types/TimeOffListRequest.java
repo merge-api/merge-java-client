@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -165,16 +168,22 @@ public final class TimeOffListRequest {
     /**
      * @return If provided, will only return employees that ended after this datetime.
      */
-    @JsonProperty("ended_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndedAfter() {
+        if (endedAfter == null) {
+            return Optional.empty();
+        }
         return endedAfter;
     }
 
     /**
      * @return If provided, will only return time-offs that ended before this datetime.
      */
-    @JsonProperty("ended_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndedBefore() {
+        if (endedBefore == null) {
+            return Optional.empty();
+        }
         return endedBefore;
     }
 
@@ -237,8 +246,11 @@ public final class TimeOffListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -253,8 +265,11 @@ public final class TimeOffListRequest {
      * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
      * </ul>
      */
-    @JsonProperty("request_type")
+    @JsonIgnore
     public Optional<TimeOffListRequestRequestType> getRequestType() {
+        if (requestType == null) {
+            return Optional.empty();
+        }
         return requestType;
     }
 
@@ -269,16 +284,22 @@ public final class TimeOffListRequest {
     /**
      * @return If provided, will only return time-offs that started after this datetime.
      */
-    @JsonProperty("started_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedAfter() {
+        if (startedAfter == null) {
+            return Optional.empty();
+        }
         return startedAfter;
     }
 
     /**
      * @return If provided, will only return time-offs that started before this datetime.
      */
-    @JsonProperty("started_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedBefore() {
+        if (startedBefore == null) {
+            return Optional.empty();
+        }
         return startedBefore;
     }
 
@@ -292,8 +313,53 @@ public final class TimeOffListRequest {
      * <li><code>DELETED</code> - DELETED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TimeOffListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ended_after")
+    private Optional<OffsetDateTime> _getEndedAfter() {
+        return endedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ended_before")
+    private Optional<OffsetDateTime> _getEndedBefore() {
+        return endedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("request_type")
+    private Optional<TimeOffListRequestRequestType> _getRequestType() {
+        return requestType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_after")
+    private Optional<OffsetDateTime> _getStartedAfter() {
+        return startedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_before")
+    private Optional<OffsetDateTime> _getStartedBefore() {
+        return startedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TimeOffListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -544,6 +610,17 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        public Builder endedAfter(Nullable<OffsetDateTime> endedAfter) {
+            if (endedAfter.isNull()) {
+                this.endedAfter = null;
+            } else if (endedAfter.isEmpty()) {
+                this.endedAfter = Optional.empty();
+            } else {
+                this.endedAfter = Optional.of(endedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return time-offs that ended before this datetime.</p>
          */
@@ -555,6 +632,17 @@ public final class TimeOffListRequest {
 
         public Builder endedBefore(OffsetDateTime endedBefore) {
             this.endedBefore = Optional.ofNullable(endedBefore);
+            return this;
+        }
+
+        public Builder endedBefore(Nullable<OffsetDateTime> endedBefore) {
+            if (endedBefore.isNull()) {
+                this.endedBefore = null;
+            } else if (endedBefore.isEmpty()) {
+                this.endedBefore = Optional.empty();
+            } else {
+                this.endedBefore = Optional.of(endedBefore.get());
+            }
             return this;
         }
 
@@ -670,6 +758,17 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return TimeOff with this request type. Options: ('VACATION', 'SICK', 'PERSONAL', 'JURY_DUTY', 'VOLUNTEER', 'BEREAVEMENT')</p>
          * <ul>
@@ -689,6 +788,17 @@ public final class TimeOffListRequest {
 
         public Builder requestType(TimeOffListRequestRequestType requestType) {
             this.requestType = Optional.ofNullable(requestType);
+            return this;
+        }
+
+        public Builder requestType(Nullable<TimeOffListRequestRequestType> requestType) {
+            if (requestType.isNull()) {
+                this.requestType = null;
+            } else if (requestType.isEmpty()) {
+                this.requestType = Optional.empty();
+            } else {
+                this.requestType = Optional.of(requestType.get());
+            }
             return this;
         }
 
@@ -720,6 +830,17 @@ public final class TimeOffListRequest {
             return this;
         }
 
+        public Builder startedAfter(Nullable<OffsetDateTime> startedAfter) {
+            if (startedAfter.isNull()) {
+                this.startedAfter = null;
+            } else if (startedAfter.isEmpty()) {
+                this.startedAfter = Optional.empty();
+            } else {
+                this.startedAfter = Optional.of(startedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return time-offs that started before this datetime.</p>
          */
@@ -731,6 +852,17 @@ public final class TimeOffListRequest {
 
         public Builder startedBefore(OffsetDateTime startedBefore) {
             this.startedBefore = Optional.ofNullable(startedBefore);
+            return this;
+        }
+
+        public Builder startedBefore(Nullable<OffsetDateTime> startedBefore) {
+            if (startedBefore.isNull()) {
+                this.startedBefore = null;
+            } else if (startedBefore.isEmpty()) {
+                this.startedBefore = Optional.empty();
+            } else {
+                this.startedBefore = Optional.of(startedBefore.get());
+            }
             return this;
         }
 
@@ -752,6 +884,17 @@ public final class TimeOffListRequest {
 
         public Builder status(TimeOffListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<TimeOffListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

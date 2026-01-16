@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -55,11 +58,11 @@ public final class ContactsListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<ContactsListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<ContactsListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Optional<ContactsListRequestStatus> status;
 
@@ -82,9 +85,9 @@ public final class ContactsListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<String> name,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<ContactsListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<ContactsListRequestShowEnumOrigins> showEnumOrigins,
             Optional<ContactsListRequestStatus> status,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
@@ -153,8 +156,11 @@ public final class ContactsListRequest {
     /**
      * @return If provided, will only return Contacts that match this email.
      */
-    @JsonProperty("email_address")
+    @JsonIgnore
     public Optional<String> getEmailAddress() {
+        if (emailAddress == null) {
+            return Optional.empty();
+        }
         return emailAddress;
     }
 
@@ -225,8 +231,11 @@ public final class ContactsListRequest {
     /**
      * @return If provided, will only return Contacts that match this name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -242,15 +251,18 @@ public final class ContactsListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<ContactsListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -258,15 +270,42 @@ public final class ContactsListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<ContactsListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
     /**
      * @return If provided, will only return Contacts that match this status.
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<ContactsListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email_address")
+    private Optional<String> _getEmailAddress() {
+        return emailAddress;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<ContactsListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -372,11 +411,11 @@ public final class ContactsListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<ContactsListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<ContactsListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         private Optional<ContactsListRequestStatus> status = Optional.empty();
 
@@ -495,6 +534,17 @@ public final class ContactsListRequest {
 
         public Builder emailAddress(String emailAddress) {
             this.emailAddress = Optional.ofNullable(emailAddress);
+            return this;
+        }
+
+        public Builder emailAddress(Nullable<String> emailAddress) {
+            if (emailAddress.isNull()) {
+                this.emailAddress = null;
+            } else if (emailAddress.isEmpty()) {
+                this.emailAddress = Optional.empty();
+            } else {
+                this.emailAddress = Optional.of(emailAddress.get());
+            }
             return this;
         }
 
@@ -624,6 +674,17 @@ public final class ContactsListRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Number of results to return per page.</p>
          */
@@ -642,12 +703,12 @@ public final class ContactsListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<ContactsListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(ContactsListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -666,16 +727,27 @@ public final class ContactsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<ContactsListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(ContactsListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
@@ -691,6 +763,17 @@ public final class ContactsListRequest {
 
         public Builder status(ContactsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<ContactsListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

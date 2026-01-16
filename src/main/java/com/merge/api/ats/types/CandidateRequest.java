@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -101,64 +104,88 @@ public final class CandidateRequest {
     /**
      * @return The candidate's first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
     /**
      * @return The candidate's last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
     /**
      * @return The candidate's current company.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The candidate's current title.
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
     /**
      * @return When the most recent interaction with the candidate occurred.
      */
-    @JsonProperty("last_interaction_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastInteractionAt() {
+        if (lastInteractionAt == null) {
+            return Optional.empty();
+        }
         return lastInteractionAt;
     }
 
     /**
      * @return Whether or not the candidate is private.
      */
-    @JsonProperty("is_private")
+    @JsonIgnore
     public Optional<Boolean> getIsPrivate() {
+        if (isPrivate == null) {
+            return Optional.empty();
+        }
         return isPrivate;
     }
 
     /**
      * @return Whether or not the candidate can be emailed.
      */
-    @JsonProperty("can_email")
+    @JsonIgnore
     public Optional<Boolean> getCanEmail() {
+        if (canEmail == null) {
+            return Optional.empty();
+        }
         return canEmail;
     }
 
     /**
      * @return The candidate's locations.
      */
-    @JsonProperty("locations")
+    @JsonIgnore
     public Optional<List<Optional<String>>> getLocations() {
+        if (locations == null) {
+            return Optional.empty();
+        }
         return locations;
     }
 
@@ -201,18 +228,93 @@ public final class CandidateRequest {
         return attachments;
     }
 
-    @JsonProperty("remote_template_id")
+    @JsonIgnore
     public Optional<String> getRemoteTemplateId() {
+        if (remoteTemplateId == null) {
+            return Optional.empty();
+        }
         return remoteTemplateId;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_interaction_at")
+    private Optional<OffsetDateTime> _getLastInteractionAt() {
+        return lastInteractionAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_private")
+    private Optional<Boolean> _getIsPrivate() {
+        return isPrivate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("can_email")
+    private Optional<Boolean> _getCanEmail() {
+        return canEmail;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("locations")
+    private Optional<List<Optional<String>>> _getLocations() {
+        return locations;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_template_id")
+    private Optional<String> _getRemoteTemplateId() {
+        return remoteTemplateId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -354,6 +456,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's last name.</p>
          */
@@ -365,6 +478,17 @@ public final class CandidateRequest {
 
         public Builder lastName(String lastName) {
             this.lastName = Optional.ofNullable(lastName);
+            return this;
+        }
+
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
             return this;
         }
 
@@ -382,6 +506,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's current title.</p>
          */
@@ -393,6 +528,17 @@ public final class CandidateRequest {
 
         public Builder title(String title) {
             this.title = Optional.ofNullable(title);
+            return this;
+        }
+
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
             return this;
         }
 
@@ -410,6 +556,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder lastInteractionAt(Nullable<OffsetDateTime> lastInteractionAt) {
+            if (lastInteractionAt.isNull()) {
+                this.lastInteractionAt = null;
+            } else if (lastInteractionAt.isEmpty()) {
+                this.lastInteractionAt = Optional.empty();
+            } else {
+                this.lastInteractionAt = Optional.of(lastInteractionAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether or not the candidate is private.</p>
          */
@@ -421,6 +578,17 @@ public final class CandidateRequest {
 
         public Builder isPrivate(Boolean isPrivate) {
             this.isPrivate = Optional.ofNullable(isPrivate);
+            return this;
+        }
+
+        public Builder isPrivate(Nullable<Boolean> isPrivate) {
+            if (isPrivate.isNull()) {
+                this.isPrivate = null;
+            } else if (isPrivate.isEmpty()) {
+                this.isPrivate = Optional.empty();
+            } else {
+                this.isPrivate = Optional.of(isPrivate.get());
+            }
             return this;
         }
 
@@ -438,6 +606,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder canEmail(Nullable<Boolean> canEmail) {
+            if (canEmail.isNull()) {
+                this.canEmail = null;
+            } else if (canEmail.isEmpty()) {
+                this.canEmail = Optional.empty();
+            } else {
+                this.canEmail = Optional.of(canEmail.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's locations.</p>
          */
@@ -449,6 +628,17 @@ public final class CandidateRequest {
 
         public Builder locations(List<Optional<String>> locations) {
             this.locations = Optional.ofNullable(locations);
+            return this;
+        }
+
+        public Builder locations(Nullable<List<Optional<String>>> locations) {
+            if (locations.isNull()) {
+                this.locations = null;
+            } else if (locations.isEmpty()) {
+                this.locations = Optional.empty();
+            } else {
+                this.locations = Optional.of(locations.get());
+            }
             return this;
         }
 
@@ -538,6 +728,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder remoteTemplateId(Nullable<String> remoteTemplateId) {
+            if (remoteTemplateId.isNull()) {
+                this.remoteTemplateId = null;
+            } else if (remoteTemplateId.isEmpty()) {
+                this.remoteTemplateId = Optional.empty();
+            } else {
+                this.remoteTemplateId = Optional.of(remoteTemplateId.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -549,6 +750,17 @@ public final class CandidateRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -557,6 +769,17 @@ public final class CandidateRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

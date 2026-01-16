@@ -22,24 +22,24 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffBalancesRetrieveRequest.Builder.class)
 public final class TimeOffBalancesRetrieveRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<TimeOffBalancesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeShellData;
 
-    private final Optional<String> remoteFields;
+    private final Optional<TimeOffBalancesRetrieveRequestRemoteFields> remoteFields;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<TimeOffBalancesRetrieveRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
     private TimeOffBalancesRetrieveRequest(
-            Optional<List<String>> expand,
+            Optional<List<TimeOffBalancesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
-            Optional<String> remoteFields,
-            Optional<String> showEnumOrigins,
+            Optional<TimeOffBalancesRetrieveRequestRemoteFields> remoteFields,
+            Optional<TimeOffBalancesRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
@@ -53,7 +53,7 @@ public final class TimeOffBalancesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<TimeOffBalancesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -77,7 +77,7 @@ public final class TimeOffBalancesRetrieveRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<TimeOffBalancesRetrieveRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
@@ -85,7 +85,7 @@ public final class TimeOffBalancesRetrieveRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<TimeOffBalancesRetrieveRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -125,15 +125,15 @@ public final class TimeOffBalancesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<TimeOffBalancesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<TimeOffBalancesRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<TimeOffBalancesRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -153,17 +153,17 @@ public final class TimeOffBalancesRetrieveRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<TimeOffBalancesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<TimeOffBalancesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(TimeOffBalancesRetrieveRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -200,12 +200,12 @@ public final class TimeOffBalancesRetrieveRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<TimeOffBalancesRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(TimeOffBalancesRetrieveRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -214,12 +214,12 @@ public final class TimeOffBalancesRetrieveRequest {
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<TimeOffBalancesRetrieveRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(TimeOffBalancesRetrieveRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

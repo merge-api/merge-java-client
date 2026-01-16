@@ -7,6 +7,7 @@ import com.merge.api.accounting.types.Item;
 import com.merge.api.accounting.types.ItemEndpointRequest;
 import com.merge.api.accounting.types.ItemResponse;
 import com.merge.api.accounting.types.ItemsListRequest;
+import com.merge.api.accounting.types.ItemsMetaPatchRetrieveRequest;
 import com.merge.api.accounting.types.ItemsRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
 import com.merge.api.accounting.types.PatchedItemEndpointRequest;
@@ -113,8 +114,16 @@ public class AsyncItemsClient {
     /**
      * Returns metadata for <code>Item</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, ItemsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Item</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, ItemsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

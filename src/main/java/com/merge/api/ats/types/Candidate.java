@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -130,8 +133,11 @@ public final class Candidate {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -154,80 +160,110 @@ public final class Candidate {
     /**
      * @return The candidate's first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
     /**
      * @return The candidate's last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
     /**
      * @return The candidate's current company.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The candidate's current title.
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
     /**
      * @return When the third party's candidate was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's candidate was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
     /**
      * @return When the most recent interaction with the candidate occurred.
      */
-    @JsonProperty("last_interaction_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastInteractionAt() {
+        if (lastInteractionAt == null) {
+            return Optional.empty();
+        }
         return lastInteractionAt;
     }
 
     /**
      * @return Whether or not the candidate is private.
      */
-    @JsonProperty("is_private")
+    @JsonIgnore
     public Optional<Boolean> getIsPrivate() {
+        if (isPrivate == null) {
+            return Optional.empty();
+        }
         return isPrivate;
     }
 
     /**
      * @return Whether or not the candidate can be emailed.
      */
-    @JsonProperty("can_email")
+    @JsonIgnore
     public Optional<Boolean> getCanEmail() {
+        if (canEmail == null) {
+            return Optional.empty();
+        }
         return canEmail;
     }
 
     /**
      * @return The candidate's locations.
      */
-    @JsonProperty("locations")
+    @JsonIgnore
     public Optional<List<Optional<String>>> getLocations() {
+        if (locations == null) {
+            return Optional.empty();
+        }
         return locations;
     }
 
@@ -278,13 +314,97 @@ public final class Candidate {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_interaction_at")
+    private Optional<OffsetDateTime> _getLastInteractionAt() {
+        return lastInteractionAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_private")
+    private Optional<Boolean> _getIsPrivate() {
+        return isPrivate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("can_email")
+    private Optional<Boolean> _getCanEmail() {
+        return canEmail;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("locations")
+    private Optional<List<Optional<String>>> _getLocations() {
+        return locations;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -467,6 +587,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -509,6 +640,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's last name.</p>
          */
@@ -520,6 +662,17 @@ public final class Candidate {
 
         public Builder lastName(String lastName) {
             this.lastName = Optional.ofNullable(lastName);
+            return this;
+        }
+
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
             return this;
         }
 
@@ -537,6 +690,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's current title.</p>
          */
@@ -548,6 +712,17 @@ public final class Candidate {
 
         public Builder title(String title) {
             this.title = Optional.ofNullable(title);
+            return this;
+        }
+
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
             return this;
         }
 
@@ -565,6 +740,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's candidate was updated.</p>
          */
@@ -576,6 +762,17 @@ public final class Candidate {
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
             this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -593,6 +790,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder lastInteractionAt(Nullable<OffsetDateTime> lastInteractionAt) {
+            if (lastInteractionAt.isNull()) {
+                this.lastInteractionAt = null;
+            } else if (lastInteractionAt.isEmpty()) {
+                this.lastInteractionAt = Optional.empty();
+            } else {
+                this.lastInteractionAt = Optional.of(lastInteractionAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether or not the candidate is private.</p>
          */
@@ -604,6 +812,17 @@ public final class Candidate {
 
         public Builder isPrivate(Boolean isPrivate) {
             this.isPrivate = Optional.ofNullable(isPrivate);
+            return this;
+        }
+
+        public Builder isPrivate(Nullable<Boolean> isPrivate) {
+            if (isPrivate.isNull()) {
+                this.isPrivate = null;
+            } else if (isPrivate.isEmpty()) {
+                this.isPrivate = Optional.empty();
+            } else {
+                this.isPrivate = Optional.of(isPrivate.get());
+            }
             return this;
         }
 
@@ -621,6 +840,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder canEmail(Nullable<Boolean> canEmail) {
+            if (canEmail.isNull()) {
+                this.canEmail = null;
+            } else if (canEmail.isEmpty()) {
+                this.canEmail = Optional.empty();
+            } else {
+                this.canEmail = Optional.of(canEmail.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The candidate's locations.</p>
          */
@@ -632,6 +862,17 @@ public final class Candidate {
 
         public Builder locations(List<Optional<String>> locations) {
             this.locations = Optional.ofNullable(locations);
+            return this;
+        }
+
+        public Builder locations(Nullable<List<Optional<String>>> locations) {
+            if (locations.isNull()) {
+                this.locations = null;
+            } else if (locations.isEmpty()) {
+                this.locations = Optional.empty();
+            } else {
+                this.locations = Optional.of(locations.get());
+            }
             return this;
         }
 
@@ -735,6 +976,17 @@ public final class Candidate {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -743,6 +995,17 @@ public final class Candidate {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

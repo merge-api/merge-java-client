@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -51,11 +54,11 @@ public final class PurchaseOrdersListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<PurchaseOrdersListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<PurchaseOrdersListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
@@ -74,9 +77,9 @@ public final class PurchaseOrdersListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<PurchaseOrdersListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<PurchaseOrdersListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.companyId = companyId;
@@ -173,16 +176,22 @@ public final class PurchaseOrdersListRequest {
     /**
      * @return If provided, will only return objects created after this datetime.
      */
-    @JsonProperty("issue_date_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDateAfter() {
+        if (issueDateAfter == null) {
+            return Optional.empty();
+        }
         return issueDateAfter;
     }
 
     /**
      * @return If provided, will only return objects created before this datetime.
      */
-    @JsonProperty("issue_date_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getIssueDateBefore() {
+        if (issueDateBefore == null) {
+            return Optional.empty();
+        }
         return issueDateBefore;
     }
 
@@ -214,15 +223,18 @@ public final class PurchaseOrdersListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<PurchaseOrdersListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -230,8 +242,26 @@ public final class PurchaseOrdersListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<PurchaseOrdersListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date_after")
+    private Optional<OffsetDateTime> _getIssueDateAfter() {
+        return issueDateAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("issue_date_before")
+    private Optional<OffsetDateTime> _getIssueDateBefore() {
+        return issueDateBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -326,11 +356,11 @@ public final class PurchaseOrdersListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<PurchaseOrdersListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<PurchaseOrdersListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -503,6 +533,17 @@ public final class PurchaseOrdersListRequest {
             return this;
         }
 
+        public Builder issueDateAfter(Nullable<OffsetDateTime> issueDateAfter) {
+            if (issueDateAfter.isNull()) {
+                this.issueDateAfter = null;
+            } else if (issueDateAfter.isEmpty()) {
+                this.issueDateAfter = Optional.empty();
+            } else {
+                this.issueDateAfter = Optional.of(issueDateAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return objects created before this datetime.</p>
          */
@@ -514,6 +555,17 @@ public final class PurchaseOrdersListRequest {
 
         public Builder issueDateBefore(OffsetDateTime issueDateBefore) {
             this.issueDateBefore = Optional.ofNullable(issueDateBefore);
+            return this;
+        }
+
+        public Builder issueDateBefore(Nullable<OffsetDateTime> issueDateBefore) {
+            if (issueDateBefore.isNull()) {
+                this.issueDateBefore = null;
+            } else if (issueDateBefore.isEmpty()) {
+                this.issueDateBefore = Optional.empty();
+            } else {
+                this.issueDateBefore = Optional.of(issueDateBefore.get());
+            }
             return this;
         }
 
@@ -563,12 +615,12 @@ public final class PurchaseOrdersListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<PurchaseOrdersListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(PurchaseOrdersListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -587,16 +639,27 @@ public final class PurchaseOrdersListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<PurchaseOrdersListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(PurchaseOrdersListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -120,8 +123,11 @@ public final class EndUserDetailsRequest {
     /**
      * @return The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.
      */
-    @JsonProperty("integration")
+    @JsonIgnore
     public Optional<String> getIntegration() {
+        if (integration == null) {
+            return Optional.empty();
+        }
         return integration;
     }
 
@@ -136,33 +142,45 @@ public final class EndUserDetailsRequest {
     /**
      * @return Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
      */
-    @JsonProperty("should_create_magic_link_url")
+    @JsonIgnore
     public Optional<Boolean> getShouldCreateMagicLinkUrl() {
+        if (shouldCreateMagicLinkUrl == null) {
+            return Optional.empty();
+        }
         return shouldCreateMagicLinkUrl;
     }
 
     /**
      * @return Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.
      */
-    @JsonProperty("hide_admin_magic_link")
+    @JsonIgnore
     public Optional<Boolean> getHideAdminMagicLink() {
+        if (hideAdminMagicLink == null) {
+            return Optional.empty();
+        }
         return hideAdminMagicLink;
     }
 
     /**
      * @return An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.
      */
-    @JsonProperty("common_models")
+    @JsonIgnore
     public Optional<List<CommonModelScopesBodyRequest>> getCommonModels() {
+        if (commonModels == null) {
+            return Optional.empty();
+        }
         return commonModels;
     }
 
     /**
      * @return When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.
      */
-    @JsonProperty("category_common_model_scopes")
+    @JsonIgnore
     public Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
             getCategoryCommonModelScopes() {
+        if (categoryCommonModelScopes == null) {
+            return Optional.empty();
+        }
         return categoryCommonModelScopes;
     }
 
@@ -173,24 +191,82 @@ public final class EndUserDetailsRequest {
      * <li><code>de</code> - de</li>
      * </ul>
      */
-    @JsonProperty("language")
+    @JsonIgnore
     public Optional<EndUserDetailsRequestLanguage> getLanguage() {
+        if (language == null) {
+            return Optional.empty();
+        }
         return language;
     }
 
     /**
      * @return The boolean that indicates whether initial, periodic, and force syncs will be disabled.
      */
-    @JsonProperty("are_syncs_disabled")
+    @JsonIgnore
     public Optional<Boolean> getAreSyncsDisabled() {
+        if (areSyncsDisabled == null) {
+            return Optional.empty();
+        }
         return areSyncsDisabled;
     }
 
     /**
      * @return A JSON object containing integration-specific configuration options.
      */
-    @JsonProperty("integration_specific_config")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationSpecificConfig() {
+        if (integrationSpecificConfig == null) {
+            return Optional.empty();
+        }
+        return integrationSpecificConfig;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration")
+    private Optional<String> _getIntegration() {
+        return integration;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("should_create_magic_link_url")
+    private Optional<Boolean> _getShouldCreateMagicLinkUrl() {
+        return shouldCreateMagicLinkUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("hide_admin_magic_link")
+    private Optional<Boolean> _getHideAdminMagicLink() {
+        return hideAdminMagicLink;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("common_models")
+    private Optional<List<CommonModelScopesBodyRequest>> _getCommonModels() {
+        return commonModels;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("category_common_model_scopes")
+    private Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+            _getCategoryCommonModelScopes() {
+        return categoryCommonModelScopes;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("language")
+    private Optional<EndUserDetailsRequestLanguage> _getLanguage() {
+        return language;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("are_syncs_disabled")
+    private Optional<Boolean> _getAreSyncsDisabled() {
+        return areSyncsDisabled;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_specific_config")
+    private Optional<Map<String, JsonNode>> _getIntegrationSpecificConfig() {
         return integrationSpecificConfig;
     }
 
@@ -290,6 +366,8 @@ public final class EndUserDetailsRequest {
 
         _FinalStage integration(String integration);
 
+        _FinalStage integration(Nullable<String> integration);
+
         /**
          * <p>An integer number of minutes between [30, 720 or 10080 if for a Magic Link URL] for how long this token is valid. Defaults to 30.</p>
          */
@@ -304,6 +382,8 @@ public final class EndUserDetailsRequest {
 
         _FinalStage shouldCreateMagicLinkUrl(Boolean shouldCreateMagicLinkUrl);
 
+        _FinalStage shouldCreateMagicLinkUrl(Nullable<Boolean> shouldCreateMagicLinkUrl);
+
         /**
          * <p>Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
          */
@@ -311,12 +391,16 @@ public final class EndUserDetailsRequest {
 
         _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink);
 
+        _FinalStage hideAdminMagicLink(Nullable<Boolean> hideAdminMagicLink);
+
         /**
          * <p>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</p>
          */
         _FinalStage commonModels(Optional<List<CommonModelScopesBodyRequest>> commonModels);
 
         _FinalStage commonModels(List<CommonModelScopesBodyRequest> commonModels);
+
+        _FinalStage commonModels(Nullable<List<CommonModelScopesBodyRequest>> commonModels);
 
         /**
          * <p>When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.</p>
@@ -327,6 +411,10 @@ public final class EndUserDetailsRequest {
 
         _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes);
+
+        _FinalStage categoryCommonModelScopes(
+                Nullable<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                        categoryCommonModelScopes);
 
         /**
          * <p>The following subset of IETF language tags can be used to configure localization.</p>
@@ -339,6 +427,8 @@ public final class EndUserDetailsRequest {
 
         _FinalStage language(EndUserDetailsRequestLanguage language);
 
+        _FinalStage language(Nullable<EndUserDetailsRequestLanguage> language);
+
         /**
          * <p>The boolean that indicates whether initial, periodic, and force syncs will be disabled.</p>
          */
@@ -346,12 +436,16 @@ public final class EndUserDetailsRequest {
 
         _FinalStage areSyncsDisabled(Boolean areSyncsDisabled);
 
+        _FinalStage areSyncsDisabled(Nullable<Boolean> areSyncsDisabled);
+
         /**
          * <p>A JSON object containing integration-specific configuration options.</p>
          */
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
         _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
+
+        _FinalStage integrationSpecificConfig(Nullable<Map<String, JsonNode>> integrationSpecificConfig);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -448,6 +542,22 @@ public final class EndUserDetailsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage integrationSpecificConfig(Nullable<Map<String, JsonNode>> integrationSpecificConfig) {
+            if (integrationSpecificConfig.isNull()) {
+                this.integrationSpecificConfig = null;
+            } else if (integrationSpecificConfig.isEmpty()) {
+                this.integrationSpecificConfig = Optional.empty();
+            } else {
+                this.integrationSpecificConfig = Optional.of(integrationSpecificConfig.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>A JSON object containing integration-specific configuration options.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig) {
             this.integrationSpecificConfig = Optional.ofNullable(integrationSpecificConfig);
             return this;
@@ -468,6 +578,22 @@ public final class EndUserDetailsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage areSyncsDisabled(Nullable<Boolean> areSyncsDisabled) {
+            if (areSyncsDisabled.isNull()) {
+                this.areSyncsDisabled = null;
+            } else if (areSyncsDisabled.isEmpty()) {
+                this.areSyncsDisabled = Optional.empty();
+            } else {
+                this.areSyncsDisabled = Optional.of(areSyncsDisabled.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The boolean that indicates whether initial, periodic, and force syncs will be disabled.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage areSyncsDisabled(Boolean areSyncsDisabled) {
             this.areSyncsDisabled = Optional.ofNullable(areSyncsDisabled);
             return this;
@@ -480,6 +606,26 @@ public final class EndUserDetailsRequest {
         @JsonSetter(value = "are_syncs_disabled", nulls = Nulls.SKIP)
         public _FinalStage areSyncsDisabled(Optional<Boolean> areSyncsDisabled) {
             this.areSyncsDisabled = areSyncsDisabled;
+            return this;
+        }
+
+        /**
+         * <p>The following subset of IETF language tags can be used to configure localization.</p>
+         * <ul>
+         * <li><code>en</code> - en</li>
+         * <li><code>de</code> - de</li>
+         * </ul>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage language(Nullable<EndUserDetailsRequestLanguage> language) {
+            if (language.isNull()) {
+                this.language = null;
+            } else if (language.isEmpty()) {
+                this.language = Optional.empty();
+            } else {
+                this.language = Optional.of(language.get());
+            }
             return this;
         }
 
@@ -517,6 +663,24 @@ public final class EndUserDetailsRequest {
          */
         @java.lang.Override
         public _FinalStage categoryCommonModelScopes(
+                Nullable<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
+                        categoryCommonModelScopes) {
+            if (categoryCommonModelScopes.isNull()) {
+                this.categoryCommonModelScopes = null;
+            } else if (categoryCommonModelScopes.isEmpty()) {
+                this.categoryCommonModelScopes = Optional.empty();
+            } else {
+                this.categoryCommonModelScopes = Optional.of(categoryCommonModelScopes.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>When creating a Link Token, you can set permissions for Common Models that will apply to the account that is going to be linked. Any model or field not specified in link token payload will default to existing settings.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage categoryCommonModelScopes(
                 Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>> categoryCommonModelScopes) {
             this.categoryCommonModelScopes = Optional.ofNullable(categoryCommonModelScopes);
             return this;
@@ -531,6 +695,22 @@ public final class EndUserDetailsRequest {
                 Optional<Map<String, Optional<List<IndividualCommonModelScopeDeserializerRequest>>>>
                         categoryCommonModelScopes) {
             this.categoryCommonModelScopes = categoryCommonModelScopes;
+            return this;
+        }
+
+        /**
+         * <p>An array of objects to specify the models and fields that will be disabled for a given Linked Account. Each object uses model_id, enabled_actions, and disabled_fields to specify the model, method, and fields that are scoped for a given Linked Account.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage commonModels(Nullable<List<CommonModelScopesBodyRequest>> commonModels) {
+            if (commonModels.isNull()) {
+                this.commonModels = null;
+            } else if (commonModels.isEmpty()) {
+                this.commonModels = Optional.empty();
+            } else {
+                this.commonModels = Optional.of(commonModels.get());
+            }
             return this;
         }
 
@@ -559,6 +739,22 @@ public final class EndUserDetailsRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage hideAdminMagicLink(Nullable<Boolean> hideAdminMagicLink) {
+            if (hideAdminMagicLink.isNull()) {
+                this.hideAdminMagicLink = null;
+            } else if (hideAdminMagicLink.isEmpty()) {
+                this.hideAdminMagicLink = Optional.empty();
+            } else {
+                this.hideAdminMagicLink = Optional.of(hideAdminMagicLink.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>Whether to generate a Magic Link URL on the Admin Needed screen during the linking flow. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage hideAdminMagicLink(Boolean hideAdminMagicLink) {
             this.hideAdminMagicLink = Optional.ofNullable(hideAdminMagicLink);
             return this;
@@ -571,6 +767,22 @@ public final class EndUserDetailsRequest {
         @JsonSetter(value = "hide_admin_magic_link", nulls = Nulls.SKIP)
         public _FinalStage hideAdminMagicLink(Optional<Boolean> hideAdminMagicLink) {
             this.hideAdminMagicLink = hideAdminMagicLink;
+            return this;
+        }
+
+        /**
+         * <p>Whether to generate a Magic Link URL. Defaults to false. For more information on Magic Link, see https://merge.dev/blog/integrations-fast-say-hello-to-magic-link.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage shouldCreateMagicLinkUrl(Nullable<Boolean> shouldCreateMagicLinkUrl) {
+            if (shouldCreateMagicLinkUrl.isNull()) {
+                this.shouldCreateMagicLinkUrl = null;
+            } else if (shouldCreateMagicLinkUrl.isEmpty()) {
+                this.shouldCreateMagicLinkUrl = Optional.empty();
+            } else {
+                this.shouldCreateMagicLinkUrl = Optional.of(shouldCreateMagicLinkUrl.get());
+            }
             return this;
         }
 
@@ -611,6 +823,22 @@ public final class EndUserDetailsRequest {
         @JsonSetter(value = "link_expiry_mins", nulls = Nulls.SKIP)
         public _FinalStage linkExpiryMins(Optional<Integer> linkExpiryMins) {
             this.linkExpiryMins = linkExpiryMins;
+            return this;
+        }
+
+        /**
+         * <p>The slug of a specific pre-selected integration for this linking flow token. For examples of slugs, see https://docs.merge.dev/guides/merge-link/single-integration/.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage integration(Nullable<String> integration) {
+            if (integration.isNull()) {
+                this.integration = null;
+            } else if (integration.isEmpty()) {
+                this.integration = Optional.empty();
+            } else {
+                this.integration = Optional.of(integration.get());
+            }
             return this;
         }
 
