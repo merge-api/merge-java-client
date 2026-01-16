@@ -28,9 +28,9 @@ public final class OffersRetrieveRequest {
 
     private final Optional<Boolean> includeShellData;
 
-    private final Optional<String> remoteFields;
+    private final Optional<OffersRetrieveRequestRemoteFields> remoteFields;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<OffersRetrieveRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
@@ -38,8 +38,8 @@ public final class OffersRetrieveRequest {
             Optional<List<OffersRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
-            Optional<String> remoteFields,
-            Optional<String> showEnumOrigins,
+            Optional<OffersRetrieveRequestRemoteFields> remoteFields,
+            Optional<OffersRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
@@ -77,7 +77,7 @@ public final class OffersRetrieveRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<OffersRetrieveRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
@@ -85,7 +85,7 @@ public final class OffersRetrieveRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<OffersRetrieveRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -131,9 +131,9 @@ public final class OffersRetrieveRequest {
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<OffersRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<OffersRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -200,12 +200,12 @@ public final class OffersRetrieveRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<OffersRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(OffersRetrieveRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -214,12 +214,12 @@ public final class OffersRetrieveRequest {
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<OffersRetrieveRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(OffersRetrieveRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

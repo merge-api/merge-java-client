@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -56,42 +59,96 @@ public final class TimesheetEntryRequest {
     /**
      * @return The employee the timesheet entry is for.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<TimesheetEntryRequestEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The number of hours logged by the employee.
      */
-    @JsonProperty("hours_worked")
+    @JsonIgnore
     public Optional<Double> getHoursWorked() {
+        if (hoursWorked == null) {
+            return Optional.empty();
+        }
         return hoursWorked;
     }
 
     /**
      * @return The time at which the employee started work.
      */
-    @JsonProperty("start_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartTime() {
+        if (startTime == null) {
+            return Optional.empty();
+        }
         return startTime;
     }
 
     /**
      * @return The time at which the employee ended work.
      */
-    @JsonProperty("end_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndTime() {
+        if (endTime == null) {
+            return Optional.empty();
+        }
         return endTime;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<TimesheetEntryRequestEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("hours_worked")
+    private Optional<Double> _getHoursWorked() {
+        return hoursWorked;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_time")
+    private Optional<OffsetDateTime> _getStartTime() {
+        return startTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_time")
+    private Optional<OffsetDateTime> _getEndTime() {
+        return endTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -178,6 +235,17 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        public Builder employee(Nullable<TimesheetEntryRequestEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The number of hours logged by the employee.</p>
          */
@@ -189,6 +257,17 @@ public final class TimesheetEntryRequest {
 
         public Builder hoursWorked(Double hoursWorked) {
             this.hoursWorked = Optional.ofNullable(hoursWorked);
+            return this;
+        }
+
+        public Builder hoursWorked(Nullable<Double> hoursWorked) {
+            if (hoursWorked.isNull()) {
+                this.hoursWorked = null;
+            } else if (hoursWorked.isEmpty()) {
+                this.hoursWorked = Optional.empty();
+            } else {
+                this.hoursWorked = Optional.of(hoursWorked.get());
+            }
             return this;
         }
 
@@ -206,6 +285,17 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        public Builder startTime(Nullable<OffsetDateTime> startTime) {
+            if (startTime.isNull()) {
+                this.startTime = null;
+            } else if (startTime.isEmpty()) {
+                this.startTime = Optional.empty();
+            } else {
+                this.startTime = Optional.of(startTime.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The time at which the employee ended work.</p>
          */
@@ -220,6 +310,17 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        public Builder endTime(Nullable<OffsetDateTime> endTime) {
+            if (endTime.isNull()) {
+                this.endTime = null;
+            } else if (endTime.isEmpty()) {
+                this.endTime = Optional.empty();
+            } else {
+                this.endTime = Optional.of(endTime.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -231,6 +332,17 @@ public final class TimesheetEntryRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -239,6 +351,17 @@ public final class TimesheetEntryRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

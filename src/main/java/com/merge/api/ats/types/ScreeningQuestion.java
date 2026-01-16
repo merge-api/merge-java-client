@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -82,8 +85,11 @@ public final class ScreeningQuestion {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -106,24 +112,33 @@ public final class ScreeningQuestion {
     /**
      * @return The job associated with the screening question.
      */
-    @JsonProperty("job")
+    @JsonIgnore
     public Optional<ScreeningQuestionJob> getJob() {
+        if (job == null) {
+            return Optional.empty();
+        }
         return job;
     }
 
     /**
      * @return The description of the screening question
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The title of the screening question
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
@@ -140,16 +155,22 @@ public final class ScreeningQuestion {
      * <li><code>BOOLEAN</code> - BOOLEAN</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<ScreeningQuestionType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return Whether or not the screening question is required.
      */
-    @JsonProperty("required")
+    @JsonIgnore
     public Optional<Boolean> getRequired() {
+        if (required == null) {
+            return Optional.empty();
+        }
         return required;
     }
 
@@ -164,6 +185,42 @@ public final class ScreeningQuestion {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job")
+    private Optional<ScreeningQuestionJob> _getJob() {
+        return job;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<ScreeningQuestionType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("required")
+    private Optional<Boolean> _getRequired() {
+        return required;
     }
 
     @java.lang.Override
@@ -285,6 +342,17 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -327,6 +395,17 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        public Builder job(Nullable<ScreeningQuestionJob> job) {
+            if (job.isNull()) {
+                this.job = null;
+            } else if (job.isEmpty()) {
+                this.job = Optional.empty();
+            } else {
+                this.job = Optional.of(job.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The description of the screening question</p>
          */
@@ -341,6 +420,17 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The title of the screening question</p>
          */
@@ -352,6 +442,17 @@ public final class ScreeningQuestion {
 
         public Builder title(String title) {
             this.title = Optional.ofNullable(title);
+            return this;
+        }
+
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
             return this;
         }
 
@@ -379,6 +480,17 @@ public final class ScreeningQuestion {
             return this;
         }
 
+        public Builder type(Nullable<ScreeningQuestionType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether or not the screening question is required.</p>
          */
@@ -390,6 +502,17 @@ public final class ScreeningQuestion {
 
         public Builder required(Boolean required) {
             this.required = Optional.ofNullable(required);
+            return this;
+        }
+
+        public Builder required(Nullable<Boolean> required) {
+            if (required.isNull()) {
+                this.required = null;
+            } else if (required.isEmpty()) {
+                this.required = Optional.empty();
+            } else {
+                this.required = Optional.of(required.get());
+            }
             return this;
         }
 

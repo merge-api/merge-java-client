@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -41,19 +44,37 @@ public final class FieldMappingApiInstanceRemoteField {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("remote_key_name")
+    @JsonIgnore
     public Optional<String> getRemoteKeyName() {
+        if (remoteKeyName == null) {
+            return Optional.empty();
+        }
         return remoteKeyName;
     }
 
-    @JsonProperty("schema")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getSchema() {
+        if (schema == null) {
+            return Optional.empty();
+        }
         return schema;
     }
 
     @JsonProperty("remote_endpoint_info")
     public FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo getRemoteEndpointInfo() {
         return remoteEndpointInfo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_key_name")
+    private Optional<String> _getRemoteKeyName() {
+        return remoteKeyName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("schema")
+    private Optional<Map<String, JsonNode>> _getSchema() {
+        return schema;
     }
 
     @java.lang.Override
@@ -102,9 +123,13 @@ public final class FieldMappingApiInstanceRemoteField {
 
         _FinalStage remoteKeyName(String remoteKeyName);
 
+        _FinalStage remoteKeyName(Nullable<String> remoteKeyName);
+
         _FinalStage schema(Optional<Map<String, JsonNode>> schema);
 
         _FinalStage schema(Map<String, JsonNode> schema);
+
+        _FinalStage schema(Nullable<Map<String, JsonNode>> schema);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -137,6 +162,18 @@ public final class FieldMappingApiInstanceRemoteField {
         }
 
         @java.lang.Override
+        public _FinalStage schema(Nullable<Map<String, JsonNode>> schema) {
+            if (schema.isNull()) {
+                this.schema = null;
+            } else if (schema.isEmpty()) {
+                this.schema = Optional.empty();
+            } else {
+                this.schema = Optional.of(schema.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage schema(Map<String, JsonNode> schema) {
             this.schema = Optional.ofNullable(schema);
             return this;
@@ -146,6 +183,18 @@ public final class FieldMappingApiInstanceRemoteField {
         @JsonSetter(value = "schema", nulls = Nulls.SKIP)
         public _FinalStage schema(Optional<Map<String, JsonNode>> schema) {
             this.schema = schema;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage remoteKeyName(Nullable<String> remoteKeyName) {
+            if (remoteKeyName.isNull()) {
+                this.remoteKeyName = null;
+            } else if (remoteKeyName.isEmpty()) {
+                this.remoteKeyName = Optional.empty();
+            } else {
+                this.remoteKeyName = Optional.of(remoteKeyName.get());
+            }
             return this;
         }
 

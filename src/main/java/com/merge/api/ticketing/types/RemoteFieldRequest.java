@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -42,8 +45,17 @@ public final class RemoteFieldRequest {
         return remoteFieldClass;
     }
 
-    @JsonProperty("value")
+    @JsonIgnore
     public Optional<JsonNode> getValue() {
+        if (value == null) {
+            return Optional.empty();
+        }
+        return value;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("value")
+    private Optional<JsonNode> _getValue() {
         return value;
     }
 
@@ -88,6 +100,8 @@ public final class RemoteFieldRequest {
         _FinalStage value(Optional<JsonNode> value);
 
         _FinalStage value(JsonNode value);
+
+        _FinalStage value(Nullable<JsonNode> value);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -112,6 +126,18 @@ public final class RemoteFieldRequest {
         @JsonSetter("remote_field_class")
         public _FinalStage remoteFieldClass(@NotNull RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage value(Nullable<JsonNode> value) {
+            if (value.isNull()) {
+                this.value = null;
+            } else if (value.isEmpty()) {
+                this.value = Optional.empty();
+            } else {
+                this.value = Optional.of(value.get());
+            }
             return this;
         }
 

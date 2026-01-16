@@ -5,12 +5,15 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -69,8 +72,11 @@ public final class Permission {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -93,16 +99,22 @@ public final class Permission {
     /**
      * @return The user that is granted this permission. This will only be populated if the type is <code>USER</code>.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<PermissionUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
         return user;
     }
 
     /**
      * @return The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.
      */
-    @JsonProperty("group")
+    @JsonIgnore
     public Optional<PermissionGroup> getGroup() {
+        if (group == null) {
+            return Optional.empty();
+        }
         return group;
     }
 
@@ -115,16 +127,52 @@ public final class Permission {
      * <li><code>ANYONE</code> - ANYONE</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<PermissionType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
-    @JsonProperty("roles")
+    @JsonIgnore
     public Optional<List<Optional<PermissionRolesItem>>> getRoles() {
+        if (roles == null) {
+            return Optional.empty();
+        }
+        return roles;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<PermissionUser> _getUser() {
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("group")
+    private Optional<PermissionGroup> _getGroup() {
+        return group;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<PermissionType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("roles")
+    private Optional<List<Optional<PermissionRolesItem>>> _getRoles() {
         return roles;
     }
 
@@ -225,6 +273,17 @@ public final class Permission {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -267,6 +326,17 @@ public final class Permission {
             return this;
         }
 
+        public Builder user(Nullable<PermissionUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.</p>
          */
@@ -278,6 +348,17 @@ public final class Permission {
 
         public Builder group(PermissionGroup group) {
             this.group = Optional.ofNullable(group);
+            return this;
+        }
+
+        public Builder group(Nullable<PermissionGroup> group) {
+            if (group.isNull()) {
+                this.group = null;
+            } else if (group.isEmpty()) {
+                this.group = Optional.empty();
+            } else {
+                this.group = Optional.of(group.get());
+            }
             return this;
         }
 
@@ -301,6 +382,17 @@ public final class Permission {
             return this;
         }
 
+        public Builder type(Nullable<PermissionType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.</p>
          */
@@ -312,6 +404,17 @@ public final class Permission {
 
         public Builder roles(List<Optional<PermissionRolesItem>> roles) {
             this.roles = Optional.ofNullable(roles);
+            return this;
+        }
+
+        public Builder roles(Nullable<List<Optional<PermissionRolesItem>>> roles) {
+            if (roles.isNull()) {
+                this.roles = null;
+            } else if (roles.isEmpty()) {
+                this.roles = Optional.empty();
+            } else {
+                this.roles = Optional.of(roles.get());
+            }
             return this;
         }
 

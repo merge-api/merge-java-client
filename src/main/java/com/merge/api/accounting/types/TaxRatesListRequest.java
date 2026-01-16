@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -23,7 +26,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TaxRatesListRequest.Builder.class)
 public final class TaxRatesListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<TaxRatesListRequestExpandItem>> expand;
 
     private final Optional<String> companyId;
 
@@ -52,7 +55,7 @@ public final class TaxRatesListRequest {
     private final Map<String, Object> additionalProperties;
 
     private TaxRatesListRequest(
-            Optional<List<String>> expand,
+            Optional<List<TaxRatesListRequestExpandItem>> expand,
             Optional<String> companyId,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
@@ -86,7 +89,7 @@ public final class TaxRatesListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<TaxRatesListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -165,8 +168,11 @@ public final class TaxRatesListRequest {
     /**
      * @return If provided, will only return TaxRates with this name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -181,8 +187,23 @@ public final class TaxRatesListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
         return remoteId;
     }
 
@@ -242,7 +263,7 @@ public final class TaxRatesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<TaxRatesListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<String> companyId = Optional.empty();
 
@@ -294,17 +315,17 @@ public final class TaxRatesListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<TaxRatesListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<TaxRatesListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(TaxRatesListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -449,6 +470,17 @@ public final class TaxRatesListRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Number of results to return per page.</p>
          */
@@ -474,6 +506,17 @@ public final class TaxRatesListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -40,18 +43,45 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("item_type")
+    @JsonIgnore
     public Optional<String> getItemType() {
+        if (itemType == null) {
+            return Optional.empty();
+        }
         return itemType;
     }
 
-    @JsonProperty("item_format")
+    @JsonIgnore
     public Optional<String> getItemFormat() {
+        if (itemFormat == null) {
+            return Optional.empty();
+        }
         return itemFormat;
     }
 
-    @JsonProperty("item_choices")
+    @JsonIgnore
     public Optional<List<Optional<String>>> getItemChoices() {
+        if (itemChoices == null) {
+            return Optional.empty();
+        }
+        return itemChoices;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item_type")
+    private Optional<String> _getItemType() {
+        return itemType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item_format")
+    private Optional<String> _getItemFormat() {
+        return itemFormat;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item_choices")
+    private Optional<List<Optional<String>>> _getItemChoices() {
         return itemChoices;
     }
 
@@ -118,6 +148,17 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
             return this;
         }
 
+        public Builder itemType(Nullable<String> itemType) {
+            if (itemType.isNull()) {
+                this.itemType = null;
+            } else if (itemType.isEmpty()) {
+                this.itemType = Optional.empty();
+            } else {
+                this.itemType = Optional.of(itemType.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item_format", nulls = Nulls.SKIP)
         public Builder itemFormat(Optional<String> itemFormat) {
             this.itemFormat = itemFormat;
@@ -129,6 +170,17 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
             return this;
         }
 
+        public Builder itemFormat(Nullable<String> itemFormat) {
+            if (itemFormat.isNull()) {
+                this.itemFormat = null;
+            } else if (itemFormat.isEmpty()) {
+                this.itemFormat = Optional.empty();
+            } else {
+                this.itemFormat = Optional.of(itemFormat.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item_choices", nulls = Nulls.SKIP)
         public Builder itemChoices(Optional<List<Optional<String>>> itemChoices) {
             this.itemChoices = itemChoices;
@@ -137,6 +189,17 @@ public final class RemoteFieldClassForCustomObjectClassItemSchema {
 
         public Builder itemChoices(List<Optional<String>> itemChoices) {
             this.itemChoices = Optional.ofNullable(itemChoices);
+            return this;
+        }
+
+        public Builder itemChoices(Nullable<List<Optional<String>>> itemChoices) {
+            if (itemChoices.isNull()) {
+                this.itemChoices = null;
+            } else if (itemChoices.isEmpty()) {
+                this.itemChoices = Optional.empty();
+            } else {
+                this.itemChoices = Optional.of(itemChoices.get());
+            }
             return this;
         }
 

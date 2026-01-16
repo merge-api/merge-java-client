@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -23,7 +26,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountsListRequest.Builder.class)
 public final class AccountsListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<AccountsListRequestExpandItem>> expand;
 
     private final Optional<String> accountType;
 
@@ -62,7 +65,7 @@ public final class AccountsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private AccountsListRequest(
-            Optional<List<String>> expand,
+            Optional<List<AccountsListRequestExpandItem>> expand,
             Optional<String> accountType,
             Optional<AccountsListRequestClassification> classification,
             Optional<String> companyId,
@@ -106,7 +109,7 @@ public final class AccountsListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<AccountsListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -121,8 +124,11 @@ public final class AccountsListRequest {
     /**
      * @return If provided, will only return accounts with this classification.
      */
-    @JsonProperty("classification")
+    @JsonIgnore
     public Optional<AccountsListRequestClassification> getClassification() {
+        if (classification == null) {
+            return Optional.empty();
+        }
         return classification;
     }
 
@@ -201,8 +207,11 @@ public final class AccountsListRequest {
     /**
      * @return If provided, will only return Accounts with this name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -225,8 +234,11 @@ public final class AccountsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -241,8 +253,35 @@ public final class AccountsListRequest {
     /**
      * @return If provided, will only return accounts with this status.
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<AccountsListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("classification")
+    private Optional<AccountsListRequestClassification> _getClassification() {
+        return classification;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<AccountsListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -312,7 +351,7 @@ public final class AccountsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<AccountsListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<String> accountType = Optional.empty();
 
@@ -379,17 +418,17 @@ public final class AccountsListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<AccountsListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<AccountsListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(AccountsListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -419,6 +458,17 @@ public final class AccountsListRequest {
 
         public Builder classification(AccountsListRequestClassification classification) {
             this.classification = Optional.ofNullable(classification);
+            return this;
+        }
+
+        public Builder classification(Nullable<AccountsListRequestClassification> classification) {
+            if (classification.isNull()) {
+                this.classification = null;
+            } else if (classification.isEmpty()) {
+                this.classification = Optional.empty();
+            } else {
+                this.classification = Optional.of(classification.get());
+            }
             return this;
         }
 
@@ -562,6 +612,17 @@ public final class AccountsListRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Number of results to return per page.</p>
          */
@@ -604,6 +665,17 @@ public final class AccountsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
@@ -629,6 +701,17 @@ public final class AccountsListRequest {
 
         public Builder status(AccountsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<AccountsListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

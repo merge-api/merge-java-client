@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -110,8 +113,11 @@ public final class Item {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -134,8 +140,11 @@ public final class Item {
     /**
      * @return The item's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -146,8 +155,11 @@ public final class Item {
      * <li><code>ARCHIVED</code> - ARCHIVED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<ItemStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -160,72 +172,99 @@ public final class Item {
      * <li><code>UNKNOWN</code> - UNKNOWN</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<ItemType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return The item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<Double> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The price at which the item is purchased from a vendor.
      */
-    @JsonProperty("purchase_price")
+    @JsonIgnore
     public Optional<Double> getPurchasePrice() {
+        if (purchasePrice == null) {
+            return Optional.empty();
+        }
         return purchasePrice;
     }
 
     /**
      * @return References the default account used to record a purchase of the item.
      */
-    @JsonProperty("purchase_account")
+    @JsonIgnore
     public Optional<ItemPurchaseAccount> getPurchaseAccount() {
+        if (purchaseAccount == null) {
+            return Optional.empty();
+        }
         return purchaseAccount;
     }
 
     /**
      * @return References the default account used to record a sale.
      */
-    @JsonProperty("sales_account")
+    @JsonIgnore
     public Optional<ItemSalesAccount> getSalesAccount() {
+        if (salesAccount == null) {
+            return Optional.empty();
+        }
         return salesAccount;
     }
 
     /**
      * @return The company the item belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<ItemCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The default purchase tax rate for this item.
      */
-    @JsonProperty("purchase_tax_rate")
+    @JsonIgnore
     public Optional<ItemPurchaseTaxRate> getPurchaseTaxRate() {
+        if (purchaseTaxRate == null) {
+            return Optional.empty();
+        }
         return purchaseTaxRate;
     }
 
     /**
      * @return The default sales tax rate for this item.
      */
-    @JsonProperty("sales_tax_rate")
+    @JsonIgnore
     public Optional<ItemSalesTaxRate> getSalesTaxRate() {
+        if (salesTaxRate == null) {
+            return Optional.empty();
+        }
         return salesTaxRate;
     }
 
     /**
      * @return When the third party's item note was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
@@ -237,13 +276,103 @@ public final class Item {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<ItemStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<ItemType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<Double> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_price")
+    private Optional<Double> _getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_account")
+    private Optional<ItemPurchaseAccount> _getPurchaseAccount() {
+        return purchaseAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("sales_account")
+    private Optional<ItemSalesAccount> _getSalesAccount() {
+        return salesAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<ItemCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_tax_rate")
+    private Optional<ItemPurchaseTaxRate> _getPurchaseTaxRate() {
+        return purchaseTaxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("sales_tax_rate")
+    private Optional<ItemSalesTaxRate> _getSalesTaxRate() {
+        return salesTaxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -401,6 +530,17 @@ public final class Item {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -443,6 +583,17 @@ public final class Item {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The item's status.</p>
          * <ul>
@@ -458,6 +609,17 @@ public final class Item {
 
         public Builder status(ItemStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<ItemStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 
@@ -481,6 +643,17 @@ public final class Item {
             return this;
         }
 
+        public Builder type(Nullable<ItemType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The item's unit price.</p>
          */
@@ -492,6 +665,17 @@ public final class Item {
 
         public Builder unitPrice(Double unitPrice) {
             this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(Nullable<Double> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
             return this;
         }
 
@@ -509,6 +693,17 @@ public final class Item {
             return this;
         }
 
+        public Builder purchasePrice(Nullable<Double> purchasePrice) {
+            if (purchasePrice.isNull()) {
+                this.purchasePrice = null;
+            } else if (purchasePrice.isEmpty()) {
+                this.purchasePrice = Optional.empty();
+            } else {
+                this.purchasePrice = Optional.of(purchasePrice.get());
+            }
+            return this;
+        }
+
         /**
          * <p>References the default account used to record a purchase of the item.</p>
          */
@@ -520,6 +715,17 @@ public final class Item {
 
         public Builder purchaseAccount(ItemPurchaseAccount purchaseAccount) {
             this.purchaseAccount = Optional.ofNullable(purchaseAccount);
+            return this;
+        }
+
+        public Builder purchaseAccount(Nullable<ItemPurchaseAccount> purchaseAccount) {
+            if (purchaseAccount.isNull()) {
+                this.purchaseAccount = null;
+            } else if (purchaseAccount.isEmpty()) {
+                this.purchaseAccount = Optional.empty();
+            } else {
+                this.purchaseAccount = Optional.of(purchaseAccount.get());
+            }
             return this;
         }
 
@@ -537,6 +743,17 @@ public final class Item {
             return this;
         }
 
+        public Builder salesAccount(Nullable<ItemSalesAccount> salesAccount) {
+            if (salesAccount.isNull()) {
+                this.salesAccount = null;
+            } else if (salesAccount.isEmpty()) {
+                this.salesAccount = Optional.empty();
+            } else {
+                this.salesAccount = Optional.of(salesAccount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the item belongs to.</p>
          */
@@ -548,6 +765,17 @@ public final class Item {
 
         public Builder company(ItemCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<ItemCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -565,6 +793,17 @@ public final class Item {
             return this;
         }
 
+        public Builder purchaseTaxRate(Nullable<ItemPurchaseTaxRate> purchaseTaxRate) {
+            if (purchaseTaxRate.isNull()) {
+                this.purchaseTaxRate = null;
+            } else if (purchaseTaxRate.isEmpty()) {
+                this.purchaseTaxRate = Optional.empty();
+            } else {
+                this.purchaseTaxRate = Optional.of(purchaseTaxRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The default sales tax rate for this item.</p>
          */
@@ -579,6 +818,17 @@ public final class Item {
             return this;
         }
 
+        public Builder salesTaxRate(Nullable<ItemSalesTaxRate> salesTaxRate) {
+            if (salesTaxRate.isNull()) {
+                this.salesTaxRate = null;
+            } else if (salesTaxRate.isEmpty()) {
+                this.salesTaxRate = Optional.empty();
+            } else {
+                this.salesTaxRate = Optional.of(salesTaxRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's item note was updated.</p>
          */
@@ -590,6 +840,17 @@ public final class Item {
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
             this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -618,6 +879,17 @@ public final class Item {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -626,6 +898,17 @@ public final class Item {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

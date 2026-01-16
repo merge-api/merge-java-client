@@ -10,6 +10,7 @@ import com.merge.api.crm.types.CrmCustomObjectEndpointRequest;
 import com.merge.api.crm.types.CrmCustomObjectResponse;
 import com.merge.api.crm.types.CustomObject;
 import com.merge.api.crm.types.CustomObjectClassesCustomObjectsListRequest;
+import com.merge.api.crm.types.CustomObjectClassesCustomObjectsMetaPostRetrieveRequest;
 import com.merge.api.crm.types.CustomObjectClassesCustomObjectsRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.CustomObjectClassesCustomObjectsRetrieveRequest;
 import com.merge.api.crm.types.MetaResponse;
@@ -128,9 +129,21 @@ public class CustomObjectsClient {
      * Returns metadata for <code>CRMCustomObject</code> POSTs.
      */
     public MetaResponse customObjectClassesCustomObjectsMetaPostRetrieve(
-            String customObjectClassId, RequestOptions requestOptions) {
+            String customObjectClassId, CustomObjectClassesCustomObjectsMetaPostRetrieveRequest request) {
         return this.rawClient
-                .customObjectClassesCustomObjectsMetaPostRetrieve(customObjectClassId, requestOptions)
+                .customObjectClassesCustomObjectsMetaPostRetrieve(customObjectClassId, request)
+                .body();
+    }
+
+    /**
+     * Returns metadata for <code>CRMCustomObject</code> POSTs.
+     */
+    public MetaResponse customObjectClassesCustomObjectsMetaPostRetrieve(
+            String customObjectClassId,
+            CustomObjectClassesCustomObjectsMetaPostRetrieveRequest request,
+            RequestOptions requestOptions) {
+        return this.rawClient
+                .customObjectClassesCustomObjectsMetaPostRetrieve(customObjectClassId, request, requestOptions)
                 .body();
     }
 

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -123,8 +126,11 @@ public final class GeneralLedgerTransactionLine {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -144,31 +150,46 @@ public final class GeneralLedgerTransactionLine {
         return modifiedAt;
     }
 
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The company the GeneralLedgerTransaction belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
-    @JsonProperty("project")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineProject> getProject() {
+        if (project == null) {
+            return Optional.empty();
+        }
         return project;
     }
 
@@ -483,8 +504,11 @@ public final class GeneralLedgerTransactionLine {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("base_currency")
+    @JsonIgnore
     public Optional<TransactionCurrencyEnum> getBaseCurrency() {
+        if (baseCurrency == null) {
+            return Optional.empty();
+        }
         return baseCurrency;
     }
 
@@ -799,24 +823,33 @@ public final class GeneralLedgerTransactionLine {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("transaction_currency")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineTransactionCurrency> getTransactionCurrency() {
+        if (transactionCurrency == null) {
+            return Optional.empty();
+        }
         return transactionCurrency;
     }
 
     /**
      * @return The exchange rate between the base currency and the transaction currency.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return A description of the line item.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -835,8 +868,11 @@ public final class GeneralLedgerTransactionLine {
         return creditAmount;
     }
 
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<GeneralLedgerTransactionLineItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
@@ -858,8 +894,83 @@ public final class GeneralLedgerTransactionLine {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<GeneralLedgerTransactionLineAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<GeneralLedgerTransactionLineCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<GeneralLedgerTransactionLineEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<GeneralLedgerTransactionLineContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("project")
+    private Optional<GeneralLedgerTransactionLineProject> _getProject() {
+        return project;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("base_currency")
+    private Optional<TransactionCurrencyEnum> _getBaseCurrency() {
+        return baseCurrency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_currency")
+    private Optional<GeneralLedgerTransactionLineTransactionCurrency> _getTransactionCurrency() {
+        return transactionCurrency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<GeneralLedgerTransactionLineItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
         return fieldMappings;
     }
 
@@ -965,6 +1076,8 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage remoteId(String remoteId);
 
+        _FinalStage remoteId(Nullable<String> remoteId);
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -983,6 +1096,8 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage account(GeneralLedgerTransactionLineAccount account);
 
+        _FinalStage account(Nullable<GeneralLedgerTransactionLineAccount> account);
+
         /**
          * <p>The company the GeneralLedgerTransaction belongs to.</p>
          */
@@ -990,17 +1105,25 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage company(GeneralLedgerTransactionLineCompany company);
 
+        _FinalStage company(Nullable<GeneralLedgerTransactionLineCompany> company);
+
         _FinalStage employee(Optional<GeneralLedgerTransactionLineEmployee> employee);
 
         _FinalStage employee(GeneralLedgerTransactionLineEmployee employee);
+
+        _FinalStage employee(Nullable<GeneralLedgerTransactionLineEmployee> employee);
 
         _FinalStage contact(Optional<GeneralLedgerTransactionLineContact> contact);
 
         _FinalStage contact(GeneralLedgerTransactionLineContact contact);
 
+        _FinalStage contact(Nullable<GeneralLedgerTransactionLineContact> contact);
+
         _FinalStage project(Optional<GeneralLedgerTransactionLineProject> project);
 
         _FinalStage project(GeneralLedgerTransactionLineProject project);
+
+        _FinalStage project(Nullable<GeneralLedgerTransactionLineProject> project);
 
         /**
          * <p>The base currency of the transaction</p>
@@ -1317,6 +1440,8 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency);
 
+        _FinalStage baseCurrency(Nullable<TransactionCurrencyEnum> baseCurrency);
+
         /**
          * <p>The transaction currency that the transaction is made in.</p>
          * <ul>
@@ -1632,6 +1757,8 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage transactionCurrency(GeneralLedgerTransactionLineTransactionCurrency transactionCurrency);
 
+        _FinalStage transactionCurrency(Nullable<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency);
+
         /**
          * <p>The exchange rate between the base currency and the transaction currency.</p>
          */
@@ -1639,12 +1766,16 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage exchangeRate(String exchangeRate);
 
+        _FinalStage exchangeRate(Nullable<String> exchangeRate);
+
         /**
          * <p>A description of the line item.</p>
          */
         _FinalStage description(Optional<String> description);
 
         _FinalStage description(String description);
+
+        _FinalStage description(Nullable<String> description);
 
         _FinalStage trackingCategories(
                 Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories);
@@ -1654,6 +1785,8 @@ public final class GeneralLedgerTransactionLine {
         _FinalStage item(Optional<GeneralLedgerTransactionLineItem> item);
 
         _FinalStage item(GeneralLedgerTransactionLineItem item);
+
+        _FinalStage item(Nullable<GeneralLedgerTransactionLineItem> item);
 
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
@@ -1665,6 +1798,8 @@ public final class GeneralLedgerTransactionLine {
         _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
 
         _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
+
+        _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -1777,6 +1912,18 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
+        public _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
@@ -1806,6 +1953,18 @@ public final class GeneralLedgerTransactionLine {
         @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
         public _FinalStage remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
             this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage item(Nullable<GeneralLedgerTransactionLineItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
             return this;
         }
 
@@ -1842,6 +2001,22 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>A description of the line item.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage description(String description) {
             this.description = Optional.ofNullable(description);
             return this;
@@ -1862,6 +2037,22 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The exchange rate between the base currency and the transaction currency.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage exchangeRate(String exchangeRate) {
             this.exchangeRate = Optional.ofNullable(exchangeRate);
             return this;
@@ -1874,6 +2065,331 @@ public final class GeneralLedgerTransactionLine {
         @JsonSetter(value = "exchange_rate", nulls = Nulls.SKIP)
         public _FinalStage exchangeRate(Optional<String> exchangeRate) {
             this.exchangeRate = exchangeRate;
+            return this;
+        }
+
+        /**
+         * <p>The transaction currency that the transaction is made in.</p>
+         * <ul>
+         * <li><code>XUA</code> - ADB Unit of Account</li>
+         * <li><code>AFN</code> - Afghan Afghani</li>
+         * <li><code>AFA</code> - Afghan Afghani (1927–2002)</li>
+         * <li><code>ALL</code> - Albanian Lek</li>
+         * <li><code>ALK</code> - Albanian Lek (1946–1965)</li>
+         * <li><code>DZD</code> - Algerian Dinar</li>
+         * <li><code>ADP</code> - Andorran Peseta</li>
+         * <li><code>AOA</code> - Angolan Kwanza</li>
+         * <li><code>AOK</code> - Angolan Kwanza (1977–1991)</li>
+         * <li><code>AON</code> - Angolan New Kwanza (1990–2000)</li>
+         * <li><code>AOR</code> - Angolan Readjusted Kwanza (1995–1999)</li>
+         * <li><code>ARA</code> - Argentine Austral</li>
+         * <li><code>ARS</code> - Argentine Peso</li>
+         * <li><code>ARM</code> - Argentine Peso (1881–1970)</li>
+         * <li><code>ARP</code> - Argentine Peso (1983–1985)</li>
+         * <li><code>ARL</code> - Argentine Peso Ley (1970–1983)</li>
+         * <li><code>AMD</code> - Armenian Dram</li>
+         * <li><code>AWG</code> - Aruban Florin</li>
+         * <li><code>AUD</code> - Australian Dollar</li>
+         * <li><code>ATS</code> - Austrian Schilling</li>
+         * <li><code>AZN</code> - Azerbaijani Manat</li>
+         * <li><code>AZM</code> - Azerbaijani Manat (1993–2006)</li>
+         * <li><code>BSD</code> - Bahamian Dollar</li>
+         * <li><code>BHD</code> - Bahraini Dinar</li>
+         * <li><code>BDT</code> - Bangladeshi Taka</li>
+         * <li><code>BBD</code> - Barbadian Dollar</li>
+         * <li><code>BYN</code> - Belarusian Ruble</li>
+         * <li><code>BYB</code> - Belarusian Ruble (1994–1999)</li>
+         * <li><code>BYR</code> - Belarusian Ruble (2000–2016)</li>
+         * <li><code>BEF</code> - Belgian Franc</li>
+         * <li><code>BEC</code> - Belgian Franc (convertible)</li>
+         * <li><code>BEL</code> - Belgian Franc (financial)</li>
+         * <li><code>BZD</code> - Belize Dollar</li>
+         * <li><code>BMD</code> - Bermudan Dollar</li>
+         * <li><code>BTN</code> - Bhutanese Ngultrum</li>
+         * <li><code>BOB</code> - Bolivian Boliviano</li>
+         * <li><code>BOL</code> - Bolivian Boliviano (1863–1963)</li>
+         * <li><code>BOV</code> - Bolivian Mvdol</li>
+         * <li><code>BOP</code> - Bolivian Peso</li>
+         * <li><code>BAM</code> - Bosnia-Herzegovina Convertible Mark</li>
+         * <li><code>BAD</code> - Bosnia-Herzegovina Dinar (1992–1994)</li>
+         * <li><code>BAN</code> - Bosnia-Herzegovina New Dinar (1994–1997)</li>
+         * <li><code>BWP</code> - Botswanan Pula</li>
+         * <li><code>BRC</code> - Brazilian Cruzado (1986–1989)</li>
+         * <li><code>BRZ</code> - Brazilian Cruzeiro (1942–1967)</li>
+         * <li><code>BRE</code> - Brazilian Cruzeiro (1990–1993)</li>
+         * <li><code>BRR</code> - Brazilian Cruzeiro (1993–1994)</li>
+         * <li><code>BRN</code> - Brazilian New Cruzado (1989–1990)</li>
+         * <li><code>BRB</code> - Brazilian New Cruzeiro (1967–1986)</li>
+         * <li><code>BRL</code> - Brazilian Real</li>
+         * <li><code>GBP</code> - British Pound</li>
+         * <li><code>BND</code> - Brunei Dollar</li>
+         * <li><code>BGL</code> - Bulgarian Hard Lev</li>
+         * <li><code>BGN</code> - Bulgarian Lev</li>
+         * <li><code>BGO</code> - Bulgarian Lev (1879–1952)</li>
+         * <li><code>BGM</code> - Bulgarian Socialist Lev</li>
+         * <li><code>BUK</code> - Burmese Kyat</li>
+         * <li><code>BIF</code> - Burundian Franc</li>
+         * <li><code>XPF</code> - CFP Franc</li>
+         * <li><code>KHR</code> - Cambodian Riel</li>
+         * <li><code>CAD</code> - Canadian Dollar</li>
+         * <li><code>CVE</code> - Cape Verdean Escudo</li>
+         * <li><code>KYD</code> - Cayman Islands Dollar</li>
+         * <li><code>XAF</code> - Central African CFA Franc</li>
+         * <li><code>CLE</code> - Chilean Escudo</li>
+         * <li><code>CLP</code> - Chilean Peso</li>
+         * <li><code>CLF</code> - Chilean Unit of Account (UF)</li>
+         * <li><code>CNX</code> - Chinese People’s Bank Dollar</li>
+         * <li><code>CNY</code> - Chinese Yuan</li>
+         * <li><code>CNH</code> - Chinese Yuan (offshore)</li>
+         * <li><code>COP</code> - Colombian Peso</li>
+         * <li><code>COU</code> - Colombian Real Value Unit</li>
+         * <li><code>KMF</code> - Comorian Franc</li>
+         * <li><code>CDF</code> - Congolese Franc</li>
+         * <li><code>CRC</code> - Costa Rican Colón</li>
+         * <li><code>HRD</code> - Croatian Dinar</li>
+         * <li><code>HRK</code> - Croatian Kuna</li>
+         * <li><code>CUC</code> - Cuban Convertible Peso</li>
+         * <li><code>CUP</code> - Cuban Peso</li>
+         * <li><code>CYP</code> - Cypriot Pound</li>
+         * <li><code>CZK</code> - Czech Koruna</li>
+         * <li><code>CSK</code> - Czechoslovak Hard Koruna</li>
+         * <li><code>DKK</code> - Danish Krone</li>
+         * <li><code>DJF</code> - Djiboutian Franc</li>
+         * <li><code>DOP</code> - Dominican Peso</li>
+         * <li><code>NLG</code> - Dutch Guilder</li>
+         * <li><code>XCD</code> - East Caribbean Dollar</li>
+         * <li><code>DDM</code> - East German Mark</li>
+         * <li><code>ECS</code> - Ecuadorian Sucre</li>
+         * <li><code>ECV</code> - Ecuadorian Unit of Constant Value</li>
+         * <li><code>EGP</code> - Egyptian Pound</li>
+         * <li><code>GQE</code> - Equatorial Guinean Ekwele</li>
+         * <li><code>ERN</code> - Eritrean Nakfa</li>
+         * <li><code>EEK</code> - Estonian Kroon</li>
+         * <li><code>ETB</code> - Ethiopian Birr</li>
+         * <li><code>EUR</code> - Euro</li>
+         * <li><code>XBA</code> - European Composite Unit</li>
+         * <li><code>XEU</code> - European Currency Unit</li>
+         * <li><code>XBB</code> - European Monetary Unit</li>
+         * <li><code>XBC</code> - European Unit of Account (XBC)</li>
+         * <li><code>XBD</code> - European Unit of Account (XBD)</li>
+         * <li><code>FKP</code> - Falkland Islands Pound</li>
+         * <li><code>FJD</code> - Fijian Dollar</li>
+         * <li><code>FIM</code> - Finnish Markka</li>
+         * <li><code>FRF</code> - French Franc</li>
+         * <li><code>XFO</code> - French Gold Franc</li>
+         * <li><code>XFU</code> - French UIC-Franc</li>
+         * <li><code>GMD</code> - Gambian Dalasi</li>
+         * <li><code>GEK</code> - Georgian Kupon Larit</li>
+         * <li><code>GEL</code> - Georgian Lari</li>
+         * <li><code>DEM</code> - German Mark</li>
+         * <li><code>GHS</code> - Ghanaian Cedi</li>
+         * <li><code>GHC</code> - Ghanaian Cedi (1979–2007)</li>
+         * <li><code>GIP</code> - Gibraltar Pound</li>
+         * <li><code>XAU</code> - Gold</li>
+         * <li><code>GRD</code> - Greek Drachma</li>
+         * <li><code>GTQ</code> - Guatemalan Quetzal</li>
+         * <li><code>GWP</code> - Guinea-Bissau Peso</li>
+         * <li><code>GNF</code> - Guinean Franc</li>
+         * <li><code>GNS</code> - Guinean Syli</li>
+         * <li><code>GYD</code> - Guyanaese Dollar</li>
+         * <li><code>HTG</code> - Haitian Gourde</li>
+         * <li><code>HNL</code> - Honduran Lempira</li>
+         * <li><code>HKD</code> - Hong Kong Dollar</li>
+         * <li><code>HUF</code> - Hungarian Forint</li>
+         * <li><code>IMP</code> - IMP</li>
+         * <li><code>ISK</code> - Icelandic Króna</li>
+         * <li><code>ISJ</code> - Icelandic Króna (1918–1981)</li>
+         * <li><code>INR</code> - Indian Rupee</li>
+         * <li><code>IDR</code> - Indonesian Rupiah</li>
+         * <li><code>IRR</code> - Iranian Rial</li>
+         * <li><code>IQD</code> - Iraqi Dinar</li>
+         * <li><code>IEP</code> - Irish Pound</li>
+         * <li><code>ILS</code> - Israeli New Shekel</li>
+         * <li><code>ILP</code> - Israeli Pound</li>
+         * <li><code>ILR</code> - Israeli Shekel (1980–1985)</li>
+         * <li><code>ITL</code> - Italian Lira</li>
+         * <li><code>JMD</code> - Jamaican Dollar</li>
+         * <li><code>JPY</code> - Japanese Yen</li>
+         * <li><code>JOD</code> - Jordanian Dinar</li>
+         * <li><code>KZT</code> - Kazakhstani Tenge</li>
+         * <li><code>KES</code> - Kenyan Shilling</li>
+         * <li><code>KWD</code> - Kuwaiti Dinar</li>
+         * <li><code>KGS</code> - Kyrgystani Som</li>
+         * <li><code>LAK</code> - Laotian Kip</li>
+         * <li><code>LVL</code> - Latvian Lats</li>
+         * <li><code>LVR</code> - Latvian Ruble</li>
+         * <li><code>LBP</code> - Lebanese Pound</li>
+         * <li><code>LSL</code> - Lesotho Loti</li>
+         * <li><code>LRD</code> - Liberian Dollar</li>
+         * <li><code>LYD</code> - Libyan Dinar</li>
+         * <li><code>LTL</code> - Lithuanian Litas</li>
+         * <li><code>LTT</code> - Lithuanian Talonas</li>
+         * <li><code>LUL</code> - Luxembourg Financial Franc</li>
+         * <li><code>LUC</code> - Luxembourgian Convertible Franc</li>
+         * <li><code>LUF</code> - Luxembourgian Franc</li>
+         * <li><code>MOP</code> - Macanese Pataca</li>
+         * <li><code>MKD</code> - Macedonian Denar</li>
+         * <li><code>MKN</code> - Macedonian Denar (1992–1993)</li>
+         * <li><code>MGA</code> - Malagasy Ariary</li>
+         * <li><code>MGF</code> - Malagasy Franc</li>
+         * <li><code>MWK</code> - Malawian Kwacha</li>
+         * <li><code>MYR</code> - Malaysian Ringgit</li>
+         * <li><code>MVR</code> - Maldivian Rufiyaa</li>
+         * <li><code>MVP</code> - Maldivian Rupee (1947–1981)</li>
+         * <li><code>MLF</code> - Malian Franc</li>
+         * <li><code>MTL</code> - Maltese Lira</li>
+         * <li><code>MTP</code> - Maltese Pound</li>
+         * <li><code>MRU</code> - Mauritanian Ouguiya</li>
+         * <li><code>MRO</code> - Mauritanian Ouguiya (1973–2017)</li>
+         * <li><code>MUR</code> - Mauritian Rupee</li>
+         * <li><code>MXV</code> - Mexican Investment Unit</li>
+         * <li><code>MXN</code> - Mexican Peso</li>
+         * <li><code>MXP</code> - Mexican Silver Peso (1861–1992)</li>
+         * <li><code>MDC</code> - Moldovan Cupon</li>
+         * <li><code>MDL</code> - Moldovan Leu</li>
+         * <li><code>MCF</code> - Monegasque Franc</li>
+         * <li><code>MNT</code> - Mongolian Tugrik</li>
+         * <li><code>MAD</code> - Moroccan Dirham</li>
+         * <li><code>MAF</code> - Moroccan Franc</li>
+         * <li><code>MZE</code> - Mozambican Escudo</li>
+         * <li><code>MZN</code> - Mozambican Metical</li>
+         * <li><code>MZM</code> - Mozambican Metical (1980–2006)</li>
+         * <li><code>MMK</code> - Myanmar Kyat</li>
+         * <li><code>NAD</code> - Namibian Dollar</li>
+         * <li><code>NPR</code> - Nepalese Rupee</li>
+         * <li><code>ANG</code> - Netherlands Antillean Guilder</li>
+         * <li><code>TWD</code> - New Taiwan Dollar</li>
+         * <li><code>NZD</code> - New Zealand Dollar</li>
+         * <li><code>NIO</code> - Nicaraguan Córdoba</li>
+         * <li><code>NIC</code> - Nicaraguan Córdoba (1988–1991)</li>
+         * <li><code>NGN</code> - Nigerian Naira</li>
+         * <li><code>KPW</code> - North Korean Won</li>
+         * <li><code>NOK</code> - Norwegian Krone</li>
+         * <li><code>OMR</code> - Omani Rial</li>
+         * <li><code>PKR</code> - Pakistani Rupee</li>
+         * <li><code>XPD</code> - Palladium</li>
+         * <li><code>PAB</code> - Panamanian Balboa</li>
+         * <li><code>PGK</code> - Papua New Guinean Kina</li>
+         * <li><code>PYG</code> - Paraguayan Guarani</li>
+         * <li><code>PEI</code> - Peruvian Inti</li>
+         * <li><code>PEN</code> - Peruvian Sol</li>
+         * <li><code>PES</code> - Peruvian Sol (1863–1965)</li>
+         * <li><code>PHP</code> - Philippine Peso</li>
+         * <li><code>XPT</code> - Platinum</li>
+         * <li><code>PLN</code> - Polish Zloty</li>
+         * <li><code>PLZ</code> - Polish Zloty (1950–1995)</li>
+         * <li><code>PTE</code> - Portuguese Escudo</li>
+         * <li><code>GWE</code> - Portuguese Guinea Escudo</li>
+         * <li><code>QAR</code> - Qatari Rial</li>
+         * <li><code>XRE</code> - RINET Funds</li>
+         * <li><code>RHD</code> - Rhodesian Dollar</li>
+         * <li><code>RON</code> - Romanian Leu</li>
+         * <li><code>ROL</code> - Romanian Leu (1952–2006)</li>
+         * <li><code>RUB</code> - Russian Ruble</li>
+         * <li><code>RUR</code> - Russian Ruble (1991–1998)</li>
+         * <li><code>RWF</code> - Rwandan Franc</li>
+         * <li><code>SVC</code> - Salvadoran Colón</li>
+         * <li><code>WST</code> - Samoan Tala</li>
+         * <li><code>SAR</code> - Saudi Riyal</li>
+         * <li><code>RSD</code> - Serbian Dinar</li>
+         * <li><code>CSD</code> - Serbian Dinar (2002–2006)</li>
+         * <li><code>SCR</code> - Seychellois Rupee</li>
+         * <li><code>SLL</code> - Sierra Leonean Leone</li>
+         * <li><code>XAG</code> - Silver</li>
+         * <li><code>SGD</code> - Singapore Dollar</li>
+         * <li><code>SKK</code> - Slovak Koruna</li>
+         * <li><code>SIT</code> - Slovenian Tolar</li>
+         * <li><code>SBD</code> - Solomon Islands Dollar</li>
+         * <li><code>SOS</code> - Somali Shilling</li>
+         * <li><code>ZAR</code> - South African Rand</li>
+         * <li><code>ZAL</code> - South African Rand (financial)</li>
+         * <li><code>KRH</code> - South Korean Hwan (1953–1962)</li>
+         * <li><code>KRW</code> - South Korean Won</li>
+         * <li><code>KRO</code> - South Korean Won (1945–1953)</li>
+         * <li><code>SSP</code> - South Sudanese Pound</li>
+         * <li><code>SUR</code> - Soviet Rouble</li>
+         * <li><code>ESP</code> - Spanish Peseta</li>
+         * <li><code>ESA</code> - Spanish Peseta (A account)</li>
+         * <li><code>ESB</code> - Spanish Peseta (convertible account)</li>
+         * <li><code>XDR</code> - Special Drawing Rights</li>
+         * <li><code>LKR</code> - Sri Lankan Rupee</li>
+         * <li><code>SHP</code> - St. Helena Pound</li>
+         * <li><code>XSU</code> - Sucre</li>
+         * <li><code>SDD</code> - Sudanese Dinar (1992–2007)</li>
+         * <li><code>SDG</code> - Sudanese Pound</li>
+         * <li><code>SDP</code> - Sudanese Pound (1957–1998)</li>
+         * <li><code>SRD</code> - Surinamese Dollar</li>
+         * <li><code>SRG</code> - Surinamese Guilder</li>
+         * <li><code>SZL</code> - Swazi Lilangeni</li>
+         * <li><code>SEK</code> - Swedish Krona</li>
+         * <li><code>CHF</code> - Swiss Franc</li>
+         * <li><code>SYP</code> - Syrian Pound</li>
+         * <li><code>STN</code> - São Tomé &amp; Príncipe Dobra</li>
+         * <li><code>STD</code> - São Tomé &amp; Príncipe Dobra (1977–2017)</li>
+         * <li><code>TVD</code> - TVD</li>
+         * <li><code>TJR</code> - Tajikistani Ruble</li>
+         * <li><code>TJS</code> - Tajikistani Somoni</li>
+         * <li><code>TZS</code> - Tanzanian Shilling</li>
+         * <li><code>XTS</code> - Testing Currency Code</li>
+         * <li><code>THB</code> - Thai Baht</li>
+         * <li><code>XXX</code> - The codes assigned for transactions where no currency is involved</li>
+         * <li><code>TPE</code> - Timorese Escudo</li>
+         * <li><code>TOP</code> - Tongan Paʻanga</li>
+         * <li><code>TTD</code> - Trinidad &amp; Tobago Dollar</li>
+         * <li><code>TND</code> - Tunisian Dinar</li>
+         * <li><code>TRY</code> - Turkish Lira</li>
+         * <li><code>TRL</code> - Turkish Lira (1922–2005)</li>
+         * <li><code>TMT</code> - Turkmenistani Manat</li>
+         * <li><code>TMM</code> - Turkmenistani Manat (1993–2009)</li>
+         * <li><code>USD</code> - US Dollar</li>
+         * <li><code>USN</code> - US Dollar (Next day)</li>
+         * <li><code>USS</code> - US Dollar (Same day)</li>
+         * <li><code>UGX</code> - Ugandan Shilling</li>
+         * <li><code>UGS</code> - Ugandan Shilling (1966–1987)</li>
+         * <li><code>UAH</code> - Ukrainian Hryvnia</li>
+         * <li><code>UAK</code> - Ukrainian Karbovanets</li>
+         * <li><code>AED</code> - United Arab Emirates Dirham</li>
+         * <li><code>UYW</code> - Uruguayan Nominal Wage Index Unit</li>
+         * <li><code>UYU</code> - Uruguayan Peso</li>
+         * <li><code>UYP</code> - Uruguayan Peso (1975–1993)</li>
+         * <li><code>UYI</code> - Uruguayan Peso (Indexed Units)</li>
+         * <li><code>UZS</code> - Uzbekistani Som</li>
+         * <li><code>VUV</code> - Vanuatu Vatu</li>
+         * <li><code>VES</code> - Venezuelan Bolívar</li>
+         * <li><code>VEB</code> - Venezuelan Bolívar (1871–2008)</li>
+         * <li><code>VEF</code> - Venezuelan Bolívar (2008–2018)</li>
+         * <li><code>VND</code> - Vietnamese Dong</li>
+         * <li><code>VNN</code> - Vietnamese Dong (1978–1985)</li>
+         * <li><code>CHE</code> - WIR Euro</li>
+         * <li><code>CHW</code> - WIR Franc</li>
+         * <li><code>XOF</code> - West African CFA Franc</li>
+         * <li><code>YDD</code> - Yemeni Dinar</li>
+         * <li><code>YER</code> - Yemeni Rial</li>
+         * <li><code>YUN</code> - Yugoslavian Convertible Dinar (1990–1992)</li>
+         * <li><code>YUD</code> - Yugoslavian Hard Dinar (1966–1990)</li>
+         * <li><code>YUM</code> - Yugoslavian New Dinar (1994–2002)</li>
+         * <li><code>YUR</code> - Yugoslavian Reformed Dinar (1992–1993)</li>
+         * <li><code>ZWN</code> - ZWN</li>
+         * <li><code>ZRN</code> - Zairean New Zaire (1993–1998)</li>
+         * <li><code>ZRZ</code> - Zairean Zaire (1971–1993)</li>
+         * <li><code>ZMW</code> - Zambian Kwacha</li>
+         * <li><code>ZMK</code> - Zambian Kwacha (1968–2012)</li>
+         * <li><code>ZWD</code> - Zimbabwean Dollar (1980–2008)</li>
+         * <li><code>ZWR</code> - Zimbabwean Dollar (2008)</li>
+         * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
+         * </ul>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage transactionCurrency(
+                Nullable<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency) {
+            if (transactionCurrency.isNull()) {
+                this.transactionCurrency = null;
+            } else if (transactionCurrency.isEmpty()) {
+                this.transactionCurrency = Optional.empty();
+            } else {
+                this.transactionCurrency = Optional.of(transactionCurrency.get());
+            }
             return this;
         }
 
@@ -2827,6 +3343,330 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage baseCurrency(Nullable<TransactionCurrencyEnum> baseCurrency) {
+            if (baseCurrency.isNull()) {
+                this.baseCurrency = null;
+            } else if (baseCurrency.isEmpty()) {
+                this.baseCurrency = Optional.empty();
+            } else {
+                this.baseCurrency = Optional.of(baseCurrency.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The base currency of the transaction</p>
+         * <ul>
+         * <li><code>XUA</code> - ADB Unit of Account</li>
+         * <li><code>AFN</code> - Afghan Afghani</li>
+         * <li><code>AFA</code> - Afghan Afghani (1927–2002)</li>
+         * <li><code>ALL</code> - Albanian Lek</li>
+         * <li><code>ALK</code> - Albanian Lek (1946–1965)</li>
+         * <li><code>DZD</code> - Algerian Dinar</li>
+         * <li><code>ADP</code> - Andorran Peseta</li>
+         * <li><code>AOA</code> - Angolan Kwanza</li>
+         * <li><code>AOK</code> - Angolan Kwanza (1977–1991)</li>
+         * <li><code>AON</code> - Angolan New Kwanza (1990–2000)</li>
+         * <li><code>AOR</code> - Angolan Readjusted Kwanza (1995–1999)</li>
+         * <li><code>ARA</code> - Argentine Austral</li>
+         * <li><code>ARS</code> - Argentine Peso</li>
+         * <li><code>ARM</code> - Argentine Peso (1881–1970)</li>
+         * <li><code>ARP</code> - Argentine Peso (1983–1985)</li>
+         * <li><code>ARL</code> - Argentine Peso Ley (1970–1983)</li>
+         * <li><code>AMD</code> - Armenian Dram</li>
+         * <li><code>AWG</code> - Aruban Florin</li>
+         * <li><code>AUD</code> - Australian Dollar</li>
+         * <li><code>ATS</code> - Austrian Schilling</li>
+         * <li><code>AZN</code> - Azerbaijani Manat</li>
+         * <li><code>AZM</code> - Azerbaijani Manat (1993–2006)</li>
+         * <li><code>BSD</code> - Bahamian Dollar</li>
+         * <li><code>BHD</code> - Bahraini Dinar</li>
+         * <li><code>BDT</code> - Bangladeshi Taka</li>
+         * <li><code>BBD</code> - Barbadian Dollar</li>
+         * <li><code>BYN</code> - Belarusian Ruble</li>
+         * <li><code>BYB</code> - Belarusian Ruble (1994–1999)</li>
+         * <li><code>BYR</code> - Belarusian Ruble (2000–2016)</li>
+         * <li><code>BEF</code> - Belgian Franc</li>
+         * <li><code>BEC</code> - Belgian Franc (convertible)</li>
+         * <li><code>BEL</code> - Belgian Franc (financial)</li>
+         * <li><code>BZD</code> - Belize Dollar</li>
+         * <li><code>BMD</code> - Bermudan Dollar</li>
+         * <li><code>BTN</code> - Bhutanese Ngultrum</li>
+         * <li><code>BOB</code> - Bolivian Boliviano</li>
+         * <li><code>BOL</code> - Bolivian Boliviano (1863–1963)</li>
+         * <li><code>BOV</code> - Bolivian Mvdol</li>
+         * <li><code>BOP</code> - Bolivian Peso</li>
+         * <li><code>BAM</code> - Bosnia-Herzegovina Convertible Mark</li>
+         * <li><code>BAD</code> - Bosnia-Herzegovina Dinar (1992–1994)</li>
+         * <li><code>BAN</code> - Bosnia-Herzegovina New Dinar (1994–1997)</li>
+         * <li><code>BWP</code> - Botswanan Pula</li>
+         * <li><code>BRC</code> - Brazilian Cruzado (1986–1989)</li>
+         * <li><code>BRZ</code> - Brazilian Cruzeiro (1942–1967)</li>
+         * <li><code>BRE</code> - Brazilian Cruzeiro (1990–1993)</li>
+         * <li><code>BRR</code> - Brazilian Cruzeiro (1993–1994)</li>
+         * <li><code>BRN</code> - Brazilian New Cruzado (1989–1990)</li>
+         * <li><code>BRB</code> - Brazilian New Cruzeiro (1967–1986)</li>
+         * <li><code>BRL</code> - Brazilian Real</li>
+         * <li><code>GBP</code> - British Pound</li>
+         * <li><code>BND</code> - Brunei Dollar</li>
+         * <li><code>BGL</code> - Bulgarian Hard Lev</li>
+         * <li><code>BGN</code> - Bulgarian Lev</li>
+         * <li><code>BGO</code> - Bulgarian Lev (1879–1952)</li>
+         * <li><code>BGM</code> - Bulgarian Socialist Lev</li>
+         * <li><code>BUK</code> - Burmese Kyat</li>
+         * <li><code>BIF</code> - Burundian Franc</li>
+         * <li><code>XPF</code> - CFP Franc</li>
+         * <li><code>KHR</code> - Cambodian Riel</li>
+         * <li><code>CAD</code> - Canadian Dollar</li>
+         * <li><code>CVE</code> - Cape Verdean Escudo</li>
+         * <li><code>KYD</code> - Cayman Islands Dollar</li>
+         * <li><code>XAF</code> - Central African CFA Franc</li>
+         * <li><code>CLE</code> - Chilean Escudo</li>
+         * <li><code>CLP</code> - Chilean Peso</li>
+         * <li><code>CLF</code> - Chilean Unit of Account (UF)</li>
+         * <li><code>CNX</code> - Chinese People’s Bank Dollar</li>
+         * <li><code>CNY</code> - Chinese Yuan</li>
+         * <li><code>CNH</code> - Chinese Yuan (offshore)</li>
+         * <li><code>COP</code> - Colombian Peso</li>
+         * <li><code>COU</code> - Colombian Real Value Unit</li>
+         * <li><code>KMF</code> - Comorian Franc</li>
+         * <li><code>CDF</code> - Congolese Franc</li>
+         * <li><code>CRC</code> - Costa Rican Colón</li>
+         * <li><code>HRD</code> - Croatian Dinar</li>
+         * <li><code>HRK</code> - Croatian Kuna</li>
+         * <li><code>CUC</code> - Cuban Convertible Peso</li>
+         * <li><code>CUP</code> - Cuban Peso</li>
+         * <li><code>CYP</code> - Cypriot Pound</li>
+         * <li><code>CZK</code> - Czech Koruna</li>
+         * <li><code>CSK</code> - Czechoslovak Hard Koruna</li>
+         * <li><code>DKK</code> - Danish Krone</li>
+         * <li><code>DJF</code> - Djiboutian Franc</li>
+         * <li><code>DOP</code> - Dominican Peso</li>
+         * <li><code>NLG</code> - Dutch Guilder</li>
+         * <li><code>XCD</code> - East Caribbean Dollar</li>
+         * <li><code>DDM</code> - East German Mark</li>
+         * <li><code>ECS</code> - Ecuadorian Sucre</li>
+         * <li><code>ECV</code> - Ecuadorian Unit of Constant Value</li>
+         * <li><code>EGP</code> - Egyptian Pound</li>
+         * <li><code>GQE</code> - Equatorial Guinean Ekwele</li>
+         * <li><code>ERN</code> - Eritrean Nakfa</li>
+         * <li><code>EEK</code> - Estonian Kroon</li>
+         * <li><code>ETB</code> - Ethiopian Birr</li>
+         * <li><code>EUR</code> - Euro</li>
+         * <li><code>XBA</code> - European Composite Unit</li>
+         * <li><code>XEU</code> - European Currency Unit</li>
+         * <li><code>XBB</code> - European Monetary Unit</li>
+         * <li><code>XBC</code> - European Unit of Account (XBC)</li>
+         * <li><code>XBD</code> - European Unit of Account (XBD)</li>
+         * <li><code>FKP</code> - Falkland Islands Pound</li>
+         * <li><code>FJD</code> - Fijian Dollar</li>
+         * <li><code>FIM</code> - Finnish Markka</li>
+         * <li><code>FRF</code> - French Franc</li>
+         * <li><code>XFO</code> - French Gold Franc</li>
+         * <li><code>XFU</code> - French UIC-Franc</li>
+         * <li><code>GMD</code> - Gambian Dalasi</li>
+         * <li><code>GEK</code> - Georgian Kupon Larit</li>
+         * <li><code>GEL</code> - Georgian Lari</li>
+         * <li><code>DEM</code> - German Mark</li>
+         * <li><code>GHS</code> - Ghanaian Cedi</li>
+         * <li><code>GHC</code> - Ghanaian Cedi (1979–2007)</li>
+         * <li><code>GIP</code> - Gibraltar Pound</li>
+         * <li><code>XAU</code> - Gold</li>
+         * <li><code>GRD</code> - Greek Drachma</li>
+         * <li><code>GTQ</code> - Guatemalan Quetzal</li>
+         * <li><code>GWP</code> - Guinea-Bissau Peso</li>
+         * <li><code>GNF</code> - Guinean Franc</li>
+         * <li><code>GNS</code> - Guinean Syli</li>
+         * <li><code>GYD</code> - Guyanaese Dollar</li>
+         * <li><code>HTG</code> - Haitian Gourde</li>
+         * <li><code>HNL</code> - Honduran Lempira</li>
+         * <li><code>HKD</code> - Hong Kong Dollar</li>
+         * <li><code>HUF</code> - Hungarian Forint</li>
+         * <li><code>IMP</code> - IMP</li>
+         * <li><code>ISK</code> - Icelandic Króna</li>
+         * <li><code>ISJ</code> - Icelandic Króna (1918–1981)</li>
+         * <li><code>INR</code> - Indian Rupee</li>
+         * <li><code>IDR</code> - Indonesian Rupiah</li>
+         * <li><code>IRR</code> - Iranian Rial</li>
+         * <li><code>IQD</code> - Iraqi Dinar</li>
+         * <li><code>IEP</code> - Irish Pound</li>
+         * <li><code>ILS</code> - Israeli New Shekel</li>
+         * <li><code>ILP</code> - Israeli Pound</li>
+         * <li><code>ILR</code> - Israeli Shekel (1980–1985)</li>
+         * <li><code>ITL</code> - Italian Lira</li>
+         * <li><code>JMD</code> - Jamaican Dollar</li>
+         * <li><code>JPY</code> - Japanese Yen</li>
+         * <li><code>JOD</code> - Jordanian Dinar</li>
+         * <li><code>KZT</code> - Kazakhstani Tenge</li>
+         * <li><code>KES</code> - Kenyan Shilling</li>
+         * <li><code>KWD</code> - Kuwaiti Dinar</li>
+         * <li><code>KGS</code> - Kyrgystani Som</li>
+         * <li><code>LAK</code> - Laotian Kip</li>
+         * <li><code>LVL</code> - Latvian Lats</li>
+         * <li><code>LVR</code> - Latvian Ruble</li>
+         * <li><code>LBP</code> - Lebanese Pound</li>
+         * <li><code>LSL</code> - Lesotho Loti</li>
+         * <li><code>LRD</code> - Liberian Dollar</li>
+         * <li><code>LYD</code> - Libyan Dinar</li>
+         * <li><code>LTL</code> - Lithuanian Litas</li>
+         * <li><code>LTT</code> - Lithuanian Talonas</li>
+         * <li><code>LUL</code> - Luxembourg Financial Franc</li>
+         * <li><code>LUC</code> - Luxembourgian Convertible Franc</li>
+         * <li><code>LUF</code> - Luxembourgian Franc</li>
+         * <li><code>MOP</code> - Macanese Pataca</li>
+         * <li><code>MKD</code> - Macedonian Denar</li>
+         * <li><code>MKN</code> - Macedonian Denar (1992–1993)</li>
+         * <li><code>MGA</code> - Malagasy Ariary</li>
+         * <li><code>MGF</code> - Malagasy Franc</li>
+         * <li><code>MWK</code> - Malawian Kwacha</li>
+         * <li><code>MYR</code> - Malaysian Ringgit</li>
+         * <li><code>MVR</code> - Maldivian Rufiyaa</li>
+         * <li><code>MVP</code> - Maldivian Rupee (1947–1981)</li>
+         * <li><code>MLF</code> - Malian Franc</li>
+         * <li><code>MTL</code> - Maltese Lira</li>
+         * <li><code>MTP</code> - Maltese Pound</li>
+         * <li><code>MRU</code> - Mauritanian Ouguiya</li>
+         * <li><code>MRO</code> - Mauritanian Ouguiya (1973–2017)</li>
+         * <li><code>MUR</code> - Mauritian Rupee</li>
+         * <li><code>MXV</code> - Mexican Investment Unit</li>
+         * <li><code>MXN</code> - Mexican Peso</li>
+         * <li><code>MXP</code> - Mexican Silver Peso (1861–1992)</li>
+         * <li><code>MDC</code> - Moldovan Cupon</li>
+         * <li><code>MDL</code> - Moldovan Leu</li>
+         * <li><code>MCF</code> - Monegasque Franc</li>
+         * <li><code>MNT</code> - Mongolian Tugrik</li>
+         * <li><code>MAD</code> - Moroccan Dirham</li>
+         * <li><code>MAF</code> - Moroccan Franc</li>
+         * <li><code>MZE</code> - Mozambican Escudo</li>
+         * <li><code>MZN</code> - Mozambican Metical</li>
+         * <li><code>MZM</code> - Mozambican Metical (1980–2006)</li>
+         * <li><code>MMK</code> - Myanmar Kyat</li>
+         * <li><code>NAD</code> - Namibian Dollar</li>
+         * <li><code>NPR</code> - Nepalese Rupee</li>
+         * <li><code>ANG</code> - Netherlands Antillean Guilder</li>
+         * <li><code>TWD</code> - New Taiwan Dollar</li>
+         * <li><code>NZD</code> - New Zealand Dollar</li>
+         * <li><code>NIO</code> - Nicaraguan Córdoba</li>
+         * <li><code>NIC</code> - Nicaraguan Córdoba (1988–1991)</li>
+         * <li><code>NGN</code> - Nigerian Naira</li>
+         * <li><code>KPW</code> - North Korean Won</li>
+         * <li><code>NOK</code> - Norwegian Krone</li>
+         * <li><code>OMR</code> - Omani Rial</li>
+         * <li><code>PKR</code> - Pakistani Rupee</li>
+         * <li><code>XPD</code> - Palladium</li>
+         * <li><code>PAB</code> - Panamanian Balboa</li>
+         * <li><code>PGK</code> - Papua New Guinean Kina</li>
+         * <li><code>PYG</code> - Paraguayan Guarani</li>
+         * <li><code>PEI</code> - Peruvian Inti</li>
+         * <li><code>PEN</code> - Peruvian Sol</li>
+         * <li><code>PES</code> - Peruvian Sol (1863–1965)</li>
+         * <li><code>PHP</code> - Philippine Peso</li>
+         * <li><code>XPT</code> - Platinum</li>
+         * <li><code>PLN</code> - Polish Zloty</li>
+         * <li><code>PLZ</code> - Polish Zloty (1950–1995)</li>
+         * <li><code>PTE</code> - Portuguese Escudo</li>
+         * <li><code>GWE</code> - Portuguese Guinea Escudo</li>
+         * <li><code>QAR</code> - Qatari Rial</li>
+         * <li><code>XRE</code> - RINET Funds</li>
+         * <li><code>RHD</code> - Rhodesian Dollar</li>
+         * <li><code>RON</code> - Romanian Leu</li>
+         * <li><code>ROL</code> - Romanian Leu (1952–2006)</li>
+         * <li><code>RUB</code> - Russian Ruble</li>
+         * <li><code>RUR</code> - Russian Ruble (1991–1998)</li>
+         * <li><code>RWF</code> - Rwandan Franc</li>
+         * <li><code>SVC</code> - Salvadoran Colón</li>
+         * <li><code>WST</code> - Samoan Tala</li>
+         * <li><code>SAR</code> - Saudi Riyal</li>
+         * <li><code>RSD</code> - Serbian Dinar</li>
+         * <li><code>CSD</code> - Serbian Dinar (2002–2006)</li>
+         * <li><code>SCR</code> - Seychellois Rupee</li>
+         * <li><code>SLL</code> - Sierra Leonean Leone</li>
+         * <li><code>XAG</code> - Silver</li>
+         * <li><code>SGD</code> - Singapore Dollar</li>
+         * <li><code>SKK</code> - Slovak Koruna</li>
+         * <li><code>SIT</code> - Slovenian Tolar</li>
+         * <li><code>SBD</code> - Solomon Islands Dollar</li>
+         * <li><code>SOS</code> - Somali Shilling</li>
+         * <li><code>ZAR</code> - South African Rand</li>
+         * <li><code>ZAL</code> - South African Rand (financial)</li>
+         * <li><code>KRH</code> - South Korean Hwan (1953–1962)</li>
+         * <li><code>KRW</code> - South Korean Won</li>
+         * <li><code>KRO</code> - South Korean Won (1945–1953)</li>
+         * <li><code>SSP</code> - South Sudanese Pound</li>
+         * <li><code>SUR</code> - Soviet Rouble</li>
+         * <li><code>ESP</code> - Spanish Peseta</li>
+         * <li><code>ESA</code> - Spanish Peseta (A account)</li>
+         * <li><code>ESB</code> - Spanish Peseta (convertible account)</li>
+         * <li><code>XDR</code> - Special Drawing Rights</li>
+         * <li><code>LKR</code> - Sri Lankan Rupee</li>
+         * <li><code>SHP</code> - St. Helena Pound</li>
+         * <li><code>XSU</code> - Sucre</li>
+         * <li><code>SDD</code> - Sudanese Dinar (1992–2007)</li>
+         * <li><code>SDG</code> - Sudanese Pound</li>
+         * <li><code>SDP</code> - Sudanese Pound (1957–1998)</li>
+         * <li><code>SRD</code> - Surinamese Dollar</li>
+         * <li><code>SRG</code> - Surinamese Guilder</li>
+         * <li><code>SZL</code> - Swazi Lilangeni</li>
+         * <li><code>SEK</code> - Swedish Krona</li>
+         * <li><code>CHF</code> - Swiss Franc</li>
+         * <li><code>SYP</code> - Syrian Pound</li>
+         * <li><code>STN</code> - São Tomé &amp; Príncipe Dobra</li>
+         * <li><code>STD</code> - São Tomé &amp; Príncipe Dobra (1977–2017)</li>
+         * <li><code>TVD</code> - TVD</li>
+         * <li><code>TJR</code> - Tajikistani Ruble</li>
+         * <li><code>TJS</code> - Tajikistani Somoni</li>
+         * <li><code>TZS</code> - Tanzanian Shilling</li>
+         * <li><code>XTS</code> - Testing Currency Code</li>
+         * <li><code>THB</code> - Thai Baht</li>
+         * <li><code>XXX</code> - The codes assigned for transactions where no currency is involved</li>
+         * <li><code>TPE</code> - Timorese Escudo</li>
+         * <li><code>TOP</code> - Tongan Paʻanga</li>
+         * <li><code>TTD</code> - Trinidad &amp; Tobago Dollar</li>
+         * <li><code>TND</code> - Tunisian Dinar</li>
+         * <li><code>TRY</code> - Turkish Lira</li>
+         * <li><code>TRL</code> - Turkish Lira (1922–2005)</li>
+         * <li><code>TMT</code> - Turkmenistani Manat</li>
+         * <li><code>TMM</code> - Turkmenistani Manat (1993–2009)</li>
+         * <li><code>USD</code> - US Dollar</li>
+         * <li><code>USN</code> - US Dollar (Next day)</li>
+         * <li><code>USS</code> - US Dollar (Same day)</li>
+         * <li><code>UGX</code> - Ugandan Shilling</li>
+         * <li><code>UGS</code> - Ugandan Shilling (1966–1987)</li>
+         * <li><code>UAH</code> - Ukrainian Hryvnia</li>
+         * <li><code>UAK</code> - Ukrainian Karbovanets</li>
+         * <li><code>AED</code> - United Arab Emirates Dirham</li>
+         * <li><code>UYW</code> - Uruguayan Nominal Wage Index Unit</li>
+         * <li><code>UYU</code> - Uruguayan Peso</li>
+         * <li><code>UYP</code> - Uruguayan Peso (1975–1993)</li>
+         * <li><code>UYI</code> - Uruguayan Peso (Indexed Units)</li>
+         * <li><code>UZS</code> - Uzbekistani Som</li>
+         * <li><code>VUV</code> - Vanuatu Vatu</li>
+         * <li><code>VES</code> - Venezuelan Bolívar</li>
+         * <li><code>VEB</code> - Venezuelan Bolívar (1871–2008)</li>
+         * <li><code>VEF</code> - Venezuelan Bolívar (2008–2018)</li>
+         * <li><code>VND</code> - Vietnamese Dong</li>
+         * <li><code>VNN</code> - Vietnamese Dong (1978–1985)</li>
+         * <li><code>CHE</code> - WIR Euro</li>
+         * <li><code>CHW</code> - WIR Franc</li>
+         * <li><code>XOF</code> - West African CFA Franc</li>
+         * <li><code>YDD</code> - Yemeni Dinar</li>
+         * <li><code>YER</code> - Yemeni Rial</li>
+         * <li><code>YUN</code> - Yugoslavian Convertible Dinar (1990–1992)</li>
+         * <li><code>YUD</code> - Yugoslavian Hard Dinar (1966–1990)</li>
+         * <li><code>YUM</code> - Yugoslavian New Dinar (1994–2002)</li>
+         * <li><code>YUR</code> - Yugoslavian Reformed Dinar (1992–1993)</li>
+         * <li><code>ZWN</code> - ZWN</li>
+         * <li><code>ZRN</code> - Zairean New Zaire (1993–1998)</li>
+         * <li><code>ZRZ</code> - Zairean Zaire (1971–1993)</li>
+         * <li><code>ZMW</code> - Zambian Kwacha</li>
+         * <li><code>ZMK</code> - Zambian Kwacha (1968–2012)</li>
+         * <li><code>ZWD</code> - Zimbabwean Dollar (1980–2008)</li>
+         * <li><code>ZWR</code> - Zimbabwean Dollar (2008)</li>
+         * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
+         * </ul>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency) {
             this.baseCurrency = Optional.ofNullable(baseCurrency);
             return this;
@@ -3151,6 +3991,18 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
+        public _FinalStage project(Nullable<GeneralLedgerTransactionLineProject> project) {
+            if (project.isNull()) {
+                this.project = null;
+            } else if (project.isEmpty()) {
+                this.project = Optional.empty();
+            } else {
+                this.project = Optional.of(project.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage project(GeneralLedgerTransactionLineProject project) {
             this.project = Optional.ofNullable(project);
             return this;
@@ -3164,6 +4016,18 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
+        public _FinalStage contact(Nullable<GeneralLedgerTransactionLineContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage contact(GeneralLedgerTransactionLineContact contact) {
             this.contact = Optional.ofNullable(contact);
             return this;
@@ -3173,6 +4037,18 @@ public final class GeneralLedgerTransactionLine {
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
         public _FinalStage contact(Optional<GeneralLedgerTransactionLineContact> contact) {
             this.contact = contact;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage employee(Nullable<GeneralLedgerTransactionLineEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
             return this;
         }
 
@@ -3194,6 +4070,22 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage company(Nullable<GeneralLedgerTransactionLineCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The company the GeneralLedgerTransaction belongs to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage company(GeneralLedgerTransactionLineCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
@@ -3206,6 +4098,18 @@ public final class GeneralLedgerTransactionLine {
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
         public _FinalStage company(Optional<GeneralLedgerTransactionLineCompany> company) {
             this.company = company;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage account(Nullable<GeneralLedgerTransactionLineAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -3259,6 +4163,22 @@ public final class GeneralLedgerTransactionLine {
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

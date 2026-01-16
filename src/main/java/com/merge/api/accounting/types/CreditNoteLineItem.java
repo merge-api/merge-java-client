@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -113,8 +116,11 @@ public final class CreditNoteLineItem {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -134,72 +140,99 @@ public final class CreditNoteLineItem {
         return modifiedAt;
     }
 
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<CreditNoteLineItemItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
     /**
      * @return The credit note line item's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The description of the item that is owed.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The credit note line item's quantity.
      */
-    @JsonProperty("quantity")
+    @JsonIgnore
     public Optional<String> getQuantity() {
+        if (quantity == null) {
+            return Optional.empty();
+        }
         return quantity;
     }
 
     /**
      * @return The credit note line item's memo.
      */
-    @JsonProperty("memo")
+    @JsonIgnore
     public Optional<String> getMemo() {
+        if (memo == null) {
+            return Optional.empty();
+        }
         return memo;
     }
 
     /**
      * @return The credit note line item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<String> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The tax rate that applies to this line item.
      */
-    @JsonProperty("tax_rate")
+    @JsonIgnore
     public Optional<String> getTaxRate() {
+        if (taxRate == null) {
+            return Optional.empty();
+        }
         return taxRate;
     }
 
     /**
      * @return The credit note line item's total.
      */
-    @JsonProperty("total_line_amount")
+    @JsonIgnore
     public Optional<String> getTotalLineAmount() {
+        if (totalLineAmount == null) {
+            return Optional.empty();
+        }
         return totalLineAmount;
     }
 
     /**
      * @return The credit note line item's associated tracking category.
      */
-    @JsonProperty("tracking_category")
+    @JsonIgnore
     public Optional<String> getTrackingCategory() {
+        if (trackingCategory == null) {
+            return Optional.empty();
+        }
         return trackingCategory;
     }
 
@@ -214,29 +247,41 @@ public final class CreditNoteLineItem {
     /**
      * @return The credit note line item's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<String> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The company the credit note belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<CreditNoteLineItemCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The credit note's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<CreditNoteLineItemContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
-    @JsonProperty("project")
+    @JsonIgnore
     public Optional<CreditNoteLineItemProject> getProject() {
+        if (project == null) {
+            return Optional.empty();
+        }
         return project;
     }
 
@@ -246,6 +291,90 @@ public final class CreditNoteLineItem {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<CreditNoteLineItemItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("quantity")
+    private Optional<String> _getQuantity() {
+        return quantity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("memo")
+    private Optional<String> _getMemo() {
+        return memo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<String> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_rate")
+    private Optional<String> _getTaxRate() {
+        return taxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_line_amount")
+    private Optional<String> _getTotalLineAmount() {
+        return totalLineAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tracking_category")
+    private Optional<String> _getTrackingCategory() {
+        return trackingCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<String> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<CreditNoteLineItemCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<CreditNoteLineItemContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("project")
+    private Optional<CreditNoteLineItemProject> _getProject() {
+        return project;
     }
 
     @java.lang.Override
@@ -407,6 +536,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -446,6 +586,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder item(Nullable<CreditNoteLineItemItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's name.</p>
          */
@@ -457,6 +608,17 @@ public final class CreditNoteLineItem {
 
         public Builder name(String name) {
             this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
             return this;
         }
 
@@ -474,6 +636,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's quantity.</p>
          */
@@ -485,6 +658,17 @@ public final class CreditNoteLineItem {
 
         public Builder quantity(String quantity) {
             this.quantity = Optional.ofNullable(quantity);
+            return this;
+        }
+
+        public Builder quantity(Nullable<String> quantity) {
+            if (quantity.isNull()) {
+                this.quantity = null;
+            } else if (quantity.isEmpty()) {
+                this.quantity = Optional.empty();
+            } else {
+                this.quantity = Optional.of(quantity.get());
+            }
             return this;
         }
 
@@ -502,6 +686,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder memo(Nullable<String> memo) {
+            if (memo.isNull()) {
+                this.memo = null;
+            } else if (memo.isEmpty()) {
+                this.memo = Optional.empty();
+            } else {
+                this.memo = Optional.of(memo.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's unit price.</p>
          */
@@ -513,6 +708,17 @@ public final class CreditNoteLineItem {
 
         public Builder unitPrice(String unitPrice) {
             this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(Nullable<String> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
             return this;
         }
 
@@ -530,6 +736,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder taxRate(Nullable<String> taxRate) {
+            if (taxRate.isNull()) {
+                this.taxRate = null;
+            } else if (taxRate.isEmpty()) {
+                this.taxRate = Optional.empty();
+            } else {
+                this.taxRate = Optional.of(taxRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's total.</p>
          */
@@ -544,6 +761,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder totalLineAmount(Nullable<String> totalLineAmount) {
+            if (totalLineAmount.isNull()) {
+                this.totalLineAmount = null;
+            } else if (totalLineAmount.isEmpty()) {
+                this.totalLineAmount = Optional.empty();
+            } else {
+                this.totalLineAmount = Optional.of(totalLineAmount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's associated tracking category.</p>
          */
@@ -555,6 +783,17 @@ public final class CreditNoteLineItem {
 
         public Builder trackingCategory(String trackingCategory) {
             this.trackingCategory = Optional.ofNullable(trackingCategory);
+            return this;
+        }
+
+        public Builder trackingCategory(Nullable<String> trackingCategory) {
+            if (trackingCategory.isNull()) {
+                this.trackingCategory = null;
+            } else if (trackingCategory.isEmpty()) {
+                this.trackingCategory = Optional.empty();
+            } else {
+                this.trackingCategory = Optional.of(trackingCategory.get());
+            }
             return this;
         }
 
@@ -586,6 +825,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder account(Nullable<String> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the credit note belongs to.</p>
          */
@@ -597,6 +847,17 @@ public final class CreditNoteLineItem {
 
         public Builder company(CreditNoteLineItemCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<CreditNoteLineItemCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -614,6 +875,17 @@ public final class CreditNoteLineItem {
             return this;
         }
 
+        public Builder contact(Nullable<CreditNoteLineItemContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "project", nulls = Nulls.SKIP)
         public Builder project(Optional<CreditNoteLineItemProject> project) {
             this.project = project;
@@ -622,6 +894,17 @@ public final class CreditNoteLineItem {
 
         public Builder project(CreditNoteLineItemProject project) {
             this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        public Builder project(Nullable<CreditNoteLineItemProject> project) {
+            if (project.isNull()) {
+                this.project = null;
+            } else if (project.isEmpty()) {
+                this.project = Optional.empty();
+            } else {
+                this.project = Optional.of(project.get());
+            }
             return this;
         }
 

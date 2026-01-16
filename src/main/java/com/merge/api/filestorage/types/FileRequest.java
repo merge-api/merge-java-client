@@ -5,6 +5,7 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,64 +82,88 @@ public final class FileRequest {
     /**
      * @return The file's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The URL to access the file.
      */
-    @JsonProperty("file_url")
+    @JsonIgnore
     public Optional<String> getFileUrl() {
+        if (fileUrl == null) {
+            return Optional.empty();
+        }
         return fileUrl;
     }
 
     /**
      * @return The URL that produces a thumbnail preview of the file. Typically an image.
      */
-    @JsonProperty("file_thumbnail_url")
+    @JsonIgnore
     public Optional<String> getFileThumbnailUrl() {
+        if (fileThumbnailUrl == null) {
+            return Optional.empty();
+        }
         return fileThumbnailUrl;
     }
 
     /**
      * @return The file's size, in bytes.
      */
-    @JsonProperty("size")
+    @JsonIgnore
     public Optional<Long> getSize() {
+        if (size == null) {
+            return Optional.empty();
+        }
         return size;
     }
 
     /**
      * @return The file's mime type.
      */
-    @JsonProperty("mime_type")
+    @JsonIgnore
     public Optional<String> getMimeType() {
+        if (mimeType == null) {
+            return Optional.empty();
+        }
         return mimeType;
     }
 
     /**
      * @return The file's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The folder that the file belongs to.
      */
-    @JsonProperty("folder")
+    @JsonIgnore
     public Optional<FileRequestFolder> getFolder() {
+        if (folder == null) {
+            return Optional.empty();
+        }
         return folder;
     }
 
     /**
      * @return This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.
      */
-    @JsonProperty("checksum")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getChecksum() {
+        if (checksum == null) {
+            return Optional.empty();
+        }
         return checksum;
     }
 
@@ -151,18 +178,93 @@ public final class FileRequest {
     /**
      * @return The drive that the file belongs to.
      */
-    @JsonProperty("drive")
+    @JsonIgnore
     public Optional<FileRequestDrive> getDrive() {
+        if (drive == null) {
+            return Optional.empty();
+        }
         return drive;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_url")
+    private Optional<String> _getFileUrl() {
+        return fileUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_thumbnail_url")
+    private Optional<String> _getFileThumbnailUrl() {
+        return fileThumbnailUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("size")
+    private Optional<Long> _getSize() {
+        return size;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("mime_type")
+    private Optional<String> _getMimeType() {
+        return mimeType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("folder")
+    private Optional<FileRequestFolder> _getFolder() {
+        return folder;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("checksum")
+    private Optional<Map<String, JsonNode>> _getChecksum() {
+        return checksum;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("drive")
+    private Optional<FileRequestDrive> _getDrive() {
+        return drive;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -279,6 +381,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The URL to access the file.</p>
          */
@@ -290,6 +403,17 @@ public final class FileRequest {
 
         public Builder fileUrl(String fileUrl) {
             this.fileUrl = Optional.ofNullable(fileUrl);
+            return this;
+        }
+
+        public Builder fileUrl(Nullable<String> fileUrl) {
+            if (fileUrl.isNull()) {
+                this.fileUrl = null;
+            } else if (fileUrl.isEmpty()) {
+                this.fileUrl = Optional.empty();
+            } else {
+                this.fileUrl = Optional.of(fileUrl.get());
+            }
             return this;
         }
 
@@ -307,6 +431,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder fileThumbnailUrl(Nullable<String> fileThumbnailUrl) {
+            if (fileThumbnailUrl.isNull()) {
+                this.fileThumbnailUrl = null;
+            } else if (fileThumbnailUrl.isEmpty()) {
+                this.fileThumbnailUrl = Optional.empty();
+            } else {
+                this.fileThumbnailUrl = Optional.of(fileThumbnailUrl.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The file's size, in bytes.</p>
          */
@@ -318,6 +453,17 @@ public final class FileRequest {
 
         public Builder size(Long size) {
             this.size = Optional.ofNullable(size);
+            return this;
+        }
+
+        public Builder size(Nullable<Long> size) {
+            if (size.isNull()) {
+                this.size = null;
+            } else if (size.isEmpty()) {
+                this.size = Optional.empty();
+            } else {
+                this.size = Optional.of(size.get());
+            }
             return this;
         }
 
@@ -335,6 +481,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder mimeType(Nullable<String> mimeType) {
+            if (mimeType.isNull()) {
+                this.mimeType = null;
+            } else if (mimeType.isEmpty()) {
+                this.mimeType = Optional.empty();
+            } else {
+                this.mimeType = Optional.of(mimeType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The file's description.</p>
          */
@@ -346,6 +503,17 @@ public final class FileRequest {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -363,6 +531,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder folder(Nullable<FileRequestFolder> folder) {
+            if (folder.isNull()) {
+                this.folder = null;
+            } else if (folder.isEmpty()) {
+                this.folder = Optional.empty();
+            } else {
+                this.folder = Optional.of(folder.get());
+            }
+            return this;
+        }
+
         /**
          * <p>This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.</p>
          */
@@ -374,6 +553,17 @@ public final class FileRequest {
 
         public Builder checksum(Map<String, JsonNode> checksum) {
             this.checksum = Optional.ofNullable(checksum);
+            return this;
+        }
+
+        public Builder checksum(Nullable<Map<String, JsonNode>> checksum) {
+            if (checksum.isNull()) {
+                this.checksum = null;
+            } else if (checksum.isEmpty()) {
+                this.checksum = Optional.empty();
+            } else {
+                this.checksum = Optional.of(checksum.get());
+            }
             return this;
         }
 
@@ -405,6 +595,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder drive(Nullable<FileRequestDrive> drive) {
+            if (drive.isNull()) {
+                this.drive = null;
+            } else if (drive.isEmpty()) {
+                this.drive = Optional.empty();
+            } else {
+                this.drive = Optional.of(drive.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -416,6 +617,17 @@ public final class FileRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -424,6 +636,17 @@ public final class FileRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 
