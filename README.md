@@ -1,9 +1,27 @@
 # Merge Java Library
 
 [![fern shield](https://img.shields.io/badge/%F0%9F%8C%BF-Built%20with%20Fern-brightgreen)](https://buildwithfern.com?utm_source=github&utm_medium=github&utm_campaign=readme&utm_source=https%3A%2F%2Fgithub.com%2Fmerge-api%2Fmerge-java-client)
-[![Maven Central](https://img.shields.io/maven-central/v/dev.merge/merge-java-client)](https://central.sonatype.com/artifact/dev.merge/merge-java-client)
 
 The Merge Java library provides convenient access to the Merge APIs from Java.
+
+## Table of Contents
+
+- [Documentation](#documentation)
+- [Installation](#installation)
+- [Instantiation](#instantiation)
+- [Request Options](#request-options)
+- [Usage](#usage)
+- [Environments](#environments)
+- [Base Url](#base-url)
+- [Exception Handling](#exception-handling)
+- [Advanced](#advanced)
+  - [Custom Client](#custom-client)
+  - [Retries](#retries)
+  - [Timeouts](#timeouts)
+  - [Custom Headers](#custom-headers)
+  - [Access Raw Response Data](#access-raw-response-data)
+- [Contributing](#contributing)
+- [Reference](#reference)
 
 ## Documentation
 
@@ -117,9 +135,9 @@ When the API returns a non-success status code (4xx or 5xx response), an API exc
 ```java
 import com.merge.api.core.ApiError;
 
-try {
+try{
     client.ats().accountDetails().retrieve(...);
-} catch (ApiError e) {
+} catch (ApiError e){
     // Do something with the API exception...
 }
 ```
@@ -128,7 +146,7 @@ try {
 
 ### Custom Client
 
-This SDK is built to work with any instance of `OkHttpClient`. By default, if no client is provided, the SDK will construct one. 
+This SDK is built to work with any instance of `OkHttpClient`. By default, if no client is provided, the SDK will construct one.
 However, you can pass your own client like so:
 
 ```java
@@ -147,7 +165,9 @@ MergeApiClient client = MergeApiClient
 
 The SDK is instrumented with automatic retries with exponential backoff. A request will be retried as long
 as the request is deemed retryable and the number of retry attempts has not grown larger than the configured
-retry limit (default: 2).
+retry limit (default: 2). Before defaulting to exponential backoff, the SDK will first attempt to respect
+the `Retry-After` header (as either in seconds or as an HTTP date), and then the `X-RateLimit-Reset` header
+(as a Unix timestamp in epoch seconds); failing both of those, it will fall back to exponential backoff.
 
 A request is deemed retryable when any of the following HTTP status codes is returned:
 
@@ -168,8 +188,7 @@ MergeApiClient client = MergeApiClient
 
 ### Timeouts
 
-The SDK defaults to a 60 second timeout. You can configure this with a timeout option at the client or request level.
-
+The SDK defaults to a 120 second timeout. You can configure this with a timeout option at the client or request level.
 ```java
 import com.merge.api.MergeApiClient;
 import com.merge.api.core.RequestOptions;
@@ -177,7 +196,7 @@ import com.merge.api.core.RequestOptions;
 // Client level
 MergeApiClient client = MergeApiClient
     .builder()
-    .timeout(10)
+    .timeout(120)
     .build();
 
 // Request level
@@ -185,7 +204,7 @@ client.ats().accountDetails().retrieve(
     ...,
     RequestOptions
         .builder()
-        .timeout(10)
+        .timeout(120)
         .build()
 );
 ```
@@ -214,6 +233,19 @@ client.ats().accountDetails().retrieve(
         .addHeader("X-Request-Header", "request-value")
         .build()
 );
+```
+
+### Access Raw Response Data
+
+The SDK provides access to raw response data, including headers, through the `withRawResponse()` method.
+The `withRawResponse()` method returns a raw client that wraps all responses with `body()` and `headers()` methods.
+(A normal client's `response` is identical to a raw client's `response.body()`.)
+
+```java
+RetrieveHttpResponse response = client.ats().accountDetails().withRawResponse().retrieve(...);
+
+System.out.println(response.body());
+System.out.println(response.headers().get("X-My-Header"));
 ```
 
 ## Contributing

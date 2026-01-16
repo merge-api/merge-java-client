@@ -121,6 +121,9 @@ public final class Address {
         return city;
     }
 
+    /**
+     * @return The address's state or region.
+     */
     @JsonProperty("state")
     public Optional<JsonNode> getState() {
         return state;
@@ -578,6 +581,9 @@ public final class Address {
             return this;
         }
 
+        /**
+         * <p>The address's state or region.</p>
+         */
         @JsonSetter(value = "state", nulls = Nulls.SKIP)
         public Builder state(Optional<JsonNode> state) {
             this.state = state;

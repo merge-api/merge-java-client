@@ -121,9 +121,10 @@ public class RawCashFlowStatementsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
-                PaginatedCashFlowStatementList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                        responseBody.string(), PaginatedCashFlowStatementList.class);
+                PaginatedCashFlowStatementList parsedResponse =
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedCashFlowStatementList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 CashFlowStatementsListRequest nextRequest = CashFlowStatementsListRequest.builder()
                         .from(request)
@@ -137,12 +138,8 @@ public class RawCashFlowStatementsClient {
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -198,16 +195,13 @@ public class RawCashFlowStatementsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), CashFlowStatement.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, CashFlowStatement.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

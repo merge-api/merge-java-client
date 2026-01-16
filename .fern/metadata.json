@@ -1,0 +1,16 @@
+{
+  "cliVersion": "3.39.2",
+  "generatorName": "fernapi/fern-java-sdk",
+  "generatorVersion": "3.24.0",
+  "generatorConfig": {
+    "publish-to": "central",
+    "generate-unknown-as-json-node": true,
+    "base-api-exception-class-name": "ApiError",
+    "base-exception-class-name": "MergeException",
+    "disable-required-property-builder-checks": true,
+    "object-query-parameters": true,
+    "package-layout": "flat",
+    "default-timeout-in-seconds": 120,
+    "enable-forward-compatible-enums": true
+  }
+}
