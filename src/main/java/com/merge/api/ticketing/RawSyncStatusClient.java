@@ -74,9 +74,10 @@ public class RawSyncStatusClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 PaginatedSyncStatusList parsedResponse =
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedSyncStatusList.class);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedSyncStatusList.class);
                 Optional<String> startingAfter = parsedResponse.getNext();
                 SyncStatusListRequest nextRequest = SyncStatusListRequest.builder()
                         .from(request)
@@ -90,12 +91,8 @@ public class RawSyncStatusClient {
                                         .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

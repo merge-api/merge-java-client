@@ -9,19 +9,18 @@ plugins {
 repositories {
     mavenCentral()
     maven {
-        url 'https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/'
+        url 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
     }
 }
 
 dependencies {
-    api 'com.squareup.okhttp3:okhttp:4.12.0'
-    api 'com.fasterxml.jackson.core:jackson-databind:2.17.2'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.17.2'
-    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
+    api 'com.squareup.okhttp3:okhttp:5.2.1'
+    api 'com.fasterxml.jackson.core:jackson-databind:2.18.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jdk8:2.18.2'
+    api 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.18.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
-    testImplementation 'com.squareup.okhttp3:mockwebserver:4.12.0'
 }
 
 
@@ -46,23 +45,6 @@ java {
 }
 
 
-group = 'dev.merge'
-
-version = '5.0.1'
-
-jar {
-    dependsOn(":generatePomFileForMavenPublication")
-    archiveBaseName = "merge-java-client"
-}
-
-sourcesJar {
-    archiveBaseName = "merge-java-client"
-}
-
-javadocJar {
-    archiveBaseName = "merge-java-client"
-}
-
 signing {
     sign(publishing.publications)
 }
@@ -74,59 +56,3 @@ test {
     }
 }
 
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'dev.merge'
-            artifactId = 'merge-java-client'
-            version = '5.0.1'
-            from components.java
-            pom {
-                name = 'merge'
-                description = 'The official SDK of merge'
-                url = 'https://buildwithfern.com'
-                licenses {
-                    license {
-                        name = 'Custom License (LICENSE)'
-                    }
-                }
-                developers {
-                    developer {
-                        name = 'merge'
-                        email = 'developers@merge.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
-                    developerConnection = 'scm:git:git://github.com/merge-api/merge-java-client.git'
-                    url = 'https://github.com/merge-api/merge-java-client'
-                }
-            }
-        }
-    }
-}
-
-sonatypeCentralUpload {
-    username = "$System.env.MAVEN_USERNAME"
-    password = "$System.env.MAVEN_PASSWORD"
-
-    archives = files(
-        "$buildDir/libs/merge-java-client-" + version + ".jar",
-        "$buildDir/libs/merge-java-client-" + version + "-sources.jar",
-        "$buildDir/libs/merge-java-client-" + version + "-javadoc.jar"
-    )
-
-    pom = file("$buildDir/publications/maven/pom-default.xml")
-    signingKey = "$System.env.MAVEN_SIGNATURE_SECRET_KEY"
-    signingKeyPassphrase = "$System.env.MAVEN_SIGNATURE_PASSWORD"
-}
-
-signing {
-    def signingKeyId = "$System.env.MAVEN_SIGNATURE_KID"
-    def signingKey = "$System.env.MAVEN_SIGNATURE_SECRET_KEY"
-    def signingPassword = "$System.env.MAVEN_SIGNATURE_PASSWORD"
-    useInMemoryPgpKeys(signingKeyId, signingKey, signingPassword)
-    sign publishing.publications.maven
-}
-
-sonatypeCentralUpload.dependsOn build
