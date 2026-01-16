@@ -5,12 +5,15 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -205,16 +208,22 @@ public final class TicketsListRequest {
     /**
      * @return If provided, will only return tickets completed after this datetime.
      */
-    @JsonProperty("completed_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedAfter() {
+        if (completedAfter == null) {
+            return Optional.empty();
+        }
         return completedAfter;
     }
 
     /**
      * @return If provided, will only return tickets completed before this datetime.
      */
-    @JsonProperty("completed_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedBefore() {
+        if (completedBefore == null) {
+            return Optional.empty();
+        }
         return completedBefore;
     }
 
@@ -269,16 +278,22 @@ public final class TicketsListRequest {
     /**
      * @return If provided, will only return tickets due after this datetime.
      */
-    @JsonProperty("due_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueAfter() {
+        if (dueAfter == null) {
+            return Optional.empty();
+        }
         return dueAfter;
     }
 
     /**
      * @return If provided, will only return tickets due before this datetime.
      */
-    @JsonProperty("due_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueBefore() {
+        if (dueBefore == null) {
+            return Optional.empty();
+        }
         return dueBefore;
     }
 
@@ -333,8 +348,11 @@ public final class TicketsListRequest {
     /**
      * @return If provided, will only return tickets with this name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -363,24 +381,33 @@ public final class TicketsListRequest {
      * <li><code>LOW</code> - LOW</li>
      * </ul>
      */
-    @JsonProperty("priority")
+    @JsonIgnore
     public Optional<TicketsListRequestPriority> getPriority() {
+        if (priority == null) {
+            return Optional.empty();
+        }
         return priority;
     }
 
     /**
      * @return If provided, will only return tickets created in the third party platform after this datetime.
      */
-    @JsonProperty("remote_created_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        if (remoteCreatedAfter == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAfter;
     }
 
     /**
      * @return If provided, will only return tickets created in the third party platform before this datetime.
      */
-    @JsonProperty("remote_created_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedBefore() {
+        if (remoteCreatedBefore == null) {
+            return Optional.empty();
+        }
         return remoteCreatedBefore;
     }
 
@@ -395,24 +422,33 @@ public final class TicketsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
     /**
      * @return If provided, will only return tickets updated in the third party platform after this datetime.
      */
-    @JsonProperty("remote_updated_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAfter() {
+        if (remoteUpdatedAfter == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAfter;
     }
 
     /**
      * @return If provided, will only return tickets updated in the third party platform before this datetime.
      */
-    @JsonProperty("remote_updated_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedBefore() {
+        if (remoteUpdatedBefore == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedBefore;
     }
 
@@ -427,8 +463,11 @@ public final class TicketsListRequest {
     /**
      * @return If provided, will only return tickets of this status.
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TicketsListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -443,16 +482,106 @@ public final class TicketsListRequest {
     /**
      * @return If provided, will only return tickets of this type.
      */
-    @JsonProperty("ticket_type")
+    @JsonIgnore
     public Optional<String> getTicketType() {
+        if (ticketType == null) {
+            return Optional.empty();
+        }
         return ticketType;
     }
 
     /**
      * @return If provided, will only return tickets where the URL matches or contains the substring
      */
-    @JsonProperty("ticket_url")
+    @JsonIgnore
     public Optional<String> getTicketUrl() {
+        if (ticketUrl == null) {
+            return Optional.empty();
+        }
+        return ticketUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_after")
+    private Optional<OffsetDateTime> _getCompletedAfter() {
+        return completedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_before")
+    private Optional<OffsetDateTime> _getCompletedBefore() {
+        return completedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_after")
+    private Optional<OffsetDateTime> _getDueAfter() {
+        return dueAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_before")
+    private Optional<OffsetDateTime> _getDueBefore() {
+        return dueBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("priority")
+    private Optional<TicketsListRequestPriority> _getPriority() {
+        return priority;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_after")
+    private Optional<OffsetDateTime> _getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_before")
+    private Optional<OffsetDateTime> _getRemoteCreatedBefore() {
+        return remoteCreatedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_after")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAfter() {
+        return remoteUpdatedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_before")
+    private Optional<OffsetDateTime> _getRemoteUpdatedBefore() {
+        return remoteUpdatedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TicketsListRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_type")
+    private Optional<String> _getTicketType() {
+        return ticketType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_url")
+    private Optional<String> _getTicketUrl() {
         return ticketUrl;
     }
 
@@ -745,6 +874,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder completedAfter(Nullable<OffsetDateTime> completedAfter) {
+            if (completedAfter.isNull()) {
+                this.completedAfter = null;
+            } else if (completedAfter.isEmpty()) {
+                this.completedAfter = Optional.empty();
+            } else {
+                this.completedAfter = Optional.of(completedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets completed before this datetime.</p>
          */
@@ -756,6 +896,17 @@ public final class TicketsListRequest {
 
         public Builder completedBefore(OffsetDateTime completedBefore) {
             this.completedBefore = Optional.ofNullable(completedBefore);
+            return this;
+        }
+
+        public Builder completedBefore(Nullable<OffsetDateTime> completedBefore) {
+            if (completedBefore.isNull()) {
+                this.completedBefore = null;
+            } else if (completedBefore.isEmpty()) {
+                this.completedBefore = Optional.empty();
+            } else {
+                this.completedBefore = Optional.of(completedBefore.get());
+            }
             return this;
         }
 
@@ -857,6 +1008,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder dueAfter(Nullable<OffsetDateTime> dueAfter) {
+            if (dueAfter.isNull()) {
+                this.dueAfter = null;
+            } else if (dueAfter.isEmpty()) {
+                this.dueAfter = Optional.empty();
+            } else {
+                this.dueAfter = Optional.of(dueAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets due before this datetime.</p>
          */
@@ -868,6 +1030,17 @@ public final class TicketsListRequest {
 
         public Builder dueBefore(OffsetDateTime dueBefore) {
             this.dueBefore = Optional.ofNullable(dueBefore);
+            return this;
+        }
+
+        public Builder dueBefore(Nullable<OffsetDateTime> dueBefore) {
+            if (dueBefore.isNull()) {
+                this.dueBefore = null;
+            } else if (dueBefore.isEmpty()) {
+                this.dueBefore = Optional.empty();
+            } else {
+                this.dueBefore = Optional.of(dueBefore.get());
+            }
             return this;
         }
 
@@ -969,6 +1142,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Number of results to return per page.</p>
          */
@@ -1017,6 +1201,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder priority(Nullable<TicketsListRequestPriority> priority) {
+            if (priority.isNull()) {
+                this.priority = null;
+            } else if (priority.isEmpty()) {
+                this.priority = Optional.empty();
+            } else {
+                this.priority = Optional.of(priority.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets created in the third party platform after this datetime.</p>
          */
@@ -1031,6 +1226,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder remoteCreatedAfter(Nullable<OffsetDateTime> remoteCreatedAfter) {
+            if (remoteCreatedAfter.isNull()) {
+                this.remoteCreatedAfter = null;
+            } else if (remoteCreatedAfter.isEmpty()) {
+                this.remoteCreatedAfter = Optional.empty();
+            } else {
+                this.remoteCreatedAfter = Optional.of(remoteCreatedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets created in the third party platform before this datetime.</p>
          */
@@ -1042,6 +1248,17 @@ public final class TicketsListRequest {
 
         public Builder remoteCreatedBefore(OffsetDateTime remoteCreatedBefore) {
             this.remoteCreatedBefore = Optional.ofNullable(remoteCreatedBefore);
+            return this;
+        }
+
+        public Builder remoteCreatedBefore(Nullable<OffsetDateTime> remoteCreatedBefore) {
+            if (remoteCreatedBefore.isNull()) {
+                this.remoteCreatedBefore = null;
+            } else if (remoteCreatedBefore.isEmpty()) {
+                this.remoteCreatedBefore = Optional.empty();
+            } else {
+                this.remoteCreatedBefore = Optional.of(remoteCreatedBefore.get());
+            }
             return this;
         }
 
@@ -1073,6 +1290,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets updated in the third party platform after this datetime.</p>
          */
@@ -1087,6 +1315,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder remoteUpdatedAfter(Nullable<OffsetDateTime> remoteUpdatedAfter) {
+            if (remoteUpdatedAfter.isNull()) {
+                this.remoteUpdatedAfter = null;
+            } else if (remoteUpdatedAfter.isEmpty()) {
+                this.remoteUpdatedAfter = Optional.empty();
+            } else {
+                this.remoteUpdatedAfter = Optional.of(remoteUpdatedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets updated in the third party platform before this datetime.</p>
          */
@@ -1098,6 +1337,17 @@ public final class TicketsListRequest {
 
         public Builder remoteUpdatedBefore(OffsetDateTime remoteUpdatedBefore) {
             this.remoteUpdatedBefore = Optional.ofNullable(remoteUpdatedBefore);
+            return this;
+        }
+
+        public Builder remoteUpdatedBefore(Nullable<OffsetDateTime> remoteUpdatedBefore) {
+            if (remoteUpdatedBefore.isNull()) {
+                this.remoteUpdatedBefore = null;
+            } else if (remoteUpdatedBefore.isEmpty()) {
+                this.remoteUpdatedBefore = Optional.empty();
+            } else {
+                this.remoteUpdatedBefore = Optional.of(remoteUpdatedBefore.get());
+            }
             return this;
         }
 
@@ -1129,6 +1379,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder status(Nullable<TicketsListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets matching the tags; multiple tags can be separated by commas.</p>
          */
@@ -1157,6 +1418,17 @@ public final class TicketsListRequest {
             return this;
         }
 
+        public Builder ticketType(Nullable<String> ticketType) {
+            if (ticketType.isNull()) {
+                this.ticketType = null;
+            } else if (ticketType.isEmpty()) {
+                this.ticketType = Optional.empty();
+            } else {
+                this.ticketType = Optional.of(ticketType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return tickets where the URL matches or contains the substring</p>
          */
@@ -1168,6 +1440,17 @@ public final class TicketsListRequest {
 
         public Builder ticketUrl(String ticketUrl) {
             this.ticketUrl = Optional.ofNullable(ticketUrl);
+            return this;
+        }
+
+        public Builder ticketUrl(Nullable<String> ticketUrl) {
+            if (ticketUrl.isNull()) {
+                this.ticketUrl = null;
+            } else if (ticketUrl.isEmpty()) {
+                this.ticketUrl = Optional.empty();
+            } else {
+                this.ticketUrl = Optional.of(ticketUrl.get());
+            }
             return this;
         }
 

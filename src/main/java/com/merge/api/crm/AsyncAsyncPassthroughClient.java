@@ -6,6 +6,7 @@ package com.merge.api.crm;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.crm.types.AsyncPassthroughReciept;
+import com.merge.api.crm.types.AsyncPassthroughRetrieveRequest;
 import com.merge.api.crm.types.AsyncPassthroughRetrieveResponse;
 import com.merge.api.crm.types.DataPassthroughRequest;
 import java.util.concurrent.CompletableFuture;
@@ -53,9 +54,17 @@ public class AsyncAsyncPassthroughClient {
      * Retrieves data from earlier async-passthrough POST request
      */
     public CompletableFuture<AsyncPassthroughRetrieveResponse> retrieve(
-            String asyncPassthroughReceiptId, RequestOptions requestOptions) {
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request) {
+        return this.rawClient.retrieve(asyncPassthroughReceiptId, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Retrieves data from earlier async-passthrough POST request
+     */
+    public CompletableFuture<AsyncPassthroughRetrieveResponse> retrieve(
+            String asyncPassthroughReceiptId, AsyncPassthroughRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient
-                .retrieve(asyncPassthroughReceiptId, requestOptions)
+                .retrieve(asyncPassthroughReceiptId, request, requestOptions)
                 .thenApply(response -> response.body());
     }
 }

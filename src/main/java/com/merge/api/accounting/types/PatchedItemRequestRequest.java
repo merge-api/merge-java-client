@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -79,8 +82,11 @@ public final class PatchedItemRequestRequest {
     /**
      * @return The item's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -91,8 +97,11 @@ public final class PatchedItemRequestRequest {
      * <li><code>ARCHIVED</code> - ARCHIVED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<PatchedItemRequestRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -105,74 +114,176 @@ public final class PatchedItemRequestRequest {
      * <li><code>UNKNOWN</code> - UNKNOWN</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<PatchedItemRequestRequestType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return The item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<Double> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The price at which the item is purchased from a vendor.
      */
-    @JsonProperty("purchase_price")
+    @JsonIgnore
     public Optional<Double> getPurchasePrice() {
+        if (purchasePrice == null) {
+            return Optional.empty();
+        }
         return purchasePrice;
     }
 
     /**
      * @return References the default account used to record a purchase of the item.
      */
-    @JsonProperty("purchase_account")
+    @JsonIgnore
     public Optional<String> getPurchaseAccount() {
+        if (purchaseAccount == null) {
+            return Optional.empty();
+        }
         return purchaseAccount;
     }
 
     /**
      * @return References the default account used to record a sale.
      */
-    @JsonProperty("sales_account")
+    @JsonIgnore
     public Optional<String> getSalesAccount() {
+        if (salesAccount == null) {
+            return Optional.empty();
+        }
         return salesAccount;
     }
 
     /**
      * @return The company the item belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The default purchase tax rate for this item.
      */
-    @JsonProperty("purchase_tax_rate")
+    @JsonIgnore
     public Optional<String> getPurchaseTaxRate() {
+        if (purchaseTaxRate == null) {
+            return Optional.empty();
+        }
         return purchaseTaxRate;
     }
 
     /**
      * @return The default sales tax rate for this item.
      */
-    @JsonProperty("sales_tax_rate")
+    @JsonIgnore
     public Optional<String> getSalesTaxRate() {
+        if (salesTaxRate == null) {
+            return Optional.empty();
+        }
         return salesTaxRate;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<PatchedItemRequestRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<PatchedItemRequestRequestType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<Double> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_price")
+    private Optional<Double> _getPurchasePrice() {
+        return purchasePrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_account")
+    private Optional<String> _getPurchaseAccount() {
+        return purchaseAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("sales_account")
+    private Optional<String> _getSalesAccount() {
+        return salesAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("purchase_tax_rate")
+    private Optional<String> _getPurchaseTaxRate() {
+        return purchaseTaxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("sales_tax_rate")
+    private Optional<String> _getSalesTaxRate() {
+        return salesTaxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -289,6 +400,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The item's status.</p>
          * <ul>
@@ -304,6 +426,17 @@ public final class PatchedItemRequestRequest {
 
         public Builder status(PatchedItemRequestRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<PatchedItemRequestRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 
@@ -327,6 +460,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder type(Nullable<PatchedItemRequestRequestType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The item's unit price.</p>
          */
@@ -338,6 +482,17 @@ public final class PatchedItemRequestRequest {
 
         public Builder unitPrice(Double unitPrice) {
             this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(Nullable<Double> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
             return this;
         }
 
@@ -355,6 +510,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder purchasePrice(Nullable<Double> purchasePrice) {
+            if (purchasePrice.isNull()) {
+                this.purchasePrice = null;
+            } else if (purchasePrice.isEmpty()) {
+                this.purchasePrice = Optional.empty();
+            } else {
+                this.purchasePrice = Optional.of(purchasePrice.get());
+            }
+            return this;
+        }
+
         /**
          * <p>References the default account used to record a purchase of the item.</p>
          */
@@ -366,6 +532,17 @@ public final class PatchedItemRequestRequest {
 
         public Builder purchaseAccount(String purchaseAccount) {
             this.purchaseAccount = Optional.ofNullable(purchaseAccount);
+            return this;
+        }
+
+        public Builder purchaseAccount(Nullable<String> purchaseAccount) {
+            if (purchaseAccount.isNull()) {
+                this.purchaseAccount = null;
+            } else if (purchaseAccount.isEmpty()) {
+                this.purchaseAccount = Optional.empty();
+            } else {
+                this.purchaseAccount = Optional.of(purchaseAccount.get());
+            }
             return this;
         }
 
@@ -383,6 +560,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder salesAccount(Nullable<String> salesAccount) {
+            if (salesAccount.isNull()) {
+                this.salesAccount = null;
+            } else if (salesAccount.isEmpty()) {
+                this.salesAccount = Optional.empty();
+            } else {
+                this.salesAccount = Optional.of(salesAccount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the item belongs to.</p>
          */
@@ -394,6 +582,17 @@ public final class PatchedItemRequestRequest {
 
         public Builder company(String company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -411,6 +610,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder purchaseTaxRate(Nullable<String> purchaseTaxRate) {
+            if (purchaseTaxRate.isNull()) {
+                this.purchaseTaxRate = null;
+            } else if (purchaseTaxRate.isEmpty()) {
+                this.purchaseTaxRate = Optional.empty();
+            } else {
+                this.purchaseTaxRate = Optional.of(purchaseTaxRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The default sales tax rate for this item.</p>
          */
@@ -425,6 +635,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder salesTaxRate(Nullable<String> salesTaxRate) {
+            if (salesTaxRate.isNull()) {
+                this.salesTaxRate = null;
+            } else if (salesTaxRate.isEmpty()) {
+                this.salesTaxRate = Optional.empty();
+            } else {
+                this.salesTaxRate = Optional.of(salesTaxRate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -436,6 +657,17 @@ public final class PatchedItemRequestRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -444,6 +676,17 @@ public final class PatchedItemRequestRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

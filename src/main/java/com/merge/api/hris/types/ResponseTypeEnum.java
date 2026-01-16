@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public final class ResponseTypeEnum {
-    public static final ResponseTypeEnum BASE_64_GZIP = new ResponseTypeEnum(Value.BASE_64_GZIP, "BASE64_GZIP");
+    public static final ResponseTypeEnum BASE64GZIP = new ResponseTypeEnum(Value.BASE64GZIP, "BASE64_GZIP");
 
     public static final ResponseTypeEnum JSON = new ResponseTypeEnum(Value.JSON, "JSON");
 
@@ -43,7 +43,7 @@ public final class ResponseTypeEnum {
 
     public <T> T visit(Visitor<T> visitor) {
         switch (value) {
-            case BASE_64_GZIP:
+            case BASE64GZIP:
                 return visitor.visitBase64Gzip();
             case JSON:
                 return visitor.visitJson();
@@ -57,7 +57,7 @@ public final class ResponseTypeEnum {
     public static ResponseTypeEnum valueOf(String value) {
         switch (value) {
             case "BASE64_GZIP":
-                return BASE_64_GZIP;
+                return BASE64GZIP;
             case "JSON":
                 return JSON;
             default:
@@ -68,7 +68,7 @@ public final class ResponseTypeEnum {
     public enum Value {
         JSON,
 
-        BASE_64_GZIP,
+        BASE64GZIP,
 
         UNKNOWN
     }

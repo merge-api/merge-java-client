@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -66,8 +69,11 @@ public final class CustomObject {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -90,8 +96,11 @@ public final class CustomObject {
     /**
      * @return The custom object class the custom object record belongs to.
      */
-    @JsonProperty("object_class")
+    @JsonIgnore
     public Optional<String> getObjectClass() {
+        if (objectClass == null) {
+            return Optional.empty();
+        }
         return objectClass;
     }
 
@@ -106,6 +115,18 @@ public final class CustomObject {
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("object_class")
+    private Optional<String> _getObjectClass() {
+        return objectClass;
     }
 
     @java.lang.Override
@@ -207,6 +228,17 @@ public final class CustomObject {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -246,6 +278,17 @@ public final class CustomObject {
 
         public Builder objectClass(String objectClass) {
             this.objectClass = Optional.ofNullable(objectClass);
+            return this;
+        }
+
+        public Builder objectClass(Nullable<String> objectClass) {
+            if (objectClass.isNull()) {
+                this.objectClass = null;
+            } else if (objectClass.isEmpty()) {
+                this.objectClass = Optional.empty();
+            } else {
+                this.objectClass = Optional.of(objectClass.get());
+            }
             return this;
         }
 

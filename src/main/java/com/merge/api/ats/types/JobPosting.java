@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -98,8 +101,11 @@ public final class JobPosting {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -122,8 +128,11 @@ public final class JobPosting {
     /**
      * @return The job posting’s title.
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
@@ -138,8 +147,11 @@ public final class JobPosting {
     /**
      * @return ID of <code>Job</code> object for this <code>JobPosting</code>.
      */
-    @JsonProperty("job")
+    @JsonIgnore
     public Optional<JobPostingJob> getJob() {
+        if (job == null) {
+            return Optional.empty();
+        }
         return job;
     }
 
@@ -153,40 +165,55 @@ public final class JobPosting {
      * <li><code>PENDING</code> - PENDING</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<JobPostingStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The job posting’s content.
      */
-    @JsonProperty("content")
+    @JsonIgnore
     public Optional<String> getContent() {
+        if (content == null) {
+            return Optional.empty();
+        }
         return content;
     }
 
     /**
      * @return When the third party's job posting was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's job posting was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
     /**
      * @return Indicates whether the job posting is internal or external.
      */
-    @JsonProperty("is_internal")
+    @JsonIgnore
     public Optional<Boolean> getIsInternal() {
+        if (isInternal == null) {
+            return Optional.empty();
+        }
         return isInternal;
     }
 
@@ -198,13 +225,79 @@ public final class JobPosting {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job")
+    private Optional<JobPostingJob> _getJob() {
+        return job;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<JobPostingStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content")
+    private Optional<String> _getContent() {
+        return content;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_internal")
+    private Optional<Boolean> _getIsInternal() {
+        return isInternal;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -347,6 +440,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -389,6 +493,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The Url object is used to represent hyperlinks for a candidate to apply to a given job.</p>
          */
@@ -417,6 +532,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder job(Nullable<JobPostingJob> job) {
+            if (job.isNull()) {
+                this.job = null;
+            } else if (job.isEmpty()) {
+                this.job = Optional.empty();
+            } else {
+                this.job = Optional.of(job.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The job posting's status.</p>
          * <ul>
@@ -438,6 +564,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder status(Nullable<JobPostingStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The job posting’s content.</p>
          */
@@ -449,6 +586,17 @@ public final class JobPosting {
 
         public Builder content(String content) {
             this.content = Optional.ofNullable(content);
+            return this;
+        }
+
+        public Builder content(Nullable<String> content) {
+            if (content.isNull()) {
+                this.content = null;
+            } else if (content.isEmpty()) {
+                this.content = Optional.empty();
+            } else {
+                this.content = Optional.of(content.get());
+            }
             return this;
         }
 
@@ -466,6 +614,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's job posting was updated.</p>
          */
@@ -480,6 +639,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether the job posting is internal or external.</p>
          */
@@ -491,6 +661,17 @@ public final class JobPosting {
 
         public Builder isInternal(Boolean isInternal) {
             this.isInternal = Optional.ofNullable(isInternal);
+            return this;
+        }
+
+        public Builder isInternal(Nullable<Boolean> isInternal) {
+            if (isInternal.isNull()) {
+                this.isInternal = null;
+            } else if (isInternal.isEmpty()) {
+                this.isInternal = Optional.empty();
+            } else {
+                this.isInternal = Optional.of(isInternal.get());
+            }
             return this;
         }
 
@@ -519,6 +700,17 @@ public final class JobPosting {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -527,6 +719,17 @@ public final class JobPosting {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

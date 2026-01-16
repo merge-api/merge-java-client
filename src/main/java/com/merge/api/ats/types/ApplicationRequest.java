@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -85,32 +88,44 @@ public final class ApplicationRequest {
     /**
      * @return The candidate applying.
      */
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<ApplicationRequestCandidate> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
     /**
      * @return The job being applied for.
      */
-    @JsonProperty("job")
+    @JsonIgnore
     public Optional<ApplicationRequestJob> getJob() {
+        if (job == null) {
+            return Optional.empty();
+        }
         return job;
     }
 
     /**
      * @return When the application was submitted.
      */
-    @JsonProperty("applied_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getAppliedAt() {
+        if (appliedAt == null) {
+            return Optional.empty();
+        }
         return appliedAt;
     }
 
     /**
      * @return When the application was rejected.
      */
-    @JsonProperty("rejected_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRejectedAt() {
+        if (rejectedAt == null) {
+            return Optional.empty();
+        }
         return rejectedAt;
     }
 
@@ -122,16 +137,22 @@ public final class ApplicationRequest {
     /**
      * @return The application's source.
      */
-    @JsonProperty("source")
+    @JsonIgnore
     public Optional<String> getSource() {
+        if (source == null) {
+            return Optional.empty();
+        }
         return source;
     }
 
     /**
      * @return The user credited for this application.
      */
-    @JsonProperty("credited_to")
+    @JsonIgnore
     public Optional<ApplicationRequestCreditedTo> getCreditedTo() {
+        if (creditedTo == null) {
+            return Optional.empty();
+        }
         return creditedTo;
     }
 
@@ -143,31 +164,112 @@ public final class ApplicationRequest {
     /**
      * @return The application's current stage.
      */
-    @JsonProperty("current_stage")
+    @JsonIgnore
     public Optional<ApplicationRequestCurrentStage> getCurrentStage() {
+        if (currentStage == null) {
+            return Optional.empty();
+        }
         return currentStage;
     }
 
     /**
      * @return The application's reason for rejection.
      */
-    @JsonProperty("reject_reason")
+    @JsonIgnore
     public Optional<ApplicationRequestRejectReason> getRejectReason() {
+        if (rejectReason == null) {
+            return Optional.empty();
+        }
         return rejectReason;
     }
 
-    @JsonProperty("remote_template_id")
+    @JsonIgnore
     public Optional<String> getRemoteTemplateId() {
+        if (remoteTemplateId == null) {
+            return Optional.empty();
+        }
         return remoteTemplateId;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<ApplicationRequestCandidate> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job")
+    private Optional<ApplicationRequestJob> _getJob() {
+        return job;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("applied_at")
+    private Optional<OffsetDateTime> _getAppliedAt() {
+        return appliedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("rejected_at")
+    private Optional<OffsetDateTime> _getRejectedAt() {
+        return rejectedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source")
+    private Optional<String> _getSource() {
+        return source;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("credited_to")
+    private Optional<ApplicationRequestCreditedTo> _getCreditedTo() {
+        return creditedTo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("current_stage")
+    private Optional<ApplicationRequestCurrentStage> _getCurrentStage() {
+        return currentStage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("reject_reason")
+    private Optional<ApplicationRequestRejectReason> _getRejectReason() {
+        return rejectReason;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_template_id")
+    private Optional<String> _getRemoteTemplateId() {
+        return remoteTemplateId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -290,6 +392,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder candidate(Nullable<ApplicationRequestCandidate> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The job being applied for.</p>
          */
@@ -301,6 +414,17 @@ public final class ApplicationRequest {
 
         public Builder job(ApplicationRequestJob job) {
             this.job = Optional.ofNullable(job);
+            return this;
+        }
+
+        public Builder job(Nullable<ApplicationRequestJob> job) {
+            if (job.isNull()) {
+                this.job = null;
+            } else if (job.isEmpty()) {
+                this.job = Optional.empty();
+            } else {
+                this.job = Optional.of(job.get());
+            }
             return this;
         }
 
@@ -318,6 +442,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder appliedAt(Nullable<OffsetDateTime> appliedAt) {
+            if (appliedAt.isNull()) {
+                this.appliedAt = null;
+            } else if (appliedAt.isEmpty()) {
+                this.appliedAt = Optional.empty();
+            } else {
+                this.appliedAt = Optional.of(appliedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the application was rejected.</p>
          */
@@ -329,6 +464,17 @@ public final class ApplicationRequest {
 
         public Builder rejectedAt(OffsetDateTime rejectedAt) {
             this.rejectedAt = Optional.ofNullable(rejectedAt);
+            return this;
+        }
+
+        public Builder rejectedAt(Nullable<OffsetDateTime> rejectedAt) {
+            if (rejectedAt.isNull()) {
+                this.rejectedAt = null;
+            } else if (rejectedAt.isEmpty()) {
+                this.rejectedAt = Optional.empty();
+            } else {
+                this.rejectedAt = Optional.of(rejectedAt.get());
+            }
             return this;
         }
 
@@ -357,6 +503,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder source(Nullable<String> source) {
+            if (source.isNull()) {
+                this.source = null;
+            } else if (source.isEmpty()) {
+                this.source = Optional.empty();
+            } else {
+                this.source = Optional.of(source.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user credited for this application.</p>
          */
@@ -368,6 +525,17 @@ public final class ApplicationRequest {
 
         public Builder creditedTo(ApplicationRequestCreditedTo creditedTo) {
             this.creditedTo = Optional.ofNullable(creditedTo);
+            return this;
+        }
+
+        public Builder creditedTo(Nullable<ApplicationRequestCreditedTo> creditedTo) {
+            if (creditedTo.isNull()) {
+                this.creditedTo = null;
+            } else if (creditedTo.isEmpty()) {
+                this.creditedTo = Optional.empty();
+            } else {
+                this.creditedTo = Optional.of(creditedTo.get());
+            }
             return this;
         }
 
@@ -398,6 +566,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder currentStage(Nullable<ApplicationRequestCurrentStage> currentStage) {
+            if (currentStage.isNull()) {
+                this.currentStage = null;
+            } else if (currentStage.isEmpty()) {
+                this.currentStage = Optional.empty();
+            } else {
+                this.currentStage = Optional.of(currentStage.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The application's reason for rejection.</p>
          */
@@ -412,6 +591,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder rejectReason(Nullable<ApplicationRequestRejectReason> rejectReason) {
+            if (rejectReason.isNull()) {
+                this.rejectReason = null;
+            } else if (rejectReason.isEmpty()) {
+                this.rejectReason = Optional.empty();
+            } else {
+                this.rejectReason = Optional.of(rejectReason.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_template_id", nulls = Nulls.SKIP)
         public Builder remoteTemplateId(Optional<String> remoteTemplateId) {
             this.remoteTemplateId = remoteTemplateId;
@@ -420,6 +610,17 @@ public final class ApplicationRequest {
 
         public Builder remoteTemplateId(String remoteTemplateId) {
             this.remoteTemplateId = Optional.ofNullable(remoteTemplateId);
+            return this;
+        }
+
+        public Builder remoteTemplateId(Nullable<String> remoteTemplateId) {
+            if (remoteTemplateId.isNull()) {
+                this.remoteTemplateId = null;
+            } else if (remoteTemplateId.isEmpty()) {
+                this.remoteTemplateId = Optional.empty();
+            } else {
+                this.remoteTemplateId = Optional.of(remoteTemplateId.get());
+            }
             return this;
         }
 
@@ -434,6 +635,17 @@ public final class ApplicationRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -442,6 +654,17 @@ public final class ApplicationRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

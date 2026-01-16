@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -114,8 +117,11 @@ public final class IncomeStatement {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -138,8 +144,11 @@ public final class IncomeStatement {
     /**
      * @return The income statement's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -454,32 +463,44 @@ public final class IncomeStatement {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<IncomeStatementCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The company the income statement belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<IncomeStatementCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The income statement's start period.
      */
-    @JsonProperty("start_period")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartPeriod() {
+        if (startPeriod == null) {
+            return Optional.empty();
+        }
         return startPeriod;
     }
 
     /**
      * @return The income statement's end period.
      */
-    @JsonProperty("end_period")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndPeriod() {
+        if (endPeriod == null) {
+            return Optional.empty();
+        }
         return endPeriod;
     }
 
@@ -496,8 +517,11 @@ public final class IncomeStatement {
     /**
      * @return The revenue minus the cost of sale.
      */
-    @JsonProperty("gross_profit")
+    @JsonIgnore
     public Optional<Double> getGrossProfit() {
+        if (grossProfit == null) {
+            return Optional.empty();
+        }
         return grossProfit;
     }
 
@@ -509,8 +533,11 @@ public final class IncomeStatement {
     /**
      * @return The revenue minus the operating expenses.
      */
-    @JsonProperty("net_operating_income")
+    @JsonIgnore
     public Optional<Double> getNetOperatingIncome() {
+        if (netOperatingIncome == null) {
+            return Optional.empty();
+        }
         return netOperatingIncome;
     }
 
@@ -522,8 +549,11 @@ public final class IncomeStatement {
     /**
      * @return The gross profit minus the total expenses.
      */
-    @JsonProperty("net_income")
+    @JsonIgnore
     public Optional<Double> getNetIncome() {
+        if (netIncome == null) {
+            return Optional.empty();
+        }
         return netIncome;
     }
 
@@ -535,13 +565,85 @@ public final class IncomeStatement {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<IncomeStatementCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<IncomeStatementCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_period")
+    private Optional<OffsetDateTime> _getStartPeriod() {
+        return startPeriod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_period")
+    private Optional<OffsetDateTime> _getEndPeriod() {
+        return endPeriod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("gross_profit")
+    private Optional<Double> _getGrossProfit() {
+        return grossProfit;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("net_operating_income")
+    private Optional<Double> _getNetOperatingIncome() {
+        return netOperatingIncome;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("net_income")
+    private Optional<Double> _getNetIncome() {
+        return netIncome;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -704,6 +806,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -743,6 +856,17 @@ public final class IncomeStatement {
 
         public Builder name(String name) {
             this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
             return this;
         }
 
@@ -1068,6 +1192,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder currency(Nullable<IncomeStatementCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the income statement belongs to.</p>
          */
@@ -1079,6 +1214,17 @@ public final class IncomeStatement {
 
         public Builder company(IncomeStatementCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<IncomeStatementCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -1096,6 +1242,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder startPeriod(Nullable<OffsetDateTime> startPeriod) {
+            if (startPeriod.isNull()) {
+                this.startPeriod = null;
+            } else if (startPeriod.isEmpty()) {
+                this.startPeriod = Optional.empty();
+            } else {
+                this.startPeriod = Optional.of(startPeriod.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The income statement's end period.</p>
          */
@@ -1107,6 +1264,17 @@ public final class IncomeStatement {
 
         public Builder endPeriod(OffsetDateTime endPeriod) {
             this.endPeriod = Optional.ofNullable(endPeriod);
+            return this;
+        }
+
+        public Builder endPeriod(Nullable<OffsetDateTime> endPeriod) {
+            if (endPeriod.isNull()) {
+                this.endPeriod = null;
+            } else if (endPeriod.isEmpty()) {
+                this.endPeriod = Optional.empty();
+            } else {
+                this.endPeriod = Optional.of(endPeriod.get());
+            }
             return this;
         }
 
@@ -1146,6 +1314,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder grossProfit(Nullable<Double> grossProfit) {
+            if (grossProfit.isNull()) {
+                this.grossProfit = null;
+            } else if (grossProfit.isEmpty()) {
+                this.grossProfit = Optional.empty();
+            } else {
+                this.grossProfit = Optional.of(grossProfit.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "operating_expenses", nulls = Nulls.SKIP)
         public Builder operatingExpenses(Optional<List<ReportItem>> operatingExpenses) {
             this.operatingExpenses = operatingExpenses;
@@ -1168,6 +1347,17 @@ public final class IncomeStatement {
 
         public Builder netOperatingIncome(Double netOperatingIncome) {
             this.netOperatingIncome = Optional.ofNullable(netOperatingIncome);
+            return this;
+        }
+
+        public Builder netOperatingIncome(Nullable<Double> netOperatingIncome) {
+            if (netOperatingIncome.isNull()) {
+                this.netOperatingIncome = null;
+            } else if (netOperatingIncome.isEmpty()) {
+                this.netOperatingIncome = Optional.empty();
+            } else {
+                this.netOperatingIncome = Optional.of(netOperatingIncome.get());
+            }
             return this;
         }
 
@@ -1196,6 +1386,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder netIncome(Nullable<Double> netIncome) {
+            if (netIncome.isNull()) {
+                this.netIncome = null;
+            } else if (netIncome.isEmpty()) {
+                this.netIncome = Optional.empty();
+            } else {
+                this.netIncome = Optional.of(netIncome.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
@@ -1221,6 +1422,17 @@ public final class IncomeStatement {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -1229,6 +1441,17 @@ public final class IncomeStatement {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

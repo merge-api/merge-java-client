@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -135,8 +138,11 @@ public final class LocationsListRequest {
      * <li><code>WORK</code> - WORK</li>
      * </ul>
      */
-    @JsonProperty("location_type")
+    @JsonIgnore
     public Optional<LocationsListRequestLocationType> getLocationType() {
+        if (locationType == null) {
+            return Optional.empty();
+        }
         return locationType;
     }
 
@@ -175,8 +181,11 @@ public final class LocationsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -186,6 +195,18 @@ public final class LocationsListRequest {
     @JsonProperty("show_enum_origins")
     public Optional<LocationsListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("location_type")
+    private Optional<LocationsListRequestLocationType> _getLocationType() {
+        return locationType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -394,6 +415,17 @@ public final class LocationsListRequest {
             return this;
         }
 
+        public Builder locationType(Nullable<LocationsListRequestLocationType> locationType) {
+            if (locationType.isNull()) {
+                this.locationType = null;
+            } else if (locationType.isEmpty()) {
+                this.locationType = Optional.empty();
+            } else {
+                this.locationType = Optional.of(locationType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
          */
@@ -461,6 +493,17 @@ public final class LocationsListRequest {
 
         public Builder remoteId(String remoteId) {
             this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 

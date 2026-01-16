@@ -6,9 +6,10 @@ package com.merge.api.ats;
 import com.merge.api.ats.types.Candidate;
 import com.merge.api.ats.types.CandidateEndpointRequest;
 import com.merge.api.ats.types.CandidateResponse;
+import com.merge.api.ats.types.CandidatesIgnoreCreateRequest;
 import com.merge.api.ats.types.CandidatesListRequest;
+import com.merge.api.ats.types.CandidatesMetaPatchRetrieveRequest;
 import com.merge.api.ats.types.CandidatesRetrieveRequest;
-import com.merge.api.ats.types.IgnoreCommonModelRequest;
 import com.merge.api.ats.types.MetaResponse;
 import com.merge.api.ats.types.PatchedCandidateEndpointRequest;
 import com.merge.api.core.ClientOptions;
@@ -106,14 +107,14 @@ public class CandidatesClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public void ignoreCreate(String modelId, CandidatesIgnoreCreateRequest request) {
         this.rawClient.ignoreCreate(modelId, request).body();
     }
 
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public void ignoreCreate(String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+    public void ignoreCreate(String modelId, CandidatesIgnoreCreateRequest request, RequestOptions requestOptions) {
         this.rawClient.ignoreCreate(modelId, request, requestOptions).body();
     }
 
@@ -127,8 +128,16 @@ public class CandidatesClient {
     /**
      * Returns metadata for <code>Candidate</code> PATCHs.
      */
-    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
+    public MetaResponse metaPatchRetrieve(String id, CandidatesMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata for <code>Candidate</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(
+            String id, CandidatesMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).body();
     }
 
     /**
