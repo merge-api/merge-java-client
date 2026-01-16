@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -113,16 +116,22 @@ public final class IssuesListRequest {
     /**
      * @return If provided, will only return issues whose first incident time was after this datetime.
      */
-    @JsonProperty("first_incident_time_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getFirstIncidentTimeAfter() {
+        if (firstIncidentTimeAfter == null) {
+            return Optional.empty();
+        }
         return firstIncidentTimeAfter;
     }
 
     /**
      * @return If provided, will only return issues whose first incident time was before this datetime.
      */
-    @JsonProperty("first_incident_time_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getFirstIncidentTimeBefore() {
+        if (firstIncidentTimeBefore == null) {
+            return Optional.empty();
+        }
         return firstIncidentTimeBefore;
     }
 
@@ -142,16 +151,22 @@ public final class IssuesListRequest {
     /**
      * @return If provided, will only return issues whose last incident time was after this datetime.
      */
-    @JsonProperty("last_incident_time_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastIncidentTimeAfter() {
+        if (lastIncidentTimeAfter == null) {
+            return Optional.empty();
+        }
         return lastIncidentTimeAfter;
     }
 
     /**
      * @return If provided, will only return issues whose last incident time was before this datetime.
      */
-    @JsonProperty("last_incident_time_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastIncidentTimeBefore() {
+        if (lastIncidentTimeBefore == null) {
+            return Optional.empty();
+        }
         return lastIncidentTimeBefore;
     }
 
@@ -189,6 +204,30 @@ public final class IssuesListRequest {
     @JsonProperty("status")
     public Optional<IssuesListRequestStatus> getStatus() {
         return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_incident_time_after")
+    private Optional<OffsetDateTime> _getFirstIncidentTimeAfter() {
+        return firstIncidentTimeAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_incident_time_before")
+    private Optional<OffsetDateTime> _getFirstIncidentTimeBefore() {
+        return firstIncidentTimeBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_incident_time_after")
+    private Optional<OffsetDateTime> _getLastIncidentTimeAfter() {
+        return lastIncidentTimeAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_incident_time_before")
+    private Optional<OffsetDateTime> _getLastIncidentTimeBefore() {
+        return lastIncidentTimeBefore;
     }
 
     @java.lang.Override
@@ -364,6 +403,17 @@ public final class IssuesListRequest {
             return this;
         }
 
+        public Builder firstIncidentTimeAfter(Nullable<OffsetDateTime> firstIncidentTimeAfter) {
+            if (firstIncidentTimeAfter.isNull()) {
+                this.firstIncidentTimeAfter = null;
+            } else if (firstIncidentTimeAfter.isEmpty()) {
+                this.firstIncidentTimeAfter = Optional.empty();
+            } else {
+                this.firstIncidentTimeAfter = Optional.of(firstIncidentTimeAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return issues whose first incident time was before this datetime.</p>
          */
@@ -375,6 +425,17 @@ public final class IssuesListRequest {
 
         public Builder firstIncidentTimeBefore(OffsetDateTime firstIncidentTimeBefore) {
             this.firstIncidentTimeBefore = Optional.ofNullable(firstIncidentTimeBefore);
+            return this;
+        }
+
+        public Builder firstIncidentTimeBefore(Nullable<OffsetDateTime> firstIncidentTimeBefore) {
+            if (firstIncidentTimeBefore.isNull()) {
+                this.firstIncidentTimeBefore = null;
+            } else if (firstIncidentTimeBefore.isEmpty()) {
+                this.firstIncidentTimeBefore = Optional.empty();
+            } else {
+                this.firstIncidentTimeBefore = Optional.of(firstIncidentTimeBefore.get());
+            }
             return this;
         }
 
@@ -417,6 +478,17 @@ public final class IssuesListRequest {
             return this;
         }
 
+        public Builder lastIncidentTimeAfter(Nullable<OffsetDateTime> lastIncidentTimeAfter) {
+            if (lastIncidentTimeAfter.isNull()) {
+                this.lastIncidentTimeAfter = null;
+            } else if (lastIncidentTimeAfter.isEmpty()) {
+                this.lastIncidentTimeAfter = Optional.empty();
+            } else {
+                this.lastIncidentTimeAfter = Optional.of(lastIncidentTimeAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return issues whose last incident time was before this datetime.</p>
          */
@@ -428,6 +500,17 @@ public final class IssuesListRequest {
 
         public Builder lastIncidentTimeBefore(OffsetDateTime lastIncidentTimeBefore) {
             this.lastIncidentTimeBefore = Optional.ofNullable(lastIncidentTimeBefore);
+            return this;
+        }
+
+        public Builder lastIncidentTimeBefore(Nullable<OffsetDateTime> lastIncidentTimeBefore) {
+            if (lastIncidentTimeBefore.isNull()) {
+                this.lastIncidentTimeBefore = null;
+            } else if (lastIncidentTimeBefore.isEmpty()) {
+                this.lastIncidentTimeBefore = Optional.empty();
+            } else {
+                this.lastIncidentTimeBefore = Optional.of(lastIncidentTimeBefore.get());
+            }
             return this;
         }
 

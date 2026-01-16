@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -59,50 +62,113 @@ public final class AttachmentRequest {
     /**
      * @return The attachment's name. It is required to include the file extension in the attachment's name.
      */
-    @JsonProperty("file_name")
+    @JsonIgnore
     public Optional<String> getFileName() {
+        if (fileName == null) {
+            return Optional.empty();
+        }
         return fileName;
     }
 
     /**
      * @return The ticket associated with the attachment.
      */
-    @JsonProperty("ticket")
+    @JsonIgnore
     public Optional<AttachmentRequestTicket> getTicket() {
+        if (ticket == null) {
+            return Optional.empty();
+        }
         return ticket;
     }
 
     /**
      * @return The attachment's url. It is required to include the file extension in the file's URL.
      */
-    @JsonProperty("file_url")
+    @JsonIgnore
     public Optional<String> getFileUrl() {
+        if (fileUrl == null) {
+            return Optional.empty();
+        }
         return fileUrl;
     }
 
     /**
      * @return The attachment's file format.
      */
-    @JsonProperty("content_type")
+    @JsonIgnore
     public Optional<String> getContentType() {
+        if (contentType == null) {
+            return Optional.empty();
+        }
         return contentType;
     }
 
     /**
      * @return The user who uploaded the attachment.
      */
-    @JsonProperty("uploaded_by")
+    @JsonIgnore
     public Optional<String> getUploadedBy() {
+        if (uploadedBy == null) {
+            return Optional.empty();
+        }
         return uploadedBy;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_name")
+    private Optional<String> _getFileName() {
+        return fileName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket")
+    private Optional<AttachmentRequestTicket> _getTicket() {
+        return ticket;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_url")
+    private Optional<String> _getFileUrl() {
+        return fileUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content_type")
+    private Optional<String> _getContentType() {
+        return contentType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("uploaded_by")
+    private Optional<String> _getUploadedBy() {
+        return uploadedBy;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -194,6 +260,17 @@ public final class AttachmentRequest {
             return this;
         }
 
+        public Builder fileName(Nullable<String> fileName) {
+            if (fileName.isNull()) {
+                this.fileName = null;
+            } else if (fileName.isEmpty()) {
+                this.fileName = Optional.empty();
+            } else {
+                this.fileName = Optional.of(fileName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket associated with the attachment.</p>
          */
@@ -205,6 +282,17 @@ public final class AttachmentRequest {
 
         public Builder ticket(AttachmentRequestTicket ticket) {
             this.ticket = Optional.ofNullable(ticket);
+            return this;
+        }
+
+        public Builder ticket(Nullable<AttachmentRequestTicket> ticket) {
+            if (ticket.isNull()) {
+                this.ticket = null;
+            } else if (ticket.isEmpty()) {
+                this.ticket = Optional.empty();
+            } else {
+                this.ticket = Optional.of(ticket.get());
+            }
             return this;
         }
 
@@ -222,6 +310,17 @@ public final class AttachmentRequest {
             return this;
         }
 
+        public Builder fileUrl(Nullable<String> fileUrl) {
+            if (fileUrl.isNull()) {
+                this.fileUrl = null;
+            } else if (fileUrl.isEmpty()) {
+                this.fileUrl = Optional.empty();
+            } else {
+                this.fileUrl = Optional.of(fileUrl.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The attachment's file format.</p>
          */
@@ -233,6 +332,17 @@ public final class AttachmentRequest {
 
         public Builder contentType(String contentType) {
             this.contentType = Optional.ofNullable(contentType);
+            return this;
+        }
+
+        public Builder contentType(Nullable<String> contentType) {
+            if (contentType.isNull()) {
+                this.contentType = null;
+            } else if (contentType.isEmpty()) {
+                this.contentType = Optional.empty();
+            } else {
+                this.contentType = Optional.of(contentType.get());
+            }
             return this;
         }
 
@@ -250,6 +360,17 @@ public final class AttachmentRequest {
             return this;
         }
 
+        public Builder uploadedBy(Nullable<String> uploadedBy) {
+            if (uploadedBy.isNull()) {
+                this.uploadedBy = null;
+            } else if (uploadedBy.isEmpty()) {
+                this.uploadedBy = Optional.empty();
+            } else {
+                this.uploadedBy = Optional.of(uploadedBy.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -261,6 +382,17 @@ public final class AttachmentRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -269,6 +401,17 @@ public final class AttachmentRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

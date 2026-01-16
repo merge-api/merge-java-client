@@ -7,12 +7,13 @@ import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.crm.types.Contact;
+import com.merge.api.crm.types.ContactsIgnoreCreateRequest;
 import com.merge.api.crm.types.ContactsListRequest;
+import com.merge.api.crm.types.ContactsMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.ContactsRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.ContactsRetrieveRequest;
 import com.merge.api.crm.types.CrmContactEndpointRequest;
 import com.merge.api.crm.types.CrmContactResponse;
-import com.merge.api.crm.types.IgnoreCommonModelRequest;
 import com.merge.api.crm.types.MetaResponse;
 import com.merge.api.crm.types.PatchedCrmContactEndpointRequest;
 import com.merge.api.crm.types.RemoteFieldClass;
@@ -112,7 +113,7 @@ public class AsyncContactsClient {
     /**
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
-    public CompletableFuture<Void> ignoreCreate(String modelId, IgnoreCommonModelRequest request) {
+    public CompletableFuture<Void> ignoreCreate(String modelId, ContactsIgnoreCreateRequest request) {
         return this.rawClient.ignoreCreate(modelId, request).thenApply(response -> response.body());
     }
 
@@ -120,7 +121,7 @@ public class AsyncContactsClient {
      * Ignores a specific row based on the <code>model_id</code> in the url. These records will have their properties set to null, and will not be updated in future syncs. The &quot;reason&quot; and &quot;message&quot; fields in the request body will be stored for audit purposes.
      */
     public CompletableFuture<Void> ignoreCreate(
-            String modelId, IgnoreCommonModelRequest request, RequestOptions requestOptions) {
+            String modelId, ContactsIgnoreCreateRequest request, RequestOptions requestOptions) {
         return this.rawClient.ignoreCreate(modelId, request, requestOptions).thenApply(response -> response.body());
     }
 
@@ -134,8 +135,16 @@ public class AsyncContactsClient {
     /**
      * Returns metadata for <code>CRMContact</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, ContactsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>CRMContact</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, ContactsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

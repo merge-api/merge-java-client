@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -82,8 +85,11 @@ public final class Group {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -106,16 +112,22 @@ public final class Group {
     /**
      * @return The parent group for this group.
      */
-    @JsonProperty("parent_group")
+    @JsonIgnore
     public Optional<String> getParentGroup() {
+        if (parentGroup == null) {
+            return Optional.empty();
+        }
         return parentGroup;
     }
 
     /**
      * @return The group name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -129,16 +141,22 @@ public final class Group {
      * <li><code>GROUP</code> - GROUP</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<GroupType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct.
      */
-    @JsonProperty("is_commonly_used_as_team")
+    @JsonIgnore
     public Optional<Boolean> getIsCommonlyUsedAsTeam() {
+        if (isCommonlyUsedAsTeam == null) {
+            return Optional.empty();
+        }
         return isCommonlyUsedAsTeam;
     }
 
@@ -150,13 +168,61 @@ public final class Group {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("parent_group")
+    private Optional<String> _getParentGroup() {
+        return parentGroup;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<GroupType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_commonly_used_as_team")
+    private Optional<Boolean> _getIsCommonlyUsedAsTeam() {
+        return isCommonlyUsedAsTeam;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -279,6 +345,17 @@ public final class Group {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -321,6 +398,17 @@ public final class Group {
             return this;
         }
 
+        public Builder parentGroup(Nullable<String> parentGroup) {
+            if (parentGroup.isNull()) {
+                this.parentGroup = null;
+            } else if (parentGroup.isEmpty()) {
+                this.parentGroup = Optional.empty();
+            } else {
+                this.parentGroup = Optional.of(parentGroup.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The group name.</p>
          */
@@ -332,6 +420,17 @@ public final class Group {
 
         public Builder name(String name) {
             this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
             return this;
         }
 
@@ -356,6 +455,17 @@ public final class Group {
             return this;
         }
 
+        public Builder type(Nullable<GroupType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether the Group refers to a team in the third party platform. Note that this is an opinionated view based on how Merge observes most organizations representing teams in each third party platform. If your customer uses a platform different from most, there is a chance this will not be correct.</p>
          */
@@ -367,6 +477,17 @@ public final class Group {
 
         public Builder isCommonlyUsedAsTeam(Boolean isCommonlyUsedAsTeam) {
             this.isCommonlyUsedAsTeam = Optional.ofNullable(isCommonlyUsedAsTeam);
+            return this;
+        }
+
+        public Builder isCommonlyUsedAsTeam(Nullable<Boolean> isCommonlyUsedAsTeam) {
+            if (isCommonlyUsedAsTeam.isNull()) {
+                this.isCommonlyUsedAsTeam = null;
+            } else if (isCommonlyUsedAsTeam.isEmpty()) {
+                this.isCommonlyUsedAsTeam = Optional.empty();
+            } else {
+                this.isCommonlyUsedAsTeam = Optional.of(isCommonlyUsedAsTeam.get());
+            }
             return this;
         }
 
@@ -395,6 +516,17 @@ public final class Group {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -403,6 +535,17 @@ public final class Group {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

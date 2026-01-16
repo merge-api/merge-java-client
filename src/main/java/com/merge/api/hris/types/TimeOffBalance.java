@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -82,8 +85,11 @@ public final class TimeOffBalance {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -106,24 +112,33 @@ public final class TimeOffBalance {
     /**
      * @return The employee the balance belongs to.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<TimeOffBalanceEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The current remaining PTO balance, measured in hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.
      */
-    @JsonProperty("balance")
+    @JsonIgnore
     public Optional<Double> getBalance() {
+        if (balance == null) {
+            return Optional.empty();
+        }
         return balance;
     }
 
     /**
      * @return The amount of PTO used in terms of hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.
      */
-    @JsonProperty("used")
+    @JsonIgnore
     public Optional<Double> getUsed() {
+        if (used == null) {
+            return Optional.empty();
+        }
         return used;
     }
 
@@ -138,8 +153,11 @@ public final class TimeOffBalance {
      * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
      * </ul>
      */
-    @JsonProperty("policy_type")
+    @JsonIgnore
     public Optional<TimeOffBalancePolicyType> getPolicyType() {
+        if (policyType == null) {
+            return Optional.empty();
+        }
         return policyType;
     }
 
@@ -151,13 +169,61 @@ public final class TimeOffBalance {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<TimeOffBalanceEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("balance")
+    private Optional<Double> _getBalance() {
+        return balance;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("used")
+    private Optional<Double> _getUsed() {
+        return used;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("policy_type")
+    private Optional<TimeOffBalancePolicyType> _getPolicyType() {
+        return policyType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -280,6 +346,17 @@ public final class TimeOffBalance {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -322,6 +399,17 @@ public final class TimeOffBalance {
             return this;
         }
 
+        public Builder employee(Nullable<TimeOffBalanceEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The current remaining PTO balance, measured in hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.</p>
          */
@@ -336,6 +424,17 @@ public final class TimeOffBalance {
             return this;
         }
 
+        public Builder balance(Nullable<Double> balance) {
+            if (balance.isNull()) {
+                this.balance = null;
+            } else if (balance.isEmpty()) {
+                this.balance = Optional.empty();
+            } else {
+                this.balance = Optional.of(balance.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The amount of PTO used in terms of hours. For integrations that return this value in days, Merge multiplies by 8 to calculate hours.</p>
          */
@@ -347,6 +446,17 @@ public final class TimeOffBalance {
 
         public Builder used(Double used) {
             this.used = Optional.ofNullable(used);
+            return this;
+        }
+
+        public Builder used(Nullable<Double> used) {
+            if (used.isNull()) {
+                this.used = null;
+            } else if (used.isEmpty()) {
+                this.used = Optional.empty();
+            } else {
+                this.used = Optional.of(used.get());
+            }
             return this;
         }
 
@@ -369,6 +479,17 @@ public final class TimeOffBalance {
 
         public Builder policyType(TimeOffBalancePolicyType policyType) {
             this.policyType = Optional.ofNullable(policyType);
+            return this;
+        }
+
+        public Builder policyType(Nullable<TimeOffBalancePolicyType> policyType) {
+            if (policyType.isNull()) {
+                this.policyType = null;
+            } else if (policyType.isEmpty()) {
+                this.policyType = Optional.empty();
+            } else {
+                this.policyType = Optional.of(policyType.get());
+            }
             return this;
         }
 
@@ -397,6 +518,17 @@ public final class TimeOffBalance {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -405,6 +537,17 @@ public final class TimeOffBalance {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -70,18 +73,45 @@ public final class RemoteFieldApi {
         return remoteEndpointInfo;
     }
 
-    @JsonProperty("example_values")
+    @JsonIgnore
     public Optional<List<JsonNode>> getExampleValues() {
+        if (exampleValues == null) {
+            return Optional.empty();
+        }
         return exampleValues;
     }
 
-    @JsonProperty("advanced_metadata")
+    @JsonIgnore
     public Optional<AdvancedMetadata> getAdvancedMetadata() {
+        if (advancedMetadata == null) {
+            return Optional.empty();
+        }
         return advancedMetadata;
     }
 
-    @JsonProperty("coverage")
+    @JsonIgnore
     public Optional<RemoteFieldApiCoverage> getCoverage() {
+        if (coverage == null) {
+            return Optional.empty();
+        }
+        return coverage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("example_values")
+    private Optional<List<JsonNode>> _getExampleValues() {
+        return exampleValues;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("advanced_metadata")
+    private Optional<AdvancedMetadata> _getAdvancedMetadata() {
+        return advancedMetadata;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("coverage")
+    private Optional<RemoteFieldApiCoverage> _getCoverage() {
         return coverage;
     }
 
@@ -148,13 +178,19 @@ public final class RemoteFieldApi {
 
         _FinalStage exampleValues(List<JsonNode> exampleValues);
 
+        _FinalStage exampleValues(Nullable<List<JsonNode>> exampleValues);
+
         _FinalStage advancedMetadata(Optional<AdvancedMetadata> advancedMetadata);
 
         _FinalStage advancedMetadata(AdvancedMetadata advancedMetadata);
 
+        _FinalStage advancedMetadata(Nullable<AdvancedMetadata> advancedMetadata);
+
         _FinalStage coverage(Optional<RemoteFieldApiCoverage> coverage);
 
         _FinalStage coverage(RemoteFieldApiCoverage coverage);
+
+        _FinalStage coverage(Nullable<RemoteFieldApiCoverage> coverage);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -202,6 +238,18 @@ public final class RemoteFieldApi {
         }
 
         @java.lang.Override
+        public _FinalStage coverage(Nullable<RemoteFieldApiCoverage> coverage) {
+            if (coverage.isNull()) {
+                this.coverage = null;
+            } else if (coverage.isEmpty()) {
+                this.coverage = Optional.empty();
+            } else {
+                this.coverage = Optional.of(coverage.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage coverage(RemoteFieldApiCoverage coverage) {
             this.coverage = Optional.ofNullable(coverage);
             return this;
@@ -215,6 +263,18 @@ public final class RemoteFieldApi {
         }
 
         @java.lang.Override
+        public _FinalStage advancedMetadata(Nullable<AdvancedMetadata> advancedMetadata) {
+            if (advancedMetadata.isNull()) {
+                this.advancedMetadata = null;
+            } else if (advancedMetadata.isEmpty()) {
+                this.advancedMetadata = Optional.empty();
+            } else {
+                this.advancedMetadata = Optional.of(advancedMetadata.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage advancedMetadata(AdvancedMetadata advancedMetadata) {
             this.advancedMetadata = Optional.ofNullable(advancedMetadata);
             return this;
@@ -224,6 +284,18 @@ public final class RemoteFieldApi {
         @JsonSetter(value = "advanced_metadata", nulls = Nulls.SKIP)
         public _FinalStage advancedMetadata(Optional<AdvancedMetadata> advancedMetadata) {
             this.advancedMetadata = advancedMetadata;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage exampleValues(Nullable<List<JsonNode>> exampleValues) {
+            if (exampleValues.isNull()) {
+                this.exampleValues = null;
+            } else if (exampleValues.isEmpty()) {
+                this.exampleValues = Optional.empty();
+            } else {
+                this.exampleValues = Optional.of(exampleValues.get());
+            }
             return this;
         }
 

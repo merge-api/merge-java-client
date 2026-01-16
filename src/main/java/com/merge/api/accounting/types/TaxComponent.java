@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -72,8 +75,11 @@ public final class TaxComponent {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -96,24 +102,33 @@ public final class TaxComponent {
     /**
      * @return The tax rate’s name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The tax component’s rate.
      */
-    @JsonProperty("rate")
+    @JsonIgnore
     public Optional<String> getRate() {
+        if (rate == null) {
+            return Optional.empty();
+        }
         return rate;
     }
 
     /**
      * @return <p>True if the tax component is compound, False if not.</p>
      */
-    @JsonProperty("is_compound")
+    @JsonIgnore
     public Optional<Boolean> getIsCompound() {
+        if (isCompound == null) {
+            return Optional.empty();
+        }
         return isCompound;
     }
 
@@ -124,8 +139,11 @@ public final class TaxComponent {
      * <li><code>PURCHASE</code> - PURCHASE</li>
      * </ul>
      */
-    @JsonProperty("component_type")
+    @JsonIgnore
     public Optional<TaxComponentComponentType> getComponentType() {
+        if (componentType == null) {
+            return Optional.empty();
+        }
         return componentType;
     }
 
@@ -135,6 +153,36 @@ public final class TaxComponent {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("rate")
+    private Optional<String> _getRate() {
+        return rate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_compound")
+    private Optional<Boolean> _getIsCompound() {
+        return isCompound;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("component_type")
+    private Optional<TaxComponentComponentType> _getComponentType() {
+        return componentType;
     }
 
     @java.lang.Override
@@ -246,6 +294,17 @@ public final class TaxComponent {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -288,6 +347,17 @@ public final class TaxComponent {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The tax component’s rate.</p>
          */
@@ -302,6 +372,17 @@ public final class TaxComponent {
             return this;
         }
 
+        public Builder rate(Nullable<String> rate) {
+            if (rate.isNull()) {
+                this.rate = null;
+            } else if (rate.isEmpty()) {
+                this.rate = Optional.empty();
+            } else {
+                this.rate = Optional.of(rate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Returns True if the tax component is compound, False if not.</p>
          */
@@ -313,6 +394,17 @@ public final class TaxComponent {
 
         public Builder isCompound(Boolean isCompound) {
             this.isCompound = Optional.ofNullable(isCompound);
+            return this;
+        }
+
+        public Builder isCompound(Nullable<Boolean> isCompound) {
+            if (isCompound.isNull()) {
+                this.isCompound = null;
+            } else if (isCompound.isEmpty()) {
+                this.isCompound = Optional.empty();
+            } else {
+                this.isCompound = Optional.of(isCompound.get());
+            }
             return this;
         }
 
@@ -331,6 +423,17 @@ public final class TaxComponent {
 
         public Builder componentType(TaxComponentComponentType componentType) {
             this.componentType = Optional.ofNullable(componentType);
+            return this;
+        }
+
+        public Builder componentType(Nullable<TaxComponentComponentType> componentType) {
+            if (componentType.isNull()) {
+                this.componentType = null;
+            } else if (componentType.isEmpty()) {
+                this.componentType = Optional.empty();
+            } else {
+                this.componentType = Optional.of(componentType.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -84,40 +87,55 @@ public final class ContactRequest {
     /**
      * @return The contact's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return Whether the contact is a supplier.
      */
-    @JsonProperty("is_supplier")
+    @JsonIgnore
     public Optional<Boolean> getIsSupplier() {
+        if (isSupplier == null) {
+            return Optional.empty();
+        }
         return isSupplier;
     }
 
     /**
      * @return Whether the contact is a customer.
      */
-    @JsonProperty("is_customer")
+    @JsonIgnore
     public Optional<Boolean> getIsCustomer() {
+        if (isCustomer == null) {
+            return Optional.empty();
+        }
         return isCustomer;
     }
 
     /**
      * @return The contact's email address.
      */
-    @JsonProperty("email_address")
+    @JsonIgnore
     public Optional<String> getEmailAddress() {
+        if (emailAddress == null) {
+            return Optional.empty();
+        }
         return emailAddress;
     }
 
     /**
      * @return The contact's tax number.
      */
-    @JsonProperty("tax_number")
+    @JsonIgnore
     public Optional<String> getTaxNumber() {
+        if (taxNumber == null) {
+            return Optional.empty();
+        }
         return taxNumber;
     }
 
@@ -128,24 +146,33 @@ public final class ContactRequest {
      * <li><code>ARCHIVED</code> - ARCHIVED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<ContactRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The currency the contact's transactions are in.
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<String> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The company the contact belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -165,19 +192,85 @@ public final class ContactRequest {
         return phoneNumbers;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_supplier")
+    private Optional<Boolean> _getIsSupplier() {
+        return isSupplier;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_customer")
+    private Optional<Boolean> _getIsCustomer() {
+        return isCustomer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email_address")
+    private Optional<String> _getEmailAddress() {
+        return emailAddress;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_number")
+    private Optional<String> _getTaxNumber() {
+        return taxNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<ContactRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<String> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -298,6 +391,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether the contact is a supplier.</p>
          */
@@ -309,6 +413,17 @@ public final class ContactRequest {
 
         public Builder isSupplier(Boolean isSupplier) {
             this.isSupplier = Optional.ofNullable(isSupplier);
+            return this;
+        }
+
+        public Builder isSupplier(Nullable<Boolean> isSupplier) {
+            if (isSupplier.isNull()) {
+                this.isSupplier = null;
+            } else if (isSupplier.isEmpty()) {
+                this.isSupplier = Optional.empty();
+            } else {
+                this.isSupplier = Optional.of(isSupplier.get());
+            }
             return this;
         }
 
@@ -326,6 +441,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder isCustomer(Nullable<Boolean> isCustomer) {
+            if (isCustomer.isNull()) {
+                this.isCustomer = null;
+            } else if (isCustomer.isEmpty()) {
+                this.isCustomer = Optional.empty();
+            } else {
+                this.isCustomer = Optional.of(isCustomer.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The contact's email address.</p>
          */
@@ -340,6 +466,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder emailAddress(Nullable<String> emailAddress) {
+            if (emailAddress.isNull()) {
+                this.emailAddress = null;
+            } else if (emailAddress.isEmpty()) {
+                this.emailAddress = Optional.empty();
+            } else {
+                this.emailAddress = Optional.of(emailAddress.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The contact's tax number.</p>
          */
@@ -351,6 +488,17 @@ public final class ContactRequest {
 
         public Builder taxNumber(String taxNumber) {
             this.taxNumber = Optional.ofNullable(taxNumber);
+            return this;
+        }
+
+        public Builder taxNumber(Nullable<String> taxNumber) {
+            if (taxNumber.isNull()) {
+                this.taxNumber = null;
+            } else if (taxNumber.isEmpty()) {
+                this.taxNumber = Optional.empty();
+            } else {
+                this.taxNumber = Optional.of(taxNumber.get());
+            }
             return this;
         }
 
@@ -372,6 +520,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder status(Nullable<ContactRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The currency the contact's transactions are in.</p>
          */
@@ -386,6 +545,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder currency(Nullable<String> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the contact belongs to.</p>
          */
@@ -397,6 +567,17 @@ public final class ContactRequest {
 
         public Builder company(String company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -439,6 +620,17 @@ public final class ContactRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -447,6 +639,17 @@ public final class ContactRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

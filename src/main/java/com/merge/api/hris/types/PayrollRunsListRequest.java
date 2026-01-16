@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -123,16 +126,22 @@ public final class PayrollRunsListRequest {
     /**
      * @return If provided, will only return payroll runs ended after this datetime.
      */
-    @JsonProperty("ended_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndedAfter() {
+        if (endedAfter == null) {
+            return Optional.empty();
+        }
         return endedAfter;
     }
 
     /**
      * @return If provided, will only return payroll runs ended before this datetime.
      */
-    @JsonProperty("ended_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndedBefore() {
+        if (endedBefore == null) {
+            return Optional.empty();
+        }
         return endedBefore;
     }
 
@@ -195,8 +204,11 @@ public final class PayrollRunsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -210,8 +222,11 @@ public final class PayrollRunsListRequest {
      * <li><code>SIGN_ON_BONUS</code> - SIGN_ON_BONUS</li>
      * </ul>
      */
-    @JsonProperty("run_type")
+    @JsonIgnore
     public Optional<PayrollRunsListRequestRunType> getRunType() {
+        if (runType == null) {
+            return Optional.empty();
+        }
         return runType;
     }
 
@@ -226,16 +241,58 @@ public final class PayrollRunsListRequest {
     /**
      * @return If provided, will only return payroll runs started after this datetime.
      */
-    @JsonProperty("started_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedAfter() {
+        if (startedAfter == null) {
+            return Optional.empty();
+        }
         return startedAfter;
     }
 
     /**
      * @return If provided, will only return payroll runs started before this datetime.
      */
-    @JsonProperty("started_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartedBefore() {
+        if (startedBefore == null) {
+            return Optional.empty();
+        }
+        return startedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ended_after")
+    private Optional<OffsetDateTime> _getEndedAfter() {
+        return endedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ended_before")
+    private Optional<OffsetDateTime> _getEndedBefore() {
+        return endedBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("run_type")
+    private Optional<PayrollRunsListRequestRunType> _getRunType() {
+        return runType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_after")
+    private Optional<OffsetDateTime> _getStartedAfter() {
+        return startedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("started_before")
+    private Optional<OffsetDateTime> _getStartedBefore() {
         return startedBefore;
     }
 
@@ -419,6 +476,17 @@ public final class PayrollRunsListRequest {
             return this;
         }
 
+        public Builder endedAfter(Nullable<OffsetDateTime> endedAfter) {
+            if (endedAfter.isNull()) {
+                this.endedAfter = null;
+            } else if (endedAfter.isEmpty()) {
+                this.endedAfter = Optional.empty();
+            } else {
+                this.endedAfter = Optional.of(endedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return payroll runs ended before this datetime.</p>
          */
@@ -430,6 +498,17 @@ public final class PayrollRunsListRequest {
 
         public Builder endedBefore(OffsetDateTime endedBefore) {
             this.endedBefore = Optional.ofNullable(endedBefore);
+            return this;
+        }
+
+        public Builder endedBefore(Nullable<OffsetDateTime> endedBefore) {
+            if (endedBefore.isNull()) {
+                this.endedBefore = null;
+            } else if (endedBefore.isEmpty()) {
+                this.endedBefore = Optional.empty();
+            } else {
+                this.endedBefore = Optional.of(endedBefore.get());
+            }
             return this;
         }
 
@@ -545,6 +624,17 @@ public final class PayrollRunsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return PayrollRun's with this status. Options: ('REGULAR', 'OFF_CYCLE', 'CORRECTION', 'TERMINATION', 'SIGN_ON_BONUS')</p>
          * <ul>
@@ -563,6 +653,17 @@ public final class PayrollRunsListRequest {
 
         public Builder runType(PayrollRunsListRequestRunType runType) {
             this.runType = Optional.ofNullable(runType);
+            return this;
+        }
+
+        public Builder runType(Nullable<PayrollRunsListRequestRunType> runType) {
+            if (runType.isNull()) {
+                this.runType = null;
+            } else if (runType.isEmpty()) {
+                this.runType = Optional.empty();
+            } else {
+                this.runType = Optional.of(runType.get());
+            }
             return this;
         }
 
@@ -594,6 +695,17 @@ public final class PayrollRunsListRequest {
             return this;
         }
 
+        public Builder startedAfter(Nullable<OffsetDateTime> startedAfter) {
+            if (startedAfter.isNull()) {
+                this.startedAfter = null;
+            } else if (startedAfter.isEmpty()) {
+                this.startedAfter = Optional.empty();
+            } else {
+                this.startedAfter = Optional.of(startedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return payroll runs started before this datetime.</p>
          */
@@ -605,6 +717,17 @@ public final class PayrollRunsListRequest {
 
         public Builder startedBefore(OffsetDateTime startedBefore) {
             this.startedBefore = Optional.ofNullable(startedBefore);
+            return this;
+        }
+
+        public Builder startedBefore(Nullable<OffsetDateTime> startedBefore) {
+            if (startedBefore.isNull()) {
+                this.startedBefore = null;
+            } else if (startedBefore.isEmpty()) {
+                this.startedBefore = Optional.empty();
+            } else {
+                this.startedBefore = Optional.of(startedBefore.get());
+            }
             return this;
         }
 

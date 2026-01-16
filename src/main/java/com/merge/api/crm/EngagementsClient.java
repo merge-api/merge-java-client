@@ -10,6 +10,7 @@ import com.merge.api.crm.types.Engagement;
 import com.merge.api.crm.types.EngagementEndpointRequest;
 import com.merge.api.crm.types.EngagementResponse;
 import com.merge.api.crm.types.EngagementsListRequest;
+import com.merge.api.crm.types.EngagementsMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.EngagementsRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.EngagementsRetrieveRequest;
 import com.merge.api.crm.types.MetaResponse;
@@ -114,8 +115,16 @@ public class EngagementsClient {
     /**
      * Returns metadata for <code>Engagement</code> PATCHs.
      */
-    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
+    public MetaResponse metaPatchRetrieve(String id, EngagementsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata for <code>Engagement</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(
+            String id, EngagementsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).body();
     }
 
     /**

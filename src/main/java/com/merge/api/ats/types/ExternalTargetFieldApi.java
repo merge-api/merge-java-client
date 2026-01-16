@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,18 +42,45 @@ public final class ExternalTargetFieldApi {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
-    @JsonProperty("is_mapped")
+    @JsonIgnore
     public Optional<String> getIsMapped() {
+        if (isMapped == null) {
+            return Optional.empty();
+        }
+        return isMapped;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_mapped")
+    private Optional<String> _getIsMapped() {
         return isMapped;
     }
 
@@ -114,6 +144,17 @@ public final class ExternalTargetFieldApi {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "description", nulls = Nulls.SKIP)
         public Builder description(Optional<String> description) {
             this.description = description;
@@ -125,6 +166,17 @@ public final class ExternalTargetFieldApi {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "is_mapped", nulls = Nulls.SKIP)
         public Builder isMapped(Optional<String> isMapped) {
             this.isMapped = isMapped;
@@ -133,6 +185,17 @@ public final class ExternalTargetFieldApi {
 
         public Builder isMapped(String isMapped) {
             this.isMapped = Optional.ofNullable(isMapped);
+            return this;
+        }
+
+        public Builder isMapped(Nullable<String> isMapped) {
+            if (isMapped.isNull()) {
+                this.isMapped = null;
+            } else if (isMapped.isEmpty()) {
+                this.isMapped = Optional.empty();
+            } else {
+                this.isMapped = Optional.of(isMapped.get());
+            }
             return this;
         }
 

@@ -5,12 +5,15 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -60,8 +63,11 @@ public final class Viewer {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -84,16 +90,40 @@ public final class Viewer {
     /**
      * @return The Team this Viewer belongs to.
      */
-    @JsonProperty("team")
+    @JsonIgnore
     public Optional<ViewerTeam> getTeam() {
+        if (team == null) {
+            return Optional.empty();
+        }
         return team;
     }
 
     /**
      * @return The User this Viewer belongs to.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<ViewerUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("team")
+    private Optional<ViewerTeam> _getTeam() {
+        return team;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<ViewerUser> _getUser() {
         return user;
     }
 
@@ -185,6 +215,17 @@ public final class Viewer {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -227,6 +268,17 @@ public final class Viewer {
             return this;
         }
 
+        public Builder team(Nullable<ViewerTeam> team) {
+            if (team.isNull()) {
+                this.team = null;
+            } else if (team.isEmpty()) {
+                this.team = Optional.empty();
+            } else {
+                this.team = Optional.of(team.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The User this Viewer belongs to.</p>
          */
@@ -238,6 +290,17 @@ public final class Viewer {
 
         public Builder user(ViewerUser user) {
             this.user = Optional.ofNullable(user);
+            return this;
+        }
+
+        public Builder user(Nullable<ViewerUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
             return this;
         }
 

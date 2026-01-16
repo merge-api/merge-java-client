@@ -38,7 +38,7 @@ public final class FolderPermissions {
         } else if (this.type == 1) {
             return visitor.visit((Permission) this.value);
         } else if (this.type == 2) {
-            return visitor.visit((List<FolderPermissionsItem>) this.value);
+            return visitor.visit((List<FolderPermissionsTwoItem>) this.value);
         }
         throw new IllegalStateException("Failed to visit value. This should never happen.");
     }
@@ -71,7 +71,7 @@ public final class FolderPermissions {
         return new FolderPermissions(value, 1);
     }
 
-    public static FolderPermissions of(List<FolderPermissionsItem> value) {
+    public static FolderPermissions of(List<FolderPermissionsTwoItem> value) {
         return new FolderPermissions(value, 2);
     }
 
@@ -80,7 +80,7 @@ public final class FolderPermissions {
 
         T visit(Permission value);
 
-        T visit(List<FolderPermissionsItem> value);
+        T visit(List<FolderPermissionsTwoItem> value);
     }
 
     static final class Deserializer extends StdDeserializer<FolderPermissions> {
@@ -101,7 +101,7 @@ public final class FolderPermissions {
             }
             try {
                 return of(ObjectMappers.JSON_MAPPER.convertValue(
-                        value, new TypeReference<List<FolderPermissionsItem>>() {}));
+                        value, new TypeReference<List<FolderPermissionsTwoItem>>() {}));
             } catch (RuntimeException e) {
             }
             throw new JsonParseException(p, "Failed to deserialize");

@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -63,16 +66,34 @@ public final class PhoneNumber {
     /**
      * @return The phone number.
      */
-    @JsonProperty("phone_number")
+    @JsonIgnore
     public Optional<String> getPhoneNumber() {
+        if (phoneNumber == null) {
+            return Optional.empty();
+        }
         return phoneNumber;
     }
 
     /**
      * @return The phone number's type.
      */
-    @JsonProperty("phone_number_type")
+    @JsonIgnore
     public Optional<String> getPhoneNumberType() {
+        if (phoneNumberType == null) {
+            return Optional.empty();
+        }
+        return phoneNumberType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("phone_number")
+    private Optional<String> _getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("phone_number_type")
+    private Optional<String> _getPhoneNumberType() {
         return phoneNumberType;
     }
 
@@ -173,6 +194,17 @@ public final class PhoneNumber {
             return this;
         }
 
+        public Builder phoneNumber(Nullable<String> phoneNumber) {
+            if (phoneNumber.isNull()) {
+                this.phoneNumber = null;
+            } else if (phoneNumber.isEmpty()) {
+                this.phoneNumber = Optional.empty();
+            } else {
+                this.phoneNumber = Optional.of(phoneNumber.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The phone number's type.</p>
          */
@@ -184,6 +216,17 @@ public final class PhoneNumber {
 
         public Builder phoneNumberType(String phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
+            return this;
+        }
+
+        public Builder phoneNumberType(Nullable<String> phoneNumberType) {
+            if (phoneNumberType.isNull()) {
+                this.phoneNumberType = null;
+            } else if (phoneNumberType.isEmpty()) {
+                this.phoneNumberType = Optional.empty();
+            } else {
+                this.phoneNumberType = Optional.of(phoneNumberType.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -81,24 +84,33 @@ public final class EngagementRequest {
     /**
      * @return The engagement's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<EngagementRequestOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The engagement's content.
      */
-    @JsonProperty("content")
+    @JsonIgnore
     public Optional<String> getContent() {
+        if (content == null) {
+            return Optional.empty();
+        }
         return content;
     }
 
     /**
      * @return The engagement's subject.
      */
-    @JsonProperty("subject")
+    @JsonIgnore
     public Optional<String> getSubject() {
+        if (subject == null) {
+            return Optional.empty();
+        }
         return subject;
     }
 
@@ -109,40 +121,55 @@ public final class EngagementRequest {
      * <li><code>OUTBOUND</code> - OUTBOUND</li>
      * </ul>
      */
-    @JsonProperty("direction")
+    @JsonIgnore
     public Optional<EngagementRequestDirection> getDirection() {
+        if (direction == null) {
+            return Optional.empty();
+        }
         return direction;
     }
 
     /**
      * @return The engagement type of the engagement.
      */
-    @JsonProperty("engagement_type")
+    @JsonIgnore
     public Optional<EngagementRequestEngagementType> getEngagementType() {
+        if (engagementType == null) {
+            return Optional.empty();
+        }
         return engagementType;
     }
 
     /**
      * @return The time at which the engagement started.
      */
-    @JsonProperty("start_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartTime() {
+        if (startTime == null) {
+            return Optional.empty();
+        }
         return startTime;
     }
 
     /**
      * @return The time at which the engagement ended.
      */
-    @JsonProperty("end_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndTime() {
+        if (endTime == null) {
+            return Optional.empty();
+        }
         return endTime;
     }
 
     /**
      * @return The account of the engagement.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<EngagementRequestAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
@@ -151,19 +178,85 @@ public final class EngagementRequest {
         return contacts;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<EngagementRequestOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("content")
+    private Optional<String> _getContent() {
+        return content;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("subject")
+    private Optional<String> _getSubject() {
+        return subject;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("direction")
+    private Optional<EngagementRequestDirection> _getDirection() {
+        return direction;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("engagement_type")
+    private Optional<EngagementRequestEngagementType> _getEngagementType() {
+        return engagementType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_time")
+    private Optional<OffsetDateTime> _getStartTime() {
+        return startTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_time")
+    private Optional<OffsetDateTime> _getEndTime() {
+        return endTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<EngagementRequestAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -279,6 +372,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder owner(Nullable<EngagementRequestOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The engagement's content.</p>
          */
@@ -293,6 +397,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder content(Nullable<String> content) {
+            if (content.isNull()) {
+                this.content = null;
+            } else if (content.isEmpty()) {
+                this.content = Optional.empty();
+            } else {
+                this.content = Optional.of(content.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The engagement's subject.</p>
          */
@@ -304,6 +419,17 @@ public final class EngagementRequest {
 
         public Builder subject(String subject) {
             this.subject = Optional.ofNullable(subject);
+            return this;
+        }
+
+        public Builder subject(Nullable<String> subject) {
+            if (subject.isNull()) {
+                this.subject = null;
+            } else if (subject.isEmpty()) {
+                this.subject = Optional.empty();
+            } else {
+                this.subject = Optional.of(subject.get());
+            }
             return this;
         }
 
@@ -325,6 +451,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder direction(Nullable<EngagementRequestDirection> direction) {
+            if (direction.isNull()) {
+                this.direction = null;
+            } else if (direction.isEmpty()) {
+                this.direction = Optional.empty();
+            } else {
+                this.direction = Optional.of(direction.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The engagement type of the engagement.</p>
          */
@@ -336,6 +473,17 @@ public final class EngagementRequest {
 
         public Builder engagementType(EngagementRequestEngagementType engagementType) {
             this.engagementType = Optional.ofNullable(engagementType);
+            return this;
+        }
+
+        public Builder engagementType(Nullable<EngagementRequestEngagementType> engagementType) {
+            if (engagementType.isNull()) {
+                this.engagementType = null;
+            } else if (engagementType.isEmpty()) {
+                this.engagementType = Optional.empty();
+            } else {
+                this.engagementType = Optional.of(engagementType.get());
+            }
             return this;
         }
 
@@ -353,6 +501,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder startTime(Nullable<OffsetDateTime> startTime) {
+            if (startTime.isNull()) {
+                this.startTime = null;
+            } else if (startTime.isEmpty()) {
+                this.startTime = Optional.empty();
+            } else {
+                this.startTime = Optional.of(startTime.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The time at which the engagement ended.</p>
          */
@@ -367,6 +526,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder endTime(Nullable<OffsetDateTime> endTime) {
+            if (endTime.isNull()) {
+                this.endTime = null;
+            } else if (endTime.isEmpty()) {
+                this.endTime = Optional.empty();
+            } else {
+                this.endTime = Optional.of(endTime.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account of the engagement.</p>
          */
@@ -378,6 +548,17 @@ public final class EngagementRequest {
 
         public Builder account(EngagementRequestAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<EngagementRequestAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -403,6 +584,17 @@ public final class EngagementRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -411,6 +603,17 @@ public final class EngagementRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

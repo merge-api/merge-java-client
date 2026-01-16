@@ -5,6 +5,7 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -60,24 +63,33 @@ public final class PermissionRequest {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
     /**
      * @return The user that is granted this permission. This will only be populated if the type is <code>USER</code>.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<PermissionRequestUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
         return user;
     }
 
     /**
      * @return The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.
      */
-    @JsonProperty("group")
+    @JsonIgnore
     public Optional<PermissionRequestGroup> getGroup() {
+        if (group == null) {
+            return Optional.empty();
+        }
         return group;
     }
 
@@ -90,26 +102,80 @@ public final class PermissionRequest {
      * <li><code>ANYONE</code> - ANYONE</li>
      * </ul>
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<PermissionRequestType> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
     /**
      * @return The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.
      */
-    @JsonProperty("roles")
+    @JsonIgnore
     public Optional<List<Optional<PermissionRequestRolesItem>>> getRoles() {
+        if (roles == null) {
+            return Optional.empty();
+        }
         return roles;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<PermissionRequestUser> _getUser() {
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("group")
+    private Optional<PermissionRequestGroup> _getGroup() {
+        return group;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<PermissionRequestType> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("roles")
+    private Optional<List<Optional<PermissionRequestRolesItem>>> _getRoles() {
+        return roles;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -201,6 +267,17 @@ public final class PermissionRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user that is granted this permission. This will only be populated if the type is <code>USER</code>.</p>
          */
@@ -215,6 +292,17 @@ public final class PermissionRequest {
             return this;
         }
 
+        public Builder user(Nullable<PermissionRequestUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The group that is granted this permission. This will only be populated if the type is <code>GROUP</code>.</p>
          */
@@ -226,6 +314,17 @@ public final class PermissionRequest {
 
         public Builder group(PermissionRequestGroup group) {
             this.group = Optional.ofNullable(group);
+            return this;
+        }
+
+        public Builder group(Nullable<PermissionRequestGroup> group) {
+            if (group.isNull()) {
+                this.group = null;
+            } else if (group.isEmpty()) {
+                this.group = Optional.empty();
+            } else {
+                this.group = Optional.of(group.get());
+            }
             return this;
         }
 
@@ -249,6 +348,17 @@ public final class PermissionRequest {
             return this;
         }
 
+        public Builder type(Nullable<PermissionRequestType> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The permissions that the user or group has for the File or Folder. It is possible for a user or group to have multiple roles, such as viewing &amp; uploading. Possible values include: <code>READ</code>, <code>WRITE</code>, <code>OWNER</code>. In cases where there is no clear mapping, the original value passed through will be returned.</p>
          */
@@ -263,6 +373,17 @@ public final class PermissionRequest {
             return this;
         }
 
+        public Builder roles(Nullable<List<Optional<PermissionRequestRolesItem>>> roles) {
+            if (roles.isNull()) {
+                this.roles = null;
+            } else if (roles.isEmpty()) {
+                this.roles = Optional.empty();
+            } else {
+                this.roles = Optional.of(roles.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -274,6 +395,17 @@ public final class PermissionRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -282,6 +414,17 @@ public final class PermissionRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 
