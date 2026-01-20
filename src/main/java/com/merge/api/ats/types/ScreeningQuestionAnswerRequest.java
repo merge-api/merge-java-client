@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -51,34 +54,79 @@ public final class ScreeningQuestionAnswerRequest {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
     /**
      * @return The screening question associated with the candidate’s answer. To determine the data type of the answer, you can expand on the screening question by adding <code>screening_question_answers.question</code> to the <code>expand</code> query parameter.
      */
-    @JsonProperty("question")
+    @JsonIgnore
     public Optional<ScreeningQuestionAnswerRequestQuestion> getQuestion() {
+        if (question == null) {
+            return Optional.empty();
+        }
         return question;
     }
 
     /**
      * @return The candidate’s response to the screening question.
      */
-    @JsonProperty("answer")
+    @JsonIgnore
     public Optional<String> getAnswer() {
+        if (answer == null) {
+            return Optional.empty();
+        }
         return answer;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("question")
+    private Optional<ScreeningQuestionAnswerRequestQuestion> _getQuestion() {
+        return question;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("answer")
+    private Optional<String> _getAnswer() {
+        return answer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -156,6 +204,17 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The screening question associated with the candidate’s answer. To determine the data type of the answer, you can expand on the screening question by adding <code>screening_question_answers.question</code> to the <code>expand</code> query parameter.</p>
          */
@@ -167,6 +226,17 @@ public final class ScreeningQuestionAnswerRequest {
 
         public Builder question(ScreeningQuestionAnswerRequestQuestion question) {
             this.question = Optional.ofNullable(question);
+            return this;
+        }
+
+        public Builder question(Nullable<ScreeningQuestionAnswerRequestQuestion> question) {
+            if (question.isNull()) {
+                this.question = null;
+            } else if (question.isEmpty()) {
+                this.question = Optional.empty();
+            } else {
+                this.question = Optional.of(question.get());
+            }
             return this;
         }
 
@@ -184,6 +254,17 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        public Builder answer(Nullable<String> answer) {
+            if (answer.isNull()) {
+                this.answer = null;
+            } else if (answer.isEmpty()) {
+                this.answer = Optional.empty();
+            } else {
+                this.answer = Optional.of(answer.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -195,6 +276,17 @@ public final class ScreeningQuestionAnswerRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -203,6 +295,17 @@ public final class ScreeningQuestionAnswerRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

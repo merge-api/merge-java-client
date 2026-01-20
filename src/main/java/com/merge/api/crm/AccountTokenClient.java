@@ -6,6 +6,7 @@ package com.merge.api.crm;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.crm.types.AccountToken;
+import com.merge.api.crm.types.AccountTokenRetrieveRequest;
 
 public class AccountTokenClient {
     protected final ClientOptions clientOptions;
@@ -34,7 +35,15 @@ public class AccountTokenClient {
     /**
      * Returns the account token for the end user with the provided public token.
      */
-    public AccountToken retrieve(String publicToken, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(publicToken, requestOptions).body();
+    public AccountToken retrieve(String publicToken, AccountTokenRetrieveRequest request) {
+        return this.rawClient.retrieve(publicToken, request).body();
+    }
+
+    /**
+     * Returns the account token for the end user with the provided public token.
+     */
+    public AccountToken retrieve(
+            String publicToken, AccountTokenRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(publicToken, request, requestOptions).body();
     }
 }

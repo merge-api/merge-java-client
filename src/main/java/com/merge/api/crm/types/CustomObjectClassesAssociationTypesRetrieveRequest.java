@@ -22,7 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = CustomObjectClassesAssociationTypesRetrieveRequest.Builder.class)
 public final class CustomObjectClassesAssociationTypesRetrieveRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
@@ -31,7 +31,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private CustomObjectClassesAssociationTypesRetrieveRequest(
-            Optional<List<String>> expand,
+            Optional<List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
             Map<String, Object> additionalProperties) {
@@ -45,7 +45,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -99,7 +99,7 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
@@ -121,17 +121,17 @@ public final class CustomObjectClassesAssociationTypesRetrieveRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<CustomObjectClassesAssociationTypesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(CustomObjectClassesAssociationTypesRetrieveRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }

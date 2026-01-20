@@ -22,7 +22,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = ActivitiesRetrieveRequest.Builder.class)
 public final class ActivitiesRetrieveRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<ActivitiesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
@@ -35,7 +35,7 @@ public final class ActivitiesRetrieveRequest {
     private final Map<String, Object> additionalProperties;
 
     private ActivitiesRetrieveRequest(
-            Optional<List<String>> expand,
+            Optional<List<ActivitiesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
             Optional<ActivitiesRetrieveRequestRemoteFields> remoteFields,
@@ -53,7 +53,7 @@ public final class ActivitiesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<ActivitiesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -125,7 +125,7 @@ public final class ActivitiesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<ActivitiesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
@@ -153,17 +153,17 @@ public final class ActivitiesRetrieveRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<ActivitiesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<ActivitiesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(ActivitiesRetrieveRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }

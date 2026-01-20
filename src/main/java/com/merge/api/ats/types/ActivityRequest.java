@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -63,8 +66,11 @@ public final class ActivityRequest {
     /**
      * @return The user that performed the action.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<ActivityRequestUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
         return user;
     }
 
@@ -84,16 +90,22 @@ public final class ActivityRequest {
     /**
      * @return The activity's subject.
      */
-    @JsonProperty("subject")
+    @JsonIgnore
     public Optional<String> getSubject() {
+        if (subject == null) {
+            return Optional.empty();
+        }
         return subject;
     }
 
     /**
      * @return The activity's body.
      */
-    @JsonProperty("body")
+    @JsonIgnore
     public Optional<String> getBody() {
+        if (body == null) {
+            return Optional.empty();
+        }
         return body;
     }
 
@@ -105,23 +117,77 @@ public final class ActivityRequest {
      * <li><code>PRIVATE</code> - PRIVATE</li>
      * </ul>
      */
-    @JsonProperty("visibility")
+    @JsonIgnore
     public Optional<ActivityRequestVisibility> getVisibility() {
+        if (visibility == null) {
+            return Optional.empty();
+        }
         return visibility;
     }
 
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<String> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<ActivityRequestUser> _getUser() {
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("subject")
+    private Optional<String> _getSubject() {
+        return subject;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("body")
+    private Optional<String> _getBody() {
+        return body;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("visibility")
+    private Optional<ActivityRequestVisibility> _getVisibility() {
+        return visibility;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<String> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -218,6 +284,17 @@ public final class ActivityRequest {
             return this;
         }
 
+        public Builder user(Nullable<ActivityRequestUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The activity's type.</p>
          * <ul>
@@ -251,6 +328,17 @@ public final class ActivityRequest {
             return this;
         }
 
+        public Builder subject(Nullable<String> subject) {
+            if (subject.isNull()) {
+                this.subject = null;
+            } else if (subject.isEmpty()) {
+                this.subject = Optional.empty();
+            } else {
+                this.subject = Optional.of(subject.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The activity's body.</p>
          */
@@ -262,6 +350,17 @@ public final class ActivityRequest {
 
         public Builder body(String body) {
             this.body = Optional.ofNullable(body);
+            return this;
+        }
+
+        public Builder body(Nullable<String> body) {
+            if (body.isNull()) {
+                this.body = null;
+            } else if (body.isEmpty()) {
+                this.body = Optional.empty();
+            } else {
+                this.body = Optional.of(body.get());
+            }
             return this;
         }
 
@@ -284,6 +383,17 @@ public final class ActivityRequest {
             return this;
         }
 
+        public Builder visibility(Nullable<ActivityRequestVisibility> visibility) {
+            if (visibility.isNull()) {
+                this.visibility = null;
+            } else if (visibility.isEmpty()) {
+                this.visibility = Optional.empty();
+            } else {
+                this.visibility = Optional.of(visibility.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<String> candidate) {
             this.candidate = candidate;
@@ -292,6 +402,17 @@ public final class ActivityRequest {
 
         public Builder candidate(String candidate) {
             this.candidate = Optional.ofNullable(candidate);
+            return this;
+        }
+
+        public Builder candidate(Nullable<String> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
             return this;
         }
 
@@ -306,6 +427,17 @@ public final class ActivityRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -314,6 +446,17 @@ public final class ActivityRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

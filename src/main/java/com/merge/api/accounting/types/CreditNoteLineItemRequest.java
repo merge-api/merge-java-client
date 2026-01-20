@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -100,77 +103,107 @@ public final class CreditNoteLineItemRequest {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<CreditNoteLineItemRequestItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
     /**
      * @return The credit note line item's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The description of the item that is owed.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The credit note line item's quantity.
      */
-    @JsonProperty("quantity")
+    @JsonIgnore
     public Optional<String> getQuantity() {
+        if (quantity == null) {
+            return Optional.empty();
+        }
         return quantity;
     }
 
     /**
      * @return The credit note line item's memo.
      */
-    @JsonProperty("memo")
+    @JsonIgnore
     public Optional<String> getMemo() {
+        if (memo == null) {
+            return Optional.empty();
+        }
         return memo;
     }
 
     /**
      * @return The credit note line item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<String> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The tax rate that applies to this line item.
      */
-    @JsonProperty("tax_rate")
+    @JsonIgnore
     public Optional<String> getTaxRate() {
+        if (taxRate == null) {
+            return Optional.empty();
+        }
         return taxRate;
     }
 
     /**
      * @return The credit note line item's total.
      */
-    @JsonProperty("total_line_amount")
+    @JsonIgnore
     public Optional<String> getTotalLineAmount() {
+        if (totalLineAmount == null) {
+            return Optional.empty();
+        }
         return totalLineAmount;
     }
 
     /**
      * @return The credit note line item's associated tracking category.
      */
-    @JsonProperty("tracking_category")
+    @JsonIgnore
     public Optional<String> getTrackingCategory() {
+        if (trackingCategory == null) {
+            return Optional.empty();
+        }
         return trackingCategory;
     }
 
@@ -185,39 +218,153 @@ public final class CreditNoteLineItemRequest {
     /**
      * @return The credit note line item's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<String> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The company the credit note belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<CreditNoteLineItemRequestCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The credit note's contact.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<CreditNoteLineItemRequestContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
-    @JsonProperty("project")
+    @JsonIgnore
     public Optional<CreditNoteLineItemRequestProject> getProject() {
+        if (project == null) {
+            return Optional.empty();
+        }
         return project;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<CreditNoteLineItemRequestItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("quantity")
+    private Optional<String> _getQuantity() {
+        return quantity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("memo")
+    private Optional<String> _getMemo() {
+        return memo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<String> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_rate")
+    private Optional<String> _getTaxRate() {
+        return taxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_line_amount")
+    private Optional<String> _getTotalLineAmount() {
+        return totalLineAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tracking_category")
+    private Optional<String> _getTrackingCategory() {
+        return trackingCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<String> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<CreditNoteLineItemRequestCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<CreditNoteLineItemRequestContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("project")
+    private Optional<CreditNoteLineItemRequestProject> _getProject() {
+        return project;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -359,6 +506,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
         public Builder item(Optional<CreditNoteLineItemRequestItem> item) {
             this.item = item;
@@ -367,6 +525,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder item(CreditNoteLineItemRequestItem item) {
             this.item = Optional.ofNullable(item);
+            return this;
+        }
+
+        public Builder item(Nullable<CreditNoteLineItemRequestItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
             return this;
         }
 
@@ -384,6 +553,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The description of the item that is owed.</p>
          */
@@ -395,6 +575,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -412,6 +603,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder quantity(Nullable<String> quantity) {
+            if (quantity.isNull()) {
+                this.quantity = null;
+            } else if (quantity.isEmpty()) {
+                this.quantity = Optional.empty();
+            } else {
+                this.quantity = Optional.of(quantity.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's memo.</p>
          */
@@ -423,6 +625,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder memo(String memo) {
             this.memo = Optional.ofNullable(memo);
+            return this;
+        }
+
+        public Builder memo(Nullable<String> memo) {
+            if (memo.isNull()) {
+                this.memo = null;
+            } else if (memo.isEmpty()) {
+                this.memo = Optional.empty();
+            } else {
+                this.memo = Optional.of(memo.get());
+            }
             return this;
         }
 
@@ -440,6 +653,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder unitPrice(Nullable<String> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The tax rate that applies to this line item.</p>
          */
@@ -451,6 +675,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder taxRate(String taxRate) {
             this.taxRate = Optional.ofNullable(taxRate);
+            return this;
+        }
+
+        public Builder taxRate(Nullable<String> taxRate) {
+            if (taxRate.isNull()) {
+                this.taxRate = null;
+            } else if (taxRate.isEmpty()) {
+                this.taxRate = Optional.empty();
+            } else {
+                this.taxRate = Optional.of(taxRate.get());
+            }
             return this;
         }
 
@@ -468,6 +703,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder totalLineAmount(Nullable<String> totalLineAmount) {
+            if (totalLineAmount.isNull()) {
+                this.totalLineAmount = null;
+            } else if (totalLineAmount.isEmpty()) {
+                this.totalLineAmount = Optional.empty();
+            } else {
+                this.totalLineAmount = Optional.of(totalLineAmount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The credit note line item's associated tracking category.</p>
          */
@@ -479,6 +725,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder trackingCategory(String trackingCategory) {
             this.trackingCategory = Optional.ofNullable(trackingCategory);
+            return this;
+        }
+
+        public Builder trackingCategory(Nullable<String> trackingCategory) {
+            if (trackingCategory.isNull()) {
+                this.trackingCategory = null;
+            } else if (trackingCategory.isEmpty()) {
+                this.trackingCategory = Optional.empty();
+            } else {
+                this.trackingCategory = Optional.of(trackingCategory.get());
+            }
             return this;
         }
 
@@ -510,6 +767,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder account(Nullable<String> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the credit note belongs to.</p>
          */
@@ -521,6 +789,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder company(CreditNoteLineItemRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<CreditNoteLineItemRequestCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -538,6 +817,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder contact(Nullable<CreditNoteLineItemRequestContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "project", nulls = Nulls.SKIP)
         public Builder project(Optional<CreditNoteLineItemRequestProject> project) {
             this.project = project;
@@ -546,6 +836,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder project(CreditNoteLineItemRequestProject project) {
             this.project = Optional.ofNullable(project);
+            return this;
+        }
+
+        public Builder project(Nullable<CreditNoteLineItemRequestProject> project) {
+            if (project.isNull()) {
+                this.project = null;
+            } else if (project.isEmpty()) {
+                this.project = Optional.empty();
+            } else {
+                this.project = Optional.of(project.get());
+            }
             return this;
         }
 
@@ -560,6 +861,17 @@ public final class CreditNoteLineItemRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -568,6 +880,17 @@ public final class CreditNoteLineItemRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

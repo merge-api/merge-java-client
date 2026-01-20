@@ -5,6 +5,7 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -78,37 +81,52 @@ public final class DataPassthroughRequest {
     /**
      * @return An optional override of the third party's base url for the request.
      */
-    @JsonProperty("base_url_override")
+    @JsonIgnore
     public Optional<String> getBaseUrlOverride() {
+        if (baseUrlOverride == null) {
+            return Optional.empty();
+        }
         return baseUrlOverride;
     }
 
     /**
      * @return The data with the request. You must include a <code>request_format</code> parameter matching the data's format
      */
-    @JsonProperty("data")
+    @JsonIgnore
     public Optional<String> getData() {
+        if (data == null) {
+            return Optional.empty();
+        }
         return data;
     }
 
     /**
      * @return Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.
      */
-    @JsonProperty("multipart_form_data")
+    @JsonIgnore
     public Optional<List<MultipartFormFieldRequest>> getMultipartFormData() {
+        if (multipartFormData == null) {
+            return Optional.empty();
+        }
         return multipartFormData;
     }
 
     /**
      * @return The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.
      */
-    @JsonProperty("headers")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getHeaders() {
+        if (headers == null) {
+            return Optional.empty();
+        }
         return headers;
     }
 
-    @JsonProperty("request_format")
+    @JsonIgnore
     public Optional<RequestFormatEnum> getRequestFormat() {
+        if (requestFormat == null) {
+            return Optional.empty();
+        }
         return requestFormat;
     }
 
@@ -118,6 +136,36 @@ public final class DataPassthroughRequest {
     @JsonProperty("normalize_response")
     public Optional<Boolean> getNormalizeResponse() {
         return normalizeResponse;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("base_url_override")
+    private Optional<String> _getBaseUrlOverride() {
+        return baseUrlOverride;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("data")
+    private Optional<String> _getData() {
+        return data;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("multipart_form_data")
+    private Optional<List<MultipartFormFieldRequest>> _getMultipartFormData() {
+        return multipartFormData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("headers")
+    private Optional<Map<String, JsonNode>> _getHeaders() {
+        return headers;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("request_format")
+    private Optional<RequestFormatEnum> _getRequestFormat() {
+        return requestFormat;
     }
 
     @java.lang.Override
@@ -187,12 +235,16 @@ public final class DataPassthroughRequest {
 
         _FinalStage baseUrlOverride(String baseUrlOverride);
 
+        _FinalStage baseUrlOverride(Nullable<String> baseUrlOverride);
+
         /**
          * <p>The data with the request. You must include a <code>request_format</code> parameter matching the data's format</p>
          */
         _FinalStage data(Optional<String> data);
 
         _FinalStage data(String data);
+
+        _FinalStage data(Nullable<String> data);
 
         /**
          * <p>Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.</p>
@@ -201,6 +253,8 @@ public final class DataPassthroughRequest {
 
         _FinalStage multipartFormData(List<MultipartFormFieldRequest> multipartFormData);
 
+        _FinalStage multipartFormData(Nullable<List<MultipartFormFieldRequest>> multipartFormData);
+
         /**
          * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
          */
@@ -208,9 +262,13 @@ public final class DataPassthroughRequest {
 
         _FinalStage headers(Map<String, JsonNode> headers);
 
+        _FinalStage headers(Nullable<Map<String, JsonNode>> headers);
+
         _FinalStage requestFormat(Optional<RequestFormatEnum> requestFormat);
 
         _FinalStage requestFormat(RequestFormatEnum requestFormat);
+
+        _FinalStage requestFormat(Nullable<RequestFormatEnum> requestFormat);
 
         /**
          * <p>Optional. If true, the response will always be an object of the form <code>{&quot;type&quot;: T, &quot;value&quot;: ...}</code> where <code>T</code> will be one of <code>string, boolean, number, null, array, object</code>.</p>
@@ -296,6 +354,18 @@ public final class DataPassthroughRequest {
         }
 
         @java.lang.Override
+        public _FinalStage requestFormat(Nullable<RequestFormatEnum> requestFormat) {
+            if (requestFormat.isNull()) {
+                this.requestFormat = null;
+            } else if (requestFormat.isEmpty()) {
+                this.requestFormat = Optional.empty();
+            } else {
+                this.requestFormat = Optional.of(requestFormat.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage requestFormat(RequestFormatEnum requestFormat) {
             this.requestFormat = Optional.ofNullable(requestFormat);
             return this;
@@ -305,6 +375,22 @@ public final class DataPassthroughRequest {
         @JsonSetter(value = "request_format", nulls = Nulls.SKIP)
         public _FinalStage requestFormat(Optional<RequestFormatEnum> requestFormat) {
             this.requestFormat = requestFormat;
+            return this;
+        }
+
+        /**
+         * <p>The headers to use for the request (Merge will handle the account's authorization headers). <code>Content-Type</code> header is required for passthrough. Choose content type corresponding to expected format of receiving server.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage headers(Nullable<Map<String, JsonNode>> headers) {
+            if (headers.isNull()) {
+                this.headers = null;
+            } else if (headers.isEmpty()) {
+                this.headers = Optional.empty();
+            } else {
+                this.headers = Optional.of(headers.get());
+            }
             return this;
         }
 
@@ -333,6 +419,22 @@ public final class DataPassthroughRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage multipartFormData(Nullable<List<MultipartFormFieldRequest>> multipartFormData) {
+            if (multipartFormData.isNull()) {
+                this.multipartFormData = null;
+            } else if (multipartFormData.isEmpty()) {
+                this.multipartFormData = Optional.empty();
+            } else {
+                this.multipartFormData = Optional.of(multipartFormData.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>Pass an array of <code>MultipartFormField</code> objects in here instead of using the <code>data</code> param if <code>request_format</code> is set to <code>MULTIPART</code>.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage multipartFormData(List<MultipartFormFieldRequest> multipartFormData) {
             this.multipartFormData = Optional.ofNullable(multipartFormData);
             return this;
@@ -353,6 +455,22 @@ public final class DataPassthroughRequest {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage data(Nullable<String> data) {
+            if (data.isNull()) {
+                this.data = null;
+            } else if (data.isEmpty()) {
+                this.data = Optional.empty();
+            } else {
+                this.data = Optional.of(data.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>The data with the request. You must include a <code>request_format</code> parameter matching the data's format</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage data(String data) {
             this.data = Optional.ofNullable(data);
             return this;
@@ -365,6 +483,22 @@ public final class DataPassthroughRequest {
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
         public _FinalStage data(Optional<String> data) {
             this.data = data;
+            return this;
+        }
+
+        /**
+         * <p>An optional override of the third party's base url for the request.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage baseUrlOverride(Nullable<String> baseUrlOverride) {
+            if (baseUrlOverride.isNull()) {
+                this.baseUrlOverride = null;
+            } else if (baseUrlOverride.isEmpty()) {
+                this.baseUrlOverride = Optional.empty();
+            } else {
+                this.baseUrlOverride = Optional.of(baseUrlOverride.get());
+            }
             return this;
         }
 

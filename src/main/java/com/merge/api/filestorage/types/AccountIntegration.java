@@ -5,6 +5,7 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -81,8 +84,11 @@ public final class AccountIntegration {
     /**
      * @return Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;
      */
-    @JsonProperty("abbreviated_name")
+    @JsonIgnore
     public Optional<String> getAbbreviatedName() {
+        if (abbreviatedName == null) {
+            return Optional.empty();
+        }
         return abbreviatedName;
     }
 
@@ -97,16 +103,22 @@ public final class AccountIntegration {
     /**
      * @return Company logo in rectangular shape.
      */
-    @JsonProperty("image")
+    @JsonIgnore
     public Optional<String> getImage() {
+        if (image == null) {
+            return Optional.empty();
+        }
         return image;
     }
 
     /**
      * @return Company logo in square shape.
      */
-    @JsonProperty("square_image")
+    @JsonIgnore
     public Optional<String> getSquareImage() {
+        if (squareImage == null) {
+            return Optional.empty();
+        }
         return squareImage;
     }
 
@@ -134,8 +146,11 @@ public final class AccountIntegration {
     /**
      * @return Setup guide URL for third party webhook creation. Exposed in Merge Docs.
      */
-    @JsonProperty("webhook_setup_guide_url")
+    @JsonIgnore
     public Optional<String> getWebhookSetupGuideUrl() {
+        if (webhookSetupGuideUrl == null) {
+            return Optional.empty();
+        }
         return webhookSetupGuideUrl;
     }
 
@@ -145,6 +160,30 @@ public final class AccountIntegration {
     @JsonProperty("category_beta_status")
     public Optional<Map<String, JsonNode>> getCategoryBetaStatus() {
         return categoryBetaStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("abbreviated_name")
+    private Optional<String> _getAbbreviatedName() {
+        return abbreviatedName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("image")
+    private Optional<String> _getImage() {
+        return image;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("square_image")
+    private Optional<String> _getSquareImage() {
+        return squareImage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("webhook_setup_guide_url")
+    private Optional<String> _getWebhookSetupGuideUrl() {
+        return webhookSetupGuideUrl;
     }
 
     @java.lang.Override
@@ -214,6 +253,8 @@ public final class AccountIntegration {
 
         _FinalStage abbreviatedName(String abbreviatedName);
 
+        _FinalStage abbreviatedName(Nullable<String> abbreviatedName);
+
         /**
          * <p>Category or categories this integration belongs to. Multiple categories should be comma separated, i.e. [ats, hris].</p>
          */
@@ -228,12 +269,16 @@ public final class AccountIntegration {
 
         _FinalStage image(String image);
 
+        _FinalStage image(Nullable<String> image);
+
         /**
          * <p>Company logo in square shape.</p>
          */
         _FinalStage squareImage(Optional<String> squareImage);
 
         _FinalStage squareImage(String squareImage);
+
+        _FinalStage squareImage(Nullable<String> squareImage);
 
         /**
          * <p>The color of this integration used for buttons and text throughout the app and landing pages. &lt;b&gt;Choose a darker, saturated color.&lt;/b&gt;</p>
@@ -259,6 +304,8 @@ public final class AccountIntegration {
         _FinalStage webhookSetupGuideUrl(Optional<String> webhookSetupGuideUrl);
 
         _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl);
+
+        _FinalStage webhookSetupGuideUrl(Nullable<String> webhookSetupGuideUrl);
 
         /**
          * <p>Category or categories this integration is in beta status for.</p>
@@ -347,6 +394,22 @@ public final class AccountIntegration {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage webhookSetupGuideUrl(Nullable<String> webhookSetupGuideUrl) {
+            if (webhookSetupGuideUrl.isNull()) {
+                this.webhookSetupGuideUrl = null;
+            } else if (webhookSetupGuideUrl.isEmpty()) {
+                this.webhookSetupGuideUrl = Optional.empty();
+            } else {
+                this.webhookSetupGuideUrl = Optional.of(webhookSetupGuideUrl.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>Setup guide URL for third party webhook creation. Exposed in Merge Docs.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage webhookSetupGuideUrl(String webhookSetupGuideUrl) {
             this.webhookSetupGuideUrl = Optional.ofNullable(webhookSetupGuideUrl);
             return this;
@@ -421,6 +484,22 @@ public final class AccountIntegration {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
+        public _FinalStage squareImage(Nullable<String> squareImage) {
+            if (squareImage.isNull()) {
+                this.squareImage = null;
+            } else if (squareImage.isEmpty()) {
+                this.squareImage = Optional.empty();
+            } else {
+                this.squareImage = Optional.of(squareImage.get());
+            }
+            return this;
+        }
+
+        /**
+         * <p>Company logo in square shape.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
         public _FinalStage squareImage(String squareImage) {
             this.squareImage = Optional.ofNullable(squareImage);
             return this;
@@ -433,6 +512,22 @@ public final class AccountIntegration {
         @JsonSetter(value = "square_image", nulls = Nulls.SKIP)
         public _FinalStage squareImage(Optional<String> squareImage) {
             this.squareImage = squareImage;
+            return this;
+        }
+
+        /**
+         * <p>Company logo in rectangular shape.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage image(Nullable<String> image) {
+            if (image.isNull()) {
+                this.image = null;
+            } else if (image.isEmpty()) {
+                this.image = Optional.empty();
+            } else {
+                this.image = Optional.of(image.get());
+            }
             return this;
         }
 
@@ -473,6 +568,22 @@ public final class AccountIntegration {
         @JsonSetter(value = "categories", nulls = Nulls.SKIP)
         public _FinalStage categories(Optional<List<CategoriesEnum>> categories) {
             this.categories = categories;
+            return this;
+        }
+
+        /**
+         * <p>Optional. This shortened name appears in places with limited space, usually in conjunction with the platform's logo (e.g., Merge Link menu).&lt;br&gt;&lt;br&gt;Example: &lt;i&gt;Workforce Now (in lieu of ADP Workforce Now), SuccessFactors (in lieu of SAP SuccessFactors)&lt;/i&gt;</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage abbreviatedName(Nullable<String> abbreviatedName) {
+            if (abbreviatedName.isNull()) {
+                this.abbreviatedName = null;
+            } else if (abbreviatedName.isEmpty()) {
+                this.abbreviatedName = Optional.empty();
+            } else {
+                this.abbreviatedName = Optional.of(abbreviatedName.get());
+            }
             return this;
         }
 

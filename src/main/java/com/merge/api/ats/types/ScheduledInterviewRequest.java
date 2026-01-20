@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -73,24 +76,33 @@ public final class ScheduledInterviewRequest {
     /**
      * @return The application being interviewed.
      */
-    @JsonProperty("application")
+    @JsonIgnore
     public Optional<ScheduledInterviewRequestApplication> getApplication() {
+        if (application == null) {
+            return Optional.empty();
+        }
         return application;
     }
 
     /**
      * @return The stage of the interview.
      */
-    @JsonProperty("job_interview_stage")
+    @JsonIgnore
     public Optional<ScheduledInterviewRequestJobInterviewStage> getJobInterviewStage() {
+        if (jobInterviewStage == null) {
+            return Optional.empty();
+        }
         return jobInterviewStage;
     }
 
     /**
      * @return The user organizing the interview.
      */
-    @JsonProperty("organizer")
+    @JsonIgnore
     public Optional<ScheduledInterviewRequestOrganizer> getOrganizer() {
+        if (organizer == null) {
+            return Optional.empty();
+        }
         return organizer;
     }
 
@@ -105,24 +117,33 @@ public final class ScheduledInterviewRequest {
     /**
      * @return The interview's location.
      */
-    @JsonProperty("location")
+    @JsonIgnore
     public Optional<String> getLocation() {
+        if (location == null) {
+            return Optional.empty();
+        }
         return location;
     }
 
     /**
      * @return When the interview was started.
      */
-    @JsonProperty("start_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartAt() {
+        if (startAt == null) {
+            return Optional.empty();
+        }
         return startAt;
     }
 
     /**
      * @return When the interview was ended.
      */
-    @JsonProperty("end_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndAt() {
+        if (endAt == null) {
+            return Optional.empty();
+        }
         return endAt;
     }
 
@@ -134,18 +155,81 @@ public final class ScheduledInterviewRequest {
      * <li><code>COMPLETE</code> - COMPLETE</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<ScheduledInterviewRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("application")
+    private Optional<ScheduledInterviewRequestApplication> _getApplication() {
+        return application;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job_interview_stage")
+    private Optional<ScheduledInterviewRequestJobInterviewStage> _getJobInterviewStage() {
+        return jobInterviewStage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("organizer")
+    private Optional<ScheduledInterviewRequestOrganizer> _getOrganizer() {
+        return organizer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("location")
+    private Optional<String> _getLocation() {
+        return location;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_at")
+    private Optional<OffsetDateTime> _getStartAt() {
+        return startAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_at")
+    private Optional<OffsetDateTime> _getEndAt() {
+        return endAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<ScheduledInterviewRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -252,6 +336,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder application(Nullable<ScheduledInterviewRequestApplication> application) {
+            if (application.isNull()) {
+                this.application = null;
+            } else if (application.isEmpty()) {
+                this.application = Optional.empty();
+            } else {
+                this.application = Optional.of(application.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The stage of the interview.</p>
          */
@@ -266,6 +361,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder jobInterviewStage(Nullable<ScheduledInterviewRequestJobInterviewStage> jobInterviewStage) {
+            if (jobInterviewStage.isNull()) {
+                this.jobInterviewStage = null;
+            } else if (jobInterviewStage.isEmpty()) {
+                this.jobInterviewStage = Optional.empty();
+            } else {
+                this.jobInterviewStage = Optional.of(jobInterviewStage.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user organizing the interview.</p>
          */
@@ -277,6 +383,17 @@ public final class ScheduledInterviewRequest {
 
         public Builder organizer(ScheduledInterviewRequestOrganizer organizer) {
             this.organizer = Optional.ofNullable(organizer);
+            return this;
+        }
+
+        public Builder organizer(Nullable<ScheduledInterviewRequestOrganizer> organizer) {
+            if (organizer.isNull()) {
+                this.organizer = null;
+            } else if (organizer.isEmpty()) {
+                this.organizer = Optional.empty();
+            } else {
+                this.organizer = Optional.of(organizer.get());
+            }
             return this;
         }
 
@@ -308,6 +425,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder location(Nullable<String> location) {
+            if (location.isNull()) {
+                this.location = null;
+            } else if (location.isEmpty()) {
+                this.location = Optional.empty();
+            } else {
+                this.location = Optional.of(location.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the interview was started.</p>
          */
@@ -322,6 +450,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder startAt(Nullable<OffsetDateTime> startAt) {
+            if (startAt.isNull()) {
+                this.startAt = null;
+            } else if (startAt.isEmpty()) {
+                this.startAt = Optional.empty();
+            } else {
+                this.startAt = Optional.of(startAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the interview was ended.</p>
          */
@@ -333,6 +472,17 @@ public final class ScheduledInterviewRequest {
 
         public Builder endAt(OffsetDateTime endAt) {
             this.endAt = Optional.ofNullable(endAt);
+            return this;
+        }
+
+        public Builder endAt(Nullable<OffsetDateTime> endAt) {
+            if (endAt.isNull()) {
+                this.endAt = null;
+            } else if (endAt.isEmpty()) {
+                this.endAt = Optional.empty();
+            } else {
+                this.endAt = Optional.of(endAt.get());
+            }
             return this;
         }
 
@@ -355,6 +505,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder status(Nullable<ScheduledInterviewRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -366,6 +527,17 @@ public final class ScheduledInterviewRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -374,6 +546,17 @@ public final class ScheduledInterviewRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -98,8 +101,11 @@ public final class Benefit {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -122,56 +128,77 @@ public final class Benefit {
     /**
      * @return The employee on the plan.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<BenefitEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The name of the benefit provider.
      */
-    @JsonProperty("provider_name")
+    @JsonIgnore
     public Optional<String> getProviderName() {
+        if (providerName == null) {
+            return Optional.empty();
+        }
         return providerName;
     }
 
     /**
      * @return The type of benefit plan
      */
-    @JsonProperty("benefit_plan_type")
+    @JsonIgnore
     public Optional<String> getBenefitPlanType() {
+        if (benefitPlanType == null) {
+            return Optional.empty();
+        }
         return benefitPlanType;
     }
 
     /**
      * @return The employee's contribution.
      */
-    @JsonProperty("employee_contribution")
+    @JsonIgnore
     public Optional<Double> getEmployeeContribution() {
+        if (employeeContribution == null) {
+            return Optional.empty();
+        }
         return employeeContribution;
     }
 
     /**
      * @return The company's contribution.
      */
-    @JsonProperty("company_contribution")
+    @JsonIgnore
     public Optional<Double> getCompanyContribution() {
+        if (companyContribution == null) {
+            return Optional.empty();
+        }
         return companyContribution;
     }
 
     /**
      * @return The day and time the benefit started.
      */
-    @JsonProperty("start_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartDate() {
+        if (startDate == null) {
+            return Optional.empty();
+        }
         return startDate;
     }
 
     /**
      * @return The day and time the benefit ended.
      */
-    @JsonProperty("end_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndDate() {
+        if (endDate == null) {
+            return Optional.empty();
+        }
         return endDate;
     }
 
@@ -186,18 +213,93 @@ public final class Benefit {
     /**
      * @return The employer benefit plan the employee is enrolled in.
      */
-    @JsonProperty("employer_benefit")
+    @JsonIgnore
     public Optional<String> getEmployerBenefit() {
+        if (employerBenefit == null) {
+            return Optional.empty();
+        }
         return employerBenefit;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<BenefitEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("provider_name")
+    private Optional<String> _getProviderName() {
+        return providerName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("benefit_plan_type")
+    private Optional<String> _getBenefitPlanType() {
+        return benefitPlanType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee_contribution")
+    private Optional<Double> _getEmployeeContribution() {
+        return employeeContribution;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company_contribution")
+    private Optional<Double> _getCompanyContribution() {
+        return companyContribution;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_date")
+    private Optional<OffsetDateTime> _getStartDate() {
+        return startDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_date")
+    private Optional<OffsetDateTime> _getEndDate() {
+        return endDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employer_benefit")
+    private Optional<String> _getEmployerBenefit() {
+        return employerBenefit;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -340,6 +442,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -382,6 +495,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder employee(Nullable<BenefitEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The name of the benefit provider.</p>
          */
@@ -393,6 +517,17 @@ public final class Benefit {
 
         public Builder providerName(String providerName) {
             this.providerName = Optional.ofNullable(providerName);
+            return this;
+        }
+
+        public Builder providerName(Nullable<String> providerName) {
+            if (providerName.isNull()) {
+                this.providerName = null;
+            } else if (providerName.isEmpty()) {
+                this.providerName = Optional.empty();
+            } else {
+                this.providerName = Optional.of(providerName.get());
+            }
             return this;
         }
 
@@ -410,6 +545,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder benefitPlanType(Nullable<String> benefitPlanType) {
+            if (benefitPlanType.isNull()) {
+                this.benefitPlanType = null;
+            } else if (benefitPlanType.isEmpty()) {
+                this.benefitPlanType = Optional.empty();
+            } else {
+                this.benefitPlanType = Optional.of(benefitPlanType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The employee's contribution.</p>
          */
@@ -421,6 +567,17 @@ public final class Benefit {
 
         public Builder employeeContribution(Double employeeContribution) {
             this.employeeContribution = Optional.ofNullable(employeeContribution);
+            return this;
+        }
+
+        public Builder employeeContribution(Nullable<Double> employeeContribution) {
+            if (employeeContribution.isNull()) {
+                this.employeeContribution = null;
+            } else if (employeeContribution.isEmpty()) {
+                this.employeeContribution = Optional.empty();
+            } else {
+                this.employeeContribution = Optional.of(employeeContribution.get());
+            }
             return this;
         }
 
@@ -438,6 +595,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder companyContribution(Nullable<Double> companyContribution) {
+            if (companyContribution.isNull()) {
+                this.companyContribution = null;
+            } else if (companyContribution.isEmpty()) {
+                this.companyContribution = Optional.empty();
+            } else {
+                this.companyContribution = Optional.of(companyContribution.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the benefit started.</p>
          */
@@ -452,6 +620,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder startDate(Nullable<OffsetDateTime> startDate) {
+            if (startDate.isNull()) {
+                this.startDate = null;
+            } else if (startDate.isEmpty()) {
+                this.startDate = Optional.empty();
+            } else {
+                this.startDate = Optional.of(startDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the benefit ended.</p>
          */
@@ -463,6 +642,17 @@ public final class Benefit {
 
         public Builder endDate(OffsetDateTime endDate) {
             this.endDate = Optional.ofNullable(endDate);
+            return this;
+        }
+
+        public Builder endDate(Nullable<OffsetDateTime> endDate) {
+            if (endDate.isNull()) {
+                this.endDate = null;
+            } else if (endDate.isEmpty()) {
+                this.endDate = Optional.empty();
+            } else {
+                this.endDate = Optional.of(endDate.get());
+            }
             return this;
         }
 
@@ -494,6 +684,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder employerBenefit(Nullable<String> employerBenefit) {
+            if (employerBenefit.isNull()) {
+                this.employerBenefit = null;
+            } else if (employerBenefit.isEmpty()) {
+                this.employerBenefit = Optional.empty();
+            } else {
+                this.employerBenefit = Optional.of(employerBenefit.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
@@ -505,6 +706,17 @@ public final class Benefit {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -513,6 +725,17 @@ public final class Benefit {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

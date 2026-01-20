@@ -10,6 +10,7 @@ import com.merge.api.crm.types.AssociationType;
 import com.merge.api.crm.types.CrmAssociationTypeEndpointRequest;
 import com.merge.api.crm.types.CrmAssociationTypeResponse;
 import com.merge.api.crm.types.CustomObjectClassesAssociationTypesListRequest;
+import com.merge.api.crm.types.CustomObjectClassesAssociationTypesMetaPostRetrieveRequest;
 import com.merge.api.crm.types.CustomObjectClassesAssociationTypesRetrieveRequest;
 import com.merge.api.crm.types.MetaResponse;
 import java.util.concurrent.CompletableFuture;
@@ -130,9 +131,21 @@ public class AsyncAssociationTypesClient {
      * Returns metadata for <code>CRMAssociationType</code> POSTs.
      */
     public CompletableFuture<MetaResponse> customObjectClassesAssociationTypesMetaPostRetrieve(
-            String customObjectClassId, RequestOptions requestOptions) {
+            String customObjectClassId, CustomObjectClassesAssociationTypesMetaPostRetrieveRequest request) {
         return this.rawClient
-                .customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, requestOptions)
+                .customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, request)
+                .thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>CRMAssociationType</code> POSTs.
+     */
+    public CompletableFuture<MetaResponse> customObjectClassesAssociationTypesMetaPostRetrieve(
+            String customObjectClassId,
+            CustomObjectClassesAssociationTypesMetaPostRetrieveRequest request,
+            RequestOptions requestOptions) {
+        return this.rawClient
+                .customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, request, requestOptions)
                 .thenApply(response -> response.body());
     }
 }

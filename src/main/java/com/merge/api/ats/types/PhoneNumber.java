@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -67,8 +70,11 @@ public final class PhoneNumber {
     /**
      * @return The phone number.
      */
-    @JsonProperty("value")
+    @JsonIgnore
     public Optional<String> getValue() {
+        if (value == null) {
+            return Optional.empty();
+        }
         return value;
     }
 
@@ -82,8 +88,11 @@ public final class PhoneNumber {
      * <li><code>OTHER</code> - OTHER</li>
      * </ul>
      */
-    @JsonProperty("phone_number_type")
+    @JsonIgnore
     public Optional<PhoneNumberPhoneNumberType> getPhoneNumberType() {
+        if (phoneNumberType == null) {
+            return Optional.empty();
+        }
         return phoneNumberType;
     }
 
@@ -93,6 +102,18 @@ public final class PhoneNumber {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("value")
+    private Optional<String> _getValue() {
+        return value;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("phone_number_type")
+    private Optional<PhoneNumberPhoneNumberType> _getPhoneNumberType() {
+        return phoneNumberType;
     }
 
     @java.lang.Override
@@ -196,6 +217,17 @@ public final class PhoneNumber {
             return this;
         }
 
+        public Builder value(Nullable<String> value) {
+            if (value.isNull()) {
+                this.value = null;
+            } else if (value.isEmpty()) {
+                this.value = Optional.empty();
+            } else {
+                this.value = Optional.of(value.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The type of phone number.</p>
          * <ul>
@@ -214,6 +246,17 @@ public final class PhoneNumber {
 
         public Builder phoneNumberType(PhoneNumberPhoneNumberType phoneNumberType) {
             this.phoneNumberType = Optional.ofNullable(phoneNumberType);
+            return this;
+        }
+
+        public Builder phoneNumberType(Nullable<PhoneNumberPhoneNumberType> phoneNumberType) {
+            if (phoneNumberType.isNull()) {
+                this.phoneNumberType = null;
+            } else if (phoneNumberType.isEmpty()) {
+                this.phoneNumberType = Optional.empty();
+            } else {
+                this.phoneNumberType = Optional.of(phoneNumberType.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,16 +86,22 @@ public final class AccountRequest {
     /**
      * @return The account's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The account's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -106,16 +115,22 @@ public final class AccountRequest {
      * <li><code>REVENUE</code> - REVENUE</li>
      * </ul>
      */
-    @JsonProperty("classification")
+    @JsonIgnore
     public Optional<AccountRequestClassification> getClassification() {
+        if (classification == null) {
+            return Optional.empty();
+        }
         return classification;
     }
 
     /**
      * @return The account's type is a narrower and more specific grouping within the account's classification.
      */
-    @JsonProperty("type")
+    @JsonIgnore
     public Optional<String> getType() {
+        if (type == null) {
+            return Optional.empty();
+        }
         return type;
     }
 
@@ -137,8 +152,11 @@ public final class AccountRequest {
      * <li><code>NON_POSTING</code> - NON_POSTING</li>
      * </ul>
      */
-    @JsonProperty("account_type")
+    @JsonIgnore
     public Optional<AccountRequestAccountType> getAccountType() {
+        if (accountType == null) {
+            return Optional.empty();
+        }
         return accountType;
     }
 
@@ -150,16 +168,22 @@ public final class AccountRequest {
      * <li><code>INACTIVE</code> - INACTIVE</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<AccountRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The account's current balance.
      */
-    @JsonProperty("current_balance")
+    @JsonIgnore
     public Optional<Double> getCurrentBalance() {
+        if (currentBalance == null) {
+            return Optional.empty();
+        }
         return currentBalance;
     }
 
@@ -474,42 +498,138 @@ public final class AccountRequest {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<AccountRequestCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The account's number.
      */
-    @JsonProperty("account_number")
+    @JsonIgnore
     public Optional<String> getAccountNumber() {
+        if (accountNumber == null) {
+            return Optional.empty();
+        }
         return accountNumber;
     }
 
     /**
      * @return ID of the parent account.
      */
-    @JsonProperty("parent_account")
+    @JsonIgnore
     public Optional<String> getParentAccount() {
+        if (parentAccount == null) {
+            return Optional.empty();
+        }
         return parentAccount;
     }
 
     /**
      * @return The company the account belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("classification")
+    private Optional<AccountRequestClassification> _getClassification() {
+        return classification;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("type")
+    private Optional<String> _getType() {
+        return type;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account_type")
+    private Optional<AccountRequestAccountType> _getAccountType() {
+        return accountType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<AccountRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("current_balance")
+    private Optional<Double> _getCurrentBalance() {
+        return currentBalance;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<AccountRequestCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account_number")
+    private Optional<String> _getAccountNumber() {
+        return accountNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("parent_account")
+    private Optional<String> _getParentAccount() {
+        return parentAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -631,6 +751,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's description.</p>
          */
@@ -642,6 +773,17 @@ public final class AccountRequest {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -666,6 +808,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder classification(Nullable<AccountRequestClassification> classification) {
+            if (classification.isNull()) {
+                this.classification = null;
+            } else if (classification.isEmpty()) {
+                this.classification = Optional.empty();
+            } else {
+                this.classification = Optional.of(classification.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's type is a narrower and more specific grouping within the account's classification.</p>
          */
@@ -677,6 +830,17 @@ public final class AccountRequest {
 
         public Builder type(String type) {
             this.type = Optional.ofNullable(type);
+            return this;
+        }
+
+        public Builder type(Nullable<String> type) {
+            if (type.isNull()) {
+                this.type = null;
+            } else if (type.isEmpty()) {
+                this.type = Optional.empty();
+            } else {
+                this.type = Optional.of(type.get());
+            }
             return this;
         }
 
@@ -709,6 +873,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder accountType(Nullable<AccountRequestAccountType> accountType) {
+            if (accountType.isNull()) {
+                this.accountType = null;
+            } else if (accountType.isEmpty()) {
+                this.accountType = Optional.empty();
+            } else {
+                this.accountType = Optional.of(accountType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's status.</p>
          * <ul>
@@ -728,6 +903,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder status(Nullable<AccountRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's current balance.</p>
          */
@@ -739,6 +925,17 @@ public final class AccountRequest {
 
         public Builder currentBalance(Double currentBalance) {
             this.currentBalance = Optional.ofNullable(currentBalance);
+            return this;
+        }
+
+        public Builder currentBalance(Nullable<Double> currentBalance) {
+            if (currentBalance.isNull()) {
+                this.currentBalance = null;
+            } else if (currentBalance.isEmpty()) {
+                this.currentBalance = Optional.empty();
+            } else {
+                this.currentBalance = Optional.of(currentBalance.get());
+            }
             return this;
         }
 
@@ -1064,6 +1261,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder currency(Nullable<AccountRequestCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account's number.</p>
          */
@@ -1075,6 +1283,17 @@ public final class AccountRequest {
 
         public Builder accountNumber(String accountNumber) {
             this.accountNumber = Optional.ofNullable(accountNumber);
+            return this;
+        }
+
+        public Builder accountNumber(Nullable<String> accountNumber) {
+            if (accountNumber.isNull()) {
+                this.accountNumber = null;
+            } else if (accountNumber.isEmpty()) {
+                this.accountNumber = Optional.empty();
+            } else {
+                this.accountNumber = Optional.of(accountNumber.get());
+            }
             return this;
         }
 
@@ -1092,6 +1311,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder parentAccount(Nullable<String> parentAccount) {
+            if (parentAccount.isNull()) {
+                this.parentAccount = null;
+            } else if (parentAccount.isEmpty()) {
+                this.parentAccount = Optional.empty();
+            } else {
+                this.parentAccount = Optional.of(parentAccount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the account belongs to.</p>
          */
@@ -1106,6 +1336,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -1117,6 +1358,17 @@ public final class AccountRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -1125,6 +1377,17 @@ public final class AccountRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

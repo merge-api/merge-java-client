@@ -4,6 +4,7 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.AsyncPostTask;
+import com.merge.api.accounting.types.AsyncTasksRetrieveRequest;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MergeApiHttpResponse;
@@ -33,24 +34,33 @@ public class AsyncRawAsyncTasksClient {
      * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
      */
     public CompletableFuture<MergeApiHttpResponse<AsyncPostTask>> retrieve(String id) {
-        return retrieve(id, null);
+        return retrieve(id, AsyncTasksRetrieveRequest.builder().build());
     }
 
     /**
      * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
      */
-    public CompletableFuture<MergeApiHttpResponse<AsyncPostTask>> retrieve(String id, RequestOptions requestOptions) {
+    public CompletableFuture<MergeApiHttpResponse<AsyncPostTask>> retrieve(
+            String id, AsyncTasksRetrieveRequest request) {
+        return retrieve(id, request, null);
+    }
+
+    /**
+     * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<MergeApiHttpResponse<AsyncPostTask>> retrieve(
+            String id, AsyncTasksRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/async-tasks")
                 .addPathSegment(id)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -60,18 +70,16 @@ public class AsyncRawAsyncTasksClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), AsyncPostTask.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AsyncPostTask.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

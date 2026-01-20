@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -106,8 +109,11 @@ public final class Employment {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -130,24 +136,33 @@ public final class Employment {
     /**
      * @return The employee holding this position.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<EmploymentEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The position's title.
      */
-    @JsonProperty("job_title")
+    @JsonIgnore
     public Optional<String> getJobTitle() {
+        if (jobTitle == null) {
+            return Optional.empty();
+        }
         return jobTitle;
     }
 
     /**
      * @return The position's pay rate.
      */
-    @JsonProperty("pay_rate")
+    @JsonIgnore
     public Optional<Double> getPayRate() {
+        if (payRate == null) {
+            return Optional.empty();
+        }
         return payRate;
     }
 
@@ -165,8 +180,11 @@ public final class Employment {
      * <li><code>YEAR</code> - YEAR</li>
      * </ul>
      */
-    @JsonProperty("pay_period")
+    @JsonIgnore
     public Optional<EmploymentPayPeriod> getPayPeriod() {
+        if (payPeriod == null) {
+            return Optional.empty();
+        }
         return payPeriod;
     }
 
@@ -184,8 +202,11 @@ public final class Employment {
      * <li><code>SEMIMONTHLY</code> - SEMIMONTHLY</li>
      * </ul>
      */
-    @JsonProperty("pay_frequency")
+    @JsonIgnore
     public Optional<EmploymentPayFrequency> getPayFrequency() {
+        if (payFrequency == null) {
+            return Optional.empty();
+        }
         return payFrequency;
     }
 
@@ -500,16 +521,22 @@ public final class Employment {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("pay_currency")
+    @JsonIgnore
     public Optional<EmploymentPayCurrency> getPayCurrency() {
+        if (payCurrency == null) {
+            return Optional.empty();
+        }
         return payCurrency;
     }
 
     /**
      * @return The employment's pay group
      */
-    @JsonProperty("pay_group")
+    @JsonIgnore
     public Optional<EmploymentPayGroup> getPayGroup() {
+        if (payGroup == null) {
+            return Optional.empty();
+        }
         return payGroup;
     }
 
@@ -522,16 +549,22 @@ public final class Employment {
      * <li><code>OWNER</code> - OWNER</li>
      * </ul>
      */
-    @JsonProperty("flsa_status")
+    @JsonIgnore
     public Optional<EmploymentFlsaStatus> getFlsaStatus() {
+        if (flsaStatus == null) {
+            return Optional.empty();
+        }
         return flsaStatus;
     }
 
     /**
      * @return The position's effective date.
      */
-    @JsonProperty("effective_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEffectiveDate() {
+        if (effectiveDate == null) {
+            return Optional.empty();
+        }
         return effectiveDate;
     }
 
@@ -545,8 +578,11 @@ public final class Employment {
      * <li><code>FREELANCE</code> - FREELANCE</li>
      * </ul>
      */
-    @JsonProperty("employment_type")
+    @JsonIgnore
     public Optional<EmploymentEmploymentType> getEmploymentType() {
+        if (employmentType == null) {
+            return Optional.empty();
+        }
         return employmentType;
     }
 
@@ -558,13 +594,97 @@ public final class Employment {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<EmploymentEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job_title")
+    private Optional<String> _getJobTitle() {
+        return jobTitle;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("pay_rate")
+    private Optional<Double> _getPayRate() {
+        return payRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("pay_period")
+    private Optional<EmploymentPayPeriod> _getPayPeriod() {
+        return payPeriod;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("pay_frequency")
+    private Optional<EmploymentPayFrequency> _getPayFrequency() {
+        return payFrequency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("pay_currency")
+    private Optional<EmploymentPayCurrency> _getPayCurrency() {
+        return payCurrency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("pay_group")
+    private Optional<EmploymentPayGroup> _getPayGroup() {
+        return payGroup;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("flsa_status")
+    private Optional<EmploymentFlsaStatus> _getFlsaStatus() {
+        return flsaStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("effective_date")
+    private Optional<OffsetDateTime> _getEffectiveDate() {
+        return effectiveDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employment_type")
+    private Optional<EmploymentEmploymentType> _getEmploymentType() {
+        return employmentType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -717,6 +837,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -759,6 +890,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder employee(Nullable<EmploymentEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The position's title.</p>
          */
@@ -773,6 +915,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder jobTitle(Nullable<String> jobTitle) {
+            if (jobTitle.isNull()) {
+                this.jobTitle = null;
+            } else if (jobTitle.isEmpty()) {
+                this.jobTitle = Optional.empty();
+            } else {
+                this.jobTitle = Optional.of(jobTitle.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The position's pay rate.</p>
          */
@@ -784,6 +937,17 @@ public final class Employment {
 
         public Builder payRate(Double payRate) {
             this.payRate = Optional.ofNullable(payRate);
+            return this;
+        }
+
+        public Builder payRate(Nullable<Double> payRate) {
+            if (payRate.isNull()) {
+                this.payRate = null;
+            } else if (payRate.isEmpty()) {
+                this.payRate = Optional.empty();
+            } else {
+                this.payRate = Optional.of(payRate.get());
+            }
             return this;
         }
 
@@ -812,6 +976,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder payPeriod(Nullable<EmploymentPayPeriod> payPeriod) {
+            if (payPeriod.isNull()) {
+                this.payPeriod = null;
+            } else if (payPeriod.isEmpty()) {
+                this.payPeriod = Optional.empty();
+            } else {
+                this.payPeriod = Optional.of(payPeriod.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The position's pay frequency.</p>
          * <ul>
@@ -834,6 +1009,17 @@ public final class Employment {
 
         public Builder payFrequency(EmploymentPayFrequency payFrequency) {
             this.payFrequency = Optional.ofNullable(payFrequency);
+            return this;
+        }
+
+        public Builder payFrequency(Nullable<EmploymentPayFrequency> payFrequency) {
+            if (payFrequency.isNull()) {
+                this.payFrequency = null;
+            } else if (payFrequency.isEmpty()) {
+                this.payFrequency = Optional.empty();
+            } else {
+                this.payFrequency = Optional.of(payFrequency.get());
+            }
             return this;
         }
 
@@ -1159,6 +1345,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder payCurrency(Nullable<EmploymentPayCurrency> payCurrency) {
+            if (payCurrency.isNull()) {
+                this.payCurrency = null;
+            } else if (payCurrency.isEmpty()) {
+                this.payCurrency = Optional.empty();
+            } else {
+                this.payCurrency = Optional.of(payCurrency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The employment's pay group</p>
          */
@@ -1170,6 +1367,17 @@ public final class Employment {
 
         public Builder payGroup(EmploymentPayGroup payGroup) {
             this.payGroup = Optional.ofNullable(payGroup);
+            return this;
+        }
+
+        public Builder payGroup(Nullable<EmploymentPayGroup> payGroup) {
+            if (payGroup.isNull()) {
+                this.payGroup = null;
+            } else if (payGroup.isEmpty()) {
+                this.payGroup = Optional.empty();
+            } else {
+                this.payGroup = Optional.of(payGroup.get());
+            }
             return this;
         }
 
@@ -1193,6 +1401,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder flsaStatus(Nullable<EmploymentFlsaStatus> flsaStatus) {
+            if (flsaStatus.isNull()) {
+                this.flsaStatus = null;
+            } else if (flsaStatus.isEmpty()) {
+                this.flsaStatus = Optional.empty();
+            } else {
+                this.flsaStatus = Optional.of(flsaStatus.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The position's effective date.</p>
          */
@@ -1204,6 +1423,17 @@ public final class Employment {
 
         public Builder effectiveDate(OffsetDateTime effectiveDate) {
             this.effectiveDate = Optional.ofNullable(effectiveDate);
+            return this;
+        }
+
+        public Builder effectiveDate(Nullable<OffsetDateTime> effectiveDate) {
+            if (effectiveDate.isNull()) {
+                this.effectiveDate = null;
+            } else if (effectiveDate.isEmpty()) {
+                this.effectiveDate = Optional.empty();
+            } else {
+                this.effectiveDate = Optional.of(effectiveDate.get());
+            }
             return this;
         }
 
@@ -1225,6 +1455,17 @@ public final class Employment {
 
         public Builder employmentType(EmploymentEmploymentType employmentType) {
             this.employmentType = Optional.ofNullable(employmentType);
+            return this;
+        }
+
+        public Builder employmentType(Nullable<EmploymentEmploymentType> employmentType) {
+            if (employmentType.isNull()) {
+                this.employmentType = null;
+            } else if (employmentType.isEmpty()) {
+                this.employmentType = Optional.empty();
+            } else {
+                this.employmentType = Optional.of(employmentType.get());
+            }
             return this;
         }
 
@@ -1253,6 +1494,17 @@ public final class Employment {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -1261,6 +1513,17 @@ public final class Employment {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 
