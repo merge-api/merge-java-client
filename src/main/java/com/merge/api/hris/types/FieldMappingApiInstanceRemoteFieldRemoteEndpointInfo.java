@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -40,18 +43,45 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("method")
+    @JsonIgnore
     public Optional<String> getMethod() {
+        if (method == null) {
+            return Optional.empty();
+        }
         return method;
     }
 
-    @JsonProperty("url_path")
+    @JsonIgnore
     public Optional<String> getUrlPath() {
+        if (urlPath == null) {
+            return Optional.empty();
+        }
         return urlPath;
     }
 
-    @JsonProperty("field_traversal_path")
+    @JsonIgnore
     public Optional<List<String>> getFieldTraversalPath() {
+        if (fieldTraversalPath == null) {
+            return Optional.empty();
+        }
+        return fieldTraversalPath;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("method")
+    private Optional<String> _getMethod() {
+        return method;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("url_path")
+    private Optional<String> _getUrlPath() {
+        return urlPath;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_traversal_path")
+    private Optional<List<String>> _getFieldTraversalPath() {
         return fieldTraversalPath;
     }
 
@@ -118,6 +148,17 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
             return this;
         }
 
+        public Builder method(Nullable<String> method) {
+            if (method.isNull()) {
+                this.method = null;
+            } else if (method.isEmpty()) {
+                this.method = Optional.empty();
+            } else {
+                this.method = Optional.of(method.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "url_path", nulls = Nulls.SKIP)
         public Builder urlPath(Optional<String> urlPath) {
             this.urlPath = urlPath;
@@ -129,6 +170,17 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
             return this;
         }
 
+        public Builder urlPath(Nullable<String> urlPath) {
+            if (urlPath.isNull()) {
+                this.urlPath = null;
+            } else if (urlPath.isEmpty()) {
+                this.urlPath = Optional.empty();
+            } else {
+                this.urlPath = Optional.of(urlPath.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "field_traversal_path", nulls = Nulls.SKIP)
         public Builder fieldTraversalPath(Optional<List<String>> fieldTraversalPath) {
             this.fieldTraversalPath = fieldTraversalPath;
@@ -137,6 +189,17 @@ public final class FieldMappingApiInstanceRemoteFieldRemoteEndpointInfo {
 
         public Builder fieldTraversalPath(List<String> fieldTraversalPath) {
             this.fieldTraversalPath = Optional.ofNullable(fieldTraversalPath);
+            return this;
+        }
+
+        public Builder fieldTraversalPath(Nullable<List<String>> fieldTraversalPath) {
+            if (fieldTraversalPath.isNull()) {
+                this.fieldTraversalPath = null;
+            } else if (fieldTraversalPath.isEmpty()) {
+                this.fieldTraversalPath = Optional.empty();
+            } else {
+                this.fieldTraversalPath = Optional.of(fieldTraversalPath.get());
+            }
             return this;
         }
 

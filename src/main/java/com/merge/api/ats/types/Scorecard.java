@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -90,8 +93,11 @@ public final class Scorecard {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -114,40 +120,55 @@ public final class Scorecard {
     /**
      * @return The application being scored.
      */
-    @JsonProperty("application")
+    @JsonIgnore
     public Optional<ScorecardApplication> getApplication() {
+        if (application == null) {
+            return Optional.empty();
+        }
         return application;
     }
 
     /**
      * @return The interview being scored.
      */
-    @JsonProperty("interview")
+    @JsonIgnore
     public Optional<ScorecardInterview> getInterview() {
+        if (interview == null) {
+            return Optional.empty();
+        }
         return interview;
     }
 
     /**
      * @return The interviewer doing the scoring.
      */
-    @JsonProperty("interviewer")
+    @JsonIgnore
     public Optional<ScorecardInterviewer> getInterviewer() {
+        if (interviewer == null) {
+            return Optional.empty();
+        }
         return interviewer;
     }
 
     /**
      * @return When the third party's scorecard was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the scorecard was submitted.
      */
-    @JsonProperty("submitted_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getSubmittedAt() {
+        if (submittedAt == null) {
+            return Optional.empty();
+        }
         return submittedAt;
     }
 
@@ -161,8 +182,11 @@ public final class Scorecard {
      * <li><code>NO_DECISION</code> - NO_DECISION</li>
      * </ul>
      */
-    @JsonProperty("overall_recommendation")
+    @JsonIgnore
     public Optional<ScorecardOverallRecommendation> getOverallRecommendation() {
+        if (overallRecommendation == null) {
+            return Optional.empty();
+        }
         return overallRecommendation;
     }
 
@@ -174,13 +198,73 @@ public final class Scorecard {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("application")
+    private Optional<ScorecardApplication> _getApplication() {
+        return application;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("interview")
+    private Optional<ScorecardInterview> _getInterview() {
+        return interview;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("interviewer")
+    private Optional<ScorecardInterviewer> _getInterviewer() {
+        return interviewer;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("submitted_at")
+    private Optional<OffsetDateTime> _getSubmittedAt() {
+        return submittedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("overall_recommendation")
+    private Optional<ScorecardOverallRecommendation> _getOverallRecommendation() {
+        return overallRecommendation;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -313,6 +397,17 @@ public final class Scorecard {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -355,6 +450,17 @@ public final class Scorecard {
             return this;
         }
 
+        public Builder application(Nullable<ScorecardApplication> application) {
+            if (application.isNull()) {
+                this.application = null;
+            } else if (application.isEmpty()) {
+                this.application = Optional.empty();
+            } else {
+                this.application = Optional.of(application.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The interview being scored.</p>
          */
@@ -366,6 +472,17 @@ public final class Scorecard {
 
         public Builder interview(ScorecardInterview interview) {
             this.interview = Optional.ofNullable(interview);
+            return this;
+        }
+
+        public Builder interview(Nullable<ScorecardInterview> interview) {
+            if (interview.isNull()) {
+                this.interview = null;
+            } else if (interview.isEmpty()) {
+                this.interview = Optional.empty();
+            } else {
+                this.interview = Optional.of(interview.get());
+            }
             return this;
         }
 
@@ -383,6 +500,17 @@ public final class Scorecard {
             return this;
         }
 
+        public Builder interviewer(Nullable<ScorecardInterviewer> interviewer) {
+            if (interviewer.isNull()) {
+                this.interviewer = null;
+            } else if (interviewer.isEmpty()) {
+                this.interviewer = Optional.empty();
+            } else {
+                this.interviewer = Optional.of(interviewer.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's scorecard was created.</p>
          */
@@ -397,6 +525,17 @@ public final class Scorecard {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the scorecard was submitted.</p>
          */
@@ -408,6 +547,17 @@ public final class Scorecard {
 
         public Builder submittedAt(OffsetDateTime submittedAt) {
             this.submittedAt = Optional.ofNullable(submittedAt);
+            return this;
+        }
+
+        public Builder submittedAt(Nullable<OffsetDateTime> submittedAt) {
+            if (submittedAt.isNull()) {
+                this.submittedAt = null;
+            } else if (submittedAt.isEmpty()) {
+                this.submittedAt = Optional.empty();
+            } else {
+                this.submittedAt = Optional.of(submittedAt.get());
+            }
             return this;
         }
 
@@ -429,6 +579,17 @@ public final class Scorecard {
 
         public Builder overallRecommendation(ScorecardOverallRecommendation overallRecommendation) {
             this.overallRecommendation = Optional.ofNullable(overallRecommendation);
+            return this;
+        }
+
+        public Builder overallRecommendation(Nullable<ScorecardOverallRecommendation> overallRecommendation) {
+            if (overallRecommendation.isNull()) {
+                this.overallRecommendation = null;
+            } else if (overallRecommendation.isEmpty()) {
+                this.overallRecommendation = Optional.empty();
+            } else {
+                this.overallRecommendation = Optional.of(overallRecommendation.get());
+            }
             return this;
         }
 
@@ -457,6 +618,17 @@ public final class Scorecard {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -465,6 +637,17 @@ public final class Scorecard {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

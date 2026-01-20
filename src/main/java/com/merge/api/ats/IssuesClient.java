@@ -5,6 +5,7 @@ package com.merge.api.ats;
 
 import com.merge.api.ats.types.Issue;
 import com.merge.api.ats.types.IssuesListRequest;
+import com.merge.api.ats.types.IssuesRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
@@ -57,7 +58,14 @@ public class IssuesClient {
     /**
      * Get a specific issue.
      */
-    public Issue retrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(id, requestOptions).body();
+    public Issue retrieve(String id, IssuesRetrieveRequest request) {
+        return this.rawClient.retrieve(id, request).body();
+    }
+
+    /**
+     * Get a specific issue.
+     */
+    public Issue retrieve(String id, IssuesRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 }

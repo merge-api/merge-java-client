@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -90,16 +93,22 @@ public final class PaymentsLineItemsRemoteFieldClassesListRequest {
     /**
      * @return If provided, will only return remote field classes with this is_common_model_field value
      */
-    @JsonProperty("is_common_model_field")
+    @JsonIgnore
     public Optional<Boolean> getIsCommonModelField() {
+        if (isCommonModelField == null) {
+            return Optional.empty();
+        }
         return isCommonModelField;
     }
 
     /**
      * @return If provided, will only return remote fields classes with this is_custom value
      */
-    @JsonProperty("is_custom")
+    @JsonIgnore
     public Optional<Boolean> getIsCustom() {
+        if (isCustom == null) {
+            return Optional.empty();
+        }
         return isCustom;
     }
 
@@ -109,6 +118,18 @@ public final class PaymentsLineItemsRemoteFieldClassesListRequest {
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
         return pageSize;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_common_model_field")
+    private Optional<Boolean> _getIsCommonModelField() {
+        return isCommonModelField;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_custom")
+    private Optional<Boolean> _getIsCustom() {
+        return isCustom;
     }
 
     @java.lang.Override
@@ -256,6 +277,17 @@ public final class PaymentsLineItemsRemoteFieldClassesListRequest {
             return this;
         }
 
+        public Builder isCommonModelField(Nullable<Boolean> isCommonModelField) {
+            if (isCommonModelField.isNull()) {
+                this.isCommonModelField = null;
+            } else if (isCommonModelField.isEmpty()) {
+                this.isCommonModelField = Optional.empty();
+            } else {
+                this.isCommonModelField = Optional.of(isCommonModelField.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return remote fields classes with this is_custom value</p>
          */
@@ -267,6 +299,17 @@ public final class PaymentsLineItemsRemoteFieldClassesListRequest {
 
         public Builder isCustom(Boolean isCustom) {
             this.isCustom = Optional.ofNullable(isCustom);
+            return this;
+        }
+
+        public Builder isCustom(Nullable<Boolean> isCustom) {
+            if (isCustom.isNull()) {
+                this.isCustom = null;
+            } else if (isCustom.isEmpty()) {
+                this.isCustom = Optional.empty();
+            } else {
+                this.isCustom = Optional.of(isCustom.get());
+            }
             return this;
         }
 

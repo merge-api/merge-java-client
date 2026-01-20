@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -121,8 +124,11 @@ public final class TicketRequest {
     /**
      * @return The ticket's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -145,16 +151,22 @@ public final class TicketRequest {
     /**
      * @return The user who created this ticket.
      */
-    @JsonProperty("creator")
+    @JsonIgnore
     public Optional<TicketRequestCreator> getCreator() {
+        if (creator == null) {
+            return Optional.empty();
+        }
         return creator;
     }
 
     /**
      * @return The ticket's due date.
      */
-    @JsonProperty("due_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueDate() {
+        if (dueDate == null) {
+            return Optional.empty();
+        }
         return dueDate;
     }
 
@@ -167,16 +179,22 @@ public final class TicketRequest {
      * <li><code>ON_HOLD</code> - ON_HOLD</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TicketRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The ticket’s description. HTML version of description is mapped if supported by the third-party platform.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -191,32 +209,44 @@ public final class TicketRequest {
     /**
      * @return The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.
      */
-    @JsonProperty("ticket_type")
+    @JsonIgnore
     public Optional<String> getTicketType() {
+        if (ticketType == null) {
+            return Optional.empty();
+        }
         return ticketType;
     }
 
     /**
      * @return The account associated with the ticket.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<TicketRequestAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The contact associated with the ticket.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<TicketRequestContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The ticket's parent ticket.
      */
-    @JsonProperty("parent_ticket")
+    @JsonIgnore
     public Optional<TicketRequestParentTicket> getParentTicket() {
+        if (parentTicket == null) {
+            return Optional.empty();
+        }
         return parentTicket;
     }
 
@@ -234,8 +264,11 @@ public final class TicketRequest {
      * <li><code>COLLECTION</code> - COLLECTION</li>
      * </ul>
      */
-    @JsonProperty("access_level")
+    @JsonIgnore
     public Optional<TicketRequestAccessLevel> getAccessLevel() {
+        if (accessLevel == null) {
+            return Optional.empty();
+        }
         return accessLevel;
     }
 
@@ -252,16 +285,22 @@ public final class TicketRequest {
     /**
      * @return When the ticket was completed.
      */
-    @JsonProperty("completed_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedAt() {
+        if (completedAt == null) {
+            return Optional.empty();
+        }
         return completedAt;
     }
 
     /**
      * @return The 3rd party url of the Ticket.
      */
-    @JsonProperty("ticket_url")
+    @JsonIgnore
     public Optional<String> getTicketUrl() {
+        if (ticketUrl == null) {
+            return Optional.empty();
+        }
         return ticketUrl;
     }
 
@@ -274,24 +313,123 @@ public final class TicketRequest {
      * <li><code>LOW</code> - LOW</li>
      * </ul>
      */
-    @JsonProperty("priority")
+    @JsonIgnore
     public Optional<TicketRequestPriority> getPriority() {
+        if (priority == null) {
+            return Optional.empty();
+        }
         return priority;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("creator")
+    private Optional<TicketRequestCreator> _getCreator() {
+        return creator;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_date")
+    private Optional<OffsetDateTime> _getDueDate() {
+        return dueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TicketRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_type")
+    private Optional<String> _getTicketType() {
+        return ticketType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<TicketRequestAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<TicketRequestContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("parent_ticket")
+    private Optional<TicketRequestParentTicket> _getParentTicket() {
+        return parentTicket;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("access_level")
+    private Optional<TicketRequestAccessLevel> _getAccessLevel() {
+        return accessLevel;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_at")
+    private Optional<OffsetDateTime> _getCompletedAt() {
+        return completedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_url")
+    private Optional<String> _getTicketUrl() {
+        return ticketUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("priority")
+    private Optional<TicketRequestPriority> _getPriority() {
+        return priority;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -457,6 +595,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The individual <code>Users</code> who are assigned to this ticket. This does not include <code>Users</code> who just have view access to this ticket. To fetch all <code>Users</code> and <code>Teams</code> that can access the ticket, use the <code>GET /tickets/{ticket_id}/viewers</code> <a href="https://docs.merge.dev/ticketing/tickets/#tickets_viewers_list">endpoint</a>.</p>
          */
@@ -499,6 +648,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder creator(Nullable<TicketRequestCreator> creator) {
+            if (creator.isNull()) {
+                this.creator = null;
+            } else if (creator.isEmpty()) {
+                this.creator = Optional.empty();
+            } else {
+                this.creator = Optional.of(creator.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket's due date.</p>
          */
@@ -510,6 +670,17 @@ public final class TicketRequest {
 
         public Builder dueDate(OffsetDateTime dueDate) {
             this.dueDate = Optional.ofNullable(dueDate);
+            return this;
+        }
+
+        public Builder dueDate(Nullable<OffsetDateTime> dueDate) {
+            if (dueDate.isNull()) {
+                this.dueDate = null;
+            } else if (dueDate.isEmpty()) {
+                this.dueDate = Optional.empty();
+            } else {
+                this.dueDate = Optional.of(dueDate.get());
+            }
             return this;
         }
 
@@ -533,6 +704,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder status(Nullable<TicketRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket’s description. HTML version of description is mapped if supported by the third-party platform.</p>
          */
@@ -544,6 +726,17 @@ public final class TicketRequest {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -575,6 +768,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder ticketType(Nullable<String> ticketType) {
+            if (ticketType.isNull()) {
+                this.ticketType = null;
+            } else if (ticketType.isEmpty()) {
+                this.ticketType = Optional.empty();
+            } else {
+                this.ticketType = Optional.of(ticketType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account associated with the ticket.</p>
          */
@@ -586,6 +790,17 @@ public final class TicketRequest {
 
         public Builder account(TicketRequestAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<TicketRequestAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -603,6 +818,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder contact(Nullable<TicketRequestContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket's parent ticket.</p>
          */
@@ -614,6 +840,17 @@ public final class TicketRequest {
 
         public Builder parentTicket(TicketRequestParentTicket parentTicket) {
             this.parentTicket = Optional.ofNullable(parentTicket);
+            return this;
+        }
+
+        public Builder parentTicket(Nullable<TicketRequestParentTicket> parentTicket) {
+            if (parentTicket.isNull()) {
+                this.parentTicket = null;
+            } else if (parentTicket.isEmpty()) {
+                this.parentTicket = Optional.empty();
+            } else {
+                this.parentTicket = Optional.of(parentTicket.get());
+            }
             return this;
         }
 
@@ -645,6 +882,17 @@ public final class TicketRequest {
 
         public Builder accessLevel(TicketRequestAccessLevel accessLevel) {
             this.accessLevel = Optional.ofNullable(accessLevel);
+            return this;
+        }
+
+        public Builder accessLevel(Nullable<TicketRequestAccessLevel> accessLevel) {
+            if (accessLevel.isNull()) {
+                this.accessLevel = null;
+            } else if (accessLevel.isEmpty()) {
+                this.accessLevel = Optional.empty();
+            } else {
+                this.accessLevel = Optional.of(accessLevel.get());
+            }
             return this;
         }
 
@@ -684,6 +932,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder completedAt(Nullable<OffsetDateTime> completedAt) {
+            if (completedAt.isNull()) {
+                this.completedAt = null;
+            } else if (completedAt.isEmpty()) {
+                this.completedAt = Optional.empty();
+            } else {
+                this.completedAt = Optional.of(completedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The 3rd party url of the Ticket.</p>
          */
@@ -695,6 +954,17 @@ public final class TicketRequest {
 
         public Builder ticketUrl(String ticketUrl) {
             this.ticketUrl = Optional.ofNullable(ticketUrl);
+            return this;
+        }
+
+        public Builder ticketUrl(Nullable<String> ticketUrl) {
+            if (ticketUrl.isNull()) {
+                this.ticketUrl = null;
+            } else if (ticketUrl.isEmpty()) {
+                this.ticketUrl = Optional.empty();
+            } else {
+                this.ticketUrl = Optional.of(ticketUrl.get());
+            }
             return this;
         }
 
@@ -718,6 +988,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder priority(Nullable<TicketRequestPriority> priority) {
+            if (priority.isNull()) {
+                this.priority = null;
+            } else if (priority.isEmpty()) {
+                this.priority = Optional.empty();
+            } else {
+                this.priority = Optional.of(priority.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -729,6 +1010,17 @@ public final class TicketRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -737,6 +1029,17 @@ public final class TicketRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

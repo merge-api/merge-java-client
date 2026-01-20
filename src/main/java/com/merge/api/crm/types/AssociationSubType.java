@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -44,8 +47,11 @@ public final class AssociationSubType {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("id")
+    @JsonIgnore
     public Optional<String> getId() {
+        if (id == null) {
+            return Optional.empty();
+        }
         return id;
     }
 
@@ -65,8 +71,23 @@ public final class AssociationSubType {
         return modifiedAt;
     }
 
-    @JsonProperty("origin_type")
+    @JsonIgnore
     public Optional<String> getOriginType() {
+        if (originType == null) {
+            return Optional.empty();
+        }
+        return originType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("id")
+    private Optional<String> _getId() {
+        return id;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("origin_type")
+    private Optional<String> _getOriginType() {
         return originType;
     }
 
@@ -136,6 +157,17 @@ public final class AssociationSubType {
             return this;
         }
 
+        public Builder id(Nullable<String> id) {
+            if (id.isNull()) {
+                this.id = null;
+            } else if (id.isEmpty()) {
+                this.id = Optional.empty();
+            } else {
+                this.id = Optional.of(id.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -172,6 +204,17 @@ public final class AssociationSubType {
 
         public Builder originType(String originType) {
             this.originType = Optional.ofNullable(originType);
+            return this;
+        }
+
+        public Builder originType(Nullable<String> originType) {
+            if (originType.isNull()) {
+                this.originType = null;
+            } else if (originType.isEmpty()) {
+                this.originType = Optional.empty();
+            } else {
+                this.originType = Optional.of(originType.get());
+            }
             return this;
         }
 

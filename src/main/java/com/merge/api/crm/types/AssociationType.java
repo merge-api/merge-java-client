@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -78,8 +81,11 @@ public final class AssociationType {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -112,24 +118,57 @@ public final class AssociationType {
         return targetObjectClasses;
     }
 
-    @JsonProperty("remote_key_name")
+    @JsonIgnore
     public Optional<String> getRemoteKeyName() {
+        if (remoteKeyName == null) {
+            return Optional.empty();
+        }
         return remoteKeyName;
     }
 
-    @JsonProperty("display_name")
+    @JsonIgnore
     public Optional<String> getDisplayName() {
+        if (displayName == null) {
+            return Optional.empty();
+        }
         return displayName;
     }
 
-    @JsonProperty("cardinality")
+    @JsonIgnore
     public Optional<AssociationTypeCardinality> getCardinality() {
+        if (cardinality == null) {
+            return Optional.empty();
+        }
         return cardinality;
     }
 
     @JsonProperty("is_required")
     public Optional<Boolean> getIsRequired() {
         return isRequired;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_key_name")
+    private Optional<String> _getRemoteKeyName() {
+        return remoteKeyName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("display_name")
+    private Optional<String> _getDisplayName() {
+        return displayName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("cardinality")
+    private Optional<AssociationTypeCardinality> _getCardinality() {
+        return cardinality;
     }
 
     @java.lang.Override
@@ -246,6 +285,17 @@ public final class AssociationType {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -310,6 +360,17 @@ public final class AssociationType {
             return this;
         }
 
+        public Builder remoteKeyName(Nullable<String> remoteKeyName) {
+            if (remoteKeyName.isNull()) {
+                this.remoteKeyName = null;
+            } else if (remoteKeyName.isEmpty()) {
+                this.remoteKeyName = Optional.empty();
+            } else {
+                this.remoteKeyName = Optional.of(remoteKeyName.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "display_name", nulls = Nulls.SKIP)
         public Builder displayName(Optional<String> displayName) {
             this.displayName = displayName;
@@ -321,6 +382,17 @@ public final class AssociationType {
             return this;
         }
 
+        public Builder displayName(Nullable<String> displayName) {
+            if (displayName.isNull()) {
+                this.displayName = null;
+            } else if (displayName.isEmpty()) {
+                this.displayName = Optional.empty();
+            } else {
+                this.displayName = Optional.of(displayName.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "cardinality", nulls = Nulls.SKIP)
         public Builder cardinality(Optional<AssociationTypeCardinality> cardinality) {
             this.cardinality = cardinality;
@@ -329,6 +401,17 @@ public final class AssociationType {
 
         public Builder cardinality(AssociationTypeCardinality cardinality) {
             this.cardinality = Optional.ofNullable(cardinality);
+            return this;
+        }
+
+        public Builder cardinality(Nullable<AssociationTypeCardinality> cardinality) {
+            if (cardinality.isNull()) {
+                this.cardinality = null;
+            } else if (cardinality.isEmpty()) {
+                this.cardinality = Optional.empty();
+            } else {
+                this.cardinality = Optional.of(cardinality.get());
+            }
             return this;
         }
 

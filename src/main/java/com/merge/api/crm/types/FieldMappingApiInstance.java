@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,13 +56,31 @@ public final class FieldMappingApiInstance {
         return isIntegrationWide;
     }
 
-    @JsonProperty("target_field")
+    @JsonIgnore
     public Optional<FieldMappingApiInstanceTargetField> getTargetField() {
+        if (targetField == null) {
+            return Optional.empty();
+        }
         return targetField;
     }
 
-    @JsonProperty("remote_field")
+    @JsonIgnore
     public Optional<FieldMappingApiInstanceRemoteField> getRemoteField() {
+        if (remoteField == null) {
+            return Optional.empty();
+        }
+        return remoteField;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("target_field")
+    private Optional<FieldMappingApiInstanceTargetField> _getTargetField() {
+        return targetField;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_field")
+    private Optional<FieldMappingApiInstanceRemoteField> _getRemoteField() {
         return remoteField;
     }
 
@@ -151,6 +172,17 @@ public final class FieldMappingApiInstance {
             return this;
         }
 
+        public Builder targetField(Nullable<FieldMappingApiInstanceTargetField> targetField) {
+            if (targetField.isNull()) {
+                this.targetField = null;
+            } else if (targetField.isEmpty()) {
+                this.targetField = Optional.empty();
+            } else {
+                this.targetField = Optional.of(targetField.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_field", nulls = Nulls.SKIP)
         public Builder remoteField(Optional<FieldMappingApiInstanceRemoteField> remoteField) {
             this.remoteField = remoteField;
@@ -159,6 +191,17 @@ public final class FieldMappingApiInstance {
 
         public Builder remoteField(FieldMappingApiInstanceRemoteField remoteField) {
             this.remoteField = Optional.ofNullable(remoteField);
+            return this;
+        }
+
+        public Builder remoteField(Nullable<FieldMappingApiInstanceRemoteField> remoteField) {
+            if (remoteField.isNull()) {
+                this.remoteField = null;
+            } else if (remoteField.isEmpty()) {
+                this.remoteField = Optional.empty();
+            } else {
+                this.remoteField = Optional.of(remoteField.get());
+            }
             return this;
         }
 

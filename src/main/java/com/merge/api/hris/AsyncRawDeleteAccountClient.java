@@ -42,7 +42,7 @@ public class AsyncRawDeleteAccountClient {
     public CompletableFuture<MergeApiHttpResponse<Void>> delete(RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
-                .addPathSegments("hris/v1/delete-account")
+                .addPathSegments("delete-account")
                 .build();
         Request okhttpRequest = new Request.Builder()
                 .url(httpUrl)
@@ -63,11 +63,9 @@ public class AsyncRawDeleteAccountClient {
                         return;
                     }
                     String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

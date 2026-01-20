@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.List;
@@ -108,14 +111,23 @@ public final class RemoteFieldClass {
         return fieldFormat;
     }
 
-    @JsonProperty("field_choices")
+    @JsonIgnore
     public Optional<List<RemoteFieldClassFieldChoicesItem>> getFieldChoices() {
+        if (fieldChoices == null) {
+            return Optional.empty();
+        }
         return fieldChoices;
     }
 
     @JsonProperty("item_schema")
     public Optional<ItemSchema> getItemSchema() {
         return itemSchema;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_choices")
+    private Optional<List<RemoteFieldClassFieldChoicesItem>> _getFieldChoices() {
+        return fieldChoices;
     }
 
     @java.lang.Override
@@ -303,6 +315,17 @@ public final class RemoteFieldClass {
 
         public Builder fieldChoices(List<RemoteFieldClassFieldChoicesItem> fieldChoices) {
             this.fieldChoices = Optional.ofNullable(fieldChoices);
+            return this;
+        }
+
+        public Builder fieldChoices(Nullable<List<RemoteFieldClassFieldChoicesItem>> fieldChoices) {
+            if (fieldChoices.isNull()) {
+                this.fieldChoices = null;
+            } else if (fieldChoices.isEmpty()) {
+                this.fieldChoices = Optional.empty();
+            } else {
+                this.fieldChoices = Optional.of(fieldChoices.get());
+            }
             return this;
         }
 

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -79,8 +82,11 @@ public final class PaymentMethod {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -134,18 +140,51 @@ public final class PaymentMethod {
     /**
      * @return When the third party's payment method was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -234,6 +273,8 @@ public final class PaymentMethod {
 
         _FinalStage remoteId(String remoteId);
 
+        _FinalStage remoteId(Nullable<String> remoteId);
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -262,13 +303,19 @@ public final class PaymentMethod {
 
         _FinalStage remoteUpdatedAt(OffsetDateTime remoteUpdatedAt);
 
+        _FinalStage remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt);
+
         _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings);
 
         _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings);
 
+        _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings);
+
         _FinalStage remoteData(Optional<List<RemoteData>> remoteData);
 
         _FinalStage remoteData(List<RemoteData> remoteData);
+
+        _FinalStage remoteData(Nullable<List<RemoteData>> remoteData);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -352,6 +399,18 @@ public final class PaymentMethod {
         }
 
         @java.lang.Override
+        public _FinalStage remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
             return this;
@@ -365,6 +424,18 @@ public final class PaymentMethod {
         }
 
         @java.lang.Override
+        public _FinalStage fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage fieldMappings(Map<String, JsonNode> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
             return this;
@@ -374,6 +445,22 @@ public final class PaymentMethod {
         @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
         public _FinalStage fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
             this.fieldMappings = fieldMappings;
+            return this;
+        }
+
+        /**
+         * <p>When the third party's payment method was updated.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -454,6 +541,22 @@ public final class PaymentMethod {
         @JsonSetter(value = "created_at", nulls = Nulls.SKIP)
         public _FinalStage createdAt(Optional<OffsetDateTime> createdAt) {
             this.createdAt = createdAt;
+            return this;
+        }
+
+        /**
+         * <p>The third-party API ID of the matching object.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
             return this;
         }
 
