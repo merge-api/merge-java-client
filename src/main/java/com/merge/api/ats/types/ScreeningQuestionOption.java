@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -60,8 +63,11 @@ public final class ScreeningQuestionOption {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -84,8 +90,11 @@ public final class ScreeningQuestionOption {
     /**
      * @return Available response options
      */
-    @JsonProperty("label")
+    @JsonIgnore
     public Optional<String> getLabel() {
+        if (label == null) {
+            return Optional.empty();
+        }
         return label;
     }
 
@@ -95,6 +104,18 @@ public final class ScreeningQuestionOption {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("label")
+    private Optional<String> _getLabel() {
+        return label;
     }
 
     @java.lang.Override
@@ -185,6 +206,17 @@ public final class ScreeningQuestionOption {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -224,6 +256,17 @@ public final class ScreeningQuestionOption {
 
         public Builder label(String label) {
             this.label = Optional.ofNullable(label);
+            return this;
+        }
+
+        public Builder label(Nullable<String> label) {
+            if (label.isNull()) {
+                this.label = null;
+            } else if (label.isEmpty()) {
+                this.label = Optional.empty();
+            } else {
+                this.label = Optional.of(label.get());
+            }
             return this;
         }
 

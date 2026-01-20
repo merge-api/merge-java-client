@@ -5,6 +5,7 @@ package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.Issue;
 import com.merge.api.accounting.types.IssuesListRequest;
+import com.merge.api.accounting.types.IssuesRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
@@ -58,7 +59,14 @@ public class AsyncIssuesClient {
     /**
      * Get a specific issue.
      */
-    public CompletableFuture<Issue> retrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<Issue> retrieve(String id, IssuesRetrieveRequest request) {
+        return this.rawClient.retrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Get a specific issue.
+     */
+    public CompletableFuture<Issue> retrieve(String id, IssuesRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 }

@@ -10,6 +10,7 @@ import com.merge.api.accounting.types.PaymentEndpointRequest;
 import com.merge.api.accounting.types.PaymentResponse;
 import com.merge.api.accounting.types.PaymentsLineItemsRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.PaymentsListRequest;
+import com.merge.api.accounting.types.PaymentsMetaPatchRetrieveRequest;
 import com.merge.api.accounting.types.PaymentsRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.PaymentsRetrieveRequest;
 import com.merge.api.accounting.types.RemoteFieldClass;
@@ -143,8 +144,16 @@ public class AsyncPaymentsClient {
     /**
      * Returns metadata for <code>Payment</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, PaymentsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Payment</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, PaymentsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

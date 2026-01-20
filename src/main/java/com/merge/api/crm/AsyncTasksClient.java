@@ -13,6 +13,7 @@ import com.merge.api.crm.types.Task;
 import com.merge.api.crm.types.TaskEndpointRequest;
 import com.merge.api.crm.types.TaskResponse;
 import com.merge.api.crm.types.TasksListRequest;
+import com.merge.api.crm.types.TasksMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.TasksRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.TasksRetrieveRequest;
 import java.util.concurrent.CompletableFuture;
@@ -115,8 +116,16 @@ public class AsyncTasksClient {
     /**
      * Returns metadata for <code>Task</code> PATCHs.
      */
-    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, TasksMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Task</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(
+            String id, TasksMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).thenApply(response -> response.body());
     }
 
     /**

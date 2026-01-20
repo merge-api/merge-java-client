@@ -5,6 +5,7 @@ package com.merge.api.filestorage.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -114,8 +117,11 @@ public final class File {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -138,64 +144,88 @@ public final class File {
     /**
      * @return The file's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The URL to access the file.
      */
-    @JsonProperty("file_url")
+    @JsonIgnore
     public Optional<String> getFileUrl() {
+        if (fileUrl == null) {
+            return Optional.empty();
+        }
         return fileUrl;
     }
 
     /**
      * @return The URL that produces a thumbnail preview of the file. Typically an image.
      */
-    @JsonProperty("file_thumbnail_url")
+    @JsonIgnore
     public Optional<String> getFileThumbnailUrl() {
+        if (fileThumbnailUrl == null) {
+            return Optional.empty();
+        }
         return fileThumbnailUrl;
     }
 
     /**
      * @return The file's size, in bytes.
      */
-    @JsonProperty("size")
+    @JsonIgnore
     public Optional<Long> getSize() {
+        if (size == null) {
+            return Optional.empty();
+        }
         return size;
     }
 
     /**
      * @return The file's mime type.
      */
-    @JsonProperty("mime_type")
+    @JsonIgnore
     public Optional<String> getMimeType() {
+        if (mimeType == null) {
+            return Optional.empty();
+        }
         return mimeType;
     }
 
     /**
      * @return The file's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The folder that the file belongs to.
      */
-    @JsonProperty("folder")
+    @JsonIgnore
     public Optional<FileFolder> getFolder() {
+        if (folder == null) {
+            return Optional.empty();
+        }
         return folder;
     }
 
     /**
      * @return This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.
      */
-    @JsonProperty("checksum")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getChecksum() {
+        if (checksum == null) {
+            return Optional.empty();
+        }
         return checksum;
     }
 
@@ -210,24 +240,33 @@ public final class File {
     /**
      * @return The drive that the file belongs to.
      */
-    @JsonProperty("drive")
+    @JsonIgnore
     public Optional<FileDrive> getDrive() {
+        if (drive == null) {
+            return Optional.empty();
+        }
         return drive;
     }
 
     /**
      * @return When the third party's file was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's file was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
@@ -239,13 +278,103 @@ public final class File {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_url")
+    private Optional<String> _getFileUrl() {
+        return fileUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_thumbnail_url")
+    private Optional<String> _getFileThumbnailUrl() {
+        return fileThumbnailUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("size")
+    private Optional<Long> _getSize() {
+        return size;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("mime_type")
+    private Optional<String> _getMimeType() {
+        return mimeType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("folder")
+    private Optional<FileFolder> _getFolder() {
+        return folder;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("checksum")
+    private Optional<Map<String, JsonNode>> _getChecksum() {
+        return checksum;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("drive")
+    private Optional<FileDrive> _getDrive() {
+        return drive;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -408,6 +537,17 @@ public final class File {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -450,6 +590,17 @@ public final class File {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The URL to access the file.</p>
          */
@@ -461,6 +612,17 @@ public final class File {
 
         public Builder fileUrl(String fileUrl) {
             this.fileUrl = Optional.ofNullable(fileUrl);
+            return this;
+        }
+
+        public Builder fileUrl(Nullable<String> fileUrl) {
+            if (fileUrl.isNull()) {
+                this.fileUrl = null;
+            } else if (fileUrl.isEmpty()) {
+                this.fileUrl = Optional.empty();
+            } else {
+                this.fileUrl = Optional.of(fileUrl.get());
+            }
             return this;
         }
 
@@ -478,6 +640,17 @@ public final class File {
             return this;
         }
 
+        public Builder fileThumbnailUrl(Nullable<String> fileThumbnailUrl) {
+            if (fileThumbnailUrl.isNull()) {
+                this.fileThumbnailUrl = null;
+            } else if (fileThumbnailUrl.isEmpty()) {
+                this.fileThumbnailUrl = Optional.empty();
+            } else {
+                this.fileThumbnailUrl = Optional.of(fileThumbnailUrl.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The file's size, in bytes.</p>
          */
@@ -489,6 +662,17 @@ public final class File {
 
         public Builder size(Long size) {
             this.size = Optional.ofNullable(size);
+            return this;
+        }
+
+        public Builder size(Nullable<Long> size) {
+            if (size.isNull()) {
+                this.size = null;
+            } else if (size.isEmpty()) {
+                this.size = Optional.empty();
+            } else {
+                this.size = Optional.of(size.get());
+            }
             return this;
         }
 
@@ -506,6 +690,17 @@ public final class File {
             return this;
         }
 
+        public Builder mimeType(Nullable<String> mimeType) {
+            if (mimeType.isNull()) {
+                this.mimeType = null;
+            } else if (mimeType.isEmpty()) {
+                this.mimeType = Optional.empty();
+            } else {
+                this.mimeType = Optional.of(mimeType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The file's description.</p>
          */
@@ -517,6 +712,17 @@ public final class File {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -534,6 +740,17 @@ public final class File {
             return this;
         }
 
+        public Builder folder(Nullable<FileFolder> folder) {
+            if (folder.isNull()) {
+                this.folder = null;
+            } else if (folder.isEmpty()) {
+                this.folder = Optional.empty();
+            } else {
+                this.folder = Optional.of(folder.get());
+            }
+            return this;
+        }
+
         /**
          * <p>This field stores file checksum data. 'type' indicates the algorithm (e.g. crc_32, sha1, sha256, quickXor, or md5), and 'content_hash' is the unique hash used to verify file integrity and detect alterations.</p>
          */
@@ -545,6 +762,17 @@ public final class File {
 
         public Builder checksum(Map<String, JsonNode> checksum) {
             this.checksum = Optional.ofNullable(checksum);
+            return this;
+        }
+
+        public Builder checksum(Nullable<Map<String, JsonNode>> checksum) {
+            if (checksum.isNull()) {
+                this.checksum = null;
+            } else if (checksum.isEmpty()) {
+                this.checksum = Optional.empty();
+            } else {
+                this.checksum = Optional.of(checksum.get());
+            }
             return this;
         }
 
@@ -576,6 +804,17 @@ public final class File {
             return this;
         }
 
+        public Builder drive(Nullable<FileDrive> drive) {
+            if (drive.isNull()) {
+                this.drive = null;
+            } else if (drive.isEmpty()) {
+                this.drive = Optional.empty();
+            } else {
+                this.drive = Optional.of(drive.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's file was created.</p>
          */
@@ -590,6 +829,17 @@ public final class File {
             return this;
         }
 
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's file was updated.</p>
          */
@@ -601,6 +851,17 @@ public final class File {
 
         public Builder remoteUpdatedAt(OffsetDateTime remoteUpdatedAt) {
             this.remoteUpdatedAt = Optional.ofNullable(remoteUpdatedAt);
+            return this;
+        }
+
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
             return this;
         }
 
@@ -629,6 +890,17 @@ public final class File {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -637,6 +909,17 @@ public final class File {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

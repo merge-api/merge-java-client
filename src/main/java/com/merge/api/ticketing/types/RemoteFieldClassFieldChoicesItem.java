@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,13 +37,31 @@ public final class RemoteFieldClassFieldChoicesItem {
         this.additionalProperties = additionalProperties;
     }
 
-    @JsonProperty("value")
+    @JsonIgnore
     public Optional<JsonNode> getValue() {
+        if (value == null) {
+            return Optional.empty();
+        }
         return value;
     }
 
-    @JsonProperty("display_name")
+    @JsonIgnore
     public Optional<String> getDisplayName() {
+        if (displayName == null) {
+            return Optional.empty();
+        }
+        return displayName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("value")
+    private Optional<JsonNode> _getValue() {
+        return value;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("display_name")
+    private Optional<String> _getDisplayName() {
         return displayName;
     }
 
@@ -101,6 +122,17 @@ public final class RemoteFieldClassFieldChoicesItem {
             return this;
         }
 
+        public Builder value(Nullable<JsonNode> value) {
+            if (value.isNull()) {
+                this.value = null;
+            } else if (value.isEmpty()) {
+                this.value = Optional.empty();
+            } else {
+                this.value = Optional.of(value.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "display_name", nulls = Nulls.SKIP)
         public Builder displayName(Optional<String> displayName) {
             this.displayName = displayName;
@@ -109,6 +141,17 @@ public final class RemoteFieldClassFieldChoicesItem {
 
         public Builder displayName(String displayName) {
             this.displayName = Optional.ofNullable(displayName);
+            return this;
+        }
+
+        public Builder displayName(Nullable<String> displayName) {
+            if (displayName.isNull()) {
+                this.displayName = null;
+            } else if (displayName.isEmpty()) {
+                this.displayName = Optional.empty();
+            } else {
+                this.displayName = Optional.of(displayName.get());
+            }
             return this;
         }
 

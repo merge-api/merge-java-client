@@ -16,15 +16,13 @@ import com.merge.api.crm.types.AssociationType;
 import com.merge.api.crm.types.CrmAssociationTypeEndpointRequest;
 import com.merge.api.crm.types.CrmAssociationTypeResponse;
 import com.merge.api.crm.types.CustomObjectClassesAssociationTypesListRequest;
+import com.merge.api.crm.types.CustomObjectClassesAssociationTypesMetaPostRetrieveRequest;
 import com.merge.api.crm.types.CustomObjectClassesAssociationTypesRetrieveRequest;
 import com.merge.api.crm.types.MetaResponse;
 import com.merge.api.crm.types.PaginatedAssociationTypeList;
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -142,10 +140,11 @@ public class AsyncRawAssociationTypesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedAssociationTypeList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedAssociationTypeList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                responseBodyString, PaginatedAssociationTypeList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         CustomObjectClassesAssociationTypesListRequest nextRequest =
                                 CustomObjectClassesAssociationTypesListRequest.builder()
                                         .from(request)
@@ -155,7 +154,7 @@ public class AsyncRawAssociationTypesClient {
                                 parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<AssociationType>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return customObjectClassesAssociationTypesList(
                                                                 customObjectClassId, nextRequest, requestOptions)
@@ -168,12 +167,9 @@ public class AsyncRawAssociationTypesClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -218,12 +214,10 @@ public class AsyncRawAssociationTypesClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "run_async", request.getRunAsync().get(), false);
         }
-        Map<String, Object> properties = new HashMap<>();
-        properties.put("model", request.getModel());
         RequestBody body;
         try {
             body = RequestBody.create(
-                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(properties), MediaTypes.APPLICATION_JSON);
+                    ObjectMappers.JSON_MAPPER.writeValueAsBytes(request), MediaTypes.APPLICATION_JSON);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -243,19 +237,17 @@ public class AsyncRawAssociationTypesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
                                 ObjectMappers.JSON_MAPPER.readValue(
-                                        responseBody.string(), CrmAssociationTypeResponse.class),
+                                        responseBodyString, CrmAssociationTypeResponse.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -333,18 +325,16 @@ public class AsyncRawAssociationTypesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), AssociationType.class),
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AssociationType.class),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -364,26 +354,40 @@ public class AsyncRawAssociationTypesClient {
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> customObjectClassesAssociationTypesMetaPostRetrieve(
             String customObjectClassId) {
-        return customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, null);
+        return customObjectClassesAssociationTypesMetaPostRetrieve(
+                customObjectClassId,
+                CustomObjectClassesAssociationTypesMetaPostRetrieveRequest.builder()
+                        .build());
     }
 
     /**
      * Returns metadata for <code>CRMAssociationType</code> POSTs.
      */
     public CompletableFuture<MergeApiHttpResponse<MetaResponse>> customObjectClassesAssociationTypesMetaPostRetrieve(
-            String customObjectClassId, RequestOptions requestOptions) {
+            String customObjectClassId, CustomObjectClassesAssociationTypesMetaPostRetrieveRequest request) {
+        return customObjectClassesAssociationTypesMetaPostRetrieve(customObjectClassId, request, null);
+    }
+
+    /**
+     * Returns metadata for <code>CRMAssociationType</code> POSTs.
+     */
+    public CompletableFuture<MergeApiHttpResponse<MetaResponse>> customObjectClassesAssociationTypesMetaPostRetrieve(
+            String customObjectClassId,
+            CustomObjectClassesAssociationTypesMetaPostRetrieveRequest request,
+            RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("crm/v1/custom-object-classes")
                 .addPathSegment(customObjectClassId)
-                .addPathSegments("association-types/meta/post")
+                .addPathSegments("association-types/meta")
+                .addPathSegments("post")
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
@@ -393,18 +397,15 @@ public class AsyncRawAssociationTypesClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), MetaResponse.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, MetaResponse.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
