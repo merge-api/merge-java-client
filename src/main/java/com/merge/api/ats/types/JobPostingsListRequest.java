@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -23,7 +26,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = JobPostingsListRequest.Builder.class)
 public final class JobPostingsListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<JobPostingsListRequestExpandItem>> expand;
 
     private final Optional<OffsetDateTime> createdAfter;
 
@@ -50,7 +53,7 @@ public final class JobPostingsListRequest {
     private final Map<String, Object> additionalProperties;
 
     private JobPostingsListRequest(
-            Optional<List<String>> expand,
+            Optional<List<JobPostingsListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
@@ -82,7 +85,7 @@ public final class JobPostingsListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<JobPostingsListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -161,8 +164,11 @@ public final class JobPostingsListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -176,8 +182,23 @@ public final class JobPostingsListRequest {
      * <li><code>PENDING</code> - PENDING</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<JobPostingsListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<JobPostingsListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -235,7 +256,7 @@ public final class JobPostingsListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<JobPostingsListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
@@ -284,17 +305,17 @@ public final class JobPostingsListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<JobPostingsListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<JobPostingsListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(JobPostingsListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -439,6 +460,17 @@ public final class JobPostingsListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return Job Postings with this status. Options: ('PUBLISHED', 'CLOSED', 'DRAFT', 'INTERNAL', 'PENDING')</p>
          * <ul>
@@ -457,6 +489,17 @@ public final class JobPostingsListRequest {
 
         public Builder status(JobPostingsListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<JobPostingsListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

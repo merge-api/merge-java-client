@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -76,56 +79,77 @@ public final class BankFeedTransactionRequestRequest {
     /**
      * @return The bank feed account associated with the transaction.
      */
-    @JsonProperty("bank_feed_account")
+    @JsonIgnore
     public Optional<BankFeedTransactionRequestRequestBankFeedAccount> getBankFeedAccount() {
+        if (bankFeedAccount == null) {
+            return Optional.empty();
+        }
         return bankFeedAccount;
     }
 
     /**
      * @return The date that the transaction occurred.
      */
-    @JsonProperty("transaction_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTransactionDate() {
+        if (transactionDate == null) {
+            return Optional.empty();
+        }
         return transactionDate;
     }
 
     /**
      * @return The date the transaction was posted to the bank account.
      */
-    @JsonProperty("posted_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getPostedDate() {
+        if (postedDate == null) {
+            return Optional.empty();
+        }
         return postedDate;
     }
 
     /**
      * @return The amount of the transaction.
      */
-    @JsonProperty("amount")
+    @JsonIgnore
     public Optional<Double> getAmount() {
+        if (amount == null) {
+            return Optional.empty();
+        }
         return amount;
     }
 
     /**
      * @return The description of the transaction.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The underlying type of the transaction.
      */
-    @JsonProperty("transaction_type")
+    @JsonIgnore
     public Optional<String> getTransactionType() {
+        if (transactionType == null) {
+            return Optional.empty();
+        }
         return transactionType;
     }
 
     /**
      * @return The person or merchant who initiated the transaction, or alternatively, to whom the transaction was paid.
      */
-    @JsonProperty("payee")
+    @JsonIgnore
     public Optional<String> getPayee() {
+        if (payee == null) {
+            return Optional.empty();
+        }
         return payee;
     }
 
@@ -136,26 +160,104 @@ public final class BankFeedTransactionRequestRequest {
      * <li><code>DEBIT</code> - DEBIT</li>
      * </ul>
      */
-    @JsonProperty("credit_or_debit")
+    @JsonIgnore
     public Optional<BankFeedTransactionRequestRequestCreditOrDebit> getCreditOrDebit() {
+        if (creditOrDebit == null) {
+            return Optional.empty();
+        }
         return creditOrDebit;
     }
 
     /**
      * @return The customer’s identifier for the transaction.
      */
-    @JsonProperty("source_transaction_id")
+    @JsonIgnore
     public Optional<String> getSourceTransactionId() {
+        if (sourceTransactionId == null) {
+            return Optional.empty();
+        }
         return sourceTransactionId;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("bank_feed_account")
+    private Optional<BankFeedTransactionRequestRequestBankFeedAccount> _getBankFeedAccount() {
+        return bankFeedAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_date")
+    private Optional<OffsetDateTime> _getTransactionDate() {
+        return transactionDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("posted_date")
+    private Optional<OffsetDateTime> _getPostedDate() {
+        return postedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("amount")
+    private Optional<Double> _getAmount() {
+        return amount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_type")
+    private Optional<String> _getTransactionType() {
+        return transactionType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("payee")
+    private Optional<String> _getPayee() {
+        return payee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("credit_or_debit")
+    private Optional<BankFeedTransactionRequestRequestCreditOrDebit> _getCreditOrDebit() {
+        return creditOrDebit;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("source_transaction_id")
+    private Optional<String> _getSourceTransactionId() {
+        return sourceTransactionId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -267,6 +369,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder bankFeedAccount(Nullable<BankFeedTransactionRequestRequestBankFeedAccount> bankFeedAccount) {
+            if (bankFeedAccount.isNull()) {
+                this.bankFeedAccount = null;
+            } else if (bankFeedAccount.isEmpty()) {
+                this.bankFeedAccount = Optional.empty();
+            } else {
+                this.bankFeedAccount = Optional.of(bankFeedAccount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The date that the transaction occurred.</p>
          */
@@ -278,6 +391,17 @@ public final class BankFeedTransactionRequestRequest {
 
         public Builder transactionDate(OffsetDateTime transactionDate) {
             this.transactionDate = Optional.ofNullable(transactionDate);
+            return this;
+        }
+
+        public Builder transactionDate(Nullable<OffsetDateTime> transactionDate) {
+            if (transactionDate.isNull()) {
+                this.transactionDate = null;
+            } else if (transactionDate.isEmpty()) {
+                this.transactionDate = Optional.empty();
+            } else {
+                this.transactionDate = Optional.of(transactionDate.get());
+            }
             return this;
         }
 
@@ -295,6 +419,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder postedDate(Nullable<OffsetDateTime> postedDate) {
+            if (postedDate.isNull()) {
+                this.postedDate = null;
+            } else if (postedDate.isEmpty()) {
+                this.postedDate = Optional.empty();
+            } else {
+                this.postedDate = Optional.of(postedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The amount of the transaction.</p>
          */
@@ -306,6 +441,17 @@ public final class BankFeedTransactionRequestRequest {
 
         public Builder amount(Double amount) {
             this.amount = Optional.ofNullable(amount);
+            return this;
+        }
+
+        public Builder amount(Nullable<Double> amount) {
+            if (amount.isNull()) {
+                this.amount = null;
+            } else if (amount.isEmpty()) {
+                this.amount = Optional.empty();
+            } else {
+                this.amount = Optional.of(amount.get());
+            }
             return this;
         }
 
@@ -323,6 +469,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The underlying type of the transaction.</p>
          */
@@ -337,6 +494,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder transactionType(Nullable<String> transactionType) {
+            if (transactionType.isNull()) {
+                this.transactionType = null;
+            } else if (transactionType.isEmpty()) {
+                this.transactionType = Optional.empty();
+            } else {
+                this.transactionType = Optional.of(transactionType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The person or merchant who initiated the transaction, or alternatively, to whom the transaction was paid.</p>
          */
@@ -348,6 +516,17 @@ public final class BankFeedTransactionRequestRequest {
 
         public Builder payee(String payee) {
             this.payee = Optional.ofNullable(payee);
+            return this;
+        }
+
+        public Builder payee(Nullable<String> payee) {
+            if (payee.isNull()) {
+                this.payee = null;
+            } else if (payee.isEmpty()) {
+                this.payee = Optional.empty();
+            } else {
+                this.payee = Optional.of(payee.get());
+            }
             return this;
         }
 
@@ -369,6 +548,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder creditOrDebit(Nullable<BankFeedTransactionRequestRequestCreditOrDebit> creditOrDebit) {
+            if (creditOrDebit.isNull()) {
+                this.creditOrDebit = null;
+            } else if (creditOrDebit.isEmpty()) {
+                this.creditOrDebit = Optional.empty();
+            } else {
+                this.creditOrDebit = Optional.of(creditOrDebit.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The customer’s identifier for the transaction.</p>
          */
@@ -383,6 +573,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder sourceTransactionId(Nullable<String> sourceTransactionId) {
+            if (sourceTransactionId.isNull()) {
+                this.sourceTransactionId = null;
+            } else if (sourceTransactionId.isEmpty()) {
+                this.sourceTransactionId = Optional.empty();
+            } else {
+                this.sourceTransactionId = Optional.of(sourceTransactionId.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -394,6 +595,17 @@ public final class BankFeedTransactionRequestRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -402,6 +614,17 @@ public final class BankFeedTransactionRequestRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

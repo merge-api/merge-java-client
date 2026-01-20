@@ -30,9 +30,9 @@ public final class PurchaseOrdersRetrieveRequest {
 
     private final Optional<Boolean> includeShellData;
 
-    private final Optional<String> remoteFields;
+    private final Optional<PurchaseOrdersRetrieveRequestRemoteFields> remoteFields;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<PurchaseOrdersRetrieveRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
@@ -41,8 +41,8 @@ public final class PurchaseOrdersRetrieveRequest {
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeRemoteFields,
             Optional<Boolean> includeShellData,
-            Optional<String> remoteFields,
-            Optional<String> showEnumOrigins,
+            Optional<PurchaseOrdersRetrieveRequestRemoteFields> remoteFields,
+            Optional<PurchaseOrdersRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
@@ -89,7 +89,7 @@ public final class PurchaseOrdersRetrieveRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<PurchaseOrdersRetrieveRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
@@ -97,7 +97,7 @@ public final class PurchaseOrdersRetrieveRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<PurchaseOrdersRetrieveRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -151,9 +151,9 @@ public final class PurchaseOrdersRetrieveRequest {
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<PurchaseOrdersRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<PurchaseOrdersRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -235,12 +235,12 @@ public final class PurchaseOrdersRetrieveRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<PurchaseOrdersRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(PurchaseOrdersRetrieveRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -249,12 +249,12 @@ public final class PurchaseOrdersRetrieveRequest {
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<PurchaseOrdersRetrieveRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(PurchaseOrdersRetrieveRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

@@ -4,6 +4,7 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.AsyncPostTask;
+import com.merge.api.accounting.types.AsyncTasksRetrieveRequest;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 
@@ -34,7 +35,14 @@ public class AsyncTasksClient {
     /**
      * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
      */
-    public AsyncPostTask retrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.retrieve(id, requestOptions).body();
+    public AsyncPostTask retrieve(String id, AsyncTasksRetrieveRequest request) {
+        return this.rawClient.retrieve(id, request).body();
+    }
+
+    /**
+     * Returns an <code>AsyncPostTask</code> object with the given <code>id</code>.
+     */
+    public AsyncPostTask retrieve(String id, AsyncTasksRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.retrieve(id, request, requestOptions).body();
     }
 }

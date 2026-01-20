@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -67,8 +70,11 @@ public final class EmailAddress {
     /**
      * @return The email address.
      */
-    @JsonProperty("value")
+    @JsonIgnore
     public Optional<String> getValue() {
+        if (value == null) {
+            return Optional.empty();
+        }
         return value;
     }
 
@@ -80,8 +86,11 @@ public final class EmailAddress {
      * <li><code>OTHER</code> - OTHER</li>
      * </ul>
      */
-    @JsonProperty("email_address_type")
+    @JsonIgnore
     public Optional<EmailAddressEmailAddressType> getEmailAddressType() {
+        if (emailAddressType == null) {
+            return Optional.empty();
+        }
         return emailAddressType;
     }
 
@@ -91,6 +100,18 @@ public final class EmailAddress {
     @JsonProperty("remote_was_deleted")
     public Optional<Boolean> getRemoteWasDeleted() {
         return remoteWasDeleted;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("value")
+    private Optional<String> _getValue() {
+        return value;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email_address_type")
+    private Optional<EmailAddressEmailAddressType> _getEmailAddressType() {
+        return emailAddressType;
     }
 
     @java.lang.Override
@@ -194,6 +215,17 @@ public final class EmailAddress {
             return this;
         }
 
+        public Builder value(Nullable<String> value) {
+            if (value.isNull()) {
+                this.value = null;
+            } else if (value.isEmpty()) {
+                this.value = Optional.empty();
+            } else {
+                this.value = Optional.of(value.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The type of email address.</p>
          * <ul>
@@ -210,6 +242,17 @@ public final class EmailAddress {
 
         public Builder emailAddressType(EmailAddressEmailAddressType emailAddressType) {
             this.emailAddressType = Optional.ofNullable(emailAddressType);
+            return this;
+        }
+
+        public Builder emailAddressType(Nullable<EmailAddressEmailAddressType> emailAddressType) {
+            if (emailAddressType.isNull()) {
+                this.emailAddressType = null;
+            } else if (emailAddressType.isEmpty()) {
+                this.emailAddressType = Optional.empty();
+            } else {
+                this.emailAddressType = Optional.of(emailAddressType.get());
+            }
             return this;
         }
 

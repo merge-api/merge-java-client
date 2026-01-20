@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -90,8 +93,11 @@ public final class User {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -114,24 +120,33 @@ public final class User {
     /**
      * @return The user's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The user's email address.
      */
-    @JsonProperty("email_address")
+    @JsonIgnore
     public Optional<String> getEmailAddress() {
+        if (emailAddress == null) {
+            return Optional.empty();
+        }
         return emailAddress;
     }
 
     /**
      * @return Whether or not the user is active.
      */
-    @JsonProperty("is_active")
+    @JsonIgnore
     public Optional<Boolean> getIsActive() {
+        if (isActive == null) {
+            return Optional.empty();
+        }
         return isActive;
     }
 
@@ -148,8 +163,11 @@ public final class User {
     /**
      * @return The user's avatar picture.
      */
-    @JsonProperty("avatar")
+    @JsonIgnore
     public Optional<String> getAvatar() {
+        if (avatar == null) {
+            return Optional.empty();
+        }
         return avatar;
     }
 
@@ -161,13 +179,61 @@ public final class User {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email_address")
+    private Optional<String> _getEmailAddress() {
+        return emailAddress;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_active")
+    private Optional<Boolean> _getIsActive() {
+        return isActive;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("avatar")
+    private Optional<String> _getAvatar() {
+        return avatar;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -300,6 +366,17 @@ public final class User {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -342,6 +419,17 @@ public final class User {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The user's email address.</p>
          */
@@ -356,6 +444,17 @@ public final class User {
             return this;
         }
 
+        public Builder emailAddress(Nullable<String> emailAddress) {
+            if (emailAddress.isNull()) {
+                this.emailAddress = null;
+            } else if (emailAddress.isEmpty()) {
+                this.emailAddress = Optional.empty();
+            } else {
+                this.emailAddress = Optional.of(emailAddress.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Whether or not the user is active.</p>
          */
@@ -367,6 +466,17 @@ public final class User {
 
         public Builder isActive(Boolean isActive) {
             this.isActive = Optional.ofNullable(isActive);
+            return this;
+        }
+
+        public Builder isActive(Nullable<Boolean> isActive) {
+            if (isActive.isNull()) {
+                this.isActive = null;
+            } else if (isActive.isEmpty()) {
+                this.isActive = Optional.empty();
+            } else {
+                this.isActive = Optional.of(isActive.get());
+            }
             return this;
         }
 
@@ -406,6 +516,17 @@ public final class User {
             return this;
         }
 
+        public Builder avatar(Nullable<String> avatar) {
+            if (avatar.isNull()) {
+                this.avatar = null;
+            } else if (avatar.isEmpty()) {
+                this.avatar = Optional.empty();
+            } else {
+                this.avatar = Optional.of(avatar.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
          */
@@ -431,6 +552,17 @@ public final class User {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -439,6 +571,17 @@ public final class User {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

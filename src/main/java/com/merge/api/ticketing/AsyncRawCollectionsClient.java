@@ -21,7 +21,6 @@ import com.merge.api.ticketing.types.Viewer;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import okhttp3.Call;
@@ -152,10 +151,11 @@ public class AsyncRawCollectionsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
-                        PaginatedCollectionList parsedResponse = ObjectMappers.JSON_MAPPER.readValue(
-                                responseBody.string(), PaginatedCollectionList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                        PaginatedCollectionList parsedResponse =
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedCollectionList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         CollectionsListRequest nextRequest = CollectionsListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
@@ -163,7 +163,7 @@ public class AsyncRawCollectionsClient {
                         List<Collection> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
                                 new SyncPagingIterable<Collection>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
+                                        !startingAfter.isEmpty(), result, parsedResponse, () -> {
                                             try {
                                                 return list(nextRequest, requestOptions)
                                                         .get()
@@ -175,12 +175,9 @@ public class AsyncRawCollectionsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -265,35 +262,32 @@ public class AsyncRawCollectionsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedViewerList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedViewerList.class);
-                        Optional<String> startingAfter = parsedResponse.getNext();
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedViewerList.class);
+                        String startingAfter = parsedResponse.getNext().orElse(null);
                         CollectionsViewersListRequest nextRequest = CollectionsViewersListRequest.builder()
                                 .from(request)
                                 .cursor(startingAfter)
                                 .build();
                         List<Viewer> result = parsedResponse.getResults().orElse(Collections.emptyList());
                         future.complete(new MergeApiHttpResponse<>(
-                                new SyncPagingIterable<Viewer>(
-                                        startingAfter.isPresent(), result, parsedResponse, () -> {
-                                            try {
-                                                return viewersList(collectionId, nextRequest, requestOptions)
-                                                        .get()
-                                                        .body();
-                                            } catch (InterruptedException | ExecutionException e) {
-                                                throw new RuntimeException(e);
-                                            }
-                                        }),
+                                new SyncPagingIterable<Viewer>(!startingAfter.isEmpty(), result, parsedResponse, () -> {
+                                    try {
+                                        return viewersList(collectionId, nextRequest, requestOptions)
+                                                .get()
+                                                .body();
+                                    } catch (InterruptedException | ExecutionException e) {
+                                        throw new RuntimeException(e);
+                                    }
+                                }),
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -369,18 +363,15 @@ public class AsyncRawCollectionsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Collection.class),
-                                response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Collection.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

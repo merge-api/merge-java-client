@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -67,40 +70,55 @@ public final class AddressRequest {
     /**
      * @return Line 1 of the address's street.
      */
-    @JsonProperty("street_1")
+    @JsonIgnore
     public Optional<String> getStreet1() {
+        if (street1 == null) {
+            return Optional.empty();
+        }
         return street1;
     }
 
     /**
      * @return Line 2 of the address's street.
      */
-    @JsonProperty("street_2")
+    @JsonIgnore
     public Optional<String> getStreet2() {
+        if (street2 == null) {
+            return Optional.empty();
+        }
         return street2;
     }
 
     /**
      * @return The address's city.
      */
-    @JsonProperty("city")
+    @JsonIgnore
     public Optional<String> getCity() {
+        if (city == null) {
+            return Optional.empty();
+        }
         return city;
     }
 
     /**
      * @return The address's state.
      */
-    @JsonProperty("state")
+    @JsonIgnore
     public Optional<String> getState() {
+        if (state == null) {
+            return Optional.empty();
+        }
         return state;
     }
 
     /**
      * @return The address's postal code.
      */
-    @JsonProperty("postal_code")
+    @JsonIgnore
     public Optional<String> getPostalCode() {
+        if (postalCode == null) {
+            return Optional.empty();
+        }
         return postalCode;
     }
 
@@ -358,8 +376,11 @@ public final class AddressRequest {
      * <li><code>ZW</code> - Zimbabwe</li>
      * </ul>
      */
-    @JsonProperty("country")
+    @JsonIgnore
     public Optional<AddressRequestCountry> getCountry() {
+        if (country == null) {
+            return Optional.empty();
+        }
         return country;
     }
 
@@ -370,18 +391,81 @@ public final class AddressRequest {
      * <li><code>SHIPPING</code> - SHIPPING</li>
      * </ul>
      */
-    @JsonProperty("address_type")
+    @JsonIgnore
     public Optional<AddressRequestAddressType> getAddressType() {
+        if (addressType == null) {
+            return Optional.empty();
+        }
         return addressType;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
+        return linkedAccountParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_1")
+    private Optional<String> _getStreet1() {
+        return street1;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("street_2")
+    private Optional<String> _getStreet2() {
+        return street2;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("city")
+    private Optional<String> _getCity() {
+        return city;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("state")
+    private Optional<String> _getState() {
+        return state;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("postal_code")
+    private Optional<String> _getPostalCode() {
+        return postalCode;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("country")
+    private Optional<AddressRequestCountry> _getCountry() {
+        return country;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("address_type")
+    private Optional<AddressRequestAddressType> _getAddressType() {
+        return addressType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
         return linkedAccountParams;
     }
 
@@ -483,6 +567,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder street1(Nullable<String> street1) {
+            if (street1.isNull()) {
+                this.street1 = null;
+            } else if (street1.isEmpty()) {
+                this.street1 = Optional.empty();
+            } else {
+                this.street1 = Optional.of(street1.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Line 2 of the address's street.</p>
          */
@@ -494,6 +589,17 @@ public final class AddressRequest {
 
         public Builder street2(String street2) {
             this.street2 = Optional.ofNullable(street2);
+            return this;
+        }
+
+        public Builder street2(Nullable<String> street2) {
+            if (street2.isNull()) {
+                this.street2 = null;
+            } else if (street2.isEmpty()) {
+                this.street2 = Optional.empty();
+            } else {
+                this.street2 = Optional.of(street2.get());
+            }
             return this;
         }
 
@@ -511,6 +617,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder city(Nullable<String> city) {
+            if (city.isNull()) {
+                this.city = null;
+            } else if (city.isEmpty()) {
+                this.city = Optional.empty();
+            } else {
+                this.city = Optional.of(city.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's state.</p>
          */
@@ -525,6 +642,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder state(Nullable<String> state) {
+            if (state.isNull()) {
+                this.state = null;
+            } else if (state.isEmpty()) {
+                this.state = Optional.empty();
+            } else {
+                this.state = Optional.of(state.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address's postal code.</p>
          */
@@ -536,6 +664,17 @@ public final class AddressRequest {
 
         public Builder postalCode(String postalCode) {
             this.postalCode = Optional.ofNullable(postalCode);
+            return this;
+        }
+
+        public Builder postalCode(Nullable<String> postalCode) {
+            if (postalCode.isNull()) {
+                this.postalCode = null;
+            } else if (postalCode.isEmpty()) {
+                this.postalCode = Optional.empty();
+            } else {
+                this.postalCode = Optional.of(postalCode.get());
+            }
             return this;
         }
 
@@ -804,6 +943,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder country(Nullable<AddressRequestCountry> country) {
+            if (country.isNull()) {
+                this.country = null;
+            } else if (country.isEmpty()) {
+                this.country = Optional.empty();
+            } else {
+                this.country = Optional.of(country.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The address type.</p>
          * <ul>
@@ -822,6 +972,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder addressType(Nullable<AddressRequestAddressType> addressType) {
+            if (addressType.isNull()) {
+                this.addressType = null;
+            } else if (addressType.isEmpty()) {
+                this.addressType = Optional.empty();
+            } else {
+                this.addressType = Optional.of(addressType.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -833,6 +994,17 @@ public final class AddressRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -841,6 +1013,17 @@ public final class AddressRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

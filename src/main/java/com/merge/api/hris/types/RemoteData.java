@@ -42,6 +42,9 @@ public final class RemoteData {
         return path;
     }
 
+    /**
+     * @return The data returned from the third-party for this object in its original, unnormalized format.
+     */
     @JsonProperty("data")
     public Optional<JsonNode> getData() {
         return data;
@@ -88,6 +91,9 @@ public final class RemoteData {
     public interface _FinalStage {
         RemoteData build();
 
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         */
         _FinalStage data(Optional<JsonNode> data);
 
         _FinalStage data(JsonNode data);
@@ -123,12 +129,19 @@ public final class RemoteData {
             return this;
         }
 
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
         @java.lang.Override
         public _FinalStage data(JsonNode data) {
             this.data = Optional.ofNullable(data);
             return this;
         }
 
+        /**
+         * <p>The data returned from the third-party for this object in its original, unnormalized format.</p>
+         */
         @java.lang.Override
         @JsonSetter(value = "data", nulls = Nulls.SKIP)
         public _FinalStage data(Optional<JsonNode> data) {

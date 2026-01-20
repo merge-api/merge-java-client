@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -106,8 +109,11 @@ public final class EmployeePayrollRun {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -130,56 +136,77 @@ public final class EmployeePayrollRun {
     /**
      * @return The employee whose payroll is being run.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<EmployeePayrollRunEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The payroll being run.
      */
-    @JsonProperty("payroll_run")
+    @JsonIgnore
     public Optional<EmployeePayrollRunPayrollRun> getPayrollRun() {
+        if (payrollRun == null) {
+            return Optional.empty();
+        }
         return payrollRun;
     }
 
     /**
      * @return The total earnings throughout a given period for an employee before any deductions are made.
      */
-    @JsonProperty("gross_pay")
+    @JsonIgnore
     public Optional<Double> getGrossPay() {
+        if (grossPay == null) {
+            return Optional.empty();
+        }
         return grossPay;
     }
 
     /**
      * @return The take-home pay throughout a given period for an employee after deductions are made.
      */
-    @JsonProperty("net_pay")
+    @JsonIgnore
     public Optional<Double> getNetPay() {
+        if (netPay == null) {
+            return Optional.empty();
+        }
         return netPay;
     }
 
     /**
      * @return The day and time the payroll run started.
      */
-    @JsonProperty("start_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartDate() {
+        if (startDate == null) {
+            return Optional.empty();
+        }
         return startDate;
     }
 
     /**
      * @return The day and time the payroll run ended.
      */
-    @JsonProperty("end_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndDate() {
+        if (endDate == null) {
+            return Optional.empty();
+        }
         return endDate;
     }
 
     /**
      * @return The day and time the payroll run was checked.
      */
-    @JsonProperty("check_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCheckDate() {
+        if (checkDate == null) {
+            return Optional.empty();
+        }
         return checkDate;
     }
 
@@ -206,13 +233,79 @@ public final class EmployeePayrollRun {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<EmployeePayrollRunEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("payroll_run")
+    private Optional<EmployeePayrollRunPayrollRun> _getPayrollRun() {
+        return payrollRun;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("gross_pay")
+    private Optional<Double> _getGrossPay() {
+        return grossPay;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("net_pay")
+    private Optional<Double> _getNetPay() {
+        return netPay;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_date")
+    private Optional<OffsetDateTime> _getStartDate() {
+        return startDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_date")
+    private Optional<OffsetDateTime> _getEndDate() {
+        return endDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("check_date")
+    private Optional<OffsetDateTime> _getCheckDate() {
+        return checkDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -365,6 +458,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -407,6 +511,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder employee(Nullable<EmployeePayrollRunEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The payroll being run.</p>
          */
@@ -418,6 +533,17 @@ public final class EmployeePayrollRun {
 
         public Builder payrollRun(EmployeePayrollRunPayrollRun payrollRun) {
             this.payrollRun = Optional.ofNullable(payrollRun);
+            return this;
+        }
+
+        public Builder payrollRun(Nullable<EmployeePayrollRunPayrollRun> payrollRun) {
+            if (payrollRun.isNull()) {
+                this.payrollRun = null;
+            } else if (payrollRun.isEmpty()) {
+                this.payrollRun = Optional.empty();
+            } else {
+                this.payrollRun = Optional.of(payrollRun.get());
+            }
             return this;
         }
 
@@ -435,6 +561,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder grossPay(Nullable<Double> grossPay) {
+            if (grossPay.isNull()) {
+                this.grossPay = null;
+            } else if (grossPay.isEmpty()) {
+                this.grossPay = Optional.empty();
+            } else {
+                this.grossPay = Optional.of(grossPay.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The take-home pay throughout a given period for an employee after deductions are made.</p>
          */
@@ -446,6 +583,17 @@ public final class EmployeePayrollRun {
 
         public Builder netPay(Double netPay) {
             this.netPay = Optional.ofNullable(netPay);
+            return this;
+        }
+
+        public Builder netPay(Nullable<Double> netPay) {
+            if (netPay.isNull()) {
+                this.netPay = null;
+            } else if (netPay.isEmpty()) {
+                this.netPay = Optional.empty();
+            } else {
+                this.netPay = Optional.of(netPay.get());
+            }
             return this;
         }
 
@@ -463,6 +611,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder startDate(Nullable<OffsetDateTime> startDate) {
+            if (startDate.isNull()) {
+                this.startDate = null;
+            } else if (startDate.isEmpty()) {
+                this.startDate = Optional.empty();
+            } else {
+                this.startDate = Optional.of(startDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the payroll run ended.</p>
          */
@@ -477,6 +636,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder endDate(Nullable<OffsetDateTime> endDate) {
+            if (endDate.isNull()) {
+                this.endDate = null;
+            } else if (endDate.isEmpty()) {
+                this.endDate = Optional.empty();
+            } else {
+                this.endDate = Optional.of(endDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time the payroll run was checked.</p>
          */
@@ -488,6 +658,17 @@ public final class EmployeePayrollRun {
 
         public Builder checkDate(OffsetDateTime checkDate) {
             this.checkDate = Optional.ofNullable(checkDate);
+            return this;
+        }
+
+        public Builder checkDate(Nullable<OffsetDateTime> checkDate) {
+            if (checkDate.isNull()) {
+                this.checkDate = null;
+            } else if (checkDate.isEmpty()) {
+                this.checkDate = Optional.empty();
+            } else {
+                this.checkDate = Optional.of(checkDate.get());
+            }
             return this;
         }
 
@@ -549,6 +730,17 @@ public final class EmployeePayrollRun {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -557,6 +749,17 @@ public final class EmployeePayrollRun {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

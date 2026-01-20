@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -82,8 +85,11 @@ public final class Attachment {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -106,24 +112,33 @@ public final class Attachment {
     /**
      * @return The attachment's name.
      */
-    @JsonProperty("file_name")
+    @JsonIgnore
     public Optional<String> getFileName() {
+        if (fileName == null) {
+            return Optional.empty();
+        }
         return fileName;
     }
 
     /**
      * @return The attachment's url.
      */
-    @JsonProperty("file_url")
+    @JsonIgnore
     public Optional<String> getFileUrl() {
+        if (fileUrl == null) {
+            return Optional.empty();
+        }
         return fileUrl;
     }
 
     /**
      * @return
      */
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<String> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
@@ -136,8 +151,11 @@ public final class Attachment {
      * <li><code>OTHER</code> - OTHER</li>
      * </ul>
      */
-    @JsonProperty("attachment_type")
+    @JsonIgnore
     public Optional<AttachmentAttachmentType> getAttachmentType() {
+        if (attachmentType == null) {
+            return Optional.empty();
+        }
         return attachmentType;
     }
 
@@ -149,13 +167,61 @@ public final class Attachment {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_name")
+    private Optional<String> _getFileName() {
+        return fileName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("file_url")
+    private Optional<String> _getFileUrl() {
+        return fileUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<String> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("attachment_type")
+    private Optional<AttachmentAttachmentType> _getAttachmentType() {
+        return attachmentType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -278,6 +344,17 @@ public final class Attachment {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -320,6 +397,17 @@ public final class Attachment {
             return this;
         }
 
+        public Builder fileName(Nullable<String> fileName) {
+            if (fileName.isNull()) {
+                this.fileName = null;
+            } else if (fileName.isEmpty()) {
+                this.fileName = Optional.empty();
+            } else {
+                this.fileName = Optional.of(fileName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The attachment's url.</p>
          */
@@ -334,6 +422,17 @@ public final class Attachment {
             return this;
         }
 
+        public Builder fileUrl(Nullable<String> fileUrl) {
+            if (fileUrl.isNull()) {
+                this.fileUrl = null;
+            } else if (fileUrl.isEmpty()) {
+                this.fileUrl = Optional.empty();
+            } else {
+                this.fileUrl = Optional.of(fileUrl.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<String> candidate) {
             this.candidate = candidate;
@@ -342,6 +441,17 @@ public final class Attachment {
 
         public Builder candidate(String candidate) {
             this.candidate = Optional.ofNullable(candidate);
+            return this;
+        }
+
+        public Builder candidate(Nullable<String> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
             return this;
         }
 
@@ -362,6 +472,17 @@ public final class Attachment {
 
         public Builder attachmentType(AttachmentAttachmentType attachmentType) {
             this.attachmentType = Optional.ofNullable(attachmentType);
+            return this;
+        }
+
+        public Builder attachmentType(Nullable<AttachmentAttachmentType> attachmentType) {
+            if (attachmentType.isNull()) {
+                this.attachmentType = null;
+            } else if (attachmentType.isEmpty()) {
+                this.attachmentType = Optional.empty();
+            } else {
+                this.attachmentType = Optional.of(attachmentType.get());
+            }
             return this;
         }
 
@@ -390,6 +511,17 @@ public final class Attachment {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -398,6 +530,17 @@ public final class Attachment {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 
