@@ -5,6 +5,7 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -94,8 +97,11 @@ public final class Activity {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -118,16 +124,22 @@ public final class Activity {
     /**
      * @return The user that performed the action.
      */
-    @JsonProperty("user")
+    @JsonIgnore
     public Optional<ActivityUser> getUser() {
+        if (user == null) {
+            return Optional.empty();
+        }
         return user;
     }
 
     /**
      * @return When the third party's activity was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
@@ -139,24 +151,33 @@ public final class Activity {
      * <li><code>OTHER</code> - OTHER</li>
      * </ul>
      */
-    @JsonProperty("activity_type")
+    @JsonIgnore
     public Optional<ActivityActivityType> getActivityType() {
+        if (activityType == null) {
+            return Optional.empty();
+        }
         return activityType;
     }
 
     /**
      * @return The activity's subject.
      */
-    @JsonProperty("subject")
+    @JsonIgnore
     public Optional<String> getSubject() {
+        if (subject == null) {
+            return Optional.empty();
+        }
         return subject;
     }
 
     /**
      * @return The activity's body.
      */
-    @JsonProperty("body")
+    @JsonIgnore
     public Optional<String> getBody() {
+        if (body == null) {
+            return Optional.empty();
+        }
         return body;
     }
 
@@ -168,13 +189,19 @@ public final class Activity {
      * <li><code>PRIVATE</code> - PRIVATE</li>
      * </ul>
      */
-    @JsonProperty("visibility")
+    @JsonIgnore
     public Optional<ActivityVisibility> getVisibility() {
+        if (visibility == null) {
+            return Optional.empty();
+        }
         return visibility;
     }
 
-    @JsonProperty("candidate")
+    @JsonIgnore
     public Optional<String> getCandidate() {
+        if (candidate == null) {
+            return Optional.empty();
+        }
         return candidate;
     }
 
@@ -186,13 +213,79 @@ public final class Activity {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("user")
+    private Optional<ActivityUser> _getUser() {
+        return user;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("activity_type")
+    private Optional<ActivityActivityType> _getActivityType() {
+        return activityType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("subject")
+    private Optional<String> _getSubject() {
+        return subject;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("body")
+    private Optional<String> _getBody() {
+        return body;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("visibility")
+    private Optional<ActivityVisibility> _getVisibility() {
+        return visibility;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("candidate")
+    private Optional<String> _getCandidate() {
+        return candidate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -330,6 +423,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -372,6 +476,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder user(Nullable<ActivityUser> user) {
+            if (user.isNull()) {
+                this.user = null;
+            } else if (user.isEmpty()) {
+                this.user = Optional.empty();
+            } else {
+                this.user = Optional.of(user.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's activity was created.</p>
          */
@@ -383,6 +498,17 @@ public final class Activity {
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
             this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
             return this;
         }
 
@@ -405,6 +531,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder activityType(Nullable<ActivityActivityType> activityType) {
+            if (activityType.isNull()) {
+                this.activityType = null;
+            } else if (activityType.isEmpty()) {
+                this.activityType = Optional.empty();
+            } else {
+                this.activityType = Optional.of(activityType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The activity's subject.</p>
          */
@@ -419,6 +556,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder subject(Nullable<String> subject) {
+            if (subject.isNull()) {
+                this.subject = null;
+            } else if (subject.isEmpty()) {
+                this.subject = Optional.empty();
+            } else {
+                this.subject = Optional.of(subject.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The activity's body.</p>
          */
@@ -430,6 +578,17 @@ public final class Activity {
 
         public Builder body(String body) {
             this.body = Optional.ofNullable(body);
+            return this;
+        }
+
+        public Builder body(Nullable<String> body) {
+            if (body.isNull()) {
+                this.body = null;
+            } else if (body.isEmpty()) {
+                this.body = Optional.empty();
+            } else {
+                this.body = Optional.of(body.get());
+            }
             return this;
         }
 
@@ -452,6 +611,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder visibility(Nullable<ActivityVisibility> visibility) {
+            if (visibility.isNull()) {
+                this.visibility = null;
+            } else if (visibility.isEmpty()) {
+                this.visibility = Optional.empty();
+            } else {
+                this.visibility = Optional.of(visibility.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "candidate", nulls = Nulls.SKIP)
         public Builder candidate(Optional<String> candidate) {
             this.candidate = candidate;
@@ -460,6 +630,17 @@ public final class Activity {
 
         public Builder candidate(String candidate) {
             this.candidate = Optional.ofNullable(candidate);
+            return this;
+        }
+
+        public Builder candidate(Nullable<String> candidate) {
+            if (candidate.isNull()) {
+                this.candidate = null;
+            } else if (candidate.isEmpty()) {
+                this.candidate = Optional.empty();
+            } else {
+                this.candidate = Optional.of(candidate.get());
+            }
             return this;
         }
 
@@ -488,6 +669,17 @@ public final class Activity {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -496,6 +688,17 @@ public final class Activity {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -91,8 +94,11 @@ public final class AccountDetails {
         return integrationSlug;
     }
 
-    @JsonProperty("category")
+    @JsonIgnore
     public Optional<AccountDetailsCategory> getCategory() {
+        if (category == null) {
+            return Optional.empty();
+        }
         return category;
     }
 
@@ -124,8 +130,11 @@ public final class AccountDetails {
     /**
      * @return Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
      */
-    @JsonProperty("is_duplicate")
+    @JsonIgnore
     public Optional<Boolean> getIsDuplicate() {
+        if (isDuplicate == null) {
+            return Optional.empty();
+        }
         return isDuplicate;
     }
 
@@ -137,8 +146,29 @@ public final class AccountDetails {
     /**
      * @return The time at which account completes the linking flow.
      */
-    @JsonProperty("completed_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedAt() {
+        if (completedAt == null) {
+            return Optional.empty();
+        }
+        return completedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("category")
+    private Optional<AccountDetailsCategory> _getCategory() {
+        return category;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_duplicate")
+    private Optional<Boolean> _getIsDuplicate() {
+        return isDuplicate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_at")
+    private Optional<OffsetDateTime> _getCompletedAt() {
         return completedAt;
     }
 
@@ -285,6 +315,17 @@ public final class AccountDetails {
             return this;
         }
 
+        public Builder category(Nullable<AccountDetailsCategory> category) {
+            if (category.isNull()) {
+                this.category = null;
+            } else if (category.isEmpty()) {
+                this.category = Optional.empty();
+            } else {
+                this.category = Optional.of(category.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "end_user_origin_id", nulls = Nulls.SKIP)
         public Builder endUserOriginId(Optional<String> endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
@@ -354,6 +395,17 @@ public final class AccountDetails {
             return this;
         }
 
+        public Builder isDuplicate(Nullable<Boolean> isDuplicate) {
+            if (isDuplicate.isNull()) {
+                this.isDuplicate = null;
+            } else if (isDuplicate.isEmpty()) {
+                this.isDuplicate = Optional.empty();
+            } else {
+                this.isDuplicate = Optional.of(isDuplicate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "account_type", nulls = Nulls.SKIP)
         public Builder accountType(Optional<String> accountType) {
             this.accountType = accountType;
@@ -376,6 +428,17 @@ public final class AccountDetails {
 
         public Builder completedAt(OffsetDateTime completedAt) {
             this.completedAt = Optional.ofNullable(completedAt);
+            return this;
+        }
+
+        public Builder completedAt(Nullable<OffsetDateTime> completedAt) {
+            if (completedAt.isNull()) {
+                this.completedAt = null;
+            } else if (completedAt.isEmpty()) {
+                this.completedAt = Optional.empty();
+            } else {
+                this.completedAt = Optional.of(completedAt.get());
+            }
             return this;
         }
 

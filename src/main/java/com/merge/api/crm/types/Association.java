@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -77,8 +80,17 @@ public final class Association {
     /**
      * @return The association type the association belongs to.
      */
-    @JsonProperty("association_type")
+    @JsonIgnore
     public Optional<AssociationAssociationType> getAssociationType() {
+        if (associationType == null) {
+            return Optional.empty();
+        }
+        return associationType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("association_type")
+    private Optional<AssociationAssociationType> _getAssociationType() {
         return associationType;
     }
 
@@ -203,6 +215,17 @@ public final class Association {
 
         public Builder associationType(AssociationAssociationType associationType) {
             this.associationType = Optional.ofNullable(associationType);
+            return this;
+        }
+
+        public Builder associationType(Nullable<AssociationAssociationType> associationType) {
+            if (associationType.isNull()) {
+                this.associationType = null;
+            } else if (associationType.isEmpty()) {
+                this.associationType = Optional.empty();
+            } else {
+                this.associationType = Optional.of(associationType.get());
+            }
             return this;
         }
 

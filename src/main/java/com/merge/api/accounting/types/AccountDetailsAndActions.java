@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -132,8 +135,11 @@ public final class AccountDetailsAndActions {
     /**
      * @return Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.
      */
-    @JsonProperty("is_duplicate")
+    @JsonIgnore
     public Optional<Boolean> getIsDuplicate() {
+        if (isDuplicate == null) {
+            return Optional.empty();
+        }
         return isDuplicate;
     }
 
@@ -150,6 +156,12 @@ public final class AccountDetailsAndActions {
     @JsonProperty("completed_at")
     public OffsetDateTime getCompletedAt() {
         return completedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("is_duplicate")
+    private Optional<Boolean> _getIsDuplicate() {
+        return isDuplicate;
     }
 
     @java.lang.Override
@@ -264,6 +276,8 @@ public final class AccountDetailsAndActions {
         _FinalStage isDuplicate(Optional<Boolean> isDuplicate);
 
         _FinalStage isDuplicate(Boolean isDuplicate);
+
+        _FinalStage isDuplicate(Nullable<Boolean> isDuplicate);
 
         _FinalStage integration(Optional<AccountDetailsAndActionsIntegration> integration);
 
@@ -388,6 +402,22 @@ public final class AccountDetailsAndActions {
         @JsonSetter(value = "integration", nulls = Nulls.SKIP)
         public _FinalStage integration(Optional<AccountDetailsAndActionsIntegration> integration) {
             this.integration = integration;
+            return this;
+        }
+
+        /**
+         * <p>Whether a Production Linked Account's credentials match another existing Production Linked Account. This field is <code>null</code> for Test Linked Accounts, incomplete Production Linked Accounts, and ignored duplicate Production Linked Account sets.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage isDuplicate(Nullable<Boolean> isDuplicate) {
+            if (isDuplicate.isNull()) {
+                this.isDuplicate = null;
+            } else if (isDuplicate.isEmpty()) {
+                this.isDuplicate = Optional.empty();
+            } else {
+                this.isDuplicate = Optional.of(isDuplicate.get());
+            }
             return this;
         }
 

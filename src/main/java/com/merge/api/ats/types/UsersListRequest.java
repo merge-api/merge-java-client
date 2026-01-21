@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -41,11 +44,11 @@ public final class UsersListRequest {
 
     private final Optional<Integer> pageSize;
 
-    private final Optional<String> remoteFields;
+    private final Optional<UsersListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<UsersListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
@@ -60,9 +63,9 @@ public final class UsersListRequest {
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
-            Optional<String> remoteFields,
+            Optional<UsersListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<UsersListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
@@ -107,8 +110,11 @@ public final class UsersListRequest {
     /**
      * @return If provided, will only return remote users with the given email address
      */
-    @JsonProperty("email")
+    @JsonIgnore
     public Optional<String> getEmail() {
+        if (email == null) {
+            return Optional.empty();
+        }
         return email;
     }
 
@@ -164,15 +170,18 @@ public final class UsersListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<UsersListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -180,8 +189,20 @@ public final class UsersListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<UsersListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("email")
+    private Optional<String> _getEmail() {
+        return email;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -260,11 +281,11 @@ public final class UsersListRequest {
 
         private Optional<Integer> pageSize = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<UsersListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<UsersListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -341,6 +362,17 @@ public final class UsersListRequest {
 
         public Builder email(String email) {
             this.email = Optional.ofNullable(email);
+            return this;
+        }
+
+        public Builder email(Nullable<String> email) {
+            if (email.isNull()) {
+                this.email = null;
+            } else if (email.isEmpty()) {
+                this.email = Optional.empty();
+            } else {
+                this.email = Optional.of(email.get());
+            }
             return this;
         }
 
@@ -432,12 +464,12 @@ public final class UsersListRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<UsersListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(UsersListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -456,16 +488,27 @@ public final class UsersListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<UsersListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(UsersListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

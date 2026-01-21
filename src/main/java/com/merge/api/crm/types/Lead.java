@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -126,8 +129,11 @@ public final class Lead {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -150,48 +156,66 @@ public final class Lead {
     /**
      * @return The lead's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<LeadOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The lead's source.
      */
-    @JsonProperty("lead_source")
+    @JsonIgnore
     public Optional<String> getLeadSource() {
+        if (leadSource == null) {
+            return Optional.empty();
+        }
         return leadSource;
     }
 
     /**
      * @return The lead's title.
      */
-    @JsonProperty("title")
+    @JsonIgnore
     public Optional<String> getTitle() {
+        if (title == null) {
+            return Optional.empty();
+        }
         return title;
     }
 
     /**
      * @return The lead's company.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
     /**
      * @return The lead's first name.
      */
-    @JsonProperty("first_name")
+    @JsonIgnore
     public Optional<String> getFirstName() {
+        if (firstName == null) {
+            return Optional.empty();
+        }
         return firstName;
     }
 
     /**
      * @return The lead's last name.
      */
-    @JsonProperty("last_name")
+    @JsonIgnore
     public Optional<String> getLastName() {
+        if (lastName == null) {
+            return Optional.empty();
+        }
         return lastName;
     }
 
@@ -213,40 +237,55 @@ public final class Lead {
     /**
      * @return When the third party's lead was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
     /**
      * @return When the third party's lead was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the lead was converted.
      */
-    @JsonProperty("converted_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getConvertedDate() {
+        if (convertedDate == null) {
+            return Optional.empty();
+        }
         return convertedDate;
     }
 
     /**
      * @return The contact of the converted lead.
      */
-    @JsonProperty("converted_contact")
+    @JsonIgnore
     public Optional<LeadConvertedContact> getConvertedContact() {
+        if (convertedContact == null) {
+            return Optional.empty();
+        }
         return convertedContact;
     }
 
     /**
      * @return The account of the converted lead.
      */
-    @JsonProperty("converted_account")
+    @JsonIgnore
     public Optional<LeadConvertedAccount> getConvertedAccount() {
+        if (convertedAccount == null) {
+            return Optional.empty();
+        }
         return convertedAccount;
     }
 
@@ -258,19 +297,109 @@ public final class Lead {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<LeadOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("lead_source")
+    private Optional<String> _getLeadSource() {
+        return leadSource;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("title")
+    private Optional<String> _getTitle() {
+        return title;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("first_name")
+    private Optional<String> _getFirstName() {
+        return firstName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_name")
+    private Optional<String> _getLastName() {
+        return lastName;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_date")
+    private Optional<OffsetDateTime> _getConvertedDate() {
+        return convertedDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_contact")
+    private Optional<LeadConvertedContact> _getConvertedContact() {
+        return convertedContact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("converted_account")
+    private Optional<LeadConvertedAccount> _getConvertedAccount() {
+        return convertedAccount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -447,6 +576,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -489,6 +629,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder owner(Nullable<LeadOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's source.</p>
          */
@@ -500,6 +651,17 @@ public final class Lead {
 
         public Builder leadSource(String leadSource) {
             this.leadSource = Optional.ofNullable(leadSource);
+            return this;
+        }
+
+        public Builder leadSource(Nullable<String> leadSource) {
+            if (leadSource.isNull()) {
+                this.leadSource = null;
+            } else if (leadSource.isEmpty()) {
+                this.leadSource = Optional.empty();
+            } else {
+                this.leadSource = Optional.of(leadSource.get());
+            }
             return this;
         }
 
@@ -517,6 +679,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder title(Nullable<String> title) {
+            if (title.isNull()) {
+                this.title = null;
+            } else if (title.isEmpty()) {
+                this.title = Optional.empty();
+            } else {
+                this.title = Optional.of(title.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's company.</p>
          */
@@ -528,6 +701,17 @@ public final class Lead {
 
         public Builder company(String company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -545,6 +729,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder firstName(Nullable<String> firstName) {
+            if (firstName.isNull()) {
+                this.firstName = null;
+            } else if (firstName.isEmpty()) {
+                this.firstName = Optional.empty();
+            } else {
+                this.firstName = Optional.of(firstName.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The lead's last name.</p>
          */
@@ -556,6 +751,17 @@ public final class Lead {
 
         public Builder lastName(String lastName) {
             this.lastName = Optional.ofNullable(lastName);
+            return this;
+        }
+
+        public Builder lastName(Nullable<String> lastName) {
+            if (lastName.isNull()) {
+                this.lastName = null;
+            } else if (lastName.isEmpty()) {
+                this.lastName = Optional.empty();
+            } else {
+                this.lastName = Optional.of(lastName.get());
+            }
             return this;
         }
 
@@ -606,6 +812,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's lead was created.</p>
          */
@@ -617,6 +834,17 @@ public final class Lead {
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
             this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
             return this;
         }
 
@@ -634,6 +862,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder convertedDate(Nullable<OffsetDateTime> convertedDate) {
+            if (convertedDate.isNull()) {
+                this.convertedDate = null;
+            } else if (convertedDate.isEmpty()) {
+                this.convertedDate = Optional.empty();
+            } else {
+                this.convertedDate = Optional.of(convertedDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The contact of the converted lead.</p>
          */
@@ -648,6 +887,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder convertedContact(Nullable<LeadConvertedContact> convertedContact) {
+            if (convertedContact.isNull()) {
+                this.convertedContact = null;
+            } else if (convertedContact.isEmpty()) {
+                this.convertedContact = Optional.empty();
+            } else {
+                this.convertedContact = Optional.of(convertedContact.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account of the converted lead.</p>
          */
@@ -659,6 +909,17 @@ public final class Lead {
 
         public Builder convertedAccount(LeadConvertedAccount convertedAccount) {
             this.convertedAccount = Optional.ofNullable(convertedAccount);
+            return this;
+        }
+
+        public Builder convertedAccount(Nullable<LeadConvertedAccount> convertedAccount) {
+            if (convertedAccount.isNull()) {
+                this.convertedAccount = null;
+            } else if (convertedAccount.isEmpty()) {
+                this.convertedAccount = Optional.empty();
+            } else {
+                this.convertedAccount = Optional.of(convertedAccount.get());
+            }
             return this;
         }
 
@@ -687,6 +948,17 @@ public final class Lead {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -695,6 +967,17 @@ public final class Lead {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

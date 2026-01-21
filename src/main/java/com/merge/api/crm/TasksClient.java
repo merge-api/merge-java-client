@@ -13,6 +13,7 @@ import com.merge.api.crm.types.Task;
 import com.merge.api.crm.types.TaskEndpointRequest;
 import com.merge.api.crm.types.TaskResponse;
 import com.merge.api.crm.types.TasksListRequest;
+import com.merge.api.crm.types.TasksMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.TasksRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.TasksRetrieveRequest;
 
@@ -113,8 +114,16 @@ public class TasksClient {
     /**
      * Returns metadata for <code>Task</code> PATCHs.
      */
-    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
+    public MetaResponse metaPatchRetrieve(String id, TasksMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata for <code>Task</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(
+            String id, TasksMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).body();
     }
 
     /**

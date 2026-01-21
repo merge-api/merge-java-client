@@ -5,12 +5,15 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -23,7 +26,7 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TimeOffBalancesListRequest.Builder.class)
 public final class TimeOffBalancesListRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<TimeOffBalancesListRequestExpandItem>> expand;
 
     private final Optional<OffsetDateTime> createdAfter;
 
@@ -47,16 +50,16 @@ public final class TimeOffBalancesListRequest {
 
     private final Optional<TimeOffBalancesListRequestPolicyType> policyType;
 
-    private final Optional<String> remoteFields;
+    private final Optional<TimeOffBalancesListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<TimeOffBalancesListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
     private TimeOffBalancesListRequest(
-            Optional<List<String>> expand,
+            Optional<List<TimeOffBalancesListRequestExpandItem>> expand,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
@@ -68,9 +71,9 @@ public final class TimeOffBalancesListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
             Optional<TimeOffBalancesListRequestPolicyType> policyType,
-            Optional<String> remoteFields,
+            Optional<TimeOffBalancesListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<TimeOffBalancesListRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.createdAfter = createdAfter;
@@ -94,7 +97,7 @@ public final class TimeOffBalancesListRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<TimeOffBalancesListRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -189,8 +192,11 @@ public final class TimeOffBalancesListRequest {
      * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
      * </ul>
      */
-    @JsonProperty("policy_type")
+    @JsonIgnore
     public Optional<TimeOffBalancesListRequestPolicyType> getPolicyType() {
+        if (policyType == null) {
+            return Optional.empty();
+        }
         return policyType;
     }
 
@@ -198,15 +204,18 @@ public final class TimeOffBalancesListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<TimeOffBalancesListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -214,8 +223,20 @@ public final class TimeOffBalancesListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<TimeOffBalancesListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("policy_type")
+    private Optional<TimeOffBalancesListRequestPolicyType> _getPolicyType() {
+        return policyType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -278,7 +299,7 @@ public final class TimeOffBalancesListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<TimeOffBalancesListRequestExpandItem>> expand = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
@@ -302,11 +323,11 @@ public final class TimeOffBalancesListRequest {
 
         private Optional<TimeOffBalancesListRequestPolicyType> policyType = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<TimeOffBalancesListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<TimeOffBalancesListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -336,17 +357,17 @@ public final class TimeOffBalancesListRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<TimeOffBalancesListRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<TimeOffBalancesListRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(TimeOffBalancesListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -513,16 +534,27 @@ public final class TimeOffBalancesListRequest {
             return this;
         }
 
+        public Builder policyType(Nullable<TimeOffBalancesListRequestPolicyType> policyType) {
+            if (policyType.isNull()) {
+                this.policyType = null;
+            } else if (policyType.isEmpty()) {
+                this.policyType = Optional.empty();
+            } else {
+                this.policyType = Optional.of(policyType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<TimeOffBalancesListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(TimeOffBalancesListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -541,16 +573,27 @@ public final class TimeOffBalancesListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<TimeOffBalancesListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(TimeOffBalancesListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }

@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -89,8 +92,11 @@ public final class JournalEntryRequest {
     /**
      * @return The journal entry's transaction date.
      */
-    @JsonProperty("transaction_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTransactionDate() {
+        if (transactionDate == null) {
+            return Optional.empty();
+        }
         return transactionDate;
     }
 
@@ -105,8 +111,11 @@ public final class JournalEntryRequest {
     /**
      * @return The journal entry's private note.
      */
-    @JsonProperty("memo")
+    @JsonIgnore
     public Optional<String> getMemo() {
+        if (memo == null) {
+            return Optional.empty();
+        }
         return memo;
     }
 
@@ -421,24 +430,33 @@ public final class JournalEntryRequest {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<JournalEntryRequestCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The journal entry's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The company the journal entry belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<JournalEntryRequestCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -450,8 +468,11 @@ public final class JournalEntryRequest {
     /**
      * @return If the transaction is inclusive or exclusive of tax. <code>True</code> if inclusive, <code>False</code> if exclusive.
      */
-    @JsonProperty("inclusive_of_tax")
+    @JsonIgnore
     public Optional<Boolean> getInclusiveOfTax() {
+        if (inclusiveOfTax == null) {
+            return Optional.empty();
+        }
         return inclusiveOfTax;
     }
 
@@ -463,8 +484,11 @@ public final class JournalEntryRequest {
     /**
      * @return Reference number for identifying journal entries.
      */
-    @JsonProperty("journal_number")
+    @JsonIgnore
     public Optional<String> getJournalNumber() {
+        if (journalNumber == null) {
+            return Optional.empty();
+        }
         return journalNumber;
     }
 
@@ -475,24 +499,93 @@ public final class JournalEntryRequest {
      * <li><code>POSTED</code> - POSTED</li>
      * </ul>
      */
-    @JsonProperty("posting_status")
+    @JsonIgnore
     public Optional<JournalEntryRequestPostingStatus> getPostingStatus() {
+        if (postingStatus == null) {
+            return Optional.empty();
+        }
         return postingStatus;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_date")
+    private Optional<OffsetDateTime> _getTransactionDate() {
+        return transactionDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("memo")
+    private Optional<String> _getMemo() {
+        return memo;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<JournalEntryRequestCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<JournalEntryRequestCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("inclusive_of_tax")
+    private Optional<Boolean> _getInclusiveOfTax() {
+        return inclusiveOfTax;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("journal_number")
+    private Optional<String> _getJournalNumber() {
+        return journalNumber;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("posting_status")
+    private Optional<JournalEntryRequestPostingStatus> _getPostingStatus() {
+        return postingStatus;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -619,6 +712,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder transactionDate(Nullable<OffsetDateTime> transactionDate) {
+            if (transactionDate.isNull()) {
+                this.transactionDate = null;
+            } else if (transactionDate.isEmpty()) {
+                this.transactionDate = Optional.empty();
+            } else {
+                this.transactionDate = Optional.of(transactionDate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Array of <code>Payment</code> object IDs.</p>
          */
@@ -644,6 +748,17 @@ public final class JournalEntryRequest {
 
         public Builder memo(String memo) {
             this.memo = Optional.ofNullable(memo);
+            return this;
+        }
+
+        public Builder memo(Nullable<String> memo) {
+            if (memo.isNull()) {
+                this.memo = null;
+            } else if (memo.isEmpty()) {
+                this.memo = Optional.empty();
+            } else {
+                this.memo = Optional.of(memo.get());
+            }
             return this;
         }
 
@@ -969,6 +1084,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder currency(Nullable<JournalEntryRequestCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The journal entry's exchange rate.</p>
          */
@@ -983,6 +1109,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the journal entry belongs to.</p>
          */
@@ -994,6 +1131,17 @@ public final class JournalEntryRequest {
 
         public Builder company(JournalEntryRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<JournalEntryRequestCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -1024,6 +1172,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder inclusiveOfTax(Nullable<Boolean> inclusiveOfTax) {
+            if (inclusiveOfTax.isNull()) {
+                this.inclusiveOfTax = null;
+            } else if (inclusiveOfTax.isEmpty()) {
+                this.inclusiveOfTax = Optional.empty();
+            } else {
+                this.inclusiveOfTax = Optional.of(inclusiveOfTax.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
         public Builder lines(Optional<List<JournalLineRequest>> lines) {
             this.lines = lines;
@@ -1049,6 +1208,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder journalNumber(Nullable<String> journalNumber) {
+            if (journalNumber.isNull()) {
+                this.journalNumber = null;
+            } else if (journalNumber.isEmpty()) {
+                this.journalNumber = Optional.empty();
+            } else {
+                this.journalNumber = Optional.of(journalNumber.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The journal's posting status.</p>
          * <ul>
@@ -1067,6 +1237,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder postingStatus(Nullable<JournalEntryRequestPostingStatus> postingStatus) {
+            if (postingStatus.isNull()) {
+                this.postingStatus = null;
+            } else if (postingStatus.isEmpty()) {
+                this.postingStatus = Optional.empty();
+            } else {
+                this.postingStatus = Optional.of(postingStatus.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -1078,6 +1259,17 @@ public final class JournalEntryRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -1086,6 +1278,17 @@ public final class JournalEntryRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

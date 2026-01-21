@@ -4,6 +4,7 @@
 package com.merge.api.accounting;
 
 import com.merge.api.accounting.types.AccountToken;
+import com.merge.api.accounting.types.AccountTokenRetrieveRequest;
 import com.merge.api.core.ApiError;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.MergeApiHttpResponse;
@@ -29,40 +30,45 @@ public class RawAccountTokenClient {
      * Returns the account token for the end user with the provided public token.
      */
     public MergeApiHttpResponse<AccountToken> retrieve(String publicToken) {
-        return retrieve(publicToken, null);
+        return retrieve(publicToken, AccountTokenRetrieveRequest.builder().build());
     }
 
     /**
      * Returns the account token for the end user with the provided public token.
      */
-    public MergeApiHttpResponse<AccountToken> retrieve(String publicToken, RequestOptions requestOptions) {
+    public MergeApiHttpResponse<AccountToken> retrieve(String publicToken, AccountTokenRetrieveRequest request) {
+        return retrieve(publicToken, request, null);
+    }
+
+    /**
+     * Returns the account token for the end user with the provided public token.
+     */
+    public MergeApiHttpResponse<AccountToken> retrieve(
+            String publicToken, AccountTokenRetrieveRequest request, RequestOptions requestOptions) {
         HttpUrl httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/account-token")
                 .addPathSegment(publicToken)
                 .build();
-        Request okhttpRequest = new Request.Builder()
+        Request.Builder _requestBuilder = new Request.Builder()
                 .url(httpUrl)
                 .method("GET", null)
                 .headers(Headers.of(clientOptions.headers(requestOptions)))
-                .addHeader("Accept", "application/json")
-                .build();
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
         OkHttpClient client = clientOptions.httpClient();
         if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
             client = clientOptions.httpClientWithTimeout(requestOptions);
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), AccountToken.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, AccountToken.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

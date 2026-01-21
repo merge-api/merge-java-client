@@ -5,6 +5,7 @@ package com.merge.api.ticketing.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -154,8 +157,11 @@ public final class Ticket {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -178,8 +184,11 @@ public final class Ticket {
     /**
      * @return The ticket's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -202,16 +211,22 @@ public final class Ticket {
     /**
      * @return The user who created this ticket.
      */
-    @JsonProperty("creator")
+    @JsonIgnore
     public Optional<TicketCreator> getCreator() {
+        if (creator == null) {
+            return Optional.empty();
+        }
         return creator;
     }
 
     /**
      * @return The ticket's due date.
      */
-    @JsonProperty("due_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getDueDate() {
+        if (dueDate == null) {
+            return Optional.empty();
+        }
         return dueDate;
     }
 
@@ -224,16 +239,22 @@ public final class Ticket {
      * <li><code>ON_HOLD</code> - ON_HOLD</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TicketStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The ticket’s description. HTML version of description is mapped if supported by the third-party platform.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
@@ -248,32 +269,44 @@ public final class Ticket {
     /**
      * @return The sub category of the ticket within the 3rd party system. Examples include incident, task, subtask or to-do.
      */
-    @JsonProperty("ticket_type")
+    @JsonIgnore
     public Optional<String> getTicketType() {
+        if (ticketType == null) {
+            return Optional.empty();
+        }
         return ticketType;
     }
 
     /**
      * @return The account associated with the ticket.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<TicketAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The contact associated with the ticket.
      */
-    @JsonProperty("contact")
+    @JsonIgnore
     public Optional<TicketContact> getContact() {
+        if (contact == null) {
+            return Optional.empty();
+        }
         return contact;
     }
 
     /**
      * @return The ticket's parent ticket.
      */
-    @JsonProperty("parent_ticket")
+    @JsonIgnore
     public Optional<TicketParentTicket> getParentTicket() {
+        if (parentTicket == null) {
+            return Optional.empty();
+        }
         return parentTicket;
     }
 
@@ -291,8 +324,11 @@ public final class Ticket {
      * <li><code>COLLECTION</code> - COLLECTION</li>
      * </ul>
      */
-    @JsonProperty("access_level")
+    @JsonIgnore
     public Optional<TicketAccessLevel> getAccessLevel() {
+        if (accessLevel == null) {
+            return Optional.empty();
+        }
         return accessLevel;
     }
 
@@ -309,8 +345,11 @@ public final class Ticket {
     /**
      * @return The 3rd party url of the Ticket.
      */
-    @JsonProperty("ticket_url")
+    @JsonIgnore
     public Optional<String> getTicketUrl() {
+        if (ticketUrl == null) {
+            return Optional.empty();
+        }
         return ticketUrl;
     }
 
@@ -323,32 +362,44 @@ public final class Ticket {
      * <li><code>LOW</code> - LOW</li>
      * </ul>
      */
-    @JsonProperty("priority")
+    @JsonIgnore
     public Optional<TicketPriority> getPriority() {
+        if (priority == null) {
+            return Optional.empty();
+        }
         return priority;
     }
 
     /**
      * @return When the third party's ticket was created.
      */
-    @JsonProperty("remote_created_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAt() {
+        if (remoteCreatedAt == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAt;
     }
 
     /**
      * @return When the third party's ticket was updated.
      */
-    @JsonProperty("remote_updated_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteUpdatedAt() {
+        if (remoteUpdatedAt == null) {
+            return Optional.empty();
+        }
         return remoteUpdatedAt;
     }
 
     /**
      * @return When the ticket was completed.
      */
-    @JsonProperty("completed_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCompletedAt() {
+        if (completedAt == null) {
+            return Optional.empty();
+        }
         return completedAt;
     }
 
@@ -360,19 +411,133 @@ public final class Ticket {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
         return remoteData;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("creator")
+    private Optional<TicketCreator> _getCreator() {
+        return creator;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("due_date")
+    private Optional<OffsetDateTime> _getDueDate() {
+        return dueDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TicketStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_type")
+    private Optional<String> _getTicketType() {
+        return ticketType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<TicketAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("contact")
+    private Optional<TicketContact> _getContact() {
+        return contact;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("parent_ticket")
+    private Optional<TicketParentTicket> _getParentTicket() {
+        return parentTicket;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("access_level")
+    private Optional<TicketAccessLevel> _getAccessLevel() {
+        return accessLevel;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("ticket_url")
+    private Optional<String> _getTicketUrl() {
+        return ticketUrl;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("priority")
+    private Optional<TicketPriority> _getPriority() {
+        return priority;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_at")
+    private Optional<OffsetDateTime> _getRemoteCreatedAt() {
+        return remoteCreatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_updated_at")
+    private Optional<OffsetDateTime> _getRemoteUpdatedAt() {
+        return remoteUpdatedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("completed_at")
+    private Optional<OffsetDateTime> _getCompletedAt() {
+        return completedAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
+        return remoteData;
     }
 
     @java.lang.Override
@@ -584,6 +749,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -623,6 +799,17 @@ public final class Ticket {
 
         public Builder name(String name) {
             this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
             return this;
         }
 
@@ -668,6 +855,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder creator(Nullable<TicketCreator> creator) {
+            if (creator.isNull()) {
+                this.creator = null;
+            } else if (creator.isEmpty()) {
+                this.creator = Optional.empty();
+            } else {
+                this.creator = Optional.of(creator.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket's due date.</p>
          */
@@ -679,6 +877,17 @@ public final class Ticket {
 
         public Builder dueDate(OffsetDateTime dueDate) {
             this.dueDate = Optional.ofNullable(dueDate);
+            return this;
+        }
+
+        public Builder dueDate(Nullable<OffsetDateTime> dueDate) {
+            if (dueDate.isNull()) {
+                this.dueDate = null;
+            } else if (dueDate.isEmpty()) {
+                this.dueDate = Optional.empty();
+            } else {
+                this.dueDate = Optional.of(dueDate.get());
+            }
             return this;
         }
 
@@ -702,6 +911,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder status(Nullable<TicketStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket’s description. HTML version of description is mapped if supported by the third-party platform.</p>
          */
@@ -713,6 +933,17 @@ public final class Ticket {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -744,6 +975,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder ticketType(Nullable<String> ticketType) {
+            if (ticketType.isNull()) {
+                this.ticketType = null;
+            } else if (ticketType.isEmpty()) {
+                this.ticketType = Optional.empty();
+            } else {
+                this.ticketType = Optional.of(ticketType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The account associated with the ticket.</p>
          */
@@ -755,6 +997,17 @@ public final class Ticket {
 
         public Builder account(TicketAccount account) {
             this.account = Optional.ofNullable(account);
+            return this;
+        }
+
+        public Builder account(Nullable<TicketAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
             return this;
         }
 
@@ -772,6 +1025,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder contact(Nullable<TicketContact> contact) {
+            if (contact.isNull()) {
+                this.contact = null;
+            } else if (contact.isEmpty()) {
+                this.contact = Optional.empty();
+            } else {
+                this.contact = Optional.of(contact.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The ticket's parent ticket.</p>
          */
@@ -783,6 +1047,17 @@ public final class Ticket {
 
         public Builder parentTicket(TicketParentTicket parentTicket) {
             this.parentTicket = Optional.ofNullable(parentTicket);
+            return this;
+        }
+
+        public Builder parentTicket(Nullable<TicketParentTicket> parentTicket) {
+            if (parentTicket.isNull()) {
+                this.parentTicket = null;
+            } else if (parentTicket.isEmpty()) {
+                this.parentTicket = Optional.empty();
+            } else {
+                this.parentTicket = Optional.of(parentTicket.get());
+            }
             return this;
         }
 
@@ -814,6 +1089,17 @@ public final class Ticket {
 
         public Builder accessLevel(TicketAccessLevel accessLevel) {
             this.accessLevel = Optional.ofNullable(accessLevel);
+            return this;
+        }
+
+        public Builder accessLevel(Nullable<TicketAccessLevel> accessLevel) {
+            if (accessLevel.isNull()) {
+                this.accessLevel = null;
+            } else if (accessLevel.isEmpty()) {
+                this.accessLevel = Optional.empty();
+            } else {
+                this.accessLevel = Optional.of(accessLevel.get());
+            }
             return this;
         }
 
@@ -853,6 +1139,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder ticketUrl(Nullable<String> ticketUrl) {
+            if (ticketUrl.isNull()) {
+                this.ticketUrl = null;
+            } else if (ticketUrl.isEmpty()) {
+                this.ticketUrl = Optional.empty();
+            } else {
+                this.ticketUrl = Optional.of(ticketUrl.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The priority or urgency of the Ticket.</p>
          * <ul>
@@ -873,6 +1170,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder priority(Nullable<TicketPriority> priority) {
+            if (priority.isNull()) {
+                this.priority = null;
+            } else if (priority.isEmpty()) {
+                this.priority = Optional.empty();
+            } else {
+                this.priority = Optional.of(priority.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the third party's ticket was created.</p>
          */
@@ -884,6 +1192,17 @@ public final class Ticket {
 
         public Builder remoteCreatedAt(OffsetDateTime remoteCreatedAt) {
             this.remoteCreatedAt = Optional.ofNullable(remoteCreatedAt);
+            return this;
+        }
+
+        public Builder remoteCreatedAt(Nullable<OffsetDateTime> remoteCreatedAt) {
+            if (remoteCreatedAt.isNull()) {
+                this.remoteCreatedAt = null;
+            } else if (remoteCreatedAt.isEmpty()) {
+                this.remoteCreatedAt = Optional.empty();
+            } else {
+                this.remoteCreatedAt = Optional.of(remoteCreatedAt.get());
+            }
             return this;
         }
 
@@ -901,6 +1220,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder remoteUpdatedAt(Nullable<OffsetDateTime> remoteUpdatedAt) {
+            if (remoteUpdatedAt.isNull()) {
+                this.remoteUpdatedAt = null;
+            } else if (remoteUpdatedAt.isEmpty()) {
+                this.remoteUpdatedAt = Optional.empty();
+            } else {
+                this.remoteUpdatedAt = Optional.of(remoteUpdatedAt.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the ticket was completed.</p>
          */
@@ -912,6 +1242,17 @@ public final class Ticket {
 
         public Builder completedAt(OffsetDateTime completedAt) {
             this.completedAt = Optional.ofNullable(completedAt);
+            return this;
+        }
+
+        public Builder completedAt(Nullable<OffsetDateTime> completedAt) {
+            if (completedAt.isNull()) {
+                this.completedAt = null;
+            } else if (completedAt.isEmpty()) {
+                this.completedAt = Optional.empty();
+            } else {
+                this.completedAt = Optional.of(completedAt.get());
+            }
             return this;
         }
 
@@ -940,6 +1281,17 @@ public final class Ticket {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -948,6 +1300,17 @@ public final class Ticket {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

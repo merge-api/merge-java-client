@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -113,8 +116,11 @@ public final class PurchaseOrderLineItem {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -137,45 +143,63 @@ public final class PurchaseOrderLineItem {
     /**
      * @return A description of the good being purchased.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The line item's unit price.
      */
-    @JsonProperty("unit_price")
+    @JsonIgnore
     public Optional<Double> getUnitPrice() {
+        if (unitPrice == null) {
+            return Optional.empty();
+        }
         return unitPrice;
     }
 
     /**
      * @return The line item's quantity.
      */
-    @JsonProperty("quantity")
+    @JsonIgnore
     public Optional<Double> getQuantity() {
+        if (quantity == null) {
+            return Optional.empty();
+        }
         return quantity;
     }
 
-    @JsonProperty("item")
+    @JsonIgnore
     public Optional<PurchaseOrderLineItemItem> getItem() {
+        if (item == null) {
+            return Optional.empty();
+        }
         return item;
     }
 
     /**
      * @return The purchase order line item's account.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<String> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The purchase order line item's associated tracking category.
      */
-    @JsonProperty("tracking_category")
+    @JsonIgnore
     public Optional<String> getTrackingCategory() {
+        if (trackingCategory == null) {
+            return Optional.empty();
+        }
         return trackingCategory;
     }
 
@@ -190,16 +214,22 @@ public final class PurchaseOrderLineItem {
     /**
      * @return The purchase order line item's tax amount.
      */
-    @JsonProperty("tax_amount")
+    @JsonIgnore
     public Optional<String> getTaxAmount() {
+        if (taxAmount == null) {
+            return Optional.empty();
+        }
         return taxAmount;
     }
 
     /**
      * @return The purchase order line item's total amount.
      */
-    @JsonProperty("total_line_amount")
+    @JsonIgnore
     public Optional<String> getTotalLineAmount() {
+        if (totalLineAmount == null) {
+            return Optional.empty();
+        }
         return totalLineAmount;
     }
 
@@ -514,32 +544,44 @@ public final class PurchaseOrderLineItem {
      * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
      * </ul>
      */
-    @JsonProperty("currency")
+    @JsonIgnore
     public Optional<PurchaseOrderLineItemCurrency> getCurrency() {
+        if (currency == null) {
+            return Optional.empty();
+        }
         return currency;
     }
 
     /**
      * @return The tax rate that applies to this line item.
      */
-    @JsonProperty("tax_rate")
+    @JsonIgnore
     public Optional<String> getTaxRate() {
+        if (taxRate == null) {
+            return Optional.empty();
+        }
         return taxRate;
     }
 
     /**
      * @return The purchase order line item's exchange rate.
      */
-    @JsonProperty("exchange_rate")
+    @JsonIgnore
     public Optional<String> getExchangeRate() {
+        if (exchangeRate == null) {
+            return Optional.empty();
+        }
         return exchangeRate;
     }
 
     /**
      * @return The company the purchase order line item belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<String> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -554,6 +596,84 @@ public final class PurchaseOrderLineItem {
     @JsonProperty("remote_fields")
     public Optional<List<RemoteField>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("unit_price")
+    private Optional<Double> _getUnitPrice() {
+        return unitPrice;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("quantity")
+    private Optional<Double> _getQuantity() {
+        return quantity;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("item")
+    private Optional<PurchaseOrderLineItemItem> _getItem() {
+        return item;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<String> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tracking_category")
+    private Optional<String> _getTrackingCategory() {
+        return trackingCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_amount")
+    private Optional<String> _getTaxAmount() {
+        return taxAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("total_line_amount")
+    private Optional<String> _getTotalLineAmount() {
+        return totalLineAmount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("currency")
+    private Optional<PurchaseOrderLineItemCurrency> _getCurrency() {
+        return currency;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("tax_rate")
+    private Optional<String> _getTaxRate() {
+        return taxRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("exchange_rate")
+    private Optional<String> _getExchangeRate() {
+        return exchangeRate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<String> _getCompany() {
+        return company;
     }
 
     @java.lang.Override
@@ -715,6 +835,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -757,6 +888,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The line item's unit price.</p>
          */
@@ -768,6 +910,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder unitPrice(Double unitPrice) {
             this.unitPrice = Optional.ofNullable(unitPrice);
+            return this;
+        }
+
+        public Builder unitPrice(Nullable<Double> unitPrice) {
+            if (unitPrice.isNull()) {
+                this.unitPrice = null;
+            } else if (unitPrice.isEmpty()) {
+                this.unitPrice = Optional.empty();
+            } else {
+                this.unitPrice = Optional.of(unitPrice.get());
+            }
             return this;
         }
 
@@ -785,6 +938,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder quantity(Nullable<Double> quantity) {
+            if (quantity.isNull()) {
+                this.quantity = null;
+            } else if (quantity.isEmpty()) {
+                this.quantity = Optional.empty();
+            } else {
+                this.quantity = Optional.of(quantity.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "item", nulls = Nulls.SKIP)
         public Builder item(Optional<PurchaseOrderLineItemItem> item) {
             this.item = item;
@@ -793,6 +957,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder item(PurchaseOrderLineItemItem item) {
             this.item = Optional.ofNullable(item);
+            return this;
+        }
+
+        public Builder item(Nullable<PurchaseOrderLineItemItem> item) {
+            if (item.isNull()) {
+                this.item = null;
+            } else if (item.isEmpty()) {
+                this.item = Optional.empty();
+            } else {
+                this.item = Optional.of(item.get());
+            }
             return this;
         }
 
@@ -810,6 +985,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder account(Nullable<String> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order line item's associated tracking category.</p>
          */
@@ -821,6 +1007,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder trackingCategory(String trackingCategory) {
             this.trackingCategory = Optional.ofNullable(trackingCategory);
+            return this;
+        }
+
+        public Builder trackingCategory(Nullable<String> trackingCategory) {
+            if (trackingCategory.isNull()) {
+                this.trackingCategory = null;
+            } else if (trackingCategory.isEmpty()) {
+                this.trackingCategory = Optional.empty();
+            } else {
+                this.trackingCategory = Optional.of(trackingCategory.get());
+            }
             return this;
         }
 
@@ -852,6 +1049,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder taxAmount(Nullable<String> taxAmount) {
+            if (taxAmount.isNull()) {
+                this.taxAmount = null;
+            } else if (taxAmount.isEmpty()) {
+                this.taxAmount = Optional.empty();
+            } else {
+                this.taxAmount = Optional.of(taxAmount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The purchase order line item's total amount.</p>
          */
@@ -863,6 +1071,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder totalLineAmount(String totalLineAmount) {
             this.totalLineAmount = Optional.ofNullable(totalLineAmount);
+            return this;
+        }
+
+        public Builder totalLineAmount(Nullable<String> totalLineAmount) {
+            if (totalLineAmount.isNull()) {
+                this.totalLineAmount = null;
+            } else if (totalLineAmount.isEmpty()) {
+                this.totalLineAmount = Optional.empty();
+            } else {
+                this.totalLineAmount = Optional.of(totalLineAmount.get());
+            }
             return this;
         }
 
@@ -1188,6 +1407,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder currency(Nullable<PurchaseOrderLineItemCurrency> currency) {
+            if (currency.isNull()) {
+                this.currency = null;
+            } else if (currency.isEmpty()) {
+                this.currency = Optional.empty();
+            } else {
+                this.currency = Optional.of(currency.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The tax rate that applies to this line item.</p>
          */
@@ -1199,6 +1429,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder taxRate(String taxRate) {
             this.taxRate = Optional.ofNullable(taxRate);
+            return this;
+        }
+
+        public Builder taxRate(Nullable<String> taxRate) {
+            if (taxRate.isNull()) {
+                this.taxRate = null;
+            } else if (taxRate.isEmpty()) {
+                this.taxRate = Optional.empty();
+            } else {
+                this.taxRate = Optional.of(taxRate.get());
+            }
             return this;
         }
 
@@ -1216,6 +1457,17 @@ public final class PurchaseOrderLineItem {
             return this;
         }
 
+        public Builder exchangeRate(Nullable<String> exchangeRate) {
+            if (exchangeRate.isNull()) {
+                this.exchangeRate = null;
+            } else if (exchangeRate.isEmpty()) {
+                this.exchangeRate = Optional.empty();
+            } else {
+                this.exchangeRate = Optional.of(exchangeRate.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The company the purchase order line item belongs to.</p>
          */
@@ -1227,6 +1479,17 @@ public final class PurchaseOrderLineItem {
 
         public Builder company(String company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<String> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 

@@ -22,24 +22,24 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = TrackingCategoriesRetrieveRequest.Builder.class)
 public final class TrackingCategoriesRetrieveRequest {
-    private final Optional<List<String>> expand;
+    private final Optional<List<TrackingCategoriesRetrieveRequestExpandItem>> expand;
 
     private final Optional<Boolean> includeRemoteData;
 
     private final Optional<Boolean> includeShellData;
 
-    private final Optional<String> remoteFields;
+    private final Optional<TrackingCategoriesRetrieveRequestRemoteFields> remoteFields;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<TrackingCategoriesRetrieveRequestShowEnumOrigins> showEnumOrigins;
 
     private final Map<String, Object> additionalProperties;
 
     private TrackingCategoriesRetrieveRequest(
-            Optional<List<String>> expand,
+            Optional<List<TrackingCategoriesRetrieveRequestExpandItem>> expand,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
-            Optional<String> remoteFields,
-            Optional<String> showEnumOrigins,
+            Optional<TrackingCategoriesRetrieveRequestRemoteFields> remoteFields,
+            Optional<TrackingCategoriesRetrieveRequestShowEnumOrigins> showEnumOrigins,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
         this.includeRemoteData = includeRemoteData;
@@ -53,7 +53,7 @@ public final class TrackingCategoriesRetrieveRequest {
      * @return Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.
      */
     @JsonProperty("expand")
-    public Optional<List<String>> getExpand() {
+    public Optional<List<TrackingCategoriesRetrieveRequestExpandItem>> getExpand() {
         return expand;
     }
 
@@ -77,7 +77,7 @@ public final class TrackingCategoriesRetrieveRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<TrackingCategoriesRetrieveRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
@@ -85,7 +85,7 @@ public final class TrackingCategoriesRetrieveRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<TrackingCategoriesRetrieveRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -125,15 +125,15 @@ public final class TrackingCategoriesRetrieveRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
-        private Optional<List<String>> expand = Optional.empty();
+        private Optional<List<TrackingCategoriesRetrieveRequestExpandItem>> expand = Optional.empty();
 
         private Optional<Boolean> includeRemoteData = Optional.empty();
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<TrackingCategoriesRetrieveRequestRemoteFields> remoteFields = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<TrackingCategoriesRetrieveRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -153,17 +153,17 @@ public final class TrackingCategoriesRetrieveRequest {
          * <p>Which relations should be returned in expanded form. Multiple relation names should be comma separated without spaces.</p>
          */
         @JsonSetter(value = "expand", nulls = Nulls.SKIP)
-        public Builder expand(Optional<List<String>> expand) {
+        public Builder expand(Optional<List<TrackingCategoriesRetrieveRequestExpandItem>> expand) {
             this.expand = expand;
             return this;
         }
 
-        public Builder expand(List<String> expand) {
+        public Builder expand(List<TrackingCategoriesRetrieveRequestExpandItem> expand) {
             this.expand = Optional.ofNullable(expand);
             return this;
         }
 
-        public Builder expand(String expand) {
+        public Builder expand(TrackingCategoriesRetrieveRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
             return this;
         }
@@ -200,12 +200,12 @@ public final class TrackingCategoriesRetrieveRequest {
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<TrackingCategoriesRetrieveRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(TrackingCategoriesRetrieveRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -214,12 +214,12 @@ public final class TrackingCategoriesRetrieveRequest {
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<TrackingCategoriesRetrieveRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(TrackingCategoriesRetrieveRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
