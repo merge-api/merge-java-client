@@ -5,12 +5,15 @@ package com.merge.api.ats.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.Map;
@@ -62,14 +65,23 @@ public final class UpdateApplicationStageRequest {
     /**
      * @return The interview stage to move the application to.
      */
-    @JsonProperty("job_interview_stage")
+    @JsonIgnore
     public Optional<String> getJobInterviewStage() {
+        if (jobInterviewStage == null) {
+            return Optional.empty();
+        }
         return jobInterviewStage;
     }
 
     @JsonProperty("remote_user_id")
     public Optional<String> getRemoteUserId() {
         return remoteUserId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("job_interview_stage")
+    private Optional<String> _getJobInterviewStage() {
+        return jobInterviewStage;
     }
 
     @java.lang.Override
@@ -166,6 +178,17 @@ public final class UpdateApplicationStageRequest {
 
         public Builder jobInterviewStage(String jobInterviewStage) {
             this.jobInterviewStage = Optional.ofNullable(jobInterviewStage);
+            return this;
+        }
+
+        public Builder jobInterviewStage(Nullable<String> jobInterviewStage) {
+            if (jobInterviewStage.isNull()) {
+                this.jobInterviewStage = null;
+            } else if (jobInterviewStage.isEmpty()) {
+                this.jobInterviewStage = Optional.empty();
+            } else {
+                this.jobInterviewStage = Optional.of(jobInterviewStage.get());
+            }
             return this;
         }
 

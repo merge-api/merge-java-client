@@ -5,12 +5,15 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -51,11 +54,11 @@ public final class OpportunitiesListRequest {
 
     private final Optional<OffsetDateTime> remoteCreatedAfter;
 
-    private final Optional<String> remoteFields;
+    private final Optional<OpportunitiesListRequestRemoteFields> remoteFields;
 
     private final Optional<String> remoteId;
 
-    private final Optional<String> showEnumOrigins;
+    private final Optional<OpportunitiesListRequestShowEnumOrigins> showEnumOrigins;
 
     private final Optional<String> stageId;
 
@@ -78,9 +81,9 @@ public final class OpportunitiesListRequest {
             Optional<String> ownerId,
             Optional<Integer> pageSize,
             Optional<OffsetDateTime> remoteCreatedAfter,
-            Optional<String> remoteFields,
+            Optional<OpportunitiesListRequestRemoteFields> remoteFields,
             Optional<String> remoteId,
-            Optional<String> showEnumOrigins,
+            Optional<OpportunitiesListRequestShowEnumOrigins> showEnumOrigins,
             Optional<String> stageId,
             Optional<OpportunitiesListRequestStatus> status,
             Map<String, Object> additionalProperties) {
@@ -213,8 +216,11 @@ public final class OpportunitiesListRequest {
     /**
      * @return If provided, will only return opportunities created in the third party platform after this datetime.
      */
-    @JsonProperty("remote_created_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getRemoteCreatedAfter() {
+        if (remoteCreatedAfter == null) {
+            return Optional.empty();
+        }
         return remoteCreatedAfter;
     }
 
@@ -222,15 +228,18 @@ public final class OpportunitiesListRequest {
      * @return Deprecated. Use show_enum_origins.
      */
     @JsonProperty("remote_fields")
-    public Optional<String> getRemoteFields() {
+    public Optional<OpportunitiesListRequestRemoteFields> getRemoteFields() {
         return remoteFields;
     }
 
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -238,7 +247,7 @@ public final class OpportunitiesListRequest {
      * @return A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a>
      */
     @JsonProperty("show_enum_origins")
-    public Optional<String> getShowEnumOrigins() {
+    public Optional<OpportunitiesListRequestShowEnumOrigins> getShowEnumOrigins() {
         return showEnumOrigins;
     }
 
@@ -258,8 +267,29 @@ public final class OpportunitiesListRequest {
      * <li><code>LOST</code> - LOST</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<OpportunitiesListRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_created_after")
+    private Optional<OffsetDateTime> _getRemoteCreatedAfter() {
+        return remoteCreatedAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<OpportunitiesListRequestStatus> _getStatus() {
         return status;
     }
 
@@ -359,11 +389,11 @@ public final class OpportunitiesListRequest {
 
         private Optional<OffsetDateTime> remoteCreatedAfter = Optional.empty();
 
-        private Optional<String> remoteFields = Optional.empty();
+        private Optional<OpportunitiesListRequestRemoteFields> remoteFields = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
-        private Optional<String> showEnumOrigins = Optional.empty();
+        private Optional<OpportunitiesListRequestShowEnumOrigins> showEnumOrigins = Optional.empty();
 
         private Optional<String> stageId = Optional.empty();
 
@@ -598,16 +628,27 @@ public final class OpportunitiesListRequest {
             return this;
         }
 
+        public Builder remoteCreatedAfter(Nullable<OffsetDateTime> remoteCreatedAfter) {
+            if (remoteCreatedAfter.isNull()) {
+                this.remoteCreatedAfter = null;
+            } else if (remoteCreatedAfter.isEmpty()) {
+                this.remoteCreatedAfter = Optional.empty();
+            } else {
+                this.remoteCreatedAfter = Optional.of(remoteCreatedAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>Deprecated. Use show_enum_origins.</p>
          */
         @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
-        public Builder remoteFields(Optional<String> remoteFields) {
+        public Builder remoteFields(Optional<OpportunitiesListRequestRemoteFields> remoteFields) {
             this.remoteFields = remoteFields;
             return this;
         }
 
-        public Builder remoteFields(String remoteFields) {
+        public Builder remoteFields(OpportunitiesListRequestRemoteFields remoteFields) {
             this.remoteFields = Optional.ofNullable(remoteFields);
             return this;
         }
@@ -626,16 +667,27 @@ public final class OpportunitiesListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
         @JsonSetter(value = "show_enum_origins", nulls = Nulls.SKIP)
-        public Builder showEnumOrigins(Optional<String> showEnumOrigins) {
+        public Builder showEnumOrigins(Optional<OpportunitiesListRequestShowEnumOrigins> showEnumOrigins) {
             this.showEnumOrigins = showEnumOrigins;
             return this;
         }
 
-        public Builder showEnumOrigins(String showEnumOrigins) {
+        public Builder showEnumOrigins(OpportunitiesListRequestShowEnumOrigins showEnumOrigins) {
             this.showEnumOrigins = Optional.ofNullable(showEnumOrigins);
             return this;
         }
@@ -670,6 +722,17 @@ public final class OpportunitiesListRequest {
 
         public Builder status(OpportunitiesListRequestStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<OpportunitiesListRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 

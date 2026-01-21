@@ -5,6 +5,7 @@ package com.merge.api.hris.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -102,8 +105,11 @@ public final class TimeOff {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -126,16 +132,22 @@ public final class TimeOff {
     /**
      * @return The employee requesting time off.
      */
-    @JsonProperty("employee")
+    @JsonIgnore
     public Optional<TimeOffEmployee> getEmployee() {
+        if (employee == null) {
+            return Optional.empty();
+        }
         return employee;
     }
 
     /**
      * @return The Merge ID of the employee with the ability to approve the time off request.
      */
-    @JsonProperty("approver")
+    @JsonIgnore
     public Optional<TimeOffApprover> getApprover() {
+        if (approver == null) {
+            return Optional.empty();
+        }
         return approver;
     }
 
@@ -149,16 +161,22 @@ public final class TimeOff {
      * <li><code>DELETED</code> - DELETED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TimeOffStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return The employee note for this time off request.
      */
-    @JsonProperty("employee_note")
+    @JsonIgnore
     public Optional<String> getEmployeeNote() {
+        if (employeeNote == null) {
+            return Optional.empty();
+        }
         return employeeNote;
     }
 
@@ -169,16 +187,22 @@ public final class TimeOff {
      * <li><code>DAYS</code> - DAYS</li>
      * </ul>
      */
-    @JsonProperty("units")
+    @JsonIgnore
     public Optional<TimeOffUnits> getUnits() {
+        if (units == null) {
+            return Optional.empty();
+        }
         return units;
     }
 
     /**
      * @return The time off quantity measured by the prescribed “units”.
      */
-    @JsonProperty("amount")
+    @JsonIgnore
     public Optional<Double> getAmount() {
+        if (amount == null) {
+            return Optional.empty();
+        }
         return amount;
     }
 
@@ -193,24 +217,33 @@ public final class TimeOff {
      * <li><code>BEREAVEMENT</code> - BEREAVEMENT</li>
      * </ul>
      */
-    @JsonProperty("request_type")
+    @JsonIgnore
     public Optional<TimeOffRequestType> getRequestType() {
+        if (requestType == null) {
+            return Optional.empty();
+        }
         return requestType;
     }
 
     /**
      * @return The day and time of the start of the time requested off.
      */
-    @JsonProperty("start_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getStartTime() {
+        if (startTime == null) {
+            return Optional.empty();
+        }
         return startTime;
     }
 
     /**
      * @return The day and time of the end of the time requested off.
      */
-    @JsonProperty("end_time")
+    @JsonIgnore
     public Optional<OffsetDateTime> getEndTime() {
+        if (endTime == null) {
+            return Optional.empty();
+        }
         return endTime;
     }
 
@@ -222,13 +255,91 @@ public final class TimeOff {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
         return fieldMappings;
     }
 
-    @JsonProperty("remote_data")
+    @JsonIgnore
     public Optional<List<RemoteData>> getRemoteData() {
+        if (remoteData == null) {
+            return Optional.empty();
+        }
+        return remoteData;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee")
+    private Optional<TimeOffEmployee> _getEmployee() {
+        return employee;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("approver")
+    private Optional<TimeOffApprover> _getApprover() {
+        return approver;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TimeOffStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("employee_note")
+    private Optional<String> _getEmployeeNote() {
+        return employeeNote;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("units")
+    private Optional<TimeOffUnits> _getUnits() {
+        return units;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("amount")
+    private Optional<Double> _getAmount() {
+        return amount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("request_type")
+    private Optional<TimeOffRequestType> _getRequestType() {
+        return requestType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("start_time")
+    private Optional<OffsetDateTime> _getStartTime() {
+        return startTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("end_time")
+    private Optional<OffsetDateTime> _getEndTime() {
+        return endTime;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_data")
+    private Optional<List<RemoteData>> _getRemoteData() {
         return remoteData;
     }
 
@@ -376,6 +487,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -418,6 +540,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder employee(Nullable<TimeOffEmployee> employee) {
+            if (employee.isNull()) {
+                this.employee = null;
+            } else if (employee.isEmpty()) {
+                this.employee = Optional.empty();
+            } else {
+                this.employee = Optional.of(employee.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The Merge ID of the employee with the ability to approve the time off request.</p>
          */
@@ -429,6 +562,17 @@ public final class TimeOff {
 
         public Builder approver(TimeOffApprover approver) {
             this.approver = Optional.ofNullable(approver);
+            return this;
+        }
+
+        public Builder approver(Nullable<TimeOffApprover> approver) {
+            if (approver.isNull()) {
+                this.approver = null;
+            } else if (approver.isEmpty()) {
+                this.approver = Optional.empty();
+            } else {
+                this.approver = Optional.of(approver.get());
+            }
             return this;
         }
 
@@ -453,6 +597,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder status(Nullable<TimeOffStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The employee note for this time off request.</p>
          */
@@ -464,6 +619,17 @@ public final class TimeOff {
 
         public Builder employeeNote(String employeeNote) {
             this.employeeNote = Optional.ofNullable(employeeNote);
+            return this;
+        }
+
+        public Builder employeeNote(Nullable<String> employeeNote) {
+            if (employeeNote.isNull()) {
+                this.employeeNote = null;
+            } else if (employeeNote.isEmpty()) {
+                this.employeeNote = Optional.empty();
+            } else {
+                this.employeeNote = Optional.of(employeeNote.get());
+            }
             return this;
         }
 
@@ -485,6 +651,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder units(Nullable<TimeOffUnits> units) {
+            if (units.isNull()) {
+                this.units = null;
+            } else if (units.isEmpty()) {
+                this.units = Optional.empty();
+            } else {
+                this.units = Optional.of(units.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The time off quantity measured by the prescribed “units”.</p>
          */
@@ -496,6 +673,17 @@ public final class TimeOff {
 
         public Builder amount(Double amount) {
             this.amount = Optional.ofNullable(amount);
+            return this;
+        }
+
+        public Builder amount(Nullable<Double> amount) {
+            if (amount.isNull()) {
+                this.amount = null;
+            } else if (amount.isEmpty()) {
+                this.amount = Optional.empty();
+            } else {
+                this.amount = Optional.of(amount.get());
+            }
             return this;
         }
 
@@ -521,6 +709,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder requestType(Nullable<TimeOffRequestType> requestType) {
+            if (requestType.isNull()) {
+                this.requestType = null;
+            } else if (requestType.isEmpty()) {
+                this.requestType = Optional.empty();
+            } else {
+                this.requestType = Optional.of(requestType.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time of the start of the time requested off.</p>
          */
@@ -535,6 +734,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder startTime(Nullable<OffsetDateTime> startTime) {
+            if (startTime.isNull()) {
+                this.startTime = null;
+            } else if (startTime.isEmpty()) {
+                this.startTime = Optional.empty();
+            } else {
+                this.startTime = Optional.of(startTime.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The day and time of the end of the time requested off.</p>
          */
@@ -546,6 +756,17 @@ public final class TimeOff {
 
         public Builder endTime(OffsetDateTime endTime) {
             this.endTime = Optional.ofNullable(endTime);
+            return this;
+        }
+
+        public Builder endTime(Nullable<OffsetDateTime> endTime) {
+            if (endTime.isNull()) {
+                this.endTime = null;
+            } else if (endTime.isEmpty()) {
+                this.endTime = Optional.empty();
+            } else {
+                this.endTime = Optional.of(endTime.get());
+            }
             return this;
         }
 
@@ -574,6 +795,17 @@ public final class TimeOff {
             return this;
         }
 
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "remote_data", nulls = Nulls.SKIP)
         public Builder remoteData(Optional<List<RemoteData>> remoteData) {
             this.remoteData = remoteData;
@@ -582,6 +814,17 @@ public final class TimeOff {
 
         public Builder remoteData(List<RemoteData> remoteData) {
             this.remoteData = Optional.ofNullable(remoteData);
+            return this;
+        }
+
+        public Builder remoteData(Nullable<List<RemoteData>> remoteData) {
+            if (remoteData.isNull()) {
+                this.remoteData = null;
+            } else if (remoteData.isEmpty()) {
+                this.remoteData = Optional.empty();
+            } else {
+                this.remoteData = Optional.of(remoteData.get());
+            }
             return this;
         }
 

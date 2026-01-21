@@ -8,6 +8,7 @@ import com.merge.api.core.RequestOptions;
 import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.crm.types.Account;
 import com.merge.api.crm.types.AccountsListRequest;
+import com.merge.api.crm.types.AccountsMetaPatchRetrieveRequest;
 import com.merge.api.crm.types.AccountsRemoteFieldClassesListRequest;
 import com.merge.api.crm.types.AccountsRetrieveRequest;
 import com.merge.api.crm.types.CrmAccountEndpointRequest;
@@ -114,8 +115,16 @@ public class AccountsClient {
     /**
      * Returns metadata for <code>CRMAccount</code> PATCHs.
      */
-    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
-        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
+    public MetaResponse metaPatchRetrieve(String id, AccountsMetaPatchRetrieveRequest request) {
+        return this.rawClient.metaPatchRetrieve(id, request).body();
+    }
+
+    /**
+     * Returns metadata for <code>CRMAccount</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(
+            String id, AccountsMetaPatchRetrieveRequest request, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, request, requestOptions).body();
     }
 
     /**

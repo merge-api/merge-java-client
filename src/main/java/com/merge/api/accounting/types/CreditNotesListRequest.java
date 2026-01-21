@@ -5,12 +5,15 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.Collections;
@@ -193,8 +196,11 @@ public final class CreditNotesListRequest {
     /**
      * @return The API provider's ID for the given object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -209,16 +215,40 @@ public final class CreditNotesListRequest {
     /**
      * @return If provided, will only return objects created after this datetime.
      */
-    @JsonProperty("transaction_date_after")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTransactionDateAfter() {
+        if (transactionDateAfter == null) {
+            return Optional.empty();
+        }
         return transactionDateAfter;
     }
 
     /**
      * @return If provided, will only return objects created before this datetime.
      */
-    @JsonProperty("transaction_date_before")
+    @JsonIgnore
     public Optional<OffsetDateTime> getTransactionDateBefore() {
+        if (transactionDateBefore == null) {
+            return Optional.empty();
+        }
+        return transactionDateBefore;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_date_after")
+    private Optional<OffsetDateTime> _getTransactionDateAfter() {
+        return transactionDateAfter;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("transaction_date_before")
+    private Optional<OffsetDateTime> _getTransactionDateBefore() {
         return transactionDateBefore;
     }
 
@@ -528,6 +558,17 @@ public final class CreditNotesListRequest {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>A comma separated list of enum field names for which you'd like the original values to be returned, instead of Merge's normalized enum values. <a href="https://help.merge.dev/en/articles/8950958-show_enum_origins-query-parameter">Learn more</a></p>
          */
@@ -556,6 +597,17 @@ public final class CreditNotesListRequest {
             return this;
         }
 
+        public Builder transactionDateAfter(Nullable<OffsetDateTime> transactionDateAfter) {
+            if (transactionDateAfter.isNull()) {
+                this.transactionDateAfter = null;
+            } else if (transactionDateAfter.isEmpty()) {
+                this.transactionDateAfter = Optional.empty();
+            } else {
+                this.transactionDateAfter = Optional.of(transactionDateAfter.get());
+            }
+            return this;
+        }
+
         /**
          * <p>If provided, will only return objects created before this datetime.</p>
          */
@@ -567,6 +619,17 @@ public final class CreditNotesListRequest {
 
         public Builder transactionDateBefore(OffsetDateTime transactionDateBefore) {
             this.transactionDateBefore = Optional.ofNullable(transactionDateBefore);
+            return this;
+        }
+
+        public Builder transactionDateBefore(Nullable<OffsetDateTime> transactionDateBefore) {
+            if (transactionDateBefore.isNull()) {
+                this.transactionDateBefore = null;
+            } else if (transactionDateBefore.isEmpty()) {
+                this.transactionDateBefore = Optional.empty();
+            } else {
+                this.transactionDateBefore = Optional.of(transactionDateBefore.get());
+            }
             return this;
         }
 

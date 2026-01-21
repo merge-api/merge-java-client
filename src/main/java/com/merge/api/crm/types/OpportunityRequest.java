@@ -5,6 +5,7 @@ package com.merge.api.crm.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -81,48 +84,66 @@ public final class OpportunityRequest {
     /**
      * @return The opportunity's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
     /**
      * @return The opportunity's description.
      */
-    @JsonProperty("description")
+    @JsonIgnore
     public Optional<String> getDescription() {
+        if (description == null) {
+            return Optional.empty();
+        }
         return description;
     }
 
     /**
      * @return The opportunity's amount.
      */
-    @JsonProperty("amount")
+    @JsonIgnore
     public Optional<Integer> getAmount() {
+        if (amount == null) {
+            return Optional.empty();
+        }
         return amount;
     }
 
     /**
      * @return The opportunity's owner.
      */
-    @JsonProperty("owner")
+    @JsonIgnore
     public Optional<OpportunityRequestOwner> getOwner() {
+        if (owner == null) {
+            return Optional.empty();
+        }
         return owner;
     }
 
     /**
      * @return The account of the opportunity.
      */
-    @JsonProperty("account")
+    @JsonIgnore
     public Optional<OpportunityRequestAccount> getAccount() {
+        if (account == null) {
+            return Optional.empty();
+        }
         return account;
     }
 
     /**
      * @return The stage of the opportunity.
      */
-    @JsonProperty("stage")
+    @JsonIgnore
     public Optional<OpportunityRequestStage> getStage() {
+        if (stage == null) {
+            return Optional.empty();
+        }
         return stage;
     }
 
@@ -134,40 +155,121 @@ public final class OpportunityRequest {
      * <li><code>LOST</code> - LOST</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<OpportunityRequestStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
     /**
      * @return When the opportunity's last activity occurred.
      */
-    @JsonProperty("last_activity_at")
+    @JsonIgnore
     public Optional<OffsetDateTime> getLastActivityAt() {
+        if (lastActivityAt == null) {
+            return Optional.empty();
+        }
         return lastActivityAt;
     }
 
     /**
      * @return When the opportunity was closed.
      */
-    @JsonProperty("close_date")
+    @JsonIgnore
     public Optional<OffsetDateTime> getCloseDate() {
+        if (closeDate == null) {
+            return Optional.empty();
+        }
         return closeDate;
     }
 
-    @JsonProperty("integration_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getIntegrationParams() {
+        if (integrationParams == null) {
+            return Optional.empty();
+        }
         return integrationParams;
     }
 
-    @JsonProperty("linked_account_params")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getLinkedAccountParams() {
+        if (linkedAccountParams == null) {
+            return Optional.empty();
+        }
         return linkedAccountParams;
     }
 
     @JsonProperty("remote_fields")
     public Optional<List<RemoteFieldRequest>> getRemoteFields() {
         return remoteFields;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("description")
+    private Optional<String> _getDescription() {
+        return description;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("amount")
+    private Optional<Integer> _getAmount() {
+        return amount;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("owner")
+    private Optional<OpportunityRequestOwner> _getOwner() {
+        return owner;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("account")
+    private Optional<OpportunityRequestAccount> _getAccount() {
+        return account;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("stage")
+    private Optional<OpportunityRequestStage> _getStage() {
+        return stage;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<OpportunityRequestStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("last_activity_at")
+    private Optional<OffsetDateTime> _getLastActivityAt() {
+        return lastActivityAt;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("close_date")
+    private Optional<OffsetDateTime> _getCloseDate() {
+        return closeDate;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("integration_params")
+    private Optional<Map<String, JsonNode>> _getIntegrationParams() {
+        return integrationParams;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("linked_account_params")
+    private Optional<Map<String, JsonNode>> _getLinkedAccountParams() {
+        return linkedAccountParams;
     }
 
     @java.lang.Override
@@ -283,6 +385,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The opportunity's description.</p>
          */
@@ -294,6 +407,17 @@ public final class OpportunityRequest {
 
         public Builder description(String description) {
             this.description = Optional.ofNullable(description);
+            return this;
+        }
+
+        public Builder description(Nullable<String> description) {
+            if (description.isNull()) {
+                this.description = null;
+            } else if (description.isEmpty()) {
+                this.description = Optional.empty();
+            } else {
+                this.description = Optional.of(description.get());
+            }
             return this;
         }
 
@@ -311,6 +435,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder amount(Nullable<Integer> amount) {
+            if (amount.isNull()) {
+                this.amount = null;
+            } else if (amount.isEmpty()) {
+                this.amount = Optional.empty();
+            } else {
+                this.amount = Optional.of(amount.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The opportunity's owner.</p>
          */
@@ -322,6 +457,17 @@ public final class OpportunityRequest {
 
         public Builder owner(OpportunityRequestOwner owner) {
             this.owner = Optional.ofNullable(owner);
+            return this;
+        }
+
+        public Builder owner(Nullable<OpportunityRequestOwner> owner) {
+            if (owner.isNull()) {
+                this.owner = null;
+            } else if (owner.isEmpty()) {
+                this.owner = Optional.empty();
+            } else {
+                this.owner = Optional.of(owner.get());
+            }
             return this;
         }
 
@@ -339,6 +485,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder account(Nullable<OpportunityRequestAccount> account) {
+            if (account.isNull()) {
+                this.account = null;
+            } else if (account.isEmpty()) {
+                this.account = Optional.empty();
+            } else {
+                this.account = Optional.of(account.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The stage of the opportunity.</p>
          */
@@ -350,6 +507,17 @@ public final class OpportunityRequest {
 
         public Builder stage(OpportunityRequestStage stage) {
             this.stage = Optional.ofNullable(stage);
+            return this;
+        }
+
+        public Builder stage(Nullable<OpportunityRequestStage> stage) {
+            if (stage.isNull()) {
+                this.stage = null;
+            } else if (stage.isEmpty()) {
+                this.stage = Optional.empty();
+            } else {
+                this.stage = Optional.of(stage.get());
+            }
             return this;
         }
 
@@ -372,6 +540,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder status(Nullable<OpportunityRequestStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
+            return this;
+        }
+
         /**
          * <p>When the opportunity's last activity occurred.</p>
          */
@@ -383,6 +562,17 @@ public final class OpportunityRequest {
 
         public Builder lastActivityAt(OffsetDateTime lastActivityAt) {
             this.lastActivityAt = Optional.ofNullable(lastActivityAt);
+            return this;
+        }
+
+        public Builder lastActivityAt(Nullable<OffsetDateTime> lastActivityAt) {
+            if (lastActivityAt.isNull()) {
+                this.lastActivityAt = null;
+            } else if (lastActivityAt.isEmpty()) {
+                this.lastActivityAt = Optional.empty();
+            } else {
+                this.lastActivityAt = Optional.of(lastActivityAt.get());
+            }
             return this;
         }
 
@@ -400,6 +590,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder closeDate(Nullable<OffsetDateTime> closeDate) {
+            if (closeDate.isNull()) {
+                this.closeDate = null;
+            } else if (closeDate.isEmpty()) {
+                this.closeDate = Optional.empty();
+            } else {
+                this.closeDate = Optional.of(closeDate.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "integration_params", nulls = Nulls.SKIP)
         public Builder integrationParams(Optional<Map<String, JsonNode>> integrationParams) {
             this.integrationParams = integrationParams;
@@ -411,6 +612,17 @@ public final class OpportunityRequest {
             return this;
         }
 
+        public Builder integrationParams(Nullable<Map<String, JsonNode>> integrationParams) {
+            if (integrationParams.isNull()) {
+                this.integrationParams = null;
+            } else if (integrationParams.isEmpty()) {
+                this.integrationParams = Optional.empty();
+            } else {
+                this.integrationParams = Optional.of(integrationParams.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "linked_account_params", nulls = Nulls.SKIP)
         public Builder linkedAccountParams(Optional<Map<String, JsonNode>> linkedAccountParams) {
             this.linkedAccountParams = linkedAccountParams;
@@ -419,6 +631,17 @@ public final class OpportunityRequest {
 
         public Builder linkedAccountParams(Map<String, JsonNode> linkedAccountParams) {
             this.linkedAccountParams = Optional.ofNullable(linkedAccountParams);
+            return this;
+        }
+
+        public Builder linkedAccountParams(Nullable<Map<String, JsonNode>> linkedAccountParams) {
+            if (linkedAccountParams.isNull()) {
+                this.linkedAccountParams = null;
+            } else if (linkedAccountParams.isEmpty()) {
+                this.linkedAccountParams = Optional.empty();
+            } else {
+                this.linkedAccountParams = Optional.of(linkedAccountParams.get());
+            }
             return this;
         }
 

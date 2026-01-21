@@ -5,6 +5,7 @@ package com.merge.api.accounting.types;
 
 import com.fasterxml.jackson.annotation.JsonAnyGetter;
 import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -12,6 +13,8 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.merge.api.core.Nullable;
+import com.merge.api.core.NullableNonemptyFilter;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
 import java.util.HashMap;
@@ -81,8 +84,11 @@ public final class TrackingCategory {
     /**
      * @return The third-party API ID of the matching object.
      */
-    @JsonProperty("remote_id")
+    @JsonIgnore
     public Optional<String> getRemoteId() {
+        if (remoteId == null) {
+            return Optional.empty();
+        }
         return remoteId;
     }
 
@@ -105,8 +111,11 @@ public final class TrackingCategory {
     /**
      * @return The tracking category's name.
      */
-    @JsonProperty("name")
+    @JsonIgnore
     public Optional<String> getName() {
+        if (name == null) {
+            return Optional.empty();
+        }
         return name;
     }
 
@@ -117,8 +126,11 @@ public final class TrackingCategory {
      * <li><code>ARCHIVED</code> - ARCHIVED</li>
      * </ul>
      */
-    @JsonProperty("status")
+    @JsonIgnore
     public Optional<TrackingCategoryStatus> getStatus() {
+        if (status == null) {
+            return Optional.empty();
+        }
         return status;
     }
 
@@ -129,21 +141,30 @@ public final class TrackingCategory {
      * <li><code>DEPARTMENT</code> - DEPARTMENT</li>
      * </ul>
      */
-    @JsonProperty("category_type")
+    @JsonIgnore
     public Optional<TrackingCategoryCategoryType> getCategoryType() {
+        if (categoryType == null) {
+            return Optional.empty();
+        }
         return categoryType;
     }
 
-    @JsonProperty("parent_category")
+    @JsonIgnore
     public Optional<String> getParentCategory() {
+        if (parentCategory == null) {
+            return Optional.empty();
+        }
         return parentCategory;
     }
 
     /**
      * @return The company the GeneralLedgerTransaction belongs to.
      */
-    @JsonProperty("company")
+    @JsonIgnore
     public Optional<TrackingCategoryCompany> getCompany() {
+        if (company == null) {
+            return Optional.empty();
+        }
         return company;
     }
 
@@ -155,8 +176,53 @@ public final class TrackingCategory {
         return remoteWasDeleted;
     }
 
-    @JsonProperty("field_mappings")
+    @JsonIgnore
     public Optional<Map<String, JsonNode>> getFieldMappings() {
+        if (fieldMappings == null) {
+            return Optional.empty();
+        }
+        return fieldMappings;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("remote_id")
+    private Optional<String> _getRemoteId() {
+        return remoteId;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("name")
+    private Optional<String> _getName() {
+        return name;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("status")
+    private Optional<TrackingCategoryStatus> _getStatus() {
+        return status;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("category_type")
+    private Optional<TrackingCategoryCategoryType> _getCategoryType() {
+        return categoryType;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("parent_category")
+    private Optional<String> _getParentCategory() {
+        return parentCategory;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("company")
+    private Optional<TrackingCategoryCompany> _getCompany() {
+        return company;
+    }
+
+    @JsonInclude(value = JsonInclude.Include.CUSTOM, valueFilter = NullableNonemptyFilter.class)
+    @JsonProperty("field_mappings")
+    private Optional<Map<String, JsonNode>> _getFieldMappings() {
         return fieldMappings;
     }
 
@@ -279,6 +345,17 @@ public final class TrackingCategory {
             return this;
         }
 
+        public Builder remoteId(Nullable<String> remoteId) {
+            if (remoteId.isNull()) {
+                this.remoteId = null;
+            } else if (remoteId.isEmpty()) {
+                this.remoteId = Optional.empty();
+            } else {
+                this.remoteId = Optional.of(remoteId.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The datetime that this object was created by Merge.</p>
          */
@@ -321,6 +398,17 @@ public final class TrackingCategory {
             return this;
         }
 
+        public Builder name(Nullable<String> name) {
+            if (name.isNull()) {
+                this.name = null;
+            } else if (name.isEmpty()) {
+                this.name = Optional.empty();
+            } else {
+                this.name = Optional.of(name.get());
+            }
+            return this;
+        }
+
         /**
          * <p>The tracking category's status.</p>
          * <ul>
@@ -336,6 +424,17 @@ public final class TrackingCategory {
 
         public Builder status(TrackingCategoryStatus status) {
             this.status = Optional.ofNullable(status);
+            return this;
+        }
+
+        public Builder status(Nullable<TrackingCategoryStatus> status) {
+            if (status.isNull()) {
+                this.status = null;
+            } else if (status.isEmpty()) {
+                this.status = Optional.empty();
+            } else {
+                this.status = Optional.of(status.get());
+            }
             return this;
         }
 
@@ -357,6 +456,17 @@ public final class TrackingCategory {
             return this;
         }
 
+        public Builder categoryType(Nullable<TrackingCategoryCategoryType> categoryType) {
+            if (categoryType.isNull()) {
+                this.categoryType = null;
+            } else if (categoryType.isEmpty()) {
+                this.categoryType = Optional.empty();
+            } else {
+                this.categoryType = Optional.of(categoryType.get());
+            }
+            return this;
+        }
+
         @JsonSetter(value = "parent_category", nulls = Nulls.SKIP)
         public Builder parentCategory(Optional<String> parentCategory) {
             this.parentCategory = parentCategory;
@@ -365,6 +475,17 @@ public final class TrackingCategory {
 
         public Builder parentCategory(String parentCategory) {
             this.parentCategory = Optional.ofNullable(parentCategory);
+            return this;
+        }
+
+        public Builder parentCategory(Nullable<String> parentCategory) {
+            if (parentCategory.isNull()) {
+                this.parentCategory = null;
+            } else if (parentCategory.isEmpty()) {
+                this.parentCategory = Optional.empty();
+            } else {
+                this.parentCategory = Optional.of(parentCategory.get());
+            }
             return this;
         }
 
@@ -379,6 +500,17 @@ public final class TrackingCategory {
 
         public Builder company(TrackingCategoryCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        public Builder company(Nullable<TrackingCategoryCompany> company) {
+            if (company.isNull()) {
+                this.company = null;
+            } else if (company.isEmpty()) {
+                this.company = Optional.empty();
+            } else {
+                this.company = Optional.of(company.get());
+            }
             return this;
         }
 
@@ -404,6 +536,17 @@ public final class TrackingCategory {
 
         public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
             this.fieldMappings = Optional.ofNullable(fieldMappings);
+            return this;
+        }
+
+        public Builder fieldMappings(Nullable<Map<String, JsonNode>> fieldMappings) {
+            if (fieldMappings.isNull()) {
+                this.fieldMappings = null;
+            } else if (fieldMappings.isEmpty()) {
+                this.fieldMappings = Optional.empty();
+            } else {
+                this.fieldMappings = Optional.of(fieldMappings.get());
+            }
             return this;
         }
 

@@ -9,9 +9,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 public final class EncodingEnum {
     public static final EncodingEnum RAW = new EncodingEnum(Value.RAW, "RAW");
 
-    public static final EncodingEnum GZIP_BASE_64 = new EncodingEnum(Value.GZIP_BASE_64, "GZIP_BASE64");
+    public static final EncodingEnum BASE64 = new EncodingEnum(Value.BASE64, "BASE64");
 
-    public static final EncodingEnum BASE_64 = new EncodingEnum(Value.BASE_64, "BASE64");
+    public static final EncodingEnum GZIP_BASE64 = new EncodingEnum(Value.GZIP_BASE64, "GZIP_BASE64");
 
     private final Value value;
 
@@ -46,10 +46,10 @@ public final class EncodingEnum {
         switch (value) {
             case RAW:
                 return visitor.visitRaw();
-            case GZIP_BASE_64:
-                return visitor.visitGzipBase64();
-            case BASE_64:
+            case BASE64:
                 return visitor.visitBase64();
+            case GZIP_BASE64:
+                return visitor.visitGzipBase64();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -61,10 +61,10 @@ public final class EncodingEnum {
         switch (value) {
             case "RAW":
                 return RAW;
-            case "GZIP_BASE64":
-                return GZIP_BASE_64;
             case "BASE64":
-                return BASE_64;
+                return BASE64;
+            case "GZIP_BASE64":
+                return GZIP_BASE64;
             default:
                 return new EncodingEnum(Value.UNKNOWN, value);
         }
@@ -73,9 +73,9 @@ public final class EncodingEnum {
     public enum Value {
         RAW,
 
-        BASE_64,
+        BASE64,
 
-        GZIP_BASE_64,
+        GZIP_BASE64,
 
         UNKNOWN
     }
