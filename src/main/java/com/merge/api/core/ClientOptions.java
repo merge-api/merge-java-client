@@ -148,11 +148,13 @@ public final class ClientOptions {
                     this.httpClient != null ? this.httpClient.newBuilder() : new OkHttpClient.Builder();
 
             if (this.httpClient != null) {
-                timeout.ifPresent(timeout -> httpClientBuilder
-                        .callTimeout(timeout, TimeUnit.SECONDS)
+                // Apply timeout configuration even when using custom client to ensure consistent behavior
+                int timeoutValue = this.timeout.orElse(60);
+                httpClientBuilder
+                        .callTimeout(timeoutValue, TimeUnit.SECONDS)
                         .connectTimeout(0, TimeUnit.SECONDS)
                         .writeTimeout(0, TimeUnit.SECONDS)
-                        .readTimeout(0, TimeUnit.SECONDS));
+                        .readTimeout(0, TimeUnit.SECONDS);
             } else {
                 httpClientBuilder
                         .callTimeout(this.timeout.orElse(60), TimeUnit.SECONDS)
