@@ -47,7 +47,7 @@ public final class TaxRate {
 
     private final Optional<Double> effectiveTaxRate;
 
-    private final Optional<List<TaxRateTaxComponentsItem>> taxComponents;
+    private final Optional<List<TaxComponent>> taxComponents;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -70,7 +70,7 @@ public final class TaxRate {
             Optional<String> country,
             Optional<Double> totalTaxRate,
             Optional<Double> effectiveTaxRate,
-            Optional<List<TaxRateTaxComponentsItem>> taxComponents,
+            Optional<List<TaxComponent>> taxComponents,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
@@ -195,7 +195,7 @@ public final class TaxRate {
      * @return The related tax components of the tax rate.
      */
     @JsonProperty("tax_components")
-    public Optional<List<TaxRateTaxComponentsItem>> getTaxComponents() {
+    public Optional<List<TaxComponent>> getTaxComponents() {
         return taxComponents;
     }
 
@@ -303,7 +303,7 @@ public final class TaxRate {
 
         private Optional<Double> effectiveTaxRate = Optional.empty();
 
-        private Optional<List<TaxRateTaxComponentsItem>> taxComponents = Optional.empty();
+        private Optional<List<TaxComponent>> taxComponents = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -509,12 +509,12 @@ public final class TaxRate {
          * <p>The related tax components of the tax rate.</p>
          */
         @JsonSetter(value = "tax_components", nulls = Nulls.SKIP)
-        public Builder taxComponents(Optional<List<TaxRateTaxComponentsItem>> taxComponents) {
+        public Builder taxComponents(Optional<List<TaxComponent>> taxComponents) {
             this.taxComponents = taxComponents;
             return this;
         }
 
-        public Builder taxComponents(List<TaxRateTaxComponentsItem> taxComponents) {
+        public Builder taxComponents(List<TaxComponent> taxComponents) {
             this.taxComponents = Optional.ofNullable(taxComponents);
             return this;
         }

@@ -14,6 +14,8 @@ import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.hris.types.Group;
 import com.merge.api.hris.types.GroupsListRequest;
 import com.merge.api.hris.types.GroupsRetrieveRequest;
+import com.merge.api.hris.types.GroupsTypesListRequest;
+import com.merge.api.hris.types.GroupsTypesListResponse;
 import com.merge.api.hris.types.PaginatedGroupList;
 import java.io.IOException;
 import java.util.Collections;
@@ -144,9 +146,10 @@ public class AsyncRawGroupsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         PaginatedGroupList parsedResponse =
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedGroupList.class);
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedGroupList.class);
                         Optional<String> startingAfter = parsedResponse.getNext();
                         GroupsListRequest nextRequest = GroupsListRequest.builder()
                                 .from(request)
@@ -166,12 +169,9 @@ public class AsyncRawGroupsClient {
                                 response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
@@ -243,17 +243,87 @@ public class AsyncRawGroupsClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Group.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Group.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
+                    return;
+                } catch (IOException e) {
+                    future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+                }
+            }
+
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                future.completeExceptionally(new MergeException("Network error executing HTTP request", e));
+            }
+        });
+        return future;
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<MergeApiHttpResponse<GroupsTypesListResponse>> typesList() {
+        return typesList(GroupsTypesListRequest.builder().build());
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<MergeApiHttpResponse<GroupsTypesListResponse>> typesList(GroupsTypesListRequest request) {
+        return typesList(request, null);
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<MergeApiHttpResponse<GroupsTypesListResponse>> typesList(
+            GroupsTypesListRequest request, RequestOptions requestOptions) {
+        HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
+                .newBuilder()
+                .addPathSegments("hris/v1/groups/types");
+        if (request.getIncludeDeletedData().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl,
+                    "include_deleted_data",
+                    request.getIncludeDeletedData().get(),
+                    false);
+        }
+        if (request.getShowEnumOrigins().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "show_enum_origins", request.getShowEnumOrigins().get(), false);
+        }
+        Request.Builder _requestBuilder = new Request.Builder()
+                .url(httpUrl.build())
+                .method("GET", null)
+                .headers(Headers.of(clientOptions.headers(requestOptions)))
+                .addHeader("Accept", "application/json");
+        Request okhttpRequest = _requestBuilder.build();
+        OkHttpClient client = clientOptions.httpClient();
+        if (requestOptions != null && requestOptions.getTimeout().isPresent()) {
+            client = clientOptions.httpClientWithTimeout(requestOptions);
+        }
+        CompletableFuture<MergeApiHttpResponse<GroupsTypesListResponse>> future = new CompletableFuture<>();
+        client.newCall(okhttpRequest).enqueue(new Callback() {
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    if (response.isSuccessful()) {
+                        future.complete(new MergeApiHttpResponse<>(
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, GroupsTypesListResponse.class),
+                                response));
+                        return;
+                    }
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+                    future.completeExceptionally(new ApiError(
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

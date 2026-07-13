@@ -159,7 +159,7 @@ public final class CashFlowStatementsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -419,7 +419,7 @@ public final class CashFlowStatementsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {

@@ -65,7 +65,9 @@ public final class InvoiceRequest {
 
     private final Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<InvoiceLineItemRequest>> lineItems;
+    private final Optional<InvoiceRequestAccountingPeriod> accountingPeriod;
+
+    private final Optional<List<InvoiceRequestLineItemsItem>> lineItems;
 
     private final Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders;
 
@@ -99,7 +101,8 @@ public final class InvoiceRequest {
             Optional<Double> balance,
             Optional<List<Optional<InvoiceRequestPaymentsItem>>> payments,
             Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<InvoiceLineItemRequest>> lineItems,
+            Optional<InvoiceRequestAccountingPeriod> accountingPeriod,
+            Optional<List<InvoiceRequestLineItemsItem>> lineItems,
             Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
@@ -126,6 +129,7 @@ public final class InvoiceRequest {
         this.balance = balance;
         this.payments = payments;
         this.trackingCategories = trackingCategories;
+        this.accountingPeriod = accountingPeriod;
         this.lineItems = lineItems;
         this.purchaseOrders = purchaseOrders;
         this.integrationParams = integrationParams;
@@ -619,8 +623,16 @@ public final class InvoiceRequest {
         return trackingCategories;
     }
 
+    /**
+     * @return The accounting period that the Invoice was generated in.
+     */
+    @JsonProperty("accounting_period")
+    public Optional<InvoiceRequestAccountingPeriod> getAccountingPeriod() {
+        return accountingPeriod;
+    }
+
     @JsonProperty("line_items")
-    public Optional<List<InvoiceLineItemRequest>> getLineItems() {
+    public Optional<List<InvoiceRequestLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -677,6 +689,7 @@ public final class InvoiceRequest {
                 && balance.equals(other.balance)
                 && payments.equals(other.payments)
                 && trackingCategories.equals(other.trackingCategories)
+                && accountingPeriod.equals(other.accountingPeriod)
                 && lineItems.equals(other.lineItems)
                 && purchaseOrders.equals(other.purchaseOrders)
                 && integrationParams.equals(other.integrationParams)
@@ -708,6 +721,7 @@ public final class InvoiceRequest {
                 this.balance,
                 this.payments,
                 this.trackingCategories,
+                this.accountingPeriod,
                 this.lineItems,
                 this.purchaseOrders,
                 this.integrationParams,
@@ -768,7 +782,9 @@ public final class InvoiceRequest {
 
         private Optional<List<Optional<InvoiceRequestTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<List<InvoiceLineItemRequest>> lineItems = Optional.empty();
+        private Optional<InvoiceRequestAccountingPeriod> accountingPeriod = Optional.empty();
+
+        private Optional<List<InvoiceRequestLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<List<Optional<InvoiceRequestPurchaseOrdersItem>>> purchaseOrders = Optional.empty();
 
@@ -805,6 +821,7 @@ public final class InvoiceRequest {
             balance(other.getBalance());
             payments(other.getPayments());
             trackingCategories(other.getTrackingCategories());
+            accountingPeriod(other.getAccountingPeriod());
             lineItems(other.getLineItems());
             purchaseOrders(other.getPurchaseOrders());
             integrationParams(other.getIntegrationParams());
@@ -1425,13 +1442,27 @@ public final class InvoiceRequest {
             return this;
         }
 
+        /**
+         * <p>The accounting period that the Invoice was generated in.</p>
+         */
+        @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
+        public Builder accountingPeriod(Optional<InvoiceRequestAccountingPeriod> accountingPeriod) {
+            this.accountingPeriod = accountingPeriod;
+            return this;
+        }
+
+        public Builder accountingPeriod(InvoiceRequestAccountingPeriod accountingPeriod) {
+            this.accountingPeriod = Optional.ofNullable(accountingPeriod);
+            return this;
+        }
+
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<InvoiceLineItemRequest>> lineItems) {
+        public Builder lineItems(Optional<List<InvoiceRequestLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<InvoiceLineItemRequest> lineItems) {
+        public Builder lineItems(List<InvoiceRequestLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1503,6 +1534,7 @@ public final class InvoiceRequest {
                     balance,
                     payments,
                     trackingCategories,
+                    accountingPeriod,
                     lineItems,
                     purchaseOrders,
                     integrationParams,

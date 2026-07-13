@@ -129,7 +129,7 @@ public final class LocationsListRequest {
     }
 
     /**
-     * @return If provided, will only return locations with this location_type
+     * @return If provided, will only return locations with this location type
      * <ul>
      * <li><code>HOME</code> - HOME</li>
      * <li><code>WORK</code> - WORK</li>
@@ -157,7 +157,7 @@ public final class LocationsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -377,7 +377,7 @@ public final class LocationsListRequest {
         }
 
         /**
-         * <p>If provided, will only return locations with this location_type</p>
+         * <p>If provided, will only return locations with this location type</p>
          * <ul>
          * <li><code>HOME</code> - HOME</li>
          * <li><code>WORK</code> - WORK</li>
@@ -423,7 +423,7 @@ public final class LocationsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {

@@ -50,6 +50,8 @@ public class AccountingClient {
 
     protected final Supplier<EmployeesClient> employeesClient;
 
+    protected final Supplier<ExpenseReportsClient> expenseReportsClient;
+
     protected final Supplier<ExpensesClient> expensesClient;
 
     protected final Supplier<FieldMappingClient> fieldMappingClient;
@@ -63,6 +65,8 @@ public class AccountingClient {
     protected final Supplier<InvoicesClient> invoicesClient;
 
     protected final Supplier<IssuesClient> issuesClient;
+
+    protected final Supplier<ItemFulfillmentsClient> itemFulfillmentsClient;
 
     protected final Supplier<ItemsClient> itemsClient;
 
@@ -87,6 +91,8 @@ public class AccountingClient {
     protected final Supplier<PurchaseOrdersClient> purchaseOrdersClient;
 
     protected final Supplier<RegenerateKeyClient> regenerateKeyClient;
+
+    protected final Supplier<SalesOrdersClient> salesOrdersClient;
 
     protected final Supplier<SyncStatusClient> syncStatusClient;
 
@@ -124,6 +130,7 @@ public class AccountingClient {
         this.scopesClient = Suppliers.memoize(() -> new ScopesClient(clientOptions));
         this.deleteAccountClient = Suppliers.memoize(() -> new DeleteAccountClient(clientOptions));
         this.employeesClient = Suppliers.memoize(() -> new EmployeesClient(clientOptions));
+        this.expenseReportsClient = Suppliers.memoize(() -> new ExpenseReportsClient(clientOptions));
         this.expensesClient = Suppliers.memoize(() -> new ExpensesClient(clientOptions));
         this.fieldMappingClient = Suppliers.memoize(() -> new FieldMappingClient(clientOptions));
         this.generalLedgerTransactionsClient =
@@ -132,6 +139,7 @@ public class AccountingClient {
         this.incomeStatementsClient = Suppliers.memoize(() -> new IncomeStatementsClient(clientOptions));
         this.invoicesClient = Suppliers.memoize(() -> new InvoicesClient(clientOptions));
         this.issuesClient = Suppliers.memoize(() -> new IssuesClient(clientOptions));
+        this.itemFulfillmentsClient = Suppliers.memoize(() -> new ItemFulfillmentsClient(clientOptions));
         this.itemsClient = Suppliers.memoize(() -> new ItemsClient(clientOptions));
         this.journalEntriesClient = Suppliers.memoize(() -> new JournalEntriesClient(clientOptions));
         this.linkTokenClient = Suppliers.memoize(() -> new LinkTokenClient(clientOptions));
@@ -144,6 +152,7 @@ public class AccountingClient {
         this.projectsClient = Suppliers.memoize(() -> new ProjectsClient(clientOptions));
         this.purchaseOrdersClient = Suppliers.memoize(() -> new PurchaseOrdersClient(clientOptions));
         this.regenerateKeyClient = Suppliers.memoize(() -> new RegenerateKeyClient(clientOptions));
+        this.salesOrdersClient = Suppliers.memoize(() -> new SalesOrdersClient(clientOptions));
         this.syncStatusClient = Suppliers.memoize(() -> new SyncStatusClient(clientOptions));
         this.forceResyncClient = Suppliers.memoize(() -> new ForceResyncClient(clientOptions));
         this.taxRatesClient = Suppliers.memoize(() -> new TaxRatesClient(clientOptions));
@@ -233,6 +242,10 @@ public class AccountingClient {
         return this.employeesClient.get();
     }
 
+    public ExpenseReportsClient expenseReports() {
+        return this.expenseReportsClient.get();
+    }
+
     public ExpensesClient expenses() {
         return this.expensesClient.get();
     }
@@ -259,6 +272,10 @@ public class AccountingClient {
 
     public IssuesClient issues() {
         return this.issuesClient.get();
+    }
+
+    public ItemFulfillmentsClient itemFulfillments() {
+        return this.itemFulfillmentsClient.get();
     }
 
     public ItemsClient items() {
@@ -307,6 +324,10 @@ public class AccountingClient {
 
     public RegenerateKeyClient regenerateKey() {
         return this.regenerateKeyClient.get();
+    }
+
+    public SalesOrdersClient salesOrders() {
+        return this.salesOrdersClient.get();
     }
 
     public SyncStatusClient syncStatus() {

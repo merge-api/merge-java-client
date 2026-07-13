@@ -10,6 +10,7 @@ import com.merge.api.accounting.types.ContactsListRequest;
 import com.merge.api.accounting.types.ContactsRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.ContactsRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
+import com.merge.api.accounting.types.PatchedContactEndpointRequest;
 import com.merge.api.accounting.types.RemoteFieldClass;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
@@ -89,6 +90,35 @@ public class AsyncContactsClient {
     public CompletableFuture<Contact> retrieve(
             String id, ContactsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<ContactResponse> partialUpdate(String id, PatchedContactEndpointRequest request) {
+        return this.rawClient.partialUpdate(id, request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public CompletableFuture<ContactResponse> partialUpdate(
+            String id, PatchedContactEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.partialUpdate(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id) {
+        return this.rawClient.metaPatchRetrieve(id).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public CompletableFuture<MetaResponse> metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, requestOptions).thenApply(response -> response.body());
     }
 
     /**

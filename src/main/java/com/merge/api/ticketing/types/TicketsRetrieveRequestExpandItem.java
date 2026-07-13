@@ -16,6 +16,9 @@ public final class TicketsRetrieveRequestExpandItem {
     public static final TicketsRetrieveRequestExpandItem ACCOUNT =
             new TicketsRetrieveRequestExpandItem(Value.ACCOUNT, "account");
 
+    public static final TicketsRetrieveRequestExpandItem PERMISSIONS =
+            new TicketsRetrieveRequestExpandItem(Value.PERMISSIONS, "permissions");
+
     public static final TicketsRetrieveRequestExpandItem ASSIGNED_TEAMS =
             new TicketsRetrieveRequestExpandItem(Value.ASSIGNED_TEAMS, "assigned_teams");
 
@@ -70,6 +73,8 @@ public final class TicketsRetrieveRequestExpandItem {
                 return visitor.visitAttachments();
             case ACCOUNT:
                 return visitor.visitAccount();
+            case PERMISSIONS:
+                return visitor.visitPermissions();
             case ASSIGNED_TEAMS:
                 return visitor.visitAssignedTeams();
             case COLLECTIONS:
@@ -95,6 +100,8 @@ public final class TicketsRetrieveRequestExpandItem {
                 return ATTACHMENTS;
             case "account":
                 return ACCOUNT;
+            case "permissions":
+                return PERMISSIONS;
             case "assigned_teams":
                 return ASSIGNED_TEAMS;
             case "collections":
@@ -127,6 +134,8 @@ public final class TicketsRetrieveRequestExpandItem {
 
         PARENT_TICKET,
 
+        PERMISSIONS,
+
         UNKNOWN
     }
 
@@ -146,6 +155,8 @@ public final class TicketsRetrieveRequestExpandItem {
         T visitCreator();
 
         T visitParentTicket();
+
+        T visitPermissions();
 
         T visitUnknown(String unknownType);
     }

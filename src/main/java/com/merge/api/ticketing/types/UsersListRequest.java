@@ -25,6 +25,8 @@ import java.util.Optional;
 public final class UsersListRequest {
     private final Optional<List<UsersListRequestExpandItem>> expand;
 
+    private final Optional<String> collections;
+
     private final Optional<OffsetDateTime> createdAfter;
 
     private final Optional<OffsetDateTime> createdBefore;
@@ -47,12 +49,17 @@ public final class UsersListRequest {
 
     private final Optional<String> remoteId;
 
+    private final Optional<String> roles;
+
     private final Optional<String> team;
+
+    private final Optional<String> teams;
 
     private final Map<String, Object> additionalProperties;
 
     private UsersListRequest(
             Optional<List<UsersListRequestExpandItem>> expand,
+            Optional<String> collections,
             Optional<OffsetDateTime> createdAfter,
             Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
@@ -64,9 +71,12 @@ public final class UsersListRequest {
             Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
             Optional<String> remoteId,
+            Optional<String> roles,
             Optional<String> team,
+            Optional<String> teams,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
+        this.collections = collections;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
@@ -78,7 +88,9 @@ public final class UsersListRequest {
         this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
         this.remoteId = remoteId;
+        this.roles = roles;
         this.team = team;
+        this.teams = teams;
         this.additionalProperties = additionalProperties;
     }
 
@@ -88,6 +100,14 @@ public final class UsersListRequest {
     @JsonProperty("expand")
     public Optional<List<UsersListRequestExpandItem>> getExpand() {
         return expand;
+    }
+
+    /**
+     * @return If provided, will only return users involved with at least one of these collections.
+     */
+    @JsonProperty("collections")
+    public Optional<String> getCollections() {
+        return collections;
     }
 
     /**
@@ -163,7 +183,7 @@ public final class UsersListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -179,11 +199,27 @@ public final class UsersListRequest {
     }
 
     /**
+     * @return If provided, will only return users with at least one of these roles.
+     */
+    @JsonProperty("roles")
+    public Optional<String> getRoles() {
+        return roles;
+    }
+
+    /**
      * @return If provided, will only return users matching in this team.
      */
     @JsonProperty("team")
     public Optional<String> getTeam() {
         return team;
+    }
+
+    /**
+     * @return If provided, will only return users with at least one of these teams.
+     */
+    @JsonProperty("teams")
+    public Optional<String> getTeams() {
+        return teams;
     }
 
     @java.lang.Override
@@ -199,6 +235,7 @@ public final class UsersListRequest {
 
     private boolean equalTo(UsersListRequest other) {
         return expand.equals(other.expand)
+                && collections.equals(other.collections)
                 && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
@@ -210,13 +247,16 @@ public final class UsersListRequest {
                 && modifiedBefore.equals(other.modifiedBefore)
                 && pageSize.equals(other.pageSize)
                 && remoteId.equals(other.remoteId)
-                && team.equals(other.team);
+                && roles.equals(other.roles)
+                && team.equals(other.team)
+                && teams.equals(other.teams);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.expand,
+                this.collections,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
@@ -228,7 +268,9 @@ public final class UsersListRequest {
                 this.modifiedBefore,
                 this.pageSize,
                 this.remoteId,
-                this.team);
+                this.roles,
+                this.team,
+                this.teams);
     }
 
     @java.lang.Override
@@ -243,6 +285,8 @@ public final class UsersListRequest {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private Optional<List<UsersListRequestExpandItem>> expand = Optional.empty();
+
+        private Optional<String> collections = Optional.empty();
 
         private Optional<OffsetDateTime> createdAfter = Optional.empty();
 
@@ -266,7 +310,11 @@ public final class UsersListRequest {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> roles = Optional.empty();
+
         private Optional<String> team = Optional.empty();
+
+        private Optional<String> teams = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -275,6 +323,7 @@ public final class UsersListRequest {
 
         public Builder from(UsersListRequest other) {
             expand(other.getExpand());
+            collections(other.getCollections());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
@@ -286,7 +335,9 @@ public final class UsersListRequest {
             modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
+            roles(other.getRoles());
             team(other.getTeam());
+            teams(other.getTeams());
             return this;
         }
 
@@ -306,6 +357,20 @@ public final class UsersListRequest {
 
         public Builder expand(UsersListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return users involved with at least one of these collections.</p>
+         */
+        @JsonSetter(value = "collections", nulls = Nulls.SKIP)
+        public Builder collections(Optional<String> collections) {
+            this.collections = collections;
+            return this;
+        }
+
+        public Builder collections(String collections) {
+            this.collections = Optional.ofNullable(collections);
             return this;
         }
 
@@ -436,7 +501,7 @@ public final class UsersListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -464,6 +529,20 @@ public final class UsersListRequest {
         }
 
         /**
+         * <p>If provided, will only return users with at least one of these roles.</p>
+         */
+        @JsonSetter(value = "roles", nulls = Nulls.SKIP)
+        public Builder roles(Optional<String> roles) {
+            this.roles = roles;
+            return this;
+        }
+
+        public Builder roles(String roles) {
+            this.roles = Optional.ofNullable(roles);
+            return this;
+        }
+
+        /**
          * <p>If provided, will only return users matching in this team.</p>
          */
         @JsonSetter(value = "team", nulls = Nulls.SKIP)
@@ -477,9 +556,24 @@ public final class UsersListRequest {
             return this;
         }
 
+        /**
+         * <p>If provided, will only return users with at least one of these teams.</p>
+         */
+        @JsonSetter(value = "teams", nulls = Nulls.SKIP)
+        public Builder teams(Optional<String> teams) {
+            this.teams = teams;
+            return this;
+        }
+
+        public Builder teams(String teams) {
+            this.teams = Optional.ofNullable(teams);
+            return this;
+        }
+
         public UsersListRequest build() {
             return new UsersListRequest(
                     expand,
+                    collections,
                     createdAfter,
                     createdBefore,
                     cursor,
@@ -491,7 +585,9 @@ public final class UsersListRequest {
                     modifiedBefore,
                     pageSize,
                     remoteId,
+                    roles,
                     team,
+                    teams,
                     additionalProperties);
         }
     }

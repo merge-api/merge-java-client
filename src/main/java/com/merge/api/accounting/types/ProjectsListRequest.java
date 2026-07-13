@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import java.time.OffsetDateTime;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +25,12 @@ import java.util.Optional;
 public final class ProjectsListRequest {
     private final Optional<List<ProjectsListRequestExpandItem>> expand;
 
+    private final Optional<String> companyId;
+
+    private final Optional<OffsetDateTime> createdAfter;
+
+    private final Optional<OffsetDateTime> createdBefore;
+
     private final Optional<String> cursor;
 
     private final Optional<Boolean> includeDeletedData;
@@ -32,24 +39,46 @@ public final class ProjectsListRequest {
 
     private final Optional<Boolean> includeShellData;
 
+    private final Optional<String> isActive;
+
+    private final Optional<OffsetDateTime> modifiedAfter;
+
+    private final Optional<OffsetDateTime> modifiedBefore;
+
     private final Optional<Integer> pageSize;
+
+    private final Optional<String> remoteId;
 
     private final Map<String, Object> additionalProperties;
 
     private ProjectsListRequest(
             Optional<List<ProjectsListRequestExpandItem>> expand,
+            Optional<String> companyId,
+            Optional<OffsetDateTime> createdAfter,
+            Optional<OffsetDateTime> createdBefore,
             Optional<String> cursor,
             Optional<Boolean> includeDeletedData,
             Optional<Boolean> includeRemoteData,
             Optional<Boolean> includeShellData,
+            Optional<String> isActive,
+            Optional<OffsetDateTime> modifiedAfter,
+            Optional<OffsetDateTime> modifiedBefore,
             Optional<Integer> pageSize,
+            Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
         this.expand = expand;
+        this.companyId = companyId;
+        this.createdAfter = createdAfter;
+        this.createdBefore = createdBefore;
         this.cursor = cursor;
         this.includeDeletedData = includeDeletedData;
         this.includeRemoteData = includeRemoteData;
         this.includeShellData = includeShellData;
+        this.isActive = isActive;
+        this.modifiedAfter = modifiedAfter;
+        this.modifiedBefore = modifiedBefore;
         this.pageSize = pageSize;
+        this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
     }
 
@@ -59,6 +88,30 @@ public final class ProjectsListRequest {
     @JsonProperty("expand")
     public Optional<List<ProjectsListRequestExpandItem>> getExpand() {
         return expand;
+    }
+
+    /**
+     * @return If provided, will only return projects for this company.
+     */
+    @JsonProperty("company_id")
+    public Optional<String> getCompanyId() {
+        return companyId;
+    }
+
+    /**
+     * @return If provided, will only return objects created after this datetime.
+     */
+    @JsonProperty("created_after")
+    public Optional<OffsetDateTime> getCreatedAfter() {
+        return createdAfter;
+    }
+
+    /**
+     * @return If provided, will only return objects created before this datetime.
+     */
+    @JsonProperty("created_before")
+    public Optional<OffsetDateTime> getCreatedBefore() {
+        return createdBefore;
     }
 
     /**
@@ -94,11 +147,43 @@ public final class ProjectsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return If provided, will only return projects with this value for is_active.
+     */
+    @JsonProperty("is_active")
+    public Optional<String> getIsActive() {
+        return isActive;
+    }
+
+    /**
+     * @return If provided, only objects synced by Merge after this date time will be returned.
+     */
+    @JsonProperty("modified_after")
+    public Optional<OffsetDateTime> getModifiedAfter() {
+        return modifiedAfter;
+    }
+
+    /**
+     * @return If provided, only objects synced by Merge before this date time will be returned.
+     */
+    @JsonProperty("modified_before")
+    public Optional<OffsetDateTime> getModifiedBefore() {
+        return modifiedBefore;
+    }
+
+    /**
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
         return pageSize;
+    }
+
+    /**
+     * @return The API provider's ID for the given object.
+     */
+    @JsonProperty("remote_id")
+    public Optional<String> getRemoteId() {
+        return remoteId;
     }
 
     @java.lang.Override
@@ -114,22 +199,36 @@ public final class ProjectsListRequest {
 
     private boolean equalTo(ProjectsListRequest other) {
         return expand.equals(other.expand)
+                && companyId.equals(other.companyId)
+                && createdAfter.equals(other.createdAfter)
+                && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
                 && includeRemoteData.equals(other.includeRemoteData)
                 && includeShellData.equals(other.includeShellData)
-                && pageSize.equals(other.pageSize);
+                && isActive.equals(other.isActive)
+                && modifiedAfter.equals(other.modifiedAfter)
+                && modifiedBefore.equals(other.modifiedBefore)
+                && pageSize.equals(other.pageSize)
+                && remoteId.equals(other.remoteId);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
                 this.expand,
+                this.companyId,
+                this.createdAfter,
+                this.createdBefore,
                 this.cursor,
                 this.includeDeletedData,
                 this.includeRemoteData,
                 this.includeShellData,
-                this.pageSize);
+                this.isActive,
+                this.modifiedAfter,
+                this.modifiedBefore,
+                this.pageSize,
+                this.remoteId);
     }
 
     @java.lang.Override
@@ -145,6 +244,12 @@ public final class ProjectsListRequest {
     public static final class Builder {
         private Optional<List<ProjectsListRequestExpandItem>> expand = Optional.empty();
 
+        private Optional<String> companyId = Optional.empty();
+
+        private Optional<OffsetDateTime> createdAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> createdBefore = Optional.empty();
+
         private Optional<String> cursor = Optional.empty();
 
         private Optional<Boolean> includeDeletedData = Optional.empty();
@@ -153,7 +258,15 @@ public final class ProjectsListRequest {
 
         private Optional<Boolean> includeShellData = Optional.empty();
 
+        private Optional<String> isActive = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedAfter = Optional.empty();
+
+        private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
+
+        private Optional<String> remoteId = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -162,11 +275,18 @@ public final class ProjectsListRequest {
 
         public Builder from(ProjectsListRequest other) {
             expand(other.getExpand());
+            companyId(other.getCompanyId());
+            createdAfter(other.getCreatedAfter());
+            createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
             includeDeletedData(other.getIncludeDeletedData());
             includeRemoteData(other.getIncludeRemoteData());
             includeShellData(other.getIncludeShellData());
+            isActive(other.getIsActive());
+            modifiedAfter(other.getModifiedAfter());
+            modifiedBefore(other.getModifiedBefore());
             pageSize(other.getPageSize());
+            remoteId(other.getRemoteId());
             return this;
         }
 
@@ -186,6 +306,48 @@ public final class ProjectsListRequest {
 
         public Builder expand(ProjectsListRequestExpandItem expand) {
             this.expand = Optional.of(Collections.singletonList(expand));
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return projects for this company.</p>
+         */
+        @JsonSetter(value = "company_id", nulls = Nulls.SKIP)
+        public Builder companyId(Optional<String> companyId) {
+            this.companyId = companyId;
+            return this;
+        }
+
+        public Builder companyId(String companyId) {
+            this.companyId = Optional.ofNullable(companyId);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return objects created after this datetime.</p>
+         */
+        @JsonSetter(value = "created_after", nulls = Nulls.SKIP)
+        public Builder createdAfter(Optional<OffsetDateTime> createdAfter) {
+            this.createdAfter = createdAfter;
+            return this;
+        }
+
+        public Builder createdAfter(OffsetDateTime createdAfter) {
+            this.createdAfter = Optional.ofNullable(createdAfter);
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return objects created before this datetime.</p>
+         */
+        @JsonSetter(value = "created_before", nulls = Nulls.SKIP)
+        public Builder createdBefore(Optional<OffsetDateTime> createdBefore) {
+            this.createdBefore = createdBefore;
+            return this;
+        }
+
+        public Builder createdBefore(OffsetDateTime createdBefore) {
+            this.createdBefore = Optional.ofNullable(createdBefore);
             return this;
         }
 
@@ -246,7 +408,49 @@ public final class ProjectsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>If provided, will only return projects with this value for is_active.</p>
+         */
+        @JsonSetter(value = "is_active", nulls = Nulls.SKIP)
+        public Builder isActive(Optional<String> isActive) {
+            this.isActive = isActive;
+            return this;
+        }
+
+        public Builder isActive(String isActive) {
+            this.isActive = Optional.ofNullable(isActive);
+            return this;
+        }
+
+        /**
+         * <p>If provided, only objects synced by Merge after this date time will be returned.</p>
+         */
+        @JsonSetter(value = "modified_after", nulls = Nulls.SKIP)
+        public Builder modifiedAfter(Optional<OffsetDateTime> modifiedAfter) {
+            this.modifiedAfter = modifiedAfter;
+            return this;
+        }
+
+        public Builder modifiedAfter(OffsetDateTime modifiedAfter) {
+            this.modifiedAfter = Optional.ofNullable(modifiedAfter);
+            return this;
+        }
+
+        /**
+         * <p>If provided, only objects synced by Merge before this date time will be returned.</p>
+         */
+        @JsonSetter(value = "modified_before", nulls = Nulls.SKIP)
+        public Builder modifiedBefore(Optional<OffsetDateTime> modifiedBefore) {
+            this.modifiedBefore = modifiedBefore;
+            return this;
+        }
+
+        public Builder modifiedBefore(OffsetDateTime modifiedBefore) {
+            this.modifiedBefore = Optional.ofNullable(modifiedBefore);
+            return this;
+        }
+
+        /**
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -259,14 +463,35 @@ public final class ProjectsListRequest {
             return this;
         }
 
+        /**
+         * <p>The API provider's ID for the given object.</p>
+         */
+        @JsonSetter(value = "remote_id", nulls = Nulls.SKIP)
+        public Builder remoteId(Optional<String> remoteId) {
+            this.remoteId = remoteId;
+            return this;
+        }
+
+        public Builder remoteId(String remoteId) {
+            this.remoteId = Optional.ofNullable(remoteId);
+            return this;
+        }
+
         public ProjectsListRequest build() {
             return new ProjectsListRequest(
                     expand,
+                    companyId,
+                    createdAfter,
+                    createdBefore,
                     cursor,
                     includeDeletedData,
                     includeRemoteData,
                     includeShellData,
+                    isActive,
+                    modifiedAfter,
+                    modifiedBefore,
                     pageSize,
+                    remoteId,
                     additionalProperties);
         }
     }

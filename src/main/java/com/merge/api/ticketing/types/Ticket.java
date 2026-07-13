@@ -59,6 +59,8 @@ public final class Ticket {
 
     private final Optional<TicketAccessLevel> accessLevel;
 
+    private final Optional<List<Permission>> permissions;
+
     private final Optional<List<Optional<String>>> tags;
 
     private final Optional<List<Optional<String>>> roles;
@@ -102,6 +104,7 @@ public final class Ticket {
             Optional<TicketParentTicket> parentTicket,
             Optional<List<Optional<TicketAttachmentsItem>>> attachments,
             Optional<TicketAccessLevel> accessLevel,
+            Optional<List<Permission>> permissions,
             Optional<List<Optional<String>>> tags,
             Optional<List<Optional<String>>> roles,
             Optional<String> ticketUrl,
@@ -132,6 +135,7 @@ public final class Ticket {
         this.parentTicket = parentTicket;
         this.attachments = attachments;
         this.accessLevel = accessLevel;
+        this.permissions = permissions;
         this.tags = tags;
         this.roles = roles;
         this.ticketUrl = ticketUrl;
@@ -296,6 +300,11 @@ public final class Ticket {
         return accessLevel;
     }
 
+    @JsonProperty("permissions")
+    public Optional<List<Permission>> getPermissions() {
+        return permissions;
+    }
+
     @JsonProperty("tags")
     public Optional<List<Optional<String>>> getTags() {
         return tags;
@@ -405,6 +414,7 @@ public final class Ticket {
                 && parentTicket.equals(other.parentTicket)
                 && attachments.equals(other.attachments)
                 && accessLevel.equals(other.accessLevel)
+                && permissions.equals(other.permissions)
                 && tags.equals(other.tags)
                 && roles.equals(other.roles)
                 && ticketUrl.equals(other.ticketUrl)
@@ -439,6 +449,7 @@ public final class Ticket {
                 this.parentTicket,
                 this.attachments,
                 this.accessLevel,
+                this.permissions,
                 this.tags,
                 this.roles,
                 this.ticketUrl,
@@ -499,6 +510,8 @@ public final class Ticket {
 
         private Optional<TicketAccessLevel> accessLevel = Optional.empty();
 
+        private Optional<List<Permission>> permissions = Optional.empty();
+
         private Optional<List<Optional<String>>> tags = Optional.empty();
 
         private Optional<List<Optional<String>>> roles = Optional.empty();
@@ -545,6 +558,7 @@ public final class Ticket {
             parentTicket(other.getParentTicket());
             attachments(other.getAttachments());
             accessLevel(other.getAccessLevel());
+            permissions(other.getPermissions());
             tags(other.getTags());
             roles(other.getRoles());
             ticketUrl(other.getTicketUrl());
@@ -817,6 +831,17 @@ public final class Ticket {
             return this;
         }
 
+        @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
+        public Builder permissions(Optional<List<Permission>> permissions) {
+            this.permissions = permissions;
+            return this;
+        }
+
+        public Builder permissions(List<Permission> permissions) {
+            this.permissions = Optional.ofNullable(permissions);
+            return this;
+        }
+
         @JsonSetter(value = "tags", nulls = Nulls.SKIP)
         public Builder tags(Optional<List<Optional<String>>> tags) {
             this.tags = tags;
@@ -982,6 +1007,7 @@ public final class Ticket {
                     parentTicket,
                     attachments,
                     accessLevel,
+                    permissions,
                     tags,
                     roles,
                     ticketUrl,

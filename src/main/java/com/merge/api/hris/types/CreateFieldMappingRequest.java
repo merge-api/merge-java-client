@@ -38,6 +38,8 @@ public final class CreateFieldMappingRequest {
 
     private final String commonModelName;
 
+    private final Optional<String> jmesPath;
+
     private final Map<String, Object> additionalProperties;
 
     private CreateFieldMappingRequest(
@@ -48,6 +50,7 @@ public final class CreateFieldMappingRequest {
             String remoteMethod,
             String remoteUrlPath,
             String commonModelName,
+            Optional<String> jmesPath,
             Map<String, Object> additionalProperties) {
         this.excludeRemoteFieldMetadata = excludeRemoteFieldMetadata;
         this.targetFieldName = targetFieldName;
@@ -56,6 +59,7 @@ public final class CreateFieldMappingRequest {
         this.remoteMethod = remoteMethod;
         this.remoteUrlPath = remoteUrlPath;
         this.commonModelName = commonModelName;
+        this.jmesPath = jmesPath;
         this.additionalProperties = additionalProperties;
     }
 
@@ -115,6 +119,14 @@ public final class CreateFieldMappingRequest {
         return commonModelName;
     }
 
+    /**
+     * @return JMES path to specify json query expression to be used on field mapping.
+     */
+    @JsonProperty("jmes_path")
+    public Optional<String> getJmesPath() {
+        return jmesPath;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -133,7 +145,8 @@ public final class CreateFieldMappingRequest {
                 && remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
                 && remoteMethod.equals(other.remoteMethod)
                 && remoteUrlPath.equals(other.remoteUrlPath)
-                && commonModelName.equals(other.commonModelName);
+                && commonModelName.equals(other.commonModelName)
+                && jmesPath.equals(other.jmesPath);
     }
 
     @java.lang.Override
@@ -145,7 +158,8 @@ public final class CreateFieldMappingRequest {
                 this.remoteFieldTraversalPath,
                 this.remoteMethod,
                 this.remoteUrlPath,
-                this.commonModelName);
+                this.commonModelName,
+                this.jmesPath);
     }
 
     @java.lang.Override
@@ -212,6 +226,13 @@ public final class CreateFieldMappingRequest {
         _FinalStage addRemoteFieldTraversalPath(JsonNode remoteFieldTraversalPath);
 
         _FinalStage addAllRemoteFieldTraversalPath(List<JsonNode> remoteFieldTraversalPath);
+
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         */
+        _FinalStage jmesPath(Optional<String> jmesPath);
+
+        _FinalStage jmesPath(String jmesPath);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -232,6 +253,8 @@ public final class CreateFieldMappingRequest {
 
         private String commonModelName;
 
+        private Optional<String> jmesPath = Optional.empty();
+
         private List<JsonNode> remoteFieldTraversalPath = new ArrayList<>();
 
         private Optional<Boolean> excludeRemoteFieldMetadata = Optional.empty();
@@ -250,6 +273,7 @@ public final class CreateFieldMappingRequest {
             remoteMethod(other.getRemoteMethod());
             remoteUrlPath(other.getRemoteUrlPath());
             commonModelName(other.getCommonModelName());
+            jmesPath(other.getJmesPath());
             return this;
         }
 
@@ -310,6 +334,26 @@ public final class CreateFieldMappingRequest {
         @JsonSetter("common_model_name")
         public _FinalStage commonModelName(@NotNull String commonModelName) {
             this.commonModelName = commonModelName;
+            return this;
+        }
+
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage jmesPath(String jmesPath) {
+            this.jmesPath = Optional.ofNullable(jmesPath);
+            return this;
+        }
+
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "jmes_path", nulls = Nulls.SKIP)
+        public _FinalStage jmesPath(Optional<String> jmesPath) {
+            this.jmesPath = jmesPath;
             return this;
         }
 
@@ -378,6 +422,7 @@ public final class CreateFieldMappingRequest {
                     remoteMethod,
                     remoteUrlPath,
                     commonModelName,
+                    jmesPath,
                     additionalProperties);
         }
     }

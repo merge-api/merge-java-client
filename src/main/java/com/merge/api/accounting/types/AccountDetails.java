@@ -27,7 +27,7 @@ public final class AccountDetails {
 
     private final Optional<String> integrationSlug;
 
-    private final Optional<CategoryEnum> category;
+    private final Optional<AccountDetailsCategory> category;
 
     private final Optional<String> endUserOriginId;
 
@@ -45,13 +45,17 @@ public final class AccountDetails {
 
     private final Optional<OffsetDateTime> completedAt;
 
+    private final Optional<String> instanceId;
+
+    private final Optional<String> instanceDisplayValue;
+
     private final Map<String, Object> additionalProperties;
 
     private AccountDetails(
             Optional<String> id,
             Optional<String> integration,
             Optional<String> integrationSlug,
-            Optional<CategoryEnum> category,
+            Optional<AccountDetailsCategory> category,
             Optional<String> endUserOriginId,
             Optional<String> endUserOrganizationName,
             Optional<String> endUserEmailAddress,
@@ -60,6 +64,8 @@ public final class AccountDetails {
             Optional<Boolean> isDuplicate,
             Optional<String> accountType,
             Optional<OffsetDateTime> completedAt,
+            Optional<String> instanceId,
+            Optional<String> instanceDisplayValue,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.integration = integration;
@@ -73,6 +79,8 @@ public final class AccountDetails {
         this.isDuplicate = isDuplicate;
         this.accountType = accountType;
         this.completedAt = completedAt;
+        this.instanceId = instanceId;
+        this.instanceDisplayValue = instanceDisplayValue;
         this.additionalProperties = additionalProperties;
     }
 
@@ -92,7 +100,7 @@ public final class AccountDetails {
     }
 
     @JsonProperty("category")
-    public Optional<CategoryEnum> getCategory() {
+    public Optional<AccountDetailsCategory> getCategory() {
         return category;
     }
 
@@ -142,6 +150,16 @@ public final class AccountDetails {
         return completedAt;
     }
 
+    @JsonProperty("instance_id")
+    public Optional<String> getInstanceId() {
+        return instanceId;
+    }
+
+    @JsonProperty("instance_display_value")
+    public Optional<String> getInstanceDisplayValue() {
+        return instanceDisplayValue;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -165,7 +183,9 @@ public final class AccountDetails {
                 && webhookListenerUrl.equals(other.webhookListenerUrl)
                 && isDuplicate.equals(other.isDuplicate)
                 && accountType.equals(other.accountType)
-                && completedAt.equals(other.completedAt);
+                && completedAt.equals(other.completedAt)
+                && instanceId.equals(other.instanceId)
+                && instanceDisplayValue.equals(other.instanceDisplayValue);
     }
 
     @java.lang.Override
@@ -182,7 +202,9 @@ public final class AccountDetails {
                 this.webhookListenerUrl,
                 this.isDuplicate,
                 this.accountType,
-                this.completedAt);
+                this.completedAt,
+                this.instanceId,
+                this.instanceDisplayValue);
     }
 
     @java.lang.Override
@@ -202,7 +224,7 @@ public final class AccountDetails {
 
         private Optional<String> integrationSlug = Optional.empty();
 
-        private Optional<CategoryEnum> category = Optional.empty();
+        private Optional<AccountDetailsCategory> category = Optional.empty();
 
         private Optional<String> endUserOriginId = Optional.empty();
 
@@ -219,6 +241,10 @@ public final class AccountDetails {
         private Optional<String> accountType = Optional.empty();
 
         private Optional<OffsetDateTime> completedAt = Optional.empty();
+
+        private Optional<String> instanceId = Optional.empty();
+
+        private Optional<String> instanceDisplayValue = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -238,6 +264,8 @@ public final class AccountDetails {
             isDuplicate(other.getIsDuplicate());
             accountType(other.getAccountType());
             completedAt(other.getCompletedAt());
+            instanceId(other.getInstanceId());
+            instanceDisplayValue(other.getInstanceDisplayValue());
             return this;
         }
 
@@ -275,12 +303,12 @@ public final class AccountDetails {
         }
 
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
-        public Builder category(Optional<CategoryEnum> category) {
+        public Builder category(Optional<AccountDetailsCategory> category) {
             this.category = category;
             return this;
         }
 
-        public Builder category(CategoryEnum category) {
+        public Builder category(AccountDetailsCategory category) {
             this.category = Optional.ofNullable(category);
             return this;
         }
@@ -379,6 +407,28 @@ public final class AccountDetails {
             return this;
         }
 
+        @JsonSetter(value = "instance_id", nulls = Nulls.SKIP)
+        public Builder instanceId(Optional<String> instanceId) {
+            this.instanceId = instanceId;
+            return this;
+        }
+
+        public Builder instanceId(String instanceId) {
+            this.instanceId = Optional.ofNullable(instanceId);
+            return this;
+        }
+
+        @JsonSetter(value = "instance_display_value", nulls = Nulls.SKIP)
+        public Builder instanceDisplayValue(Optional<String> instanceDisplayValue) {
+            this.instanceDisplayValue = instanceDisplayValue;
+            return this;
+        }
+
+        public Builder instanceDisplayValue(String instanceDisplayValue) {
+            this.instanceDisplayValue = Optional.ofNullable(instanceDisplayValue);
+            return this;
+        }
+
         public AccountDetails build() {
             return new AccountDetails(
                     id,
@@ -393,6 +443,8 @@ public final class AccountDetails {
                     isDuplicate,
                     accountType,
                     completedAt,
+                    instanceId,
+                    instanceDisplayValue,
                     additionalProperties);
         }
     }

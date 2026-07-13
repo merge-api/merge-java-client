@@ -22,23 +22,39 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedEditFieldMappingRequest.Builder.class)
 public final class PatchedEditFieldMappingRequest {
+    private final Optional<Integer> remoteDataIterationCount;
+
     private final Optional<List<JsonNode>> remoteFieldTraversalPath;
 
     private final Optional<String> remoteMethod;
 
     private final Optional<String> remoteUrlPath;
 
+    private final Optional<String> jmesPath;
+
     private final Map<String, Object> additionalProperties;
 
     private PatchedEditFieldMappingRequest(
+            Optional<Integer> remoteDataIterationCount,
             Optional<List<JsonNode>> remoteFieldTraversalPath,
             Optional<String> remoteMethod,
             Optional<String> remoteUrlPath,
+            Optional<String> jmesPath,
             Map<String, Object> additionalProperties) {
+        this.remoteDataIterationCount = remoteDataIterationCount;
         this.remoteFieldTraversalPath = remoteFieldTraversalPath;
         this.remoteMethod = remoteMethod;
         this.remoteUrlPath = remoteUrlPath;
+        this.jmesPath = jmesPath;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.
+     */
+    @JsonProperty("remote_data_iteration_count")
+    public Optional<Integer> getRemoteDataIterationCount() {
+        return remoteDataIterationCount;
     }
 
     /**
@@ -65,6 +81,14 @@ public final class PatchedEditFieldMappingRequest {
         return remoteUrlPath;
     }
 
+    /**
+     * @return JMES path to specify json query expression to be used on field mapping.
+     */
+    @JsonProperty("jmes_path")
+    public Optional<String> getJmesPath() {
+        return jmesPath;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -77,14 +101,21 @@ public final class PatchedEditFieldMappingRequest {
     }
 
     private boolean equalTo(PatchedEditFieldMappingRequest other) {
-        return remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
+        return remoteDataIterationCount.equals(other.remoteDataIterationCount)
+                && remoteFieldTraversalPath.equals(other.remoteFieldTraversalPath)
                 && remoteMethod.equals(other.remoteMethod)
-                && remoteUrlPath.equals(other.remoteUrlPath);
+                && remoteUrlPath.equals(other.remoteUrlPath)
+                && jmesPath.equals(other.jmesPath);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.remoteFieldTraversalPath, this.remoteMethod, this.remoteUrlPath);
+        return Objects.hash(
+                this.remoteDataIterationCount,
+                this.remoteFieldTraversalPath,
+                this.remoteMethod,
+                this.remoteUrlPath,
+                this.jmesPath);
     }
 
     @java.lang.Override
@@ -98,11 +129,15 @@ public final class PatchedEditFieldMappingRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<Integer> remoteDataIterationCount = Optional.empty();
+
         private Optional<List<JsonNode>> remoteFieldTraversalPath = Optional.empty();
 
         private Optional<String> remoteMethod = Optional.empty();
 
         private Optional<String> remoteUrlPath = Optional.empty();
+
+        private Optional<String> jmesPath = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -110,9 +145,25 @@ public final class PatchedEditFieldMappingRequest {
         private Builder() {}
 
         public Builder from(PatchedEditFieldMappingRequest other) {
+            remoteDataIterationCount(other.getRemoteDataIterationCount());
             remoteFieldTraversalPath(other.getRemoteFieldTraversalPath());
             remoteMethod(other.getRemoteMethod());
             remoteUrlPath(other.getRemoteUrlPath());
+            jmesPath(other.getJmesPath());
+            return this;
+        }
+
+        /**
+         * <p>Number of common model instances to iterate through when fetching remote data for field mappings. Defaults to 250 if not provided.</p>
+         */
+        @JsonSetter(value = "remote_data_iteration_count", nulls = Nulls.SKIP)
+        public Builder remoteDataIterationCount(Optional<Integer> remoteDataIterationCount) {
+            this.remoteDataIterationCount = remoteDataIterationCount;
+            return this;
+        }
+
+        public Builder remoteDataIterationCount(Integer remoteDataIterationCount) {
+            this.remoteDataIterationCount = Optional.ofNullable(remoteDataIterationCount);
             return this;
         }
 
@@ -158,9 +209,28 @@ public final class PatchedEditFieldMappingRequest {
             return this;
         }
 
+        /**
+         * <p>JMES path to specify json query expression to be used on field mapping.</p>
+         */
+        @JsonSetter(value = "jmes_path", nulls = Nulls.SKIP)
+        public Builder jmesPath(Optional<String> jmesPath) {
+            this.jmesPath = jmesPath;
+            return this;
+        }
+
+        public Builder jmesPath(String jmesPath) {
+            this.jmesPath = Optional.ofNullable(jmesPath);
+            return this;
+        }
+
         public PatchedEditFieldMappingRequest build() {
             return new PatchedEditFieldMappingRequest(
-                    remoteFieldTraversalPath, remoteMethod, remoteUrlPath, additionalProperties);
+                    remoteDataIterationCount,
+                    remoteFieldTraversalPath,
+                    remoteMethod,
+                    remoteUrlPath,
+                    jmesPath,
+                    additionalProperties);
         }
     }
 }

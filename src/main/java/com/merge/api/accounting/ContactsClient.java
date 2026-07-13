@@ -10,6 +10,7 @@ import com.merge.api.accounting.types.ContactsListRequest;
 import com.merge.api.accounting.types.ContactsRemoteFieldClassesListRequest;
 import com.merge.api.accounting.types.ContactsRetrieveRequest;
 import com.merge.api.accounting.types.MetaResponse;
+import com.merge.api.accounting.types.PatchedContactEndpointRequest;
 import com.merge.api.accounting.types.RemoteFieldClass;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
@@ -86,6 +87,35 @@ public class ContactsClient {
      */
     public Contact retrieve(String id, ContactsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).body();
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public ContactResponse partialUpdate(String id, PatchedContactEndpointRequest request) {
+        return this.rawClient.partialUpdate(id, request).body();
+    }
+
+    /**
+     * Updates a <code>Contact</code> object with the given <code>id</code>.
+     */
+    public ContactResponse partialUpdate(
+            String id, PatchedContactEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.partialUpdate(id, request, requestOptions).body();
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id) {
+        return this.rawClient.metaPatchRetrieve(id).body();
+    }
+
+    /**
+     * Returns metadata for <code>Contact</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
     }
 
     /**

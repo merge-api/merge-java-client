@@ -4,6 +4,7 @@
 package com.merge.api.ats;
 
 import com.merge.api.ats.types.AccountToken;
+import com.merge.api.ats.types.RegenerateAccountToken;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.RequestOptions;
 
@@ -36,5 +37,19 @@ public class AccountTokenClient {
      */
     public AccountToken retrieve(String publicToken, RequestOptions requestOptions) {
         return this.rawClient.retrieve(publicToken, requestOptions).body();
+    }
+
+    /**
+     * Exchange Linked Account account tokens.
+     */
+    public RegenerateAccountToken regenerateCreate() {
+        return this.rawClient.regenerateCreate().body();
+    }
+
+    /**
+     * Exchange Linked Account account tokens.
+     */
+    public RegenerateAccountToken regenerateCreate(RequestOptions requestOptions) {
+        return this.rawClient.regenerateCreate(requestOptions).body();
     }
 }

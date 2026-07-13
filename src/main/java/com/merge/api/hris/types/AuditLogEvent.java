@@ -91,6 +91,7 @@ public final class AuditLogEvent {
      * <li><code>API</code> - API</li>
      * <li><code>SYSTEM</code> - SYSTEM</li>
      * <li><code>MERGE_TEAM</code> - MERGE_TEAM</li>
+     * <li><code>SUPPORT</code> - SUPPORT</li>
      * </ul>
      */
     @JsonProperty("role")
@@ -220,6 +221,7 @@ public final class AuditLogEvent {
          * <li><code>API</code> - API</li>
          * <li><code>SYSTEM</code> - SYSTEM</li>
          * <li><code>MERGE_TEAM</code> - MERGE_TEAM</li>
+         * <li><code>SUPPORT</code> - SUPPORT</li>
          * </ul>
          */
         IpAddressStage role(@NotNull AuditLogEventRole role);
@@ -359,6 +361,7 @@ public final class AuditLogEvent {
          * <li><code>API</code> - API</li>
          * <li><code>SYSTEM</code> - SYSTEM</li>
          * <li><code>MERGE_TEAM</code> - MERGE_TEAM</li>
+         * <li><code>SUPPORT</code> - SUPPORT</li>
          * </ul>
          * <p>Designates the role of the user (or SYSTEM/API if action not taken by a user) at the time of this Event occurring.</p>
          * <ul>
@@ -368,6 +371,7 @@ public final class AuditLogEvent {
          * <li><code>API</code> - API</li>
          * <li><code>SYSTEM</code> - SYSTEM</li>
          * <li><code>MERGE_TEAM</code> - MERGE_TEAM</li>
+         * <li><code>SUPPORT</code> - SUPPORT</li>
          * </ul>
          * @return Reference to {@code this} so that method calls can be chained together.
          */

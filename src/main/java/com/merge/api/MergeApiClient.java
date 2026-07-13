@@ -5,11 +5,13 @@ package com.merge.api;
 
 import com.merge.api.accounting.AccountingClient;
 import com.merge.api.ats.AtsClient;
+import com.merge.api.chat.ChatClient;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Suppliers;
 import com.merge.api.crm.CrmClient;
 import com.merge.api.filestorage.FileStorageClient;
 import com.merge.api.hris.HrisClient;
+import com.merge.api.knowledgebase.KnowledgebaseClient;
 import com.merge.api.ticketing.TicketingClient;
 import java.util.function.Supplier;
 
@@ -22,9 +24,13 @@ public class MergeApiClient {
 
     protected final Supplier<CrmClient> crmClient;
 
+    protected final Supplier<ChatClient> chatClient;
+
     protected final Supplier<FileStorageClient> fileStorageClient;
 
     protected final Supplier<HrisClient> hrisClient;
+
+    protected final Supplier<KnowledgebaseClient> knowledgebaseClient;
 
     protected final Supplier<TicketingClient> ticketingClient;
 
@@ -33,8 +39,10 @@ public class MergeApiClient {
         this.atsClient = Suppliers.memoize(() -> new AtsClient(clientOptions));
         this.accountingClient = Suppliers.memoize(() -> new AccountingClient(clientOptions));
         this.crmClient = Suppliers.memoize(() -> new CrmClient(clientOptions));
+        this.chatClient = Suppliers.memoize(() -> new ChatClient(clientOptions));
         this.fileStorageClient = Suppliers.memoize(() -> new FileStorageClient(clientOptions));
         this.hrisClient = Suppliers.memoize(() -> new HrisClient(clientOptions));
+        this.knowledgebaseClient = Suppliers.memoize(() -> new KnowledgebaseClient(clientOptions));
         this.ticketingClient = Suppliers.memoize(() -> new TicketingClient(clientOptions));
     }
 
@@ -50,12 +58,20 @@ public class MergeApiClient {
         return this.crmClient.get();
     }
 
+    public ChatClient chat() {
+        return this.chatClient.get();
+    }
+
     public FileStorageClient fileStorage() {
         return this.fileStorageClient.get();
     }
 
     public HrisClient hris() {
         return this.hrisClient.get();
+    }
+
+    public KnowledgebaseClient knowledgebase() {
+        return this.knowledgebaseClient.get();
     }
 
     public TicketingClient ticketing() {

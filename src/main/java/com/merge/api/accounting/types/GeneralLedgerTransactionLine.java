@@ -42,7 +42,7 @@ public final class GeneralLedgerTransactionLine {
 
     private final Optional<GeneralLedgerTransactionLineProject> project;
 
-    private final Optional<TransactionCurrencyEnum> baseCurrency;
+    private final Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency;
 
     private final Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency;
 
@@ -50,7 +50,7 @@ public final class GeneralLedgerTransactionLine {
 
     private final Optional<String> description;
 
-    private final Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories;
+    private final Optional<List<TrackingCategory>> trackingCategories;
 
     private final String debitAmount;
 
@@ -78,11 +78,11 @@ public final class GeneralLedgerTransactionLine {
             Optional<GeneralLedgerTransactionLineEmployee> employee,
             Optional<GeneralLedgerTransactionLineContact> contact,
             Optional<GeneralLedgerTransactionLineProject> project,
-            Optional<TransactionCurrencyEnum> baseCurrency,
+            Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency,
             Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency,
             Optional<String> exchangeRate,
             Optional<String> description,
-            Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories,
+            Optional<List<TrackingCategory>> trackingCategories,
             String debitAmount,
             String creditAmount,
             Optional<GeneralLedgerTransactionLineItem> item,
@@ -484,7 +484,7 @@ public final class GeneralLedgerTransactionLine {
      * </ul>
      */
     @JsonProperty("base_currency")
-    public Optional<TransactionCurrencyEnum> getBaseCurrency() {
+    public Optional<GeneralLedgerTransactionLineBaseCurrency> getBaseCurrency() {
         return baseCurrency;
     }
 
@@ -821,7 +821,7 @@ public final class GeneralLedgerTransactionLine {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> getTrackingCategories() {
+    public Optional<List<TrackingCategory>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -1313,9 +1313,9 @@ public final class GeneralLedgerTransactionLine {
          * <li><code>ZWL</code> - Zimbabwean Dollar (2009)</li>
          * </ul>
          */
-        _FinalStage baseCurrency(Optional<TransactionCurrencyEnum> baseCurrency);
+        _FinalStage baseCurrency(Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency);
 
-        _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency);
+        _FinalStage baseCurrency(GeneralLedgerTransactionLineBaseCurrency baseCurrency);
 
         /**
          * <p>The transaction currency that the transaction is made in.</p>
@@ -1646,10 +1646,9 @@ public final class GeneralLedgerTransactionLine {
 
         _FinalStage description(String description);
 
-        _FinalStage trackingCategories(
-                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories);
+        _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories);
 
-        _FinalStage trackingCategories(List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories);
+        _FinalStage trackingCategories(List<TrackingCategory> trackingCategories);
 
         _FinalStage item(Optional<GeneralLedgerTransactionLineItem> item);
 
@@ -1688,8 +1687,7 @@ public final class GeneralLedgerTransactionLine {
 
         private Optional<GeneralLedgerTransactionLineItem> item = Optional.empty();
 
-        private Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories =
-                Optional.empty();
+        private Optional<List<TrackingCategory>> trackingCategories = Optional.empty();
 
         private Optional<String> description = Optional.empty();
 
@@ -1697,7 +1695,7 @@ public final class GeneralLedgerTransactionLine {
 
         private Optional<GeneralLedgerTransactionLineTransactionCurrency> transactionCurrency = Optional.empty();
 
-        private Optional<TransactionCurrencyEnum> baseCurrency = Optional.empty();
+        private Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency = Optional.empty();
 
         private Optional<GeneralLedgerTransactionLineProject> project = Optional.empty();
 
@@ -1823,16 +1821,14 @@ public final class GeneralLedgerTransactionLine {
         }
 
         @java.lang.Override
-        public _FinalStage trackingCategories(
-                List<GeneralLedgerTransactionLineTrackingCategoriesItem> trackingCategories) {
+        public _FinalStage trackingCategories(List<TrackingCategory> trackingCategories) {
             this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
 
         @java.lang.Override
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public _FinalStage trackingCategories(
-                Optional<List<GeneralLedgerTransactionLineTrackingCategoriesItem>> trackingCategories) {
+        public _FinalStage trackingCategories(Optional<List<TrackingCategory>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
@@ -2827,7 +2823,7 @@ public final class GeneralLedgerTransactionLine {
          * @return Reference to {@code this} so that method calls can be chained together.
          */
         @java.lang.Override
-        public _FinalStage baseCurrency(TransactionCurrencyEnum baseCurrency) {
+        public _FinalStage baseCurrency(GeneralLedgerTransactionLineBaseCurrency baseCurrency) {
             this.baseCurrency = Optional.ofNullable(baseCurrency);
             return this;
         }
@@ -3145,7 +3141,7 @@ public final class GeneralLedgerTransactionLine {
          */
         @java.lang.Override
         @JsonSetter(value = "base_currency", nulls = Nulls.SKIP)
-        public _FinalStage baseCurrency(Optional<TransactionCurrencyEnum> baseCurrency) {
+        public _FinalStage baseCurrency(Optional<GeneralLedgerTransactionLineBaseCurrency> baseCurrency) {
             this.baseCurrency = baseCurrency;
             return this;
         }

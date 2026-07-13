@@ -51,6 +51,8 @@ public final class EndUserDetailsRequest {
 
     private final Optional<Map<String, JsonNode>> integrationSpecificConfig;
 
+    private final Optional<String> linkedDestinationId;
+
     private final Map<String, Object> additionalProperties;
 
     private EndUserDetailsRequest(
@@ -68,6 +70,7 @@ public final class EndUserDetailsRequest {
             Optional<EndUserDetailsRequestLanguage> language,
             Optional<Boolean> areSyncsDisabled,
             Optional<Map<String, JsonNode>> integrationSpecificConfig,
+            Optional<String> linkedDestinationId,
             Map<String, Object> additionalProperties) {
         this.endUserEmailAddress = endUserEmailAddress;
         this.endUserOrganizationName = endUserOrganizationName;
@@ -82,6 +85,7 @@ public final class EndUserDetailsRequest {
         this.language = language;
         this.areSyncsDisabled = areSyncsDisabled;
         this.integrationSpecificConfig = integrationSpecificConfig;
+        this.linkedDestinationId = linkedDestinationId;
         this.additionalProperties = additionalProperties;
     }
 
@@ -194,6 +198,14 @@ public final class EndUserDetailsRequest {
         return integrationSpecificConfig;
     }
 
+    /**
+     * @return The UUID of the linked destination that you want this Linked Account to be tied to.
+     */
+    @JsonProperty("linked_destination_id")
+    public Optional<String> getLinkedDestinationId() {
+        return linkedDestinationId;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -218,7 +230,8 @@ public final class EndUserDetailsRequest {
                 && categoryCommonModelScopes.equals(other.categoryCommonModelScopes)
                 && language.equals(other.language)
                 && areSyncsDisabled.equals(other.areSyncsDisabled)
-                && integrationSpecificConfig.equals(other.integrationSpecificConfig);
+                && integrationSpecificConfig.equals(other.integrationSpecificConfig)
+                && linkedDestinationId.equals(other.linkedDestinationId);
     }
 
     @java.lang.Override
@@ -236,7 +249,8 @@ public final class EndUserDetailsRequest {
                 this.categoryCommonModelScopes,
                 this.language,
                 this.areSyncsDisabled,
-                this.integrationSpecificConfig);
+                this.integrationSpecificConfig,
+                this.linkedDestinationId);
     }
 
     @java.lang.Override
@@ -352,6 +366,13 @@ public final class EndUserDetailsRequest {
         _FinalStage integrationSpecificConfig(Optional<Map<String, JsonNode>> integrationSpecificConfig);
 
         _FinalStage integrationSpecificConfig(Map<String, JsonNode> integrationSpecificConfig);
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         */
+        _FinalStage linkedDestinationId(Optional<String> linkedDestinationId);
+
+        _FinalStage linkedDestinationId(String linkedDestinationId);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -362,6 +383,8 @@ public final class EndUserDetailsRequest {
         private String endUserOrganizationName;
 
         private String endUserOriginId;
+
+        private Optional<String> linkedDestinationId = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationSpecificConfig = Optional.empty();
 
@@ -404,6 +427,7 @@ public final class EndUserDetailsRequest {
             language(other.getLanguage());
             areSyncsDisabled(other.getAreSyncsDisabled());
             integrationSpecificConfig(other.getIntegrationSpecificConfig());
+            linkedDestinationId(other.getLinkedDestinationId());
             return this;
         }
 
@@ -440,6 +464,26 @@ public final class EndUserDetailsRequest {
         @JsonSetter("end_user_origin_id")
         public _FinalStage endUserOriginId(@NotNull String endUserOriginId) {
             this.endUserOriginId = endUserOriginId;
+            return this;
+        }
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage linkedDestinationId(String linkedDestinationId) {
+            this.linkedDestinationId = Optional.ofNullable(linkedDestinationId);
+            return this;
+        }
+
+        /**
+         * <p>The UUID of the linked destination that you want this Linked Account to be tied to.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "linked_destination_id", nulls = Nulls.SKIP)
+        public _FinalStage linkedDestinationId(Optional<String> linkedDestinationId) {
+            this.linkedDestinationId = linkedDestinationId;
             return this;
         }
 
@@ -685,6 +729,7 @@ public final class EndUserDetailsRequest {
                     language,
                     areSyncsDisabled,
                     integrationSpecificConfig,
+                    linkedDestinationId,
                     additionalProperties);
         }
     }

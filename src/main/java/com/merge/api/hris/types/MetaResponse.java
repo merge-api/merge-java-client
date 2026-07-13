@@ -15,6 +15,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -32,6 +33,8 @@ public final class MetaResponse {
 
     private final boolean hasRequiredLinkedAccountParams;
 
+    private final Optional<List<String>> remoteFields;
+
     private final Map<String, Object> additionalProperties;
 
     private MetaResponse(
@@ -40,12 +43,14 @@ public final class MetaResponse {
             Optional<LinkedAccountStatus> status,
             boolean hasConditionalParams,
             boolean hasRequiredLinkedAccountParams,
+            Optional<List<String>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.requestSchema = requestSchema;
         this.remoteFieldClasses = remoteFieldClasses;
         this.status = status;
         this.hasConditionalParams = hasConditionalParams;
         this.hasRequiredLinkedAccountParams = hasRequiredLinkedAccountParams;
+        this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -74,6 +79,14 @@ public final class MetaResponse {
         return hasRequiredLinkedAccountParams;
     }
 
+    /**
+     * @return Remote field values to populate
+     */
+    @JsonProperty("remote_fields")
+    public Optional<List<String>> getRemoteFields() {
+        return remoteFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -90,7 +103,8 @@ public final class MetaResponse {
                 && remoteFieldClasses.equals(other.remoteFieldClasses)
                 && status.equals(other.status)
                 && hasConditionalParams == other.hasConditionalParams
-                && hasRequiredLinkedAccountParams == other.hasRequiredLinkedAccountParams;
+                && hasRequiredLinkedAccountParams == other.hasRequiredLinkedAccountParams
+                && remoteFields.equals(other.remoteFields);
     }
 
     @java.lang.Override
@@ -100,7 +114,8 @@ public final class MetaResponse {
                 this.remoteFieldClasses,
                 this.status,
                 this.hasConditionalParams,
-                this.hasRequiredLinkedAccountParams);
+                this.hasRequiredLinkedAccountParams,
+                this.remoteFields);
     }
 
     @java.lang.Override
@@ -138,6 +153,13 @@ public final class MetaResponse {
         _FinalStage status(Optional<LinkedAccountStatus> status);
 
         _FinalStage status(LinkedAccountStatus status);
+
+        /**
+         * <p>Remote field values to populate</p>
+         */
+        _FinalStage remoteFields(Optional<List<String>> remoteFields);
+
+        _FinalStage remoteFields(List<String> remoteFields);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -146,6 +168,8 @@ public final class MetaResponse {
         private boolean hasConditionalParams;
 
         private boolean hasRequiredLinkedAccountParams;
+
+        private Optional<List<String>> remoteFields = Optional.empty();
 
         private Optional<LinkedAccountStatus> status = Optional.empty();
 
@@ -165,6 +189,7 @@ public final class MetaResponse {
             status(other.getStatus());
             hasConditionalParams(other.getHasConditionalParams());
             hasRequiredLinkedAccountParams(other.getHasRequiredLinkedAccountParams());
+            remoteFields(other.getRemoteFields());
             return this;
         }
 
@@ -179,6 +204,26 @@ public final class MetaResponse {
         @JsonSetter("has_required_linked_account_params")
         public _FinalStage hasRequiredLinkedAccountParams(boolean hasRequiredLinkedAccountParams) {
             this.hasRequiredLinkedAccountParams = hasRequiredLinkedAccountParams;
+            return this;
+        }
+
+        /**
+         * <p>Remote field values to populate</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage remoteFields(List<String> remoteFields) {
+            this.remoteFields = Optional.ofNullable(remoteFields);
+            return this;
+        }
+
+        /**
+         * <p>Remote field values to populate</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "remote_fields", nulls = Nulls.SKIP)
+        public _FinalStage remoteFields(Optional<List<String>> remoteFields) {
+            this.remoteFields = remoteFields;
             return this;
         }
 
@@ -240,6 +285,7 @@ public final class MetaResponse {
                     status,
                     hasConditionalParams,
                     hasRequiredLinkedAccountParams,
+                    remoteFields,
                     additionalProperties);
         }
     }

@@ -21,6 +21,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountRequest.Builder.class)
 public final class AccountRequest {
+    private final Optional<String> accountUrl;
+
     private final Optional<String> name;
 
     private final Optional<String> description;
@@ -41,7 +43,7 @@ public final class AccountRequest {
 
     private final Optional<String> parentAccount;
 
-    private final Optional<String> company;
+    private final Optional<AccountRequestCompany> company;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -50,6 +52,7 @@ public final class AccountRequest {
     private final Map<String, Object> additionalProperties;
 
     private AccountRequest(
+            Optional<String> accountUrl,
             Optional<String> name,
             Optional<String> description,
             Optional<AccountRequestClassification> classification,
@@ -60,10 +63,11 @@ public final class AccountRequest {
             Optional<AccountRequestCurrency> currency,
             Optional<String> accountNumber,
             Optional<String> parentAccount,
-            Optional<String> company,
+            Optional<AccountRequestCompany> company,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
+        this.accountUrl = accountUrl;
         this.name = name;
         this.description = description;
         this.classification = classification;
@@ -78,6 +82,14 @@ public final class AccountRequest {
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the account.
+     */
+    @JsonProperty("account_url")
+    public Optional<String> getAccountUrl() {
+        return accountUrl;
     }
 
     /**
@@ -499,7 +511,7 @@ public final class AccountRequest {
      * @return The company the account belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<AccountRequestCompany> getCompany() {
         return company;
     }
 
@@ -525,7 +537,8 @@ public final class AccountRequest {
     }
 
     private boolean equalTo(AccountRequest other) {
-        return name.equals(other.name)
+        return accountUrl.equals(other.accountUrl)
+                && name.equals(other.name)
                 && description.equals(other.description)
                 && classification.equals(other.classification)
                 && type.equals(other.type)
@@ -543,6 +556,7 @@ public final class AccountRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.accountUrl,
                 this.name,
                 this.description,
                 this.classification,
@@ -569,6 +583,8 @@ public final class AccountRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> accountUrl = Optional.empty();
+
         private Optional<String> name = Optional.empty();
 
         private Optional<String> description = Optional.empty();
@@ -589,7 +605,7 @@ public final class AccountRequest {
 
         private Optional<String> parentAccount = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<AccountRequestCompany> company = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -601,6 +617,7 @@ public final class AccountRequest {
         private Builder() {}
 
         public Builder from(AccountRequest other) {
+            accountUrl(other.getAccountUrl());
             name(other.getName());
             description(other.getDescription());
             classification(other.getClassification());
@@ -614,6 +631,20 @@ public final class AccountRequest {
             company(other.getCompany());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the account.</p>
+         */
+        @JsonSetter(value = "account_url", nulls = Nulls.SKIP)
+        public Builder accountUrl(Optional<String> accountUrl) {
+            this.accountUrl = accountUrl;
+            return this;
+        }
+
+        public Builder accountUrl(String accountUrl) {
+            this.accountUrl = Optional.ofNullable(accountUrl);
             return this;
         }
 
@@ -1096,12 +1127,12 @@ public final class AccountRequest {
          * <p>The company the account belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<AccountRequestCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(AccountRequestCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -1130,6 +1161,7 @@ public final class AccountRequest {
 
         public AccountRequest build() {
             return new AccountRequest(
+                    accountUrl,
                     name,
                     description,
                     classification,

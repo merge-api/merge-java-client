@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public final class PaymentTerm {
     private final Optional<String> id;
 
+    private final Optional<String> paymentTermUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
@@ -52,6 +54,7 @@ public final class PaymentTerm {
 
     private PaymentTerm(
             Optional<String> id,
+            Optional<String> paymentTermUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -65,6 +68,7 @@ public final class PaymentTerm {
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.paymentTermUrl = paymentTermUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -82,6 +86,14 @@ public final class PaymentTerm {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment term.
+     */
+    @JsonProperty("payment_term_url")
+    public Optional<String> getPaymentTermUrl() {
+        return paymentTermUrl;
     }
 
     /**
@@ -179,6 +191,7 @@ public final class PaymentTerm {
 
     private boolean equalTo(PaymentTerm other) {
         return id.equals(other.id)
+                && paymentTermUrl.equals(other.paymentTermUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -196,6 +209,7 @@ public final class PaymentTerm {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.paymentTermUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -233,6 +247,13 @@ public final class PaymentTerm {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         */
+        _FinalStage paymentTermUrl(Optional<String> paymentTermUrl);
+
+        _FinalStage paymentTermUrl(String paymentTermUrl);
 
         /**
          * <p>The third-party API ID of the matching object.</p>
@@ -323,6 +344,8 @@ public final class PaymentTerm {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> paymentTermUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         @JsonAnySetter
@@ -333,6 +356,7 @@ public final class PaymentTerm {
         @java.lang.Override
         public Builder from(PaymentTerm other) {
             id(other.getId());
+            paymentTermUrl(other.getPaymentTermUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -545,6 +569,26 @@ public final class PaymentTerm {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage paymentTermUrl(String paymentTermUrl) {
+            this.paymentTermUrl = Optional.ofNullable(paymentTermUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment term.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "payment_term_url", nulls = Nulls.SKIP)
+        public _FinalStage paymentTermUrl(Optional<String> paymentTermUrl) {
+            this.paymentTermUrl = paymentTermUrl;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.ofNullable(id);
@@ -562,6 +606,7 @@ public final class PaymentTerm {
         public PaymentTerm build() {
             return new PaymentTerm(
                     id,
+                    paymentTermUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

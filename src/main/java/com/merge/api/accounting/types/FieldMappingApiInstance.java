@@ -28,6 +28,10 @@ public final class FieldMappingApiInstance {
 
     private final Optional<FieldMappingApiInstanceRemoteField> remoteField;
 
+    private final Optional<String> jmesPath;
+
+    private final Optional<String> advancedMappingExpression;
+
     private final Map<String, Object> additionalProperties;
 
     private FieldMappingApiInstance(
@@ -35,11 +39,15 @@ public final class FieldMappingApiInstance {
             Optional<Boolean> isIntegrationWide,
             Optional<FieldMappingApiInstanceTargetField> targetField,
             Optional<FieldMappingApiInstanceRemoteField> remoteField,
+            Optional<String> jmesPath,
+            Optional<String> advancedMappingExpression,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.isIntegrationWide = isIntegrationWide;
         this.targetField = targetField;
         this.remoteField = remoteField;
+        this.jmesPath = jmesPath;
+        this.advancedMappingExpression = advancedMappingExpression;
         this.additionalProperties = additionalProperties;
     }
 
@@ -63,6 +71,16 @@ public final class FieldMappingApiInstance {
         return remoteField;
     }
 
+    @JsonProperty("jmes_path")
+    public Optional<String> getJmesPath() {
+        return jmesPath;
+    }
+
+    @JsonProperty("advanced_mapping_expression")
+    public Optional<String> getAdvancedMappingExpression() {
+        return advancedMappingExpression;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -78,12 +96,20 @@ public final class FieldMappingApiInstance {
         return id.equals(other.id)
                 && isIntegrationWide.equals(other.isIntegrationWide)
                 && targetField.equals(other.targetField)
-                && remoteField.equals(other.remoteField);
+                && remoteField.equals(other.remoteField)
+                && jmesPath.equals(other.jmesPath)
+                && advancedMappingExpression.equals(other.advancedMappingExpression);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.id, this.isIntegrationWide, this.targetField, this.remoteField);
+        return Objects.hash(
+                this.id,
+                this.isIntegrationWide,
+                this.targetField,
+                this.remoteField,
+                this.jmesPath,
+                this.advancedMappingExpression);
     }
 
     @java.lang.Override
@@ -105,6 +131,10 @@ public final class FieldMappingApiInstance {
 
         private Optional<FieldMappingApiInstanceRemoteField> remoteField = Optional.empty();
 
+        private Optional<String> jmesPath = Optional.empty();
+
+        private Optional<String> advancedMappingExpression = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -115,6 +145,8 @@ public final class FieldMappingApiInstance {
             isIntegrationWide(other.getIsIntegrationWide());
             targetField(other.getTargetField());
             remoteField(other.getRemoteField());
+            jmesPath(other.getJmesPath());
+            advancedMappingExpression(other.getAdvancedMappingExpression());
             return this;
         }
 
@@ -162,8 +194,37 @@ public final class FieldMappingApiInstance {
             return this;
         }
 
+        @JsonSetter(value = "jmes_path", nulls = Nulls.SKIP)
+        public Builder jmesPath(Optional<String> jmesPath) {
+            this.jmesPath = jmesPath;
+            return this;
+        }
+
+        public Builder jmesPath(String jmesPath) {
+            this.jmesPath = Optional.ofNullable(jmesPath);
+            return this;
+        }
+
+        @JsonSetter(value = "advanced_mapping_expression", nulls = Nulls.SKIP)
+        public Builder advancedMappingExpression(Optional<String> advancedMappingExpression) {
+            this.advancedMappingExpression = advancedMappingExpression;
+            return this;
+        }
+
+        public Builder advancedMappingExpression(String advancedMappingExpression) {
+            this.advancedMappingExpression = Optional.ofNullable(advancedMappingExpression);
+            return this;
+        }
+
         public FieldMappingApiInstance build() {
-            return new FieldMappingApiInstance(id, isIntegrationWide, targetField, remoteField, additionalProperties);
+            return new FieldMappingApiInstance(
+                    id,
+                    isIntegrationWide,
+                    targetField,
+                    remoteField,
+                    jmesPath,
+                    advancedMappingExpression,
+                    additionalProperties);
         }
     }
 }

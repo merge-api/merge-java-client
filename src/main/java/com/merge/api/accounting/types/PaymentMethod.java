@@ -26,13 +26,15 @@ import org.jetbrains.annotations.NotNull;
 public final class PaymentMethod {
     private final Optional<String> id;
 
+    private final Optional<String> paymentMethodUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
 
     private final Optional<OffsetDateTime> modifiedAt;
 
-    private final PaymentMethodMethodType methodType;
+    private final Optional<PaymentMethodMethodType> methodType;
 
     private final String name;
 
@@ -48,10 +50,11 @@ public final class PaymentMethod {
 
     private PaymentMethod(
             Optional<String> id,
+            Optional<String> paymentMethodUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
-            PaymentMethodMethodType methodType,
+            Optional<PaymentMethodMethodType> methodType,
             String name,
             Optional<Boolean> isActive,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -59,6 +62,7 @@ public final class PaymentMethod {
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.paymentMethodUrl = paymentMethodUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -74,6 +78,14 @@ public final class PaymentMethod {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment method.
+     */
+    @JsonProperty("payment_method_url")
+    public Optional<String> getPaymentMethodUrl() {
+        return paymentMethodUrl;
     }
 
     /**
@@ -111,7 +123,7 @@ public final class PaymentMethod {
      * </ul>
      */
     @JsonProperty("method_type")
-    public PaymentMethodMethodType getMethodType() {
+    public Optional<PaymentMethodMethodType> getMethodType() {
         return methodType;
     }
 
@@ -162,6 +174,7 @@ public final class PaymentMethod {
 
     private boolean equalTo(PaymentMethod other) {
         return id.equals(other.id)
+                && paymentMethodUrl.equals(other.paymentMethodUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -177,6 +190,7 @@ public final class PaymentMethod {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.paymentMethodUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -193,24 +207,8 @@ public final class PaymentMethod {
         return ObjectMappers.stringify(this);
     }
 
-    public static MethodTypeStage builder() {
+    public static NameStage builder() {
         return new Builder();
-    }
-
-    public interface MethodTypeStage {
-        /**
-         * <p>The type of the payment method.</p>
-         * <ul>
-         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
-         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
-         * <li><code>ACH</code> - ACH</li>
-         * <li><code>CASH</code> - CASH</li>
-         * <li><code>CHECK</code> - CHECK</li>
-         * </ul>
-         */
-        NameStage methodType(@NotNull PaymentMethodMethodType methodType);
-
-        Builder from(PaymentMethod other);
     }
 
     public interface NameStage {
@@ -218,6 +216,8 @@ public final class PaymentMethod {
          * <p>The payment method’s name</p>
          */
         _FinalStage name(@NotNull String name);
+
+        Builder from(PaymentMethod other);
     }
 
     public interface _FinalStage {
@@ -226,6 +226,13 @@ public final class PaymentMethod {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>The 3rd party URL of the payment method.</p>
+         */
+        _FinalStage paymentMethodUrl(Optional<String> paymentMethodUrl);
+
+        _FinalStage paymentMethodUrl(String paymentMethodUrl);
 
         /**
          * <p>The third-party API ID of the matching object.</p>
@@ -247,6 +254,20 @@ public final class PaymentMethod {
         _FinalStage modifiedAt(Optional<OffsetDateTime> modifiedAt);
 
         _FinalStage modifiedAt(OffsetDateTime modifiedAt);
+
+        /**
+         * <p>The type of the payment method.</p>
+         * <ul>
+         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
+         * <li><code>ACH</code> - ACH</li>
+         * <li><code>CASH</code> - CASH</li>
+         * <li><code>CHECK</code> - CHECK</li>
+         * </ul>
+         */
+        _FinalStage methodType(Optional<PaymentMethodMethodType> methodType);
+
+        _FinalStage methodType(PaymentMethodMethodType methodType);
 
         /**
          * <p><code>True</code> if the payment method is active, <code>False</code> if not.</p>
@@ -272,9 +293,7 @@ public final class PaymentMethod {
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
-    public static final class Builder implements MethodTypeStage, NameStage, _FinalStage {
-        private PaymentMethodMethodType methodType;
-
+    public static final class Builder implements NameStage, _FinalStage {
         private String name;
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
@@ -285,11 +304,15 @@ public final class PaymentMethod {
 
         private Optional<Boolean> isActive = Optional.empty();
 
+        private Optional<PaymentMethodMethodType> methodType = Optional.empty();
+
         private Optional<OffsetDateTime> modifiedAt = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
+
+        private Optional<String> paymentMethodUrl = Optional.empty();
 
         private Optional<String> id = Optional.empty();
 
@@ -301,6 +324,7 @@ public final class PaymentMethod {
         @java.lang.Override
         public Builder from(PaymentMethod other) {
             id(other.getId());
+            paymentMethodUrl(other.getPaymentMethodUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -310,32 +334,6 @@ public final class PaymentMethod {
             remoteUpdatedAt(other.getRemoteUpdatedAt());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
-            return this;
-        }
-
-        /**
-         * <p>The type of the payment method.</p>
-         * <ul>
-         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
-         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
-         * <li><code>ACH</code> - ACH</li>
-         * <li><code>CASH</code> - CASH</li>
-         * <li><code>CHECK</code> - CHECK</li>
-         * </ul>
-         * <p>The type of the payment method.</p>
-         * <ul>
-         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
-         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
-         * <li><code>ACH</code> - ACH</li>
-         * <li><code>CASH</code> - CASH</li>
-         * <li><code>CHECK</code> - CHECK</li>
-         * </ul>
-         * @return Reference to {@code this} so that method calls can be chained together.
-         */
-        @java.lang.Override
-        @JsonSetter("method_type")
-        public NameStage methodType(@NotNull PaymentMethodMethodType methodType) {
-            this.methodType = methodType;
             return this;
         }
 
@@ -418,6 +416,40 @@ public final class PaymentMethod {
         }
 
         /**
+         * <p>The type of the payment method.</p>
+         * <ul>
+         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
+         * <li><code>ACH</code> - ACH</li>
+         * <li><code>CASH</code> - CASH</li>
+         * <li><code>CHECK</code> - CHECK</li>
+         * </ul>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage methodType(PaymentMethodMethodType methodType) {
+            this.methodType = Optional.ofNullable(methodType);
+            return this;
+        }
+
+        /**
+         * <p>The type of the payment method.</p>
+         * <ul>
+         * <li><code>CREDIT_CARD</code> - CREDIT_CARD</li>
+         * <li><code>DEBIT_CARD</code> - DEBIT_CARD</li>
+         * <li><code>ACH</code> - ACH</li>
+         * <li><code>CASH</code> - CASH</li>
+         * <li><code>CHECK</code> - CHECK</li>
+         * </ul>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "method_type", nulls = Nulls.SKIP)
+        public _FinalStage methodType(Optional<PaymentMethodMethodType> methodType) {
+            this.methodType = methodType;
+            return this;
+        }
+
+        /**
          * <p>The datetime that this object was modified by Merge.</p>
          * @return Reference to {@code this} so that method calls can be chained together.
          */
@@ -477,6 +509,26 @@ public final class PaymentMethod {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the payment method.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage paymentMethodUrl(String paymentMethodUrl) {
+            this.paymentMethodUrl = Optional.ofNullable(paymentMethodUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment method.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "payment_method_url", nulls = Nulls.SKIP)
+        public _FinalStage paymentMethodUrl(Optional<String> paymentMethodUrl) {
+            this.paymentMethodUrl = paymentMethodUrl;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.ofNullable(id);
@@ -494,6 +546,7 @@ public final class PaymentMethod {
         public PaymentMethod build() {
             return new PaymentMethod(
                     id,
+                    paymentMethodUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

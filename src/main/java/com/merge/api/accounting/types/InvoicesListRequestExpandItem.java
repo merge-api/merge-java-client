@@ -16,11 +16,17 @@ public final class InvoicesListRequestExpandItem {
     public static final InvoicesListRequestExpandItem LINE_ITEMS =
             new InvoicesListRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    public static final InvoicesListRequestExpandItem PAYMENTS =
-            new InvoicesListRequestExpandItem(Value.PAYMENTS, "payments");
-
     public static final InvoicesListRequestExpandItem TRACKING_CATEGORIES =
             new InvoicesListRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
+
+    public static final InvoicesListRequestExpandItem SALES_ORDERS =
+            new InvoicesListRequestExpandItem(Value.SALES_ORDERS, "sales_orders");
+
+    public static final InvoicesListRequestExpandItem COMPANY =
+            new InvoicesListRequestExpandItem(Value.COMPANY, "company");
+
+    public static final InvoicesListRequestExpandItem PAYMENTS =
+            new InvoicesListRequestExpandItem(Value.PAYMENTS, "payments");
 
     public static final InvoicesListRequestExpandItem PURCHASE_ORDERS =
             new InvoicesListRequestExpandItem(Value.PURCHASE_ORDERS, "purchase_orders");
@@ -39,9 +45,6 @@ public final class InvoicesListRequestExpandItem {
 
     public static final InvoicesListRequestExpandItem APPLIED_CREDIT_NOTES =
             new InvoicesListRequestExpandItem(Value.APPLIED_CREDIT_NOTES, "applied_credit_notes");
-
-    public static final InvoicesListRequestExpandItem COMPANY =
-            new InvoicesListRequestExpandItem(Value.COMPANY, "company");
 
     private final Value value;
 
@@ -82,10 +85,14 @@ public final class InvoicesListRequestExpandItem {
                 return visitor.visitAccountingPeriod();
             case LINE_ITEMS:
                 return visitor.visitLineItems();
-            case PAYMENTS:
-                return visitor.visitPayments();
             case TRACKING_CATEGORIES:
                 return visitor.visitTrackingCategories();
+            case SALES_ORDERS:
+                return visitor.visitSalesOrders();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PAYMENTS:
+                return visitor.visitPayments();
             case PURCHASE_ORDERS:
                 return visitor.visitPurchaseOrders();
             case EMPLOYEE:
@@ -98,8 +105,6 @@ public final class InvoicesListRequestExpandItem {
                 return visitor.visitAppliedPayments();
             case APPLIED_CREDIT_NOTES:
                 return visitor.visitAppliedCreditNotes();
-            case COMPANY:
-                return visitor.visitCompany();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -115,10 +120,14 @@ public final class InvoicesListRequestExpandItem {
                 return ACCOUNTING_PERIOD;
             case "line_items":
                 return LINE_ITEMS;
-            case "payments":
-                return PAYMENTS;
             case "tracking_categories":
                 return TRACKING_CATEGORIES;
+            case "sales_orders":
+                return SALES_ORDERS;
+            case "company":
+                return COMPANY;
+            case "payments":
+                return PAYMENTS;
             case "purchase_orders":
                 return PURCHASE_ORDERS;
             case "employee":
@@ -131,8 +140,6 @@ public final class InvoicesListRequestExpandItem {
                 return APPLIED_PAYMENTS;
             case "applied_credit_notes":
                 return APPLIED_CREDIT_NOTES;
-            case "company":
-                return COMPANY;
             default:
                 return new InvoicesListRequestExpandItem(Value.UNKNOWN, value);
         }
@@ -161,6 +168,8 @@ public final class InvoicesListRequestExpandItem {
 
         PURCHASE_ORDERS,
 
+        SALES_ORDERS,
+
         TRACKING_CATEGORIES,
 
         UNKNOWN
@@ -188,6 +197,8 @@ public final class InvoicesListRequestExpandItem {
         T visitPayments();
 
         T visitPurchaseOrders();
+
+        T visitSalesOrders();
 
         T visitTrackingCategories();
 

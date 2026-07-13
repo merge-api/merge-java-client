@@ -12,7 +12,9 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -20,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = FilesDownloadRequestMetaListRequest.Builder.class)
 public final class FilesDownloadRequestMetaListRequest {
+    private final Optional<List<String>> ids;
+
     private final Optional<String> createdAfter;
 
     private final Optional<String> createdBefore;
@@ -41,6 +45,7 @@ public final class FilesDownloadRequestMetaListRequest {
     private final Map<String, Object> additionalProperties;
 
     private FilesDownloadRequestMetaListRequest(
+            Optional<List<String>> ids,
             Optional<String> createdAfter,
             Optional<String> createdBefore,
             Optional<String> cursor,
@@ -51,6 +56,7 @@ public final class FilesDownloadRequestMetaListRequest {
             Optional<FilesDownloadRequestMetaListRequestOrderBy> orderBy,
             Optional<Integer> pageSize,
             Map<String, Object> additionalProperties) {
+        this.ids = ids;
         this.createdAfter = createdAfter;
         this.createdBefore = createdBefore;
         this.cursor = cursor;
@@ -61,6 +67,14 @@ public final class FilesDownloadRequestMetaListRequest {
         this.orderBy = orderBy;
         this.pageSize = pageSize;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return If provided, will only return objects with the given IDs. Comma-separated list of strings.
+     */
+    @JsonProperty("ids")
+    public Optional<List<String>> getIds() {
+        return ids;
     }
 
     /**
@@ -148,7 +162,8 @@ public final class FilesDownloadRequestMetaListRequest {
     }
 
     private boolean equalTo(FilesDownloadRequestMetaListRequest other) {
-        return createdAfter.equals(other.createdAfter)
+        return ids.equals(other.ids)
+                && createdAfter.equals(other.createdAfter)
                 && createdBefore.equals(other.createdBefore)
                 && cursor.equals(other.cursor)
                 && includeDeletedData.equals(other.includeDeletedData)
@@ -162,6 +177,7 @@ public final class FilesDownloadRequestMetaListRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.ids,
                 this.createdAfter,
                 this.createdBefore,
                 this.cursor,
@@ -184,6 +200,8 @@ public final class FilesDownloadRequestMetaListRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<List<String>> ids = Optional.empty();
+
         private Optional<String> createdAfter = Optional.empty();
 
         private Optional<String> createdBefore = Optional.empty();
@@ -208,6 +226,7 @@ public final class FilesDownloadRequestMetaListRequest {
         private Builder() {}
 
         public Builder from(FilesDownloadRequestMetaListRequest other) {
+            ids(other.getIds());
             createdAfter(other.getCreatedAfter());
             createdBefore(other.getCreatedBefore());
             cursor(other.getCursor());
@@ -217,6 +236,25 @@ public final class FilesDownloadRequestMetaListRequest {
             modifiedBefore(other.getModifiedBefore());
             orderBy(other.getOrderBy());
             pageSize(other.getPageSize());
+            return this;
+        }
+
+        /**
+         * <p>If provided, will only return objects with the given IDs. Comma-separated list of strings.</p>
+         */
+        @JsonSetter(value = "ids", nulls = Nulls.SKIP)
+        public Builder ids(Optional<List<String>> ids) {
+            this.ids = ids;
+            return this;
+        }
+
+        public Builder ids(List<String> ids) {
+            this.ids = Optional.ofNullable(ids);
+            return this;
+        }
+
+        public Builder ids(String ids) {
+            this.ids = Optional.of(Collections.singletonList(ids));
             return this;
         }
 
@@ -348,6 +386,7 @@ public final class FilesDownloadRequestMetaListRequest {
 
         public FilesDownloadRequestMetaListRequest build() {
             return new FilesDownloadRequestMetaListRequest(
+                    ids,
                     createdAfter,
                     createdBefore,
                     cursor,

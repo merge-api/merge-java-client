@@ -22,6 +22,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = BankFeedAccountRequest.Builder.class)
 public final class BankFeedAccountRequest {
+    private final Optional<String> bankFeedAccountUrl;
+
     private final Optional<String> sourceAccountId;
 
     private final Optional<String> targetAccountId;
@@ -49,6 +51,7 @@ public final class BankFeedAccountRequest {
     private final Map<String, Object> additionalProperties;
 
     private BankFeedAccountRequest(
+            Optional<String> bankFeedAccountUrl,
             Optional<String> sourceAccountId,
             Optional<String> targetAccountId,
             Optional<String> sourceAccountName,
@@ -62,6 +65,7 @@ public final class BankFeedAccountRequest {
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Map<String, Object> additionalProperties) {
+        this.bankFeedAccountUrl = bankFeedAccountUrl;
         this.sourceAccountId = sourceAccountId;
         this.targetAccountId = targetAccountId;
         this.sourceAccountName = sourceAccountName;
@@ -75,6 +79,14 @@ public final class BankFeedAccountRequest {
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the bank feed account.
+     */
+    @JsonProperty("bank_feed_account_url")
+    public Optional<String> getBankFeedAccountUrl() {
+        return bankFeedAccountUrl;
     }
 
     /**
@@ -495,7 +507,8 @@ public final class BankFeedAccountRequest {
     }
 
     private boolean equalTo(BankFeedAccountRequest other) {
-        return sourceAccountId.equals(other.sourceAccountId)
+        return bankFeedAccountUrl.equals(other.bankFeedAccountUrl)
+                && sourceAccountId.equals(other.sourceAccountId)
                 && targetAccountId.equals(other.targetAccountId)
                 && sourceAccountName.equals(other.sourceAccountName)
                 && sourceAccountNumber.equals(other.sourceAccountNumber)
@@ -512,6 +525,7 @@ public final class BankFeedAccountRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.bankFeedAccountUrl,
                 this.sourceAccountId,
                 this.targetAccountId,
                 this.sourceAccountName,
@@ -537,6 +551,8 @@ public final class BankFeedAccountRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> bankFeedAccountUrl = Optional.empty();
+
         private Optional<String> sourceAccountId = Optional.empty();
 
         private Optional<String> targetAccountId = Optional.empty();
@@ -567,6 +583,7 @@ public final class BankFeedAccountRequest {
         private Builder() {}
 
         public Builder from(BankFeedAccountRequest other) {
+            bankFeedAccountUrl(other.getBankFeedAccountUrl());
             sourceAccountId(other.getSourceAccountId());
             targetAccountId(other.getTargetAccountId());
             sourceAccountName(other.getSourceAccountName());
@@ -579,6 +596,20 @@ public final class BankFeedAccountRequest {
             accountType(other.getAccountType());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the bank feed account.</p>
+         */
+        @JsonSetter(value = "bank_feed_account_url", nulls = Nulls.SKIP)
+        public Builder bankFeedAccountUrl(Optional<String> bankFeedAccountUrl) {
+            this.bankFeedAccountUrl = bankFeedAccountUrl;
+            return this;
+        }
+
+        public Builder bankFeedAccountUrl(String bankFeedAccountUrl) {
+            this.bankFeedAccountUrl = Optional.ofNullable(bankFeedAccountUrl);
             return this;
         }
 
@@ -1062,6 +1093,7 @@ public final class BankFeedAccountRequest {
 
         public BankFeedAccountRequest build() {
             return new BankFeedAccountRequest(
+                    bankFeedAccountUrl,
                     sourceAccountId,
                     targetAccountId,
                     sourceAccountName,

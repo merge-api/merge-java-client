@@ -26,6 +26,8 @@ import org.jetbrains.annotations.NotNull;
 public final class Project {
     private final Optional<String> id;
 
+    private final Optional<String> projectUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
@@ -48,6 +50,7 @@ public final class Project {
 
     private Project(
             Optional<String> id,
+            Optional<String> projectUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -59,6 +62,7 @@ public final class Project {
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.projectUrl = projectUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -74,6 +78,14 @@ public final class Project {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the project.
+     */
+    @JsonProperty("project_url")
+    public Optional<String> getProjectUrl() {
+        return projectUrl;
     }
 
     /**
@@ -155,6 +167,7 @@ public final class Project {
 
     private boolean equalTo(Project other) {
         return id.equals(other.id)
+                && projectUrl.equals(other.projectUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -170,6 +183,7 @@ public final class Project {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.projectUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -205,6 +219,13 @@ public final class Project {
         _FinalStage id(Optional<String> id);
 
         _FinalStage id(String id);
+
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         */
+        _FinalStage projectUrl(Optional<String> projectUrl);
+
+        _FinalStage projectUrl(String projectUrl);
 
         /**
          * <p>The third-party API ID of the matching object.</p>
@@ -277,6 +298,8 @@ public final class Project {
 
         private Optional<String> remoteId = Optional.empty();
 
+        private Optional<String> projectUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         @JsonAnySetter
@@ -287,6 +310,7 @@ public final class Project {
         @java.lang.Override
         public Builder from(Project other) {
             id(other.getId());
+            projectUrl(other.getProjectUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -457,6 +481,26 @@ public final class Project {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         * @return Reference to {@code this} so that method calls can be chained together.
+         */
+        @java.lang.Override
+        public _FinalStage projectUrl(String projectUrl) {
+            this.projectUrl = Optional.ofNullable(projectUrl);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the project.</p>
+         */
+        @java.lang.Override
+        @JsonSetter(value = "project_url", nulls = Nulls.SKIP)
+        public _FinalStage projectUrl(Optional<String> projectUrl) {
+            this.projectUrl = projectUrl;
+            return this;
+        }
+
         @java.lang.Override
         public _FinalStage id(String id) {
             this.id = Optional.ofNullable(id);
@@ -474,6 +518,7 @@ public final class Project {
         public Project build() {
             return new Project(
                     id,
+                    projectUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

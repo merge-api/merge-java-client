@@ -41,6 +41,8 @@ public final class CompanyInfoListRequest {
 
     private final Optional<OffsetDateTime> modifiedBefore;
 
+    private final Optional<String> name;
+
     private final Optional<Integer> pageSize;
 
     private final Optional<String> remoteId;
@@ -57,6 +59,7 @@ public final class CompanyInfoListRequest {
             Optional<Boolean> includeShellData,
             Optional<OffsetDateTime> modifiedAfter,
             Optional<OffsetDateTime> modifiedBefore,
+            Optional<String> name,
             Optional<Integer> pageSize,
             Optional<String> remoteId,
             Map<String, Object> additionalProperties) {
@@ -69,6 +72,7 @@ public final class CompanyInfoListRequest {
         this.includeShellData = includeShellData;
         this.modifiedAfter = modifiedAfter;
         this.modifiedBefore = modifiedBefore;
+        this.name = name;
         this.pageSize = pageSize;
         this.remoteId = remoteId;
         this.additionalProperties = additionalProperties;
@@ -147,7 +151,15 @@ public final class CompanyInfoListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return If provided, will only return CompanyInfo objects with this name.
+     */
+    @JsonProperty("name")
+    public Optional<String> getName() {
+        return name;
+    }
+
+    /**
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -183,6 +195,7 @@ public final class CompanyInfoListRequest {
                 && includeShellData.equals(other.includeShellData)
                 && modifiedAfter.equals(other.modifiedAfter)
                 && modifiedBefore.equals(other.modifiedBefore)
+                && name.equals(other.name)
                 && pageSize.equals(other.pageSize)
                 && remoteId.equals(other.remoteId);
     }
@@ -199,6 +212,7 @@ public final class CompanyInfoListRequest {
                 this.includeShellData,
                 this.modifiedAfter,
                 this.modifiedBefore,
+                this.name,
                 this.pageSize,
                 this.remoteId);
     }
@@ -232,6 +246,8 @@ public final class CompanyInfoListRequest {
 
         private Optional<OffsetDateTime> modifiedBefore = Optional.empty();
 
+        private Optional<String> name = Optional.empty();
+
         private Optional<Integer> pageSize = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -251,6 +267,7 @@ public final class CompanyInfoListRequest {
             includeShellData(other.getIncludeShellData());
             modifiedAfter(other.getModifiedAfter());
             modifiedBefore(other.getModifiedBefore());
+            name(other.getName());
             pageSize(other.getPageSize());
             remoteId(other.getRemoteId());
             return this;
@@ -388,7 +405,21 @@ public final class CompanyInfoListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>If provided, will only return CompanyInfo objects with this name.</p>
+         */
+        @JsonSetter(value = "name", nulls = Nulls.SKIP)
+        public Builder name(Optional<String> name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder name(String name) {
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        /**
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {
@@ -426,6 +457,7 @@ public final class CompanyInfoListRequest {
                     includeShellData,
                     modifiedAfter,
                     modifiedBefore,
+                    name,
                     pageSize,
                     remoteId,
                     additionalProperties);

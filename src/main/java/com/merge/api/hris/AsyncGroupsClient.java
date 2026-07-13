@@ -9,6 +9,8 @@ import com.merge.api.core.SyncPagingIterable;
 import com.merge.api.hris.types.Group;
 import com.merge.api.hris.types.GroupsListRequest;
 import com.merge.api.hris.types.GroupsRetrieveRequest;
+import com.merge.api.hris.types.GroupsTypesListRequest;
+import com.merge.api.hris.types.GroupsTypesListResponse;
 import java.util.concurrent.CompletableFuture;
 
 public class AsyncGroupsClient {
@@ -68,5 +70,27 @@ public class AsyncGroupsClient {
      */
     public CompletableFuture<Group> retrieve(String id, GroupsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<GroupsTypesListResponse> typesList() {
+        return this.rawClient.typesList().thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<GroupsTypesListResponse> typesList(GroupsTypesListRequest request) {
+        return this.rawClient.typesList(request).thenApply(response -> response.body());
+    }
+
+    /**
+     * Returns a list of distinct group type values from the Groups common model.
+     */
+    public CompletableFuture<GroupsTypesListResponse> typesList(
+            GroupsTypesListRequest request, RequestOptions requestOptions) {
+        return this.rawClient.typesList(request, requestOptions).thenApply(response -> response.body());
     }
 }

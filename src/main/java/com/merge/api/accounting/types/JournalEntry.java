@@ -25,6 +25,8 @@ import java.util.Optional;
 public final class JournalEntry {
     private final Optional<String> id;
 
+    private final Optional<String> journalEntryUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
@@ -47,7 +49,7 @@ public final class JournalEntry {
 
     private final Optional<Boolean> inclusiveOfTax;
 
-    private final Optional<List<JournalLine>> lines;
+    private final Optional<List<JournalEntryLinesItem>> lines;
 
     private final Optional<String> journalNumber;
 
@@ -73,6 +75,7 @@ public final class JournalEntry {
 
     private JournalEntry(
             Optional<String> id,
+            Optional<String> journalEntryUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -84,7 +87,7 @@ public final class JournalEntry {
             Optional<String> exchangeRate,
             Optional<JournalEntryCompany> company,
             Optional<Boolean> inclusiveOfTax,
-            Optional<List<JournalLine>> lines,
+            Optional<List<JournalEntryLinesItem>> lines,
             Optional<String> journalNumber,
             Optional<List<Optional<JournalEntryTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> remoteWasDeleted,
@@ -97,6 +100,7 @@ public final class JournalEntry {
             Optional<List<RemoteField>> remoteFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.journalEntryUrl = journalEntryUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -125,6 +129,14 @@ public final class JournalEntry {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the journal entry.
+     */
+    @JsonProperty("journal_entry_url")
+    public Optional<String> getJournalEntryUrl() {
+        return journalEntryUrl;
     }
 
     /**
@@ -524,7 +536,7 @@ public final class JournalEntry {
     }
 
     @JsonProperty("lines")
-    public Optional<List<JournalLine>> getLines() {
+    public Optional<List<JournalEntryLinesItem>> getLines() {
         return lines;
     }
 
@@ -613,6 +625,7 @@ public final class JournalEntry {
 
     private boolean equalTo(JournalEntry other) {
         return id.equals(other.id)
+                && journalEntryUrl.equals(other.journalEntryUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -641,6 +654,7 @@ public final class JournalEntry {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.journalEntryUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -678,6 +692,8 @@ public final class JournalEntry {
     public static final class Builder {
         private Optional<String> id = Optional.empty();
 
+        private Optional<String> journalEntryUrl = Optional.empty();
+
         private Optional<String> remoteId = Optional.empty();
 
         private Optional<OffsetDateTime> createdAt = Optional.empty();
@@ -700,7 +716,7 @@ public final class JournalEntry {
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
-        private Optional<List<JournalLine>> lines = Optional.empty();
+        private Optional<List<JournalEntryLinesItem>> lines = Optional.empty();
 
         private Optional<String> journalNumber = Optional.empty();
 
@@ -729,6 +745,7 @@ public final class JournalEntry {
 
         public Builder from(JournalEntry other) {
             id(other.getId());
+            journalEntryUrl(other.getJournalEntryUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -762,6 +779,20 @@ public final class JournalEntry {
 
         public Builder id(String id) {
             this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the journal entry.</p>
+         */
+        @JsonSetter(value = "journal_entry_url", nulls = Nulls.SKIP)
+        public Builder journalEntryUrl(Optional<String> journalEntryUrl) {
+            this.journalEntryUrl = journalEntryUrl;
+            return this;
+        }
+
+        public Builder journalEntryUrl(String journalEntryUrl) {
+            this.journalEntryUrl = Optional.ofNullable(journalEntryUrl);
             return this;
         }
 
@@ -1228,12 +1259,12 @@ public final class JournalEntry {
         }
 
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
-        public Builder lines(Optional<List<JournalLine>> lines) {
+        public Builder lines(Optional<List<JournalEntryLinesItem>> lines) {
             this.lines = lines;
             return this;
         }
 
-        public Builder lines(List<JournalLine> lines) {
+        public Builder lines(List<JournalEntryLinesItem> lines) {
             this.lines = Optional.ofNullable(lines);
             return this;
         }
@@ -1374,6 +1405,7 @@ public final class JournalEntry {
         public JournalEntry build() {
             return new JournalEntry(
                     id,
+                    journalEntryUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

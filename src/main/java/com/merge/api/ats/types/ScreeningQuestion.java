@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -41,7 +40,7 @@ public final class ScreeningQuestion {
 
     private final Optional<Boolean> required;
 
-    private final Optional<List<JsonNode>> options;
+    private final Optional<List<ScreeningQuestionOptionsItem>> options;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -57,7 +56,7 @@ public final class ScreeningQuestion {
             Optional<String> title,
             Optional<ScreeningQuestionType> type,
             Optional<Boolean> required,
-            Optional<List<JsonNode>> options,
+            Optional<List<ScreeningQuestionOptionsItem>> options,
             Optional<Boolean> remoteWasDeleted,
             Map<String, Object> additionalProperties) {
         this.id = id;
@@ -154,7 +153,7 @@ public final class ScreeningQuestion {
     }
 
     @JsonProperty("options")
-    public Optional<List<JsonNode>> getOptions() {
+    public Optional<List<ScreeningQuestionOptionsItem>> getOptions() {
         return options;
     }
 
@@ -236,7 +235,7 @@ public final class ScreeningQuestion {
 
         private Optional<Boolean> required = Optional.empty();
 
-        private Optional<List<JsonNode>> options = Optional.empty();
+        private Optional<List<ScreeningQuestionOptionsItem>> options = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -394,12 +393,12 @@ public final class ScreeningQuestion {
         }
 
         @JsonSetter(value = "options", nulls = Nulls.SKIP)
-        public Builder options(Optional<List<JsonNode>> options) {
+        public Builder options(Optional<List<ScreeningQuestionOptionsItem>> options) {
             this.options = options;
             return this;
         }
 
-        public Builder options(List<JsonNode> options) {
+        public Builder options(List<ScreeningQuestionOptionsItem> options) {
             this.options = Optional.ofNullable(options);
             return this;
         }

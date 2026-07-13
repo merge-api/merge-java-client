@@ -51,7 +51,7 @@ public final class PurchaseOrderRequest {
 
     private final Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<PurchaseOrderLineItemRequest>> lineItems;
+    private final Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -76,7 +76,7 @@ public final class PurchaseOrderRequest {
             Optional<Boolean> inclusiveOfTax,
             Optional<String> exchangeRate,
             Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<PurchaseOrderLineItemRequest>> lineItems,
+            Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
@@ -527,7 +527,7 @@ public final class PurchaseOrderRequest {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<PurchaseOrderLineItemRequest>> getLineItems() {
+    public Optional<List<PurchaseOrderRequestLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -641,7 +641,7 @@ public final class PurchaseOrderRequest {
         private Optional<List<Optional<PurchaseOrderRequestTrackingCategoriesItem>>> trackingCategories =
                 Optional.empty();
 
-        private Optional<List<PurchaseOrderLineItemRequest>> lineItems = Optional.empty();
+        private Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -1187,12 +1187,12 @@ public final class PurchaseOrderRequest {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<PurchaseOrderLineItemRequest>> lineItems) {
+        public Builder lineItems(Optional<List<PurchaseOrderRequestLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<PurchaseOrderLineItemRequest> lineItems) {
+        public Builder lineItems(List<PurchaseOrderRequestLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }

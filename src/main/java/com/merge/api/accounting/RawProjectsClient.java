@@ -14,7 +14,11 @@ import com.merge.api.core.MergeException;
 import com.merge.api.core.ObjectMappers;
 import com.merge.api.core.QueryStringMapper;
 import com.merge.api.core.RequestOptions;
+import com.merge.api.core.SyncPagingIterable;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
@@ -32,24 +36,37 @@ public class RawProjectsClient {
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public MergeApiHttpResponse<PaginatedProjectList> list() {
+    public MergeApiHttpResponse<SyncPagingIterable<Project>> list() {
         return list(ProjectsListRequest.builder().build());
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public MergeApiHttpResponse<PaginatedProjectList> list(ProjectsListRequest request) {
+    public MergeApiHttpResponse<SyncPagingIterable<Project>> list(ProjectsListRequest request) {
         return list(request, null);
     }
 
     /**
      * Returns a list of <code>Project</code> objects.
      */
-    public MergeApiHttpResponse<PaginatedProjectList> list(ProjectsListRequest request, RequestOptions requestOptions) {
+    public MergeApiHttpResponse<SyncPagingIterable<Project>> list(
+            ProjectsListRequest request, RequestOptions requestOptions) {
         HttpUrl.Builder httpUrl = HttpUrl.parse(this.clientOptions.environment().getUrl())
                 .newBuilder()
                 .addPathSegments("accounting/v1/projects");
+        if (request.getCompanyId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "company_id", request.getCompanyId().get(), false);
+        }
+        if (request.getCreatedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_after", request.getCreatedAfter().get(), false);
+        }
+        if (request.getCreatedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "created_before", request.getCreatedBefore().get(), false);
+        }
         if (request.getCursor().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "cursor", request.getCursor().get(), false);
@@ -72,9 +89,25 @@ public class RawProjectsClient {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "include_shell_data", request.getIncludeShellData().get(), false);
         }
+        if (request.getIsActive().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "is_active", request.getIsActive().get(), false);
+        }
+        if (request.getModifiedAfter().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_after", request.getModifiedAfter().get(), false);
+        }
+        if (request.getModifiedBefore().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "modified_before", request.getModifiedBefore().get(), false);
+        }
         if (request.getPageSize().isPresent()) {
             QueryStringMapper.addQueryParameter(
                     httpUrl, "page_size", request.getPageSize().get(), false);
+        }
+        if (request.getRemoteId().isPresent()) {
+            QueryStringMapper.addQueryParameter(
+                    httpUrl, "remote_id", request.getRemoteId().get(), false);
         }
         if (request.getExpand().isPresent()) {
             QueryStringMapper.addQueryParameter(
@@ -92,17 +125,24 @@ public class RawProjectsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
+                PaginatedProjectList parsedResponse =
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, PaginatedProjectList.class);
+                Optional<String> startingAfter = parsedResponse.getNext();
+                ProjectsListRequest nextRequest = ProjectsListRequest.builder()
+                        .from(request)
+                        .cursor(startingAfter)
+                        .build();
+                List<Project> result = parsedResponse.getResults().orElse(Collections.emptyList());
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), PaginatedProjectList.class),
+                        new SyncPagingIterable<Project>(startingAfter.isPresent(), result, parsedResponse, () -> list(
+                                        nextRequest, requestOptions)
+                                .body()),
                         response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }
@@ -158,16 +198,13 @@ public class RawProjectsClient {
         }
         try (Response response = client.newCall(okhttpRequest).execute()) {
             ResponseBody responseBody = response.body();
+            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
             if (response.isSuccessful()) {
                 return new MergeApiHttpResponse<>(
-                        ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), Project.class), response);
+                        ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Project.class), response);
             }
-            String responseBodyString = responseBody != null ? responseBody.string() : "{}";
-            throw new ApiError(
-                    "Error with status code " + response.code(),
-                    response.code(),
-                    ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                    response);
+            Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
+            throw new ApiError("Error with status code " + response.code(), response.code(), errorBody, response);
         } catch (IOException e) {
             throw new MergeException("Network error executing HTTP request", e);
         }

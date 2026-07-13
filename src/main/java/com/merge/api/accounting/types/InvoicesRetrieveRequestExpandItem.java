@@ -16,11 +16,17 @@ public final class InvoicesRetrieveRequestExpandItem {
     public static final InvoicesRetrieveRequestExpandItem LINE_ITEMS =
             new InvoicesRetrieveRequestExpandItem(Value.LINE_ITEMS, "line_items");
 
-    public static final InvoicesRetrieveRequestExpandItem PAYMENTS =
-            new InvoicesRetrieveRequestExpandItem(Value.PAYMENTS, "payments");
-
     public static final InvoicesRetrieveRequestExpandItem TRACKING_CATEGORIES =
             new InvoicesRetrieveRequestExpandItem(Value.TRACKING_CATEGORIES, "tracking_categories");
+
+    public static final InvoicesRetrieveRequestExpandItem SALES_ORDERS =
+            new InvoicesRetrieveRequestExpandItem(Value.SALES_ORDERS, "sales_orders");
+
+    public static final InvoicesRetrieveRequestExpandItem COMPANY =
+            new InvoicesRetrieveRequestExpandItem(Value.COMPANY, "company");
+
+    public static final InvoicesRetrieveRequestExpandItem PAYMENTS =
+            new InvoicesRetrieveRequestExpandItem(Value.PAYMENTS, "payments");
 
     public static final InvoicesRetrieveRequestExpandItem PURCHASE_ORDERS =
             new InvoicesRetrieveRequestExpandItem(Value.PURCHASE_ORDERS, "purchase_orders");
@@ -39,9 +45,6 @@ public final class InvoicesRetrieveRequestExpandItem {
 
     public static final InvoicesRetrieveRequestExpandItem APPLIED_CREDIT_NOTES =
             new InvoicesRetrieveRequestExpandItem(Value.APPLIED_CREDIT_NOTES, "applied_credit_notes");
-
-    public static final InvoicesRetrieveRequestExpandItem COMPANY =
-            new InvoicesRetrieveRequestExpandItem(Value.COMPANY, "company");
 
     private final Value value;
 
@@ -82,10 +85,14 @@ public final class InvoicesRetrieveRequestExpandItem {
                 return visitor.visitAccountingPeriod();
             case LINE_ITEMS:
                 return visitor.visitLineItems();
-            case PAYMENTS:
-                return visitor.visitPayments();
             case TRACKING_CATEGORIES:
                 return visitor.visitTrackingCategories();
+            case SALES_ORDERS:
+                return visitor.visitSalesOrders();
+            case COMPANY:
+                return visitor.visitCompany();
+            case PAYMENTS:
+                return visitor.visitPayments();
             case PURCHASE_ORDERS:
                 return visitor.visitPurchaseOrders();
             case EMPLOYEE:
@@ -98,8 +105,6 @@ public final class InvoicesRetrieveRequestExpandItem {
                 return visitor.visitAppliedPayments();
             case APPLIED_CREDIT_NOTES:
                 return visitor.visitAppliedCreditNotes();
-            case COMPANY:
-                return visitor.visitCompany();
             case UNKNOWN:
             default:
                 return visitor.visitUnknown(string);
@@ -115,10 +120,14 @@ public final class InvoicesRetrieveRequestExpandItem {
                 return ACCOUNTING_PERIOD;
             case "line_items":
                 return LINE_ITEMS;
-            case "payments":
-                return PAYMENTS;
             case "tracking_categories":
                 return TRACKING_CATEGORIES;
+            case "sales_orders":
+                return SALES_ORDERS;
+            case "company":
+                return COMPANY;
+            case "payments":
+                return PAYMENTS;
             case "purchase_orders":
                 return PURCHASE_ORDERS;
             case "employee":
@@ -131,8 +140,6 @@ public final class InvoicesRetrieveRequestExpandItem {
                 return APPLIED_PAYMENTS;
             case "applied_credit_notes":
                 return APPLIED_CREDIT_NOTES;
-            case "company":
-                return COMPANY;
             default:
                 return new InvoicesRetrieveRequestExpandItem(Value.UNKNOWN, value);
         }
@@ -161,6 +168,8 @@ public final class InvoicesRetrieveRequestExpandItem {
 
         PURCHASE_ORDERS,
 
+        SALES_ORDERS,
+
         TRACKING_CATEGORIES,
 
         UNKNOWN
@@ -188,6 +197,8 @@ public final class InvoicesRetrieveRequestExpandItem {
         T visitPayments();
 
         T visitPurchaseOrders();
+
+        T visitSalesOrders();
 
         T visitTrackingCategories();
 

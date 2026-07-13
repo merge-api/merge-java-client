@@ -23,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Account.Builder.class)
 public final class Account {
+    private final Optional<String> accountUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -51,7 +53,7 @@ public final class Account {
 
     private final Optional<String> parentAccount;
 
-    private final Optional<String> company;
+    private final Optional<AccountCompany> company;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -62,6 +64,7 @@ public final class Account {
     private final Map<String, Object> additionalProperties;
 
     private Account(
+            Optional<String> accountUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -76,11 +79,12 @@ public final class Account {
             Optional<AccountCurrency> currency,
             Optional<String> accountNumber,
             Optional<String> parentAccount,
-            Optional<String> company,
+            Optional<AccountCompany> company,
             Optional<Boolean> remoteWasDeleted,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.accountUrl = accountUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -100,6 +104,14 @@ public final class Account {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the account.
+     */
+    @JsonProperty("account_url")
+    public Optional<String> getAccountUrl() {
+        return accountUrl;
     }
 
     @JsonProperty("id")
@@ -550,7 +562,7 @@ public final class Account {
      * @return The company the account belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<AccountCompany> getCompany() {
         return company;
     }
 
@@ -584,7 +596,8 @@ public final class Account {
     }
 
     private boolean equalTo(Account other) {
-        return id.equals(other.id)
+        return accountUrl.equals(other.accountUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -607,6 +620,7 @@ public final class Account {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.accountUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -638,6 +652,8 @@ public final class Account {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> accountUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -666,7 +682,7 @@ public final class Account {
 
         private Optional<String> parentAccount = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<AccountCompany> company = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -680,6 +696,7 @@ public final class Account {
         private Builder() {}
 
         public Builder from(Account other) {
+            accountUrl(other.getAccountUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -698,6 +715,20 @@ public final class Account {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the account.</p>
+         */
+        @JsonSetter(value = "account_url", nulls = Nulls.SKIP)
+        public Builder accountUrl(Optional<String> accountUrl) {
+            this.accountUrl = accountUrl;
+            return this;
+        }
+
+        public Builder accountUrl(String accountUrl) {
+            this.accountUrl = Optional.ofNullable(accountUrl);
             return this;
         }
 
@@ -1233,12 +1264,12 @@ public final class Account {
          * <p>The company the account belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<AccountCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(AccountCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -1281,6 +1312,7 @@ public final class Account {
 
         public Account build() {
             return new Account(
+                    accountUrl,
                     id,
                     remoteId,
                     createdAt,

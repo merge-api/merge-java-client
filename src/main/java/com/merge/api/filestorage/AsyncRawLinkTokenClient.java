@@ -34,14 +34,14 @@ public class AsyncRawLinkTokenClient {
     }
 
     /**
-     * Creates a link token to be used when linking a new end user.
+     * Creates a link token to be used when linking a new end user. The link token expires after single use.
      */
     public CompletableFuture<MergeApiHttpResponse<LinkToken>> create(EndUserDetailsRequest request) {
         return create(request, null);
     }
 
     /**
-     * Creates a link token to be used when linking a new end user.
+     * Creates a link token to be used when linking a new end user. The link token expires after single use.
      */
     public CompletableFuture<MergeApiHttpResponse<LinkToken>> create(
             EndUserDetailsRequest request, RequestOptions requestOptions) {
@@ -72,17 +72,15 @@ public class AsyncRawLinkTokenClient {
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 try (ResponseBody responseBody = response.body()) {
+                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
                     if (response.isSuccessful()) {
                         future.complete(new MergeApiHttpResponse<>(
-                                ObjectMappers.JSON_MAPPER.readValue(responseBody.string(), LinkToken.class), response));
+                                ObjectMappers.JSON_MAPPER.readValue(responseBodyString, LinkToken.class), response));
                         return;
                     }
-                    String responseBodyString = responseBody != null ? responseBody.string() : "{}";
+                    Object errorBody = ObjectMappers.parseErrorBody(responseBodyString);
                     future.completeExceptionally(new ApiError(
-                            "Error with status code " + response.code(),
-                            response.code(),
-                            ObjectMappers.JSON_MAPPER.readValue(responseBodyString, Object.class),
-                            response));
+                            "Error with status code " + response.code(), response.code(), errorBody, response));
                     return;
                 } catch (IOException e) {
                     future.completeExceptionally(new MergeException("Network error executing HTTP request", e));

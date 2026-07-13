@@ -41,6 +41,8 @@ public final class Task {
 
     private final Optional<TaskOpportunity> opportunity;
 
+    private final Optional<TaskContact> contact;
+
     private final Optional<OffsetDateTime> completedDate;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -67,6 +69,7 @@ public final class Task {
             Optional<TaskOwner> owner,
             Optional<TaskAccount> account,
             Optional<TaskOpportunity> opportunity,
+            Optional<TaskContact> contact,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
             Optional<TaskStatus> status,
@@ -84,6 +87,7 @@ public final class Task {
         this.owner = owner;
         this.account = account;
         this.opportunity = opportunity;
+        this.contact = contact;
         this.completedDate = completedDate;
         this.dueDate = dueDate;
         this.status = status;
@@ -164,6 +168,14 @@ public final class Task {
     }
 
     /**
+     * @return The task's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<TaskContact> getContact() {
+        return contact;
+    }
+
+    /**
      * @return When the task is completed.
      */
     @JsonProperty("completed_date")
@@ -235,6 +247,7 @@ public final class Task {
                 && owner.equals(other.owner)
                 && account.equals(other.account)
                 && opportunity.equals(other.opportunity)
+                && contact.equals(other.contact)
                 && completedDate.equals(other.completedDate)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -256,6 +269,7 @@ public final class Task {
                 this.owner,
                 this.account,
                 this.opportunity,
+                this.contact,
                 this.completedDate,
                 this.dueDate,
                 this.status,
@@ -294,6 +308,8 @@ public final class Task {
 
         private Optional<TaskOpportunity> opportunity = Optional.empty();
 
+        private Optional<TaskContact> contact = Optional.empty();
+
         private Optional<OffsetDateTime> completedDate = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -323,6 +339,7 @@ public final class Task {
             owner(other.getOwner());
             account(other.getAccount());
             opportunity(other.getOpportunity());
+            contact(other.getContact());
             completedDate(other.getCompletedDate());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -457,6 +474,20 @@ public final class Task {
         }
 
         /**
+         * <p>The task's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<TaskContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(TaskContact contact) {
+            this.contact = Optional.ofNullable(contact);
+            return this;
+        }
+
+        /**
          * <p>When the task is completed.</p>
          */
         @JsonSetter(value = "completed_date", nulls = Nulls.SKIP)
@@ -560,6 +591,7 @@ public final class Task {
                     owner,
                     account,
                     opportunity,
+                    contact,
                     completedDate,
                     dueDate,
                     status,

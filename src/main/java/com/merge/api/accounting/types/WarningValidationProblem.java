@@ -29,6 +29,12 @@ public final class WarningValidationProblem {
 
     private final String problemType;
 
+    private final Optional<Boolean> blockMergeLink;
+
+    private final Optional<String> rawError;
+
+    private final Optional<Integer> errorCode;
+
     private final Map<String, Object> additionalProperties;
 
     private WarningValidationProblem(
@@ -36,11 +42,17 @@ public final class WarningValidationProblem {
             String title,
             String detail,
             String problemType,
+            Optional<Boolean> blockMergeLink,
+            Optional<String> rawError,
+            Optional<Integer> errorCode,
             Map<String, Object> additionalProperties) {
         this.source = source;
         this.title = title;
         this.detail = detail;
         this.problemType = problemType;
+        this.blockMergeLink = blockMergeLink;
+        this.rawError = rawError;
+        this.errorCode = errorCode;
         this.additionalProperties = additionalProperties;
     }
 
@@ -64,6 +76,21 @@ public final class WarningValidationProblem {
         return problemType;
     }
 
+    @JsonProperty("block_merge_link")
+    public Optional<Boolean> getBlockMergeLink() {
+        return blockMergeLink;
+    }
+
+    @JsonProperty("raw_error")
+    public Optional<String> getRawError() {
+        return rawError;
+    }
+
+    @JsonProperty("error_code")
+    public Optional<Integer> getErrorCode() {
+        return errorCode;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -79,12 +106,22 @@ public final class WarningValidationProblem {
         return source.equals(other.source)
                 && title.equals(other.title)
                 && detail.equals(other.detail)
-                && problemType.equals(other.problemType);
+                && problemType.equals(other.problemType)
+                && blockMergeLink.equals(other.blockMergeLink)
+                && rawError.equals(other.rawError)
+                && errorCode.equals(other.errorCode);
     }
 
     @java.lang.Override
     public int hashCode() {
-        return Objects.hash(this.source, this.title, this.detail, this.problemType);
+        return Objects.hash(
+                this.source,
+                this.title,
+                this.detail,
+                this.problemType,
+                this.blockMergeLink,
+                this.rawError,
+                this.errorCode);
     }
 
     @java.lang.Override
@@ -116,6 +153,18 @@ public final class WarningValidationProblem {
         _FinalStage source(Optional<ValidationProblemSource> source);
 
         _FinalStage source(ValidationProblemSource source);
+
+        _FinalStage blockMergeLink(Optional<Boolean> blockMergeLink);
+
+        _FinalStage blockMergeLink(Boolean blockMergeLink);
+
+        _FinalStage rawError(Optional<String> rawError);
+
+        _FinalStage rawError(String rawError);
+
+        _FinalStage errorCode(Optional<Integer> errorCode);
+
+        _FinalStage errorCode(Integer errorCode);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -125,6 +174,12 @@ public final class WarningValidationProblem {
         private String detail;
 
         private String problemType;
+
+        private Optional<Integer> errorCode = Optional.empty();
+
+        private Optional<String> rawError = Optional.empty();
+
+        private Optional<Boolean> blockMergeLink = Optional.empty();
 
         private Optional<ValidationProblemSource> source = Optional.empty();
 
@@ -139,6 +194,9 @@ public final class WarningValidationProblem {
             title(other.getTitle());
             detail(other.getDetail());
             problemType(other.getProblemType());
+            blockMergeLink(other.getBlockMergeLink());
+            rawError(other.getRawError());
+            errorCode(other.getErrorCode());
             return this;
         }
 
@@ -164,6 +222,45 @@ public final class WarningValidationProblem {
         }
 
         @java.lang.Override
+        public _FinalStage errorCode(Integer errorCode) {
+            this.errorCode = Optional.ofNullable(errorCode);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "error_code", nulls = Nulls.SKIP)
+        public _FinalStage errorCode(Optional<Integer> errorCode) {
+            this.errorCode = errorCode;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage rawError(String rawError) {
+            this.rawError = Optional.ofNullable(rawError);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "raw_error", nulls = Nulls.SKIP)
+        public _FinalStage rawError(Optional<String> rawError) {
+            this.rawError = rawError;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage blockMergeLink(Boolean blockMergeLink) {
+            this.blockMergeLink = Optional.ofNullable(blockMergeLink);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "block_merge_link", nulls = Nulls.SKIP)
+        public _FinalStage blockMergeLink(Optional<Boolean> blockMergeLink) {
+            this.blockMergeLink = blockMergeLink;
+            return this;
+        }
+
+        @java.lang.Override
         public _FinalStage source(ValidationProblemSource source) {
             this.source = Optional.ofNullable(source);
             return this;
@@ -178,7 +275,8 @@ public final class WarningValidationProblem {
 
         @java.lang.Override
         public WarningValidationProblem build() {
-            return new WarningValidationProblem(source, title, detail, problemType, additionalProperties);
+            return new WarningValidationProblem(
+                    source, title, detail, problemType, blockMergeLink, rawError, errorCode, additionalProperties);
         }
     }
 }

@@ -33,6 +33,8 @@ public final class PatchedTaskRequest {
 
     private final Optional<String> opportunity;
 
+    private final Optional<String> contact;
+
     private final Optional<OffsetDateTime> completedDate;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -53,6 +55,7 @@ public final class PatchedTaskRequest {
             Optional<String> owner,
             Optional<String> account,
             Optional<String> opportunity,
+            Optional<String> contact,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
             Optional<PatchedTaskRequestStatus> status,
@@ -65,6 +68,7 @@ public final class PatchedTaskRequest {
         this.owner = owner;
         this.account = account;
         this.opportunity = opportunity;
+        this.contact = contact;
         this.completedDate = completedDate;
         this.dueDate = dueDate;
         this.status = status;
@@ -112,6 +116,14 @@ public final class PatchedTaskRequest {
     @JsonProperty("opportunity")
     public Optional<String> getOpportunity() {
         return opportunity;
+    }
+
+    /**
+     * @return The task's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<String> getContact() {
+        return contact;
     }
 
     /**
@@ -174,6 +186,7 @@ public final class PatchedTaskRequest {
                 && owner.equals(other.owner)
                 && account.equals(other.account)
                 && opportunity.equals(other.opportunity)
+                && contact.equals(other.contact)
                 && completedDate.equals(other.completedDate)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -190,6 +203,7 @@ public final class PatchedTaskRequest {
                 this.owner,
                 this.account,
                 this.opportunity,
+                this.contact,
                 this.completedDate,
                 this.dueDate,
                 this.status,
@@ -219,6 +233,8 @@ public final class PatchedTaskRequest {
 
         private Optional<String> opportunity = Optional.empty();
 
+        private Optional<String> contact = Optional.empty();
+
         private Optional<OffsetDateTime> completedDate = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -242,6 +258,7 @@ public final class PatchedTaskRequest {
             owner(other.getOwner());
             account(other.getAccount());
             opportunity(other.getOpportunity());
+            contact(other.getContact());
             completedDate(other.getCompletedDate());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -318,6 +335,20 @@ public final class PatchedTaskRequest {
 
         public Builder opportunity(String opportunity) {
             this.opportunity = Optional.ofNullable(opportunity);
+            return this;
+        }
+
+        /**
+         * <p>The task's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<String> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(String contact) {
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -407,6 +438,7 @@ public final class PatchedTaskRequest {
                     owner,
                     account,
                     opportunity,
+                    contact,
                     completedDate,
                     dueDate,
                     status,

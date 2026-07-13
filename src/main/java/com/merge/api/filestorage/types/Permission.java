@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -38,6 +39,10 @@ public final class Permission {
 
     private final Optional<List<Optional<PermissionRolesItem>>> roles;
 
+    private final Optional<Boolean> remoteWasDeleted;
+
+    private final Optional<Map<String, JsonNode>> fieldMappings;
+
     private final Map<String, Object> additionalProperties;
 
     private Permission(
@@ -49,6 +54,8 @@ public final class Permission {
             Optional<PermissionGroup> group,
             Optional<PermissionType> type,
             Optional<List<Optional<PermissionRolesItem>>> roles,
+            Optional<Boolean> remoteWasDeleted,
+            Optional<Map<String, JsonNode>> fieldMappings,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -58,6 +65,8 @@ public final class Permission {
         this.group = group;
         this.type = type;
         this.roles = roles;
+        this.remoteWasDeleted = remoteWasDeleted;
+        this.fieldMappings = fieldMappings;
         this.additionalProperties = additionalProperties;
     }
 
@@ -128,6 +137,19 @@ public final class Permission {
         return roles;
     }
 
+    /**
+     * @return Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.
+     */
+    @JsonProperty("remote_was_deleted")
+    public Optional<Boolean> getRemoteWasDeleted() {
+        return remoteWasDeleted;
+    }
+
+    @JsonProperty("field_mappings")
+    public Optional<Map<String, JsonNode>> getFieldMappings() {
+        return fieldMappings;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -147,13 +169,24 @@ public final class Permission {
                 && user.equals(other.user)
                 && group.equals(other.group)
                 && type.equals(other.type)
-                && roles.equals(other.roles);
+                && roles.equals(other.roles)
+                && remoteWasDeleted.equals(other.remoteWasDeleted)
+                && fieldMappings.equals(other.fieldMappings);
     }
 
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
-                this.id, this.remoteId, this.createdAt, this.modifiedAt, this.user, this.group, this.type, this.roles);
+                this.id,
+                this.remoteId,
+                this.createdAt,
+                this.modifiedAt,
+                this.user,
+                this.group,
+                this.type,
+                this.roles,
+                this.remoteWasDeleted,
+                this.fieldMappings);
     }
 
     @java.lang.Override
@@ -183,6 +216,10 @@ public final class Permission {
 
         private Optional<List<Optional<PermissionRolesItem>>> roles = Optional.empty();
 
+        private Optional<Boolean> remoteWasDeleted = Optional.empty();
+
+        private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -197,6 +234,8 @@ public final class Permission {
             group(other.getGroup());
             type(other.getType());
             roles(other.getRoles());
+            remoteWasDeleted(other.getRemoteWasDeleted());
+            fieldMappings(other.getFieldMappings());
             return this;
         }
 
@@ -315,8 +354,44 @@ public final class Permission {
             return this;
         }
 
+        /**
+         * <p>Indicates whether or not this object has been deleted in the third party platform. Full coverage deletion detection is a premium add-on. Native deletion detection is offered for free with limited coverage. <a href="https://docs.merge.dev/integrations/hris/supported-features/">Learn more</a>.</p>
+         */
+        @JsonSetter(value = "remote_was_deleted", nulls = Nulls.SKIP)
+        public Builder remoteWasDeleted(Optional<Boolean> remoteWasDeleted) {
+            this.remoteWasDeleted = remoteWasDeleted;
+            return this;
+        }
+
+        public Builder remoteWasDeleted(Boolean remoteWasDeleted) {
+            this.remoteWasDeleted = Optional.ofNullable(remoteWasDeleted);
+            return this;
+        }
+
+        @JsonSetter(value = "field_mappings", nulls = Nulls.SKIP)
+        public Builder fieldMappings(Optional<Map<String, JsonNode>> fieldMappings) {
+            this.fieldMappings = fieldMappings;
+            return this;
+        }
+
+        public Builder fieldMappings(Map<String, JsonNode> fieldMappings) {
+            this.fieldMappings = Optional.ofNullable(fieldMappings);
+            return this;
+        }
+
         public Permission build() {
-            return new Permission(id, remoteId, createdAt, modifiedAt, user, group, type, roles, additionalProperties);
+            return new Permission(
+                    id,
+                    remoteId,
+                    createdAt,
+                    modifiedAt,
+                    user,
+                    group,
+                    type,
+                    roles,
+                    remoteWasDeleted,
+                    fieldMappings,
+                    additionalProperties);
         }
     }
 }

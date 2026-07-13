@@ -80,7 +80,7 @@ public final class LinkedAccountsListRequest {
     }
 
     /**
-     * @return Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>mktg</code>, <code>ticketing</code>
+     * @return Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>knowledgebase</code>, <code>mktg</code>, <code>ticketing</code>
      * <ul>
      * <li><code>hris</code> - hris</li>
      * <li><code>ats</code> - ats</li>
@@ -89,6 +89,10 @@ public final class LinkedAccountsListRequest {
      * <li><code>crm</code> - crm</li>
      * <li><code>mktg</code> - mktg</li>
      * <li><code>filestorage</code> - filestorage</li>
+     * <li><code>datawarehouse</code> - datawarehouse</li>
+     * <li><code>knowledgebase</code> - knowledgebase</li>
+     * <li><code>communication</code> - communication</li>
+     * <li><code>chat</code> - chat</li>
      * </ul>
      */
     @JsonProperty("category")
@@ -174,7 +178,7 @@ public final class LinkedAccountsListRequest {
     }
 
     /**
-     * @return Number of results to return per page.
+     * @return Number of results to return per page. The maximum limit is 100.
      */
     @JsonProperty("page_size")
     public Optional<Integer> getPageSize() {
@@ -294,7 +298,7 @@ public final class LinkedAccountsListRequest {
         }
 
         /**
-         * <p>Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>mktg</code>, <code>ticketing</code></p>
+         * <p>Options: <code>accounting</code>, <code>ats</code>, <code>crm</code>, <code>filestorage</code>, <code>hris</code>, <code>knowledgebase</code>, <code>mktg</code>, <code>ticketing</code></p>
          * <ul>
          * <li><code>hris</code> - hris</li>
          * <li><code>ats</code> - ats</li>
@@ -303,6 +307,10 @@ public final class LinkedAccountsListRequest {
          * <li><code>crm</code> - crm</li>
          * <li><code>mktg</code> - mktg</li>
          * <li><code>filestorage</code> - filestorage</li>
+         * <li><code>datawarehouse</code> - datawarehouse</li>
+         * <li><code>knowledgebase</code> - knowledgebase</li>
+         * <li><code>communication</code> - communication</li>
+         * <li><code>chat</code> - chat</li>
          * </ul>
          */
         @JsonSetter(value = "category", nulls = Nulls.SKIP)
@@ -454,7 +462,7 @@ public final class LinkedAccountsListRequest {
         }
 
         /**
-         * <p>Number of results to return per page.</p>
+         * <p>Number of results to return per page. The maximum limit is 100.</p>
          */
         @JsonSetter(value = "page_size", nulls = Nulls.SKIP)
         public Builder pageSize(Optional<Integer> pageSize) {

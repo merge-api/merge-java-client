@@ -3,7 +3,9 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.ApplyVendorCreditRequest;
 import com.merge.api.accounting.types.MetaResponse;
+import com.merge.api.accounting.types.PatchedVendorCreditEndpointRequest;
 import com.merge.api.accounting.types.VendorCredit;
 import com.merge.api.accounting.types.VendorCreditEndpointRequest;
 import com.merge.api.accounting.types.VendorCreditResponse;
@@ -84,6 +86,50 @@ public class VendorCreditsClient {
      */
     public VendorCredit retrieve(String id, VendorCreditsRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).body();
+    }
+
+    /**
+     * Updates a <code>VendorCredit</code> object with the given <code>id</code>.
+     */
+    public VendorCreditResponse partialUpdate(String id, PatchedVendorCreditEndpointRequest request) {
+        return this.rawClient.partialUpdate(id, request).body();
+    }
+
+    /**
+     * Updates a <code>VendorCredit</code> object with the given <code>id</code>.
+     */
+    public VendorCreditResponse partialUpdate(
+            String id, PatchedVendorCreditEndpointRequest request, RequestOptions requestOptions) {
+        return this.rawClient.partialUpdate(id, request, requestOptions).body();
+    }
+
+    /**
+     * Creates a new VendorCreditApplyLine to apply a vendor credit to an invoice
+     */
+    public VendorCreditResponse applicationCreate(String id, ApplyVendorCreditRequest request) {
+        return this.rawClient.applicationCreate(id, request).body();
+    }
+
+    /**
+     * Creates a new VendorCreditApplyLine to apply a vendor credit to an invoice
+     */
+    public VendorCreditResponse applicationCreate(
+            String id, ApplyVendorCreditRequest request, RequestOptions requestOptions) {
+        return this.rawClient.applicationCreate(id, request, requestOptions).body();
+    }
+
+    /**
+     * Returns metadata for <code>VendorCredit</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id) {
+        return this.rawClient.metaPatchRetrieve(id).body();
+    }
+
+    /**
+     * Returns metadata for <code>VendorCredit</code> PATCHs.
+     */
+    public MetaResponse metaPatchRetrieve(String id, RequestOptions requestOptions) {
+        return this.rawClient.metaPatchRetrieve(id, requestOptions).body();
     }
 
     /**

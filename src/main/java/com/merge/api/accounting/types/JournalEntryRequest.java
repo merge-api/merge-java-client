@@ -39,7 +39,7 @@ public final class JournalEntryRequest {
 
     private final Optional<Boolean> inclusiveOfTax;
 
-    private final Optional<List<JournalLineRequest>> lines;
+    private final Optional<List<JournalEntryRequestLinesItem>> lines;
 
     private final Optional<String> journalNumber;
 
@@ -62,7 +62,7 @@ public final class JournalEntryRequest {
             Optional<JournalEntryRequestCompany> company,
             Optional<List<Optional<JournalEntryRequestTrackingCategoriesItem>>> trackingCategories,
             Optional<Boolean> inclusiveOfTax,
-            Optional<List<JournalLineRequest>> lines,
+            Optional<List<JournalEntryRequestLinesItem>> lines,
             Optional<String> journalNumber,
             Optional<JournalEntryRequestPostingStatus> postingStatus,
             Optional<Map<String, JsonNode>> integrationParams,
@@ -456,7 +456,7 @@ public final class JournalEntryRequest {
     }
 
     @JsonProperty("lines")
-    public Optional<List<JournalLineRequest>> getLines() {
+    public Optional<List<JournalEntryRequestLinesItem>> getLines() {
         return lines;
     }
 
@@ -570,7 +570,7 @@ public final class JournalEntryRequest {
 
         private Optional<Boolean> inclusiveOfTax = Optional.empty();
 
-        private Optional<List<JournalLineRequest>> lines = Optional.empty();
+        private Optional<List<JournalEntryRequestLinesItem>> lines = Optional.empty();
 
         private Optional<String> journalNumber = Optional.empty();
 
@@ -1025,12 +1025,12 @@ public final class JournalEntryRequest {
         }
 
         @JsonSetter(value = "lines", nulls = Nulls.SKIP)
-        public Builder lines(Optional<List<JournalLineRequest>> lines) {
+        public Builder lines(Optional<List<JournalEntryRequestLinesItem>> lines) {
             this.lines = lines;
             return this;
         }
 
-        public Builder lines(List<JournalLineRequest> lines) {
+        public Builder lines(List<JournalEntryRequestLinesItem> lines) {
             this.lines = Optional.ofNullable(lines);
             return this;
         }

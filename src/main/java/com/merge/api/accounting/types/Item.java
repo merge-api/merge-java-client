@@ -25,6 +25,8 @@ import java.util.Optional;
 public final class Item {
     private final Optional<String> id;
 
+    private final Optional<String> itemUrl;
+
     private final Optional<String> remoteId;
 
     private final Optional<OffsetDateTime> createdAt;
@@ -63,6 +65,7 @@ public final class Item {
 
     private Item(
             Optional<String> id,
+            Optional<String> itemUrl,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
             Optional<OffsetDateTime> modifiedAt,
@@ -82,6 +85,7 @@ public final class Item {
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
         this.id = id;
+        this.itemUrl = itemUrl;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
         this.modifiedAt = modifiedAt;
@@ -105,6 +109,14 @@ public final class Item {
     @JsonProperty("id")
     public Optional<String> getId() {
         return id;
+    }
+
+    /**
+     * @return The 3rd party URL of the item.
+     */
+    @JsonProperty("item_url")
+    public Optional<String> getItemUrl() {
+        return itemUrl;
     }
 
     /**
@@ -260,6 +272,7 @@ public final class Item {
 
     private boolean equalTo(Item other) {
         return id.equals(other.id)
+                && itemUrl.equals(other.itemUrl)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -283,6 +296,7 @@ public final class Item {
     public int hashCode() {
         return Objects.hash(
                 this.id,
+                this.itemUrl,
                 this.remoteId,
                 this.createdAt,
                 this.modifiedAt,
@@ -314,6 +328,8 @@ public final class Item {
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
         private Optional<String> id = Optional.empty();
+
+        private Optional<String> itemUrl = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
 
@@ -356,6 +372,7 @@ public final class Item {
 
         public Builder from(Item other) {
             id(other.getId());
+            itemUrl(other.getItemUrl());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
             modifiedAt(other.getModifiedAt());
@@ -384,6 +401,20 @@ public final class Item {
 
         public Builder id(String id) {
             this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the item.</p>
+         */
+        @JsonSetter(value = "item_url", nulls = Nulls.SKIP)
+        public Builder itemUrl(Optional<String> itemUrl) {
+            this.itemUrl = itemUrl;
+            return this;
+        }
+
+        public Builder itemUrl(String itemUrl) {
+            this.itemUrl = Optional.ofNullable(itemUrl);
             return this;
         }
 
@@ -632,6 +663,7 @@ public final class Item {
         public Item build() {
             return new Item(
                     id,
+                    itemUrl,
                     remoteId,
                     createdAt,
                     modifiedAt,

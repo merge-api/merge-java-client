@@ -49,11 +49,11 @@ public final class Transaction {
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<String> company;
+    private final Optional<TransactionCompany> company;
 
     private final Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories;
 
-    private final Optional<List<TransactionLineItem>> lineItems;
+    private final Optional<List<TransactionLineItemsItem>> lineItems;
 
     private final Optional<Boolean> remoteWasDeleted;
 
@@ -62,6 +62,8 @@ public final class Transaction {
     private final Optional<Map<String, JsonNode>> fieldMappings;
 
     private final Optional<List<RemoteData>> remoteData;
+
+    private final Optional<String> transactionUrl;
 
     private final Map<String, Object> additionalProperties;
 
@@ -79,13 +81,14 @@ public final class Transaction {
             Optional<String> totalAmount,
             Optional<TransactionCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<String> company,
+            Optional<TransactionCompany> company,
             Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories,
-            Optional<List<TransactionLineItem>> lineItems,
+            Optional<List<TransactionLineItemsItem>> lineItems,
             Optional<Boolean> remoteWasDeleted,
             Optional<TransactionAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
+            Optional<String> transactionUrl,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.remoteId = remoteId;
@@ -107,6 +110,7 @@ public final class Transaction {
         this.accountingPeriod = accountingPeriod;
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
+        this.transactionUrl = transactionUrl;
         this.additionalProperties = additionalProperties;
     }
 
@@ -523,7 +527,7 @@ public final class Transaction {
      * @return The company the transaction belongs to.
      */
     @JsonProperty("company")
-    public Optional<String> getCompany() {
+    public Optional<TransactionCompany> getCompany() {
         return company;
     }
 
@@ -533,7 +537,7 @@ public final class Transaction {
     }
 
     @JsonProperty("line_items")
-    public Optional<List<TransactionLineItem>> getLineItems() {
+    public Optional<List<TransactionLineItemsItem>> getLineItems() {
         return lineItems;
     }
 
@@ -561,6 +565,14 @@ public final class Transaction {
     @JsonProperty("remote_data")
     public Optional<List<RemoteData>> getRemoteData() {
         return remoteData;
+    }
+
+    /**
+     * @return The 3rd party URL of the transaction.
+     */
+    @JsonProperty("transaction_url")
+    public Optional<String> getTransactionUrl() {
+        return transactionUrl;
     }
 
     @java.lang.Override
@@ -594,7 +606,8 @@ public final class Transaction {
                 && remoteWasDeleted.equals(other.remoteWasDeleted)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && fieldMappings.equals(other.fieldMappings)
-                && remoteData.equals(other.remoteData);
+                && remoteData.equals(other.remoteData)
+                && transactionUrl.equals(other.transactionUrl);
     }
 
     @java.lang.Override
@@ -619,7 +632,8 @@ public final class Transaction {
                 this.remoteWasDeleted,
                 this.accountingPeriod,
                 this.fieldMappings,
-                this.remoteData);
+                this.remoteData,
+                this.transactionUrl);
     }
 
     @java.lang.Override
@@ -659,11 +673,11 @@ public final class Transaction {
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<String> company = Optional.empty();
+        private Optional<TransactionCompany> company = Optional.empty();
 
         private Optional<List<Optional<TransactionTrackingCategoriesItem>>> trackingCategories = Optional.empty();
 
-        private Optional<List<TransactionLineItem>> lineItems = Optional.empty();
+        private Optional<List<TransactionLineItemsItem>> lineItems = Optional.empty();
 
         private Optional<Boolean> remoteWasDeleted = Optional.empty();
 
@@ -672,6 +686,8 @@ public final class Transaction {
         private Optional<Map<String, JsonNode>> fieldMappings = Optional.empty();
 
         private Optional<List<RemoteData>> remoteData = Optional.empty();
+
+        private Optional<String> transactionUrl = Optional.empty();
 
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
@@ -699,6 +715,7 @@ public final class Transaction {
             accountingPeriod(other.getAccountingPeriod());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            transactionUrl(other.getTransactionUrl());
             return this;
         }
 
@@ -1193,12 +1210,12 @@ public final class Transaction {
          * <p>The company the transaction belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<String> company) {
+        public Builder company(Optional<TransactionCompany> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(String company) {
+        public Builder company(TransactionCompany company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -1216,12 +1233,12 @@ public final class Transaction {
         }
 
         @JsonSetter(value = "line_items", nulls = Nulls.SKIP)
-        public Builder lineItems(Optional<List<TransactionLineItem>> lineItems) {
+        public Builder lineItems(Optional<List<TransactionLineItemsItem>> lineItems) {
             this.lineItems = lineItems;
             return this;
         }
 
-        public Builder lineItems(List<TransactionLineItem> lineItems) {
+        public Builder lineItems(List<TransactionLineItemsItem> lineItems) {
             this.lineItems = Optional.ofNullable(lineItems);
             return this;
         }
@@ -1276,6 +1293,20 @@ public final class Transaction {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the transaction.</p>
+         */
+        @JsonSetter(value = "transaction_url", nulls = Nulls.SKIP)
+        public Builder transactionUrl(Optional<String> transactionUrl) {
+            this.transactionUrl = transactionUrl;
+            return this;
+        }
+
+        public Builder transactionUrl(String transactionUrl) {
+            this.transactionUrl = Optional.ofNullable(transactionUrl);
+            return this;
+        }
+
         public Transaction build() {
             return new Transaction(
                     id,
@@ -1298,6 +1329,7 @@ public final class Transaction {
                     accountingPeriod,
                     fieldMappings,
                     remoteData,
+                    transactionUrl,
                     additionalProperties);
         }
     }

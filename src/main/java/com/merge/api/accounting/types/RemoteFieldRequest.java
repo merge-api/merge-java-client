@@ -22,23 +22,21 @@ import org.jetbrains.annotations.NotNull;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = RemoteFieldRequest.Builder.class)
 public final class RemoteFieldRequest {
-    private final RemoteFieldRequestRemoteFieldClass remoteFieldClass;
+    private final String remoteFieldClass;
 
     private final Optional<JsonNode> value;
 
     private final Map<String, Object> additionalProperties;
 
     private RemoteFieldRequest(
-            RemoteFieldRequestRemoteFieldClass remoteFieldClass,
-            Optional<JsonNode> value,
-            Map<String, Object> additionalProperties) {
+            String remoteFieldClass, Optional<JsonNode> value, Map<String, Object> additionalProperties) {
         this.remoteFieldClass = remoteFieldClass;
         this.value = value;
         this.additionalProperties = additionalProperties;
     }
 
     @JsonProperty("remote_field_class")
-    public RemoteFieldRequestRemoteFieldClass getRemoteFieldClass() {
+    public String getRemoteFieldClass() {
         return remoteFieldClass;
     }
 
@@ -77,7 +75,7 @@ public final class RemoteFieldRequest {
     }
 
     public interface RemoteFieldClassStage {
-        _FinalStage remoteFieldClass(@NotNull RemoteFieldRequestRemoteFieldClass remoteFieldClass);
+        _FinalStage remoteFieldClass(@NotNull String remoteFieldClass);
 
         Builder from(RemoteFieldRequest other);
     }
@@ -92,7 +90,7 @@ public final class RemoteFieldRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder implements RemoteFieldClassStage, _FinalStage {
-        private RemoteFieldRequestRemoteFieldClass remoteFieldClass;
+        private String remoteFieldClass;
 
         private Optional<JsonNode> value = Optional.empty();
 
@@ -110,7 +108,7 @@ public final class RemoteFieldRequest {
 
         @java.lang.Override
         @JsonSetter("remote_field_class")
-        public _FinalStage remoteFieldClass(@NotNull RemoteFieldRequestRemoteFieldClass remoteFieldClass) {
+        public _FinalStage remoteFieldClass(@NotNull String remoteFieldClass) {
             this.remoteFieldClass = remoteFieldClass;
             return this;
         }

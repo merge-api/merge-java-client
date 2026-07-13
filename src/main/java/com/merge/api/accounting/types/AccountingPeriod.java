@@ -23,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = AccountingPeriod.Builder.class)
 public final class AccountingPeriod {
+    private final Optional<String> accountingPeriodUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -46,6 +48,7 @@ public final class AccountingPeriod {
     private final Map<String, Object> additionalProperties;
 
     private AccountingPeriod(
+            Optional<String> accountingPeriodUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -57,6 +60,7 @@ public final class AccountingPeriod {
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.accountingPeriodUrl = accountingPeriodUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -68,6 +72,14 @@ public final class AccountingPeriod {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the accounting period.
+     */
+    @JsonProperty("accounting_period_url")
+    public Optional<String> getAccountingPeriodUrl() {
+        return accountingPeriodUrl;
     }
 
     @JsonProperty("id")
@@ -150,7 +162,8 @@ public final class AccountingPeriod {
     }
 
     private boolean equalTo(AccountingPeriod other) {
-        return id.equals(other.id)
+        return accountingPeriodUrl.equals(other.accountingPeriodUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -165,6 +178,7 @@ public final class AccountingPeriod {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.accountingPeriodUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -188,6 +202,8 @@ public final class AccountingPeriod {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> accountingPeriodUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -214,6 +230,7 @@ public final class AccountingPeriod {
         private Builder() {}
 
         public Builder from(AccountingPeriod other) {
+            accountingPeriodUrl(other.getAccountingPeriodUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -224,6 +241,20 @@ public final class AccountingPeriod {
             endDate(other.getEndDate());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the accounting period.</p>
+         */
+        @JsonSetter(value = "accounting_period_url", nulls = Nulls.SKIP)
+        public Builder accountingPeriodUrl(Optional<String> accountingPeriodUrl) {
+            this.accountingPeriodUrl = accountingPeriodUrl;
+            return this;
+        }
+
+        public Builder accountingPeriodUrl(String accountingPeriodUrl) {
+            this.accountingPeriodUrl = Optional.ofNullable(accountingPeriodUrl);
             return this;
         }
 
@@ -357,6 +388,7 @@ public final class AccountingPeriod {
 
         public AccountingPeriod build() {
             return new AccountingPeriod(
+                    accountingPeriodUrl,
                     id,
                     remoteId,
                     createdAt,

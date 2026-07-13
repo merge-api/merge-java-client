@@ -41,6 +41,12 @@ public final class ExternalTargetFieldApiResponse {
 
     private final Optional<List<ExternalTargetFieldApi>> purchaseOrder;
 
+    private final Optional<List<ExternalTargetFieldApi>> salesOrder;
+
+    private final Optional<List<ExternalTargetFieldApi>> itemFulfillment;
+
+    private final Optional<List<ExternalTargetFieldApi>> expenseReport;
+
     private final Optional<List<ExternalTargetFieldApi>> trackingCategory;
 
     private final Optional<List<ExternalTargetFieldApi>> journalEntry;
@@ -84,6 +90,9 @@ public final class ExternalTargetFieldApiResponse {
             Optional<List<ExternalTargetFieldApi>> creditNote,
             Optional<List<ExternalTargetFieldApi>> item,
             Optional<List<ExternalTargetFieldApi>> purchaseOrder,
+            Optional<List<ExternalTargetFieldApi>> salesOrder,
+            Optional<List<ExternalTargetFieldApi>> itemFulfillment,
+            Optional<List<ExternalTargetFieldApi>> expenseReport,
             Optional<List<ExternalTargetFieldApi>> trackingCategory,
             Optional<List<ExternalTargetFieldApi>> journalEntry,
             Optional<List<ExternalTargetFieldApi>> taxRate,
@@ -110,6 +119,9 @@ public final class ExternalTargetFieldApiResponse {
         this.creditNote = creditNote;
         this.item = item;
         this.purchaseOrder = purchaseOrder;
+        this.salesOrder = salesOrder;
+        this.itemFulfillment = itemFulfillment;
+        this.expenseReport = expenseReport;
         this.trackingCategory = trackingCategory;
         this.journalEntry = journalEntry;
         this.taxRate = taxRate;
@@ -176,6 +188,21 @@ public final class ExternalTargetFieldApiResponse {
     @JsonProperty("PurchaseOrder")
     public Optional<List<ExternalTargetFieldApi>> getPurchaseOrder() {
         return purchaseOrder;
+    }
+
+    @JsonProperty("SalesOrder")
+    public Optional<List<ExternalTargetFieldApi>> getSalesOrder() {
+        return salesOrder;
+    }
+
+    @JsonProperty("ItemFulfillment")
+    public Optional<List<ExternalTargetFieldApi>> getItemFulfillment() {
+        return itemFulfillment;
+    }
+
+    @JsonProperty("ExpenseReport")
+    public Optional<List<ExternalTargetFieldApi>> getExpenseReport() {
+        return expenseReport;
     }
 
     @JsonProperty("TrackingCategory")
@@ -275,6 +302,9 @@ public final class ExternalTargetFieldApiResponse {
                 && creditNote.equals(other.creditNote)
                 && item.equals(other.item)
                 && purchaseOrder.equals(other.purchaseOrder)
+                && salesOrder.equals(other.salesOrder)
+                && itemFulfillment.equals(other.itemFulfillment)
+                && expenseReport.equals(other.expenseReport)
                 && trackingCategory.equals(other.trackingCategory)
                 && journalEntry.equals(other.journalEntry)
                 && taxRate.equals(other.taxRate)
@@ -305,6 +335,9 @@ public final class ExternalTargetFieldApiResponse {
                 this.creditNote,
                 this.item,
                 this.purchaseOrder,
+                this.salesOrder,
+                this.itemFulfillment,
+                this.expenseReport,
                 this.trackingCategory,
                 this.journalEntry,
                 this.taxRate,
@@ -353,6 +386,12 @@ public final class ExternalTargetFieldApiResponse {
 
         private Optional<List<ExternalTargetFieldApi>> purchaseOrder = Optional.empty();
 
+        private Optional<List<ExternalTargetFieldApi>> salesOrder = Optional.empty();
+
+        private Optional<List<ExternalTargetFieldApi>> itemFulfillment = Optional.empty();
+
+        private Optional<List<ExternalTargetFieldApi>> expenseReport = Optional.empty();
+
         private Optional<List<ExternalTargetFieldApi>> trackingCategory = Optional.empty();
 
         private Optional<List<ExternalTargetFieldApi>> journalEntry = Optional.empty();
@@ -399,6 +438,9 @@ public final class ExternalTargetFieldApiResponse {
             creditNote(other.getCreditNote());
             item(other.getItem());
             purchaseOrder(other.getPurchaseOrder());
+            salesOrder(other.getSalesOrder());
+            itemFulfillment(other.getItemFulfillment());
+            expenseReport(other.getExpenseReport());
             trackingCategory(other.getTrackingCategory());
             journalEntry(other.getJournalEntry());
             taxRate(other.getTaxRate());
@@ -524,6 +566,39 @@ public final class ExternalTargetFieldApiResponse {
 
         public Builder purchaseOrder(List<ExternalTargetFieldApi> purchaseOrder) {
             this.purchaseOrder = Optional.ofNullable(purchaseOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "SalesOrder", nulls = Nulls.SKIP)
+        public Builder salesOrder(Optional<List<ExternalTargetFieldApi>> salesOrder) {
+            this.salesOrder = salesOrder;
+            return this;
+        }
+
+        public Builder salesOrder(List<ExternalTargetFieldApi> salesOrder) {
+            this.salesOrder = Optional.ofNullable(salesOrder);
+            return this;
+        }
+
+        @JsonSetter(value = "ItemFulfillment", nulls = Nulls.SKIP)
+        public Builder itemFulfillment(Optional<List<ExternalTargetFieldApi>> itemFulfillment) {
+            this.itemFulfillment = itemFulfillment;
+            return this;
+        }
+
+        public Builder itemFulfillment(List<ExternalTargetFieldApi> itemFulfillment) {
+            this.itemFulfillment = Optional.ofNullable(itemFulfillment);
+            return this;
+        }
+
+        @JsonSetter(value = "ExpenseReport", nulls = Nulls.SKIP)
+        public Builder expenseReport(Optional<List<ExternalTargetFieldApi>> expenseReport) {
+            this.expenseReport = expenseReport;
+            return this;
+        }
+
+        public Builder expenseReport(List<ExternalTargetFieldApi> expenseReport) {
+            this.expenseReport = Optional.ofNullable(expenseReport);
             return this;
         }
 
@@ -704,6 +779,9 @@ public final class ExternalTargetFieldApiResponse {
                     creditNote,
                     item,
                     purchaseOrder,
+                    salesOrder,
+                    itemFulfillment,
+                    expenseReport,
                     trackingCategory,
                     journalEntry,
                     taxRate,

@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.Nulls;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.merge.api.core.ObjectMappers;
 import java.time.OffsetDateTime;
@@ -48,6 +49,8 @@ public final class AccountDetailsAndActions {
 
     private final OffsetDateTime completedAt;
 
+    private final Optional<Map<String, JsonNode>> integrationSpecificFields;
+
     private final Map<String, Object> additionalProperties;
 
     private AccountDetailsAndActions(
@@ -64,6 +67,7 @@ public final class AccountDetailsAndActions {
             Optional<AccountDetailsAndActionsIntegration> integration,
             String accountType,
             OffsetDateTime completedAt,
+            Optional<Map<String, JsonNode>> integrationSpecificFields,
             Map<String, Object> additionalProperties) {
         this.id = id;
         this.category = category;
@@ -78,6 +82,7 @@ public final class AccountDetailsAndActions {
         this.integration = integration;
         this.accountType = accountType;
         this.completedAt = completedAt;
+        this.integrationSpecificFields = integrationSpecificFields;
         this.additionalProperties = additionalProperties;
     }
 
@@ -152,6 +157,11 @@ public final class AccountDetailsAndActions {
         return completedAt;
     }
 
+    @JsonProperty("integration_specific_fields")
+    public Optional<Map<String, JsonNode>> getIntegrationSpecificFields() {
+        return integrationSpecificFields;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -176,7 +186,8 @@ public final class AccountDetailsAndActions {
                 && isDuplicate.equals(other.isDuplicate)
                 && integration.equals(other.integration)
                 && accountType.equals(other.accountType)
-                && completedAt.equals(other.completedAt);
+                && completedAt.equals(other.completedAt)
+                && integrationSpecificFields.equals(other.integrationSpecificFields);
     }
 
     @java.lang.Override
@@ -194,7 +205,8 @@ public final class AccountDetailsAndActions {
                 this.isDuplicate,
                 this.integration,
                 this.accountType,
-                this.completedAt);
+                this.completedAt,
+                this.integrationSpecificFields);
     }
 
     @java.lang.Override
@@ -268,6 +280,10 @@ public final class AccountDetailsAndActions {
         _FinalStage integration(Optional<AccountDetailsAndActionsIntegration> integration);
 
         _FinalStage integration(AccountDetailsAndActionsIntegration integration);
+
+        _FinalStage integrationSpecificFields(Optional<Map<String, JsonNode>> integrationSpecificFields);
+
+        _FinalStage integrationSpecificFields(Map<String, JsonNode> integrationSpecificFields);
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -293,6 +309,8 @@ public final class AccountDetailsAndActions {
         private String accountType;
 
         private OffsetDateTime completedAt;
+
+        private Optional<Map<String, JsonNode>> integrationSpecificFields = Optional.empty();
 
         private Optional<AccountDetailsAndActionsIntegration> integration = Optional.empty();
 
@@ -326,6 +344,7 @@ public final class AccountDetailsAndActions {
             integration(other.getIntegration());
             accountType(other.getAccountType());
             completedAt(other.getCompletedAt());
+            integrationSpecificFields(other.getIntegrationSpecificFields());
             return this;
         }
 
@@ -375,6 +394,19 @@ public final class AccountDetailsAndActions {
         @JsonSetter("completed_at")
         public _FinalStage completedAt(@NotNull OffsetDateTime completedAt) {
             this.completedAt = completedAt;
+            return this;
+        }
+
+        @java.lang.Override
+        public _FinalStage integrationSpecificFields(Map<String, JsonNode> integrationSpecificFields) {
+            this.integrationSpecificFields = Optional.ofNullable(integrationSpecificFields);
+            return this;
+        }
+
+        @java.lang.Override
+        @JsonSetter(value = "integration_specific_fields", nulls = Nulls.SKIP)
+        public _FinalStage integrationSpecificFields(Optional<Map<String, JsonNode>> integrationSpecificFields) {
+            this.integrationSpecificFields = integrationSpecificFields;
             return this;
         }
 
@@ -486,6 +518,7 @@ public final class AccountDetailsAndActions {
                     integration,
                     accountType,
                     completedAt,
+                    integrationSpecificFields,
                     additionalProperties);
         }
     }

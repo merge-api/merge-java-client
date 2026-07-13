@@ -27,6 +27,8 @@ public final class EmployeeRequest {
 
     private final Optional<EmployeeRequestCompany> company;
 
+    private final Optional<String> employeeUrl;
+
     private final Optional<String> firstName;
 
     private final Optional<String> lastName;
@@ -86,6 +88,7 @@ public final class EmployeeRequest {
     private EmployeeRequest(
             Optional<String> employeeNumber,
             Optional<EmployeeRequestCompany> company,
+            Optional<String> employeeUrl,
             Optional<String> firstName,
             Optional<String> lastName,
             Optional<String> preferredName,
@@ -116,6 +119,7 @@ public final class EmployeeRequest {
             Map<String, Object> additionalProperties) {
         this.employeeNumber = employeeNumber;
         this.company = company;
+        this.employeeUrl = employeeUrl;
         this.firstName = firstName;
         this.lastName = lastName;
         this.preferredName = preferredName;
@@ -160,6 +164,14 @@ public final class EmployeeRequest {
     @JsonProperty("company")
     public Optional<EmployeeRequestCompany> getCompany() {
         return company;
+    }
+
+    /**
+     * @return The 3rd party URL of the employee.
+     */
+    @JsonProperty("employee_url")
+    public Optional<String> getEmployeeUrl() {
+        return employeeUrl;
     }
 
     /**
@@ -412,6 +424,7 @@ public final class EmployeeRequest {
     private boolean equalTo(EmployeeRequest other) {
         return employeeNumber.equals(other.employeeNumber)
                 && company.equals(other.company)
+                && employeeUrl.equals(other.employeeUrl)
                 && firstName.equals(other.firstName)
                 && lastName.equals(other.lastName)
                 && preferredName.equals(other.preferredName)
@@ -446,6 +459,7 @@ public final class EmployeeRequest {
         return Objects.hash(
                 this.employeeNumber,
                 this.company,
+                this.employeeUrl,
                 this.firstName,
                 this.lastName,
                 this.preferredName,
@@ -489,6 +503,8 @@ public final class EmployeeRequest {
         private Optional<String> employeeNumber = Optional.empty();
 
         private Optional<EmployeeRequestCompany> company = Optional.empty();
+
+        private Optional<String> employeeUrl = Optional.empty();
 
         private Optional<String> firstName = Optional.empty();
 
@@ -552,6 +568,7 @@ public final class EmployeeRequest {
         public Builder from(EmployeeRequest other) {
             employeeNumber(other.getEmployeeNumber());
             company(other.getCompany());
+            employeeUrl(other.getEmployeeUrl());
             firstName(other.getFirstName());
             lastName(other.getLastName());
             preferredName(other.getPreferredName());
@@ -607,6 +624,20 @@ public final class EmployeeRequest {
 
         public Builder company(EmployeeRequestCompany company) {
             this.company = Optional.ofNullable(company);
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        @JsonSetter(value = "employee_url", nulls = Nulls.SKIP)
+        public Builder employeeUrl(Optional<String> employeeUrl) {
+            this.employeeUrl = employeeUrl;
+            return this;
+        }
+
+        public Builder employeeUrl(String employeeUrl) {
+            this.employeeUrl = Optional.ofNullable(employeeUrl);
             return this;
         }
 
@@ -1012,6 +1043,7 @@ public final class EmployeeRequest {
             return new EmployeeRequest(
                     employeeNumber,
                     company,
+                    employeeUrl,
                     firstName,
                     lastName,
                     preferredName,

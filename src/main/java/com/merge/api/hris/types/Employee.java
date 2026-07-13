@@ -23,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = Employee.Builder.class)
 public final class Employee {
+    private final Optional<String> employeeUrl;
+
     private final Optional<String> id;
 
     private final Optional<String> remoteId;
@@ -98,6 +100,7 @@ public final class Employee {
     private final Map<String, Object> additionalProperties;
 
     private Employee(
+            Optional<String> employeeUrl,
             Optional<String> id,
             Optional<String> remoteId,
             Optional<OffsetDateTime> createdAt,
@@ -135,6 +138,7 @@ public final class Employee {
             Optional<Map<String, JsonNode>> fieldMappings,
             Optional<List<RemoteData>> remoteData,
             Map<String, Object> additionalProperties) {
+        this.employeeUrl = employeeUrl;
         this.id = id;
         this.remoteId = remoteId;
         this.createdAt = createdAt;
@@ -172,6 +176,14 @@ public final class Employee {
         this.fieldMappings = fieldMappings;
         this.remoteData = remoteData;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the employee.
+     */
+    @JsonProperty("employee_url")
+    public Optional<String> getEmployeeUrl() {
+        return employeeUrl;
     }
 
     @JsonProperty("id")
@@ -491,7 +503,8 @@ public final class Employee {
     }
 
     private boolean equalTo(Employee other) {
-        return id.equals(other.id)
+        return employeeUrl.equals(other.employeeUrl)
+                && id.equals(other.id)
                 && remoteId.equals(other.remoteId)
                 && createdAt.equals(other.createdAt)
                 && modifiedAt.equals(other.modifiedAt)
@@ -532,6 +545,7 @@ public final class Employee {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.employeeUrl,
                 this.id,
                 this.remoteId,
                 this.createdAt,
@@ -581,6 +595,8 @@ public final class Employee {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> employeeUrl = Optional.empty();
+
         private Optional<String> id = Optional.empty();
 
         private Optional<String> remoteId = Optional.empty();
@@ -659,6 +675,7 @@ public final class Employee {
         private Builder() {}
 
         public Builder from(Employee other) {
+            employeeUrl(other.getEmployeeUrl());
             id(other.getId());
             remoteId(other.getRemoteId());
             createdAt(other.getCreatedAt());
@@ -695,6 +712,20 @@ public final class Employee {
             remoteWasDeleted(other.getRemoteWasDeleted());
             fieldMappings(other.getFieldMappings());
             remoteData(other.getRemoteData());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the employee.</p>
+         */
+        @JsonSetter(value = "employee_url", nulls = Nulls.SKIP)
+        public Builder employeeUrl(Optional<String> employeeUrl) {
+            this.employeeUrl = employeeUrl;
+            return this;
+        }
+
+        public Builder employeeUrl(String employeeUrl) {
+            this.employeeUrl = Optional.ofNullable(employeeUrl);
             return this;
         }
 
@@ -1221,6 +1252,7 @@ public final class Employee {
 
         public Employee build() {
             return new Employee(
+                    employeeUrl,
                     id,
                     remoteId,
                     createdAt,

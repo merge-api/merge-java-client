@@ -11,6 +11,8 @@ public final class CategoriesEnum {
 
     public static final CategoriesEnum TICKETING = new CategoriesEnum(Value.TICKETING, "ticketing");
 
+    public static final CategoriesEnum KNOWLEDGEBASE = new CategoriesEnum(Value.KNOWLEDGEBASE, "knowledgebase");
+
     public static final CategoriesEnum CRM = new CategoriesEnum(Value.CRM, "crm");
 
     public static final CategoriesEnum FILESTORAGE = new CategoriesEnum(Value.FILESTORAGE, "filestorage");
@@ -57,6 +59,8 @@ public final class CategoriesEnum {
                 return visitor.visitHris();
             case TICKETING:
                 return visitor.visitTicketing();
+            case KNOWLEDGEBASE:
+                return visitor.visitKnowledgebase();
             case CRM:
                 return visitor.visitCrm();
             case FILESTORAGE:
@@ -80,6 +84,8 @@ public final class CategoriesEnum {
                 return HRIS;
             case "ticketing":
                 return TICKETING;
+            case "knowledgebase":
+                return KNOWLEDGEBASE;
             case "crm":
                 return CRM;
             case "filestorage":
@@ -110,6 +116,8 @@ public final class CategoriesEnum {
 
         FILESTORAGE,
 
+        KNOWLEDGEBASE,
+
         UNKNOWN
     }
 
@@ -127,6 +135,8 @@ public final class CategoriesEnum {
         T visitMktg();
 
         T visitFilestorage();
+
+        T visitKnowledgebase();
 
         T visitUnknown(String unknownType);
     }

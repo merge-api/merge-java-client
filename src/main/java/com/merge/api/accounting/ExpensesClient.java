@@ -3,7 +3,10 @@
  */
 package com.merge.api.accounting;
 
+import com.merge.api.accounting.types.AsyncBulkCreateResponse;
+import com.merge.api.accounting.types.BatchObjectsResponse;
 import com.merge.api.accounting.types.Expense;
+import com.merge.api.accounting.types.ExpenseBulkRequest;
 import com.merge.api.accounting.types.ExpenseEndpointRequest;
 import com.merge.api.accounting.types.ExpenseResponse;
 import com.merge.api.accounting.types.ExpensesLinesRemoteFieldClassesListRequest;
@@ -87,6 +90,34 @@ public class ExpensesClient {
      */
     public Expense retrieve(String id, ExpensesRetrieveRequest request, RequestOptions requestOptions) {
         return this.rawClient.retrieve(id, request, requestOptions).body();
+    }
+
+    /**
+     * Creates multiple <code>Expense</code> objects with the given values.
+     */
+    public AsyncBulkCreateResponse bulkCreate(ExpenseBulkRequest request) {
+        return this.rawClient.bulkCreate(request).body();
+    }
+
+    /**
+     * Creates multiple <code>Expense</code> objects with the given values.
+     */
+    public AsyncBulkCreateResponse bulkCreate(ExpenseBulkRequest request, RequestOptions requestOptions) {
+        return this.rawClient.bulkCreate(request, requestOptions).body();
+    }
+
+    /**
+     * Returns the status and results of an <code>Expense</code> bulk create batch.
+     */
+    public BatchObjectsResponse bulkRetrieve(String batchId) {
+        return this.rawClient.bulkRetrieve(batchId).body();
+    }
+
+    /**
+     * Returns the status and results of an <code>Expense</code> bulk create batch.
+     */
+    public BatchObjectsResponse bulkRetrieve(String batchId, RequestOptions requestOptions) {
+        return this.rawClient.bulkRetrieve(batchId, requestOptions).body();
     }
 
     /**

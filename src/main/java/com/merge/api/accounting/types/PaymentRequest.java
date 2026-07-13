@@ -23,6 +23,8 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PaymentRequest.Builder.class)
 public final class PaymentRequest {
+    private final Optional<String> paymentUrl;
+
     private final Optional<OffsetDateTime> transactionDate;
 
     private final Optional<PaymentRequestContact> contact;
@@ -56,6 +58,7 @@ public final class PaymentRequest {
     private final Map<String, Object> additionalProperties;
 
     private PaymentRequest(
+            Optional<String> paymentUrl,
             Optional<OffsetDateTime> transactionDate,
             Optional<PaymentRequestContact> contact,
             Optional<PaymentRequestAccount> account,
@@ -72,6 +75,7 @@ public final class PaymentRequest {
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.paymentUrl = paymentUrl;
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
@@ -88,6 +92,14 @@ public final class PaymentRequest {
         this.linkedAccountParams = linkedAccountParams;
         this.remoteFields = remoteFields;
         this.additionalProperties = additionalProperties;
+    }
+
+    /**
+     * @return The 3rd party URL of the payment.
+     */
+    @JsonProperty("payment_url")
+    public Optional<String> getPaymentUrl() {
+        return paymentUrl;
     }
 
     /**
@@ -522,7 +534,8 @@ public final class PaymentRequest {
     }
 
     private boolean equalTo(PaymentRequest other) {
-        return transactionDate.equals(other.transactionDate)
+        return paymentUrl.equals(other.paymentUrl)
+                && transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
                 && paymentMethod.equals(other.paymentMethod)
@@ -542,6 +555,7 @@ public final class PaymentRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.paymentUrl,
                 this.transactionDate,
                 this.contact,
                 this.account,
@@ -570,6 +584,8 @@ public final class PaymentRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> paymentUrl = Optional.empty();
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
         private Optional<PaymentRequestContact> contact = Optional.empty();
@@ -606,6 +622,7 @@ public final class PaymentRequest {
         private Builder() {}
 
         public Builder from(PaymentRequest other) {
+            paymentUrl(other.getPaymentUrl());
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
@@ -621,6 +638,20 @@ public final class PaymentRequest {
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment.</p>
+         */
+        @JsonSetter(value = "payment_url", nulls = Nulls.SKIP)
+        public Builder paymentUrl(Optional<String> paymentUrl) {
+            this.paymentUrl = paymentUrl;
+            return this;
+        }
+
+        public Builder paymentUrl(String paymentUrl) {
+            this.paymentUrl = Optional.ofNullable(paymentUrl);
             return this;
         }
 
@@ -1137,6 +1168,7 @@ public final class PaymentRequest {
 
         public PaymentRequest build() {
             return new PaymentRequest(
+                    paymentUrl,
                     transactionDate,
                     contact,
                     account,

@@ -5,11 +5,13 @@ package com.merge.api;
 
 import com.merge.api.accounting.AsyncAccountingClient;
 import com.merge.api.ats.AsyncAtsClient;
+import com.merge.api.chat.AsyncChatClient;
 import com.merge.api.core.ClientOptions;
 import com.merge.api.core.Suppliers;
 import com.merge.api.crm.AsyncCrmClient;
 import com.merge.api.filestorage.AsyncFileStorageClient;
 import com.merge.api.hris.AsyncHrisClient;
+import com.merge.api.knowledgebase.AsyncKnowledgebaseClient;
 import com.merge.api.ticketing.AsyncTicketingClient;
 import java.util.function.Supplier;
 
@@ -22,9 +24,13 @@ public class AsyncMergeApiClient {
 
     protected final Supplier<AsyncCrmClient> crmClient;
 
+    protected final Supplier<AsyncChatClient> chatClient;
+
     protected final Supplier<AsyncFileStorageClient> fileStorageClient;
 
     protected final Supplier<AsyncHrisClient> hrisClient;
+
+    protected final Supplier<AsyncKnowledgebaseClient> knowledgebaseClient;
 
     protected final Supplier<AsyncTicketingClient> ticketingClient;
 
@@ -33,8 +39,10 @@ public class AsyncMergeApiClient {
         this.atsClient = Suppliers.memoize(() -> new AsyncAtsClient(clientOptions));
         this.accountingClient = Suppliers.memoize(() -> new AsyncAccountingClient(clientOptions));
         this.crmClient = Suppliers.memoize(() -> new AsyncCrmClient(clientOptions));
+        this.chatClient = Suppliers.memoize(() -> new AsyncChatClient(clientOptions));
         this.fileStorageClient = Suppliers.memoize(() -> new AsyncFileStorageClient(clientOptions));
         this.hrisClient = Suppliers.memoize(() -> new AsyncHrisClient(clientOptions));
+        this.knowledgebaseClient = Suppliers.memoize(() -> new AsyncKnowledgebaseClient(clientOptions));
         this.ticketingClient = Suppliers.memoize(() -> new AsyncTicketingClient(clientOptions));
     }
 
@@ -50,12 +58,20 @@ public class AsyncMergeApiClient {
         return this.crmClient.get();
     }
 
+    public AsyncChatClient chat() {
+        return this.chatClient.get();
+    }
+
     public AsyncFileStorageClient fileStorage() {
         return this.fileStorageClient.get();
     }
 
     public AsyncHrisClient hris() {
         return this.hrisClient.get();
+    }
+
+    public AsyncKnowledgebaseClient knowledgebase() {
+        return this.knowledgebaseClient.get();
     }
 
     public AsyncTicketingClient ticketing() {

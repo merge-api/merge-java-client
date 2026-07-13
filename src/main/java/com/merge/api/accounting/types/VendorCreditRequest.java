@@ -49,6 +49,8 @@ public final class VendorCreditRequest {
 
     private final Optional<Map<String, JsonNode>> linkedAccountParams;
 
+    private final Optional<String> vendorCreditUrl;
+
     private final Map<String, Object> additionalProperties;
 
     private VendorCreditRequest(
@@ -65,6 +67,7 @@ public final class VendorCreditRequest {
             Optional<VendorCreditRequestAccountingPeriod> accountingPeriod,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
+            Optional<String> vendorCreditUrl,
             Map<String, Object> additionalProperties) {
         this.number = number;
         this.transactionDate = transactionDate;
@@ -79,6 +82,7 @@ public final class VendorCreditRequest {
         this.accountingPeriod = accountingPeriod;
         this.integrationParams = integrationParams;
         this.linkedAccountParams = linkedAccountParams;
+        this.vendorCreditUrl = vendorCreditUrl;
         this.additionalProperties = additionalProperties;
     }
 
@@ -485,6 +489,14 @@ public final class VendorCreditRequest {
         return linkedAccountParams;
     }
 
+    /**
+     * @return The 3rd party URL of the vendor credit.
+     */
+    @JsonProperty("vendor_credit_url")
+    public Optional<String> getVendorCreditUrl() {
+        return vendorCreditUrl;
+    }
+
     @java.lang.Override
     public boolean equals(Object other) {
         if (this == other) return true;
@@ -509,7 +521,8 @@ public final class VendorCreditRequest {
                 && appliedToLines.equals(other.appliedToLines)
                 && accountingPeriod.equals(other.accountingPeriod)
                 && integrationParams.equals(other.integrationParams)
-                && linkedAccountParams.equals(other.linkedAccountParams);
+                && linkedAccountParams.equals(other.linkedAccountParams)
+                && vendorCreditUrl.equals(other.vendorCreditUrl);
     }
 
     @java.lang.Override
@@ -527,7 +540,8 @@ public final class VendorCreditRequest {
                 this.appliedToLines,
                 this.accountingPeriod,
                 this.integrationParams,
-                this.linkedAccountParams);
+                this.linkedAccountParams,
+                this.vendorCreditUrl);
     }
 
     @java.lang.Override
@@ -568,6 +582,8 @@ public final class VendorCreditRequest {
 
         private Optional<Map<String, JsonNode>> linkedAccountParams = Optional.empty();
 
+        private Optional<String> vendorCreditUrl = Optional.empty();
+
         @JsonAnySetter
         private Map<String, Object> additionalProperties = new HashMap<>();
 
@@ -587,6 +603,7 @@ public final class VendorCreditRequest {
             accountingPeriod(other.getAccountingPeriod());
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
+            vendorCreditUrl(other.getVendorCreditUrl());
             return this;
         }
 
@@ -1073,6 +1090,20 @@ public final class VendorCreditRequest {
             return this;
         }
 
+        /**
+         * <p>The 3rd party URL of the vendor credit.</p>
+         */
+        @JsonSetter(value = "vendor_credit_url", nulls = Nulls.SKIP)
+        public Builder vendorCreditUrl(Optional<String> vendorCreditUrl) {
+            this.vendorCreditUrl = vendorCreditUrl;
+            return this;
+        }
+
+        public Builder vendorCreditUrl(String vendorCreditUrl) {
+            this.vendorCreditUrl = Optional.ofNullable(vendorCreditUrl);
+            return this;
+        }
+
         public VendorCreditRequest build() {
             return new VendorCreditRequest(
                     number,
@@ -1088,6 +1119,7 @@ public final class VendorCreditRequest {
                     accountingPeriod,
                     integrationParams,
                     linkedAccountParams,
+                    vendorCreditUrl,
                     additionalProperties);
         }
     }

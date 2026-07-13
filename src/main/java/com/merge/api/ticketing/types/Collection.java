@@ -41,6 +41,8 @@ public final class Collection {
 
     private final Optional<CollectionParentCollection> parentCollection;
 
+    private final Optional<List<CollectionPermissionsItem>> permissions;
+
     private final Optional<String> collectionUrl;
 
     private final Optional<OffsetDateTime> remoteCreatedAt;
@@ -65,6 +67,7 @@ public final class Collection {
             Optional<CollectionAccessLevel> accessLevel,
             Optional<CollectionTypeEnum> collectionType,
             Optional<CollectionParentCollection> parentCollection,
+            Optional<List<CollectionPermissionsItem>> permissions,
             Optional<String> collectionUrl,
             Optional<OffsetDateTime> remoteCreatedAt,
             Optional<OffsetDateTime> remoteUpdatedAt,
@@ -81,6 +84,7 @@ public final class Collection {
         this.accessLevel = accessLevel;
         this.collectionType = collectionType;
         this.parentCollection = parentCollection;
+        this.permissions = permissions;
         this.collectionUrl = collectionUrl;
         this.remoteCreatedAt = remoteCreatedAt;
         this.remoteUpdatedAt = remoteUpdatedAt;
@@ -169,6 +173,11 @@ public final class Collection {
         return parentCollection;
     }
 
+    @JsonProperty("permissions")
+    public Optional<List<CollectionPermissionsItem>> getPermissions() {
+        return permissions;
+    }
+
     /**
      * @return The 3rd party url of the Collection.
      */
@@ -232,6 +241,7 @@ public final class Collection {
                 && accessLevel.equals(other.accessLevel)
                 && collectionType.equals(other.collectionType)
                 && parentCollection.equals(other.parentCollection)
+                && permissions.equals(other.permissions)
                 && collectionUrl.equals(other.collectionUrl)
                 && remoteCreatedAt.equals(other.remoteCreatedAt)
                 && remoteUpdatedAt.equals(other.remoteUpdatedAt)
@@ -252,6 +262,7 @@ public final class Collection {
                 this.accessLevel,
                 this.collectionType,
                 this.parentCollection,
+                this.permissions,
                 this.collectionUrl,
                 this.remoteCreatedAt,
                 this.remoteUpdatedAt,
@@ -289,6 +300,8 @@ public final class Collection {
 
         private Optional<CollectionParentCollection> parentCollection = Optional.empty();
 
+        private Optional<List<CollectionPermissionsItem>> permissions = Optional.empty();
+
         private Optional<String> collectionUrl = Optional.empty();
 
         private Optional<OffsetDateTime> remoteCreatedAt = Optional.empty();
@@ -316,6 +329,7 @@ public final class Collection {
             accessLevel(other.getAccessLevel());
             collectionType(other.getCollectionType());
             parentCollection(other.getParentCollection());
+            permissions(other.getPermissions());
             collectionUrl(other.getCollectionUrl());
             remoteCreatedAt(other.getRemoteCreatedAt());
             remoteUpdatedAt(other.getRemoteUpdatedAt());
@@ -458,6 +472,17 @@ public final class Collection {
             return this;
         }
 
+        @JsonSetter(value = "permissions", nulls = Nulls.SKIP)
+        public Builder permissions(Optional<List<CollectionPermissionsItem>> permissions) {
+            this.permissions = permissions;
+            return this;
+        }
+
+        public Builder permissions(List<CollectionPermissionsItem> permissions) {
+            this.permissions = Optional.ofNullable(permissions);
+            return this;
+        }
+
         /**
          * <p>The 3rd party url of the Collection.</p>
          */
@@ -547,6 +572,7 @@ public final class Collection {
                     accessLevel,
                     collectionType,
                     parentCollection,
+                    permissions,
                     collectionUrl,
                     remoteCreatedAt,
                     remoteUpdatedAt,

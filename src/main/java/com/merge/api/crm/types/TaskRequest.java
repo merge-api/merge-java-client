@@ -33,6 +33,8 @@ public final class TaskRequest {
 
     private final Optional<TaskRequestOpportunity> opportunity;
 
+    private final Optional<TaskRequestContact> contact;
+
     private final Optional<OffsetDateTime> completedDate;
 
     private final Optional<OffsetDateTime> dueDate;
@@ -53,6 +55,7 @@ public final class TaskRequest {
             Optional<TaskRequestOwner> owner,
             Optional<TaskRequestAccount> account,
             Optional<TaskRequestOpportunity> opportunity,
+            Optional<TaskRequestContact> contact,
             Optional<OffsetDateTime> completedDate,
             Optional<OffsetDateTime> dueDate,
             Optional<TaskRequestStatus> status,
@@ -65,6 +68,7 @@ public final class TaskRequest {
         this.owner = owner;
         this.account = account;
         this.opportunity = opportunity;
+        this.contact = contact;
         this.completedDate = completedDate;
         this.dueDate = dueDate;
         this.status = status;
@@ -112,6 +116,14 @@ public final class TaskRequest {
     @JsonProperty("opportunity")
     public Optional<TaskRequestOpportunity> getOpportunity() {
         return opportunity;
+    }
+
+    /**
+     * @return The task's contact.
+     */
+    @JsonProperty("contact")
+    public Optional<TaskRequestContact> getContact() {
+        return contact;
     }
 
     /**
@@ -174,6 +186,7 @@ public final class TaskRequest {
                 && owner.equals(other.owner)
                 && account.equals(other.account)
                 && opportunity.equals(other.opportunity)
+                && contact.equals(other.contact)
                 && completedDate.equals(other.completedDate)
                 && dueDate.equals(other.dueDate)
                 && status.equals(other.status)
@@ -190,6 +203,7 @@ public final class TaskRequest {
                 this.owner,
                 this.account,
                 this.opportunity,
+                this.contact,
                 this.completedDate,
                 this.dueDate,
                 this.status,
@@ -219,6 +233,8 @@ public final class TaskRequest {
 
         private Optional<TaskRequestOpportunity> opportunity = Optional.empty();
 
+        private Optional<TaskRequestContact> contact = Optional.empty();
+
         private Optional<OffsetDateTime> completedDate = Optional.empty();
 
         private Optional<OffsetDateTime> dueDate = Optional.empty();
@@ -242,6 +258,7 @@ public final class TaskRequest {
             owner(other.getOwner());
             account(other.getAccount());
             opportunity(other.getOpportunity());
+            contact(other.getContact());
             completedDate(other.getCompletedDate());
             dueDate(other.getDueDate());
             status(other.getStatus());
@@ -318,6 +335,20 @@ public final class TaskRequest {
 
         public Builder opportunity(TaskRequestOpportunity opportunity) {
             this.opportunity = Optional.ofNullable(opportunity);
+            return this;
+        }
+
+        /**
+         * <p>The task's contact.</p>
+         */
+        @JsonSetter(value = "contact", nulls = Nulls.SKIP)
+        public Builder contact(Optional<TaskRequestContact> contact) {
+            this.contact = contact;
+            return this;
+        }
+
+        public Builder contact(TaskRequestContact contact) {
+            this.contact = Optional.ofNullable(contact);
             return this;
         }
 
@@ -407,6 +438,7 @@ public final class TaskRequest {
                     owner,
                     account,
                     opportunity,
+                    contact,
                     completedDate,
                     dueDate,
                     status,

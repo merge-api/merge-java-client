@@ -23,29 +23,31 @@ import java.util.Optional;
 @JsonInclude(JsonInclude.Include.NON_ABSENT)
 @JsonDeserialize(builder = PatchedPaymentRequest.Builder.class)
 public final class PatchedPaymentRequest {
+    private final Optional<String> paymentUrl;
+
     private final Optional<OffsetDateTime> transactionDate;
 
-    private final Optional<PatchedPaymentRequestContact> contact;
+    private final Optional<String> contact;
 
-    private final Optional<PatchedPaymentRequestAccount> account;
+    private final Optional<String> account;
 
-    private final Optional<PatchedPaymentRequestPaymentMethod> paymentMethod;
+    private final Optional<String> paymentMethod;
 
     private final Optional<PatchedPaymentRequestCurrency> currency;
 
     private final Optional<String> exchangeRate;
 
-    private final Optional<PatchedPaymentRequestCompany> company;
+    private final Optional<String> company;
 
     private final Optional<Double> totalAmount;
 
     private final Optional<PatchedPaymentRequestType> type;
 
-    private final Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories;
+    private final Optional<List<Optional<String>>> trackingCategories;
 
-    private final Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod;
+    private final Optional<String> accountingPeriod;
 
-    private final Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines;
+    private final Optional<List<PaymentLineItemRequest>> appliedToLines;
 
     private final Optional<Map<String, JsonNode>> integrationParams;
 
@@ -56,22 +58,24 @@ public final class PatchedPaymentRequest {
     private final Map<String, Object> additionalProperties;
 
     private PatchedPaymentRequest(
+            Optional<String> paymentUrl,
             Optional<OffsetDateTime> transactionDate,
-            Optional<PatchedPaymentRequestContact> contact,
-            Optional<PatchedPaymentRequestAccount> account,
-            Optional<PatchedPaymentRequestPaymentMethod> paymentMethod,
+            Optional<String> contact,
+            Optional<String> account,
+            Optional<String> paymentMethod,
             Optional<PatchedPaymentRequestCurrency> currency,
             Optional<String> exchangeRate,
-            Optional<PatchedPaymentRequestCompany> company,
+            Optional<String> company,
             Optional<Double> totalAmount,
             Optional<PatchedPaymentRequestType> type,
-            Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories,
-            Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod,
-            Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines,
+            Optional<List<Optional<String>>> trackingCategories,
+            Optional<String> accountingPeriod,
+            Optional<List<PaymentLineItemRequest>> appliedToLines,
             Optional<Map<String, JsonNode>> integrationParams,
             Optional<Map<String, JsonNode>> linkedAccountParams,
             Optional<List<RemoteFieldRequest>> remoteFields,
             Map<String, Object> additionalProperties) {
+        this.paymentUrl = paymentUrl;
         this.transactionDate = transactionDate;
         this.contact = contact;
         this.account = account;
@@ -91,6 +95,14 @@ public final class PatchedPaymentRequest {
     }
 
     /**
+     * @return The 3rd party URL of the payment.
+     */
+    @JsonProperty("payment_url")
+    public Optional<String> getPaymentUrl() {
+        return paymentUrl;
+    }
+
+    /**
      * @return The payment's transaction date.
      */
     @JsonProperty("transaction_date")
@@ -102,7 +114,7 @@ public final class PatchedPaymentRequest {
      * @return The supplier, or customer involved in the payment.
      */
     @JsonProperty("contact")
-    public Optional<PatchedPaymentRequestContact> getContact() {
+    public Optional<String> getContact() {
         return contact;
     }
 
@@ -110,7 +122,7 @@ public final class PatchedPaymentRequest {
      * @return The supplier’s or customer’s account in which the payment is made.
      */
     @JsonProperty("account")
-    public Optional<PatchedPaymentRequestAccount> getAccount() {
+    public Optional<String> getAccount() {
         return account;
     }
 
@@ -118,7 +130,7 @@ public final class PatchedPaymentRequest {
      * @return The method which this payment was made by.
      */
     @JsonProperty("payment_method")
-    public Optional<PatchedPaymentRequestPaymentMethod> getPaymentMethod() {
+    public Optional<String> getPaymentMethod() {
         return paymentMethod;
     }
 
@@ -450,7 +462,7 @@ public final class PatchedPaymentRequest {
      * @return The company the payment belongs to.
      */
     @JsonProperty("company")
-    public Optional<PatchedPaymentRequestCompany> getCompany() {
+    public Optional<String> getCompany() {
         return company;
     }
 
@@ -475,7 +487,7 @@ public final class PatchedPaymentRequest {
     }
 
     @JsonProperty("tracking_categories")
-    public Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> getTrackingCategories() {
+    public Optional<List<Optional<String>>> getTrackingCategories() {
         return trackingCategories;
     }
 
@@ -483,7 +495,7 @@ public final class PatchedPaymentRequest {
      * @return The accounting period that the Payment was generated in.
      */
     @JsonProperty("accounting_period")
-    public Optional<PatchedPaymentRequestAccountingPeriod> getAccountingPeriod() {
+    public Optional<String> getAccountingPeriod() {
         return accountingPeriod;
     }
 
@@ -491,7 +503,7 @@ public final class PatchedPaymentRequest {
      * @return A list of “Payment Applied to Lines” objects.
      */
     @JsonProperty("applied_to_lines")
-    public Optional<List<PatchedPaymentRequestAppliedToLinesItem>> getAppliedToLines() {
+    public Optional<List<PaymentLineItemRequest>> getAppliedToLines() {
         return appliedToLines;
     }
 
@@ -522,7 +534,8 @@ public final class PatchedPaymentRequest {
     }
 
     private boolean equalTo(PatchedPaymentRequest other) {
-        return transactionDate.equals(other.transactionDate)
+        return paymentUrl.equals(other.paymentUrl)
+                && transactionDate.equals(other.transactionDate)
                 && contact.equals(other.contact)
                 && account.equals(other.account)
                 && paymentMethod.equals(other.paymentMethod)
@@ -542,6 +555,7 @@ public final class PatchedPaymentRequest {
     @java.lang.Override
     public int hashCode() {
         return Objects.hash(
+                this.paymentUrl,
                 this.transactionDate,
                 this.contact,
                 this.account,
@@ -570,30 +584,31 @@ public final class PatchedPaymentRequest {
 
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static final class Builder {
+        private Optional<String> paymentUrl = Optional.empty();
+
         private Optional<OffsetDateTime> transactionDate = Optional.empty();
 
-        private Optional<PatchedPaymentRequestContact> contact = Optional.empty();
+        private Optional<String> contact = Optional.empty();
 
-        private Optional<PatchedPaymentRequestAccount> account = Optional.empty();
+        private Optional<String> account = Optional.empty();
 
-        private Optional<PatchedPaymentRequestPaymentMethod> paymentMethod = Optional.empty();
+        private Optional<String> paymentMethod = Optional.empty();
 
         private Optional<PatchedPaymentRequestCurrency> currency = Optional.empty();
 
         private Optional<String> exchangeRate = Optional.empty();
 
-        private Optional<PatchedPaymentRequestCompany> company = Optional.empty();
+        private Optional<String> company = Optional.empty();
 
         private Optional<Double> totalAmount = Optional.empty();
 
         private Optional<PatchedPaymentRequestType> type = Optional.empty();
 
-        private Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories =
-                Optional.empty();
+        private Optional<List<Optional<String>>> trackingCategories = Optional.empty();
 
-        private Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod = Optional.empty();
+        private Optional<String> accountingPeriod = Optional.empty();
 
-        private Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines = Optional.empty();
+        private Optional<List<PaymentLineItemRequest>> appliedToLines = Optional.empty();
 
         private Optional<Map<String, JsonNode>> integrationParams = Optional.empty();
 
@@ -607,6 +622,7 @@ public final class PatchedPaymentRequest {
         private Builder() {}
 
         public Builder from(PatchedPaymentRequest other) {
+            paymentUrl(other.getPaymentUrl());
             transactionDate(other.getTransactionDate());
             contact(other.getContact());
             account(other.getAccount());
@@ -622,6 +638,20 @@ public final class PatchedPaymentRequest {
             integrationParams(other.getIntegrationParams());
             linkedAccountParams(other.getLinkedAccountParams());
             remoteFields(other.getRemoteFields());
+            return this;
+        }
+
+        /**
+         * <p>The 3rd party URL of the payment.</p>
+         */
+        @JsonSetter(value = "payment_url", nulls = Nulls.SKIP)
+        public Builder paymentUrl(Optional<String> paymentUrl) {
+            this.paymentUrl = paymentUrl;
+            return this;
+        }
+
+        public Builder paymentUrl(String paymentUrl) {
+            this.paymentUrl = Optional.ofNullable(paymentUrl);
             return this;
         }
 
@@ -643,12 +673,12 @@ public final class PatchedPaymentRequest {
          * <p>The supplier, or customer involved in the payment.</p>
          */
         @JsonSetter(value = "contact", nulls = Nulls.SKIP)
-        public Builder contact(Optional<PatchedPaymentRequestContact> contact) {
+        public Builder contact(Optional<String> contact) {
             this.contact = contact;
             return this;
         }
 
-        public Builder contact(PatchedPaymentRequestContact contact) {
+        public Builder contact(String contact) {
             this.contact = Optional.ofNullable(contact);
             return this;
         }
@@ -657,12 +687,12 @@ public final class PatchedPaymentRequest {
          * <p>The supplier’s or customer’s account in which the payment is made.</p>
          */
         @JsonSetter(value = "account", nulls = Nulls.SKIP)
-        public Builder account(Optional<PatchedPaymentRequestAccount> account) {
+        public Builder account(Optional<String> account) {
             this.account = account;
             return this;
         }
 
-        public Builder account(PatchedPaymentRequestAccount account) {
+        public Builder account(String account) {
             this.account = Optional.ofNullable(account);
             return this;
         }
@@ -671,12 +701,12 @@ public final class PatchedPaymentRequest {
          * <p>The method which this payment was made by.</p>
          */
         @JsonSetter(value = "payment_method", nulls = Nulls.SKIP)
-        public Builder paymentMethod(Optional<PatchedPaymentRequestPaymentMethod> paymentMethod) {
+        public Builder paymentMethod(Optional<String> paymentMethod) {
             this.paymentMethod = paymentMethod;
             return this;
         }
 
-        public Builder paymentMethod(PatchedPaymentRequestPaymentMethod paymentMethod) {
+        public Builder paymentMethod(String paymentMethod) {
             this.paymentMethod = Optional.ofNullable(paymentMethod);
             return this;
         }
@@ -1021,12 +1051,12 @@ public final class PatchedPaymentRequest {
          * <p>The company the payment belongs to.</p>
          */
         @JsonSetter(value = "company", nulls = Nulls.SKIP)
-        public Builder company(Optional<PatchedPaymentRequestCompany> company) {
+        public Builder company(Optional<String> company) {
             this.company = company;
             return this;
         }
 
-        public Builder company(PatchedPaymentRequestCompany company) {
+        public Builder company(String company) {
             this.company = Optional.ofNullable(company);
             return this;
         }
@@ -1064,14 +1094,12 @@ public final class PatchedPaymentRequest {
         }
 
         @JsonSetter(value = "tracking_categories", nulls = Nulls.SKIP)
-        public Builder trackingCategories(
-                Optional<List<Optional<PatchedPaymentRequestTrackingCategoriesItem>>> trackingCategories) {
+        public Builder trackingCategories(Optional<List<Optional<String>>> trackingCategories) {
             this.trackingCategories = trackingCategories;
             return this;
         }
 
-        public Builder trackingCategories(
-                List<Optional<PatchedPaymentRequestTrackingCategoriesItem>> trackingCategories) {
+        public Builder trackingCategories(List<Optional<String>> trackingCategories) {
             this.trackingCategories = Optional.ofNullable(trackingCategories);
             return this;
         }
@@ -1080,12 +1108,12 @@ public final class PatchedPaymentRequest {
          * <p>The accounting period that the Payment was generated in.</p>
          */
         @JsonSetter(value = "accounting_period", nulls = Nulls.SKIP)
-        public Builder accountingPeriod(Optional<PatchedPaymentRequestAccountingPeriod> accountingPeriod) {
+        public Builder accountingPeriod(Optional<String> accountingPeriod) {
             this.accountingPeriod = accountingPeriod;
             return this;
         }
 
-        public Builder accountingPeriod(PatchedPaymentRequestAccountingPeriod accountingPeriod) {
+        public Builder accountingPeriod(String accountingPeriod) {
             this.accountingPeriod = Optional.ofNullable(accountingPeriod);
             return this;
         }
@@ -1094,12 +1122,12 @@ public final class PatchedPaymentRequest {
          * <p>A list of “Payment Applied to Lines” objects.</p>
          */
         @JsonSetter(value = "applied_to_lines", nulls = Nulls.SKIP)
-        public Builder appliedToLines(Optional<List<PatchedPaymentRequestAppliedToLinesItem>> appliedToLines) {
+        public Builder appliedToLines(Optional<List<PaymentLineItemRequest>> appliedToLines) {
             this.appliedToLines = appliedToLines;
             return this;
         }
 
-        public Builder appliedToLines(List<PatchedPaymentRequestAppliedToLinesItem> appliedToLines) {
+        public Builder appliedToLines(List<PaymentLineItemRequest> appliedToLines) {
             this.appliedToLines = Optional.ofNullable(appliedToLines);
             return this;
         }
@@ -1139,6 +1167,7 @@ public final class PatchedPaymentRequest {
 
         public PatchedPaymentRequest build() {
             return new PatchedPaymentRequest(
+                    paymentUrl,
                     transactionDate,
                     contact,
                     account,
